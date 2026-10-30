@@ -1,320 +1,322 @@
-# 鱼跃彼岸（LeapAshore）产品需求文档（PRD）
+# LeapAshore (鱼跃彼岸) product requirements document (PRD)
 
-| 项 | 内容 |
+| Item | Value |
 | --- | --- |
-| 版本 | v0.1 初稿 |
-| 日期 | 2026-10-28 |
-| 作者 | MortyYJT |
-| 状态 | 草稿，标【待定】的条目需要拍板 |
-| 素材来源 | `note/decisions.md`、`openspec/specs/`、`/prototype` 原型 |
+| Version | v0.1 first draft |
+| Date | 2026-10-28 (translated into English 2026-10-31) |
+| Author | MortyYJT |
+| Status | Draft; items marked **[Open]** need a decision |
+| Sources | `note/decisions.md`, `openspec/specs/`, the `/prototype` prototype |
+
+Interface text is Chinese; it is quoted in Chinese with an English gloss. Counts in section 8 are as of the 2026-10-30 import before the summary faithfulness check; the current numbers are in `note/handoff.md` and [`docs/measurements.md`](../measurements.md).
 
 ---
 
-## 1. 一句话定位
+## 1. Positioning
 
-**鱼跃彼岸是一个留学申请 agent，覆盖 29 个国家和地区的 287 所大学（以 QS 2027 世界大学排名前 300 为主）。** 它把申请拆成一张可视化路线图：每个阶段要准备什么、什么时候准备、这条要求出自哪个官方页面，都能点开看到。
+**LeapAshore is a study-abroad application agent covering 287 universities in 29 countries and regions (mostly the QS 2027 World University Rankings top 300).** It turns an application into a visual roadmap: what to prepare at each stage, when to prepare it, and which official page each requirement comes from, all one click away.
 
-**【已定 D5】覆盖范围以学校库为准：** QS 2027 前 300 名中位于收录范围内的 241 所，外加为补齐地区收录的 46 所，共 287 所，分布在 29 个国家和地区（`web/prototype-fixtures/overseas-institutions.json`，2026-10-10 抓取）。收录范围（2026-10-29 定）：美国、英国、澳大利亚、加拿大、新西兰、中国香港、中国澳门、新加坡、韩国、马来西亚，欧洲 16 国（德、荷、瑞士、法、比、瑞典、意、西、爱尔兰、丹麦、挪威、奥地利、芬兰、葡萄牙、捷克、波兰），中东 3 国（阿联酋、沙特、卡塔尔）；范围外的 59 所（中国大陆、日本、印度、台湾、印尼、泰国、哈萨克斯坦、南非、拉美、以色列、黎巴嫩、土耳其、俄罗斯）已于 2026-10-30 移出学校库。
+**[Decided D5] Coverage follows the school list:** the 241 schools of the QS 2027 top 300 that are inside the covered regions, plus 46 schools added to complete regional coverage, 287 in total across 29 countries and regions (`web/prototype-fixtures/overseas-institutions.json`, fetched 2026-10-10). Covered regions (decided 2026-10-29): the United States, the United Kingdom, Australia, Canada, New Zealand, Hong Kong, Macau, Singapore, South Korea, Malaysia, 16 European countries (Germany, the Netherlands, Switzerland, France, Belgium, Sweden, Italy, Spain, Ireland, Denmark, Norway, Austria, Finland, Portugal, Czechia, Poland) and 3 Middle Eastern countries (UAE, Saudi Arabia, Qatar). The 59 out-of-scope schools (mainland China, Japan, India, Taiwan, Indonesia, Thailand, Kazakhstan, South Africa, Latin America, Israel, Lebanon, Turkey, Russia) were removed from the school list on 2026-10-30.
 
-差异化不在"推荐学校"，而在两点：
+The difference is not "recommending schools" but two things:
 
-1. **每个事实都能回溯到官方来源**，没有来源就明确标 `待核验`。
-2. **系统判断不了时直接说判断不了**，不给编出来的门槛或结论。
+1. **Every fact traces back to an official source**; without a source it is marked `待核验` (unverified).
+2. **When the system cannot judge, it says so** instead of inventing a threshold or a conclusion.
 
-## 2. 背景与问题
+## 2. Background and problem
 
-### 2.1 目标用户
+### 2.1 Target users
 
-中国本科在读或已毕业、准备申请学校库内大学（见 D5）授课型/研究型硕士的学生。
+Chinese undergraduates, current or graduated, applying for taught or research master's degrees at universities in the school list (see D5).
 
-### 2.2 用户现在怎么做
+### 2.2 What they do today
 
-| 方式 | 问题 |
+| Approach | Problem |
 | --- | --- |
-| 找中介 | 费用高；信息不透明，学生很难判断中介给的门槛是真是假 |
-| 自己查官网 + Excel | 信息分散在各校几十个页面；截止日期、语言单项要求、材料清单容易漏 |
-| 问 AI 聊天工具 | 会编造录取要求和截止日期，学生照着去申请会出错 |
+| An agency | Expensive; opaque, and students can hardly tell whether the thresholds they are given are real |
+| Official sites + Excel | Information is spread over dozens of pages per school; deadlines, language sub-scores and document lists are easy to miss |
+| Asking an AI chatbot | It invents admission requirements and deadlines, and students who act on them get it wrong |
 
-### 2.3 核心问题
+### 2.3 Core problem
 
-申请不是一次问答，而是**一条持续 6–12 个月、反复修改的状态**：今天问项目要求，下周考了雅思，下个月决定申哪几所。现有工具要么只回答单个问题，要么不保证信息可信。
+An application is not one question but **a state that lasts 6–12 months and keeps changing**: today a program's requirements, next week an IELTS result, next month which schools to apply to. Existing tools either answer single questions or do not guarantee the information.
 
-## 3. 产品目标与非目标
+## 3. Goals and non-goals
 
-### 3.1 目标
+### 3.1 Goals
 
-| 编号 | 目标 | 怎么衡量（指标定义，不预设数值） |
+| ID | Goal | How it is measured (metric definitions, no preset values) |
 | --- | --- | --- |
-| G1 | 学生能在一个地方看清"申哪些、各要什么、什么时候做" | 完成引导到看到路线图的转化率 |
-| G2 | 系统给出的每条官方要求都可追溯 | 带来源的要求条目占比；`待核验` 条目占比 |
-| G3 | agent 不编造 | 证据门禁拒答率；人工抽查中无来源断言的数量 |
-| G4 | 学生持续回来更新状态 | 材料勾选、档案更新的次数与间隔 |
+| G1 | Students see in one place "where to apply, what each needs, when to do it" | Conversion from onboarding to seeing the roadmap |
+| G2 | Every official requirement the system shows is traceable | Share of requirement entries with a source; share of `待核验` entries |
+| G3 | The agent does not make things up | Evidence-gate refusal rate; unsourced claims found in manual spot checks |
+| G4 | Students come back to update their state | Number of and intervals between document ticks and profile updates |
 
-### 3.2 非目标（明确不做）
+### 3.2 Non-goals
 
-- 不做录取概率预测或选校排名。没有可靠数据支撑的结论比没有结论更糟。
-- 不用模型生成招生要求、截止日期、均分门槛。
-- 不提供签证、移民等有法律后果的建议。
-- 不为演示效果伪造数据、指标或来源。
+- No admission probability prediction or school ranking. A conclusion without reliable data is worse than none.
+- No model-generated admission requirements, deadlines or mark thresholds.
+- No visa, immigration or other advice with legal consequences.
+- No fabricated data, metrics or sources for demos.
 
-## 4. 现状盘点（2026-10-28）
+## 4. Current state (2026-10-28)
 
-仓库里有**两套前端**，方向不完全一致：
+The repository has **two front ends** that do not quite agree:
 
-| | 主流程（`/`） | 静态原型（`/prototype`） |
+| | Main flow (`/`) | Static prototype (`/prototype`) |
 | --- | --- | --- |
-| 形态 | 引导问卷 → 生成方案 → 选校组合 → 路线图主界面 | 学校库 / 项目库 / 背景测评 / 对话顾问 / 申请进度 / 顾问后台 |
-| 侧重 | 个人申请规划（agent 维护状态） | 查项目与测评，最后导向"联系顾问" |
-| 数据 | 6 个占位项目，全部 `待核验` | CRICOS 真实项目事实（2920 个澳洲硕士）、3167 所中国院校、287 所海外院校；录取要求为标注的示例数据 |
-| 后端 | 接 FastAPI + PostgreSQL（档案、路线图、选校组合、材料库） | 不依赖后端，读本地固定数据 |
-| agent | 无，顾问对话返回固定提示 | 无 |
+| Shape | Onboarding questionnaire → generated plan → portfolio → roadmap main screen | School list / program list / background assessment / advisor chat / application progress / consultant back office |
+| Focus | Personal application planning (the agent keeps the state) | Browsing programs and assessment, ending in "contact a consultant" |
+| Data | 6 placeholder programs, all `待核验` | Real CRICOS program facts (2,920 Australian master's programs), 3,167 Chinese institutions, 287 overseas institutions; admission requirements are labelled sample data |
+| Back end | FastAPI + PostgreSQL (profile, roadmap, portfolio, document library) | None; reads local fixtures |
+| Agent | None; the advisor chat returns a fixed message | None |
 
-**【已定 D1】两套前端合并方式：** 以原型的学校库、项目库、背景测评作为"了解与测评"入口，以主流程的路线图作为"规划与执行"主界面，对话顾问就是 agent 的入口。"联系顾问 / 顾问后台"这类获客功能放到后续版本，避免产品定位变成中介获客工具。
+**[Decided D1] How the two front ends merge:** the prototype's school list, program list and background assessment become the "learn and assess" entry, the main flow's roadmap becomes the "plan and execute" main screen, and the advisor chat is the agent's entry. Lead-generation features ("contact a consultant", the consultant back office) move to a later version so the product does not turn into an agency's lead funnel.
 
-**定位扩到全球后的影响：** 现有数据和规则都是按澳洲做的。CRICOS 只覆盖澳洲；路线图第六阶段的 CoE 是澳洲签证材料，英美等国家分别是 I-20、CAS。扩到全球需要：每个国家单独的项目数据来源，以及按国家区分的路线图阶段模板。
+**Effect of going global:** existing data and rules were built for Australia. CRICOS covers only Australia; the roadmap's sixth stage uses the CoE, an Australian visa document, while the US and UK use the I-20 and CAS. Going global needs a program data source per country and roadmap stage templates per country.
 
-## 5. 用户流程
+## 5. User flow
 
 ```
-首页
- ├─ 查学校 / 查项目 / 看路线图示例 / 打开顾问页面（无需登录）
- └─ 登录（邮箱 + 6 位验证码，首次登录即注册）
+Home
+ ├─ Browse schools / programs / a sample roadmap / open the advisor page (no sign-in)
+ └─ Sign in (email + 6-digit code; the first sign-in registers)
        ↓
-   信息页（本科院校、均分、申请方向、英语成绩，可跳过）
+   Profile step (undergraduate school, average mark, study area, English score; can be skipped)
        ↓
-   项目分档结果（冲刺 / 稳妥 / 保底 / 不满足；跳过信息页的用户先看到"先补信息"）
+   Program tiers (reach / match / safety / not eligible; users who skipped the profile see "fill in your information first")
        ↓
-   选定申请组合（需用户确认）
+   Choose the application portfolio (user confirms)
        ↓
-   申请路线图（主界面）── 点开阶段 → 材料清单、建议日期、官方截止日期、来源
+   Application roadmap (main screen) ── open a stage → document list, suggested dates, official deadlines, sources
        ↑        ↓
-   AI 顾问对话：问要求、补充档案、调整组合（写操作需确认）
+   AI advisor chat: ask about requirements, add to the profile, adjust the portfolio (writes need confirmation)
 ```
 
-## 6. 功能需求
+## 6. Functional requirements
 
-优先级：**P0 = MVP 必须上线**，P1 = 面试前尽量做，P2 = 后续版本。
+Priority: **P0 = must ship in the MVP**, P1 = do before interviews if possible, P2 = later versions.
 
-### 6.1 学校库与项目库
+### 6.1 School and program lists
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F1.1 | 按地区、QS 排名、学校联盟筛选学校；显示中文校名与校徽 | P0（原型已有） |
-| F1.2 | 按学校、学科、学费筛选项目；项目事实来自 CRICOS 并标注出处 | P0（原型已有） |
-| F1.3 | 多个项目并排对比 | P1（原型已有） |
-| F1.4 | 项目详情页列出录取要求，每条要求带来源与核验状态 | P0 |
+| F1.1 | Filter schools by region, QS rank and university group; show the Chinese name and logo | P0 (in the prototype) |
+| F1.2 | Filter programs by school, subject and tuition; program facts come from CRICOS with their source | P0 (in the prototype) |
+| F1.3 | Compare several programs side by side | P1 (in the prototype) |
+| F1.4 | The program page lists admission requirements, each with its source and verification state | P0 |
 
-### 6.2 信息页与分档
+### 6.2 Profile step and tiers
 
-背景测评页（`/assess`）已删除（2026-10-30）。分档只需要四项信息，在首次注册后的信息页里填；其余字段放到"我的"页。
+The background assessment page (`/assess`) was removed on 2026-10-30. Tiering needs only four items, entered in the profile step after first registration; the other fields live on the "Me" (我的) page.
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F2.1 | 首次注册成功后弹出信息页：本科院校（自动识别 985 / 211 / 其他）、均分（含分制）、申请方向、英语成绩 4 项必填，可以跳过；学历、专业、申请学位、入学时间、预算在"我的"页填写和修改 | P0 |
-| F2.2 | 每个项目逐条对照要求，给出分档和逐条依据 | P0（原型已有） |
-| F2.3 | 信息页 4 项填全才分档，跳过的用户在分档页看到"先补信息"；录取要求未收录的项目不参与分档，单独列为"要求未收录" | P0 |
-| F2.4 | 给出"差多少能进入上一档"的建议 | P1（原型已有） |
+| F2.1 | After first registration a profile step appears with four required items that can be skipped: undergraduate school (985 / 211 / other recognised automatically), average mark (with scale), study area, English score; degree level, major, target degree, intake and budget are entered and edited on "Me" | P0 |
+| F2.2 | Each program is compared requirement by requirement, giving a tier and the reason for each requirement | P0 (in the prototype) |
+| F2.3 | Tiers appear only when all four profile items are filled; users who skipped see "fill in your information first" on the tiers page; programs whose requirements are not collected are not tiered and are listed separately as "requirements not collected" | P0 |
+| F2.4 | Suggest what it would take to reach the next tier | P1 (in the prototype) |
 
-### 6.3 申请组合
+### 6.3 Application portfolio
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F3.1 | 从分档结果里选择要申请的项目，标出首选 | P0（主流程已有） |
-| F3.2 | 修改组合会重算路线图，需用户显式确认 | P0 |
+| F3.1 | Choose programs to apply to from the tiers and mark the first choice | P0 (in the main flow) |
+| F3.2 | Changing the portfolio recomputes the roadmap and needs explicit user confirmation | P0 |
 
-### 6.4 申请路线图（主界面）
+### 6.4 Application roadmap (main screen)
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F4.1 | 六个阶段纵向排列，每个阶段显示材料清单、建议日期、官方截止日期、来源 | P0（主流程已有） |
-| F4.2 | 勾选材料后阶段状态自动更新 | P0（主流程已有） |
-| F4.3 | 建议日期标"系统建议 · 非官方日期"；官方截止日期带来源时实心显示并链接来源，没有收录的显示"未收录"，已过的标"已截止"、不排进时间轴 | P0 |
-| F4.4 | 材料按学位和方向条件筛选（研究型加研究计划，设计类加作品集） | P0 |
+| F4.1 | Six stages in a column, each with a document list, suggested dates, official deadlines and sources | P0 (in the main flow) |
+| F4.2 | Ticking documents updates the stage's state automatically | P0 (in the main flow) |
+| F4.3 | Suggested dates are labelled "系统建议 · 非官方日期" (system suggestion, not an official date); an official deadline with a source is drawn solid and links to the source; an uncollected one shows "未收录" (not collected); a past one is labelled "已截止" (closed) and not placed on the timeline | P0 |
+| F4.4 | Documents are filtered by degree and study area (research degrees add a research proposal, design programs a portfolio) | P0 |
 
-### 6.5 材料库
+### 6.5 Document library
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F5.1 | 上传、版本管理、归档分类、下载 | P1（后端与前端已完成，见 `openspec/specs/document-library`） |
-| F5.2 | 材料审核结论必须引用一条有官方来源的审核依据 | P2（规则已定，审核由人工录入） |
+| F5.1 | Upload, versions, archive categories, download | P1 (back end and front end done, see `openspec/specs/document-library`) |
+| F5.2 | A document review conclusion must cite a review criterion with an official source | P2 (rules settled; reviews are entered by a person) |
 
-### 6.6 AI 顾问（agent）
+### 6.6 AI advisor (agent)
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F6.1 | 对话界面，流式输出 | P0 |
-| F6.2 | 意图分流：规划 / 官方要求核验 / 资料补充 / 业务操作 / 通用问答（见 7.3） | P0 |
-| F6.3 | 回答官方要求前先过证据门禁，不满足就拒答并记录知识缺口；待核验数据照答但打标签（见 7.4） | P0 |
-| F6.4 | 写操作分级：低风险自动执行，高风险返回提案等用户确认（见 7.5） | P0 |
-| F6.5 | 跨会话记住申请状态 | P1 |
-| F6.6 | 知识缺口进入人工补源队列 | P2 |
+| F6.1 | Chat interface with streaming output | P0 |
+| F6.2 | Intent routing: planning / official requirement verification / profile update / operation / general Q&A (see 7.3) | P0 |
+| F6.3 | Answers about official requirements pass the evidence gate first; otherwise refuse and record a knowledge gap; unverified data is answered with a label (see 7.4) | P0 |
+| F6.4 | Writes by risk: low risk runs at once, high risk returns a proposal for the user to confirm (see 7.5) | P0 |
+| F6.5 | Remember the application state across sessions | P1 |
+| F6.6 | Knowledge gaps go into a human sourcing queue | P2 |
 
-**【待定 D2】agent 在 MVP 里做到哪一步。** 建议 MVP 至少做到 F6.1–F6.4：能对话、能查项目要求并引用来源、能拒答、能通过提案修改组合。这是"agent 开发"岗位面试的核心展示点。
+**[Open D2] How far the agent goes in the MVP.** Suggest at least F6.1–F6.4: chat, look up program requirements with sources, refuse, and change the portfolio through proposals. This is the core of an "agent developer" interview demo.
 
-### 6.7 获客与顾问后台
+### 6.7 Lead generation and consultant back office
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F7.1 | 联系顾问面板（微信、留资表单、预约） | P2（原型已有，全部为示例，不发送） |
-| F7.2 | 顾问工作台（线索列表、待回答问题） | P2（原型已有，全部为虚构样本） |
+| F7.1 | "Contact a consultant" panel (WeChat, lead form, booking) | P2 (in the prototype, all samples, nothing is sent) |
+| F7.2 | Consultant workbench (leads, questions to answer) | P2 (in the prototype, all fictional samples) |
 
-### 6.8 账号与登录
+### 6.8 Accounts and sign-in
 
-| 编号 | 需求 | 优先级 |
+| ID | Requirement | Priority |
 | --- | --- | --- |
-| F8.1 | 邮箱 + 6 位验证码登录，首次登录即注册；验证码 10 分钟过期、只能用一次、错 5 次作废、60 秒内不能重发；同一邮箱、同一 IP 每天发送次数有上限 | P0 |
-| F8.2 | 会话存在服务端（PostgreSQL 表 + httpOnly cookie），可以退出登录 | P0 |
-| F8.3 | 不登录可以看：首页、学校库、项目库、路线图示例、顾问页面。需要登录：保存或读取自己的数据（我的、选校组合、分档结果、自己的路线图、材料），以及在顾问里发送消息。在这些操作上点击时弹出登录，登录后回到原处并完成刚才的操作；直接点"登录"进来的，登录后去分档结果页 | P0 |
-| F8.4 | 首次登录时，把同一浏览器之前的匿名档案、选校、路线图任务和材料并入账号；账号里已有的数据不覆盖（冲突规则见 `openspec/changes/account-login/design.md` D7）；没人认领的匿名数据 90 天后清理 | P0 |
-| F8.5 | 所有接口和顾问工具按账号识别身份，读写不到别人的数据 | P0 |
-| F8.6 | 注销账号删除该账号的全部数据（含上传的文件）；隐私政策页公开可读 | P0 |
-| F8.7 | 验证码邮件走腾讯云 SES（SMTP）；本地和 CI 只把验证码写进日志，生产环境禁止只写日志 | P0 |
+| F8.1 | Sign in with email + 6-digit code; the first sign-in registers; codes expire after 10 minutes, work once, are void after 5 wrong tries, and cannot be resent within 60 seconds; daily sends per email and per IP are capped | P0 |
+| F8.2 | Sessions are server-side (PostgreSQL table + httpOnly cookie); users can sign out | P0 |
+| F8.3 | Without signing in: home, school list, program list, sample roadmap, advisor page. Signing in is needed to save or read your own data ("Me", portfolio, tiers, your roadmap, documents) and to send a message to the advisor. Clicking such an action opens sign-in, and afterwards returns to the same place and completes the action; users who clicked "Sign in" directly land on the tiers page | P0 |
+| F8.4 | At first sign-in, the same browser's earlier anonymous profile, portfolio, roadmap tasks and documents merge into the account; existing account data is not overwritten (conflict rules in `openspec/changes/account-login/design.md` D7); unclaimed anonymous data is cleaned up after 90 days | P0 |
+| F8.5 | Every API and advisor tool identifies the user by account and cannot read or write anyone else's data | P0 |
+| F8.6 | Deleting an account deletes all its data (including uploaded files); the privacy policy page is public | P0 |
+| F8.7 | Code emails go through Tencent Cloud SES (SMTP); locally and in CI codes are only written to the log, which production forbids | P0 |
 
-## 7. 核心业务规则
+## 7. Core business rules
 
-### 7.1 申请状态模型
+### 7.1 Application state model
 
-agent 维护的是六个对象，而不是一次对话：
+The agent maintains six objects, not one conversation:
 
-| 对象 | 内容 | 谁修改 | 可逆性 |
+| Object | Content | Who changes it | Reversibility |
 | --- | --- | --- | --- |
-| 申请档案 | 院校层次、均分、专业、语言、目标、预算 | 用户说 → 系统抽取 | 随时可改 |
-| 候选项目池 | 项目、官方来源、版本 | 运营核验后发布 | 有版本历史 |
-| 申请组合 | 申哪些、哪个首选 | 用户决定（需确认） | 影响后续规划 |
-| 路线图 | 从现在到入学的时间安排 | 系统生成 → 用户调整 | 可重算 |
-| 任务 | 具体待办 | 系统建议 + 用户自建 | 可改 |
-| 知识缺口 | 系统答不上来的问题 | 系统记录 → 人工补源 → 发布 | — |
+| Application profile | School tier, average mark, major, language, goals, budget | The user says → the system extracts | Editable any time |
+| Candidate program pool | Programs, official sources, versions | Published after operator verification | Versioned |
+| Application portfolio | Which programs, which is first choice | The user decides (with confirmation) | Affects later planning |
+| Roadmap | Schedule from now to intake | System generates → user adjusts | Can be recomputed |
+| Tasks | Concrete to-dos | System suggests + user adds | Editable |
+| Knowledge gaps | Questions the system could not answer | System records → a person finds sources → published | — |
 
-### 7.2 项目分档规则
+### 7.2 Program tier rules
 
-分档只表示**对官方要求的满足程度，不是录取概率**。
+A tier says **how well the official requirements are met, not the chance of admission**.
 
-| 档位 | 条件 |
+| Tier | Condition |
 | --- | --- |
-| 保底 | 所有要求满足，且均分高出门槛至少 5 分 |
-| 稳妥 | 所有要求满足，但不够保底 |
-| 冲刺 | 只有一项不满足，且均分最多差 3 分，或雅思总分最多差 0.5 |
-| 不满足 | 其余情况 |
+| Safety (保底) | Every requirement met, and the average mark at least 5 points above the threshold |
+| Match (稳妥) | Every requirement met, but not safety |
+| Reach (冲刺) | Exactly one requirement not met, and the average mark at most 3 points short or the IELTS overall at most 0.5 short |
+| Not eligible (不满足) | Everything else |
 
-阈值是代码里的命名常量（`web/lib/prototype-tiers.ts`），不是来自任何学校的官方说法。
+The thresholds are named constants in code (`web/lib/prototype-tiers.ts`), not any school's official statement.
 
-**未知信息怎么处理（取消"信息不足"档之后）：**
+**Unknowns (after removing the "not enough information" tier):**
 
-- 用户侧的未知：信息页的 4 项（本科院校、均分、申请方向、英语成绩）没填全就不分档，分档页显示"先补信息"，所以进入分档的背景不会有未知项。
-- 项目侧的未知：录取要求还没收录的项目不参与分档，在结果页单独列为"要求未收录"，不算进任何一档。
-- 不变的底线：未知永远不当作满足，也不当作不满足。
+- Unknowns on the user's side: if the four profile items (undergraduate school, average mark, study area, English score) are not all filled, there are no tiers and the tiers page shows "fill in your information first", so a tiered background has no unknowns.
+- Unknowns on the program's side: programs whose requirements are not collected are not tiered and are listed separately as "requirements not collected", outside every tier.
+- Unchanged floor: an unknown never counts as met and never as not met.
 
-现有代码（`prototype-tiers.ts` 及其测试）仍有"信息不足"档，需要按产品逻辑流程（OpenSpec → TDD）改，还没改。
+The current code (`prototype-tiers.ts` and its tests) still has the "not enough information" tier; it needs to change through the product-logic process (OpenSpec → TDD) and has not yet.
 
-**院校层次：** 985 / 211 以外的层次（一本、二本、专科）以及海外院校，一律返回"需要人工核验"（界面显示为"去官网确认"），不套用统一基线。
+**School tier:** tiers other than 985 / 211 (first-tier, second-tier, junior colleges) and overseas schools always return "needs human verification" (shown as "去官网确认", check the official site), with no common baseline applied.
 
-### 7.3 意图分流
+### 7.3 Intent routing
 
-判据不是"消息里有没有某些关键词"，而是"这条消息想改变哪个状态"：
+The criterion is not "does the message contain certain keywords" but "which state does this message want to change":
 
-| 意图 | 判据 | 处理 | 是否写入 |
+| Intent | Criterion | Handling | Writes |
 | --- | --- | --- | --- |
-| 规划 / 重规划 | 想改变申请哪些项目 | 确定性分档 → 重建路线图 | 写（需确认） |
-| 官方要求核验 | 问某个项目的官方要求 | 检索 → 证据门禁 | 只读 |
-| 资料补充 | 提供了新的档案信息 | 结构化抽取 → 更新档案 | 写（低风险） |
-| 业务操作 | 想改已有决定或任务状态 | 白名单执行器 | 按风险分级 |
-| 通用问答 | 以上都不是 | 通用回复 | 只读 |
+| Planning / re-planning | Wants to change which programs to apply to | Deterministic tiers → rebuild the roadmap | Writes (with confirmation) |
+| Official requirement verification | Asks about a program's official requirements | Retrieval → evidence gate | Read-only |
+| Profile update | Provides new profile information | Structured extraction → update the profile | Writes (low risk) |
+| Operation | Wants to change an existing decision or task state | Allow-listed executor | By risk level |
+| General Q&A | None of the above | General reply | Read-only |
 
-### 7.4 证据门禁
+### 7.4 Evidence gate
 
-涉及官方要求的回答，以下三条必须同时满足，任何一条不满足就拒答，并记录知识缺口：
+An answer about official requirements needs all three of the following; if any fails, it refuses and records a knowledge gap:
 
-1. 有检索命中：问题点名了学校库里收录的学校，内容来自库里的数据，不是模型自己生成的。
-2. 引用合法：https 链接、页面标题、来源编号齐全。
-3. 相关度达到阈值：只命中专业名（比如"计算机"）不算，必须命中学校。
+1. A retrieval hit: the question names a school in the school list, and the content comes from the database, not from the model.
+2. A valid citation: https link, page title and source id all present.
+3. Relevance above the threshold: matching only a subject ("computing") does not count; it must match a school.
 
-**核验状态不是拒答条件，而是标签。** 来源还没人工核验的要求照样回答，回答里标"待核验"并附官方链接。
-理由：现在库里几乎所有数据都是待核验，如果按核验状态拒答，几乎每个问题都会被拒，申请人也就拿不到本该看到的官方页面。
+**Verification state is a label, not a refusal condition.** Requirements whose source has not been verified by a person are still answered, labelled "待核验" with the official link.
+Reason: almost all data is unverified today; refusing by verification state would refuse almost every question, and applicants would not get the official pages they should see.
 
-拒答只有两种原因，都会写进知识缺口日志：
+There are only two refusal reasons, both written to the knowledge-gap log:
 
-- `no_hit`：学校没有收录。
-- `no_citable_source`：收录了，但没有可引用的来源。
+- `no_hit`: the school is not collected.
+- `no_citable_source`: it is collected but has no citable source.
 
-### 7.5 写操作分级确认
+### 7.5 Confirmation by write risk
 
-| 级别 | 操作 | 行为 |
+| Level | Operations | Behaviour |
 | --- | --- | --- |
-| 自动执行 | 更新档案字段、勾选材料、记录截止日期 | 幂等，直接写入 |
-| 需确认 | 设为首选、标记"不考虑"、重算方案（会覆盖已有组合） | 返回提案 → 用户确认 → 执行 |
+| Run at once | Update profile fields, tick documents, record deadlines | Idempotent, written directly |
+| Needs confirmation | Set the first choice, mark "not considering", recompute the plan (overwrites the portfolio) | Return a proposal → user confirms → execute |
 
-### 7.6 路线图倒排
+### 7.6 Roadmap back-scheduling
 
-六个阶段按入学日期往前倒推：
+The six stages count back from the intake date:
 
-| 阶段 | 入学前天数 | 内容 |
+| Stage | Days before intake | Content |
 | --- | --- | --- |
-| 锁定申请组合 | 330 | 确定申哪些，标出首选 |
-| 学术与身份材料 | 270 | 成绩单、在读证明、评分说明、护照 |
-| 语言准备 | 240 | 总分和**单项**（最常踩的坑） |
-| 专项申请材料 | 210 | 简历、个人陈述、推荐信、作品集、研究计划 |
-| 提交申请 | 150 | 逐校提交、保存回执 |
-| Offer 与入学 | 60 | 补件、比较 Offer、押金、CoE、签证 |
+| Lock the portfolio | 330 | Decide where to apply and the first choice |
+| Academic and identity documents | 270 | Transcripts, enrolment certificate, grading scale, passport |
+| Language preparation | 240 | Overall and **sub-scores** (the most common pitfall) |
+| Application-specific documents | 210 | CV, personal statement, references, portfolio, research proposal |
+| Submit applications | 150 | Submit school by school, keep receipts |
+| Offers and enrolment | 60 | Additional documents, compare offers, deposit, CoE, visa |
 
-这些日期都是**系统建议**，界面必须标明不是官方日期。
+These dates are **system suggestions**, and the interface must say they are not official dates.
 
-### 7.7 数据诚实规则
+### 7.7 Data honesty rules
 
-1. 每条录取要求带核验状态：`待核验` / `机器核对` / `人工已核验`。
-2. `verified_at` 只能由人写入，永远不设默认值。
-3. 未知就显示未知，不显示为空字符串或 0。
-4. 示例数据在界面上逐处标"示例"。
-5. 存储值和界面文字分开：数据库与接口保留下表左列的值，界面一律显示右列。档位一个字的写法（冲 / 稳 / 保）只在空间不够时使用，含义与全称一致。
+1. Every admission requirement carries a verification state: `待核验` (unverified) / `机器核对` (machine-checked) / `人工已核验` (verified by a person).
+2. `verified_at` is written only by a person and never has a default.
+3. Unknown is shown as unknown, never as an empty string or 0.
+4. Sample data is labelled "示例" (sample) everywhere it appears.
+5. Stored values and interface text are separate: the database and API keep the left column, the interface always shows the right. The one-character tier forms (冲 / 稳 / 保) are used only where space is short and mean the same as the full forms.
 
-| 存储值 / 内部说法 | 界面显示 | 含义 |
+| Stored value / internal term | Shown in the interface | Meaning |
 | --- | --- | --- |
-| 没有这条数据（`null`） | 未收录 | 还没从官网收录 |
-| `待核验` | 未核对 | 摘自官网，还没人核对 |
-| `机器核对` | 自动标注 | 按官方名单自动标注 |
-| `人工已核验` | 已核对 | 有人对照官网核对过 |
-| 需要人工核验 | 去官网确认 | 系统比不了，请申请人对照官网 |
-| 匹配（旧称） / `稳` | 稳妥 | 见 §7.2 |
+| No such data (`null`) | 未收录 (not collected) | Not yet collected from the official site |
+| `待核验` | 未核对 (not checked) | Taken from the official site, not yet checked by anyone |
+| `机器核对` | 自动标注 (labelled automatically) | Labelled automatically against an official list |
+| `人工已核验` | 已核对 (checked) | A person checked it against the official site |
+| Needs human verification | 去官网确认 (check the official site) | The system cannot compare; the applicant should check the official site |
+| Match (old term) / `稳` | 稳妥 (match) | See §7.2 |
 
-## 8. 数据来源
+## 8. Data sources
 
-| 数据 | 来源 | 状态 |
+| Data | Source | State |
 | --- | --- | --- |
-| 澳洲硕士项目事实（项目代码、名称、学科领域、学制周数、学费、总费用） | CRICOS 公开数据集（data.gov.au，CC BY 2.5 AU） | 真实数据，已标出处和抓取时间 |
-| 中国院校名单与层次标签 | 公开名单 | 真实数据，已知缺口记录在 fixture 的 `known_gaps` |
-| 海外院校与 QS 排名 | QS World University Rankings 2027（2026-06-18 发布） | 真实数据。**QS 条款限制转载，公开上线或商用前需要确认授权或换数据源** |
-| 非澳洲学校的项目数据（项目名、所属学校、官网页面） | 各校官网，逐页保存快照后采集 | 真实数据。学校库 287 所里，已采到项目的 250 所，共 9,035 个项目（其中 114 所、3,560 个项目是 2026-10-30 采集队列补采的，16 所、252 个项目是同日第二轮由 Claude 子代理采的）；其余 37 所**未采到**：官网拦截（robots.txt 或 403）、列表页读不出项目链接，或没有授课型硕士列表。只读网页，写在 PDF 里的要求暂未读取 |
-| 录取要求（均分、语言、专业背景） | 各校官网项目页 | 真实摘录，每条引文都对照保存的网页快照核对过。7,611 个项目为 `机器核对`，1,424 个为 `待核验`（没有一项通过核对，不入库；采集队列补采的项目页很多把要求写在另一页上，队列还不跟进）；**人工已核验 0 个**，`verified_at` 全部为空。入库后，界面上「有要求」（项目库「只看已收录要求」、学校库每校「有要求」、顾问的证据门槛，同一口径：有英语要求、985/211 或其他院校均分门槛、先修课、学术要求、截止日期之一）共 7,545 个：入库的 7,549 个机器核对项目里的 7,543 个（其中 7,039 个带学术要求），加 2 个人工录入的 `待核验` 占位项目；另外 6 个机器核对项目只有不带分数的语言说明，这类说明不入库，所以不算「有要求」。澳洲项目只导到 CRICOS 目录行上，不知道 CRICOS 代码的 65 个机器核对澳洲项目不入库（之前导入的 3 个 Curtin 项目仍在库里）（生产 2026-10-30 导入后核对） |
-| 项目学科方向（非澳洲项目） | 按项目英文名自动归类（`api/app/collect/fields.py`） | 系统推断，不是官方分类，只用于检索和测评筛选。拿澳洲项目对照 CRICOS 官方学科，一致率 78.5%；名称无法判断的显示为“未分类” |
-| 申请截止日期 | 各校官网项目页 | **已入库**（2026-10-30）：123 所学校 2,754 个项目共 4,763 条截止日期，全部 `机器核对`，每条带来源页。按北京时间当天判断，已过的标「已截止」、不排进时间轴（10-30 当天 324 条）；选校组合里自己记录的日期优先，导入不会覆盖 |
+| Australian master's program facts (code, name, field, duration in weeks, tuition, total cost) | CRICOS open dataset (data.gov.au, CC BY 2.5 AU) | Real data, with source and fetch time |
+| Chinese institutions and tier labels | Public lists | Real data; known gaps recorded in the fixture's `known_gaps` |
+| Overseas institutions and QS rank | QS World University Rankings 2027 (published 2026-06-18) | Real data. **QS terms restrict republication; licence or replace before public launch or commercial use** |
+| Program data outside Australia (program name, school, official page) | Each school's official site, collected page by page from saved snapshots | Real data. Of the 287 schools, 250 have collected programs, 9,035 programs in total (114 schools and 3,560 programs added by the collection queue on 2026-10-30; 16 schools and 252 programs collected the same day in a second round by Claude subagents); the other 37 were **not collected**: the site blocks us (robots.txt or 403), the listing page yields no program links, or there is no list of taught master's programs. Only web pages are read; requirements published only in PDFs are not read yet |
+| Admission requirements (marks, language, background) | Each school's official program pages | Real excerpts, every quote checked against a saved snapshot of the page. 7,611 programs `机器核对`, 1,424 `待核验` (no value passed the check, not imported; many program pages added by the queue put requirements on another page, which the queue does not follow yet); **0 verified by a person**, every `verified_at` empty. After import, "states a requirement" (the catalogue's "only collected requirements", each school's count, and the advisor's evidence gate share one rule: an English requirement, a 985/211 or other-school mark threshold, a prerequisite, an academic requirement, or a deadline) totals 7,545: 7,543 of the 7,549 imported machine-checked programs (7,039 with academic requirements) plus 2 hand-entered `待核验` placeholders; 6 machine-checked programs have only a language note without a score, which is not imported, so they do not count. Australian programs import only onto CRICOS catalogue rows; 65 machine-checked Australian programs without a known CRICOS code are not imported (3 earlier Curtin programs remain) (checked in production after the 2026-10-30 import) |
+| Program study area (outside Australia) | Classified automatically from the English program name (`api/app/collect/fields.py`) | Inferred by the system, not an official classification; used only for retrieval and assessment filters. Against CRICOS's official fields for Australian programs it agrees 78.5% of the time; names that cannot be classified show as "未分类" (unclassified) |
+| Application deadlines | Each school's official program pages | **Imported** (2026-10-30): 4,763 deadlines for 2,754 programs at 123 schools, all `机器核对`, each with its source page. Judged by the current day in Beijing time; past ones are labelled "已截止" and not placed on the timeline (324 on 10-30); a date recorded on a portfolio row wins and the import never overwrites it |
 
-**【待定 D3】MVP 先核验多少个项目的真实录取要求。** 建议先选 2–3 所八大学校的热门专业（例如计算机、商科），人工核验后作为真实样例，其余继续标 `待核验`。
+**[Open D3] How many programs' real admission requirements to verify for the MVP.** Suggest 2–3 Group of Eight schools' popular programs (such as computing and business) verified by a person as real examples, with the rest still `待核验`.
 
-## 9. 非功能需求
+## 9. Non-functional requirements
 
-| 方面 | 要求 |
+| Aspect | Requirement |
 | --- | --- |
-| 可访问性 | 打开公开链接不登录就能看首页、学校库、项目库、路线图示例和顾问页面；保存自己的数据、和顾问对话需要邮箱验证码登录（首次即注册） |
-| 响应式 | 375px 手机宽度和 1280px 桌面宽度都无横向滚动 |
-| 隐私 | 数据按账号隔离；注销账号删除全部数据；隐私政策见 `/privacy`；留资表单不发送真实数据 |
-| 安全 | 上传按文件内容判断类型、限制大小、下载不能被当成网页渲染（已实现） |
-| 可观测 | agent 每次调用记录意图、工具调用、门禁结果，便于讲解和排查 |
+| Accessibility | A public link shows the home page, school list, program list, sample roadmap and advisor page without signing in; saving your own data and chatting with the advisor need an email-code sign-in (the first one registers) |
+| Responsive | No horizontal scrolling at 375 px phone width or 1,280 px desktop width |
+| Privacy | Data is isolated per account; deleting an account deletes all its data; privacy policy at `/privacy`; the lead form sends no real data |
+| Security | Uploads are typed by content and size-limited, and downloads cannot render as web pages (implemented) |
+| Observability | Every agent call records intent, tool calls and gate results, for explanation and debugging |
 
-## 10. 里程碑
+## 10. Milestones
 
-| 日期 | 交付 |
+| Date | Deliverable |
 | --- | --- |
-| 10/28 | PRD 初稿 |
-| 10/29 | 架构图；两套前端合并方案 |
-| 10/30–31 | 前端原型打磨（演示主路径） |
-| 11/01 | README；开始投递 |
-| 投递后 | MVP 部署上线；接入 agent（F6.1–F6.4）；真实数据核验 |
+| 10/28 | PRD first draft |
+| 10/29 | Architecture diagram; plan for merging the two front ends |
+| 10/30–31 | Polish the front-end prototype (main demo path) |
+| 11/01 | README; start applying for jobs |
+| After applying | Deploy the MVP; connect the agent (F6.1–F6.4); verify real data |
 
-## 11. 待定事项汇总
+## 11. Open decisions
 
-| 编号 | 问题 | 建议 |
+| ID | Question | Suggestion |
 | --- | --- | --- |
-| D1 | 两套前端怎么合并 | **已定**：原型做"了解与测评"入口，主流程路线图做主界面，获客功能放 P2 |
-| D2 | agent 在 MVP 里做到哪一步 | 至少做到 F6.1–F6.4 |
-| D3 | 先核验多少个项目的真实要求 | 先选几所学校的热门专业人工核验，其余标 `待核验` |
-| D4 | ~~覆盖八大还是全澳~~ | 已被 D5 取代 |
-| D5 | 覆盖范围 | **已定**：以学校库为准，29 个国家和地区（2026-10-29 定）内的 QS 2027 前 300（241 所）+ 46 所地区补齐，共 287 所 |
+| D1 | How to merge the two front ends | **Decided:** the prototype is the "learn and assess" entry, the main-flow roadmap the main screen, lead generation in P2 |
+| D2 | How far the agent goes in the MVP | At least F6.1–F6.4 |
+| D3 | How many programs' real requirements to verify first | Verify a few schools' popular programs by hand, label the rest `待核验` |
+| D4 | ~~Group of Eight or all of Australia~~ | Superseded by D5 |
+| D5 | Coverage | **Decided:** follow the school list: the QS 2027 top 300 inside the 29 countries and regions (decided 2026-10-29), 241 schools, plus 46 regional additions, 287 in total |

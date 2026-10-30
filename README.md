@@ -29,7 +29,7 @@ requirements that an applicant will then act on.
 
 LeapAshore's position: **every factual claim traces to an official page, and when the system cannot
 source an answer it says so instead of guessing.** The full product requirements are in
-[docs/product/PRD.md](docs/product/PRD.md) (Chinese).
+[docs/product/PRD.md](docs/product/PRD.md).
 
 ## Architecture
 
@@ -160,8 +160,9 @@ Not yet:
 
 ## Project records
 
-- [Product requirements (Chinese)](docs/product/PRD.md)
-- [Task list (Chinese)](TASKS.md)
+- [Product requirements](docs/product/PRD.md)
+- [Task list (Chinese)](TASKS.md) and [measurements per task](docs/measurements.md)
+- [Deploy guide](docs/deploy.md)
 - [Repository rules for the coding agent](CLAUDE.md)
 - [Cross-change decisions (Chinese)](note/decisions.md)
 - [Backend design (Chinese)](note/design/)
