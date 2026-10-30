@@ -25,7 +25,7 @@ A successor resumes from the first unticked line.
 - [x] 2.2 Discovery for the ~154 uncollected + 13 zero-program schools (budget key `backfill`, 100 CNY)
 - [x] 2.3 Page run; spend and progress recorded here after each batch
 - [x] 2.4 Export, verify, commit in batches
-- [ ] 2.5 Import into production (handoff procedure); README / PRD numbers recomputed
+- [x] 2.5 Import into production (handoff procedure); README / PRD numbers recomputed (after PR #52, 10-30)
 
 ### Run log (Phase 2)
 
@@ -89,3 +89,11 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   timeout is `subprocess.TimeoutExpired`; it now takes any failure of the awaited render. Kept on
   purpose: an empty Australian file still makes a school-key row (pre-existing; the web merges rows of
   one school by name, and eval t29 names `university-of-melbourne`).
+- 10-30 production import (after PR #52): backup `~/db-backup-20261030-pre-backfill.sql.gz`; api, web,
+  worker, beat rebuilt; snapshot metadata unpacked to `/app/var/importmeta` in the api container (not
+  the worker's `snapshots` volume) and the importer run with that root by a one-off script, no
+  `--prune`: 248 files, 0 failed, 2,110 added, 5,200 updated, 84 skipped without a CRICOS code. Temp
+  files deleted. Production equals local: 9,606 programs, 7,314 machine-checked, 「有要求」 7,310,
+  4,722 deadlines / 2,728 programs / 119 schools (324 past), academic 6,806, `verified_at` 0; user
+  tables unchanged by md5. Beat has not run `recollect_due` yet (first run 10-31 04:07 Beijing);
+  `collect_pages` and `requirement_changes` are empty in production.
