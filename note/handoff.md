@@ -41,7 +41,6 @@
 - 抽取器的已知局限：`verify` 只保证引文逐字在页上、数字在引文里，`text`/`label`/`recommended` 是否忠实没查；同温度 0 下截止日期的拒收数在跑与跑之间能差一倍（模型时而从页面别处推年份）。
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
 - 截止日期会过期（10-30 按北京时间 3,555 条里 289 条已过，102 个项目全部已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
-- 顾问拒答话术还写着「在项目库里查看该校已收录的项目」（`api/app/agent/evidence.py`），项目库列表页删了以后应改成「学校库」；PR #80 不许动后端，留到下次改后端时。
 - CC BY-SA 校徽的署名（PR #80 起）在全站页脚，名单从 `overseas-institutions.json` 的 `logo_license` 读；以后加 CC 校徽要填 `logo_license` 和 `logo_source`，否则不会被署名。
 - **Crawl-delay**（10-30 起遵守）：82 个已缓存的 robots.txt 写了 5–120 秒，快照工具以前一律 2 秒；补采时 13 个站点被按 2 秒抓了（数据保留，见 decisions）。
 - 还没采到项目的学校 37 所，多数被拒，规则不允许绕过。找列表页还能接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。

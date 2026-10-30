@@ -234,6 +234,7 @@ async function adminPass(browser, email, errors) {
     // The sample used to be drawn only after the scripts measured its box, so the server sent a blank card.
     const homeHtml = await (await fetch(`${BASE}/`)).text();
     check("首页：示例路线图在服务器返回的 HTML 里就已画好", /<figure[\s\S]*?<svg[^>]*timeline-svg/.test(homeHtml));
+    check("首页：示例路线图不显示空的截止行和未收录栏", (await page.locator("figure").getByText(/各项目官方截止|未收录/).count()) === 0);
     check("首页：没有每页底部的说明段落，只有一行页脚", (await page.locator("footer.foot, .source-note").count()) === 0 && (await page.locator("footer.site-foot").count()) === 1);
     check("页脚：保留 CRICOS 和 QS 的出处与隐私政策", /CC BY 2\.5 AU/.test(await page.locator("footer.site-foot").innerText()) && /QS/.test(await page.locator("footer.site-foot").innerText()) && (await page.locator('footer.site-foot a[href="/privacy"]').count()) === 1);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
@@ -307,8 +308,11 @@ async function adminPass(browser, email, errors) {
     check("顾问：登录后发出的就是原句", sentBody.message === question, sentBody);
     await page.locator(".msg-user", { hasText: question }).waitFor({ timeout: 15000 });
     check("顾问：对话里显示原句，输入框已清空", (await page.locator("#msg").inputValue()) === "");
-    const chatCookie = (await chat.headerValue("cookie")) || "";
-    check("顾问：发送请求带着登录会话", chatCookie.includes("leapashore_session="), chatCookie.replace(/=[^;]+/g, "=…"));
+    // The stubbed request never reaches the network, so its cookie header is not a reliable witness. The
+    // request is checked for where it went and what it carried, and the session is read from the server.
+    check("顾问：发送请求打到 /api/advisor/chat（POST，带对话 id）", new URL(chat.url()).pathname === "/api/advisor/chat" && chat.method() === "POST" && typeof sentBody.conversationId === "string" && sentBody.conversationId.length > 0, { url: chat.url(), sentBody });
+    const me = await page.evaluate(async () => (await fetch("/api/auth/me", { cache: "no-store" })).json());
+    check("顾问：发送时浏览器处在登录会话里（/api/auth/me 返回这个账号）", me && me.account && me.account.email === emails[0], me && me.account);
     await settle(page);
     await layout(page, "顾问");
     await screenshot(page, "advisor");
@@ -495,6 +499,18 @@ async function adminPass(browser, email, errors) {
     await settle(page);
     const names = await page.locator("table.program-table tbody tr a.l1").allInnerTexts();
     check("学校详情：按名称搜索", names.length > 0 && names.every((n) => /data/i.test(n)), names.slice(0, 3));
+    // "Technology" is also in UTS's own name: the search must look at program names only.
+    await page.goto(`${BASE}/schools/00099F`);
+    await settle(page);
+    const utsTotal = Number((await page.locator("#programs-h + span").innerText()).replace(/\D/g, ""));
+    await page.goto(`${page.url().split("?")[0]}?q=${encodeURIComponent("  Technology ")}`);
+    await settle(page);
+    const techNames = await page.locator("table.program-table tbody tr a.l1").allInnerTexts();
+    check("学校详情：搜索词同时是校名时只按项目名匹配（UTS 搜 Technology）", techNames.length > 0 && techNames.length < utsTotal && techNames.every((n) => /technology/i.test(n)), { utsTotal, shown: techNames.length });
+    await page.goto(`${page.url().split("?")[0]}?q=${encodeURIComponent("   ")}&page=99.5`);
+    await settle(page);
+    check("学校详情：只有空格的搜索不算筛选，超出范围的页码显示最后一页", (await page.locator("table.program-table tbody tr a.l1").count()) > 0
+      && (await page.getByText("没有符合条件的项目").count()) === 0 && /第 (\d+) \/ \1 页/.test(await page.locator(".pager").innerText()));
     await page.goto(`${BASE}/schools/imperial-college-london`);
     await settle(page);
     const heads = await page.locator("table.program-table thead th").allInnerTexts();

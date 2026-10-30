@@ -5,6 +5,8 @@ import { test } from "node:test";
 import {
   cricosCode,
   cricosFacts,
+  clampPage,
+  filterSchoolPrograms,
   missingRequirements,
   programColumns,
   schoolSlugForUniversity,
@@ -109,4 +111,32 @@ test("a school's table keeps only the columns some program fills", () => {
   assert.deepEqual(programColumns([program("y", { duration: "1 year" })], courses), {
     duration: true, tuition: false, requirements: false,
   });
+});
+
+test("a school's programs are searched by program name only, never by the school's name", () => {
+  const programs = [
+    { name: "Master of Data Science", field: "计算机与数据" },
+    { name: "Master of Engineering (Technology Management)", field: "工程" },
+    { name: "Master of Laws", field: "法律与犯罪学" },
+    { name: null, field: null },
+  ];
+  // "Technology" is in the University of Technology Sydney's own name; only one program carries it.
+  assert.deepEqual(filterSchoolPrograms(programs, { q: "technology", field: "" }).map((p) => p.name), ["Master of Engineering (Technology Management)"]);
+  assert.deepEqual(filterSchoolPrograms(programs, { q: "  DATA ", field: "" }).map((p) => p.name), ["Master of Data Science"]);
+  assert.deepEqual(filterSchoolPrograms(programs, { q: "", field: "法律与犯罪学" }).map((p) => p.name), ["Master of Laws"]);
+  assert.deepEqual(filterSchoolPrograms(programs, { q: "master", field: "工程" }).map((p) => p.name), ["Master of Engineering (Technology Management)"]);
+  // Whitespace only is no filter.
+  assert.equal(filterSchoolPrograms(programs, { q: "   ", field: "" }).length, 4);
+});
+
+test("a page number is clamped to the pages there are", () => {
+  assert.deepEqual(clampPage("3", 100, 30), { page: 3, pages: 4 });
+  assert.deepEqual(clampPage("99", 100, 30), { page: 4, pages: 4 });
+  assert.deepEqual(clampPage("2.7", 100, 30), { page: 2, pages: 4 });
+  assert.deepEqual(clampPage("-5", 100, 30), { page: 1, pages: 4 });
+  assert.deepEqual(clampPage("abc", 100, 30), { page: 1, pages: 4 });
+  assert.deepEqual(clampPage("Infinity", 100, 30), { page: 1, pages: 4 });
+  assert.deepEqual(clampPage("1e400", 100, 30), { page: 1, pages: 4 });
+  assert.deepEqual(clampPage(undefined, 0, 30), { page: 1, pages: 1 });
+  assert.deepEqual(clampPage("5", 0, 30), { page: 1, pages: 1 });
 });

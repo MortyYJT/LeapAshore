@@ -135,3 +135,31 @@ export function programColumns(
     requirements: programs.some(statesARequirement),
   };
 }
+
+/**
+ * A school's programs narrowed by a search term and a study area, in the page itself. The catalogue's
+ * own `q` also matches the school's names, so on a school page it would match every program of a school
+ * whose name holds the term ("Technology" at UTS); here only the program's name is searched, without
+ * case, and a term of only spaces is no filter.
+ */
+export function filterSchoolPrograms<T extends { name: string | null; field: string | null }>(
+  programs: T[],
+  { q, field }: { q: string; field: string },
+): T[] {
+  const term = q.trim().toLowerCase();
+  return programs.filter(
+    (p) => (!field || p.field === field) && (!term || (p.name ?? "").toLowerCase().includes(term)),
+  );
+}
+
+/**
+ * The page to show for a page number read from the address, and how many pages there are: a fraction is
+ * rounded down, anything that is not a finite number reads as page 1, and a page past the end shows the
+ * last one rather than an empty list.
+ */
+export function clampPage(raw: string | undefined, total: number, size: number): { page: number; pages: number } {
+  const pages = Math.max(1, Math.ceil(total / size));
+  const asked = Number(raw);
+  const page = Number.isFinite(asked) ? Math.floor(asked) : 1;
+  return { page: Math.min(pages, Math.max(1, page)), pages };
+}

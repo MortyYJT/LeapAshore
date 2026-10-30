@@ -25,6 +25,11 @@ interface Props {
   onSelect: (phaseId: string) => void;
   /** Draw the entrance once, on the first render of the page. */
   animate: boolean;
+  /**
+   * The deadlines row and the 未收录 lane, on by default. The home page's sample has no portfolio, so it
+   * turns them off rather than show a row of zeros and an empty lane.
+   */
+  showDeadlines?: boolean;
 }
 
 const DAY = 86_400_000;
@@ -107,9 +112,9 @@ function phaseLabel(p: TimelinePhase): string {
   return `${p.title}，${start}${p.done}/${p.total} 项完成${p.overdue ? "，已过建议时间" : ""}${p.current ? "，当前阶段" : ""}`;
 }
 
-function Horizontal({ model, today, deadlines, selected, onSelect, animate, width: W }: Props & { width: number }) {
+function Horizontal({ model, today, deadlines, selected, onSelect, animate, showDeadlines = true, width: W }: Props & { width: number }) {
   const compact = W < 760;
-  const LABEL = compact ? 136 : 196, LANE = compact ? 84 : 104, TOP = 58, PITCH = 44, BAR = 22;
+  const LABEL = compact ? 136 : 196, LANE = showDeadlines ? (compact ? 84 : 104) : 0, TOP = 58, PITCH = 44, BAR = 22;
   const x0 = LABEL + 8, x1 = W - LANE - 16;
   const first = model.phases[0]?.start ? utc(model.phases[0].start) : today;
   // From the start of today's day, so a deadline dated today is still on the axis.
@@ -124,7 +129,7 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
   });
   const pending = deadlines.filter((d) => d.view.state === "unknown");
   const closed = deadlines.filter((d) => d.view.state === "closed");
-  const rows = model.phases.length + 1;
+  const rows = model.phases.length + (showDeadlines ? 1 : 0);
   const H = TOP + rows * PITCH + 8;
 
   const months: Date[] = [];
@@ -137,8 +142,12 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className={`timeline-svg${animate ? " tl-animate" : ""}`} role="group" aria-label="申请路线图时间轴">
-      <rect x={W - LANE} y={TOP - 8} width={LANE} height={H - TOP + 8} rx={14} fill={C.lane} />
-      <text x={W - LANE / 2} y={TOP - 16} textAnchor="middle" fontSize={12} fill={C.muted}>{compact ? "未收录" : "未收录的截止"}</text>
+      {showDeadlines && (
+        <>
+          <rect x={W - LANE} y={TOP - 8} width={LANE} height={H - TOP + 8} rx={14} fill={C.lane} />
+          <text x={W - LANE / 2} y={TOP - 16} textAnchor="middle" fontSize={12} fill={C.muted}>{compact ? "未收录" : "未收录的截止"}</text>
+        </>
+      )}
       {months.map((m, i) => (
         <g key={m.toISOString()}>
           <line x1={xs(m)} x2={xs(m)} y1={TOP - 8} y2={H - 8} stroke={C.track} strokeWidth={1} />
@@ -174,7 +183,7 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
           </g>
         );
       })}
-      <g>
+      {showDeadlines && <g>
         <text x={10} y={TOP + model.phases.length * PITCH + 15} fontSize={14} fontWeight={500} fill={C.ink}>各项目官方截止</text>
         <text x={10} y={TOP + model.phases.length * PITCH + 32} fontSize={12} fill={C.muted}>
           {deadlines.length - pending.length - closed.length} 个待截止 · {closed.length} 个已截止 · {pending.length} 个未收录
@@ -194,7 +203,7 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
             <text x={W - LANE + 34} y={TOP + model.phases.length * PITCH + (PITCH - 4) / 2 + 4} fontSize={12} fill={C.ink}>未收录 {pending.length}</text>
           </g>
         )}
-      </g>
+      </g>}
       {model.dated && tx >= x0 - 1 && tx <= x1 + 1 && (
         <g>
           <line className="tl-today" x1={tx} x2={tx} y1={TOP - 50} y2={H - 8} stroke={C.accent} strokeWidth={1.5} strokeLinecap="round" />
@@ -206,11 +215,11 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
 }
 
 /** Below 640px: time runs down, one row per phase, so labels keep 14px instead of shrinking. */
-function Vertical({ model, today, deadlines, selected, onSelect, animate, width: W }: Props & { width: number }) {
+function Vertical({ model, today, deadlines, selected, onSelect, animate, showDeadlines = true, width: W }: Props & { width: number }) {
   const ROW = 64, TRACK_X = 18, TOP = 8;
   const todayIso = today.toISOString().slice(0, 10);
   const rows = model.phases.length;
-  const H = TOP + rows * ROW + 64;
+  const H = TOP + rows * ROW + (showDeadlines ? 64 : 8);
   const pending = deadlines.filter((d) => d.view.state === "unknown").length;
   const closed = deadlines.filter((d) => d.view.state === "closed").length;
   const open = deadlines.length - pending - closed;
@@ -251,11 +260,11 @@ function Vertical({ model, today, deadlines, selected, onSelect, animate, width:
           <text x={W - 6} y={(todayY as number) - 6} textAnchor="end" fontSize={12} fontWeight={500} fill={C.ink}>今天</text>
         </g>
       )}
-      <g>
+      {showDeadlines && <g>
         <circle cx={TRACK_X} cy={TOP + rows * ROW + 26} r={6} fill={C.surface} stroke={C.muted} strokeWidth={1.5} />
         <text x={40} y={TOP + rows * ROW + 24} fontSize={14} fontWeight={500} fill={C.ink}>各项目官方截止</text>
         <text x={40} y={TOP + rows * ROW + 44} fontSize={12} fill={C.muted}>{open} 个待截止 · {closed} 个已截止 · {pending} 个未收录</text>
-      </g>
+      </g>}
     </svg>
   );
 }

@@ -4,7 +4,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { ProgramTable } from "@/components/catalog/ProgramTable";
 import { SchoolMark } from "@/components/ui";
-import { programColumns, universityIdsFor } from "@/lib/catalog";
+import { clampPage, filterSchoolPrograms, programColumns, universityIdsFor } from "@/lib/catalog";
 import { masterPrograms, overseasInstitutions } from "@/lib/catalog-server";
 import { institutionSlug } from "@/lib/prototype-library";
 import { serverProgramPage, serverUniversities } from "@/lib/server-api";
@@ -35,8 +35,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 /**
  * One school and the programs the catalogue holds for it, searchable by name and filterable by study area.
- * The only way to browse programs: the catalogue-wide list was removed. The API serves programs with a
- * stated requirement first.
+ * The only way to browse programs: the catalogue-wide list was removed. Every program of the school is
+ * read once (at most a few pages of 100) and searched, filtered and paged here, because the catalogue's
+ * `q` also matches the school's own names. The API serves programs with a stated requirement first, and
+ * filtering keeps that order.
  */
 export default async function SchoolPage({
   params,
@@ -54,30 +56,21 @@ export default async function SchoolPage({
     notFound();
   }
   const query = await searchParams;
-  const q = one(query.q).slice(0, 100);
+  const q = one(query.q).trim().slice(0, 100);
   const field = STUDY_AREAS.includes(one(query.field) as (typeof STUDY_AREAS)[number]) ? one(query.field) : "";
-  const pageNo = Math.max(1, Number(one(query.page)) || 1);
   const name = school.name_zh || school.name_en || "未知";
   const base = `/schools/${encodeURIComponent(institutionSlug(school))}`;
 
   let all: Program[] | null = null;
-  let page: { programs: Program[]; total: number } | null = null;
   try {
     const ids = universityIdsFor(school, await serverUniversities());
-    if (ids.length === 0) {
-      all = [];
-      page = { programs: [], total: 0 };
-    } else {
-      [all, page] = await Promise.all([
-        allPrograms(ids),
-        serverProgramPage({ provider: ids, q, field: field || undefined, limit: PAGE, offset: (pageNo - 1) * PAGE }),
-      ]);
-    }
+    all = ids.length === 0 ? [] : await allPrograms(ids);
   } catch {
     all = null;
-    page = null;
   }
-  const pages = page ? Math.max(1, Math.ceil(page.total / PAGE)) : 1;
+  const matching = all ? filterSchoolPrograms(all, { q, field }) : [];
+  const { page: pageNo, pages } = clampPage(one(query.page), matching.length, PAGE);
+  const page = all ? { programs: matching.slice((pageNo - 1) * PAGE, pageNo * PAGE), total: matching.length } : null;
   const filtered = Boolean(q || field);
   const href = (n: number) => {
     const next = new URLSearchParams();
