@@ -1,0 +1,35 @@
+{
+ "school_key": "james-cook-university",
+ "school_name_en": "James Cook University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.jcu.edu.au/courses"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.jcu.edu.au/courses",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://www.jcu.edu.au/courses/master-of-information-technology",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://www.jcub.edu.au/courses",
+   "reason": "redirects to https://www.jcu.edu.au/brisbane, which robots.txt (HTTP 403) disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.jcu.edu.au/courses"
+ ],
+ "notes": "www.jcu.edu.au answers robots.txt with HTTP 403, so the snapshot tool treats the whole host (course pages and the handbook) as disallowed; the Brisbane campus site redirects there. No other official host publishing JCU course requirements was found (JCU Singapore runs separate, non-CRICOS offerings), so no program was collected.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

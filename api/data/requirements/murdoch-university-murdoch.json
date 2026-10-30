@@ -1,0 +1,419 @@
+{
+ "school_key": "murdoch-university-murdoch",
+ "school_name_en": "Murdoch University (Murdoch)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.murdoch.edu.au/study/courses/study-areas/information-technology",
+  "https://www.murdoch.edu.au/study/courses/study-areas/engineering",
+  "https://www.murdoch.edu.au/study/courses/study-areas/business",
+  "https://www.murdoch.edu.au/study/courses/study-areas/education"
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "Course pages on www.murdoch.edu.au give academic entry and CRICOS code; IELTS comes from each course's own handbook entry (handbook.murdoch.edu.au, rendered, reached via the course page's handbook link), cited with source_sha256; TOEFL is only in a flattened university-wide table and was left out. Skipped: Master of Professional Accounting (M1273) and Decarbonisation (M1423) are domestic-only, Master of Teaching Primary/Secondary pages show no CRICOS code, Renewable and Sustainable Energy (M1268) is discontinued from 31/12/2026. Not reached (20-program limit): Bachelor of Biomedical Science / Master of Infectious Disease Surveillance and Control (119106B); Bachelor of Food Science and Nutrition / Master of Food Science (119111E); Bachelor of Forensic Science / Master of Forensic Science (119105C); Bachelor of Health Science / Master of Clinical Chiropractic (118305C); Bachelor of Sport and Exercise Science / Master of Clinical Exercise Physiology (106087G); Bachelor of Sport and Exercise Science / Master of High Performance Sport (121019E); Master in Forensic Science (Professional Practice) (089467G); Master of Applied Psychology (Professional) (085584A); Master of Applied Psychology in Clinical Psychology (079349G); Master of Applied Psychology in Organisational Psychology (079350C); Master of Biosecurity (089239G); Master of Business Administration (002996A); Master of Business Administration and Master of Information Technology (099394C); Master of Chaplaincy (089550A); Master of Clinical Chiropractic (118307A); Master of Clinical Exercise Physiology (106086H); Master of Community Development (081029E); Master of Counselling (056251G); Master of Counselling (119506H); Master of Creative Arts Therapies (0101329); Master of Development Studies (077165J); Master of Education (Coursework) (002997M); Master of Engineering (027663E); Master of Food Science (Industry Practice and Innovation) (114432F); Master of Food Science (Industry Practice) (114430H); Master of Food Security (085578K); Master of Food Security (103444D); Master of Forensic Science (Professional Practice and Research) (099647J); Master of Health Care Management (Specialisation) (112641B); Master of High Performance Sport (121020A); Master of Infectious Disease Surveillance and Control (Advanced Practice and Innovation) (116292H); Master of Infectious Disease Surveillance and Control (Advanced Practice) (116291J); Master of International Affairs and Security (093074A); Master of Professional Psychology (117228H); Master of Public Policy and Management (077163M); Master of Theology (034950F); Master of Veterinary Clinical Studies (099315G); Master of Veterinary Studies (Conservation Medicine) (048801D); Master of Veterinary Studies (Vet Surveillance) (048802C); Master of Wildlife Health and Conservation (085581D).",
+ "programs": [
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1220",
+   "cricos_code": "057275B",
+   "snapshot_sha256": "34d40e91c86b4e7fe7d6625d9c10e1a4761a130e1f43b9f0a7bdcbe00d35948a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in IT; or non-IT bachelor's plus an approved AQF 8 IT qualification; or non-IT honours degree plus 5+ years relevant experience",
+     "quote": "Recognised Bachelor's degree in IT (AQF Level 7); OR recognised non-IT Bachelor's degree plus an approved qualification in IT (AQF Level 8); OR recognised non-IT Honours degree (AQF Level 8) plus five or more years of relevant experience. Recognition of relevant and current informal or non-formal learning may be used for entry requirements, and should be discussed with the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "03437c6d6dd932f01e8dc845853da0bbcd875e89e338f5065bfa944106f2a79e",
+     "source_url": "https://handbook.murdoch.edu.au/courses/27/M1220",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Technology",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1294",
+   "cricos_code": "0101998",
+   "snapshot_sha256": "cc7ca125afb1c8479a00d283883f55dac75e65f45cdbf12dd5f5f35b7f758d16",
+   "fields": {
+    "academic": {
+     "text": "ACS-accredited bachelor's degree in IT; or bachelor's plus an approved AQF 8 IT qualification; or honours degree plus 5+ years relevant experience",
+     "quote": "Recognised Australian Computer Society (ACS) accredited Bachelor's degree in IT (AQF Level 7); OR Recognised Bachelors' degree (AQF Level 7) plus an approved qualification in IT (AQF Level 8); OR Recognised Honours degree (AQF Level 8) plus 5 or more years of relevant experience. Recognition of relevant and current informal or non-formal learning may be used for entry requirements, and should be discussed with the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "984dcb708d65b118f4ccd9cba3c47173e8e5a4857f80be184b5298e914138769",
+     "source_url": "https://handbook.murdoch.edu.au/courses/27/M1294",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Practice",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1330",
+   "cricos_code": "108655H",
+   "snapshot_sha256": "3cee8381e49bd1826833786fad29881579d5966fc02b2fa07ce923c8a5afa894",
+   "fields": {
+    "academic": {
+     "text": "Four-year Engineers Australia-accredited (or Washington Accord) engineering degree, or a bachelor's including prior studies in engineering or engineering technology",
+     "quote": "Entry may be gained through either of the following means into the Master of Engineering Practice: 1. Successful completion of a four-year Engineering degree accredited by Engineers Australia (or equivalent Washington Accord-recognised degree) in an approved field of Engineering, * 2. Successful completion of a Bachelor's degree (AQF Level 7, non-Washington Accord), or an equivalent qualification, as recognised by Murdoch University, which includes prior studies in Engineering or Engineering Technology, * Recognition of prior learning for any students with existing studies would be considered on a case-by-case basis through the standard recognition of prior learning processes at Murdoch. *Entry into each major is subject to different approved field of Engineering and cognate degrees",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "b40f5d923dd26119ab3c49f9ca6326f7c076c6e1bc918e3e85942e795fa81400",
+     "source_url": "https://handbook.murdoch.edu.au/courses/22/M1330",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Decarbonisation, Energy and Sustainability Management (Advanced)",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1422",
+   "cricos_code": "120947F",
+   "snapshot_sha256": "9d73ab254a30a502e0e9ee3d198543ad9690ca83762b484dd6f0b39735205003",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a cognate discipline, or an AQF Level 8 qualification in any discipline, or equivalent preparation",
+     "quote": "A recognised Bachelor’s degree (AQF Level 7) in a cognate discipline; or an AQF Level 8 qualification in any discipline; or satisfactory preparation for the course through formal, informal, or non-formal learning and/or relevant professional experience, subject to the approval of the Academic Chair. Students holding an AQF Level 8 qualification in a cognate discipline may be eligible for recognition of prior learning, assessed under Murdoch University’s standard processes.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "983974ed9652794c50ee31f6bd97e619cfc17f2efa7897a0b0e7ac32e3aa0f55",
+     "source_url": "https://handbook.murdoch.edu.au/courses/03/M1422",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1256",
+   "cricos_code": "089548F",
+   "snapshot_sha256": "f4e6edab72d322f8381f7bc7ad1f0fa4fceebcdf7ec526b402b9260c90b3e86f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher plus two years of work experience, or Graduate Certificate in Business Administration, or equivalent preparation",
+     "quote": "Recognised Bachelor's degree or higher and evidence of two years of work experience; or successful completion of Graduate Certificate in Business Administration (or equivalent); or satisfactory preparation for the course through formal, informal or non-formal learning and/or professional experiences subject to the approval of the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "591a1a81650e93473ca2c0b459d8c28a68d07359ca9b5653cfc77057f08cfe75",
+     "source_url": "https://handbook.murdoch.edu.au/courses/35/M1256",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Global)",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1279",
+   "cricos_code": "096880B",
+   "snapshot_sha256": "ca3e3cdb7330c6622cae884333ab5773cc4c49ed374ac2baa6b55ba144dc9fcd",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (AQF 7) or equivalent, or alternative entry via portfolio (CV, GMAT/GRE score, written statement); no work experience needed",
+     "quote": "To qualify for this course, applicants should: (i) have a Bachelors Degree (AQF 7) or equivalent; OR (ii) Alternative entry via Portfolio to contain: ∙ Curriculum Vitae ∙ Valid GMAT score or Graduate Record Examinations (GRE) ∙ A Written statement of no more than 800 words. The statement should address reasons why enrolment in the course will enhance the applicant's early career professional portfolio With the option of an interview for alternative entry applicants at the discretion of the Academic Chair No work experience is necessary, but if you have two or more years of work experience you may apply for the Master of Business Administration.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "0b1d7fdb3d24e16ee559355289b912e63d41a2222add606cfb8c2af9b6c5fe92",
+     "source_url": "https://handbook.murdoch.edu.au/courses/26/M1279",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration / Master of Human Resources Management",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1288",
+   "cricos_code": "099356J",
+   "snapshot_sha256": "88c6e259fd89d7c1f55cbcea4d29fac741064d5d8c4b1650bf9a58897e9653e8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher plus two years of work experience, or equivalent preparation",
+     "quote": "Recognised Bachelor's degree or higher and evidence of two years of work experience; or satisfactory preparation for the course through informal or non-formal learning and/or professional experiences subject to the approval of the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "77537c9943cfa4492af724fee872c59d160382c904491a424ea8f63e8370e801",
+     "source_url": "https://handbook.murdoch.edu.au/courses/31/M1288",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resources Management",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1213",
+   "cricos_code": "030207C",
+   "snapshot_sha256": "0a8c9de8ef47abe9fcfaec591b84b269435508baa268c44cd30255d39a8bf270",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher plus two years of work experience, or equivalent preparation",
+     "quote": "Recognised Bachelor's degree or higher and evidence of two years of work experience; or satisfactory preparation for the course through informal or non-formal learning and/or professional experiences subject to the approval of the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "6a664e7dac7f20e6aefce23650a5e29f04063cb6f08bf83f209469e156de4e08",
+     "source_url": "https://handbook.murdoch.edu.au/courses/29/M1213",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting (Advanced)",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1274",
+   "cricos_code": "057228J",
+   "snapshot_sha256": "2ef22aa4f5b02b0ccf9de1d7a9689c51fb2801d868dda34b34fd92542d7104ca",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher, or equivalent training; graduates of an Australian accounting major are not considered",
+     "quote": "Recognised Bachelor's degree or higher, or equivalent training, or professional training. Students who have completed a degree with an accounting major from an Australian university will not be considered for admission.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "fa1f473a2b2a3eedc9dad8810af2b29693f6c9e4e11a565c112060f87b7e4ed3",
+     "source_url": "https://handbook.murdoch.edu.au/courses/29/M1274",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration / Master of Health Care Management",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1296",
+   "cricos_code": "0100218",
+   "snapshot_sha256": "f6476bfeade0b115479af70ecf14859f2237d88514558c13a49d55eadd3e7431",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a health-related discipline plus two years of relevant health or healthcare professional experience",
+     "quote": "Undergraduate degree (AQF Level 7 or equivalent) in a health related discipline and evidence of two years of relevant professional experience in a health or healthcare-related setting that includes direct patient, client, or consumer-facing responsibilities. Preparation for the course through previous study or professional experiences will be considered on a case-by-case basis and subject to approval of the Academic Chair.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "68fdf40565d4ecb81a7f55b0618694a1132a7b43cb4175e2c85d7a4123c311d5",
+     "source_url": "https://handbook.murdoch.edu.au/courses/29/M1296",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Administration, Policy and Leadership",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1267",
+   "cricos_code": "093385G",
+   "snapshot_sha256": "de02e70be8b675f04112ed9876a2e2c8ea841d9bb84a5e6979f8cc671ef29da1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (AQF 7 or equivalent) in any field",
+     "quote": "A Bachelor's degree (AQF Level 7 or equivalent) in any field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "14887181e88d56a9d9d5af385127a03c28ae47b6a98edd9f8d8b5e3142562dbc",
+     "source_url": "https://handbook.murdoch.edu.au/courses/35/M1267",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1313",
+   "cricos_code": "106088F",
+   "snapshot_sha256": "67b538e6c63f88987f3ae5a3d42cca06a3f8e0614d95e89d98f8d59fb8048ced",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Education or equivalent, or a bachelor's in any discipline plus at least 2 years full-time teaching experience",
+     "quote": "Bachelor of Education (AQF Level 7) or equivalent OR a bachelor degree from any discipline (AQF level 7) and at least 2 years full time (or equivalent) of teaching experience in the education sector.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.5 with no band less than 6.0.",
+     "source_sha256": "0b83b0ea66c811dc651c0d037341e3e6fdb35d4fb3f0f08177ba35dc2ac3d251",
+     "source_url": "https://handbook.murdoch.edu.au/courses/18/M1313",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1367",
+   "cricos_code": "114426D",
+   "snapshot_sha256": "f6482bdb0c0a0bfe78aca80b428fb68a976d1b41adf000d138ad8640172101a0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (AQF Level 7) or equivalent",
+     "quote": "A Bachelor degree (AQF Level 7) or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.5 with no band less than 6.0.",
+     "source_sha256": "cb7946d35c1b885c0d028e8e5bde91ec357c66900a55d1769305fce80b39b124",
+     "source_url": "https://handbook.murdoch.edu.au/courses/10/M1367",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1394",
+   "cricos_code": "117153M",
+   "snapshot_sha256": "08449521f6cf05867a35f18a3174337b7e71551af93271d3a2263ece2a1a52ef",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (AQF Level 7) or equivalent",
+     "quote": "Completion of a Bachelor degree (AQF Level 7) or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "6b1f2e82d1e0fa30aa61c21df1325671f4f505b3168b873aea74ddde2d2f0d31",
+     "source_url": "https://handbook.murdoch.edu.au/courses/10/M1394",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Criminology",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1314",
+   "cricos_code": "103447A",
+   "snapshot_sha256": "b07b0192bdf1482b2066abf97f8c0aa7f3be8b37c8902ceb13e758046911d894",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor's degree in any area",
+     "quote": "Admission to the Master of Criminology is available to students who have a recognised Bachelor's degree in any area.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "31d3958f71d10708cc1f610a0822ed9d39eca6fcbae90ef6b0462acceb8f7279",
+     "source_url": "https://handbook.murdoch.edu.au/courses/22/M1314",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Communication",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1277",
+   "cricos_code": "096751M",
+   "snapshot_sha256": "8f95495a371b71692b7f230f139cfad7f75b84f07ccb5622bc62a3ec07b8f058",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree in the discipline, or 10 years' media/communication work experience (or 5 years managerial) with evidence of research/report-writing ability",
+     "quote": "(i) A recognised Bachelor degree (AQF Level 7) in the discipline. Students who have completed a graduate diploma or equivalent (AQF Level 8) in the disciplinary area may apply for recognition of prior learning of up to 12 credit points. In addition, students who have at least one year of full-time relevant workplace experience, such as in public relations, journalism and media and communication sectors, may apply for recognition of prior learning of up to an additional 12 credit points. OR (ii) A minimum of ten years' work experience in the media and communication sectors or in a professional capacity, or a minimum of five years' work experience in a managerial role, together with evidence of ability to carry out research for and/or write professional reports.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "b1666b2a8d8f8d2a8e8afaa15056ce292075797b1f04f2050b11a184b95fbb7b",
+     "source_url": "https://handbook.murdoch.edu.au/courses/34/M1277",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sustainable Development",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1214",
+   "cricos_code": "072141B",
+   "snapshot_sha256": "3bad5e5d6eb6e7d3f4a22fd61901575d9bff8df15fbeea5e000fce2434fbc96a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher, or equivalent training, not necessarily in a related area",
+     "quote": "Recognised Bachelor's degree (AQF Level 7) or higher, or equivalent training, though not necessarily in an area directly related to the proposed course, or satisfactory preparation through previous study or professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "5dbd6cb0acb6e282849c2dd5bec04d14898ca45a8a05cb48bdc6cf8b17dac49a",
+     "source_url": "https://handbook.murdoch.edu.au/courses/33/M1214",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science",
+   "url": "https://www.murdoch.edu.au/course/postgraduate/m1210",
+   "cricos_code": "081028F",
+   "snapshot_sha256": "352516ce3fe005431adeae97d0c71bb3e2a134e84d4f3996a94c7870e57b061e",
+   "fields": {
+    "academic": {
+     "text": "Graduate Certificate/Diploma in Environmental Science or Environmental Assessment and Management (AQF 8), or equivalent graduate course in a closely related field; minimum GPA 2.0",
+     "quote": "Completion of the Graduate Certificate in Environmental Assessment and Management or Graduate Certificate in Environmental Science or Graduate Diploma in Environmental Science (AQF Level 8), or an equivalent graduate course in a closely related field of education; or equivalent training. Minimum of GPA of 2.0 is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 6.0,
+     "quote": "Equivalent of an Academic IELTS overall score of 6.0 with no band less than 6.0.",
+     "source_sha256": "15ee961b19dab33d8043a6da88adaa469d2ab14c7da4301c7ffb5e3d9e7104ca",
+     "source_url": "https://handbook.murdoch.edu.au/courses/26/M1210",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 18,
+  "机器核对": 18,
+  "待人工": 0
+ }
+}
