@@ -1,6 +1,6 @@
 ## Why
 
-TASKS.md P1 #4. The advisor's requirement retrieval (P0 #4, `openspec/changes/advisor-retrieval`)
+TASKS.md P1 #4. The advisor's requirement retrieval (P0 #4, `openspec/changes/archive/2026-10-30-advisor-retrieval`)
 finds the named schools and subject area in SQL and then orders the rows inside a school with a
 hand-written regex per subject. Two held-out misses come from that ordering: a word the applicant
 typed ("TESOL") is not used unless the subject file has a pattern for it, and a pattern that is too

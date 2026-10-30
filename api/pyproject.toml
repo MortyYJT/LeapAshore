@@ -23,7 +23,7 @@ dependencies = [
   # its schema migrations are copied into Alembic revision c4e8a1d2f6b9, and a test fails when a new
   # version adds one.
   "langgraph-checkpoint-postgres==3.2.0",
-  # Advisor rate limits and token quotas (openspec/changes/advisor-limits); its asyncio client.
+  # Advisor rate limits and token quotas (openspec/changes/archive/2026-10-30-advisor-limits); its asyncio client.
   "redis",
   # The collection queue (openspec/changes/collect-queue): one task per page, Redis as the broker.
   "celery",

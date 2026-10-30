@@ -143,7 +143,7 @@
 
 ## 2026-10-30 顾问检索：校名按数据识别，学科按 Program.field，筛选进 SQL（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：设计全文在 `openspec/changes/advisor-retrieval/design.md`。要点：
+- **决定**：设计全文在 `openspec/changes/archive/2026-10-30-advisor-retrieval/design.md`。要点：
   - 评估集 80 条（调参 50 / 报数 30），由 Claude 对照本机库标注；标签是「学校 id + 可选 `Program.field` + 可选项目名正则」，相关项目在评估时从库里查（还要求有录取要求数据和可引用来源）。标签和库对不上时评估直接拒绝打分。Recall@K 分母取 min(K, 相关数)，K 从代码 `evidence.TOP_K` 读（=4）。
   - 校名：库里的中文名（繁简都认，用 OpenCC 的字表折叠，4,105 个字，Apache-2.0，放 `api/data/advisor/zh_t2s.json`，不加依赖）、英文名、英文名括号里的缩写，加一份手工简称表 `api/data/advisor/university_aliases.json`（按 university id，131 所共 267 个简称）。重叠时取最长匹配（西悉尼大学不算悉尼大学）。代码里不出现任何校名。没选「建表存别名」：165 所学校，匹配本来就在 Python 里做，建表只多一次迁移和种子。
   - 学科：`api/data/advisor/subjects.json` 把用户说法映射到 `Program.field`；项目名正则只用来排序，具体学科（金融、机械）在有匹配项目时只留匹配的，大类（商科、工程）只排序。单元测试保证每个条目的英文释义被 `app.collect.fields` 分到同一个学科。「语言」「材料」「规划」「数据」这类在提问里另有意思的词不收。
@@ -156,7 +156,7 @@
 
 ## 2026-10-30 顾问限流与额度：Redis 滑动窗口 + 每日 token 上限，Redis 不可用时拒绝（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：设计全文在 `openspec/changes/advisor-limits/design.md`。要点：
+- **决定**：设计全文在 `openspec/changes/archive/2026-10-30-advisor-limits/design.md`。要点：
   - Redis（`redis:7-alpine`）进本机和生产 compose，客户端 `redis`（redis-py 的 asyncio 客户端）；P1 的 Celery 复用它，所以 `noeviction` + 256 MB，满了宁可拒写也不悄悄丢计数或任务。生产不对外暴露端口、不设密码。
   - 身份：主体（登录模式下是账号，匿名模式下是匿名 cookie 的 id）和 IP 都查，任何一个超限就拒。匿名用户清 cookie 就是新主体，所以真正兜底的是 IP 限制和全站上限。
   - 滑动窗口（有序集合）+ 每日 token 计数，一个 Lua 脚本一次查完、全过才记一笔，被拒的请求不占名额。默认：主体 10 次/分钟、60 次/小时；IP 30 次/分钟、200 次/小时；每天 token 每主体 20 万、每 IP 60 万、全站 200 万（TASKS.md 定的）；一天按北京时间。全部是环境变量。
@@ -201,7 +201,7 @@
 
 ## 2026-10-30 截止日期和学术要求入库：独立表 + 读时合并，不写进选校组合（Claude 自主（待 MortyYJT 复核））
 
-- **决定**（设计见 `openspec/changes/requirement-dates/`）：
+- **决定**（设计见 `openspec/changes/archive/2026-10-30-requirement-dates/`）：
   - 改表只加不删：`programs.academic_requirement`（采集时整理的英文摘要）、`programs.academic_source_url`（引文所在页）和新表 `program_deadlines`（轮次名、日期、引文、来源页、顺序）。只写引文过了 `verify` 的；没过的不写，学术要求为 null、截止日期没有行。不写 `verified_at`。
   - 重复导入不改任何东西：截止日期和先修课先和库里比，一样就不写；本机实测重跑前后 programs、program_deadlines、program_prerequisites、sources、source_versions 五张表整表 md5 相同（含 `updated_at`）。
   - **截止日期不写进 `applications.official_deadline`**：那一列是申请人（或顾问）自己记的日期。导入只写项目目录，`GET /api/applications` 把项目的截止日期和组合行自己的日期一起返回，界面上组合行自己的日期优先。这样「不覆盖用户填的日期」靠结构保证：导入器没有写 `applications`、`roadmap_tasks` 的路径（测试和走查都查了）。
@@ -339,7 +339,7 @@
 
 ## 2026-10-30 人工核验入口（P2 第三条）（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：设计见 `openspec/changes/source-verification/`。
+- **决定**：设计见 `openspec/changes/archive/2026-10-30-source-verification/`。
   - **核验单位是一个官方页面的一版快照**（`sources.verified_at`，界面按来源显示「已核验」）。管理员看这一页支撑的每个项目的每个字段（库内值 + 引文），再看这一版快照正文（引文已标出），勾「已逐条对照」后点确认；确认带上读的那一版 sha，不是最新版本或没有那一版快照就 409。不做按字段核验：要给五张表加列、还要改「已核验」在界面上的含义。
   - **是谁、什么时候**：新表 `source_verifications`（确认 / 撤销各一行，记账号、时刻、快照 sha、事务号），只追加；注销管理员账号只把「是谁」置空。管理员可以撤销。页面内容变了，导入器照旧把日期清空（原有行为）。
   - **数据库护栏用触发器**：新的非空日期必须在同一事务里有同页、同时刻、由管理员账号写的确认行；`已核验` 没日期也拒；清空总是允许。不用列权限：应用用表的所有者连库，`GRANT` 拦不住；另开库角色多一套连接池和密钥。

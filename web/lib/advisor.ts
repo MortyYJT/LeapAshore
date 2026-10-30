@@ -26,7 +26,7 @@ export type AdvisorEvent =
 /**
  * `unauthorized` when the server refused for want of a session (login mode, session expired);
  * `limited` when a rate limit or a daily token quota refused the turn, or the limit store was down
- * (openspec/changes/advisor-limits) — nothing ran, so a refused confirm can be answered again.
+ * (openspec/changes/archive/2026-10-30-advisor-limits) — nothing ran, so a refused confirm can be answered again.
  */
 export type StreamOutcome = "ok" | "unauthorized" | "limited" | "failed";
 

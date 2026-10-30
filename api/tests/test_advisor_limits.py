@@ -1,4 +1,4 @@
-"""Advisor rate limits and token quotas (openspec/changes/advisor-limits).
+"""Advisor rate limits and token quotas (openspec/changes/archive/2026-10-30-advisor-limits).
 
 These run against the development Redis (`compose.yaml`, port 56379; CI runs a service), each test
 under its own key prefix (`isolate_the_advisor_limits` in conftest). The model is never called: the

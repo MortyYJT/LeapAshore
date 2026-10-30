@@ -1,4 +1,4 @@
-"""Load test for the advisor limits (openspec/changes/advisor-limits). Local only; never calls a model.
+"""Load test for the advisor limits (openspec/changes/archive/2026-10-30-advisor-limits). Local only; never calls a model.
 
 Two measurements:
 
