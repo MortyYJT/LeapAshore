@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from app.config import check_settings, settings
 from app.middleware import BodySizeLimitMiddleware
 from app.routers import (
+    admin,
     advisor,
     applications,
     auth,
@@ -41,6 +42,7 @@ app.add_middleware(
     detail=TOO_LARGE,
 )
 
+app.include_router(admin.router)
 app.include_router(advisor.router)
 app.include_router(applications.router)
 app.include_router(auth.router)

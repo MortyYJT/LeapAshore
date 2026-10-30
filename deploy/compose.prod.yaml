@@ -34,6 +34,8 @@ services:
       # accepted the connection from (Caddyfile); any other peer is counted as itself.
       TRUSTED_PROXIES: caddy
       REDIS_URL: redis://redis:6379/0
+      # A knowledge-gap review sends re-collection tasks to the queue (openspec knowledge-gaps D7).
+      CELERY_BROKER_URL: redis://redis:6379/1
     volumes:
       - documents:/app/var/documents
     depends_on:

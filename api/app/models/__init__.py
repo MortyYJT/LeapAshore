@@ -14,6 +14,7 @@ from app.models.document import (
     DocumentVersion,
     UploadedBy,
 )
+from app.models.knowledge_gap import KnowledgeGap, KnowledgeGapReport
 from app.models.program import Program, ProgramDeadline, ProgramEmbedding, ProgramPrerequisite, University
 from app.models.review import (
     CheckType,
@@ -56,6 +57,8 @@ __all__ = [
     "DocumentStatus",
     "DocumentVersion",
     "FindingSeverity",
+    "KnowledgeGap",
+    "KnowledgeGapReport",
     "MaterialTemplate",
     "PageState",
     "Profile",

@@ -24,6 +24,9 @@ class Account(Base):
     )
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     last_login_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    # NULL for an applicant; `admin` may review knowledge gaps (openspec knowledge-gaps D6). Granted
+    # only from the server shell (`python -m app.roles`).
+    role: Mapped[str | None] = mapped_column(String(16))
 
 
 class AuthSession(Base):

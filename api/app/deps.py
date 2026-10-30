@@ -14,6 +14,8 @@ from app.models.client import Client, Profile, new_client_id
 COOKIE_NAME = "leapashore_client"
 SESSION_COOKIE = "leapashore_session"
 LOGIN_REQUIRED = "需要登录"
+ADMIN_REQUIRED = "需要管理员权限"
+ADMIN_NEEDS_LOGIN_MODE = "管理接口只在登录模式下可用"
 
 
 def get_client_id(
@@ -74,6 +76,25 @@ def get_subject(subject: Annotated[str | None, Depends(get_optional_subject)]) -
     if subject is None:
         raise HTTPException(401, LOGIN_REQUIRED)
     return subject
+
+
+def require_admin(request: Request, session: Annotated[Session, Depends(get_session)]):
+    """The account behind an admin request (openspec knowledge-gaps D6).
+
+    401 without a valid session, 403 for an account without the `admin` role. In anonymous mode there
+    are no accounts, so every admin request is 403: an anonymous cookie can never be an admin.
+    """
+    from app.roles import ADMIN
+    from app.services.auth import account_for_token
+
+    if not settings.auth_enabled:
+        raise HTTPException(403, ADMIN_NEEDS_LOGIN_MODE)
+    account = account_for_token(session, request.cookies.get(SESSION_COOKIE))
+    if account is None:
+        raise HTTPException(401, LOGIN_REQUIRED)
+    if account.role != ADMIN:
+        raise HTTPException(403, ADMIN_REQUIRED)
+    return account
 
 
 def subject_cookie_header(response: Response) -> dict[str, str] | None:

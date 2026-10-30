@@ -428,6 +428,7 @@ def gate(session: Session, query: str, ranking: str | None = None) -> dict:
         "subject_fallback": found.subject_fallback,
         "ranking": found.ranking,
         "fts_terms": found.fts_terms,
+        "subject_words": found.subject_words,
     }
     if not strong:
         reason, text = refusal(session, found)
