@@ -139,8 +139,10 @@ def search_passages(session: Session, question: str, topics: list[Topic], rankin
     use_vectors = found.ranking in ("vector", "hybrid")
     distance = (SnapshotChunkEmbedding.embedding.cosine_distance(query_vector) if use_vectors
                 else cast(null(), Float))
-    has_vector = SnapshotChunkEmbedding.chunk_id.is_not(None)
-    wanted = {"fts": matches, "vector": has_vector, "hybrid": or_(matches, has_vector)}[found.ranking]
+    # Every ranking reads the same chunks, those that state the topic; vectors only reorder them. A
+    # vector alone would let any embedded chunk of the school in, and a school whose pages never
+    # mention the topic would no longer be refused (review of #60).
+    wanted = matches
     scoped = (
         select(SnapshotChunk.id, SnapshotChunk.page_id, SnapshotChunk.ordinal, SnapshotPage.university_id,
                fts_score.label("fts_score"), distance.label("distance"))

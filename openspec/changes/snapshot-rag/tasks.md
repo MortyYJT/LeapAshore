@@ -12,6 +12,9 @@ Branch `claude/snapshot-rag`.
 - [x] 1.8 Eval set (38), `evals.run_passages --check | --live | --replay`, CI replay test
 - [x] 2.1 Local ingest: 9,413 pages, 134,843 chunks, second run writes nothing
 - [x] 2.2 Live run once (DeepSeek, 2026-10-30): results in `api/evals/results/passages-2026-10-30.json`
+- [x] 2.3 Review of #60: number check (modal "may" was 5; Chinese counts unchecked), vectors let
+      off-topic chunks in, `--prune` deleted cited pages with a missing snapshot, a same-text refresh
+      dropped the chunk vectors. All fixed with tests; recorded answers re-scored: sentences kept 75/79
 - [ ] 3.1 Deploy: backup, migrate, copy cited snapshot texts into `snapshots`, ingest in the worker,
       read-only checks, at most one real advisor turn
 - [ ] 4.1 Blocked on MortyYJT: `EMBED_API_KEY`; then `embeddings --chunks` and a vector/hybrid run
@@ -23,7 +26,7 @@ Branch `claude/snapshot-rag`.
   among the passages for 26 of 32 answerable. Nothing changed after it.
 - 2026-10-30 live run (`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat`, reported model
   `deepseek-flash`, ranking `fts` because no embedding key): citation pass rate 82/82 = 1.0; sentences
-  kept 76/79 (3 dropped, all `number_not_in_quotes`: a year from another sentence of the page, an
+  kept 76/79 at run time (3 dropped, all `number_not_in_quotes`: a year from another sentence of the page, an
   amount quoted for the previous sentence, "at least a year" written as 1 年); answerable answered 31/32
   (1 gate refusal: i10, the program's page is filed under another field); unanswerable refused 6/6;
   gold page retrieved 26/32, gold sentence retrieved 21/32 and cited 20/32. Four answered questions

@@ -374,3 +374,46 @@ def test_a_question_vector_ranks_the_chunks_and_hybrid_fuses_both_lists(school):
         hybrid = passages.search_passages(s, "切片检索测试大学要面试吗", topics("interview"), ranking="hybrid",
                                           query_vector=one_hot(target))
     assert hybrid.ranking == "hybrid" and hybrid.passages[0].text == "An interview is part of the selection."
+
+
+# ---- review of #60 --------------------------------------------------------------------------------
+
+
+def test_the_modal_may_does_not_vouch_for_a_five():
+    chunks = ["Applicants may be invited to an interview."]
+    reply = PassageAnswer(sentences=[sentence("面试可能在 5 月进行。", (1, "Applicants may be invited to an interview"))])
+    assert answer.verify(reply, chunks).sentences[0].reasons == ["number_not_in_quotes"]
+
+
+def test_a_chinese_count_must_be_in_the_quotes():
+    reply = PassageAnswer(sentences=[
+        sentence("需要三封推荐信。", (1, "Two letters of recommendation are required")),
+        sentence("需要两封推荐信。", (1, "Two letters of recommendation are required")),
+        sentence("一般在线上进行面试。", (2, "invited to an online interview in March")),
+        sentence("第二轮是一次线上面试。", (2, "invited to an online interview in March")),
+    ])
+    checked = answer.verify(reply, CHUNKS)
+    assert [s.ok for s in checked.sentences] == [False, True, True, True]
+
+
+def test_a_vector_never_lets_in_a_chunk_that_does_not_state_the_topic(school):
+    from sqlalchemy import select
+
+    from app.models.program import EMBEDDING_DIM
+    from app.models.snapshot import SnapshotChunkEmbedding
+
+    def one_hot(i):
+        v = [0.0] * EMBEDDING_DIM
+        v[i] = 1.0
+        return v
+
+    with SessionLocal() as s:
+        rows = s.execute(select(SnapshotChunk.id, SnapshotChunk.text).where(SnapshotChunk.page_id.in_(school["pages"]))).all()
+        for i, (cid, _) in enumerate(rows):
+            s.add(SnapshotChunkEmbedding(chunk_id=cid, model=settings.embed_model, content_sha256="x", embedding=one_hot(i)))
+        s.commit()
+        off_topic = next(i for i, r in enumerate(rows) if "letters of recommendation" in r.text)
+        for ranking in ("vector", "hybrid"):
+            found = passages.search_passages(s, "切片检索测试大学要面试吗", topics("interview"), ranking=ranking,
+                                             query_vector=one_hot(off_topic))
+            assert found.passages and all("interview" in p.text for p in found.passages)

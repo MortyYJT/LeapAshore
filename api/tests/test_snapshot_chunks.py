@@ -350,3 +350,34 @@ def test_a_bundle_carries_the_cited_text_without_local_paths(school, tmp_path):
     with SessionLocal() as s:
         report = chunks.ingest(s, data_dir=school["data_dir"], root=other, schools=[school["key"]])
     assert report["pages_written"] == 4 and report["missing_snapshots"] == 0
+
+
+def test_prune_keeps_a_cited_page_whose_snapshot_is_missing_here(school):
+    ingest(school)
+    (school["root"] / school["key"] / f"{school['shas']['c']}.txt").unlink()
+    report = ingest(school, prune=True)
+    assert report["pages_pruned"] == 0 and report["missing_snapshots"] == 1
+    assert f"{school['base']}/c" in pages_of(school)
+
+
+def test_the_same_text_at_a_new_snapshot_keeps_the_chunks_and_their_vectors(school):
+    from app.models.program import EMBEDDING_DIM
+    from app.models.snapshot import SnapshotChunkEmbedding
+
+    ingest(school)
+    url = f"{school['base']}/a"
+    with SessionLocal() as s:
+        before = s.scalars(select(SnapshotChunk.id).join(SnapshotPage).where(SnapshotPage.url == url)).all()
+        for cid in before:
+            s.add(SnapshotChunkEmbedding(chunk_id=cid, model="m", content_sha256="x", embedding=[0.0] * EMBEDDING_DIM))
+        s.commit()
+    # Other HTML, the same visible text: a new sha256, the same words.
+    text = (school["root"] / school["key"] / f"{school['shas']['a']}.txt").read_text()
+    new = write_snapshot(school["root"], school["key"], text, url + "?v=2")
+    with SessionLocal() as s:
+        assert chunks.refresh_page(s, school["key"], url, new, root=school["root"]) == "written"
+        after = s.scalars(select(SnapshotChunk.id).join(SnapshotPage).where(SnapshotPage.url == url)).all()
+        assert after == before
+        assert s.get(SnapshotPage, chunks.page_id_for(url)).snapshot_sha256 == new
+        assert s.scalar(select(func.count()).select_from(SnapshotChunkEmbedding)
+                        .where(SnapshotChunkEmbedding.chunk_id.in_(before))) == len(before)

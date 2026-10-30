@@ -87,7 +87,8 @@ _NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 _WORDS = {
     "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8",
     "nine": "9", "ten": "10", "eleven": "11", "twelve": "12", "single": "1", "both": "2",
-    "january": "1", "february": "2", "march": "3", "april": "4", "may": "5", "june": "6", "july": "7",
+    # Not "may": the modal verb is on every admissions page and would vouch for any 5 (review of #60).
+    "january": "1", "february": "2", "march": "3", "april": "4", "june": "6", "july": "7",
     "august": "8", "september": "9", "october": "10", "november": "11", "december": "12",
     "jan": "1", "feb": "2", "mar": "3", "apr": "4", "jun": "6", "jul": "7", "aug": "8", "sep": "9", "sept": "9",
     "oct": "10", "nov": "11", "dec": "12",
@@ -104,8 +105,17 @@ def _canonical(number: str) -> str:
     return text.lstrip("0") or "0"
 
 
+# A Chinese numeral before a measure word states a count ("两封推荐信", "三位推荐人"). 一 is left out: before
+# a measure word it is as often the article ("一次额外面试" is "an additional interview") as the number,
+# and elsewhere it is in too many words (一般, 统一). 第二个 is an ordinal.
+_CHINESE_DIGITS = {"二": "2", "两": "2", "三": "3", "四": "4", "五": "5", "六": "6", "七": "7",
+                   "八": "8", "九": "9", "十": "10"}
+_CHINESE_COUNT = re.compile(r"(?<![第\d])([二两三四五六七八九十])(?=(?:封|位|名|个|轮|次|份|门|年|学期|个月|周|天|小时|分钟))")
+
+
 def numbers_in(text: str) -> set[str]:
-    return {_canonical(n) for n in _NUMBER.findall(text)}
+    """The numbers a sentence states: Arabic ones, and Chinese numerals that count something."""
+    return {_canonical(n) for n in _NUMBER.findall(text)} | {_CHINESE_DIGITS[c] for c in _CHINESE_COUNT.findall(text)}
 
 
 def numbers_quoted(quotes: list[str]) -> set[str]:

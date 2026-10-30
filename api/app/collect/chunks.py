@@ -264,6 +264,14 @@ def _write_page(session: Session, ref: PageRef, university_id: str, program_id: 
               "content_sha256": content, "chunker": CHUNKER}
     if stored is not None and all(getattr(stored, k) == v for k, v in wanted.items()):
         return False
+    if stored is not None and stored.content_sha256 == content and stored.chunker == CHUNKER:
+        # The same text at a new snapshot (other HTML, same visible text) or under a new program row:
+        # the chunks, their ids and their vectors stay; only the page's record changes (review of #60).
+        for key, value in wanted.items():
+            setattr(stored, key, value)
+        stored.ingested_at = func.now()
+        session.flush()
+        return True
     pieces = chunk_text(body)
     if stored is None:
         session.add(SnapshotPage(id=pid, url=ref.url, chunk_count=len(pieces), **wanted))
@@ -311,8 +319,10 @@ def ingest(session: Session, data_dir: Path = DATA_DIR, root: Path = SNAPSHOT_RO
             else:
                 report["pages_unchanged"] += 1
         if prune:
+            # Only pages no file cites any more: a cited page whose snapshot is missing from this store
+            # keeps what was ingested before (review of #60).
             gone = delete(SnapshotPage).where(SnapshotPage.school_key == key,
-                                              SnapshotPage.url.not_in([ref.url for ref in present]))
+                                              SnapshotPage.url.not_in([ref.url for ref in refs]))
             report["pages_pruned"] += session.execute(gone).rowcount or 0
         session.commit()
         report["schools"] += 1

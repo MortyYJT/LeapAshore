@@ -19,7 +19,7 @@ def test_the_recorded_run_replays_to_its_reported_metrics():
     again, same = replay(RECORDED)
     assert same
     assert again["citation_pass_rate"] == 1.0 and again["quotes"] == 82
-    assert again["sentences"] == 79 and again["sentences_kept"] == 76
+    assert again["sentences"] == 79 and again["sentences_kept"] == 75
     assert again["unanswerable_refused"] == again["unanswerable"] == 6
 
 

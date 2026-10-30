@@ -2983,11 +2983,11 @@
   "citation_pass_rate": 1.0,
   "quotes": 82,
   "quotes_passed": 82,
-  "sentence_keep_rate": 0.962,
+  "sentence_keep_rate": 0.9494,
   "sentences": 79,
-  "sentences_kept": 76,
+  "sentences_kept": 75,
   "dropped_reasons": {
-   "number_not_in_quotes": 3
+   "number_not_in_quotes": 4
   },
   "answerable_answered": 31,
   "answerable_gate_refused": 1,
@@ -3163,9 +3163,9 @@
     "quotes": 3,
     "quotes_passed": 3,
     "sentences": 3,
-    "kept": 2,
+    "kept": 1,
     "reasons": {
-     "number_not_in_quotes": 1
+     "number_not_in_quotes": 2
     },
     "answered": true,
     "gold_retrieved": true,
@@ -3500,5 +3500,28 @@
    }
   }
  },
- "metrics_note": "Metrics recomputed on 2026-10-30 after the live run to add gold_quote_retrieved / gold_quote_cited (definitions added after seeing the answers; the recorded items are unchanged)."
+ "metrics_note": "Metrics recomputed from the same recorded answers after the run: (1) gold_quote_retrieved / gold_quote_cited were added after seeing the answers; (2) after the review of PR #60 the number check no longer reads the modal 'may' as 5 and checks Chinese counts 二-十 before a measure word, which drops one more sentence (r01, 两名推荐人, quoted from a passage that says 'one referee ... the other referee'). metrics_at_run is what the check said at run time.",
+ "metrics_at_run": {
+  "questions": 38,
+  "answerable": 32,
+  "unanswerable": 6,
+  "routed_to_passages": 38,
+  "citation_pass_rate": 1.0,
+  "quotes": 82,
+  "quotes_passed": 82,
+  "sentence_keep_rate": 0.962,
+  "sentences": 79,
+  "sentences_kept": 76,
+  "dropped_reasons": {
+   "number_not_in_quotes": 3
+  },
+  "answerable_answered": 31,
+  "answerable_gate_refused": 1,
+  "answerable_refused_after_check": 0,
+  "unanswerable_refused": 6,
+  "gold_page_retrieved": 26,
+  "gold_page_cited": 26,
+  "gold_quote_retrieved": 21,
+  "gold_quote_cited": 20
+ }
 }

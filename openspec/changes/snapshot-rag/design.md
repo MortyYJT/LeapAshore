@@ -66,9 +66,11 @@ Commands run in `api/`.
   from the cited program's row (Australian schools' are CRICOS rows), else the row named by the school
   key, else the one row with the school's English name from `_schools.json`.
 - **D5 Idempotent ingestion and the queue hook.** A page is rewritten only when its trimmed-text sha256,
-  snapshot, school, program, title, fetch date or chunker differ; then its chunks are deleted and
-  re-inserted in the school's transaction. `--prune` deletes pages the files no longer cite (off by
-  default). The queue calls `refresh_page` after it commits a page as `done` or `unchanged` (a page that
+  snapshot, school, program, title, fetch date or chunker differ. When only the record differs (the
+  same visible text at a new snapshot), only the page row is updated: the chunks, their ids and their
+  vectors stay. When the text differs, its chunks are deleted and re-inserted in the school's
+  transaction. `--prune` deletes pages the files no longer cite (off by default); a cited page whose
+  snapshot is missing from the store is kept. The queue calls `refresh_page` after it commits a page as `done` or `unchanged` (a page that
   lost every value keeps its old chunks, as its old result); the boilerplate is learnt from the
   school's stored pages read at their stored snapshots. A failure there is logged and never fails the
   page; the next ingest catches up.
@@ -85,7 +87,9 @@ Commands run in `api/`.
   scope: chunks matching the topic phrases (`phraseto_tsquery`, OR'd), ranked by `ts_rank_cd`; with a
   question vector, `vector` ranks by cosine distance and `hybrid` fuses both lists by RRF (k=60, as P1
   #4), falling back to full text without a vector. At most 2 chunks per page, schools take turns, 6
-  passages. No passage: refused with counts (school has no page / no page of that subject / no page
+  passages. Every ranking reads only the chunks that state the topic: vectors reorder them, never add
+  to them, so a school whose pages never mention the topic is refused whatever the ranking. No
+  passage: refused with counts (school has no page / no page of that subject / no page
   states the topic).
 - **D8 Generation: one function call, sent whole.** The model (the advisor's `CHAT_*`, temperature 0)
   returns `sentences[]`, each with `citations[]` of a passage number and a verbatim quote. The reply is
@@ -93,8 +97,10 @@ Commands run in `api/`.
   once instead of token by token. An unreadable function call is an empty answer, so a refusal.
 - **D9 The check.** For every sentence: at least one citation; each passage number exists; each quote is
   at least 12 characters and, after the collectors' folding (`collect.text.normalize`), a substring of
-  the stored chunk; every number in the sentence (thousands separators folded; English number words
-  and month names count) is in that sentence's quotes. One failing quote drops the whole sentence.
+  the stored chunk; every number in the sentence (Arabic digits, thousands separators folded, and
+  Chinese counts 二 to 十 before a measure word) is in that sentence's quotes, where English number
+  words and month names count as their numbers (not "may", the modal verb, and not 一, which before a
+  measure word is as often the article). One failing quote drops the whole sentence.
   Nothing left: a refusal that lists the pages read and states nothing. Shown answers end with the
   fetch dates and 待核验 (no human has verified a chunk; `verified_at` is untouched). The check is
   syntactic: a verbatim quote that does not support its sentence, or a sentence about another
