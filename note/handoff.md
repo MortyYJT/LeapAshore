@@ -4,11 +4,11 @@
 
 ## 现在（2026-10-31）
 
-- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #77（10-31 部署；#70–#77 只改了注释、文档和数据库改名），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-rename.sql.gz`（服务器日期），服务器上只留最近 3 份备份。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序），角色和库名 `leapashore`。项目目录 `~/leapashore`，compose 项目名仍是 `deploy`。换 pgvector 前的旧卷 `deploy_db-data` 和镜像 `postgres:16-alpine` 已删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
+- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #80（10-31 北京时间 02:30 左右部署），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261031-pre-site-polish.sql.gz`（服务器日期；#79、#80 没有迁移），服务器上只留最近 3 份备份。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序），角色和库名 `leapashore`。项目目录 `~/leapashore`，compose 项目名仍是 `deploy`。换 pgvector 前的旧卷 `deploy_db-data` 和镜像 `postgres:16-alpine` 已删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
 - **服务器 SSH（10-31）：** 只认密钥，密码登录和 root 登录都关了；fail2ban 已开（5 次失败封 1 小时）。细节和解封命令见 `docs/deploy.md`。没检查腾讯云安全组的 22 端口来源限制。
 - **生产数据：** 「有要求」7,374，`机器核对` 4,115，截止日期 3,555 条（1,947 个项目、111 所，10-30 北京时间已过 289 条），`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
-- **产品站收尾（10-31 夜，未合并、未部署）：** PR #79（标签页图标）和 PR #80（删 `/programs` 列表、学校详情页可搜索和按方向筛选、项目详情只列有值的要求、去掉内部字样和每页底注、一行页脚署名、路线图无入学时间的空状态、加载占位、首页示例路线图服务器端画好）都已开、CI 绿，等 lead 复核后合并并部署。决定和理由见 `note/decisions.md` 10-31「产品站收尾」。
+- **产品站收尾（10-31，已部署）：** PR #79 标签页图标（`/icon.svg`、`/favicon.ico`、`/apple-icon.png`）；PR #80 删掉 `/programs` 列表（线上 404），学校详情页按项目名和方向筛选（在页面里筛，不用 API 的 `q`，因为它也匹配校名），项目详情只列有值的要求，去掉「未核对」「自动标注」等内部字样和每页底注，全站一行页脚署名（QS、CRICOS CC BY 2.5 AU、3 枚 CC BY-SA 校徽、隐私政策），路线图没填入学时间时只给一句话和按钮，加载占位，首页示例路线图在服务器端就画好；顾问拒答话术的「项目库」改成「学校库里该校的页面」（后端只改了这一句）。部署后线上只读检查都通过。决定和理由见 `note/decisions.md` 10-31「产品站收尾」。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
 - **已有能力**（细节在对应 OpenSpec change 和 `docs/measurements.md`）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
@@ -78,6 +78,7 @@
 
 - 顾问的学科名称模式（`subjects.json` 的 `name`）在 PostgreSQL 里跑，别写 `\b`（PG 里是退格），用 `(^|[^a-z])…([^a-z]|$)`。改简称表后跑 `python -m evals.run_advisor --split tune`：它会检查每个 id 都在库里、标签和库一致。
 - `make verify` 的走查（PR #80 起）在浏览器里拦下 `/api/advisor/*` 返回桩回复，不会真的问顾问、不花模型钱；要验证顾问本身走后端测试和 `api/evals/`。本机后端也没有 `CHAT_API_KEY`。
+- 线上只读检查别打开 `/roadmap`、`/tiers`、`/portfolio`、`/me`：匿名模式下它们会读 `/api/profile`，建一个匿名主体（`/roadmap` 还会写 31 条任务）。10-31 部署后的检查打开过 `/roadmap`，那个主体已按 id 删除。
 - 本机 :3000 的 dev server 若是很早起的旧进程，`/assess` 会 404、走查 28/30；对 `make build` 产物走查即可（见下一条）。
 
 - 登录后、退出登录后不要用 `router.push("/")`：客户端路由可能缓存了登录状态下预取的 `/`，而 proxy 对它的回答是跳 `/roadmap`。退出登录用整页跳转（`window.location.assign`）。
