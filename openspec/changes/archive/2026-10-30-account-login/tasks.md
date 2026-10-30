@@ -51,4 +51,6 @@ Branch `claude/auth-login`. Run backend tests with `cd api && .venv/bin/python -
 - [x] 6.2 `make verify` green
 - [x] 6.3 Deploy config: compose passes `APP_ENV=production`, `TRUST_FORWARDED_FOR=true`; `.env.example` lists the new keys
 - [x] 6.4 TASKS.md, `note/decisions.md`, `note/handoff.md` (DNS records, switch steps, cron line)
-- [ ] 6.5 PR, CI, fresh-context review, merge, deploy with login mode off (backup, migrate, read-only checks)
+- [x] 6.5 PR, CI, fresh-context review, merge, deploy with login mode off (backup, migrate, read-only checks):
+      PR #36, deployed 2026-10-30 (see `docs/measurements.md`). Turning sign-in mode on waits for the
+      owner's SES setup (`docs/deploy.md`, "Switch to sign-in mode")

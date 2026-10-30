@@ -1,4 +1,4 @@
-"""The collection queue's durable state (openspec/changes/collect-queue, D1 and D7).
+"""The collection queue's durable state (openspec/changes/archive/2026-10-30-collect-queue, D1 and D7).
 
 Celery only runs the queue; what has been fetched, what it said and what changed lives here, so a lost
 broker message or a dead worker loses nothing. Nothing here is shown to applicants and nothing here is

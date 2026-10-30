@@ -85,7 +85,7 @@ export function sendAdvisorMessage(conversationId: string, message: string, onEv
 /**
  * The body of a confirm. `interruptId` is the `id` of the `confirm` event being answered: the server
  * applies the answer to that change only, so a repeated click that arrives after the turn has moved on
- * to another change does not answer the new one (openspec/changes/advisor-persistence D5).
+ * to another change does not answer the new one (openspec/changes/archive/2026-10-30-advisor-persistence D5).
  */
 export function confirmBody(conversationId: string, approved: boolean, interruptId?: string) {
   return interruptId ? { conversationId, approved, interruptId } : { conversationId, approved };

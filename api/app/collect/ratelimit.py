@@ -1,4 +1,4 @@
-"""One request per host at a time, shared by every queue worker (openspec/changes/collect-queue, D3).
+"""One request per host at a time, shared by every queue worker (openspec/changes/archive/2026-10-30-collect-queue, D3).
 
 A token bucket with a capacity of one token per host, refilled every `interval` seconds (or the
 site's Crawl-delay, when the request says so), kept in Redis

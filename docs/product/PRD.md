@@ -167,7 +167,7 @@ The background assessment page (`/assess`) was removed on 2026-10-30. Tiering ne
 | F8.1 | Sign in with email + 6-digit code; the first sign-in registers; codes expire after 10 minutes, work once, are void after 5 wrong tries, and cannot be resent within 60 seconds; daily sends per email and per IP are capped | P0 |
 | F8.2 | Sessions are server-side (PostgreSQL table + httpOnly cookie); users can sign out | P0 |
 | F8.3 | Without signing in: home, school list, program list, sample roadmap, advisor page. Signing in is needed to save or read your own data ("Me", portfolio, tiers, your roadmap, documents) and to send a message to the advisor. Clicking such an action opens sign-in, and afterwards returns to the same place and completes the action; users who clicked "Sign in" directly land on the tiers page | P0 |
-| F8.4 | At first sign-in, the same browser's earlier anonymous profile, portfolio, roadmap tasks and documents merge into the account; existing account data is not overwritten (conflict rules in `openspec/changes/account-login/design.md` D7); unclaimed anonymous data is cleaned up after 90 days | P0 |
+| F8.4 | At first sign-in, the same browser's earlier anonymous profile, portfolio, roadmap tasks and documents merge into the account; existing account data is not overwritten (conflict rules in `openspec/changes/archive/2026-10-30-account-login/design.md` D7); unclaimed anonymous data is cleaned up after 90 days | P0 |
 | F8.5 | Every API and advisor tool identifies the user by account and cannot read or write anyone else's data | P0 |
 | F8.6 | Deleting an account deletes all its data (including uploaded files); the privacy policy page is public | P0 |
 | F8.7 | Code emails go through Tencent Cloud SES (SMTP); locally and in CI codes are only written to the log, which production forbids | P0 |
@@ -198,15 +198,13 @@ A tier says **how well the official requirements are met, not the chance of admi
 | Reach (冲刺) | Exactly one requirement not met, and the average mark at most 3 points short or the IELTS overall at most 0.5 short |
 | Not eligible (不满足) | Everything else |
 
-The thresholds are named constants in code (`web/lib/prototype-tiers.ts`), not any school's official statement.
+The thresholds are named constants in code (`web/lib/tiers.ts`), not any school's official statement.
 
 **Unknowns (after removing the "not enough information" tier):**
 
 - Unknowns on the user's side: if the four profile items (undergraduate school, average mark, study area, English score) are not all filled, there are no tiers and the tiers page shows "fill in your information first", so a tiered background has no unknowns.
 - Unknowns on the program's side: programs whose requirements are not collected are not tiered and are listed separately as "requirements not collected", outside every tier.
 - Unchanged floor: an unknown never counts as met and never as not met.
-
-The current code (`prototype-tiers.ts` and its tests) still has the "not enough information" tier; it needs to change through the product-logic process (OpenSpec → TDD) and has not yet.
 
 **School tier:** tiers other than 985 / 211 (first-tier, second-tier, junior colleges) and overseas schools always return "needs human verification" (shown as "去官网确认", check the official site), with no common baseline applied.
 
@@ -233,10 +231,12 @@ An answer about official requirements needs all three of the following; if any f
 **Verification state is a label, not a refusal condition.** Requirements whose source has not been verified by a person are still answered, labelled "待核验" with the official link.
 Reason: almost all data is unverified today; refusing by verification state would refuse almost every question, and applicants would not get the official pages they should see.
 
-There are only two refusal reasons, both written to the knowledge-gap log:
+A refusal gives one of four reasons, worded from the catalogue's own counts (`refusal()` in `api/app/agent/evidence.py`; spec `openspec/specs/advisor-retrieval`), and is recorded in the knowledge-gap queue (spec `openspec/specs/knowledge-gaps`):
 
-- `no_hit`: the school is not collected.
-- `no_citable_source`: it is collected but has no citable source.
+- `no_school`: no school in the question is recognised.
+- `school_not_collected`: the school is known but none of its programs has a collected requirement.
+- `no_program_in_field`: the school has collected requirements, but none for the asked subject.
+- `no_citable_source`: a program was found but has no citable source.
 
 ### 7.5 Confirmation by write risk
 
@@ -285,9 +285,9 @@ These dates are **system suggestions**, and the interface must say they are not 
 | Chinese institutions and tier labels | Public lists | Real data; known gaps recorded in the fixture's `known_gaps` |
 | Overseas institutions and QS rank | QS World University Rankings 2027 (published 2026-06-18) | Real data. **QS terms restrict republication; licence or replace before public launch or commercial use** |
 | Program data outside Australia (program name, school, official page) | Each school's official site, collected page by page from saved snapshots | Real data. Of the 287 schools, 250 have collected programs, 9,035 programs in total (114 schools and 3,560 programs added by the collection queue on 2026-10-30; 16 schools and 252 programs collected the same day in a second round by Claude subagents); the other 37 were **not collected**: the site blocks us (robots.txt or 403), the listing page yields no program links, or there is no list of taught master's programs. Only web pages are read; requirements published only in PDFs are not read yet |
-| Admission requirements (marks, language, background) | Each school's official program pages | Real excerpts, every quote checked against a saved snapshot of the page. 7,611 programs `机器核对`, 1,424 `待核验` (no value passed the check, not imported; many program pages added by the queue put requirements on another page, which the queue does not follow yet); **0 verified by a person**, every `verified_at` empty. After import, "states a requirement" (the catalogue's "only collected requirements", each school's count, and the advisor's evidence gate share one rule: an English requirement, a 985/211 or other-school mark threshold, a prerequisite, an academic requirement, or a deadline) totals 7,545: 7,543 of the 7,549 imported machine-checked programs (7,039 with academic requirements) plus 2 hand-entered `待核验` placeholders; 6 machine-checked programs have only a language note without a score, which is not imported, so they do not count. Australian programs import only onto CRICOS catalogue rows; 65 machine-checked Australian programs without a known CRICOS code are not imported (3 earlier Curtin programs remain) (checked in production after the 2026-10-30 import) |
+| Admission requirements (marks, language, background) | Each school's official program pages | Real excerpts, every quote checked against a saved snapshot of the page, and every summary checked against its quote by a model judge; only values that pass both are imported. In the collection files 4,162 programs are `机器核对` (every value passed) and 4,873 need a person (no value found, or some value failed a check; many program pages added by the queue put requirements on another page, which the queue does not follow yet); **0 verified by a person**, every `verified_at` empty. "States a requirement" (the catalogue's "only collected requirements", each school's count, and the advisor's evidence gate share one rule: an English requirement, a 985/211 or other-school mark threshold, a prerequisite, an academic requirement, or a deadline) totals 7,374 in production, including 2 hand-entered `待核验` placeholders; 4,115 production programs are `机器核对` and 5,939 carry an academic requirement. Australian programs import only onto CRICOS catalogue rows, so machine-checked Australian programs without a known CRICOS code are not imported (production, 2026-10-30, after the summary-faithfulness import) |
 | Program study area (outside Australia) | Classified automatically from the English program name (`api/app/collect/fields.py`) | Inferred by the system, not an official classification; used only for retrieval and assessment filters. Against CRICOS's official fields for Australian programs it agrees 78.5% of the time; names that cannot be classified show as "未分类" (unclassified) |
-| Application deadlines | Each school's official program pages | **Imported** (2026-10-30): 4,763 deadlines for 2,754 programs at 123 schools, all `机器核对`, each with its source page. Judged by the current day in Beijing time; past ones are labelled "已截止" and not placed on the timeline (324 on 10-30); a date recorded on a portfolio row wins and the import never overwrites it |
+| Application deadlines | Each school's official program pages | **Imported**: 3,555 deadlines for 1,947 programs at 111 schools (production, 2026-10-30), each with its source page. Judged by the current day in Beijing time; past ones are labelled "已截止" and not placed on the timeline (289 on 10-30); a date recorded on a portfolio row wins and the import never overwrites it |
 
 **[Open D3] How many programs' real admission requirements to verify for the MVP.** Suggest 2–3 Group of Eight schools' popular programs (such as computing and business) verified by a person as real examples, with the rest still `待核验`.
 

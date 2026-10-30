@@ -8,4 +8,5 @@ Branch `claude/knowledge-gaps`.
 - [x] 1.4 Deletion, merge re-key, 90-day report sweep in the cleanup
 - [x] 1.5 `require_admin`, `/api/admin/knowledge-gaps`, `python -m app.roles`, `python -m app.knowledge_gaps`
 - [x] 1.6 Compose: API gets `CELERY_BROKER_URL`; `.env.example` gets `KNOWLEDGE_GAP_HASH_KEY`; privacy page
-- [ ] 2.1 `make verify`; review; deploy with backup; key generated on the server
+- [x] 2.1 `make verify`; review; deploy with backup; key generated on the server: PR #67, deployed
+      2026-10-30; `KNOWLEDGE_GAP_HASH_KEY` is set in the server's `deploy/.env` (checked 2026-10-31)

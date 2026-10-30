@@ -1,4 +1,4 @@
-"""Knowledge gaps: recording the advisor's refusals and reviewing them (openspec/changes/knowledge-gaps).
+"""Knowledge gaps: recording the advisor's refusals and reviewing them (openspec/changes/archive/2026-10-30-knowledge-gaps).
 
 - `record` adds one refusal to its gap (D1, D2), the asker as a keyed hash (D4); `record_safely` is the
   advisor's entry point and never raises.

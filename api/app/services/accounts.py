@@ -1,6 +1,6 @@
 """What happens to a data subject when an account claims it, merges it or deletes it.
 
-`openspec/changes/account-login/design.md` D7 (merge rules) and D9 (deletion). The functions here
+`openspec/changes/archive/2026-10-30-account-login/design.md` D7 (merge rules) and D9 (deletion). The functions here
 change rows but never commit, except `delete_subject`, which has to commit before it may remove files.
 """
 

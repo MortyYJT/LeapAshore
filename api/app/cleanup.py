@@ -1,4 +1,4 @@
-"""Sweep data nobody can use any more (openspec/changes/account-login, D10).
+"""Sweep data nobody can use any more (openspec/changes/archive/2026-10-30-account-login, D10).
 
     python -m app.cleanup            # report only
     python -m app.cleanup --apply    # delete
@@ -15,7 +15,7 @@
     python -m app.cleanup --conversations-only [--apply]   # the last two items alone
 
 In production the Celery beat runs it daily with `--apply` (`app.worker.cleanup`, openspec/changes/
-collect-queue D12); in anonymous mode only the conversation and report sweeps run, since every subject
+archive/2026-10-30-collect-queue D12); in anonymous mode only the conversation and report sweeps run, since every subject
 is anonymous there.
 """
 

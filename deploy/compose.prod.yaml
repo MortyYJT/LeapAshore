@@ -60,7 +60,7 @@ services:
       timeout: 3s
       retries: 20
 
-  # The collection queue (openspec/changes/collect-queue). The worker fetches official pages (robots.txt,
+  # The collection queue (openspec/changes/archive/2026-10-30-collect-queue). The worker fetches official pages (robots.txt,
   # one request per host every 2 s, refusals recorded) and extracts them with the advisor's model under
   # a daily spend cap; it never writes the catalogue (D8). Snapshots live in the `snapshots` volume; the
   # database stores only school keys and sha256s, never a path (D9). The image has no Chrome, so pages

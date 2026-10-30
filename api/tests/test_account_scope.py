@@ -1,6 +1,6 @@
 """Login mode: which routes need a session, and one account never reaches another's rows.
 
-openspec/changes/account-login, spec account-data-scope.
+openspec/changes/archive/2026-10-30-account-login, spec account-data-scope.
 """
 
 import pytest

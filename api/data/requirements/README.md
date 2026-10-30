@@ -45,7 +45,7 @@ api/evals/results/faithfulness-2026-10-30.json`).
 
 ## The collection queue
 
-`app.collect.queue` (openspec/changes/collect-queue) collects pages without an agent: Celery workers
+`app.collect.queue` (openspec/changes/archive/2026-10-30-collect-queue) collects pages without an agent: Celery workers
 (`make worker`, with Redis and the database up) take one page per task, wait their turn per host in a
 Redis token bucket (one request per host every 2 s across all workers), honour robots.txt and recorded
 refusals, skip the model when the HTML or visible text has not changed, extract with the advisor's model

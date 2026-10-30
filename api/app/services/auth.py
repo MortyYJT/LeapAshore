@@ -1,4 +1,4 @@
-"""Email-code login and server-side sessions (openspec/changes/account-login, D3-D7).
+"""Email-code login and server-side sessions (openspec/changes/archive/2026-10-30-account-login, D3-D7).
 
 Rate limits live in PostgreSQL for now: the volume is small and Redis arrives with the advisor
 limits in the next item. Every rule that has to hold under concurrency is enforced by a lock:

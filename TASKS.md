@@ -23,7 +23,7 @@
 ## P1：核心升级（按顺序做）
 
 - [x] **截止日期和学术要求入库** — PR #48。3,986 条截止日期、4,831 个学术要求入库，重导 0 写入。[详情](docs/measurements.md#deadlines-and-academic-requirements-pr-48)
-- [x] **采集队列 + 变更检测** — PR #50、#51、#52、#54。补采 3,628 页，模型费 36.37 元；生产「有要求」7,545。[详情](docs/measurements.md#collection-queue-and-change-detection-pr-50-queue-code-pr-51-data-pr-52-review-pr-54-second-round)
+- [x] **采集队列 + 变更检测** — PR #50、#51、#52、#54。补采 3,628 页，模型费 36.37 元；生产「有要求」7,545（P1 第六条重导后为 7,374）。[详情](docs/measurements.md#collection-queue-and-change-detection-pr-50-queue-code-pr-51-data-pr-52-review-pr-54-second-round)
 - [x] **对话持久化** — PR #56。等待确认时 `kill -9` 重启后确认，只写一次。[详情](docs/measurements.md#conversation-persistence-pr-56)
 - [x] **混合检索** — PR #58（全文 + 管线；**向量部分卡在 MortyYJT 的硅基流动 key**）。报数组 Recall@4 0.8958 → 0.9583（只用全文）。[详情](docs/measurements.md#hybrid-retrieval-pr-58-vector-part-waiting-for-the-owners-siliconflow-key)
 - [x] **快照 RAG** — PR #60。引文核对通过率 82/82，不可答 6/6 拒答。[详情](docs/measurements.md#snapshot-rag-pr-60)
