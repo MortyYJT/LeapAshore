@@ -119,3 +119,6 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   this item stays 36.37 CNY). Files now: 282 with a file, 250 with programs, 9,035 programs, 7,611
   machine-checked. Local import: 「有要求」 7,545, deadlines 4,763 / 2,754 programs / 123 schools,
   academic 7,039, `verified_at` 0; advisor tune Recall@4 1.0, Precision@4 0.98.
+- Review of PR #54 (fresh context, scripted checks over all 34 files + snapshot spot checks): one
+  problem, fixed: Swinburne's 19 programs all cited a generic China page ("for example ... 60 per
+  cent") that no program page links to; the field was removed (no mark was set, counts unchanged).
