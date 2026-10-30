@@ -192,3 +192,49 @@ def test_the_alias_file_holds_no_logic_only_names():
     data = json.loads(catalog_match.ALIASES_FILE.read_text(encoding="utf-8"))
     assert set(data) == {"_note", "aliases"}
     assert all(isinstance(v, list) and all(isinstance(a, str) for a in v) for v in data["aliases"].values())
+
+
+# ---- countries and full-text terms (openspec hybrid-retrieval) -----------------------------------
+
+
+def test_a_country_in_the_question_is_recognised_outside_school_names():
+    assert parse(INDEX, "纽卡斯尔大学 英国 计算机").countries == ["英国"]
+    assert parse(INDEX, "Newcastle UK computing").countries == ["英国"]
+    assert parse(INDEX, "澳洲的纽卡斯尔大学").countries == ["澳大利亚"]
+    # 香港 inside 香港大學 is the school's name, not a region the question asks about.
+    assert parse(INDEX, "香港大学计算机").countries == []
+    # A bare "us" is a pronoun more often than a country.
+    assert parse(INDEX, "tell us about UCL computing").countries == []
+
+
+def test_country_words_are_not_left_in_the_rest():
+    assert "英国" not in parse(INDEX, "纽卡斯尔大学 英国 计算机").rest
+
+
+def test_every_country_key_is_a_catalogue_country():
+    """`universities.country` values in the 29-country scope (TASKS.md), the only values the filter
+    can compare with."""
+    scope = {
+        "美国", "英国", "澳大利亚", "加拿大", "新西兰", "中国香港", "中国澳门", "新加坡", "韩国", "马来西亚",
+        "德国", "荷兰", "瑞士", "法国", "比利时", "瑞典", "意大利", "西班牙", "爱尔兰", "丹麦", "挪威", "奥地利",
+        "芬兰", "葡萄牙", "捷克", "波兰", "阿联酋", "沙特阿拉伯", "卡塔尔",
+    }
+    assert set(catalog_match.country_terms()) == scope
+
+
+def test_full_text_terms_translate_chinese_subject_words_through_their_gloss():
+    assert parse(INDEX, "华威大学统计硕士要求").fts_terms == ["statistics"]
+    assert parse(INDEX, "帝国理工 机械工程硕士 要求").fts_terms == ["mechanical engineering"]
+
+
+def test_full_text_terms_keep_the_words_the_applicant_typed():
+    # "TESOL" is both a subject word and what the applicant wants: it is searched as typed, not as
+    # the whole education gloss.
+    assert parse(INDEX, "哥大 TESOL 硕士要求").fts_terms == ["tesol"]
+    assert parse(INDEX, "UNSW Juris Doctor").fts_terms == ["juris", "doctor"]
+
+
+def test_full_text_terms_drop_generic_requirement_words():
+    question = "What's the IELTS requirement for the University of Hong Kong MSc in Computer Science?"
+    assert parse(INDEX, question).fts_terms == ["computer science"]
+    assert parse(INDEX, "港大 硕士 要求").fts_terms == []

@@ -2,15 +2,20 @@
 # browser sees a single origin and the anonymous client cookie stays same-origin.
 # Secrets come from deploy/.env on the server (never committed); see deploy/.env.example.
 services:
+  # PostgreSQL 16 with pgvector (openspec hybrid-retrieval D1). Moved here from postgres:16-alpine by
+  # dump and restore into the new volume `pgdata`: a data directory written under Alpine's musl has
+  # text indexes in an order glibc disagrees with. `C` collation keeps the code-point order musl gave.
+  # The old volume `db-data` is kept, untouched, for rollback (note/handoff.md).
   db:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     restart: unless-stopped
     environment:
       POSTGRES_USER: offerpilot
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
       POSTGRES_DB: offerpilot
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U offerpilot"]
       interval: 3s
@@ -127,6 +132,8 @@ services:
       - api
 
 volumes:
+  pgdata:
+  # The postgres:16-alpine data directory before the pgvector move; kept for rollback, not mounted.
   db-data:
   redis-data:
   documents:

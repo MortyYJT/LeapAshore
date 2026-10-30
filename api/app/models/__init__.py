@@ -14,7 +14,7 @@ from app.models.document import (
     DocumentVersion,
     UploadedBy,
 )
-from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
+from app.models.program import Program, ProgramDeadline, ProgramEmbedding, ProgramPrerequisite, University
 from app.models.review import (
     CheckType,
     CriterionScope,
@@ -60,6 +60,7 @@ __all__ = [
     "Profile",
     "Program",
     "ProgramDeadline",
+    "ProgramEmbedding",
     "ProgramPrerequisite",
     "ReviewCriterion",
     "RequirementChange",

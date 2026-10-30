@@ -74,6 +74,24 @@ class Settings(BaseSettings):
     # pages that need it are deferred there and collected on a machine that can render.
     collect_can_render: bool = True
 
+    # --- Hybrid retrieval (openspec/changes/hybrid-retrieval) ---
+    # How the advisor orders the rows inside the named schools: `rules` (the P0 #4 name patterns),
+    # `fts`, `vector` or `hybrid` (RRF of the two). `hybrid` without a question vector ranks by full text.
+    advisor_retrieval: str = "hybrid"
+    # SiliconFlow's OpenAI-compatible embeddings. An empty key turns the vector half off: nothing is
+    # embedded and no question text is sent anywhere.
+    embed_base_url: str = "https://api.siliconflow.cn/v1"
+    embed_model: str = "BAAI/bge-m3"
+    embed_api_key: str = ""
+    # A question waits at most this long for its vector, then is ranked by full text.
+    embed_timeout_seconds: float = 3.0
+    embed_batch_size: int = 32
+    # The hourly beat backfill embeds at most this many programs per run (the first fill is the CLI).
+    embed_backfill_per_run: int = 2000
+    # CNY per million input tokens: siliconflow.cn/pricing lists BAAI/bge-m3 as 免费 (read 2026-10-30;
+    # Pro/BAAI/bge-m3 is ¥0.07). Recorded spend is tokens x this.
+    embed_price_cny_per_mtok: float = 0.0
+
     # --- Accounts (openspec/changes/account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until
     # MortyYJT has a verified SES sender and SMTP credentials; `make api-dev-bg` turns it on locally.
