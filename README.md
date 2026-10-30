@@ -88,8 +88,8 @@ Code: [api/app/agent/](api/app/agent/).
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
-| Admission requirements (8,851 programs at 238 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 7,425; the other 1,426 have no value that passed the check and are not imported. 3,628 of the programs (118 schools) were collected by the collection queue on 2026-10-30 (one page each, extracted by the advisor's model and checked the same way); the rest by collecting agents. None human-verified yet. In the site's catalogue, 7,419 of the 7,425 state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 6,916 carry an academic requirement); the other 6 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 7,421: those 7,419 plus 2 hand-entered 待核验 placeholders (local import, 2026-10-30) |
-| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 4,776 dates for 2,747 programs at 120 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (340 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
+| Admission requirements (8,783 programs at 234 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 7,376; the other 1,407 have no value that passed the check and are not imported. 3,560 of the programs (114 schools) were collected by the collection queue on 2026-10-30 (one page each, extracted by the advisor's model and checked the same way); the rest by collecting agents. None human-verified yet. An Australian program is imported only onto its CRICOS catalogue row, so 65 machine-checked Australian programs whose CRICOS code is not known are not imported (3 Curtin rows written by an earlier import stay). In the site's catalogue, 7,308 of the 7,314 machine-checked programs state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 6,806 carry an academic requirement); the other 6 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 7,310: those 7,308 plus 2 hand-entered 待核验 placeholders (production, 2026-10-30) |
+| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 4,722 dates for 2,728 programs at 119 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (324 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
 
 These rules exist because an earlier version of this product generated a plausible verification
 date and an official-looking threshold with no source. Do not undo them.
@@ -144,10 +144,10 @@ Done:
 
 Not yet:
 
-- Requirements are collected for 238 of the 287 schools; the other 49 refused our crawler (robots.txt
+- Requirements are collected for 234 of the 287 schools; the other 53 refused our crawler (robots.txt
   or HTTP 403), had no listing the queue could read, or have no taught master's list, and show 待采集
   (to be collected). Many program pages state their requirements on a separate page the queue does not
-  follow yet, so 1,426 collected programs have no requirement. Requirements published only in PDFs are
+  follow yet, so 1,407 collected programs have no requirement. Requirements published only in PDFs are
   not read yet
 - No requirement has been verified by a person (`verified_at` is empty everywhere)
 - Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is

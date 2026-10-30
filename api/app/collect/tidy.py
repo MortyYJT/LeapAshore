@@ -22,6 +22,7 @@ from app.collect.text import normalize
 CSS_RULE = re.compile(r"\s*\.[\w-]+\s*\{[^{}]*\}")
 BARE_CODE = re.compile(r"[A-Z]{1,4}\d{1,4}")
 LONG_NAME = 60
+QUEUE_COLLECTOR = "leapashore-queue"
 MASTER = re.compile(
     r"master|máster|mestrado|magistr|\bm\.?sc\b|\bmba\b|\bm\.?a\.?\b|\bmeng\b|\bllm\b|\bmph\b|석사|碩士|硕士",
     re.IGNORECASE,
@@ -54,8 +55,8 @@ def _bare(url: str) -> str:
 
 def not_a_program(name: str, url: str, listing_urls: list[str]) -> str | None:
     """Why this page is not one taught master's program, or None when it may be one."""
-    query = parse_qs(urlsplit(url).query)
-    if any(_bare(url) == _bare(listing) for listing in listing_urls) and (not query or "page" in query):
+    query = urlsplit(url).query
+    if any(_bare(url) == _bare(listing) for listing in listing_urls) and (not query or "page" in parse_qs(query)):
         return "the listing page itself"
     if NOT_A_MASTER.search(name) and not MASTER.search(name):
         return f"not a taught master's program: {name[:80]}"
@@ -71,6 +72,11 @@ def tidy_file(data: dict, school: dict | None, *, root: Path, cricos=cricos_cour
     report = {"renamed": 0, "dropped": 0, "cricos_codes": 0}
     kept = []
     for program in out.get("programs", []):
+        if not str(program.get("collector") or "").startswith(QUEUE_COLLECTOR):
+            # Named and chosen by a person or an agent reading the page, and already in the catalogue
+            # (a rename would change its id under someone's portfolio): left as it is.
+            kept.append(program)
+            continue
         html = root / data["school_key"] / f"{program.get('snapshot_sha256')}.html"
         heading = page_heading(html.read_text(encoding="utf-8", errors="replace")) if html.exists() else None
         name = program_name(program["name"], heading)
@@ -104,7 +110,7 @@ def main(argv: list[str]) -> int:
             continue
         print(json.dumps({"school": data["school_key"], **report}, ensure_ascii=False))
         if apply:
-            path.write_text(json.dumps(tidied, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            path.write_text(json.dumps(tidied, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return 0
 
 
