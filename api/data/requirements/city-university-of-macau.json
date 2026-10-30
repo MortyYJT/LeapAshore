@@ -1,0 +1,209 @@
+{
+ "school_key": "city-university-of-macau",
+ "school_name_en": "City University of Macau",
+ "country": "Macau SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://ado.cityu.edu.mo/en/list-23/14",
+  "https://fds.cityu.edu.mo/en/MastersProgramme",
+  "https://fob.cityu.edu.mo/en/master",
+  "https://fof.cityu.edu.mo/en/",
+  "https://fhss.cityu.edu.mo/en/",
+  "https://sol.cityu.edu.mo/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.cityu.edu.mo/en/admissions/masters-degree-progammes/",
+   "reason": "robots.txt unreachable: TLS certificate verify failed (incomplete certificate chain), so the host is treated as keep-out"
+  },
+  {
+   "url": "https://fid.cityu.edu.mo/en/",
+   "reason": "robots.txt unreachable: TLS certificate verify failed, so the host is treated as keep-out"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://soe.cityu.edu.mo/en/courses/12",
+  "https://fitm.cityu.edu.mo/en/Course-2/43",
+  "https://fitm.cityu.edu.mo/en/Course-2/44",
+  "https://fitm.cityu.edu.mo/en/Course-2/45",
+  "https://fitm.cityu.edu.mo/en/Course-2/46"
+ ],
+ "notes": "www.cityu.edu.mo (central programme list) fails TLS verification, so the faculty sub-sites (fds, fob, fof, fhss, sol) and the Admissions Office site were used; most pages give only the degree requirement and a CityU entrance exam, no score minimums, and the 2027 deadline comes from the Admissions Office page the finance pages refer to. School of Education (soe) and Tourism (fitm) pages hit a transient DNS failure and are in remaining_urls; fid.cityu.edu.mo also fails TLS; Applied Psychology and Social Work pages (fhw) were skipped as they may no longer be offered; the law brochure is image-only.",
+ "programs": [
+  {
+   "name": "Master of Data Science",
+   "url": "https://fds.cityu.edu.mo/en/MastersProgramme",
+   "snapshot_sha256": "80a6b59907900093f6f9ea99aff4bd631215bd1f48e1849d5bd02ecbe85aab1c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; priority to computing, data, mathematics and statistics backgrounds; CityU entrance examination required",
+     "quote": "Applicants must have a bachelor's degree or equivalent. Priority will be given to those with pre-requisite academic qualifications in computer science, data analysis, data management, information science, mathematics, statistics, machine learning, statistics, machine learning, data mining, database and other fields and related majors. Applicants are required to take the entrance examination organized by City University of Macau and will be admitted on the basis of merit.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computer Science",
+   "url": "https://fds.cityu.edu.mo/en/page-136",
+   "snapshot_sha256": "ccdc0608e253fd1f2aeab014e959faec7c28cd73839676f82207f89d6650a48d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; priority to computing, data, AI, information security, mathematics and statistics backgrounds",
+     "quote": "1. Applicants must have a bachelor's degree. Priority will be given to candidates with prerequisite academic qualifications in computer science, information science, artificial intelligence, data science, information security, data analysis, data management, mathematics, statistics, machine learning, data collection, database and other related fields and related majors.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "CityU entrance examination",
+      "quote": "2. Applicants are required to take the entrance examination organized by City University of Macau and will be admitted on the basis of merit.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://fds.cityu.edu.mo/en/page-248",
+   "snapshot_sha256": "ea238a4b55d424f0a8ab65fda379222111526a1890ef143672f34ba10b77f5d9",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://fob.cityu.edu.mo/en/master/982",
+   "snapshot_sha256": "6582d17a0d548c1668a722e91d01293ccfbfef40cc21ab66422f97f2feef6db0",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Management Analytics",
+   "url": "https://fob.cityu.edu.mo/en/master/983",
+   "snapshot_sha256": "e520f2eaca5326bd4f18c545c6c57567a0081961561a2537081ae55b2fbd30f3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; management, finance, economics, statistics, engineering or applied sciences preferred",
+     "quote": "Applicants must have a bachelor's degree or equivalent. A previous degree with a major in management, finance, economics, statistics, engineering, applied sciences and related fields is preferred.",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS 6 may be provided as proof of English; without proof CityU arranges its own English test (not a hard minimum)",
+     "quote": "IELTS overall score of 6 or above.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 67 (PBT 517) may be provided as proof of English; without proof CityU arranges its own English test (not a hard minimum)",
+     "quote": "TOEFL (paper-based) score of 517 or TOEFL iBT score of 67 or above;",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "CityU entrance examination",
+      "quote": "Those who apply for the degree are required to attend the entrance examination organized by City University of Macau.",
+      "check": "ok"
+     },
+     {
+      "text": "Mainland applicants: CET-4 pass or 425+ accepted as English proof",
+      "quote": "Passing CET-4 (College English Test Band 4), or a score of 425 or above; or",
+      "check": "ok"
+     },
+     {
+      "text": "No English proof: CityU arranges a separate English test",
+      "quote": "If applicants cannot provide proof of English proficiency, the University shall arrange a separate English language test to assess their English level.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Finance",
+   "url": "https://fof.cityu.edu.mo/en/masterofscienceinfinance",
+   "snapshot_sha256": "fd919a1f3491bba0da1b0d8f6d900585fe9eb1ab457e4bfee40d689450aa7a80",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; priority to finance, accounting, applied economics backgrounds",
+     "quote": "1. Applicants must have a bachelor's degree or equivalent qualifications. Priority will be given to applicants with a background in finance, accounting, applied economics, or other related fields.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "CityU entrance examination",
+      "quote": "2. All applicants are required to take the entrance examination organized by the City University of Macau, with admission based on merit.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027/2028 postgraduate admissions (Mainland applicants)",
+      "date": "2027-04-30",
+      "quote": "Postgraduate Application Period: 2026/09/01 - 2027/04/30",
+      "source_sha256": "20f122355c0d4e3c054a9f7ff515b8bc4c6e154e485814167262c796629c1df6",
+      "source_url": "https://ado.cityu.edu.mo/en/list-26/57",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Financial Technology",
+   "url": "https://fof.cityu.edu.mo/en/masterofscienceinfintech",
+   "snapshot_sha256": "e36d06c637e044548531d2f1c265d24e35c29063bf1a90309aede696843fa666",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; priority to finance, accounting, computer science or statistics backgrounds",
+     "quote": "1. Applicants must hold a bachelor's degree or an equivalent qualification. Candidates with undergraduate degrees in related fields such as Finance, Accounting, Computer Science, or Statistics will be given priority consideration.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "CityU entrance examination",
+      "quote": "2. All applicants are required to take an entrance examination administered by the City University of Macau. Admission offers will be extended to the top-performing candidates based on the results.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027/2028 postgraduate admissions (Mainland applicants)",
+      "date": "2027-04-30",
+      "quote": "Postgraduate Application Period: 2026/09/01 - 2027/04/30",
+      "source_sha256": "20f122355c0d4e3c054a9f7ff515b8bc4c6e154e485814167262c796629c1df6",
+      "source_url": "https://ado.cityu.edu.mo/en/list-26/57",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Applied Linguistics",
+   "url": "https://fhss.cityu.edu.mo/en/MA-in-Applied-Linguistics",
+   "snapshot_sha256": "d782bb5b722b5b25988556df3414abfed1ae7b4ae3092aceb1596802799b560a",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Cultural Industries Management",
+   "url": "https://fhss.cityu.edu.mo/en/Master-of-Cultural-Industries-Management",
+   "snapshot_sha256": "753b0d154a8ce9fbbbc252639302ded7252d3693b1d852225504e63065853953",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Law",
+   "url": "https://sol.cityu.edu.mo/list-25/203",
+   "snapshot_sha256": "223e6815c7034498f4dcabaa0d16e46c7288639e6aa189fb7bebb6480331b6e7",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 10,
+  "机器核对": 5,
+  "待人工": 5
+ }
+}
