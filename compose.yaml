@@ -5,16 +5,16 @@ services:
   db:
     image: pgvector/pgvector:pg16
     environment:
-      POSTGRES_USER: offerpilot
-      POSTGRES_PASSWORD: offerpilot
-      POSTGRES_DB: offerpilot
+      POSTGRES_USER: leapashore
+      POSTGRES_PASSWORD: leapashore
+      POSTGRES_DB: leapashore
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
     ports:
       - "55432:5432"
     volumes:
-      - offerpilot-pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U offerpilot"]
+      test: ["CMD-SHELL", "pg_isready -U leapashore"]
       interval: 3s
       timeout: 3s
       retries: 20
@@ -27,7 +27,7 @@ services:
     ports:
       - "127.0.0.1:56379:6379"
     volumes:
-      - offerpilot-redis:/data
+      - redis-data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 3s
@@ -45,7 +45,7 @@ services:
       - path: ./api/.env
         required: false
     environment:
-      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@db:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:leapashore@db:5432/leapashore
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
       COLLECT_CAN_RENDER: "false"
@@ -63,7 +63,7 @@ services:
     build: ./api
     command: ["celery", "-A", "app.worker", "beat", "--loglevel", "INFO", "--schedule", "/tmp/celerybeat-schedule"]
     environment:
-      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@db:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:leapashore@db:5432/leapashore
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
     depends_on:
@@ -71,5 +71,5 @@ services:
         condition: service_healthy
 
 volumes:
-  offerpilot-pgdata:
-  offerpilot-redis:
+  pgdata:
+  redis-data:

@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     """Runtime configuration. Values come from the environment or from api/.env."""
 
-    database_url: str = "postgresql+psycopg://offerpilot:offerpilot@localhost:55432/offerpilot"
+    database_url: str = "postgresql+psycopg://leapashore:leapashore@localhost:55432/leapashore"
 
     # Where uploaded files live. Derived from this file's own location rather than the process cwd,
     # because `make api-test`, `make api-dev` and a script run from the repository root have three

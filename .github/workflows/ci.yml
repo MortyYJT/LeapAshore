@@ -48,14 +48,14 @@ jobs:
       postgres:
         image: pgvector/pgvector:pg16
         env:
-          POSTGRES_USER: offerpilot
-          POSTGRES_PASSWORD: offerpilot
-          POSTGRES_DB: offerpilot
+          POSTGRES_USER: leapashore
+          POSTGRES_PASSWORD: leapashore
+          POSTGRES_DB: leapashore
           POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U offerpilot"
+          --health-cmd "pg_isready -U leapashore"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
@@ -73,7 +73,7 @@ jobs:
     env:
       # `app/config.py` reads `database_url` from the environment and falls back to the local
       # composition; `api/.env` is not committed, so CI supplies the value here.
-      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@localhost:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:leapashore@localhost:5432/leapashore
       REDIS_URL: redis://localhost:6379/0
     steps:
       - uses: actions/checkout@v7
@@ -103,19 +103,19 @@ jobs:
       postgres:
         image: pgvector/pgvector:pg16
         env:
-          POSTGRES_USER: offerpilot
-          POSTGRES_PASSWORD: offerpilot
-          POSTGRES_DB: offerpilot
+          POSTGRES_USER: leapashore
+          POSTGRES_PASSWORD: leapashore
+          POSTGRES_DB: leapashore
           POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U offerpilot"
+          --health-cmd "pg_isready -U leapashore"
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
     env:
-      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@localhost:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:leapashore@localhost:5432/leapashore
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
