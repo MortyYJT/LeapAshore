@@ -2,8 +2,9 @@
 // advisor and presses 发送 -> logs in with a mailed code -> fills the four basics -> the advisor sends the
 // sentence that was typed. Then /tiers -> /portfolio (confirm) -> 我的 (edit intake) -> /roadmap (tick,
 // upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
-// program, registers, skips the info step, sees 先补信息 on /tiers and deletes the account. Every page is
-// then opened again at 390px. Each step writes docs/screenshots/NN-*.png.
+// program, registers, skips the info step, sees 先补信息 on /tiers, is refused /admin and deletes the account.
+// A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
+// /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px. Each step writes docs/screenshots/NN-*.png.
 //
 // The run fails on a console error, a page error, a page that scrolls sideways, a page without an h1,
 // or a failed check. The accounts it creates are deleted from the database at the end, whatever happened.
@@ -114,6 +115,91 @@ async function settle(page) {
   await page.waitForTimeout(900);
 }
 
+/** A request to the API from outside the page, carrying the context's cookies (no console noise). */
+async function apiAs(context, route, init = {}) {
+  const cookie = (await context.cookies()).map((c) => `${c.name}=${c.value}`).join("; ");
+  const response = await fetch(`${BASE}${route}`, { ...init, headers: { ...(init.headers || {}), cookie } });
+  return { status: response.status, body: await response.json().catch(() => null) };
+}
+
+/** Grant the admin role the way production does: the server-side command, never an endpoint. */
+function grantAdmin(email) {
+  execFileSync(API_PYTHON, ["-m", "app.roles", "grant", email], { cwd: path.join(ROOT, "api"), encoding: "utf8" });
+}
+
+/**
+ * The admin entry (openspec source-verification): 404 before the role, then the list, one page with its
+ * quotes marked in the snapshot, the confirm button held until the read box is ticked, the confirmation
+ * seen by the public catalogue, and the withdrawal. The page is always withdrawn before this returns.
+ */
+async function adminPass(browser, email, errors) {
+  const context = await browser.newContext({ viewport: DESKTOP });
+  const a = await context.newPage();
+  watch(a, "admin", errors);
+  let confirmed = null;
+  try {
+    await a.goto(`${BASE}/`);
+    await settle(a);
+    await a.locator(".bar").getByRole("button", { name: "登录" }).click();
+    await a.locator("dialog.dialog").waitFor();
+    await loginThroughDialog(a, email);
+    // A new account is offered the four-basics step; skipping it is what an admin would do.
+    await a.locator("dialog.dialog").getByRole("button", { name: "跳过，以后再填" }).click({ timeout: 15000 }).catch(() => {});
+    const before = await a.goto(`${BASE}/admin`);
+    check("管理页：授予管理员之前也是 404", before.status() === 404, before.status());
+    grantAdmin(email);
+
+    const page = await a.goto(`${BASE}/admin`);
+    await settle(a);
+    check("管理页：管理员打开是 200", page.status() === 200, page.status());
+    await a.locator("tbody tr").first().waitFor({ timeout: 15000 });
+    check("管理页：列出待核验的官方页面", (await a.locator("tbody tr").count()) > 0);
+    check("管理页：同一页有知识缺口队列", (await a.getByRole("heading", { name: /知识缺口/ }).count()) === 1);
+    await layout(a, "管理页");
+    await screenshot(a, "admin");
+
+    const link = a.locator("tbody tr").first().locator("a.l1");
+    const sourceId = decodeURIComponent((await link.getAttribute("href")).split("/").pop());
+    await link.click();
+    await a.getByRole("heading", { name: "快照正文" }).waitFor({ timeout: 15000 });
+    await settle(a);
+    check("核验页：快照里标出了引文", (await a.locator(".snapshot mark").count()) > 0);
+    const confirm = a.getByRole("button", { name: "确认核验" });
+    check("核验页：没勾“已逐条对照”时确认按钮不可点", await confirm.isDisabled());
+    await layout(a, "核验页");
+    await screenshot(a, "admin-source");
+    await a.getByLabel(/我已逐条对照/).check();
+    await confirm.click();
+    confirmed = sourceId;
+    await a.getByRole("button", { name: "撤销核验" }).waitFor({ timeout: 15000 });
+    check("核验页：确认后显示“已核验”和是谁确认的", (await a.getByText(email).count()) > 0);
+    check("核验：库里这一页是“已核验”", dbRun(`SELECT status FROM sources WHERE id = '${sourceId}'`) === "已核验");
+    const detail = await apiAs(context, `/api/admin/verification/${encodeURIComponent(sourceId)}`);
+    const programId = detail.body.programs[0].id;
+    const served = await (await fetch(`${BASE}/api/programs?ids=${encodeURIComponent(programId)}`)).json();
+    check("核验：项目接口给申请人看到“已核验”", served[0] && served[0].source.status === "已核验", served[0] && served[0].source);
+
+    await a.getByRole("button", { name: "撤销核验" }).click();
+    await confirm.waitFor({ timeout: 15000 });
+    confirmed = null;
+    check("核验：撤销后库里回到“待核验”", dbRun(`SELECT status FROM sources WHERE id = '${sourceId}'`) === "待核验");
+
+    await a.setViewportSize(PHONE);
+    await a.goto(`${BASE}/admin/sources/${encodeURIComponent(sourceId)}`);
+    await a.getByRole("heading", { name: "快照正文" }).waitFor({ timeout: 15000 });
+    await settle(a);
+    await layout(a, "核验页 390");
+    await a.goto(`${BASE}/admin`);
+    await a.locator("tbody tr").first().waitFor({ timeout: 15000 });
+    await settle(a);
+    await layout(a, "管理页 390");
+  } finally {
+    // A failed run must not leave a page verified in the developer's database.
+    if (confirmed) await apiAs(context, `/api/admin/verification/${encodeURIComponent(confirmed)}/revoke`, { method: "POST" });
+    await context.close();
+  }
+}
+
 (async () => {
   try {
     const response = await fetch(`${BASE}/api/health`);
@@ -129,7 +215,7 @@ async function settle(page) {
   for (const file of fs.readdirSync(OUT)) if (/^\d\d-.*\.png$/.test(file)) fs.unlinkSync(path.join(OUT, file));
 
   const stamp = Date.now().toString(36);
-  const emails = [`walkthrough-${stamp}@example.test`, `walkthrough-${stamp}-b@example.test`];
+  const emails = [`walkthrough-${stamp}@example.test`, `walkthrough-${stamp}-b@example.test`, `walkthrough-${stamp}-admin@example.test`];
   const errors = [];
   let firstCodeAt = Date.now();
   const browser = await chromium.launch();
@@ -435,6 +521,11 @@ async function settle(page) {
     check("跳过信息页的用户在分档页看到“先补信息”", (await b.getByRole("heading", { name: "先补信息" }).count()) === 1);
     await layout(b, "先补信息");
     await screenshot(b, "tiers-basics");
+    // ---------- an applicant cannot reach the admin pages (openspec source-verification D6) ----------
+    const applicantAdmin = await b.goto(`${BASE}/admin`);
+    check("管理页：申请人打开是 404", applicantAdmin.status() === 404 && (await b.getByRole("heading", { name: "没有这个页面" }).count()) === 1, applicantAdmin.status());
+    const applicantApi = await apiAs(second, "/api/admin/verification");
+    check("管理接口：申请人 403", applicantApi.status === 403, applicantApi.status);
     await b.goto(`${BASE}/me`);
     await settle(b);
     await b.getByRole("button", { name: "注销账号" }).click();
@@ -445,10 +536,19 @@ async function settle(page) {
     check("注销账号：账号行已删除", deleted === "0", deleted);
     await second.close();
 
+    // ---------- admin: /admin, read one page, confirm, withdraw ----------
+    await adminPass(browser, emails[2], errors);
+
     // ---------- phone ----------
     const fresh = await browser.newContext({ viewport: PHONE });
     const intro = await fresh.newPage();
     watch(intro, "phone-intro", errors);
+    await intro.goto(`${BASE}/`);
+    await settle(intro);
+    const loggedOutAdmin = await intro.goto(`${BASE}/admin`);
+    check("管理页：未登录打开是 404", loggedOutAdmin.status() === 404, loggedOutAdmin.status());
+    const loggedOutApi = await apiAs(fresh, "/api/admin/me");
+    check("管理接口：未登录 401", loggedOutApi.status === 401, loggedOutApi.status);
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
@@ -489,6 +589,8 @@ async function settle(page) {
   } finally {
     await browser.close();
     const quoted = emails.map((e) => `'${e}'`).join(",");
+    // The confirmation history this run's admin wrote (its page was withdrawn in adminPass).
+    dbRun(`DELETE FROM source_verifications WHERE account_id IN (SELECT id FROM accounts WHERE email IN (${quoted}))`);
     dbRun(`DELETE FROM clients WHERE id IN (SELECT client_id FROM accounts WHERE email IN (${quoted}))`);
     dbRun(`DELETE FROM login_codes WHERE email IN (${quoted})`);
     const left = dbRun(`SELECT count(*) FROM accounts WHERE email IN (${quoted})`);

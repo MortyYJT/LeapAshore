@@ -1,7 +1,8 @@
 from datetime import datetime
 from enum import StrEnum
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, UniqueConstraint, func
+from sqlalchemy import BigInteger, CheckConstraint, DateTime, ForeignKey, Integer, String, Text, UniqueConstraint, func
+from sqlalchemy import text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -34,7 +35,9 @@ class Source(Base):
     domain: Mapped[str | None] = mapped_column(Text)
 
     # Defaults to unverified and has no server-side default for verified_at. A record can only claim
-    # verification when a human sets the date explicitly.
+    # verification when a human sets the date explicitly: the only writer is an admin's confirmation
+    # (`app.services.source_verification`), and a trigger refuses any other non-null value (alembic
+    # c8e1f4a7b2d9, openspec source-verification D4).
     status: Mapped[str] = mapped_column(String(16), default=SourceStatus.UNVERIFIED)
     verified_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), default=None)
 
@@ -76,3 +79,31 @@ class SourceVersion(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     source: Mapped[Source] = relationship(back_populates="versions")
+
+
+class SourceVerification(Base):
+    """One admin's confirmation of a page at one snapshot, or its withdrawal (openspec source-verification D3).
+
+    Append-only. The trigger on `sources` accepts a new `verified_at` only when a `verify` row with the
+    same source and moment, written in the same transaction (`txid`), names an admin account.
+    `decided_at` is deliberately not called `verified_at`: that name means one thing in this schema.
+    """
+
+    __tablename__ = "source_verifications"
+    __table_args__ = (
+        CheckConstraint("action IN ('verify', 'revoke')", name="ck_source_verifications_action"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    source_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("sources.id", ondelete="CASCADE"), index=True
+    )
+    action: Mapped[str] = mapped_column(String(16))
+    # The version the person read; a confirmation describes those bytes, not the page in general.
+    content_sha256: Mapped[str] = mapped_column(String(64))
+    # SET NULL: deleting the admin's account removes who, not the fact that the page was checked.
+    account_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("accounts.id", ondelete="SET NULL")
+    )
+    decided_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    txid: Mapped[int] = mapped_column(BigInteger, server_default=text("txid_current()"))
