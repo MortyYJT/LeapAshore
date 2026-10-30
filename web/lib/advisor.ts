@@ -19,7 +19,7 @@ export type AdvisorEvent =
   | { type: "citations"; gate: "pass" | "refuse"; citations: Citation[] }
   | { type: "tool"; name: string }
   | { type: "token"; text: string }
-  | { type: "confirm"; summary: string }
+  | { type: "confirm"; summary: string; id?: string }
   | { type: "error"; message: string }
   | { type: "done" };
 
@@ -82,8 +82,22 @@ export function sendAdvisorMessage(conversationId: string, message: string, onEv
   return stream("/api/advisor/chat", { conversationId, message }, onEvent);
 }
 
-export function confirmAdvisorAction(conversationId: string, approved: boolean, onEvent: (e: AdvisorEvent) => void) {
-  return stream("/api/advisor/confirm", { conversationId, approved }, onEvent);
+/**
+ * The body of a confirm. `interruptId` is the `id` of the `confirm` event being answered: the server
+ * applies the answer to that change only, so a repeated click that arrives after the turn has moved on
+ * to another change does not answer the new one (openspec/changes/advisor-persistence D5).
+ */
+export function confirmBody(conversationId: string, approved: boolean, interruptId?: string) {
+  return interruptId ? { conversationId, approved, interruptId } : { conversationId, approved };
+}
+
+export function confirmAdvisorAction(
+  conversationId: string,
+  approved: boolean,
+  onEvent: (e: AdvisorEvent) => void,
+  interruptId?: string,
+) {
+  return stream("/api/advisor/confirm", confirmBody(conversationId, approved, interruptId), onEvent);
 }
 
 /** Display names for the tools, so the interface shows what the agent did in the applicant's words. */

@@ -23,7 +23,8 @@
 - 补采（P1 第二条第二阶段，PR #51）：`_schools.json` 扩到 287 所（带 `listing_urls`）；队列补采 118 所 3,628 个项目（2,262 个机器核对），模型费 36.37 元（上限价）。采集文件现在 248 所、238 所有项目、8,851 个项目、7,425 个机器核对；本机导入后「有要求」7,421、截止日期 4,776 条。细节和 Run log 在 `openspec/changes/archive/2026-10-30-collect-queue/tasks.md`。
 - 补采的审查和生产入库（PR #52，10-30 部署）：审查 PR #51 找到 3 个问题已修（细节见 `TASKS.md` 该条和归档的 collect-queue tasks.md Run log）：澳洲学校只导到 CRICOS 行上（没有 CRICOS 代码的跳过，宁缺不重）；新 `app/collect/tidy.py` 清掉列表页、本科等非项目页和名字里的 CSS/卡片文字（发现、队列、`export` 都会用，改已提交的文件用 `python -m app.collect.tidy --apply`，只动队列采的项目）。采集文件现在 248 所、234 所有项目、8,783 个项目、7,376 个机器核对。**生产已入库**，和本机一致：「有要求」7,310、截止日期 4,722 条 / 2,728 个项目 / 119 所、学术要求 6,806、`verified_at` 非空 0。生产 beat 的第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 都是空的。
 - 第二轮采集（PR #54，10-30 导入生产）：39 所没有文件的学校由 Claude 子代理采（MortyYJT 指示，本机采集一律用子代理、不调 DeepSeek；生产 beat 仍用 DeepSeek），16 所采到 252 个项目（每校最多 20 个，文件里 `complete: false` + `remaining_urls`，以后可接着采）。现在采集文件 282 所、250 所有项目、9,035 个项目、7,611 个机器核对；生产「有要求」7,545、截止日期 4,763 条、学术要求 7,039。P1 第二条「采集队列 + 变更检测」全部做完，openspec change 已归档（`openspec/changes/archive/2026-10-30-collect-queue/`，Run log 在那里的 tasks.md）。
-- **下一步：P1 第三条「对话持久化」**（换 PG checkpointer；完成标准见 `TASKS.md`）。
+- 对话持久化（P1 第三条，PR #56）：顾问的对话从内存换到 PG（`langgraph-checkpoint-postgres==3.2.0`，`api/app/agent/checkpoint.py`），表由 Alembic `c4e8a1d2f6b9` 建（`checkpoint_migrations`、`checkpoints`、`checkpoint_blobs`、`checkpoint_writes`，不调库的 `setup()`）。线程 id 仍是 `{主体}:{对话 id}`。确认（`/confirm`）按线程拿 PG advisory lock、重读暂停状态、按中断 id 续上；每轮结束剪到最新一个存档。注销/90 天匿名清理在同一事务里删对话，登录合并时搬对话，beat 每天 03:17 删 90 天没动的对话（匿名模式也删）。设计 `openspec/changes/advisor-persistence/`（未归档；tasks.md 是进度清单）。
+- **下一步：P1 第四条「混合检索」**（报数组 h08 标签要先照实改，见「开放问题」）。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
@@ -60,6 +61,8 @@
 
 ## 部署
 
+- 对话持久化（PR #56）的部署只是普通的「备份 → 同步代码 → `up -d --build`」：api 容器启动时 `alembic upgrade head` 建四张 checkpoint 表。部署那一刻正在等确认的对话（还在内存里）会丢最后一次。看对话数：`sudo docker compose -f compose.prod.yaml exec -T db psql -U offerpilot -d offerpilot -c "select count(distinct thread_id) from checkpoints"`（库名、用户以 `deploy/.env` 为准）。手动跑 90 天对话清理：`... exec -T api python -m app.cleanup --conversations-only`（加 `--apply` 才删）。
+
 - 服务器：`ubuntu@43.161.224.82`，SSH 加 `-i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes`（ssh-agent 里没有这把钥匙）。
 - 部署前先在服务器上用 `pg_dump` 备份生产库到 `~/db-backup-<日期>.sql.gz`。
 - 同步代码：本机 `git archive origin/main` 导出，再 `rsync --delete` 到服务器 `~/offerpilot/`，保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`。然后在服务器上 `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`。
@@ -81,6 +84,10 @@
 - 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
 
 ## 坑
+
+- 顾问对话的表（PR #56 起）：后端测试要先 `make migrate`（`alembic upgrade head`），否则顾问相关测试报表不存在。conftest 的 `remove_the_conversations_these_tests_create` 按线程 id 清掉测试写的对话。升级 `langgraph-checkpoint-postgres` 时，`test_alembic_carries_every_migration_of_the_pinned_library` 会在库多了迁移时失败：把新迁移抄进一个新的 Alembic revision（只加不删），再改 `checkpoint.MIGRATIONS_APPLIED` 和 `MIGRATIONS_DIGEST`。
+- 顾问的 checkpointer 是同步 `PostgresSaver` + 线程（不是 `AsyncPostgresSaver`）：异步版绑死创建时的事件循环，测试客户端每个请求一个循环，会坏。它自己的连接池最多 2 个连接（`CHECKPOINT_POOL_SIZE`），每个进行中的确认另占 1 个短连接（advisory lock）。
+- zsh 里 `"$SUB:restart1"` 的 `:r` 会被当成修饰符（去扩展名），拼线程 id 要写 `"${SUB}:restart1"`。
 
 - Celery worker 在 macOS 上必须 `--pool threads`（prefork 在 Python 3.12/macOS 是 spawn，任务一跑就 `ValueError: not enough values to unpack`）。生产也用 threads，保持一致。快照工具的文件写入（robots 缓存、拒绝名单、快照）因此都改成了加锁 + 原子替换。
 - 采集队列的 broker 是 Redis 1 号库（`CELERY_BROKER_URL`），顾问计数在 0 号库；清空队列用 `celery -A app.worker purge -f`，别 `FLUSHALL`。

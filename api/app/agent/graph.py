@@ -10,12 +10,12 @@ stops on a step count rather than a token budget, because a step is one model ca
 count and explain.
 """
 
-from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langgraph.checkpoint.memory import InMemorySaver
+from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemMessage, ToolMessage
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 
 from app.agent import evidence, intent
+from app.agent.checkpoint import checkpointer
 from app.agent.llm import get_chat_model
 from app.agent.state import AdvisorState
 from app.agent.tools import TOOLS
@@ -85,12 +85,59 @@ def refuse(state: AdvisorState) -> dict:
     return {"messages": [AIMessage(content=state.get("refusal_text") or FALLBACK_REFUSAL)]}
 
 
+# What the model is told about a tool call that never got an answer (see `with_unanswered_calls_closed`).
+UNANSWERED_CALL = "未执行：用户没有回应这个操作，接着发了新消息。"
+
+
+def with_unanswered_calls_closed(messages: list[AnyMessage]) -> list[AnyMessage]:
+    """The history with a tool reply after every tool call that has none, for the model's eyes only.
+
+    A turn paused on a confirm leaves the model's tool call unanswered; when the applicant writes again
+    instead of answering, the new turn starts over and the call stays unanswered in the thread. An
+    OpenAI-style API refuses a history like that, and with conversations kept in Postgres the thread
+    would stay unusable after any restart (openspec advisor-persistence D8). The stored thread is not
+    changed.
+    """
+    answered = {m.tool_call_id for m in messages if isinstance(m, ToolMessage)}
+    out: list[AnyMessage] = []
+    for m in messages:
+        out.append(m)
+        if isinstance(m, AIMessage):
+            for call in m.tool_calls:
+                if call["id"] not in answered:
+                    out.append(ToolMessage(content=UNANSWERED_CALL, tool_call_id=call["id"]))
+    return out
+
+
+CONFIRMED_TOOL = "propose_portfolio_change"
+
+
+def one_change_per_step(reply: AIMessage) -> AIMessage:
+    """Keep only the first portfolio change of a reply that asks for several at once.
+
+    Every `interrupt` in one step shares the step's id, and a step that pauses twice hands the first
+    answer to whichever of its parallel tool calls asks first. One change per step gives each confirm
+    card its own id and its own answer (openspec advisor-persistence D5). The dropped calls never reach
+    the history, so the model sees the first change's outcome and proposes the next one itself.
+    """
+    calls = [c for c in reply.tool_calls if c["name"] == CONFIRMED_TOOL]
+    if len(calls) < 2:
+        return reply
+    dropped = {c["id"] for c in calls[1:]}
+    # The raw OpenAI calls would otherwise be sent back alongside the kept ones.
+    extra = {k: v for k, v in reply.additional_kwargs.items() if k != "tool_calls"}
+    return reply.model_copy(
+        update={"tool_calls": [c for c in reply.tool_calls if c["id"] not in dropped], "additional_kwargs": extra}
+    )
+
+
 async def main_agent(state: AdvisorState) -> dict:
     system = SYSTEM_PROMPT
     if state.get("evidence"):
         system += EVIDENCE_HINT + state["evidence"]
     model = get_chat_model(streaming=True).bind_tools(TOOLS)
-    reply = await model.ainvoke([SystemMessage(content=system), *state["messages"]])
+    history = with_unanswered_calls_closed(state["messages"])
+    reply = one_change_per_step(await model.ainvoke([SystemMessage(content=system), *history]))
     return {"messages": [reply], "steps": state.get("steps", 0) + 1}
 
 
@@ -125,6 +172,6 @@ def build_graph(checkpointer=None):
     return b.compile(checkpointer=checkpointer)
 
 
-# One process, one in-memory checkpointer: conversations survive across requests but not a restart.
-# Moving to a Postgres checkpointer is a schema change and waits for its own migration.
-graph = build_graph(checkpointer=InMemorySaver())
+# Conversations live in Postgres (openspec advisor-persistence): a turn paused on a confirm survives a
+# restart of the API, and every process that builds this graph sees the same threads.
+graph = build_graph(checkpointer=checkpointer)

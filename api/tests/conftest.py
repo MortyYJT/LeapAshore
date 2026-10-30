@@ -419,3 +419,24 @@ def isolate_the_advisor_limits(monkeypatch):
         # Best-effort cleanup. AttributeError: redis-py once failed inside its own HELLO handshake
         # here ("'list' object has no attribute 'get'", 2026-10-30) and errored a passing test.
         pass
+
+
+@pytest.fixture(autouse=True)
+def remove_the_conversations_these_tests_create():
+    """Delete the advisor threads a test wrote (openspec advisor-persistence), as the client sweep does
+    for subjects. Swept by thread id rather than by subject, because a chat that never touched the
+    profile leaves a thread for a subject that has no `clients` row."""
+    if not database_is_reachable():
+        yield
+        return
+    from app.services.conversations import THREAD_TABLES, delete_threads
+
+    def thread_ids(session) -> set[str]:
+        return set().union(*(session.scalars(text(f"SELECT DISTINCT thread_id FROM {t}")) for t in THREAD_TABLES))
+
+    with SessionLocal() as session:
+        before = thread_ids(session)
+    yield
+    with SessionLocal() as session:
+        delete_threads(session, sorted(thread_ids(session) - before))
+        session.commit()

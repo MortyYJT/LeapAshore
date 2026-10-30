@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 from app.config import check_settings, settings
@@ -18,7 +20,17 @@ from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 # Refuse to start with login mode on in production and no real mail backend (account-login D2).
 check_settings(settings)
 
-app = FastAPI(title="LeapAshore API")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
+    # The advisor's checkpoint pool opens on its first use; give its connections back on shutdown.
+    from app.agent.checkpoint import checkpointer
+
+    checkpointer.close()
+
+
+app = FastAPI(title="LeapAshore API", lifespan=lifespan)
 
 # Registered before the routes so an oversize upload is refused before the multipart parser spools
 # it to a temporary file; the upload service counts the bytes as a second line of defence.
