@@ -498,7 +498,8 @@ def test_pruning_an_australian_file_removes_rows_written_without_a_cricos_code(d
 
 
 def test_an_empty_file_still_names_its_school(db_session, require_db, tmp_path):
-    """A school whose site refused us keeps its row (the advisor's school names point at it)."""
+    """A school whose site refused us gets a row, as before this rule: the advisor evaluation names
+    such rows (t29 `university-of-melbourne`), and the web merges rows of one school by name."""
     try:
         import_school(db_session, {**_au_file(), "programs": []}, AU_SCHOOLS, root=tmp_path)
         assert db_session.get(University, AU_KEY) is not None

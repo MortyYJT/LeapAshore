@@ -245,6 +245,7 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
 
     pending = page.last_error or ""
     plain = pending[len(RENDER_PENDING):] if page.render and pending.startswith(RENDER_PENDING) else None
+    plain_meta_path = root / page.school_key / f"{plain}.json" if plain else None
     render_failed = False
     try:
         meta = fetch(page.url, page.school_key, render=page.render, root=root)
@@ -254,27 +255,29 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             session.commit()
             raise Transient(page.last_error) from blocked
         return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
-    except HttpError as error:
-        if error.status >= 500:
-            page.last_error = str(error)
-            session.commit()
-            raise Transient(str(error)) from error
-        return _settle(session, page, PageState.FAILED, str(error))
-    except RuntimeError as error:
-        if plain is None or not (root / page.school_key / f"{plain}.json").exists():
+    except RetryLater:
+        raise
+    except Exception as error:  # noqa: BLE001 - sorted below; anything unexpected is raised again
+        if plain_meta_path is not None and plain_meta_path.exists():
+            # The render this page waited a Crawl-delay for failed, however it failed (a Chrome
+            # timeout is a subprocess error, an empty render an HttpError): the plain fetch it already
+            # has stands, as when a render fails on the first try.
+            meta = json.loads(plain_meta_path.read_text(encoding="utf-8"))
+            page.render, render_failed = False, True
+        elif isinstance(error, HttpError):
+            if error.status >= 500:
+                page.last_error = str(error)
+                session.commit()
+                raise Transient(str(error)) from error
+            return _settle(session, page, PageState.FAILED, str(error))
+        elif isinstance(error, (OSError, TimeoutError, RuntimeError, http.client.HTTPException)):
+            # URLError, resets and socket timeouts are OSErrors; a cut-off body is an HTTPException; a
+            # failed render is a RuntimeError.
             page.last_error = f"{type(error).__name__}: {str(error)[:300]}"
             session.commit()
             raise Transient(page.last_error) from error
-        # The render this page waited for failed: the plain fetch it already has stands, as when a
-        # render fails on the first try.
-        meta = json.loads((root / page.school_key / f"{plain}.json").read_text(encoding="utf-8"))
-        page.render, render_failed = False, True
-    except (OSError, TimeoutError, RuntimeError, http.client.HTTPException) as error:
-        # URLError, resets and socket timeouts are OSErrors; a cut-off body is an HTTPException; a
-        # failed render is a RuntimeError.
-        page.last_error = f"{type(error).__name__}: {str(error)[:300]}"
-        session.commit()
-        raise Transient(page.last_error) from error
+        else:
+            raise
 
     if not page.render and not can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
         # Too thin to be the page a reader sees, and this host cannot run its scripts: no model call

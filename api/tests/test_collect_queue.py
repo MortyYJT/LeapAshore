@@ -4,6 +4,7 @@ snapshot files the way the real snapshot tool does."""
 
 import hashlib
 import json
+import subprocess
 import uuid
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
@@ -709,7 +710,7 @@ def test_when_the_awaited_render_fails_the_plain_fetch_stands(db_session, school
         if render and len(calls) == 2:
             raise RetryLater("www.example.edu.au", 118)
         if render:
-            raise RuntimeError("Chrome exited")
+            raise subprocess.TimeoutExpired("chrome", 120)  # what a Chrome timeout raises
         return snap.save_snapshot(school_key, url, url, 200, "text/html", plain, root)
 
     with pytest.raises(RetryLater):

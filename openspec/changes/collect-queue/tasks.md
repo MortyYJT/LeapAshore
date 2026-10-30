@@ -85,3 +85,7 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   costs a model call again. An empty file still makes its school's row (as before; the advisor's school
   names point at those rows, e.g. `university-of-melbourne`), so SCU, La Trobe and Canberra, whose
   files are now empty, get a row with no programs like Melbourne's.
+- Re-review of that commit: the awaited-render fallback caught only `RuntimeError`, but a Chrome
+  timeout is `subprocess.TimeoutExpired`; it now takes any failure of the awaited render. Kept on
+  purpose: an empty Australian file still makes a school-key row (pre-existing; the web merges rows of
+  one school by name, and eval t29 names `university-of-melbourne`).
