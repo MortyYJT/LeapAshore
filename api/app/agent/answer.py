@@ -12,7 +12,8 @@ each. Nothing it writes is shown before `verify` has run:
 Then `support_check` asks the model, once for the whole answer, whether each remaining sentence's quotes
 on their own state what it says (`app.collect.faithful`): a verbatim quote can still be the wrong
 evidence (another program's fee, "may" written as "must"). A sentence the judge does not back, or every
-sentence when the judge gives no usable answer, is removed too.
+sentence when the judge gives no usable answer, is removed too. A provider that does not answer at all
+(`llm.outage`) is raised instead: the applicant is told the advisor is unavailable, not refused.
 
 A sentence that fails any check is removed, with the reason kept in the trace. When no sentence is
 left, the advisor refuses and lists the pages it read; it never states what it could not source.
@@ -24,7 +25,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
-from app.agent.llm import get_chat_model
+from app.agent.llm import get_chat_model, outage
 from app.agent.passages import Passage
 from app.collect.faithful import OK, Claim, Judgement, ajudge
 from app.collect.text import normalize
@@ -231,6 +232,10 @@ async def support_check(question: str, checked: Verification, passages: list[dic
     try:
         judgement = await ajudge(claims, context, model)
     except Exception as error:  # noqa: BLE001 - an unchecked sentence is not shown (fail closed)
+        if outage(error):
+            # The provider is down, not the answer wrong: the turn says the advisor is unavailable
+            # rather than refusing as if the pages could not back it.
+            raise
         judgement = Judgement(verdicts={}, error=f"{type(error).__name__}: {str(error)[:200]}")
     apply_support(checked, judgement)
     return judgement

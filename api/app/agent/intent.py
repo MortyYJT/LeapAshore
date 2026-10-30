@@ -9,7 +9,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from app.agent.llm import get_chat_model
+from app.agent.llm import get_chat_model, outage
 from app.config import settings
 
 logger = logging.getLogger(__name__)
@@ -48,13 +48,17 @@ class IntentResult(BaseModel):
 
 
 async def classify(query: str, history: str) -> dict:
-    """Classify one message. Any failure falls back to general Q&A, the one exit that writes nothing."""
+    """Classify one message. A failure falls back to general Q&A, the one exit that writes nothing,
+    except the provider not answering at all: that is raised, because the fallback route would only
+    call the same provider again, and the applicant is told the advisor is unavailable."""
     try:
         model = get_chat_model(temperature=0, max_tokens=settings.intent_max_tokens).with_structured_output(
             IntentResult, method="function_calling"
         )
         result = await model.ainvoke(_PROMPT.format(history=history or "（无）", query=query))
         return {"intent": result.intent, "confidence": result.confidence}
-    except Exception:  # noqa: BLE001 - a router error must degrade, not break the turn
+    except Exception as error:  # noqa: BLE001 - a router error must degrade, not break the turn
+        if outage(error):
+            raise
         logger.exception("intent classification failed; falling back to %s", FALLBACK_INTENT)
         return {"intent": FALLBACK_INTENT, "confidence": 0.0}

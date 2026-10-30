@@ -338,6 +338,126 @@ def test_the_budget_stops_model_calls(db_session, school, client):
     assert state == PageState.DEFERRED and len(extracted) == 1
 
 
+# --- The model's provider refusing the account (2026-10-30: out of money, HTTP 402) ---------------------
+
+
+@pytest.fixture
+def outage(client):
+    held = queue.ModelOutage(client, key=f"test-outage-{uuid.uuid4().hex[:6]}")
+    yield held
+    client.delete(held.key)
+
+
+def out_of_money(usage=None):
+    from tests.model_outage import status_error
+
+    def extract(*args, **kwargs):
+        error = status_error(402)
+        if usage:
+            error.extract_usage = usage
+        raise error
+
+    return extract
+
+
+def test_an_account_outage_defers_the_page_and_keeps_its_last_result(db_session, school, client, outage):
+    page = add_page(db_session, school)
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    before = db_session.get(CollectPage, page.id)
+    first_fetch, first_sha, first_result = before.fetched_at, before.snapshot_sha256, dict(before.result)
+    page.state = PageState.QUEUED
+    db_session.commit()
+
+    changed = PAGE.replace("6.5", "7.0")
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: changed}),
+                extract=out_of_money(), outage=outage)
+    assert state == PageState.DEFERRED
+    db_session.expire_all()
+    after = db_session.get(CollectPage, page.id)
+    # Not failed, not an empty result, no change recorded: the page is as it was, due again as before.
+    assert after.result == first_result and after.snapshot_sha256 == first_sha
+    assert after.fetched_at == first_fetch
+    assert after.last_error.startswith("model unavailable: ") and "402" in after.last_error
+    assert db_session.scalars(select(RequirementChange).where(RequirementChange.page_id == page.id)).all() == []
+    # Every worker now leaves the model alone for a while.
+    assert outage.active() and "402" in outage.active()
+
+
+def test_a_first_collection_hit_by_an_outage_stays_due(db_session, school, client, outage):
+    page = add_page(db_session, school)
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+                extract=out_of_money(), outage=outage)
+    assert state == PageState.DEFERRED
+    db_session.expire_all()
+    after = db_session.get(CollectPage, page.id)
+    assert after.result is None and after.fetched_at is None and after.state == PageState.DEFERRED
+    assert page.id in {p.id for p in queue.due_pages(db_session, datetime.now(UTC), 10_000)}
+
+
+def test_while_the_model_is_out_no_page_calls_it(db_session, school, client, outage):
+    outage.trip("model: APIStatusError: Error code: 402")
+    page = add_page(db_session, school)
+    extracted = []
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted), outage=outage)
+    assert state == PageState.DEFERRED and extracted == []
+    db_session.expire_all()
+    assert db_session.get(CollectPage, page.id).fetched_at is None
+
+
+def test_an_unchanged_page_needs_no_model_during_an_outage(db_session, school, client, outage):
+    page = add_page(db_session, school)
+    fetch = fake_fetch({page.url: PAGE})
+    run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({"ielts": ielts(6.5)}))
+    page.state = PageState.QUEUED
+    db_session.commit()
+    outage.trip("model: 402")
+    assert run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}),
+               outage=outage) == PageState.UNCHANGED
+
+
+def test_an_account_outage_after_a_paid_extraction_still_charges_it(db_session, school, client, outage):
+    page = add_page(db_session, school)
+    spent = budget(client)
+    usage = {"input_tokens": 5000, "output_tokens": 300, "cache_read_tokens": 0}
+    state = run(db_session, school, page, budget=spent, fetch=fake_fetch({page.url: PAGE}),
+                extract=out_of_money(usage), outage=outage)
+    assert state == PageState.DEFERRED
+    assert spent.spent() == pytest.approx(queue.cost_cny(usage))
+
+
+def test_a_provider_rate_limit_is_still_retried(db_session, school, client, outage):
+    from tests.model_outage import status_error
+
+    page = add_page(db_session, school)
+
+    def limited(*args, **kwargs):
+        raise status_error(429, {"error": {"message": "Rate limit reached"}})
+
+    with pytest.raises(queue.Transient):
+        run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}), extract=limited,
+            outage=outage)
+    assert outage.active() is None
+
+
+def test_the_worker_hands_the_shared_outage_to_each_page(db_session, school, monkeypatch):
+    from app import worker
+
+    page = add_page(db_session, school)
+    seen = []
+
+    def deferred(session, page_id, **kw):
+        seen.append(kw.get("outage"))
+        return queue._settle(session, session.get(CollectPage, page_id), PageState.DEFERRED, "model unavailable: x")
+
+    monkeypatch.setattr(queue, "collect_page", deferred)
+    worker.page_task.apply(args=(page.id, "test-outage", 1.0))
+    assert len(seen) == 1 and isinstance(seen[0], queue.ModelOutage)
+    db_session.expire_all()
+    assert db_session.get(CollectPage, page.id).state == PageState.DEFERRED
+
+
 def test_a_page_that_needs_a_renderer_waits_for_one(db_session, school, client):
     page = add_page(db_session, school, render=True)
     fetched = []

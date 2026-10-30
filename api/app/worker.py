@@ -71,7 +71,8 @@ def page_task(self, page_id: str, budget_key: str, budget_cap: float) -> str:
                 return "not queued"
             try:
                 with use_limiter(_limiter(client)):
-                    return queue.collect_page(session, page_id, budget=_budget(client, budget_key, budget_cap))
+                    return queue.collect_page(session, page_id, budget=_budget(client, budget_key, budget_cap),
+                                              outage=queue.ModelOutage(client))
             except RetryLater as later:
                 # The host's turn is far away: back on the queue, not counted as a retry (D3).
                 page_task.apply_async((page_id, budget_key, budget_cap), countdown=later.delay)

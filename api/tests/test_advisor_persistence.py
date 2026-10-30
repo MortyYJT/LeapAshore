@@ -35,6 +35,7 @@ from app import limits
 from app.agent import checkpoint, intent, tools
 from app.agent import graph as graph_module
 from app.agent.graph import UNANSWERED_CALL, build_graph, with_unanswered_calls_closed
+from app.agent.llm import UNAVAILABLE
 from app.cleanup import sweep_conversations
 from app.config import settings
 from app.db import SessionLocal
@@ -249,6 +250,54 @@ def test_a_declined_change_after_a_restart_writes_nothing(service, model, writes
     replied = answer(client, confirm, approved=False)
     assert "用户取消了操作" in said(replied)
     assert writes == [] and portfolio(client.cookies.get(COOKIE_NAME)) == []
+
+
+class BrokeAfterTheTool(Scripted):
+    """Proposes the change; then the provider refuses every call (out of money) once the tool has run."""
+
+    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+        from tests.model_outage import status_error
+
+        if isinstance(messages[-1], ToolMessage):
+            raise status_error(402)
+        return super()._generate(messages, stop, run_manager, **kwargs)
+
+
+def test_a_confirm_whose_reply_hits_an_outage_keeps_the_change_written_once(service, model, writes, program_id,
+                                                                           monkeypatch):
+    broke = BrokeAfterTheTool(program_id=program_id)
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: broke)
+    client = TestClient(app)
+    confirm = pause(client)
+    subject = client.cookies.get(COOKIE_NAME)
+    replied = answer(client, confirm)
+    # The change is written; the applicant is told it is saved and that the advisor could not go on.
+    assert portfolio(subject) == [(program_id, "稳")] and writes == [subject]
+    assert errors(replied) == [UNAVAILABLE + advisor.SAVED_BEFORE_OUTAGE]
+    assert replied[-1] == {"type": "done"}
+    # Answering the card again finds nothing pending and writes nothing.
+    assert errors(answer(client, confirm)) == ["没有待确认的操作，可能已经处理过或已过期。"]
+    assert writes == [subject]
+    # The reservations were given back: only the first turn's one model call was charged.
+    assert asyncio.run(limits.usage_today(subject, "testclient")) == {"subject": 42, "ip": 42, "site": 42}
+
+    # When the provider is back, the same conversation carries on.
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: model)
+    again = pause(client)
+    replied = answer(client, again)
+    assert errors(replied) == [] and "已执行" in said(replied)
+
+
+def test_a_turn_that_hit_an_outage_leaves_the_thread_usable(service, model, monkeypatch):
+    from tests.model_outage import out_of_balance_model
+
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: out_of_balance_model())
+    client = TestClient(app)
+    failed = client.post(CHAT, json={"conversationId": "c1", "message": "把这个项目加入选校"})
+    assert errors(events(failed)) == [UNAVAILABLE]
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: model)
+    confirm = pause(client)
+    assert confirm["kind"] == "confirm_portfolio"
 
 
 CHILD = textwrap.dedent(

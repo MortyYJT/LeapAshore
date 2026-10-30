@@ -33,6 +33,8 @@ import redis
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
+from app.agent.llm import ACCOUNT
+from app.agent.llm import outage as llm_outage
 from app.collect.changes import diff_fields, has_verified_value
 from app.collect.extract import ExtractResult, extract_snapshot
 from app.collect.faithful import cost_cny
@@ -76,6 +78,33 @@ SETTLED = {PageState.DONE, PageState.UNCHANGED, PageState.BLOCKED, PageState.FAI
 
 class Transient(Exception):
     """A failure that says nothing about the page (timeout, reset, 5xx, model transport): retry later."""
+
+
+# How long every worker leaves the model alone after the provider refused the account.
+MODEL_OUTAGE_HOLD = 3600
+MODEL_UNAVAILABLE = "model unavailable: "
+
+
+class ModelOutage:
+    """The provider refused the account (out of money, key revoked; `llm.outage` ACCOUNT), shared by every
+    worker through Redis: for `hold` seconds no page asks the model, each is deferred to a later day.
+
+    Retrying such a page with backoff would only fail it after four tries (2026-10-30: the account ran
+    out of money and every call was a 402). A deferred page keeps its last result and is due again.
+    """
+
+    def __init__(self, client: redis.Redis, key: str = "collect:model-outage", hold: int = MODEL_OUTAGE_HOLD) -> None:
+        self.client = client
+        self.key = f"{settings.limits_key_prefix}{key}"
+        self.hold = hold
+
+    def active(self) -> str | None:
+        """Why the model is being left alone, while it is."""
+        value = self.client.get(self.key)
+        return value.decode() if isinstance(value, bytes) else value
+
+    def trip(self, reason: str) -> None:
+        self.client.set(self.key, reason[:300], ex=self.hold)
 
 
 # --- Money -------------------------------------------------------------------------------------------
@@ -229,9 +258,12 @@ def _settle(session: Session, page: CollectPage, state: str, error: str | None =
 
 def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapshot, extract=extract_snapshot,
                  root: Path = SNAPSHOT_ROOT, data_dir: Path = DATA_DIR, can_render: bool | None = None,
-                 now=lambda: datetime.now(UTC)) -> str:
+                 now=lambda: datetime.now(UTC), outage: ModelOutage | None = None) -> str:
     """Collect one page and return its new state. Raises `Transient` for a failure worth retrying and
-    lets `ratelimit.RetryLater` through (the host's turn is far away; the task re-schedules itself)."""
+    lets `ratelimit.RetryLater` through (the host's turn is far away; the task re-schedules itself).
+
+    A provider that refuses the account defers the page instead (`ModelOutage`): nothing about the page
+    is recorded, it keeps its last result and is due again as before."""
     page = session.get(CollectPage, page_id)
     if page is None:
         return "missing"
@@ -329,6 +361,10 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         # Not extracted, so not collected: due again as soon as there is money, not in a month.
         page.fetched_at = previous_attempt
         return _settle(session, page, PageState.DEFERRED, f"budget {budget.name} reached ({budget.cap} CNY)")
+    held = outage.active() if outage is not None else None
+    if held:
+        page.fetched_at = previous_attempt
+        return _settle(session, page, PageState.DEFERRED, f"{MODEL_UNAVAILABLE}{held}"[:500])
 
     try:
         result: ExtractResult = extract(page.school_key, sha, program_name=page.program_name,
@@ -339,7 +375,14 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         if paid:
             budget.add(paid)
             page.cost_cny = (page.cost_cny or Decimal("0")) + Decimal(str(round(paid, 6)))
-        page.last_error = f"model: {type(error).__name__}: {str(error)[:300]}"
+        reason = f"model: {type(error).__name__}: {str(error)[:300]}"
+        if llm_outage(error) == ACCOUNT:
+            # Not the page's fault and not over in minutes: back to waiting, its last result untouched.
+            if outage is not None:
+                outage.trip(reason)
+            page.fetched_at = previous_attempt
+            return _settle(session, page, PageState.DEFERRED, f"{MODEL_UNAVAILABLE}{reason}"[:500])
+        page.last_error = reason
         session.commit()
         raise Transient(page.last_error) from error
 
