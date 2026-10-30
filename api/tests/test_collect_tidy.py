@@ -75,3 +75,38 @@ def test_tidy_file_renames_drops_and_finds_the_cricos_code(tmp_path):
     assert [p["name"] for p in tidied["programs"]] == ["Master of Data Science", "Graduate Certificate in Testing"]
     assert tidied["programs"][0]["cricos_code"] == "012345A"
     assert report == {"renamed": 2, "dropped": 2, "cricos_codes": 1}
+
+
+def test_a_short_remainder_after_the_heading_is_kept():
+    name = "Master of Business Administration (Artificial Intelligence) (Online)"
+    assert program_name(name, "Master of Business Administration (Artificial Intelligence)") == name
+
+
+def test_a_rename_that_would_merge_two_programs_is_not_made(tmp_path):
+    (tmp_path / "k").mkdir()
+    for sha in ("a", "b"):
+        (tmp_path / "k" / (sha * 64 + ".html")).write_text("<h1>Accounting and Finance</h1>")
+    queue = {"collector": "leapashore-queue (deepseek-flash)"}
+    data = {"school_key": "k", "programs": [
+        {"name": "Accounting and Finance Location: London Study mode: Full-time Start: September 2027",
+         "url": "https://x.ac.uk/af-london", "snapshot_sha256": "a" * 64, **queue},
+        {"name": "Accounting and Finance Location: Loughborough Study mode: Full-time Start: September 2027",
+         "url": "https://x.ac.uk/af", "snapshot_sha256": "b" * 64, **queue},
+    ]}
+    tidied, report = tidy_file(data, {}, root=tmp_path)
+    assert [p["name"] for p in tidied["programs"]] == [p["name"] for p in data["programs"]]
+    assert report["renamed"] == 0
+
+
+def test_tidying_twice_changes_nothing(tmp_path):
+    (tmp_path / "k").mkdir()
+    (tmp_path / "k" / ("b" * 64 + ".html")).write_text("<h1>Master of Data Science</h1>")
+    data = {"school_key": "k", "verification": {"programs": 2, "机器核对": 1, "待人工": 1}, "programs": [
+        {"name": "Master of Data Science Learn to work with data at scale and more", "url": "https://x.au/mds",
+         "snapshot_sha256": "b" * 64, "collector": "leapashore-queue", "status": "机器核对"},
+        {"name": "Bachelor of Arts", "url": "https://x.au/ba", "collector": "leapashore-queue", "status": "待人工"},
+    ]}
+    once, _ = tidy_file(data, {}, root=tmp_path)
+    assert once["verification"] == {"programs": 1, "机器核对": 1, "待人工": 0}
+    twice, report = tidy_file(once, {}, root=tmp_path)
+    assert twice == once and not any(report.values())

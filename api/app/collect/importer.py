@@ -221,8 +221,8 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
     report = {"school": key, "programs_added": 0, "programs_updated": 0}
     if skipped:
         report["skipped_without_cricos_code"] = skipped
-    if not programs:
-        return report
+        if not programs:
+            return report  # every course lacks its code: no row to find the school by, none to make
     ids = [program_id_for(key, p) for p in programs]
     university_id = _university(session, data, schools.get(key), ids)
     added = updated = 0
@@ -326,9 +326,9 @@ def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict
     from app.models.application import Application
 
     key = data["school_key"]
-    programs, _ = _importable(data, schools.get(key))
+    programs, skipped = _importable(data, schools.get(key))
     ids = {program_id_for(key, p) for p in programs}
-    if not ids and (schools.get(key) or {}).get("cricos_institution"):
+    if skipped and not ids:
         return {"school": key, "pruned": 0, "kept_in_portfolios": []}  # no CRICOS row to find the school by
     university_id = _university(session, data, schools.get(key), sorted(ids))
     stale = [pid for pid in session.scalars(select(Program.id).where(Program.university_id == university_id))

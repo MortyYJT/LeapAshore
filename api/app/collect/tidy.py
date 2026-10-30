@@ -22,6 +22,7 @@ from app.collect.text import normalize
 CSS_RULE = re.compile(r"\s*\.[\w-]+\s*\{[^{}]*\}")
 BARE_CODE = re.compile(r"[A-Z]{1,4}\d{1,4}")
 LONG_NAME = 60
+MIN_DESCRIPTION = 20
 QUEUE_COLLECTOR = "leapashore-queue"
 MASTER = re.compile(
     r"master|máster|mestrado|magistr|\bm\.?sc\b|\bmba\b|\bm\.?a\.?\b|\bmeng\b|\bllm\b|\bmph\b|석사|碩士|硕士",
@@ -43,9 +44,16 @@ def program_name(text: str, heading: str | None) -> str:
     heading = re.sub(r"\s+", " ", heading).strip()
     if BARE_CODE.fullmatch(name) and heading.startswith(name):
         return heading
-    if len(name) > LONG_NAME and 4 <= len(heading) < len(name) and normalize(heading) in normalize(name):
+    if (len(name) > LONG_NAME and 4 <= len(heading) and normalize(heading) in normalize(name)
+            and len(name) - len(heading) >= MIN_DESCRIPTION):
+        # What is cut is a description; a short remainder ("(Online)") tells two programs apart.
         return heading
     return name
+
+
+def heading_of(root: Path, school_key: str, sha: str | None) -> str | None:
+    html = root / school_key / f"{sha}.html"
+    return page_heading(html.read_text(encoding="utf-8", errors="replace")) if sha and html.exists() else None
 
 
 def _bare(url: str) -> str:
@@ -64,33 +72,59 @@ def not_a_program(name: str, url: str, listing_urls: list[str]) -> str | None:
 
 
 def tidy_file(data: dict, school: dict | None, *, root: Path, cricos=cricos_courses) -> tuple[dict, dict]:
-    """A copy of one requirement file with the rules applied, and counts of what changed."""
+    """A copy of one requirement file with the rules applied, and counts of what changed.
+
+    Only queue-collected programs change. A rename that would give two of them in one file the same
+    name is not made (two campuses of one course): both keep their link text, without CSS.
+    """
     out = copy.deepcopy(data)
     listings = list((school or {}).get("listing_urls") or []) + list(data.get("listing_urls") or [])
     institution = (school or {}).get("cricos_institution")
     codes = cricos(institution) if institution else {}
     report = {"renamed": 0, "dropped": 0, "cricos_codes": 0}
+
+    def ours(program: dict) -> bool:
+        # Others were named and chosen by a person or an agent reading the page, and are already in
+        # the catalogue (a rename would change an id under someone's portfolio): left as they are.
+        return str(program.get("collector") or "").startswith(QUEUE_COLLECTOR)
+
+    programs = out.get("programs", [])
+    names = {}
+    for index, program in enumerate(programs):
+        if ours(program):
+            heading = heading_of(root, data["school_key"], program.get("snapshot_sha256"))
+            names[index] = program_name(program["name"], heading)
+    taken: dict[str, list[int]] = {}
+    for index, name in names.items():
+        taken.setdefault(normalize(name), []).append(index)
+    for indexes in taken.values():
+        if len(indexes) > 1:
+            for index in indexes:
+                names[index] = program_name(programs[index]["name"], None)
+
     kept = []
-    for program in out.get("programs", []):
-        if not str(program.get("collector") or "").startswith(QUEUE_COLLECTOR):
-            # Named and chosen by a person or an agent reading the page, and already in the catalogue
-            # (a rename would change its id under someone's portfolio): left as it is.
+    for index, program in enumerate(programs):
+        if index not in names:
             kept.append(program)
             continue
-        html = root / data["school_key"] / f"{program.get('snapshot_sha256')}.html"
-        heading = page_heading(html.read_text(encoding="utf-8", errors="replace")) if html.exists() else None
-        name = program_name(program["name"], heading)
-        if name != program["name"]:
-            program["name"] = name
+        if names[index] != program["name"]:
+            program["name"] = names[index]
             report["renamed"] += 1
-        if not_a_program(name, program["url"], listings):
+        if not_a_program(program["name"], program["url"], listings):
             report["dropped"] += 1
             continue
-        if institution and not program.get("cricos_code") and codes.get(normalize(name)):
-            program["cricos_code"] = codes[normalize(name)]
+        code = codes.get(normalize(program["name"]))
+        if institution and not program.get("cricos_code") and code:
+            program["cricos_code"] = code
             report["cricos_codes"] += 1
         kept.append(program)
     out["programs"] = kept
+    summary = out.get("verification")
+    if report["dropped"] and isinstance(summary, dict) and "programs" in summary:
+        summary["programs"] = len(kept)
+        for status in ("机器核对", "待人工"):
+            if status in summary:
+                summary[status] = sum((p.get("status") == "机器核对") == (status == "机器核对") for p in kept)
     return out, report
 
 

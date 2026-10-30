@@ -377,6 +377,17 @@ def test_a_discovered_page_that_is_not_a_masters_program_costs_no_model_call(db_
     assert row.program_name == "CA10 - Bachelor of Arts" and "not a taught master's" in row.last_error
 
 
+def test_a_collected_page_found_not_to_be_a_program_is_not_extracted_again(db_session, school, client):
+    page = add_page(db_session, school, name="CA10")
+    page.result = {"status": "待人工", "fields": {}}  # collected before the rule
+    db_session.commit()
+    extracted = []
+    html = PAGE.replace("Master of Data Science", "CA10 - Bachelor of Arts")
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: html}),
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert state == PageState.FAILED and not extracted
+
+
 def test_discovery_leaves_out_picks_that_are_not_a_masters_program(db_session, school, client):
     listing = "https://www.example.edu.au/study/masters"
     html = ('<a href="/mds">Master of Data Science</a><a href="/ba">Bachelor of Arts</a>'
@@ -505,6 +516,25 @@ def test_export_replaces_by_url_and_keeps_the_rest(db_session, school, client):
     assert data["programs"][0]["fetched_at"]
     assert data["programs"][2]["status"] == "待人工"
     assert "verified_at" not in path.read_text()
+
+
+def test_export_keeps_the_tidied_names_and_drops(db_session, school, client):
+    """The queue's rows keep the link text they were found by; export applies the same rules as
+    `python -m app.collect.tidy`, so it does not undo a tidied file (review of PR #52)."""
+    page = add_page(db_session, school, name="Master of Data Science Learn to work with data at scale, online or on campus")
+    page.origin = "file"  # collected before the naming rule: the row still holds the long link text
+    db_session.commit()
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    listing = add_page(db_session, school, url="https://www.example.edu.au/study/masters", name="Masters")
+    listing.origin = "file"
+    db_session.commit()
+    run(db_session, school, listing, budget=budget(client), fetch=fake_fetch({listing.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    queue.export_school(db_session, school["key"], data_dir=school["data_dir"], root=school["root"])
+    data = json.loads((school["data_dir"] / f"{school['key']}.json").read_text())
+    assert [p["name"] for p in data["programs"]] == ["Master of Data Science"]
+    assert data["verification"]["programs"] == 1
 
 
 def test_export_starts_a_file_for_a_new_school(db_session, school, client):
@@ -665,6 +695,31 @@ def test_after_a_far_crawl_delay_the_retry_goes_straight_to_the_render(db_sessio
     assert db_session.get(CollectPage, page.id).render is True
     run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}))
     assert calls == [False, True, True]
+
+
+def test_when_the_awaited_render_fails_the_plain_fetch_stands(db_session, school, client):
+    # The render a page waited a Crawl-delay for fails: the plain fetch it already has is used, as
+    # when the render fails on the first try, rather than the page failing after its retries.
+    page = add_page(db_session, school)
+    plain = "<html><body><h1>Master of Data Science</h1>IELTS 6.5</body></html>"
+    calls, extracted = [], []
+
+    def fetch(url, school_key, render=False, root=None):
+        calls.append(render)
+        if render and len(calls) == 2:
+            raise RetryLater("www.example.edu.au", 118)
+        if render:
+            raise RuntimeError("Chrome exited")
+        return snap.save_snapshot(school_key, url, url, 200, "text/html", plain, root)
+
+    with pytest.raises(RetryLater):
+        run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}, extracted))
+    db_session.expire_all()
+    state = run(db_session, school, page, budget=budget(client), fetch=fetch,
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert calls == [False, True, True] and state == PageState.DONE
+    row = db_session.get(CollectPage, page.id)
+    assert row.render is False and row.snapshot_sha256 == hashlib.sha256(plain.encode()).hexdigest()
 
 
 def test_the_snapshot_tool_reads_crawl_delay_from_robots_txt(tmp_path):

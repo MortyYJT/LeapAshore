@@ -495,3 +495,14 @@ def test_pruning_an_australian_file_removes_rows_written_without_a_cricos_code(d
         db_session.execute(delete(Program).where(Program.id == pid))
         db_session.execute(delete(University).where(University.id.in_([AU_KEY, "university-of-sydney"])))
         db_session.commit()
+
+
+def test_an_empty_file_still_names_its_school(db_session, require_db, tmp_path):
+    """A school whose site refused us keeps its row (the advisor's school names point at it)."""
+    try:
+        import_school(db_session, {**_au_file(), "programs": []}, AU_SCHOOLS, root=tmp_path)
+        assert db_session.get(University, AU_KEY) is not None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(University).where(University.id == AU_KEY))
+        db_session.commit()
