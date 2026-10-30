@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { SampleTimeline } from "@/components/home/SampleTimeline";
-import { LinkButton, SourceNote } from "@/components/ui";
+import { LinkButton } from "@/components/ui";
 import { chineseInstitutions, overseasInstitutions } from "@/lib/catalog-server";
 import { serverProgramPage } from "@/lib/server-api";
 
@@ -25,33 +25,28 @@ export default async function Home() {
     [chineseInstitutions.length.toLocaleString("en"), "所国内院校，来自教育部名单，用来判断适用哪条均分门槛"],
   ];
   return (
-    <>
-      <main className="page">
-        <section className="intro stagger">
-          <div>
-            <h1 className="intro-title">把硕士申请排成一条时间线</h1>
-            <p className="lede intro-lede">
-              填四项背景，看看哪些项目的官方要求你已经满足；选好学校后，从今天到入学，每个阶段要准备什么、建议什么时候做、依据来自哪个官方页面，都在一张图上。
-            </p>
-            <div className="toolbar" style={{ marginTop: 28 }}>
-              <LinkButton href="/tiers" variant="primary">
-                看看能申哪些
-              </LinkButton>
-              <LinkButton href="/schools">先看学校</LinkButton>
-            </div>
+    <main className="page">
+      <section className="intro stagger">
+        <div>
+          <h1 className="intro-title">把硕士申请排成一条时间线</h1>
+          <p className="lede intro-lede">填四项背景，看哪些硕士项目的官方要求你已经满足，再把从今天到入学的每一步排进一张图。</p>
+          <div className="toolbar" style={{ marginTop: 28 }}>
+            <LinkButton href="/tiers" variant="primary">
+              看看能申哪些
+            </LinkButton>
+            <LinkButton href="/schools">先看学校</LinkButton>
           </div>
-          <SampleTimeline />
-        </section>
-        <section className="facts stagger" aria-label="收录范围">
-          {facts.map(([n, t]) => (
-            <div key={t}>
-              <div className="n num">{n}</div>
-              <div className="t">{t}</div>
-            </div>
-          ))}
-        </section>
-      </main>
-      <SourceNote>录取要求以学校官网为准；没有官方来源的要求显示为未收录，系统不会代填。</SourceNote>
-    </>
+        </div>
+        <SampleTimeline />
+      </section>
+      <section className="facts stagger" aria-label="收录范围">
+        {facts.map(([n, t]) => (
+          <div key={t}>
+            <div className="n num">{n}</div>
+            <div className="t">{t}</div>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 }

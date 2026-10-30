@@ -22,13 +22,15 @@ CRICOS dataset. Running the seed twice SHALL leave the same rows. The table stru
 A seeded program SHALL have no minimum mark, no non-211 minimum mark, no prerequisites, and no English
 requirement unless an official source for that value is recorded, and its data status SHALL be `待核验`. The
 seed SHALL NOT set `verified_at`. The interface SHALL show a missing requirement as `未收录`, never as an empty
-string or a zero, and SHALL show the stored status `待核验` as `未核对` (PRD §7.7 rule 5).
+string or a zero. A program page SHALL name its missing requirements once, on a single `未收录` line, rather
+than one `未收录` row each. Only the stored status `已核验` is marked (`已核对`); `待核验` and `机器核对` carry no
+label (changed 2026-10-31; PRD §7.7 rule 5 still keeps stored values off the screen).
 
 #### Scenario: A course with no collected requirements
 
 - **WHEN** the applicant opens `/programs/0100139`
-- **THEN** the minimum mark and English requirement read `未收录`, and the page cites the CRICOS dataset for the
-  facts it does show
+- **THEN** the 未收录 line names the minimum mark and the English requirement, and the site footer cites the
+  CRICOS dataset for the facts the page does show
 
 ### Requirement: The placeholder programs fold into their CRICOS rows
 

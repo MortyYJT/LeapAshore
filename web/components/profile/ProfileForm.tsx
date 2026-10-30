@@ -393,7 +393,7 @@ function SchoolHint({ origin, name, listed }: { origin: Profile["schoolOrigin"];
               {t}
             </span>
           ))}
-          自动标注（教育部名单）
+          （教育部名单）
         </>
       ) : (
         "不在 985 / 211 名单（教育部名单）"

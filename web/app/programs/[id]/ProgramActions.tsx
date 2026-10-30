@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
+import { Loading } from "@/components/ui";
 import { hasBasics, toApplicant } from "@/lib/assess";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
@@ -75,7 +76,7 @@ function Actions({ program, resumeAdd }: { program: Program; resumeAdd: boolean 
   return (
     <section className="panel panel-pad" aria-labelledby="fit-h">
       <h2 id="fit-h" style={{ marginBottom: 8 }}>和你的背景比</h2>
-      {!profile.data && profile.loading && <p className="muted" style={{ margin: 0 }}>正在读取你的背景…</p>}
+      {!profile.data && profile.loading && <Loading what="你的背景" />}
       {profile.data && !complete && (
         <p className="muted" style={{ margin: 0 }}>
           分档要的四项信息还没填全。<Link href="/tiers">先补信息</Link>后，这里会按收录的要求比较。

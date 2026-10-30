@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
-import { Loading } from "@/components/ui";
+import { LoadingPanel } from "@/components/ui";
 import { AUTH_CHANGED, fetchAuthState, logout, type AuthState } from "@/lib/auth";
 import { clearDraft } from "@/lib/portfolio-draft";
 
@@ -129,11 +129,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 /**
  * Render `children` only for someone who may see private data. In login mode a logged-out visitor sees
  * `fallback` (by default a short 登录后查看 panel); the children mount after login, so their reads start
- * with the session instead of a 401.
+ * with the session instead of a 401. Until the session is known it shows `pending`, which a page that
+ * wraps its whole body passes with its own title, so the page keeps its frame while it waits.
  */
-export function RequireAccount({ children, what, fallback }: { children: ReactNode; what: string; fallback?: ReactNode }) {
+export function RequireAccount({
+  children,
+  what,
+  fallback,
+  pending,
+}: {
+  children: ReactNode;
+  what: string;
+  fallback?: ReactNode;
+  pending?: ReactNode;
+}) {
   const { ready, gated } = useAuth();
-  if (!ready) return <Loading what="登录状态" />;
+  if (!ready) return <>{pending ?? <LoadingPanel what={what} />}</>;
   if (gated) return <>{fallback ?? <LoginPrompt what={what} />}</>;
   return <>{children}</>;
 }
@@ -144,7 +155,7 @@ export function LoginPrompt({ what }: { what: string }) {
     <section className="panel panel-pad section login-prompt" aria-label="需要登录">
       <h2 style={{ marginBottom: 6 }}>登录后查看{what}</h2>
       <p className="muted" style={{ margin: "0 0 16px" }}>
-        用邮箱收一个 6 位验证码就能登录，第一次登录会自动注册。学校库、项目库和路线图示例不用登录也能看。
+        用邮箱收一个 6 位验证码就能登录，第一次登录会自动注册。学校库和路线图示例不用登录也能看。
       </p>
       <div className="toolbar">
         <button type="button" className="btn btn-primary" onClick={() => void requireLogin()}>

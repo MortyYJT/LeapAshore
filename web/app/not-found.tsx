@@ -8,7 +8,6 @@ export default function NotFound() {
       <div className="toolbar section">
         <Link className="btn btn-primary" href="/">首页</Link>
         <Link className="btn btn-secondary" href="/schools">学校库</Link>
-        <Link className="btn btn-secondary" href="/programs">项目库</Link>
       </div>
     </main>
   );

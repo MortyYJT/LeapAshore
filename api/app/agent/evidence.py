@@ -404,7 +404,7 @@ def refusal(session: Session, found: Retrieval) -> tuple[str, str]:
         )
         return "no_program_in_field", (
             f"{names}已收录 {counts['with_data']} 个项目的官方录取要求，但其中没有{subject}方向的，{pending}"
-            f"可以换个方向问，或在项目库里查看该校已收录的项目。{tail}"
+            f"可以换个方向问，或到学校库里该校的页面查看已收录的项目。{tail}"
         )
     return "no_citable_source", "找到了相关项目，但它没有可引用的官方来源链接，所以我不能回答它的要求。已记录为待补来源。"
 

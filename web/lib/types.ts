@@ -57,7 +57,7 @@ export interface Profile {
   intake: string;
 }
 
-/** The stored verification states (PRD §7.7 rule 1). The interface says them through `DATA_STATUS_LABELS`. */
+/** The stored verification states (PRD §7.7 rule 1). The interface marks only `已核验`, through `verifiedMark`. */
 export type SourceStatus = "已核验" | "机器核对" | "待核验";
 
 /** Official source citation. The excerpt is a manual summary, not captured page text. */
