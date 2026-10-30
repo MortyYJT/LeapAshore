@@ -35,6 +35,12 @@ One row per confirmation (`verify`) or withdrawal (`revoke`): `source_id` (CASCA
 `verified_at`, so the scan in D5 has one meaning per name. `sources.verified_at` is set to the same
 moment. A withdrawal sets it back to NULL and `status` to 待核验.
 
+The importer withdraws a confirmation whenever what the page serves changes (review of PR #69): a
+snapshot that is not the latest version (new, or an older one coming back, which is appended as the new
+latest version so the quotes shown match the values), or a different value read from the same snapshot
+(a better extraction). It locks the page row for its transaction, as `verify` does, so a confirmation
+cannot land between the importer's check and its new version.
+
 ### D4. A database guard: a trigger, not column privileges
 
 The application connects as the owner of every table, so a column `GRANT` would not stop it; a second

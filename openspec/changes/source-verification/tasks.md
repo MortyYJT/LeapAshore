@@ -7,4 +7,4 @@ Branch `claude/source-verification`.
 - [x] 1.3 `/api/admin/me`, `/api/admin/verification…`
 - [x] 1.4 Static writer scan and trigger tests; importer test uses a real confirmation
 - [x] 1.5 Web `/admin`, `/admin/sources/[id]` (server-gated), `lib/admin.ts`; walkthrough admin vs applicant
-- [ ] 2.1 `make verify`; review; deploy with backup
+- [x] 2.1 `make verify`; review (2 bugs fixed: same-snapshot value changes and the import/confirm race); deploy with backup

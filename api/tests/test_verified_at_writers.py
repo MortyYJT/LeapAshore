@@ -111,7 +111,8 @@ class _Scanner(ast.NodeVisitor):
 
     def visit_Dict(self, node: ast.Dict) -> None:
         for key, value in zip(node.keys, node.values):
-            if isinstance(key, ast.Constant) and key.value == COLUMN:
+            # A string key, or a column expression (`{Source.verified_at: x}`, `table.c.verified_at`).
+            if (isinstance(key, ast.Constant) and key.value == COLUMN) or (key is not None and _names_column(key)):
                 self._add("dict", value)
         self.generic_visit(node)
 
@@ -169,6 +170,7 @@ def a(row, s, t):
     d["verified_at"] = 1
     Source(verified_at=stamp)
     update(Source).values({"verified_at": stamp})
+    update(Source).values({Source.verified_at: stamp, Source.__table__.c.verified_at: stamp})
     setattr(row, "verified_at", stamp)
     s.execute(text("UPDATE sources SET status = 'x', verified_at = now() WHERE id = :id"))
     t.execute("insert into sources (id, url, verified_at) values (1, 2, 3)")
@@ -180,7 +182,7 @@ def b(row):
     found = sorted((s.kind, s.clears) for s in scan_source(sample, "sample.py"))
     assert found == sorted([
         ("store", False), ("store", True), ("store", False), ("store", False), ("keyword", False),
-        ("dict", False), ("setattr", False), ("sql", False), ("sql", False),
+        ("dict", False), ("dict", False), ("dict", False), ("setattr", False), ("sql", False), ("sql", False),
     ])
     assert all(s.scope == "a" for s in scan_source(sample, "sample.py"))
 

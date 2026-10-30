@@ -13,8 +13,10 @@ of that set. Deadlines are compared with what is stored and rewritten only when 
 over the same files writes nothing. A program is `机器核对` when every field it
 reports is usable, otherwise `待核验`. A program whose quotes passed but whose summaries were all
 downgraded is still written: its values become unknown, so a summary found unfaithful after an earlier
-import leaves the catalogue. Nothing here writes `verified_at`: the page source stays
-`待核验` until a person reviews it, and its snapshot version stays `pending_review`.
+import leaves the catalogue. Nothing here sets `verified_at`: the page source stays `待核验` until
+a person confirms it (openspec source-verification), and its snapshot version stays `pending_review`.
+A confirmation is withdrawn (the date cleared) when what the page serves changes: a different snapshot,
+or a different value read from the same one.
 
 Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
 `<school_key>-<program slug>`, under a university row named from `_schools.json`. Each program page
@@ -28,6 +30,7 @@ import sys
 import unicodedata
 import uuid
 from datetime import date, datetime
+from decimal import Decimal
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -158,17 +161,28 @@ def deadline_rows(pid: str, program_url: str, fields: dict) -> list[dict]:
     return rows
 
 
-def _sync_deadlines(session: Session, pid: str, wanted: list[dict]) -> None:
-    """Make the program's deadlines `wanted`, writing only when they differ (openspec requirement-dates D5)."""
+def _sync_deadlines(session: Session, pid: str, wanted: list[dict]) -> bool:
+    """Make the program's deadlines `wanted`, writing only when they differ (openspec requirement-dates D5).
+
+    True when it wrote."""
     columns = ("id", "label", "deadline", "quote", "source_url", "sort_order")
     stored = session.scalars(select(ProgramDeadline).where(ProgramDeadline.program_id == pid)
                              .order_by(ProgramDeadline.sort_order)).all()
     if [tuple(getattr(row, c) for c in columns) for row in stored] == [tuple(row[c] for c in columns) for row in wanted]:
-        return
+        return False
     session.execute(delete(ProgramDeadline).where(ProgramDeadline.program_id == pid))
     session.flush()
     for row in wanted:
         session.add(ProgramDeadline(**row))
+    return True
+
+
+def _same(stored, new) -> bool:
+    """Whether a column already holds `new`. A mark read from JSON (80.3) is compared as the decimal the
+    column stores (80.30), so an unchanged re-import does not count as a change."""
+    if isinstance(stored, Decimal) and isinstance(new, (int, float)) and not isinstance(new, bool):
+        return stored == Decimal(str(new))
+    return stored == new
 
 
 def has_verified_value(fields: dict) -> bool:
@@ -246,9 +260,11 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             continue
         meta = _snapshot_meta(key, program["snapshot_sha256"], root)
 
-        source = session.get(Source, source_id_for(program["url"])) or session.execute(
-            select(Source).where(Source.url == program["url"])
-        ).scalar_one_or_none()
+        # Locked until this school's import commits, so an admin's confirmation (which locks the same
+        # row, openspec source-verification) cannot land between the check below and the new version.
+        locked = select(Source).with_for_update().execution_options(populate_existing=True)
+        source = session.scalar(locked.where(Source.id == source_id_for(program["url"]))) or session.scalar(
+            locked.where(Source.url == program["url"]))
         if source is None:
             source = Source(
                 id=source_id_for(program["url"]), url=program["url"], title=program["name"],
@@ -257,9 +273,12 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             )
             session.add(source)
             session.flush()
-        known = session.scalar(select(SourceVersion.id).where(
-            SourceVersion.source_id == source.id, SourceVersion.content_sha256 == program["snapshot_sha256"]))
-        if known is None:
+        # The latest version is the snapshot the catalogue's values come from. A page that went back to an
+        # older snapshot gets that snapshot as a new latest version, rather than keeping a newer one's quotes.
+        latest = session.scalar(select(SourceVersion.content_sha256).where(SourceVersion.source_id == source.id)
+                                .order_by(SourceVersion.version_no.desc()).limit(1))
+        changed = latest != program["snapshot_sha256"]
+        if changed:
             if source.status != SourceStatus.UNVERIFIED or source.verified_at is not None:
                 # A person verified an older version of this page; the new content is not covered by
                 # that review, so the page goes back to unverified until someone looks again.
@@ -293,8 +312,10 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
                           degree_level="授课型硕士", field=study_area_from_name(program["name"]), **values)
             session.add(row)
             added += 1
+            changed = True
         else:
             for column, value in values.items():
+                changed = changed or not _same(getattr(row, column), value)
                 setattr(row, column, value)
             # A row that already has a study area keeps it: a CRICOS row's comes from the official field.
             if row.field is None:
@@ -311,11 +332,16 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
         wanted = [(str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#prerequisite#{index}")), label)
                   for index, label in enumerate(prerequisites)]
         if [tuple(row) for row in stored] != wanted:
+            changed = True
             session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
             for index, (prerequisite_id, label) in enumerate(wanted):
                 session.add(ProgramPrerequisite(id=prerequisite_id, program_id=pid, label=label,
                                                 category="collected", sort_order=index))
-        _sync_deadlines(session, pid, deadline_rows(pid, program["url"], fields))
+        changed = _sync_deadlines(session, pid, deadline_rows(pid, program["url"], fields)) or changed
+        if changed and source.verified_at is not None:
+            # A person confirmed what this page served; a value read again from the same snapshot (a
+            # better extraction) is not covered by that confirmation either.
+            source.status, source.verified_at = SourceStatus.UNVERIFIED, None
     session.commit()
     return {**report, "programs_added": added, "programs_updated": updated}
 

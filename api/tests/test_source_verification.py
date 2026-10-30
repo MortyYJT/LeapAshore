@@ -1,11 +1,12 @@
 """The admin's verification entry (openspec source-verification): who may, what it shows, what it writes,
 and the database guard that refuses every other way of setting `sources.verified_at`."""
 
+import threading
 import uuid
 from datetime import UTC, date, datetime
 
 import pytest
-from sqlalchemy import delete, select, text
+from sqlalchemy import delete, func, select, text
 from sqlalchemy.exc import DBAPIError
 
 from app import roles
@@ -299,13 +300,17 @@ KEY = "test-verify-importer"
 URL = "https://verify.example/importer-msc"
 
 
-def importer_file(sha: str) -> dict:
+def importer_file(sha: str, overall: float = 7.0) -> dict:
     return {
         "school_key": KEY, "school_name_en": "Verify Importer University", "country": "United Kingdom",
         "listing_urls": ["https://verify.example/courses"],
         "programs": [{
             "name": "MSc Importer", "url": URL, "snapshot_sha256": sha, "fetched_at": "2026-10-29T01:00:00+00:00",
-            "fields": {"ielts": {"overall": 7.0, "quote": "IELTS 7.0 overall", "check": "ok"}}, "status": "机器核对",
+            "fields": {"ielts": {"overall": overall, "quote": "IELTS 7.0 overall", "check": "ok"},
+                       # 80.3 is not exact in binary: an unchanged re-import must still compare equal.
+                       "china_requirement": {"min_mark_211": 80.3, "min_mark_other": 85, "quote": "80.3 or 85",
+                                             "check": "ok"}},
+            "status": "机器核对",
         }],
     }
 
@@ -342,3 +347,74 @@ def test_reimporting_the_same_page_keeps_the_confirmation_and_new_content_withdr
         import_school(s, importer_file(NEWER), imported["schools"], root=imported["root"])
     row = source_row(imported["source"])
     assert row.verified_at is None and row.status == SourceStatus.UNVERIFIED
+
+
+def latest_sha(source_id: str) -> str:
+    with SessionLocal() as s:
+        return s.scalar(select(SourceVersion.content_sha256).where(SourceVersion.source_id == source_id)
+                        .order_by(SourceVersion.version_no.desc()).limit(1))
+
+
+def test_a_value_read_again_from_the_same_snapshot_withdraws_the_confirmation(admin, imported):
+    assert admin.post(f"{ADMIN}/{imported['source']}/verify", json={"contentSha256": SHA}).status_code == 200
+    with SessionLocal() as s:
+        import_school(s, importer_file(SHA, overall=6.5), imported["schools"], root=imported["root"])
+    assert source_row(imported["source"]).verified_at is None
+
+
+def test_a_page_back_on_an_older_snapshot_gets_it_as_its_latest_version_and_is_withdrawn(admin, imported):
+    with SessionLocal() as s:
+        import_school(s, importer_file(NEWER), imported["schools"], root=imported["root"])
+        s.execute(text("UPDATE snapshot_pages SET snapshot_sha256 = :sha WHERE url = :url"), {"sha": NEWER, "url": URL})
+        s.commit()
+    assert admin.post(f"{ADMIN}/{imported['source']}/verify", json={"contentSha256": NEWER}).status_code == 200
+    with SessionLocal() as s:
+        import_school(s, importer_file(SHA), imported["schools"], root=imported["root"])
+    assert source_row(imported["source"]).verified_at is None and latest_sha(imported["source"]) == SHA
+    with SessionLocal() as s:  # and a rerun of the same file adds no further version
+        import_school(s, importer_file(SHA), imported["schools"], root=imported["root"])
+        versions = s.scalar(select(func.count()).select_from(SourceVersion)
+                            .where(SourceVersion.source_id == imported["source"]))
+    assert versions == 3
+
+
+def test_a_confirmation_waits_for_an_import_holding_the_page_and_then_sees_its_new_version(admin, page):
+    """The importer locks the page row until it commits; a confirmation in between waits, then refuses."""
+    result: dict = {}
+    with SessionLocal() as importer:
+        importer.scalar(select(Source).where(Source.id == page["source"]).with_for_update())
+        worker = threading.Thread(target=lambda: result.setdefault(
+            "status", admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA}).status_code))
+        worker.start()
+        worker.join(1.0)
+        assert worker.is_alive(), "the confirmation did not wait for the import's lock"
+        importer.add(SourceVersion(id=str(uuid.uuid4()), source_id=page["source"], version_no=2, content_sha256=NEWER))
+        importer.commit()
+    worker.join(15)
+    assert result.get("status") == 409 and source_row(page["source"]).verified_at is None
+
+
+def test_an_import_waits_for_a_confirmation_in_progress_and_then_withdraws_it(admin, imported):
+    """Review of PR #69: without the importer's row lock it read the date as unset, kept it, and added v2."""
+    result: dict = {}
+    with SessionLocal() as confirming:
+        source = confirming.scalar(select(Source).where(Source.id == imported["source"]).with_for_update())
+        moment = datetime.now(UTC)
+        confirming.add(SourceVerification(id=str(uuid.uuid4()), source_id=source.id, action="verify",
+                                          content_sha256=SHA, account_id=admin.account_id, decided_at=moment))
+        confirming.flush()
+        source.status, source.verified_at = SourceStatus.VERIFIED, moment
+        confirming.flush()
+
+        def run_import():
+            with SessionLocal() as s:
+                result["report"] = import_school(s, importer_file(NEWER), imported["schools"], root=imported["root"])
+
+        worker = threading.Thread(target=run_import)
+        worker.start()
+        worker.join(1.0)
+        assert worker.is_alive(), "the import did not wait for the confirmation's lock"
+        confirming.commit()
+    worker.join(15)
+    assert "report" in result
+    assert source_row(imported["source"]).verified_at is None and latest_sha(imported["source"]) == NEWER
