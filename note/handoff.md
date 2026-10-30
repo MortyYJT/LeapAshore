@@ -11,7 +11,7 @@
 - **已有能力**（细节在对应 OpenSpec change 和 `TASKS.md` 各条「注：」）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
 - **未归档的 OpenSpec change：** account-login、advisor-limits、advisor-retrieval、hybrid-retrieval、knowledge-gaps、ledger-redesign、requirement-dates、snapshot-rag、source-verification。
-- **钩子：** 10-30 起不用 Claude Code 钩子（#71 删了 `guard.sh`）。「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
+- **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
 - **本机：** `make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
