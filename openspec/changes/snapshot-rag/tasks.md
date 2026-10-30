@@ -15,8 +15,9 @@ Branch `claude/snapshot-rag`.
 - [x] 2.3 Review of #60: number check (modal "may" was 5; Chinese counts unchecked), vectors let
       off-topic chunks in, `--prune` deleted cited pages with a missing snapshot, a same-text refresh
       dropped the chunk vectors. All fixed with tests; recorded answers re-scored: sentences kept 75/79
-- [ ] 3.1 Deploy: backup, migrate, copy cited snapshot texts into `snapshots`, ingest in the worker,
-      read-only checks, at most one real advisor turn
+- [x] 3.1 Deploy (2026-10-30): backup, migrated to `f7c2d9a4e816`, 9,320 cited snapshot texts copied
+      into `snapshots`, ingest in the worker: 9,344 pages, 132,204 chunks (second run writes nothing);
+      database 33 MB -> 385 MB; pages 200; one real advisor turn (see TASKS.md)
 - [ ] 4.1 Blocked on MortyYJT: `EMBED_API_KEY`; then `embeddings --chunks` and a vector/hybrid run
 
 ## Run log
