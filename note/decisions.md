@@ -2,11 +2,20 @@
 
 只记当前仍然有效、跨 change 的决定。被推翻或已经做完的条目直接删掉，历史在 git 里。属于某个 OpenSpec change 的决定写进那个 change。产品需求以 `docs/product/PRD.md` 为准，两边冲突时以 PRD 为准。
 
-## 2026-10-31 去掉旧项目名（第一步）
+## 2026-10-31 去掉旧项目名，SSH 只认密钥
 
-- **决定**：本机 SSH 密钥改名为 `~/.ssh/leapashore_prod`（注释 `leapashore-prod`），`docs/deploy.md` 跟着改；决定记录里的旧名改写。还用旧名的：数据库用户和库名（`compose.yaml`、`deploy/compose.prod.yaml`、CI、`api/app/config.py` 的默认连接串，以及 handoff、deploy.md、两个进行中 OpenSpec change 里的命令）、本机 Docker 卷名（`compose.yaml` 的两个卷）、服务器上的 `~/offerpilot` 目录。数据库名要和生产库一起改，等做 SSH 加固时一起做。
-- **谁定的**：MortyYJT（2026-10-31，不想再看到旧项目名；服务器的事晚点再说）。
-- **理由**：数据库用户和库名是仓库和生产共用的真实标识，只改一边部署就会失败；本机卷名改了要搬本机数据，放在同一次做。
+- **决定**：
+  - 仓库、本机和生产里的旧项目名全部改成 `leapashore`。
+    - 本机 SSH 密钥改名为 `~/.ssh/leapashore_prod`（注释 `leapashore-prod`）。
+    - 数据库角色和库名：生产用 `ALTER ROLE/DATABASE ... RENAME` 原地改名。密码是 SCRAM 加密的，改名不会清掉。
+    - 服务器项目目录改为 `~/leapashore`。compose 项目名来自 `deploy/` 这一层目录，所以容器和卷名不变。
+    - 本机卷改为 `pgdata`、`redis-data`，和生产同名。数据从旧卷复制过来再改名。
+  - 删掉换 pgvector 前的旧卷 `deploy_db-data` 和旧镜像 `postgres:16-alpine`；服务器上的数据库备份只留最近 3 份。
+  - 生产 SSH 关掉密码登录和 root 登录，装 fail2ban（做法见 `docs/deploy.md`）。
+- **谁定的**：MortyYJT（2026-10-31，不想再看到旧项目名；方案按 AI 的建议执行）。
+- **理由**：
+  - 数据库名在 compose、CI 和默认连接串里都能看到，只改文档改不干净。改名只需停机 1–2 分钟，有备份可回退。
+  - SSH 过去 7 天的成功登录全部用密钥，同时一直有人在猜 `ubuntu` 的密码。关掉密码登录不影响现有用法。
 
 ## 2026-10-31 文档精简，工程文档改英文，不用钩子
 

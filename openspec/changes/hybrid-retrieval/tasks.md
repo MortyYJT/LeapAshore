@@ -23,7 +23,7 @@ Branch `claude/hybrid-retrieval`.
 - 2026-10-30, local: `pg_basebackup` copy of the Alpine data directory started under
   `pgvector/pgvector:pg16`: no warning; amcheck 7/53 btree indexes "item order invariant violated".
   `pg_dump -Fc` / `pg_restore` into a `C`-collation cluster: 0/53, 28 table digests identical. Local
-  `compose.yaml` moved the same way (new volume `offerpilot-pgdata`).
+  `compose.yaml` moved the same way (new volume, now `pgdata`).
 - Embedding dry run (local, 9,748 programs): 455,121 characters, about 305 requests of 32. No key, so
   no tokens measured.
 - Held-out (K=4, 21 requirement questions, h08 corrected first), each once:

@@ -5,19 +5,18 @@ services:
   # PostgreSQL 16 with pgvector (openspec hybrid-retrieval D1). Moved here from postgres:16-alpine by
   # dump and restore into the new volume `pgdata`: a data directory written under Alpine's musl has
   # text indexes in an order glibc disagrees with. `C` collation keeps the code-point order musl gave.
-  # The old volume `db-data` is kept, untouched, for rollback (note/handoff.md).
   db:
     image: pgvector/pgvector:pg16
     restart: unless-stopped
     environment:
-      POSTGRES_USER: offerpilot
+      POSTGRES_USER: leapashore
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
-      POSTGRES_DB: offerpilot
+      POSTGRES_DB: leapashore
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U offerpilot"]
+      test: ["CMD-SHELL", "pg_isready -U leapashore"]
       interval: 3s
       timeout: 3s
       retries: 20
@@ -27,7 +26,7 @@ services:
     restart: unless-stopped
     env_file: .env
     environment:
-      DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       # Arms the startup guard: login mode here refuses the log-only mail backend.
       APP_ENV: production
       # X-Forwarded-For is read only from the caddy container, which sets it to the address it
@@ -71,7 +70,7 @@ services:
     command: ["celery", "-A", "app.worker", "worker", "--pool", "threads", "--concurrency", "2", "--loglevel", "INFO"]
     env_file: .env
     environment:
-      DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       APP_ENV: production
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
@@ -95,7 +94,7 @@ services:
     command: ["celery", "-A", "app.worker", "beat", "--loglevel", "INFO", "--schedule", "/app/var/beat/celerybeat-schedule"]
     env_file: .env
     environment:
-      DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
+      DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       APP_ENV: production
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
@@ -135,8 +134,6 @@ services:
 
 volumes:
   pgdata:
-  # The postgres:16-alpine data directory before the pgvector move; kept for rollback, not mounted.
-  db-data:
   redis-data:
   documents:
   snapshots:
