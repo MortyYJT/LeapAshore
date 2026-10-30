@@ -2,9 +2,10 @@
 
 **当前状态文件。每次任务结束整份重写，不追加；开始时先读，并对照 `git status` 和 `git log`。历史看 git 和 `note/decisions.md`。**
 
-## 现在（2026-10-30）
+## 现在（2026-10-31）
 
-- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #69（10-30 部署），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-source-verification.sql.gz`。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序）；旧卷 `deploy_db-data` 停在 10-30 14:44（北京）换镜像那一刻，之后的部署（快照 RAG、忠实度重导、学校合并、知识缺口、人工核验）都不在里面，**回滚用最近的备份，不用它**；确认没问题后可删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
+- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #77（10-31 部署；#70–#77 只改了注释、文档和数据库改名），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-rename.sql.gz`（服务器日期），服务器上只留最近 3 份备份。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序），角色和库名 `leapashore`。项目目录 `~/leapashore`，compose 项目名仍是 `deploy`。换 pgvector 前的旧卷 `deploy_db-data` 和镜像 `postgres:16-alpine` 已删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
+- **服务器 SSH（10-31）：** 只认密钥，密码登录和 root 登录都关了；fail2ban 已开（5 次失败封 1 小时）。细节和解封命令见 `docs/deploy.md`。没检查腾讯云安全组的 22 端口来源限制。
 - **生产数据：** 「有要求」7,374，`机器核对` 4,115，截止日期 3,555 条（1,947 个项目、111 所，10-30 北京时间已过 289 条），`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
@@ -13,7 +14,7 @@
 - **未归档的 OpenSpec change：** hybrid-retrieval、snapshot-rag（各剩 1 项，都卡在 MortyYJT 的 `EMBED_API_KEY`）、ledger-redesign（P2 #4 进行中）。account-login、knowledge-gaps 已在 10-31 文档审计 PR 里归档（最后一项「部署」10-30 已做完）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
 - **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
-- **本机：** `make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
+- **本机：** 库卷 `leapashore_pgdata`、Redis 卷 `leapashore_redis-data`（10-31 从旧卷复制并改名，旧卷已删），连接串 `leapashore:leapashore@localhost:55432/leapashore`。`make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
 
