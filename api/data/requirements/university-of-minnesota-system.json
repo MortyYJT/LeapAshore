@@ -1,0 +1,676 @@
+{
+ "school_key": "university-of-minnesota-system",
+ "school_name_en": "University of Minnesota (System)",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.sph.umn.edu/academics/graduate/",
+  "https://olpd.umn.edu/academics/leadership-education/masters-education"
+ ],
+ "blocked": [
+  {
+   "url": "https://online.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://grad.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://catalogs.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://www.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://twin-cities.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://cse.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://carlsonschool.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://hhh.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://law.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://d.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://cla.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://cfans.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://design.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://pharmacy.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  },
+  {
+   "url": "https://nursing.umn.edu/robots.txt",
+   "reason": "HTTP 403 (robots.txt refused; host kept out)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://ci.umn.edu/academics/english-education/professional-masters-education",
+  "https://ci.umn.edu/academics/mathematics-education/professional-masters-education",
+  "https://icd.umn.edu/academics/early-childhood-education/masters-education",
+  "https://www.cehd.umn.edu/ci/programs/masters/teaching-english-education/"
+ ],
+ "notes": "Most UMN hosts (Graduate School, catalog, CSE, Carlson, Humphrey, Law, CLA, online.umn.edu, Duluth) answer robots.txt with HTTP 403, so only the School of Public Health (sph.umn.edu) and CEHD's OLPD department (olpd.umn.edu) were collected. SPH programmes use the school-wide requirements their pages link to; Executive MPH, MHA and Executive MHA were skipped as closed to international/visa students. Deadlines on these pages give no year and were left out.",
+ "programs": [
+  {
+   "name": "Community Health Promotion MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/community-health-promotion/",
+   "snapshot_sha256": "6a5171d7d70f3ec13d795db05f68469b828cfbcc04a6427bb823f49863ea9caa",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College-level quantitative analysis (statistics/biostatistics or research methods)",
+      "quote": "College-level quantitative analysis (1 course): Evidence of college-level coursework in quantitative methods is a prerequisite for application.",
+      "source_sha256": "4ffab2c67ad5d2bfd5ab9e3b17f28d57b4d465ad103e390d197fb6a0eb950b95",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/mph/community-health-promotion/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health Data Science MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/data-science/",
+   "snapshot_sha256": "10381a17a25353c9af41e1c225ac8d137e315fb843d4a529fcf5112f2cc9960a",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College algebra (equivalent)",
+      "quote": "To be considered for admission, prospective students must have completed the equivalent of college algebra.  Prior coursework in or exposure to statistics, programming, and calculus/linear algebra may be helpful but is not required.",
+      "source_sha256": "a34d85d2905c0f6738089d22d8329285487f5f066c7a38729b20088438a2329a",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/mph/data-science/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Distance Public Health Administration & Policy MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/distance-public-health-administration-policy/",
+   "snapshot_sha256": "301241745d504523d9052d27d69bbc213d7dfe9a2a297b1ea46f420cd0acec98",
+   "fields": {
+    "academic": {
+     "text": "Preferred GPA 3.0 or higher (US 4.0 scale)",
+     "quote": "Our preferred GPA threshold ≥ 3.0. Preference is given to applicants who have shown interest in and commitment to public and population health in their school, work, and/or volunteer activities.",
+     "source_sha256": "b06e5a203176817a3abcbf37ebfb46c538252bbbe8d9fad0fd86ab7397daa45b",
+     "source_url": "https://www.sph.umn.edu/academics/graduate/mph/distance-public-health-administration-policy/admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "Applicants must provide proof of English Proficiency by providing Test of English as a Foreign Language (TOEFL) scores\nScores should be sent to SOPHAS – DI Code: 5688\nPreferred minimum score: 100",
+     "source_sha256": "b06e5a203176817a3abcbf37ebfb46c538252bbbe8d9fad0fd86ab7397daa45b",
+     "source_url": "https://www.sph.umn.edu/academics/graduate/mph/distance-public-health-administration-policy/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Health MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/environmental-health/",
+   "snapshot_sha256": "0a2abe7071049a419c33148e4c4fec09f6716465ad07454f7cf67166d47d07f4",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Epidemiology MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/epidemiology/",
+   "snapshot_sha256": "6f6474eaea75b9ebcf8a0f6dfe7a4d64ac89a490dec65b7e4907a38cd3d42fbb",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Evidence of quantitative ability (quantitative course grades or positions)",
+      "quote": "Applicants are expected to provide evidence of their quantitative ability in the application process. This may be done through grades in quantitative courses, or through paid or volunteer positions.",
+      "source_sha256": "902026b661115feab2f8861c6145a9a9ce5b484947612a9be59a0685b40589f2",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/mph/epidemiology/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maternal & Child Health MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/maternal-child-health/",
+   "snapshot_sha256": "ecdad14aa97a5e18e1ba8cada8c56639fa0fda426ba5fad1a024bc482a55387a",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health Administration & Policy MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/public-health-administration-policy/",
+   "snapshot_sha256": "a7a065ced530c35bf9cd3875fe6d340252806ca24d0889192f24db8d04f83e17",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health Nutrition MPH",
+   "url": "https://www.sph.umn.edu/academics/graduate/mph/public-health-nutrition/",
+   "snapshot_sha256": "e3c9dbd2bf9c94cbcfe660d9c6442547eb5a6156e39d79731c7b94bab8a5755d",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Traditional program: human biology, general chemistry, social science and introduction to human nutrition courses",
+      "quote": "Traditional program:\nOne human biology course\nOne general chemistry course\nOne social science course\nOne introduction to human nutrition",
+      "source_sha256": "b777636a9305310ebe2bf2ccee8d32dbc26e7862864a9c097efb223e44513252",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/mph/public-health-nutrition/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biostatistics MS",
+   "url": "https://www.sph.umn.edu/academics/graduate/ms/biostatistics/",
+   "snapshot_sha256": "0ce94b32946547b864ab0c07391ab7e71197e774ccdb3234cb899a3204d8ea41",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two semesters of undergraduate probability and mathematical statistics recommended",
+      "quote": "A year (two semesters) of coursework in undergraduate-level probability and mathematical statistics is recommended. Experience with a programming language (e.g., R, Java, C, Python) and exposure to applied statistics is helpful, but not required.",
+      "source_sha256": "880f8110aa247e8b215e7d8704992fcc057c2bbc282b1981890dd255c0e64728",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/ms/biostatistics/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Health MS",
+   "url": "https://www.sph.umn.edu/academics/graduate/ms/environmental-health/",
+   "snapshot_sha256": "6c52683a3676cd088621b4342a932ccd5b01bfca7d86d1f1b11669eab46fa57e",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Services Research, Policy & Administration MS",
+   "url": "https://www.sph.umn.edu/academics/graduate/ms/health-services-research-policy-administration/",
+   "snapshot_sha256": "b8dbc6bbcd9347bbd97f91f95b5df9d05fbfc83435d56a88f38b1a3a40272836",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Some college-level math required; statistics and economics recommended",
+      "quote": "Strong quantitative skills are essential; a health services background is helpful, but not required. Some college level math is required. Statistics and economics coursework is recommended.",
+      "source_sha256": "2f0393419a45aeef1c71ac0f6dbce30538096c7166fe6fb603e88d8413ad2dde",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/ms/health-services-research-policy-administration/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Occupational Hygiene MS",
+   "url": "https://www.sph.umn.edu/academics/graduate/ms/occupational-hygiene/",
+   "snapshot_sha256": "4c54e851f71d226a2e70e007f2425c397696e7de3f5c39db3dc7e2c245a73388",
+   "fields": {
+    "academic": {
+     "text": "U.S. bachelor's degree or international equivalent; preferred cumulative GPA 3.00 (US 4.0 scale)",
+     "quote": "U.S. baccalaureate degree (or international equivalent) from a regionally accredited institution of higher education\nPreferred cumulative undergraduate GPA of not less than 3.00",
+     "source_sha256": "0b2232190a80bce340dd34139c45d52a92df233ae88926a7c97e5118bfb48619",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For exams taken before January 21, 2026: Minimum total score is 100\nFor exams taken on or after January 21, 2026: Minimum total score is 5",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS\nSend scores directly to SOPHAS (please note that HAMPCAS does not accept official IELTS scores)\nPreferred minimum total score: 7.0",
+     "source_sha256": "60d41e9a125e242ba4d4ffe82e67fac20d8c57b70aab2e6d6ef8b7208c3efe08",
+     "source_url": "https://www.sph.umn.edu/prospective/application-process/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate coursework in human biology, organic chemistry, physics and college-level mathematics (three of four with occupational hygiene experience)",
+      "quote": "For applicants without occupational/industrial hygiene work experience, undergraduate coursework is required in four subjects for admission: human biology, organic chemistry, physics, and college-level mathematics. For applicants with occupational/industrial hygiene work experience, undergraduate coursework in at least three of these subjects is required.",
+      "source_sha256": "f99ae39ee45ec3372cca1e2fbb51e797cfb1513c65498b7aa2e56b4309192539",
+      "source_url": "https://www.sph.umn.edu/academics/graduate/ms/occupational-hygiene/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MEd) in educational leadership",
+   "url": "https://olpd.umn.edu/academics/leadership-education/masters-education",
+   "snapshot_sha256": "e120498481f16b4b3022b1d0f5a8339a500a372d33c0437c9476dbdb8b2681cf",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 2.8 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  2.8 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MA) in comparative and international education",
+   "url": "https://olpd.umn.edu/academics/comparative-international-education/masters",
+   "snapshot_sha256": "418122d41c7a2f736da4ffbf8ecc2b3f585f8e2729ca6cda60c644452359a9cf",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 3.0 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  3.0 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MA) in education policy and leadership",
+   "url": "https://olpd.umn.edu/academics/education-policy-leadership/masters",
+   "snapshot_sha256": "8c7276be692e77231595597ac11efd5e7ac1a2ccf7725632d1bb20dab0a3aa1e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 3.0 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  3.0 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MA) in evaluation studies",
+   "url": "https://olpd.umn.edu/academics/evaluation-studies/masters",
+   "snapshot_sha256": "b80389ce681343ea429cb97c86d711293470e163ca1b41240b0bea23c073d2fe",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 3.0 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  3.0 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MA) in higher education leadership, policy, and development",
+   "url": "https://olpd.umn.edu/academics/higher-education/masters",
+   "snapshot_sha256": "f5acafba95f59b6ab337e8e36313d6af6d4c438e4629365df545ccb4526b048a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 3.0 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  3.0 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of arts (MA) in human resource development",
+   "url": "https://olpd.umn.edu/academics/human-resource-development/masters",
+   "snapshot_sha256": "fe4b8b1431c63ee171be592596df8c1642718f387cc5d645b72042e89308ecb5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 3.0 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  3.0 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's (MLTD) in learning and talent development",
+   "url": "https://olpd.umn.edu/academics/learning-talent-development/masters",
+   "snapshot_sha256": "f18c614983bbd95bbd35508595bb886e45feb98a22a521cb611e6a8f5358f3d2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; undergraduate GPA 2.8 (US 4.0 scale)",
+     "quote": "Degree: Bachelor's degree\nGPA:  2.8 undergraduate",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: Internet based = 79 or above (21 writing/19 reading)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS = 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 19,
+  "机器核对": 19,
+  "待人工": 0
+ }
+}

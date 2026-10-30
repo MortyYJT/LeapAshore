@@ -1,0 +1,277 @@
+{
+ "school_key": "central-european-university",
+ "school_name_en": "Central European University",
+ "country": "Austria",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=1",
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=2",
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=3",
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=4",
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=5",
+  "https://ceu.studyguide.timeedit.net/studies?year=2026&page=6"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.ceu.edu/academics/degrees",
+   "reason": "robots.txt disallows (a 'User-agent: Leap' group with Disallow: / matches our bot); department sites such as economics.ceu.edu redirect to www.ceu.edu"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://ceu.studyguide.timeedit.net/studies/MAGENS2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAGEMM2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAGENS1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAHIPD2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAHISU1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAHISU2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAHUMR1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAINNY1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MALAMS1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MALAMS2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAMATI2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAMUST2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAPHIL1F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MAPHIL2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MASOCL2F?tab=info&year=2026",
+  "https://ceu.studyguide.timeedit.net/studies/MSMESP2F?tab=info&year=2026"
+ ],
+ "notes": "www.ceu.edu (admissions, English requirements, deadlines) is closed to us by robots.txt, so programmes come from CEU's official TimeEdit study guide (ceu.studyguide.timeedit.net, 2026-27), which gives only degree background and tests; no English scores or deadlines. Capped at 20 programmes in business, data, economics, policy, law, IR and politics.",
+ "programs": [
+  {
+   "name": "MS in Business Analytics (full time)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MSBAIP1F?tab=info&year=2026",
+   "snapshot_sha256": "c38ef05e4a3945e9187f0a70c323c16a6dd635a300d440ba7d4c59e18e03de59",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT, GRE General Test or the CEU Math Test",
+      "quote": "GMAT or GRE General Test or CEU Math Test",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Finance (full-time)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MSFINA1F?tab=info&year=2026",
+   "snapshot_sha256": "31aaa6e54d69743a483de342b7cfb67d03d70f598da57208a00f1c6f417ee909",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT, GRE General Test or the CEU Math Test",
+      "quote": "GMAT or GRE General Test or CEU Math Test",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Social Data Science (1 year)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MSSODA1F?tab=info&year=2026",
+   "snapshot_sha256": "a22632d12b7788605aa7f29c82e5ae713bdc641c9fd624e25e872e9022a9ff3a",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree and/or demonstrable training in programming, statistics, machine learning and data science methods",
+     "quote": "It is designed for students with a 4-years bachelor’s degree and/or demonstrable training in programming, statistics, machine learning and data science methods.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Social Data Science (2 years)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MSSODA2F?tab=info&year=2026",
+   "snapshot_sha256": "ba20e82b6d93278fa4b68498f8bcadffc1e5a333c4aba593fe5a183afe33d6ba",
+   "fields": {
+    "academic": {
+     "text": "Three- or four-year bachelor's degree in a range of disciplines (social science, data science, physics, economics, natural sciences, computer science and others)",
+     "quote": "open to applicants with a 3- or 4-year bachelor's degree in various disciplines, including social science, data science, physics, economics, environmental science, natural sciences, political science, sociology and computer science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Economics, Data, and Policy (1 year) - Research Track",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAECDP1F?tab=info&year=2026",
+   "snapshot_sha256": "5a72aa5f6d0582f0722feae037ea7d41881d76bf210c6de0585508148b610de5",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MA in Economics, Data, and Policy (1 year) - Global Economic Policy Track",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAGEPO1F?tab=info&year=2026",
+   "snapshot_sha256": "ffb6e80b1105bfd33e702caeb24649ec90cc36e5479ad405d245db5eef529b36",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with at least four full years of university education (240 ECTS equivalent)",
+     "quote": "Students must have at least four full years of university education (240 ECTS credit equivalent) to enroll in the program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Background in economics: microeconomics, coding and data analysis at first-year MA level",
+      "quote": "Students are expected to have a firm background in economics, more specifically, they should be familiar with the course content of the following first year courses in our “MA in Economics, Data, and Policy (2 year)” program: “Microeconomics”, “Coding”, “Data Analysis 1: Exploration”, and “Data Analysis 2: Pattern Discovery and Regression Analysis”.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Economics, Data, and Policy (2 years)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAECDP2F?tab=info&year=2026",
+   "snapshot_sha256": "d663bc22425a0b88aecb099e73f0542f43cac2b697a7285cc1906febaa7e30be",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or higher), or final-year undergraduate; no economics degree required",
+     "quote": "Students must possess a BA degree (or higher) or be enrolled in the last year of your university studies.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Public Policy",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MASPPO1F?tab=info&year=2026",
+   "snapshot_sha256": "566165fb8f910f80d142d3a667272633483b148a1e5654463dd4ce1e4bda2774",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in any discipline from a recognized institution",
+     "quote": "a first degree, BA or equivalent from a recognized university or institution of higher education from any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Administration",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MPSPPO2F?tab=info&year=2026",
+   "snapshot_sha256": "080b216ed9e31374af006bacf5a74578e39485e69ab570b42f145de88eb73da0",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Arts in International Public Affairs",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAINPA2F?tab=info&year=2026",
+   "snapshot_sha256": "bf0f772a5a34b2736a4371dfce2aeea2e0dc3c940f4a3fef13a16663540be19d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MA in International Relations (1 year) - Vienna track",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAINTR1F?tab=info&year=2026",
+   "snapshot_sha256": "3e32bd559524c1aa54c2a00e6eb44d63614475f6c2bd33efc418be10e83421fc",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MA in International Relations (2 years)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAINTR2F?tab=info&year=2026",
+   "snapshot_sha256": "944fcdb47e5154a0cc9553d28e1ed3255e4f46a75003b423b2f4d8095cd81601",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "LLM in Global Business Law and Regulation",
+   "url": "https://ceu.studyguide.timeedit.net/studies/LMGBLR1F?tab=info&year=2026",
+   "snapshot_sha256": "d839c5ecd6c5c47f30ed0509bd3ad9317951cbed7b8f246930f445d1c080eccd",
+   "fields": {
+    "academic": {
+     "text": "Normally a four-year bachelor's degree; three-year degrees admitted only in exceptional cases",
+     "quote": "In exceptional cases, applicants with a three-year bachelor’s degree may be allowed admission into one-year master’s programs.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM in Global Comparative Constitutional Studies",
+   "url": "https://ceu.studyguide.timeedit.net/studies/LMCCLA1F?tab=info&year=2026",
+   "snapshot_sha256": "76e19490d7f64c44352f08203e2bed7e68c58802e45010d32d7b1f4c6a0061f7",
+   "fields": {
+    "academic": {
+     "text": "Normally a four-year bachelor's degree; three-year degrees admitted only in exceptional cases",
+     "quote": "In exceptional cases, applicants with a three-year bachelor’s degree may be allowed admission into one-year master’s programs.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM in Human Rights",
+   "url": "https://ceu.studyguide.timeedit.net/studies/LMHUMR1F?tab=info&year=2026",
+   "snapshot_sha256": "aaff341dac1fb9f511c28afe767e73e4850e752d9f96b377ae9fd109db91d523",
+   "fields": {
+    "academic": {
+     "text": "Normally a four-year bachelor's degree; three-year degrees admitted only in exceptional cases",
+     "quote": "In exceptional cases, applicants with a three-year bachelor’s degree may be allowed admission into one-year master’s programs.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Environmental Sciences and Policy",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MSENVS1F?tab=info&year=2026",
+   "snapshot_sha256": "e1610c1728be386dc04ba9aae5ee98a81f04ece9e50a042644bc2c8b4e373425",
+   "fields": {
+    "academic": {
+     "text": "First degree in any field (natural and earth sciences to economics or law); three-year degrees only in exceptional cases",
+     "quote": "Students holding a first degree from a variety of other fields (from natural and earth sciences to economics or law) are also encouraged to apply.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Politics (1 year)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAPOLS1F?tab=info&year=2026",
+   "snapshot_sha256": "77e9c7c5678c03dbfaaf46479278d0a07cc6eda867ac96529a79a7022b46efc9",
+   "fields": {
+    "academic": {
+     "text": "At least four years of university education",
+     "quote": "Candidates for the one-year MA Program must have at least four-years' university education prior to joining CEU.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Politics (2 years)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAPOLS2F?tab=info&year=2026",
+   "snapshot_sha256": "d5b2a1f0bce052ea8c22d7650dcef2c4a352f2a42bc44460dd1ce49ff524ba64",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree of at least three years (180 ECTS) in political science, another social science, economics, philosophy, public policy or public administration",
+     "quote": "have received at least three years of prior higher education and a Bachelor’s degree (worth at least 180 ECTS credits) in the field of political science or other social science disciplines, economics, philosophy, public policy, or public administration",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Sociology and Social Anthropology (1 year)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MASOCL1F?tab=info&year=2026",
+   "snapshot_sha256": "ba5184ccb8f4fa88f1802099a15692669fe36d84cbd4c8b1ddfcd97829c09eb3",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MA in Public Policy (Mundus MAPP)",
+   "url": "https://ceu.studyguide.timeedit.net/studies/MAMUPP2F?tab=info&year=2026",
+   "snapshot_sha256": "0c59a996365467f66bbdb3ca2214118596bd41035d0423cf529c6dc9bb3221cc",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 20,
+  "机器核对": 13,
+  "待人工": 7
+ }
+}
