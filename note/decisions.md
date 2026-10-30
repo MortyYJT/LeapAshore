@@ -4,9 +4,9 @@
 
 ## 2026-10-31 去掉旧项目名（第一步）
 
-- **决定**：本机 SSH 密钥改名为 `~/.ssh/leapashore_prod`（注释 `leapashore-prod`），`docs/deploy.md` 跟着改；决定记录里的旧名改写。数据库用户和库名、本机与生产的 Docker 卷名、服务器上的 `~/offerpilot` 目录还用旧名，要和生产库一起改，等做 SSH 加固时一起做。
+- **决定**：本机 SSH 密钥改名为 `~/.ssh/leapashore_prod`（注释 `leapashore-prod`），`docs/deploy.md` 跟着改；决定记录里的旧名改写。还用旧名的：数据库用户和库名（`compose.yaml`、`deploy/compose.prod.yaml`、CI、`api/app/config.py` 的默认连接串，以及 handoff、deploy.md、两个进行中 OpenSpec change 里的命令）、本机 Docker 卷名（`compose.yaml` 的两个卷）、服务器上的 `~/offerpilot` 目录。数据库名要和生产库一起改，等做 SSH 加固时一起做。
 - **谁定的**：MortyYJT（2026-10-31，不想再看到旧项目名；服务器的事晚点再说）。
-- **理由**：数据库和卷的名字是仓库和生产共用的真实标识，只改一边部署就会失败。
+- **理由**：数据库用户和库名是仓库和生产共用的真实标识，只改一边部署就会失败；本机卷名改了要搬本机数据，放在同一次做。
 
 ## 2026-10-31 文档精简，工程文档改英文，不用钩子
 
