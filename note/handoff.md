@@ -14,7 +14,8 @@
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
 - **未归档的 OpenSpec change：** hybrid-retrieval、snapshot-rag（各剩 1 项，都卡在 MortyYJT 的 `EMBED_API_KEY`）、ledger-redesign（P2 #4 进行中）。account-login、knowledge-gaps 已在 10-31 文档审计 PR 里归档（最后一项「部署」10-30 已做完）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
-- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
+- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`、`images/`（README 截图）；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
+- **README（10-31，PR 待合并）：** 全英文重写（不写中文名），每个数字链到 `docs/measurements.md` 或 PRD 对应一节；6 张截图在 `docs/images/`；`docs/deploy.md` 加了「First-time setup」。分支 `claude/readme-rewrite`，PR #82，CI 过了才能合并（只改文档，不用部署）。决定见 `note/decisions.md` 10-31「README 重写」。
 - **本机：** 库卷 `leapashore_pgdata`、Redis 卷 `leapashore_redis-data`（10-31 从旧卷复制并改名，旧卷已删），连接串 `leapashore:leapashore@localhost:55432/leapashore`。`make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
@@ -30,6 +31,7 @@
 
 ## 开放问题
 
+- 路线图时间轴的「今天」用 UTC 日期（`web/components/roadmap/Timeline.tsx` 的 `toISOString`），北京时间 0–8 点会显示前一天（10-31 凌晨截图显示「今天 10月30日」）；截止日期是否已过却按北京日期算。首页示例取 UTC 是 #80 有意为之，用户自己的路线图要不要改成北京日期没定，没改。
 - 两个手填的 `待核验` 占位项目（`api/app/seed.py`：`cricos-103000K` Monash 人工智能、`cricos-111671D` 悉尼计算机）仍算「有要求」：英语一栏是「需同时满足 Monash 英语要求」这类指引，均分 60/65 是早期手填、没过 `verify`。待 MortyYJT 决定是否删掉这些手填值（删要连 `test_seed.py` 一起改）。
 - 学术要求和截止日期入库后（PR #48），机器核对项目里只剩 4 个界面上看不到任何要求：都只有不带分数的语言说明（Emory 数学、芝加哥 2 个、USC 1 个；芝加哥的雅思只有单项 7.0、没有总分，导入器 `english_text` 只写有总分的）。只有说明文字的语言要求和中国学生要求要不要显示、怎么措辞，还没定。
 
@@ -78,7 +80,7 @@
 
 - 顾问的学科名称模式（`subjects.json` 的 `name`）在 PostgreSQL 里跑，别写 `\b`（PG 里是退格），用 `(^|[^a-z])…([^a-z]|$)`。改简称表后跑 `python -m evals.run_advisor --split tune`：它会检查每个 id 都在库里、标签和库一致。
 - `make verify` 的走查（PR #80 起）在浏览器里拦下 `/api/advisor/*` 返回桩回复，不会真的问顾问、不花模型钱；要验证顾问本身走后端测试和 `api/evals/`。本机后端也没有 `CHAT_API_KEY`。
-- 线上只读检查别打开 `/roadmap`、`/tiers`、`/portfolio`、`/me`：匿名模式下它们会读 `/api/profile`，建一个匿名主体（`/roadmap` 还会写 31 条任务）。10-31 部署后的检查打开过 `/roadmap`，那个主体已按 id 删除。
+- 线上只读检查别打开 `/roadmap`、`/tiers`、`/portfolio`、`/me`：匿名模式下它们会读 `/api/profile`，建一个匿名主体（`/roadmap` 还会写 31 条任务）。**项目详情页 `/programs/<id>` 也会**读 `/api/profile` 和 `/api/applications`（`ProgramActions` 的 `useProfile`），10-31 截 README 图时才发现；要在线上截项目页，就在浏览器里把这些请求拦掉（README 截图就是这么做的）。10-31 部署后的检查打开过 `/roadmap`，那个主体已按 id 删除。
 - 本机 :3000 的 dev server 若是很早起的旧进程，`/assess` 会 404、走查 28/30；对 `make build` 产物走查即可（见下一条）。
 
 - 登录后、退出登录后不要用 `router.push("/")`：客户端路由可能缓存了登录状态下预取的 `/`，而 proxy 对它的回答是跳 `/roadmap`。退出登录用整页跳转（`window.location.assign`）。

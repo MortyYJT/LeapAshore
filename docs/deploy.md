@@ -2,6 +2,17 @@
 
 Operations guide for the production server, moved here from `note/handoff.md` on 2026-10-31. The current production state (Alembic revision, latest backup, data counts) is in `note/handoff.md`; per-task deploy results are in [measurements.md](measurements.md). Commands run on the server in `~/leapashore/deploy` unless they say otherwise; `...` stands for `sudo docker compose -f compose.prod.yaml`.
 
+## First-time setup
+
+On a fresh server with Docker, from the repository root:
+
+```bash
+cp deploy/.env.example deploy/.env   # set POSTGRES_PASSWORD and CHAT_API_KEY; the template lists every other setting
+docker compose -f deploy/compose.prod.yaml up -d --build
+```
+
+The api container applies the Alembic migrations and runs the idempotent seeds at start-up (`api/Dockerfile`), which put the base catalogue and the roadmap in place. Then load the collected requirements with [Import collected data](#import-collected-data) and the advisor's snapshot text with [Ingest snapshots](#ingest-snapshots). Production starts in anonymous mode; see [Switch to sign-in mode](#switch-to-sign-in-mode).
+
 ## Server and routine deploy
 
 - Server: `ubuntu@43.161.224.82`; SSH with `-i ~/.ssh/leapashore_prod -o IdentitiesOnly=yes` (that key is not in ssh-agent).
