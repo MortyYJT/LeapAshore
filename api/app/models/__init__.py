@@ -28,7 +28,7 @@ from app.models.review import (
 )
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.snapshot import SnapshotChunk, SnapshotChunkEmbedding, SnapshotPage
-from app.models.source import Source, SourceStatus, SourceVersion, SourceVersionStatus
+from app.models.source import Source, SourceStatus, SourceVerification, SourceVersion, SourceVersionStatus
 from app.models.task import (
     RoadmapTask,
     ScheduleOrigin,
@@ -77,6 +77,7 @@ __all__ = [
     "SnapshotPage",
     "Source",
     "SourceStatus",
+    "SourceVerification",
     "SourceVersion",
     "SourceVersionStatus",
     "TaskEvent",

@@ -154,18 +154,10 @@ def test_a_quote_from_a_shared_page_names_that_page(db_session, require_db, clea
     assert "[china_requirement] 80% (211) or 85% (出处: https://example.test/china)" in version.body_text
 
 
-def test_new_content_on_a_reviewed_page_returns_it_to_unverified(db_session, require_db, cleanup, tmp_path):
-    from datetime import datetime, timezone
-
-    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
-    source = db_session.get(Source, source_id_for(URL))
-    source.status, source.verified_at = "已核验", datetime.now(timezone.utc)
-    db_session.commit()
-    changed = school_file()
-    changed["programs"][0]["snapshot_sha256"] = "e" * 64
-    import_school(db_session, changed, SCHOOLS, root=tmp_path)
-    source = db_session.get(Source, source_id_for(URL))
-    assert source.status == "待核验" and source.verified_at is None
+# New content on a page a person verified returns it to unverified: since the guard on `sources`
+# (openspec source-verification D4) a test can no longer stamp the date by hand, so that test lives in
+# `test_source_verification.py::test_reimporting_the_same_page_keeps_the_confirmation_and_new_content_withdraws_it`,
+# where the date comes from a real admin confirmation.
 
 
 def test_two_prerequisites_of_a_long_named_program_get_distinct_ids(db_session, require_db, tmp_path):

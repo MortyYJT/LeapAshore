@@ -393,3 +393,10 @@ tbody tr:hover { background: var(--hover); }
   .bar .login-btn { margin-left: auto; }
   .bar .login-btn + .menu-btn { margin-left: 0; }
 }
+
+/* ---------- admin verification (openspec source-verification) ---------- */
+.quote { margin: 8px 0 0; padding: 6px 12px; border-left: 2px solid var(--color-control); color: var(--color-ink); font-size: 13px; line-height: 20px; overflow-wrap: anywhere; }
+.snapshot-block { margin-top: 12px; }
+.snapshot-block > summary { cursor: pointer; list-style: none; }
+.snapshot { margin: 0; padding: 16px 24px; max-height: 480px; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; font: 400 13px/20px var(--font-sans); }
+.snapshot mark { background: var(--color-sample-bg); color: var(--color-ink); border-radius: 3px; }
