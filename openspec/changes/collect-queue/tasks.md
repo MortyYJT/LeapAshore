@@ -97,3 +97,12 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   4,722 deadlines / 2,728 programs / 119 schools (324 past), academic 6,806, `verified_at` 0; user
   tables unchanged by md5. Beat has not run `recollect_due` yet (first run 10-31 04:07 Beijing);
   `collect_pages` and `requirement_changes` are empty in production.
+- 10-30 round 2 for the 39 schools with no file (owner's instruction: Claude subagents, not the
+  DeepSeek API; DeepSeek spend for this round 0). Brief: the README's "Brief for a collecting agent",
+  at most 20 programs per school this round, Australian programs only with a CRICOS code. Skipped
+  because their host refused us within 30 days (not retried): TU Berlin, UAB, ACU, HKMU, Tung Wah.
+  Batches of three: (1) Leiden, Aalto, Basel (2) TU/e, UB, Geneva (3) TU Dresden, KSU, KAU (4) CEU,
+  Minnesota, Milan (5) Deakin, Griffith, QUT (6) Newcastle, Swinburne, CDU (7) UM, Lingnan, CityU
+  Macau (8) MPU, Macao Tourism, Kiang Wu (9) ECU, JCU, Murdoch (10) UNE, UTAS (11) Centennial,
+  Gratia, Nang Yan, UOW College HK, Macau Millennium. A successor: a school whose file exists is done
+  or partial (`complete`, `remaining_urls`).
