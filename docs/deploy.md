@@ -4,7 +4,7 @@ Operations guide for the production server, moved here from `note/handoff.md` on
 
 ## Server and routine deploy
 
-- Server: `ubuntu@43.161.224.82`; SSH with `-i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes` (that key is not in ssh-agent).
+- Server: `ubuntu@43.161.224.82`; SSH with `-i ~/.ssh/leapashore_prod -o IdentitiesOnly=yes` (that key is not in ssh-agent).
 - Secrets live in the server's `~/offerpilot/deploy/.env`, never in the repository.
 - **Back up first:** `pg_dump` the production database to `~/db-backup-<date>.sql.gz` on the server before every deploy.
 - **Sync the code:** locally `git archive origin/main`, then `rsync --delete` to the server's `~/offerpilot/`, keeping `deploy/.env`, `deploy/*.bak-*` and `api/var/`. Then on the server `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`.
