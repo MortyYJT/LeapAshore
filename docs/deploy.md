@@ -51,7 +51,7 @@ From PR #58; follow this for any future rebuild of the database. Do not switch t
 5. `... up -d db`: new image, new volume `pgdata`, initialised with `POSTGRES_INITDB_ARGS` (`C` collation). Wait for healthy.
 6. `... exec -T db pg_restore -U leapashore -d leapashore --no-owner --exit-on-error < ~/pgvector-move.dump`, run the same digest script into `~/digest-new.txt`; `diff` must show no difference. Run `amcheck` once too (create the extension, check, drop the extension).
 7. `... up -d --build`: the api's Alembic goes to `e3a9c5d17b42`. Then read-only checks.
-8. Rollback: put back the previous `compose.prod.yaml` and code (db on `postgres:16-alpine`, volume `db-data`) and `up -d --build`. The old volume was never written, so you return to the data as of step 3; writes to the new database after step 7 are lost. The new code cannot use the old volume (`CREATE EXTENSION vector` is not available in the Alpine image).
+8. Rollback (as it stood on 10-30; the `db-data` volume no longer exists, see below): put back the previous `compose.prod.yaml` and code (db on `postgres:16-alpine`, volume `db-data`) and `up -d --build`. The old volume was never written, so you return to the data as of step 3; writes to the new database after step 7 are lost. The new code cannot use the old volume (`CREATE EXTENSION vector` is not available in the Alpine image).
 
 The old volume `deploy_db-data` from this move was deleted on 2026-10-31 (it stopped at 14:44 Beijing time on 10-30); roll back with the latest backup.
 
