@@ -42,8 +42,9 @@ the number of rows the gate hands the model:
 - false-block rate (误拦率): answerable questions the gate refused / answerable questions.
 - latency: wall time of one ``gate`` call (embedding included), p50 / p99 by nearest rank.
 - rows read: rows the database returned to Python while gating one question, and statements run.
-- embedding: queries embedded, fallbacks to full text and their rate, tokens and cost per query
-  (``EMBED_PRICE_CNY_PER_MTOK``); all ``null`` for rankings that do not embed.
+- embedding: queries embedded, fallbacks to full text and their rate, tokens and cost per embedded
+  query (``EMBED_PRICE_CNY_PER_MTOK``); ``null`` when nothing was sent to the embedding service (a
+  ranking without vectors, or no key).
 
 Each of these is also reported per question type. ``--compare`` pairs two ``--details`` reports on the
 same labels question by question and counts wins, losses and ties on nDCG@K and on reciprocal rank.
@@ -68,7 +69,7 @@ from sqlalchemy import event, select
 
 from app.agent import embeddings, evidence
 from app.db import SessionLocal, engine
-from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
+from app.models.program import Program, University, has_requirement_data
 from app.models.source import Source
 
 HERE = Path(__file__).resolve().parent
@@ -164,34 +165,15 @@ def label_problems(q: dict) -> list[str]:
 
 def _usable_rows(session, schools: list[str]) -> list[tuple]:
     """The rows of these schools that carry requirement data and a citable source: the only rows the
-    gate can return, so the only ones worth a grade (same rule as ``has_requirement_data``)."""
+    gate can return, so the only ones worth a grade. The same SQL rules the gate filters by."""
     if not schools:
         return []
-    rows = session.execute(
-        select(Program.id, Program.name, Program.name_en, Program.field, Program.english_requirement,
-               Program.minimum_mark, Program.non_211_minimum_mark, Program.academic_requirement,
-               Source.url, Source.title)
+    return [tuple(r) for r in session.execute(
+        select(Program.id, Program.name_en, Program.name, Program.field)
         .join(Source, Source.id == Program.source_id)
-        .where(Program.university_id.in_(schools))
+        .where(Program.university_id.in_(schools), has_requirement_data(), evidence.citable_source())
         .order_by(Program.id)
-    ).all()
-    ids = [r.id for r in rows]
-    with_prereqs = set(session.scalars(
-        select(ProgramPrerequisite.program_id).where(ProgramPrerequisite.program_id.in_(ids))
-    ))
-    # An academic requirement or a deadline is requirement data too (openspec requirement-dates D6).
-    with_deadlines = set(session.scalars(
-        select(ProgramDeadline.program_id).where(ProgramDeadline.program_id.in_(ids))
-    ))
-    out = []
-    for r in rows:
-        has_data = (r.english_requirement or r.minimum_mark is not None
-                    or r.non_211_minimum_mark is not None or r.id in with_prereqs
-                    or r.academic_requirement is not None or r.id in with_deadlines)
-        citable = bool(r.title) and (r.url or "").startswith("https://")
-        if has_data and citable:
-            out.append((r.id, r.name_en, r.name, r.field))
-    return out
+    )]
 
 
 def resolve_grades(session, q: dict) -> dict[str, int]:
@@ -209,8 +191,9 @@ def validate_labels(session, questions: list[dict]) -> None:
     if stale:
         problems.append(f"university_aliases.json names ids the catalogue does not hold: {stale}")
     for q in questions:
-        problems.extend(label_problems(q))
-        if q["intent"] != REQUIREMENT_INTENT:
+        mine = label_problems(q)
+        problems.extend(mine)
+        if mine or q["intent"] != REQUIREMENT_INTENT:
             continue
         missing = [s for s in q["schools"] if s not in known]
         if missing:
@@ -336,8 +319,8 @@ def by_type(rows: list[dict]) -> dict[str, dict]:
 def embedding_summary(rows: list[dict], ranking: str, price_cny_per_mtok: float) -> dict:
     """How the vector half behaved: queries embedded, full-text fallbacks among questions that named a
     school (the only ones ranked), tokens and cost per embedded query. ``None`` = not applicable."""
-    embedded = [p for p in rows if p["embed_calls"]]
-    if ranking not in ("vector", "hybrid"):
+    embedded = [p for p in rows if p["embedded"]]
+    if ranking not in ("vector", "hybrid") or not any(p["embed_calls"] for p in rows):
         return {"embedded_queries": len(embedded), "fallbacks": None, "fallback_rate": None,
                 "mean_tokens_per_query": None, "cost_cny_per_query": None}
     ranked = [p for p in rows if p["has_school"]]
@@ -494,11 +477,13 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
                    for key, v in score_question(q, passed, returned, k).items()},
                 "ranking_used": used if has_school else None, "has_school": has_school,
                 "fell_back": has_school and ranking in ("vector", "hybrid") and used != ranking,
-                "embed_calls": len(mine), "embed_tokens": sum(c["tokens"] for c in mine),
+                "embed_calls": len(mine), "embedded": any(c["ok"] for c in mine),
+                "embed_tokens": sum(c["tokens"] for c in mine if c["ok"]),
                 "statements": counter.statements, "rows_read": counter.rows, "ms": round(elapsed * 1000, 1),
             })
     emb = embedding_summary(per_question, ranking, settings.embed_price_cny_per_mtok)
-    if strict and emb["fallbacks"] is not None and emb["fallbacks"] == sum(p["has_school"] for p in per_question):
+    ranked = sum(p["has_school"] for p in per_question)
+    if strict and emb["fallbacks"] is not None and ranked and emb["fallbacks"] == ranked:
         raise SystemExit(f"--retrieval {ranking}: no question embedded (every one fell back to full text); "
                          "not scoring a full-text run as a vector one")
     summary = {

@@ -164,17 +164,20 @@ def test_vector_rankings_are_refused_without_a_key(monkeypatch):
 
 
 def test_embedding_summary_is_not_applicable_without_vectors_and_counts_fallbacks_with_them():
-    plain = [{"has_school": True, "fell_back": False, "embed_tokens": 0, "embed_calls": 0}]
-    assert ra.embedding_summary(plain, "fts", price_cny_per_mtok=0.0) == {
-        "embedded_queries": 0, "fallbacks": None, "fallback_rate": None,
-        "mean_tokens_per_query": None, "cost_cny_per_query": None,
-    }
+    plain = [{"has_school": True, "fell_back": False, "embed_tokens": 0, "embed_calls": 0, "embedded": False}]
+    off = {"embedded_queries": 0, "fallbacks": None, "fallback_rate": None,
+           "mean_tokens_per_query": None, "cost_cny_per_query": None}
+    assert ra.embedding_summary(plain, "fts", price_cny_per_mtok=0.0) == off
+    # hybrid without a key never calls the service: nothing to report either (CI's tune run)
+    no_key = [{**plain[0], "fell_back": True}]
+    assert ra.embedding_summary(no_key, "hybrid", price_cny_per_mtok=0.0) == off
     vec = [
-        {"has_school": True, "fell_back": False, "embed_tokens": 10, "embed_calls": 1},
-        {"has_school": True, "fell_back": True, "embed_tokens": 0, "embed_calls": 1},
-        {"has_school": False, "fell_back": False, "embed_tokens": 6, "embed_calls": 1},
+        {"has_school": True, "fell_back": False, "embed_tokens": 10, "embed_calls": 1, "embedded": True},
+        {"has_school": True, "fell_back": True, "embed_tokens": 0, "embed_calls": 1, "embedded": False},
+        {"has_school": False, "fell_back": False, "embed_tokens": 6, "embed_calls": 1, "embedded": True},
     ]
     out = ra.embedding_summary(vec, "hybrid", price_cny_per_mtok=0.5)
+    assert out["embedded_queries"] == 2  # the failed call is a fallback, not an embedded query
     assert out["fallbacks"] == 1 and out["fallback_rate"] == 0.5
-    assert out["mean_tokens_per_query"] == pytest.approx(16 / 3)
-    assert out["cost_cny_per_query"] == pytest.approx(16 / 3 * 0.5 / 1_000_000)
+    assert out["mean_tokens_per_query"] == pytest.approx(8)
+    assert out["cost_cny_per_query"] == pytest.approx(8 * 0.5 / 1_000_000)

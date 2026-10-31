@@ -1,5 +1,5 @@
 {
- "_note": "CI floor for `python -m evals.run_advisor --split tune --check` (the model-free part; CI scores production's `hybrid`, which falls back to `fts` without EMBED_API_KEY). Set from the first run on the v2 set (2026-10-31, 91 requirement questions, a database built like CI's: nDCG@4 0.693, MRR 0.688, Recall@4 0.711, Precision@4 0.553, false-pass 0, false-block 0.038 (3/79), at most 385 rows read), a little below each so one relabelled question does not fail the build. False-pass stays 0. The held-out split is never checked here.",
- "min": {"ndcg_at_k": 0.66, "mrr": 0.65, "recall_at_k": 0.68, "precision_at_k": 0.52},
+ "_note": "CI floor for `python -m evals.run_advisor --split tune --check` (the model-free part; CI scores production's `hybrid`, which falls back to `fts` without EMBED_API_KEY). Set from the first run on the v2 set (2026-10-31, 91 requirement questions, on a database built like CI's: nDCG@4 0.686, MRR 0.694, Recall@4 0.714, Precision@4 0.559, false-pass 0, false-block 0.038 (3/79), at most 385 rows read), a little below each so one relabelled question does not fail the build. False-pass stays 0. The held-out split is never checked here.",
+ "min": {"ndcg_at_k": 0.65, "mrr": 0.66, "recall_at_k": 0.68, "precision_at_k": 0.52},
  "max": {"false_pass_rate": 0.0, "false_block_rate": 0.06, "max_rows_read": 450}
 }

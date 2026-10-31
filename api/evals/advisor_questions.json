@@ -1,5 +1,5 @@
 {
- "description": "Advisor retrieval eval set, v2 (2026-10-31). Labels were written by Claude (an AI) from the catalogue's own facts (program names, Program.field, schools), never from what any ranking returns; the owner decided there is no human review, so there was no human review. 369 questions: the 80 of v1 (t01-t50, h01-h30, `legacy`: their v1 relevant set is grade 2, no grade 1 was added, no label changed) and 289 new (n001-n289; 20% of each type drawn into `tune` with seed 20261031). Requirement questions (intent 官方要求核验) carry graded relevance per program id in `grades`: 2 = the program the question names or clearly means (for a subject or a description, every program it covers), 1 = same school and same subject but not the named one, absent = 0. Only rows with requirement data and a citable source (the rows the gate can return) are graded. `meant` (grade 2) and `related` (grade 1) are the rules the frozen grades were resolved from: `name` is a case-insensitive regex on the English and stored program names, `field` a Program.field, `ids` explicit ids, `all` every row of the named schools. The runner re-resolves them and refuses to score when they no longer give `grades`; after a deliberate catalogue change run `python -m evals.run_advisor --relabel`. `answerable` = at least one graded row, and every answerable question has a grade-2 row. `type`: exact_name (quotes the English title), zh_named (one program named in Chinese), synonym (other words than the title), vague (a description), subject (a subject, every program in it meant), multi_school, unanswerable, other_intent (not a requirement question). `tune` is for tuning; `heldout` is scored once per code version, at the end, and never tuned on.",
+ "description": "Advisor retrieval eval set, v2 (2026-10-31). Labels were written by Claude (an AI) from the catalogue's own facts (program names, Program.field, schools), never from what any ranking returns; the owner decided there is no human review, so there was no human review. 369 questions: the 80 of v1 (t01-t50, h01-h30, `legacy`: their v1 relevant set became grade 2 unchanged, and 12 that name a subject narrower than its discipline (computing, data, AI, accounting, TESOL) gained grade-1 rows) and {len(out) - 80} new (n001-n{len(out) - 80:03d}; 20% of each type drawn into `tune` with seed 20261031). Requirement questions (intent 官方要求核验) carry graded relevance per program id in `grades`: 2 = the program the question names or clearly means (for a subject or a description, every program it covers), 1 = same school and same subject but not the named one (the subject being the meant program's discipline, e.g. other computing programs for an AI question, other engineering programs of the same branch, other education programs for TESOL; empty when no such sibling exists), absent = 0. Only rows with requirement data and a citable source (the rows the gate can return) are graded. `meant` (grade 2) and `related` (grade 1) are the rules the frozen grades were resolved from: `name` is a case-insensitive regex on the English and stored program names, `field` a Program.field, `ids` explicit ids, `all` every row of the named schools. The runner re-resolves them and refuses to score when they no longer give `grades`; after a deliberate catalogue change run `python -m evals.run_advisor --relabel`. `answerable` = at least one graded row, and every answerable question has a grade-2 row. `type`: exact_name (quotes the English title), zh_named (one program named in Chinese), synonym (other words than the title), vague (a description), subject (a subject, every program in it meant), multi_school, unanswerable, other_intent (not a requirement question). `tune` is for tuning; `heldout` is scored once per code version, at the end, and never tuned on.",
  "questions": [
   {
    "id": "t01",
@@ -15,14 +15,34 @@
     "field": "计算机与数据",
     "name": "comput"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "imperial-college-london-msc-advanced-computing-307bf8": 2,
     "imperial-college-london-msc-computing-artificial-intelli-8f9151": 2,
     "imperial-college-london-msc-computing-f38aa7": 2,
     "imperial-college-london-msc-computing-security-and-relia-8f4ffe": 2,
     "imperial-college-london-msc-computing-software-engineeri-50e234": 2,
-    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2
+    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2,
+    "imperial-college-london-mres-artificial-intelligence-and-5ec342": 1,
+    "imperial-college-london-mres-bioinformatics-and-theoreti-8bc25c": 1,
+    "imperial-college-london-mres-biomedical-research-data-sc-c9d825": 1,
+    "imperial-college-london-mres-cancer-biology-cancer-infor-919bc3": 1,
+    "imperial-college-london-mres-machine-learning-and-big-da-507317": 1,
+    "imperial-college-london-msc-advanced-structural-engineer-38ac9b": 1,
+    "imperial-college-london-msc-applied-machine-learning-d10666": 1,
+    "imperial-college-london-msc-artificial-intelligence-9f81b7": 1,
+    "imperial-college-london-msc-artificial-intelligence-appl-d9f942": 1,
+    "imperial-college-london-msc-environmental-data-science-a-e29d55": 1,
+    "imperial-college-london-msc-environmental-engineering-wi-878f46": 1,
+    "imperial-college-london-msc-geo-energy-with-machine-lear-3d5456": 1,
+    "imperial-college-london-msc-health-data-analytics-and-ma-022ff8": 1,
+    "imperial-college-london-msc-machine-learning-and-data-sc-55022f": 1,
+    "imperial-college-london-msc-machine-learning-and-process-a059a6": 1,
+    "imperial-college-london-msc-renewable-energy-with-ai-and-9c4c4d": 1,
+    "imperial-college-london-msc-statistics-data-science-and-40f4ef": 1,
+    "imperial-college-london-msc-transport-with-data-science-a6eeca": 1
    },
    "legacy": true,
    "note": "简称：库里存「帝国理工学院」"
@@ -41,14 +61,34 @@
     "field": "计算机与数据",
     "name": "comput"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "imperial-college-london-msc-advanced-computing-307bf8": 2,
     "imperial-college-london-msc-computing-artificial-intelli-8f9151": 2,
     "imperial-college-london-msc-computing-f38aa7": 2,
     "imperial-college-london-msc-computing-security-and-relia-8f4ffe": 2,
     "imperial-college-london-msc-computing-software-engineeri-50e234": 2,
-    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2
+    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2,
+    "imperial-college-london-mres-artificial-intelligence-and-5ec342": 1,
+    "imperial-college-london-mres-bioinformatics-and-theoreti-8bc25c": 1,
+    "imperial-college-london-mres-biomedical-research-data-sc-c9d825": 1,
+    "imperial-college-london-mres-cancer-biology-cancer-infor-919bc3": 1,
+    "imperial-college-london-mres-machine-learning-and-big-da-507317": 1,
+    "imperial-college-london-msc-advanced-structural-engineer-38ac9b": 1,
+    "imperial-college-london-msc-applied-machine-learning-d10666": 1,
+    "imperial-college-london-msc-artificial-intelligence-9f81b7": 1,
+    "imperial-college-london-msc-artificial-intelligence-appl-d9f942": 1,
+    "imperial-college-london-msc-environmental-data-science-a-e29d55": 1,
+    "imperial-college-london-msc-environmental-engineering-wi-878f46": 1,
+    "imperial-college-london-msc-geo-energy-with-machine-lear-3d5456": 1,
+    "imperial-college-london-msc-health-data-analytics-and-ma-022ff8": 1,
+    "imperial-college-london-msc-machine-learning-and-data-sc-55022f": 1,
+    "imperial-college-london-msc-machine-learning-and-process-a059a6": 1,
+    "imperial-college-london-msc-renewable-energy-with-ai-and-9c4c4d": 1,
+    "imperial-college-london-msc-statistics-data-science-and-40f4ef": 1,
+    "imperial-college-london-msc-transport-with-data-science-a6eeca": 1
    },
    "legacy": true,
    "note": "原问题：曾返回 AI、分子医学"
@@ -67,11 +107,18 @@
     "field": "计算机与数据",
     "name": "computer science"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "university-of-hong-kong-master-of-science-in-computer-sc-760391": 2,
     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c": 2,
-    "university-of-hong-kong-master-of-science-in-computer-sc-d36e99": 2
+    "university-of-hong-kong-master-of-science-in-computer-sc-d36e99": 2,
+    "university-of-hong-kong-master-of-artificial-intelligenc-260a4c": 1,
+    "university-of-hong-kong-master-of-arts-in-creative-artif-4b13cf": 1,
+    "university-of-hong-kong-master-of-data-science-e60565": 1,
+    "university-of-hong-kong-master-of-science-in-artificial-f90ddc": 1,
+    "university-of-hong-kong-master-of-science-in-electronic-f1e4c3": 1
    },
    "legacy": true,
    "note": "简体问，库里存「香港大學」"
@@ -151,11 +198,18 @@
     "field": "计算机与数据",
     "name": "data"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "chinese-university-of-ho-msc-in-advanced-studies-in-stati-4b75b7": 2,
     "chinese-university-of-ho-msc-in-data-science-and-business-eedf23": 2,
-    "chinese-university-of-ho-msc-in-risk-management-science-a-e72028": 2
+    "chinese-university-of-ho-msc-in-risk-management-science-a-e72028": 2,
+    "chinese-university-of-ho-master-of-science-in-digital-eco-7b65d8": 1,
+    "chinese-university-of-ho-msc-in-artificial-intelligence-278eff": 1,
+    "chinese-university-of-ho-msc-in-artificial-intelligence-a-b05c87": 1,
+    "chinese-university-of-ho-msc-in-artificial-intelligence-f-f0130d": 1,
+    "chinese-university-of-ho-msc-in-computer-science-402b13": 1
    },
    "legacy": true,
    "note": "简称"
@@ -205,11 +259,17 @@
     "field": "商科与金融",
     "name": "account"
    },
-   "related": null,
+   "related": {
+    "name": "financ",
+    "field": "商科与金融"
+   },
    "grades": {
     "hong-kong-polytechnic-un-master-of-postgraduate-diploma-i-854af4": 2,
     "hong-kong-polytechnic-un-master-of-science-in-accountancy-b6d305": 2,
-    "hong-kong-polytechnic-un-master-of-science-in-accounting-8549a2": 2
+    "hong-kong-polytechnic-un-master-of-science-in-accounting-8549a2": 2,
+    "hong-kong-polytechnic-un-master-of-finance-corporate-fina-77cae8": 1,
+    "hong-kong-polytechnic-un-master-of-finance-investment-man-fea4e9": 1,
+    "hong-kong-polytechnic-un-master-of-science-in-quantitativ-673d4f": 1
    },
    "legacy": true
   },
@@ -247,14 +307,34 @@
     "field": "计算机与数据",
     "name": "comput"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "imperial-college-london-msc-advanced-computing-307bf8": 2,
     "imperial-college-london-msc-computing-artificial-intelli-8f9151": 2,
     "imperial-college-london-msc-computing-f38aa7": 2,
     "imperial-college-london-msc-computing-security-and-relia-8f4ffe": 2,
     "imperial-college-london-msc-computing-software-engineeri-50e234": 2,
-    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2
+    "imperial-college-london-msc-computing-visual-computing-a-f49c0c": 2,
+    "imperial-college-london-mres-artificial-intelligence-and-5ec342": 1,
+    "imperial-college-london-mres-bioinformatics-and-theoreti-8bc25c": 1,
+    "imperial-college-london-mres-biomedical-research-data-sc-c9d825": 1,
+    "imperial-college-london-mres-cancer-biology-cancer-infor-919bc3": 1,
+    "imperial-college-london-mres-machine-learning-and-big-da-507317": 1,
+    "imperial-college-london-msc-advanced-structural-engineer-38ac9b": 1,
+    "imperial-college-london-msc-applied-machine-learning-d10666": 1,
+    "imperial-college-london-msc-artificial-intelligence-9f81b7": 1,
+    "imperial-college-london-msc-artificial-intelligence-appl-d9f942": 1,
+    "imperial-college-london-msc-environmental-data-science-a-e29d55": 1,
+    "imperial-college-london-msc-environmental-engineering-wi-878f46": 1,
+    "imperial-college-london-msc-geo-energy-with-machine-lear-3d5456": 1,
+    "imperial-college-london-msc-health-data-analytics-and-ma-022ff8": 1,
+    "imperial-college-london-msc-machine-learning-and-data-sc-55022f": 1,
+    "imperial-college-london-msc-machine-learning-and-process-a059a6": 1,
+    "imperial-college-london-msc-renewable-energy-with-ai-and-9c4c4d": 1,
+    "imperial-college-london-msc-statistics-data-science-and-40f4ef": 1,
+    "imperial-college-london-msc-transport-with-data-science-a6eeca": 1
    },
    "legacy": true,
    "note": "英文问"
@@ -273,9 +353,25 @@
     "field": "计算机与数据",
     "name": "computer science"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
-    "ucl-computer-science-msc-9d29ee": 2
+    "ucl-computer-science-msc-9d29ee": 2,
+    "ucl-artificial-intelligence-and-data-ae8595": 1,
+    "ucl-computational-statistics-and-mac-ee8de2": 1,
+    "ucl-computer-graphics-vision-and-ima-ba7085": 1,
+    "ucl-data-science-and-machine-learnin-edd835": 1,
+    "ucl-data-science-msc-e672f2": 1,
+    "ucl-finance-with-data-science-msc-bfa244": 1,
+    "ucl-health-data-science-msc-68bfe3": 1,
+    "ucl-human-computer-interaction-msc-f4470c": 1,
+    "ucl-machine-learning-msc-54083d": 1,
+    "ucl-robotics-and-artificial-intellig-13fe04": 1,
+    "ucl-scientific-and-data-intensive-co-824071": 1,
+    "ucl-software-systems-engineering-msc-c4afca": 1,
+    "ucl-spatio-temporal-analytics-and-bi-3ecac4": 1,
+    "ucl-systems-engineering-for-the-inte-8f0372": 1
    },
    "legacy": true,
    "note": "英文缩写"
@@ -514,11 +610,24 @@
     "field": "计算机与数据",
     "name": "artificial intelligence"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "university-of-edinburgh-artificial-intelligence-msc-775ffc": 2,
     "university-of-edinburgh-data-and-artificial-intelligence-2d0fed": 2,
-    "university-of-edinburgh-statistics-with-artificial-intel-80507f": 2
+    "university-of-edinburgh-statistics-with-artificial-intel-80507f": 2,
+    "university-of-edinburgh-bioinformatics-msc-88723b": 1,
+    "university-of-edinburgh-computer-science-msc-b52f8b": 1,
+    "university-of-edinburgh-cyber-security-privacy-and-trust-376985": 1,
+    "university-of-edinburgh-data-inequality-and-society-msc-c9c80d": 1,
+    "university-of-edinburgh-data-science-for-biology-msc-c7cbaf": 1,
+    "university-of-edinburgh-data-science-msc-722777": 1,
+    "university-of-edinburgh-design-informatics-msc-67ff5b": 1,
+    "university-of-edinburgh-high-performance-computing-msc-p-785b1c": 1,
+    "university-of-edinburgh-high-performance-computing-with-0d1554": 1,
+    "university-of-edinburgh-operational-research-with-data-s-61a66d": 1,
+    "university-of-edinburgh-statistics-with-data-science-msc-05fb57": 1
    },
    "legacy": true
   },
@@ -536,10 +645,15 @@
     "field": "计算机与数据",
     "name": "computer science"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "eth-zurich-master-of-science-eth-in-compute-dc8a9f": 2,
-    "eth-zurich-master-of-science-eth-zurich-epf-f3e6a0": 2
+    "eth-zurich-master-of-science-eth-zurich-epf-f3e6a0": 2,
+    "eth-zurich-master-of-science-eth-in-computa-e037e3": 1,
+    "eth-zurich-master-of-science-eth-in-data-sc-c20352": 1,
+    "eth-zurich-master-of-science-eth-in-electri-aabdfc": 1
    },
    "legacy": true,
    "note": "简称：库里存「苏黎世联邦理工学院」"
@@ -966,10 +1080,17 @@
     "field": "计算机与数据",
     "name": "data"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "hong-kong-university-of-master-of-science-program-in-big-c5b76c": 2,
-    "hong-kong-university-of-master-of-science-program-in-dat-f3656e": 2
+    "hong-kong-university-of-master-of-science-program-in-dat-f3656e": 2,
+    "hong-kong-university-of-master-of-science-program-in-art-d508f8": 1,
+    "hong-kong-university-of-master-of-science-program-in-bio-254b46": 1,
+    "hong-kong-university-of-master-of-science-program-in-inf-529f49": 1,
+    "hong-kong-university-of-master-of-science-program-in-inf-6328b1": 1,
+    "hong-kong-university-of-master-of-science-program-in-inf-af13b7": 1
    },
    "legacy": true,
    "note": "繁体问"
@@ -1244,9 +1365,32 @@
    "meant": {
     "name": "tesol"
    },
-   "related": null,
+   "related": {
+    "name": "Educat|Teaching|Applied Linguistics"
+   },
    "grades": {
-    "columbia-university-tesol-ma-teachers-college-574130": 2
+    "columbia-university-tesol-ma-teachers-college-574130": 2,
+    "columbia-university-anthropology-and-education-ma-te-ec30a3": 1,
+    "columbia-university-applied-linguistics-ma-teachers-e2263b": 1,
+    "columbia-university-art-and-art-education-ma-teacher-e05cd9": 1,
+    "columbia-university-cognitive-science-in-education-m-a2d192": 1,
+    "columbia-university-curriculum-and-teaching-ma-teach-3c849d": 1,
+    "columbia-university-economics-and-education-ma-teach-38376c": 1,
+    "columbia-university-education-of-teachers-in-science-e61d1a": 1,
+    "columbia-university-education-policy-ma-teachers-col-2d2864": 1,
+    "columbia-university-higher-and-postsecondary-educati-cb238c": 1,
+    "columbia-university-history-and-education-ma-teacher-f3e5c3": 1,
+    "columbia-university-international-comparative-educat-3642a1": 1,
+    "columbia-university-mathematics-education-ma-teacher-c20ea6": 1,
+    "columbia-university-music-and-music-education-ma-tea-50d8af": 1,
+    "columbia-university-neuroscience-and-education-ms-te-b494df": 1,
+    "columbia-university-nutrition-education-ms-teachers-d709a1": 1,
+    "columbia-university-philosophy-and-education-ma-teac-4674b0": 1,
+    "columbia-university-politics-and-education-ma-teache-d78f62": 1,
+    "columbia-university-psychology-in-education-general-00fa28": 1,
+    "columbia-university-sociology-and-education-ma-teach-a0cd13": 1,
+    "columbia-university-teaching-of-english-ma-teachers-c53d61": 1,
+    "columbia-university-teaching-of-social-studies-ma-te-795e7d": 1
    },
    "legacy": true,
    "note": "简称"
@@ -1317,11 +1461,18 @@
     "field": "计算机与数据",
     "name": "computer science"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
     "university-of-hong-kong-master-of-science-in-computer-sc-760391": 2,
     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c": 2,
-    "university-of-hong-kong-master-of-science-in-computer-sc-d36e99": 2
+    "university-of-hong-kong-master-of-science-in-computer-sc-d36e99": 2,
+    "university-of-hong-kong-master-of-artificial-intelligenc-260a4c": 1,
+    "university-of-hong-kong-master-of-arts-in-creative-artif-4b13cf": 1,
+    "university-of-hong-kong-master-of-data-science-e60565": 1,
+    "university-of-hong-kong-master-of-science-in-artificial-f90ddc": 1,
+    "university-of-hong-kong-master-of-science-in-electronic-f1e4c3": 1
    },
    "legacy": true,
    "note": "英文全称"
@@ -1608,13 +1759,19 @@
    "meant": {
     "name": "statistic"
    },
-   "related": null,
+   "related": {
+    "name": "Mathematic"
+   },
    "grades": {
     "imperial-college-london-msc-statistics-8f402d": 2,
     "imperial-college-london-msc-statistics-applied-statistic-77a88d": 2,
     "imperial-college-london-msc-statistics-data-science-and-40f4ef": 2,
     "imperial-college-london-msc-statistics-statistical-finan-501a3b": 2,
-    "imperial-college-london-msc-statistics-theory-and-method-b6e2db": 2
+    "imperial-college-london-msc-statistics-theory-and-method-b6e2db": 2,
+    "imperial-college-london-msc-applied-mathematics-75b192": 1,
+    "imperial-college-london-msc-mathematics-and-finance-63dfd8": 1,
+    "imperial-college-london-msc-pure-mathematics-f24c76": 1,
+    "imperial-college-london-msc-pure-mathematics-formalisati-8df643": 1
    }
   },
   {
@@ -1659,9 +1816,17 @@
    "meant": {
     "name": "Human-Computer Interaction"
    },
-   "related": null,
+   "related": {
+    "name": "Comput|Software",
+    "field": "计算机与数据"
+   },
    "grades": {
-    "ucl-human-computer-interaction-msc-f4470c": 2
+    "ucl-human-computer-interaction-msc-f4470c": 2,
+    "ucl-computational-statistics-and-mac-ee8de2": 1,
+    "ucl-computer-graphics-vision-and-ima-ba7085": 1,
+    "ucl-computer-science-msc-9d29ee": 1,
+    "ucl-scientific-and-data-intensive-co-824071": 1,
+    "ucl-software-systems-engineering-msc-c4afca": 1
    }
   },
   {
@@ -1913,9 +2078,14 @@
    "meant": {
     "name": "Behavioural Science"
    },
-   "related": null,
+   "related": {
+    "name": "^MSc Economics|Econometrics"
+   },
    "grades": {
-    "london-school-of-economi-msc-behavioural-science-0e0f83": 2
+    "london-school-of-economi-msc-behavioural-science-0e0f83": 2,
+    "london-school-of-economi-msc-econometrics-and-mathematica-e1d31c": 1,
+    "london-school-of-economi-msc-economics-3ea5da": 1,
+    "london-school-of-economi-msc-economics-two-year-programme-42df3a": 1
    },
    "note": "行为经济学 ≈ Behavioural Science（库里没有以行为经济学命名的项目）"
   },
@@ -1979,15 +2149,17 @@
    ],
    "answerable": true,
    "meant": {
+    "name": "^Operational Research MSc"
+   },
+   "related": {
     "name": "Operational Research"
    },
-   "related": null,
    "grades": {
     "university-of-edinburgh-operational-research-msc-e2bc40": 2,
-    "university-of-edinburgh-operational-research-with-comput-9b7daf": 2,
-    "university-of-edinburgh-operational-research-with-data-s-61a66d": 2,
-    "university-of-edinburgh-operational-research-with-risk-m-c9a43e": 2,
-    "university-of-edinburgh-statistics-and-operational-resea-6bac1d": 2
+    "university-of-edinburgh-operational-research-with-comput-9b7daf": 1,
+    "university-of-edinburgh-operational-research-with-data-s-61a66d": 1,
+    "university-of-edinburgh-operational-research-with-risk-m-c9a43e": 1,
+    "university-of-edinburgh-statistics-and-operational-resea-6bac1d": 1
    }
   },
   {
@@ -2048,10 +2220,12 @@
     "name": "TESOL"
    },
    "related": {
-    "name": "Language Education"
+    "name": "Education"
    },
    "grades": {
     "university-of-edinburgh-teaching-english-to-speakers-of-71bedb": 2,
+    "university-of-edinburgh-comparative-education-and-intern-7c75f7": 1,
+    "university-of-edinburgh-education-msc-5a33ad": 1,
     "university-of-edinburgh-language-education-msc-b105e0": 1
    }
   },
@@ -2143,9 +2317,12 @@
    "meant": {
     "name": "Robotics"
    },
-   "related": null,
+   "related": {
+    "name": "Control"
+   },
    "grades": {
-    "university-of-manchester-robotics-msc-23418d": 2
+    "university-of-manchester-robotics-msc-23418d": 2,
+    "university-of-manchester-advanced-control-and-systems-eng-82471f": 1
    }
   },
   {
@@ -2312,9 +2489,12 @@
    "meant": {
     "name": "Automotive"
    },
-   "related": null,
+   "related": {
+    "name": "Mechanical"
+   },
    "grades": {
-    "university-of-leeds-automotive-engineering-msc-eng-a898a1": 2
+    "university-of-leeds-automotive-engineering-msc-eng-a898a1": 2,
+    "university-of-leeds-advanced-mechanical-engineering-bfa6af": 1
    },
    "note": "汽车 = automotive"
   },
@@ -2331,11 +2511,17 @@
    "meant": {
     "name": "TESOL|Teaching English|English Language Teaching"
    },
-   "related": null,
+   "related": {
+    "name": "Education",
+    "field": "教育与社会科学"
+   },
    "grades": {
     "university-of-leeds-linguistics-for-english-language-bc0000": 2,
     "university-of-leeds-teaching-english-to-speakers-of-f841c4": 2,
-    "university-of-leeds-tesol-studies-ma-5b29a6": 2
+    "university-of-leeds-tesol-studies-ma-5b29a6": 2,
+    "university-of-leeds-education-ma-2c0933": 1,
+    "university-of-leeds-global-development-and-education-86ad6d": 1,
+    "university-of-leeds-inclusive-and-special-education-ff9334": 1
    }
   },
   {
@@ -2551,10 +2737,12 @@
     "name": "TESOL"
    },
    "related": {
-    "name": "Educational Studies"
+    "name": "Educat"
    },
    "grades": {
     "university-of-glasgow-tesol-teaching-of-english-to-spe-0881a3": 2,
+    "university-of-glasgow-ai-in-education-msc-b87218": 1,
+    "university-of-glasgow-education-public-policy-equity-m-4059d5": 1,
     "university-of-glasgow-educational-studies-med-67b1b8": 1,
     "university-of-glasgow-educational-studies-msc-24072c": 1
    },
@@ -2691,12 +2879,15 @@
    "meant": {
     "name": "Public Administration|Public Management"
    },
-   "related": null,
+   "related": {
+    "name": "Policy"
+   },
    "grades": {
     "university-of-birmingham-masters-in-public-administration-4f4713": 2,
     "university-of-birmingham-masters-in-public-administration-c35bae": 2,
     "university-of-birmingham-masters-of-public-administration-e59696": 2,
-    "university-of-birmingham-public-management-msc-b98e9b": 2
+    "university-of-birmingham-public-management-msc-b98e9b": 2,
+    "university-of-birmingham-development-policy-and-politics-b13019": 1
    }
   },
   {
@@ -2712,7 +2903,10 @@
    "meant": {
     "name": "Artificial Intelligence|\\bAI\\b"
    },
-   "related": null,
+   "related": {
+    "name": "Comput|Data Science",
+    "field": "计算机与数据"
+   },
    "grades": {
     "university-of-birmingham-advanced-engineering-management-88ec23": 2,
     "university-of-birmingham-advanced-engineering-management-99636f": 2,
@@ -2723,7 +2917,13 @@
     "university-of-birmingham-artificial-intelligence-ai-and-m-f5966d": 2,
     "university-of-birmingham-artificial-intelligence-ai-msc-508e32": 2,
     "university-of-birmingham-economics-ai-and-data-science-ms-2a0f90": 2,
-    "university-of-birmingham-engineering-and-ai-msc-a63c29": 2
+    "university-of-birmingham-engineering-and-ai-msc-a63c29": 2,
+    "university-of-birmingham-advanced-computer-science-msc-43e998": 1,
+    "university-of-birmingham-computer-science-msc-05575f": 1,
+    "university-of-birmingham-data-science-msc-bdbae9": 1,
+    "university-of-birmingham-financial-data-science-msc-35dc9e": 1,
+    "university-of-birmingham-human-computer-interaction-msc-08a0db": 1,
+    "university-of-birmingham-statistical-data-science-msc-629b6c": 1
    }
   },
   {
@@ -2757,9 +2957,13 @@
    "meant": {
     "name": "Food Process Engineering"
    },
-   "related": null,
+   "related": {
+    "name": "Chemical Engineering|Process Engineering"
+   },
    "grades": {
-    "university-of-nottingham-food-process-engineering-msc-04b4f6": 2
+    "university-of-nottingham-food-process-engineering-msc-04b4f6": 2,
+    "university-of-nottingham-advanced-chemical-engineering-ms-c7e77f": 1,
+    "university-of-nottingham-environmental-process-engineerin-fd0f37": 1
    }
   },
   {
@@ -2816,12 +3020,14 @@
     "name": "TESOL"
    },
    "related": {
-    "name": "Applied Linguistics"
+    "name": "Applied Linguistics|Educat"
    },
    "grades": {
     "university-of-nottingham-teaching-english-to-speakers-of-d15179": 2,
     "university-of-nottingham-applied-linguistics-and-english-cc93c8": 1,
-    "university-of-nottingham-applied-linguistics-ma-a299ae": 1
+    "university-of-nottingham-applied-linguistics-ma-a299ae": 1,
+    "university-of-nottingham-education-msc-a70702": 1,
+    "university-of-nottingham-education-online-msc-6617a4": 1
    }
   },
   {
@@ -2858,9 +3064,13 @@
    "meant": {
     "name": "Actuarial"
    },
-   "related": null,
+   "related": {
+    "name": "Risk and Finance|Risk Management"
+   },
    "grades": {
-    "university-of-southampto-actuarial-science-msc-eee492": 2
+    "university-of-southampto-actuarial-science-msc-eee492": 2,
+    "university-of-southampto-risk-and-finance-msc-e78847": 1,
+    "university-of-southampto-risk-management-msc-b1e800": 1
    }
   },
   {
@@ -2876,9 +3086,13 @@
    "meant": {
     "name": "Space Systems"
    },
-   "related": null,
+   "related": {
+    "name": "Aerodynamic"
+   },
    "grades": {
-    "university-of-southampto-space-systems-engineering-msc-db2155": 2
+    "university-of-southampto-space-systems-engineering-msc-db2155": 2,
+    "university-of-southampto-aerodynamics-and-computation-msc-320ec1": 1,
+    "university-of-southampto-race-car-aerodynamics-msc-1f4aed": 1
    },
    "note": "航天器 = space systems"
   },
@@ -2934,9 +3148,13 @@
    "meant": {
     "name": "Sound and Music Computing"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Science"
+   },
    "grades": {
-    "queen-mary-university-of-sound-and-music-computing-msc-7c8f04": 2
+    "queen-mary-university-of-sound-and-music-computing-msc-7c8f04": 2,
+    "queen-mary-university-of-advanced-computer-science-msc-47e19e": 1,
+    "queen-mary-university-of-computer-science-conversion-msc-66887b": 1
    }
   },
   {
@@ -3261,15 +3479,19 @@
    ],
    "answerable": true,
    "meant": {
-    "name": "Environmental|Sustainab|Climate"
+    "name": "Environmental|Sustainability Engineering|Climate|Conservation"
    },
-   "related": null,
+   "related": {
+    "name": "Sustainable Accounting|Energy Engineering"
+   },
    "grades": {
     "university-of-hong-kong-master-of-climate-governance-and-67f820": 2,
     "university-of-hong-kong-master-of-science-in-engineering-578f04": 2,
     "university-of-hong-kong-master-of-science-in-engineering-d8f6dc": 2,
     "university-of-hong-kong-master-of-science-in-environment-a08516": 2,
-    "university-of-hong-kong-master-of-sustainable-accounting-c803b3": 2
+    "university-of-hong-kong-master-of-science-in-integrative-30036c": 2,
+    "university-of-hong-kong-master-of-science-in-engineering-14462f": 1,
+    "university-of-hong-kong-master-of-sustainable-accounting-c803b3": 1
    }
   },
   {
@@ -3303,9 +3525,12 @@
    "meant": {
     "name": "Actuarial"
    },
-   "related": null,
+   "related": {
+    "name": "Risk Management"
+   },
    "grades": {
-    "chinese-university-of-ho-msc-in-actuarial-science-and-ins-01d407": 2
+    "chinese-university-of-ho-msc-in-actuarial-science-and-ins-01d407": 2,
+    "chinese-university-of-ho-msc-in-risk-management-science-a-e72028": 1
    }
   },
   {
@@ -3391,12 +3616,17 @@
    "meant": {
     "name": "Artificial Intelligence"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Science|Data Science"
+   },
    "grades": {
     "chinese-university-of-ho-master-of-science-in-digital-eco-7b65d8": 2,
     "chinese-university-of-ho-msc-in-artificial-intelligence-278eff": 2,
     "chinese-university-of-ho-msc-in-artificial-intelligence-a-b05c87": 2,
-    "chinese-university-of-ho-msc-in-artificial-intelligence-f-f0130d": 2
+    "chinese-university-of-ho-msc-in-artificial-intelligence-f-f0130d": 2,
+    "chinese-university-of-ho-msc-in-advanced-studies-in-stati-4b75b7": 1,
+    "chinese-university-of-ho-msc-in-computer-science-402b13": 1,
+    "chinese-university-of-ho-msc-in-data-science-and-business-eedf23": 1
    }
   },
   {
@@ -3460,9 +3690,12 @@
    "meant": {
     "name": "Aeronautical"
    },
-   "related": null,
+   "related": {
+    "name": "Mechanical"
+   },
    "grades": {
-    "hong-kong-university-of-master-of-science-program-in-aer-7e3da6": 2
+    "hong-kong-university-of-master-of-science-program-in-aer-7e3da6": 2,
+    "hong-kong-university-of-master-of-science-program-in-mec-5f5f08": 1
    },
    "note": "飞机 = aeronautical"
   },
@@ -3784,9 +4017,17 @@
    "meant": {
     "name": "Robotics Education"
    },
-   "related": null,
+   "related": {
+    "name": "Educat"
+   },
    "grades": {
-    "the-education-university-master-of-arts-in-science-and-ro-809334": 2
+    "the-education-university-master-of-arts-in-science-and-ro-809334": 2,
+    "the-education-university-master-of-arts-in-chinese-values-5c28e9": 1,
+    "the-education-university-master-of-arts-in-comparative-ed-50f6f6": 1,
+    "the-education-university-master-of-arts-in-higher-educati-bc082b": 1,
+    "the-education-university-master-of-arts-in-mindfulness-an-77b98a": 1,
+    "the-education-university-master-of-education-med-ff4927": 1,
+    "the-education-university-master-of-science-in-educational-3d319c": 1
    }
   },
   {
@@ -3990,9 +4231,12 @@
    "meant": {
     "name": "Publishing"
    },
-   "related": null,
+   "related": {
+    "name": "Writing"
+   },
    "grades": {
-    "cricos-079643A": 2
+    "cricos-079643A": 2,
+    "cricos-082900G": 1
    }
   },
   {
@@ -4265,9 +4509,15 @@
    "meant": {
     "name": "Data Science"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
-    "cricos-092454G": 2
+    "cricos-092454G": 2,
+    "cricos-0100693": 1,
+    "cricos-073269M": 1,
+    "cricos-073272E": 1,
+    "cricos-080723B": 1
    }
   },
   {
@@ -4303,14 +4553,14 @@
    ],
    "answerable": true,
    "meant": {
-    "name": "Diplomacy"
+    "name": "^Master of Diplomacy"
    },
    "related": {
-    "name": "International Relations|International Law and Diplomacy"
+    "name": "Diplomacy|International Relations"
    },
    "grades": {
-    "cricos-0101475": 2,
     "cricos-111566E": 2,
+    "cricos-0101475": 1,
     "cricos-082309M": 1
    }
   },
@@ -4327,9 +4577,12 @@
    "meant": {
     "name": "Machine Learning and Computer Vision"
    },
-   "related": null,
+   "related": {
+    "name": "Master of Computing"
+   },
    "grades": {
-    "cricos-099247C": 2
+    "cricos-099247C": 2,
+    "cricos-078940M": 1
    },
    "note": "AI 视觉 ≈ machine learning and computer vision"
   },
@@ -4913,9 +5166,13 @@
    "meant": {
     "name": "Positive Psychology"
    },
-   "related": null,
+   "related": {
+    "name": "Behavioral and Decision Sciences|Counseling"
+   },
    "grades": {
-    "university-of-pennsylvan-master-of-applied-positive-psych-308a47": 2
+    "university-of-pennsylvan-master-of-applied-positive-psych-308a47": 2,
+    "university-of-pennsylvan-master-of-behavioral-and-decisio-874d60": 1,
+    "university-of-pennsylvan-school-and-mental-health-counsel-1e1899": 1
    }
   },
   {
@@ -5096,7 +5353,9 @@
    "meant": {
     "name": "Electrical and Computer Engineering"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Engineering"
+   },
    "grades": {
     "university-of-southern-c-master-of-science-in-electrical-02c30b": 2,
     "university-of-southern-c-master-of-science-in-electrical-315999": 2,
@@ -5105,7 +5364,8 @@
     "university-of-southern-c-master-of-science-in-electrical-6e79b5": 2,
     "university-of-southern-c-master-of-science-in-electrical-71ed32": 2,
     "university-of-southern-c-master-of-science-in-electrical-85db30": 2,
-    "university-of-southern-c-master-of-science-in-electrical-d00e56": 2
+    "university-of-southern-c-master-of-science-in-electrical-d00e56": 2,
+    "university-of-southern-c-master-of-science-in-computer-en-390656": 1
    }
   },
   {
@@ -5139,9 +5399,14 @@
    "meant": {
     "name": "Human-Computer Interaction"
    },
-   "related": null,
+   "related": {
+    "name": "Computer|Software|Computational Data"
+   },
    "grades": {
-    "carnegie-mellon-universi-master-of-human-computer-interac-026bb8": 2
+    "carnegie-mellon-universi-master-of-human-computer-interac-026bb8": 2,
+    "carnegie-mellon-universi-master-of-computational-data-sci-d9f649": 1,
+    "carnegie-mellon-universi-master-of-science-in-computer-vi-b68a4b": 1,
+    "carnegie-mellon-universi-master-of-science-in-software-en-46f810": 1
    }
   },
   {
@@ -5157,9 +5422,13 @@
    "meant": {
     "name": "Language Technologies"
    },
-   "related": null,
+   "related": {
+    "name": "Intelligent Information Systems|Machine Learning"
+   },
    "grades": {
-    "carnegie-mellon-universi-master-of-science-in-language-te-898eac": 2
+    "carnegie-mellon-universi-master-of-science-in-language-te-898eac": 2,
+    "carnegie-mellon-universi-master-of-science-in-intelligent-91c7ec": 1,
+    "carnegie-mellon-universi-master-of-science-in-machine-lea-f750f8": 1
    },
    "note": "NLP ≈ Language Technologies (MLT)"
   },
@@ -5576,9 +5845,13 @@
    "meant": {
     "name": "Statistics"
    },
-   "related": null,
+   "related": {
+    "name": "Data Science"
+   },
    "grades": {
-    "university-of-british-co-master-of-science-in-statistics-441c8b": 2
+    "university-of-british-co-master-of-science-in-statistics-441c8b": 2,
+    "university-of-british-co-master-of-data-science-in-comput-8e7dca": 1,
+    "university-of-british-co-master-of-data-science-mds-vanco-8b2aff": 1
    }
   },
   {
@@ -5861,9 +6134,13 @@
    "meant": {
     "name": "Brewing"
    },
-   "related": null,
+   "related": {
+    "name": "Food Technology|Food Chemistry"
+   },
    "grades": {
-    "technical-university-of-brewing-and-beverage-technology-653655": 2
+    "technical-university-of-brewing-and-beverage-technology-653655": 2,
+    "technical-university-of-food-chemistry-m-sc-e2d187": 1,
+    "technical-university-of-food-technology-m-sc-39a64d": 1
    }
   },
   {
@@ -5906,9 +6183,13 @@
    "meant": {
     "name": "Automotive"
    },
-   "related": null,
+   "related": {
+    "name": "Mechanical"
+   },
    "grades": {
-    "technical-university-of-automotive-engineering-m-sc-324cf4": 2
+    "technical-university-of-automotive-engineering-m-sc-324cf4": 2,
+    "technical-university-of-development-production-and-manag-c1f719": 1,
+    "technical-university-of-mechanical-engineering-m-sc-761ce4": 1
    }
   },
   {
@@ -5964,9 +6245,13 @@
    "meant": {
     "name": "Embedded Systems"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Science|Scalable Computing"
+   },
    "grades": {
-    "kth-royal-institute-of-t-embedded-systems-msc-85b094": 2
+    "kth-royal-institute-of-t-embedded-systems-msc-85b094": 2,
+    "kth-royal-institute-of-t-computer-science-msc-96936e": 1,
+    "kth-royal-institute-of-t-scalable-computing-systems-msc-85366b": 1
    }
   },
   {
@@ -5982,9 +6267,12 @@
    "meant": {
     "name": "Vehicle Engineering"
    },
-   "related": null,
+   "related": {
+    "name": "Railway"
+   },
    "grades": {
-    "kth-royal-institute-of-t-vehicle-engineering-msc-b289c0": 2
+    "kth-royal-institute-of-t-vehicle-engineering-msc-b289c0": 2,
+    "kth-royal-institute-of-t-railway-engineering-msc-4ec16d": 1
    },
    "note": "造车 = vehicle engineering"
   },
@@ -6001,9 +6289,12 @@
    "meant": {
     "name": "Lighting"
    },
-   "related": null,
+   "related": {
+    "name": "^Architecture"
+   },
    "grades": {
-    "kth-royal-institute-of-t-architectural-lighting-design-ms-074462": 2
+    "kth-royal-institute-of-t-architectural-lighting-design-ms-074462": 2,
+    "kth-royal-institute-of-t-architecture-msc-aa34dc": 1
    }
   },
   {
@@ -6062,9 +6353,15 @@
    "meant": {
     "name": "Artificial Intelligence"
    },
-   "related": null,
+   "related": {
+    "field": "计算机与数据"
+   },
    "grades": {
-    "university-of-amsterdam-artificial-intelligence-msc-b90e2a": 2
+    "university-of-amsterdam-artificial-intelligence-msc-b90e2a": 2,
+    "university-of-amsterdam-data-science-and-business-analyt-eab79b": 1,
+    "university-of-amsterdam-information-studies-data-science-cc6a2d": 1,
+    "university-of-amsterdam-information-studies-human-comput-67652f": 1,
+    "university-of-amsterdam-software-engineering-msc-64354d": 1
    }
   },
   {
@@ -6235,9 +6532,25 @@
    "meant": {
     "name": "Early Childhood"
    },
-   "related": null,
+   "related": {
+    "name": "Educat"
+   },
    "grades": {
-    "universiti-malaya-master-of-early-childhood-educat-8e1d73": 2
+    "universiti-malaya-master-of-early-childhood-educat-8e1d73": 2,
+    "universiti-malaya-master-of-arabic-language-educat-908619": 1,
+    "universiti-malaya-master-of-education-in-english-a-22c638": 1,
+    "universiti-malaya-master-of-education-in-malay-lan-d33314": 1,
+    "universiti-malaya-master-of-education-psychology-c-2f1c96": 1,
+    "universiti-malaya-master-of-educational-leadership-37247e": 1,
+    "universiti-malaya-master-of-educational-technology-0d02b3": 1,
+    "universiti-malaya-master-of-humanities-education-c-b5563b": 1,
+    "universiti-malaya-master-of-islamic-education-cour-e94888": 1,
+    "universiti-malaya-master-of-mathematics-education-9650af": 1,
+    "universiti-malaya-master-of-medical-education-cour-f428c9": 1,
+    "universiti-malaya-master-of-physical-and-health-ed-3cae07": 1,
+    "universiti-malaya-master-of-science-education-with-7db3a8": 1,
+    "universiti-malaya-master-of-special-education-cour-0de0e3": 1,
+    "universiti-malaya-master-of-visual-arts-education-d4ef03": 1
    }
   },
   {
@@ -6406,9 +6719,13 @@
    "meant": {
     "name": "Design Engineering"
    },
-   "related": null,
+   "related": {
+    "name": "SM / ME"
+   },
    "grades": {
-    "harvard-university-master-in-design-engineering-mde-ea5567": 2
+    "harvard-university-master-in-design-engineering-mde-ea5567": 2,
+    "harvard-university-sm-me-in-computational-science-a-4dd81f": 1,
+    "harvard-university-sm-me-in-engineering-and-applied-256d6a": 1
    }
   },
   {
@@ -6936,9 +7253,13 @@
    "meant": {
     "name": "Computer Game Engineering"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Science"
+   },
    "grades": {
-    "newcastle-university-computer-game-engineering-msc-26598a": 2
+    "newcastle-university-computer-game-engineering-msc-26598a": 2,
+    "newcastle-university-advanced-computer-science-msc-ae0329": 1,
+    "newcastle-university-computer-science-msc-cc4480": 1
    }
   },
   {
@@ -6954,9 +7275,13 @@
    "meant": {
     "name": "Cloud Computing"
    },
-   "related": null,
+   "related": {
+    "name": "Computer Science"
+   },
    "grades": {
-    "newcastle-university-cloud-computing-msc-8251f3": 2
+    "newcastle-university-cloud-computing-msc-8251f3": 2,
+    "newcastle-university-advanced-computer-science-msc-ae0329": 1,
+    "newcastle-university-computer-science-msc-cc4480": 1
    }
   },
   {
@@ -7111,12 +7436,20 @@
    "meant": {
     "name": "Artificial Intelligence|Applied AI"
    },
-   "related": null,
+   "related": {
+    "name": "Master of Computing|Machine Learning|Data Science"
+   },
    "grades": {
     "nanyang-technological-un-master-of-computing-in-applied-a-a34ef1": 2,
     "nanyang-technological-un-master-of-science-in-artificial-e7fb81": 2,
     "nanyang-technological-un-master-of-science-in-enterprise-d5fd70": 2,
-    "national-university-of-s-master-of-computing-in-artificia-a2a81e": 2
+    "national-university-of-s-master-of-computing-in-artificia-a2a81e": 2,
+    "nanyang-technological-un-master-of-science-in-data-scienc-226578": 1,
+    "nanyang-technological-un-master-of-science-in-signal-proc-66a4ef": 1,
+    "national-university-of-s-master-of-computing-computer-sci-96b220": 1,
+    "national-university-of-s-master-of-computing-general-trac-9030ee": 1,
+    "national-university-of-s-master-of-computing-infocomm-sec-09a842": 1,
+    "national-university-of-s-master-of-computing-information-1fe4a7": 1
    }
   },
   {
@@ -7157,10 +7490,14 @@
    "meant": {
     "name": "Urban Planning|City Planning"
    },
-   "related": null,
+   "related": {
+    "name": "Urban Design|Urban Spatial"
+   },
    "grades": {
     "columbia-university-m-s-urban-planning-gsapp-c69002": 2,
-    "university-of-pennsylvan-master-of-city-planning-mcp-6619bb": 2
+    "university-of-pennsylvan-master-of-city-planning-mcp-6619bb": 2,
+    "columbia-university-m-s-architecture-and-urban-desig-c4e901": 1,
+    "university-of-pennsylvan-master-of-urban-spatial-analytic-e6cc3a": 1
    }
   },
   {
