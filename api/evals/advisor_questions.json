@@ -1,5 +1,5 @@
 {
- "description": "Advisor retrieval eval set, v2 (2026-10-31). Labels were written by Claude (an AI) from the catalogue's own facts (program names, Program.field, schools), never from what any ranking returns; the owner decided there is no human review, so there was no human review. 369 questions: the 80 of v1 (t01-t50, h01-h30, `legacy`: their v1 relevant set became grade 2 unchanged, and 12 that name a subject narrower than its discipline (computing, data, AI, accounting, TESOL) gained grade-1 rows) and {len(out) - 80} new (n001-n{len(out) - 80:03d}; 20% of each type drawn into `tune` with seed 20261031). Requirement questions (intent 官方要求核验) carry graded relevance per program id in `grades`: 2 = the program the question names or clearly means (for a subject or a description, every program it covers), 1 = same school and same subject but not the named one (the subject being the meant program's discipline, e.g. other computing programs for an AI question, other engineering programs of the same branch, other education programs for TESOL; empty when no such sibling exists), absent = 0. Only rows with requirement data and a citable source (the rows the gate can return) are graded. `meant` (grade 2) and `related` (grade 1) are the rules the frozen grades were resolved from: `name` is a case-insensitive regex on the English and stored program names, `field` a Program.field, `ids` explicit ids, `all` every row of the named schools. The runner re-resolves them and refuses to score when they no longer give `grades`; after a deliberate catalogue change run `python -m evals.run_advisor --relabel`. `answerable` = at least one graded row, and every answerable question has a grade-2 row. `type`: exact_name (quotes the English title), zh_named (one program named in Chinese), synonym (other words than the title), vague (a description), subject (a subject, every program in it meant), multi_school, unanswerable, other_intent (not a requirement question). `tune` is for tuning; `heldout` is scored once per code version, at the end, and never tuned on.",
+ "description": "Advisor retrieval eval set, v2 (2026-10-31). Labels were written by Claude (an AI) from the catalogue's own facts (program names, Program.field, schools), never from what any ranking returns; the owner decided there is no human review, so there was no human review. 369 questions: the 80 of v1 (t01-t50, h01-h30, `legacy`: their v1 relevant set became grade 2 unchanged, and 12 that name a subject narrower than its discipline (computing, data, AI, accounting, TESOL) gained grade-1 rows) and 289 new (n001-n289; 20% of each type drawn into `tune` with seed 20261031). Requirement questions (intent 官方要求核验) carry graded relevance per program id in `grades`: 2 = the program the question names or clearly means (for a subject or a description, every program it covers), 1 = same school and same subject but not the named one (the subject being the meant program's discipline, e.g. other computing programs for an AI question, other engineering programs of the same branch, other education programs for TESOL; empty when no such sibling exists), absent = 0. Only rows with requirement data and a citable source (the rows the gate can return) are graded. `meant` (grade 2) and `related` (grade 1) are the rules the frozen grades were resolved from: `name` is a case-insensitive regex on the English and stored program names, `field` a Program.field, `ids` explicit ids, `all` every row of the named schools. The runner re-resolves them and refuses to score when they no longer give `grades`; after a deliberate catalogue change run `python -m evals.run_advisor --relabel`. `answerable` = at least one graded row, and every answerable question has a grade-2 row. `type`: exact_name (quotes the English title), zh_named (one program named in Chinese), synonym (other words than the title), vague (a description), subject (a subject, every program in it meant), multi_school, unanswerable, other_intent (not a requirement question). `tune` is for tuning; `heldout` is scored once per code version, at the end, and never tuned on.",
  "questions": [
   {
    "id": "t01",
@@ -2243,16 +2243,20 @@
     "name": "Data Science and Artificial Intelligence \\(Business and Management\\)"
    },
    "related": {
-    "name": "Data Science and Artificial Intelligence|Business Analytics"
+    "name": "Business Analytics|Artificial Intelligence|Machine Learning|Data Science",
+    "field": "计算机与数据"
    },
    "grades": {
     "university-of-manchester-data-science-and-artificial-inte-789cb3": 2,
+    "university-of-manchester-artificial-intelligence-msc-404945": 1,
     "university-of-manchester-business-analytics-and-artificia-ab2afb": 1,
     "university-of-manchester-data-science-and-artificial-inte-202091": 1,
     "university-of-manchester-data-science-and-artificial-inte-9ae0e8": 1,
     "university-of-manchester-data-science-and-artificial-inte-9c231b": 1,
     "university-of-manchester-data-science-and-artificial-inte-d2f8cb": 1,
-    "university-of-manchester-data-science-and-artificial-inte-f96a0c": 1
+    "university-of-manchester-data-science-and-artificial-inte-f96a0c": 1,
+    "university-of-manchester-health-data-science-and-ai-msc-2b9ef0": 1,
+    "university-of-manchester-machine-learning-msc-5963c4": 1
    }
   },
   {
@@ -4556,12 +4560,14 @@
     "name": "^Master of Diplomacy"
    },
    "related": {
-    "name": "Diplomacy|International Relations"
+    "name": "Diplomacy|International Relations|National Security|Peace and Conflict"
    },
    "grades": {
     "cricos-111566E": 2,
+    "cricos-0101473": 1,
     "cricos-0101475": 1,
-    "cricos-082309M": 1
+    "cricos-082309M": 1,
+    "cricos-114599E": 1
    }
   },
   {
