@@ -28,7 +28,7 @@
 - [x] **混合检索** — PR #58（全文 + 管线；**向量部分卡在 MortyYJT 的硅基流动 key**）。报数组 Recall@4 0.8958 → 0.9583（只用全文）。[详情](docs/measurements.md#hybrid-retrieval-pr-58-vector-part-waiting-for-the-owners-siliconflow-key)
 - [x] **快照 RAG** — PR #60。引文核对通过率 82/82，不可答 6/6 拒答。[详情](docs/measurements.md#snapshot-rag-pr-60)
 - [x] **概括忠实度校验** — PR #62。字段越界检出 81.5%，误伤 6.8%；**125 个项目和中国学生要求 2,278 条等 DeepSeek 充值后补判**。[详情](docs/measurements.md#summary-faithfulness-check-pr-62)
-- [x] **忠实度评估扩样**（490 个字段，Claude 盲标、不人工复核）— PR #XX。检出 103/147（70.1%），误伤 27/343（7.9%），精确率 103/130。[详情](docs/measurements.md#summary-faithfulness-evaluation-second-set-pr-xx)
+- [x] **忠实度评估扩样**（490 个字段，Claude 盲标、不人工复核）— PR #83。检出 103/147（70.1%），误伤 27/343（7.9%），精确率 103/130。[详情](docs/measurements.md#summary-faithfulness-evaluation-second-set-pr-83)
 
 ## P2：有余力再做
 
