@@ -43,3 +43,40 @@ def test_the_labels_are_well_formed():
 def test_a_question_the_gate_refused_scores_as_refused():
     out = metrics([{"id": "x", "answerable": False, "passages": [], "routed": True}])
     assert out["unanswerable_refused"] == 1 and out["quotes"] == 0 and out["citation_pass_rate"] is None
+
+
+def _passage(url, text):
+    return {"url": url, "text": text}
+
+
+def test_retrieval_only_scores_where_the_gold_page_and_sentence_rank():
+    from evals.run_passages import retrieval_metrics
+
+    gold = {"url": "https://a.example/p", "quote": "Tuition is 30,000 dollars per year"}
+    items = [
+        # the gold page comes second, through a chunk that does not hold the sentence; the sentence third
+        {"id": "x1", "answerable": True, "gold": gold, "passages": [
+            _passage("https://a.example/other", "nothing"), _passage(gold["url"], "Fees vary."),
+            _passage(gold["url"], "Note: tuition is 30,000 dollars per year for all.")]},
+        {"id": "x2", "answerable": True, "gold": gold, "passages": [_passage("https://a.example/other", "no")]},
+        {"id": "x3", "answerable": True, "gold": gold, "passages": []},
+        {"id": "x4", "answerable": False, "gold": None, "passages": []},
+        {"id": "x5", "answerable": False, "gold": None, "passages": [_passage("https://b.example", "t")]},
+    ]
+    out = retrieval_metrics(items)
+    assert out["answerable"] == 3 and out["unanswerable"] == 2
+    assert out["gold_page_retrieved"] == 1 and out["gold_quote_retrieved"] == 1
+    assert out["answerable_gate_refused"] == 1 and out["unanswerable_refused"] == 1
+    assert out["gold_page_mrr"] == round(0.5 / 3, 4) and out["gold_quote_mrr"] == round((1 / 3) / 3, 4)
+    assert out["per_question"]["x1"] == {"gate": "pass", "gold_page_rank": 2, "gold_quote_rank": 3}
+    assert out["per_question"]["x3"] == {"gate": "refuse", "gold_page_rank": None, "gold_quote_rank": None}
+
+
+def test_the_recorded_live_run_retrieved_what_its_metrics_say():
+    # The retrieval-only score of the recorded passages agrees with the live run's own counts.
+    from evals.run_passages import retrieval_metrics
+
+    recorded = json.loads(RECORDED.read_text())
+    again = retrieval_metrics(recorded["items"])
+    assert again["gold_page_retrieved"] == recorded["metrics"]["gold_page_retrieved"]
+    assert again["gold_quote_retrieved"] == recorded["metrics"]["gold_quote_retrieved"]

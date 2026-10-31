@@ -409,14 +409,15 @@ def refusal(session: Session, found: Retrieval) -> tuple[str, str]:
     return "no_citable_source", "找到了相关项目，但它没有可引用的官方来源链接，所以我不能回答它的要求。已记录为待补来源。"
 
 
-def gate(session: Session, query: str, ranking: str | None = None) -> dict:
+def gate(session: Session, query: str, ranking: str | None = None, limit: int = TOP_K) -> dict:
     """Run retrieval and the gate. Returns the state update for the graph.
 
     `ranking` defaults to ``ADVISOR_RETRIEVAL``; the question is embedded only when the ranking uses
-    vectors and a key is configured (otherwise nothing is sent anywhere)."""
+    vectors and a key is configured (otherwise nothing is sent anywhere). `limit` is the number of rows
+    handed to the model; the graph keeps ``TOP_K``, the eval's K sweep varies it."""
     ranking = ranking or settings.advisor_retrieval
     vector = embeddings.embed_query(query) if ranking in ("vector", "hybrid") else None
-    found = search_requirements(session, query, ranking=ranking, query_vector=vector)
+    found = search_requirements(session, query, limit=limit, ranking=ranking, query_vector=vector)
     strong = [h for h in found.hits if _citable(h.source)]
     signals = {
         "schools": found.schools,
