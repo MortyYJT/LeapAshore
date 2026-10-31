@@ -2,8 +2,8 @@
 
 Two backends, chosen by `MAIL_BACKEND`:
 
-- `smtp` sends through Tencent Cloud SES (or any SMTP server) with the standard library's `smtplib`
-  over implicit TLS, so no dependency is added.
+- `smtp` sends through any SMTP server (QQ Mail, Gmail or Tencent Cloud SES) with the standard
+  library's `smtplib` over implicit TLS, so no dependency is added.
 - `log` writes the code to the application log and appends it to `MAIL_LOG_PATH`. That is how local
   runs and the browser walkthrough read a code. It refuses to run in production, independently of the
   startup check in `app.config.check_settings`, so a misconfigured server fails a login instead of

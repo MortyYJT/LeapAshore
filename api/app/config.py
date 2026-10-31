@@ -102,7 +102,8 @@ class Settings(BaseSettings):
     mail_backend: str = "log"
     mail_log_path: Path = Path(__file__).resolve().parent.parent / "var" / "mail.log"
     mail_from: str = ""
-    # Tencent Cloud SES: smtp.qcloudmail.com (Hong Kong) or gz-smtp.qcloudmail.com (Guangzhou), 465 SSL.
+    # Any implicit-TLS SMTP server on 465: smtp.qq.com, smtp.gmail.com, or Tencent Cloud SES smtp.qcloudmail.com
+    # (Hong Kong; gz-smtp.qcloudmail.com in Guangzhou). See docs/deploy.md "Switch to sign-in mode".
     smtp_host: str = "smtp.qcloudmail.com"
     smtp_port: int = 465
     smtp_user: str = ""

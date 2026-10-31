@@ -78,16 +78,23 @@ Any agent can do this once `EMBED_API_KEY` (SiliconFlow) exists:
 
 ## Switch to sign-in mode
 
-Any agent can do steps 4–8 once the owner has done steps 1–3.
+Any agent can do steps 3–8 once the owner has done steps 1–2. The code sends over implicit TLS (`smtplib.SMTP_SSL`), so the port is 465 for any of the providers below.
 
-1. Owner: in the Tencent Cloud console enable Simple Email Service (SES). The server is in the Hong Kong region, so SMTP is `smtp.qcloudmail.com:465` (`gz-smtp.qcloudmail.com` if SES is opened in Guangzhou). Add a sender domain, preferably the subdomain `mail.mortyyjt.site` (not the root domain, to avoid clashing with its other mail records).
-2. Owner: in DNSPod add records for `mortyyjt.site` (values as shown on the SES console's sender-domain verification page; the DKIM key differs per domain and can only be copied from there): SPF, host `mail`, TXT `v=spf1 include:qcloudmail.com ~all`; DKIM, host like `xxx._domainkey.mail`, TXT `v=DKIM1; k=rsa; p=…` (from the console); DMARC, host `_dmarc.mail`, TXT `v=DMARC1; p=none`; copy any MX record the console lists. After about 10 minutes click "verify" in the console until it passes.
-3. Owner: in SES create the sender address `noreply@mail.mortyyjt.site` and set its SMTP password (no mail template needed; the code sends the body directly).
-4. Fill the server's `~/leapashore/deploy/.env` (template `deploy/.env.example`): `AUTH_ENABLED=true`, `MAIL_BACKEND=smtp`, `SMTP_HOST`, `SMTP_PORT=465`, `SMTP_USER=noreply@mail.mortyyjt.site`, `SMTP_PASSWORD=…`, `MAIL_FROM=鱼跃彼岸 <noreply@mail.mortyyjt.site>`.
-5. `... up -d --force-recreate --no-deps api`; the start-up succeeded only if `docker compose logs api` does not contain `AUTH_ENABLED=true in production needs a real mail backend`. Sign in on the site with your own email once and confirm the mail arrives (check the spam folder).
+The owner chose (2026-10-31) a personal mailbox's SMTP instead of Tencent Cloud SES: QQ Mail or Gmail. SES stays possible (see the end of this section).
+
+1. Owner: turn on SMTP and get a password made for apps, never the account password.
+   - **QQ Mail:** mail.qq.com → Settings → Account → "POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV service", turn on IMAP/SMTP and save the 16-character authorisation code (授权码). Server `smtp.qq.com`, port 465 with SSL (587 is the TLS port, which this code does not use); user name is the full address ([QQ Mail help](https://help.mail.qq.com/detail/108/1090/), checked 2026-10-31). Changing the QQ password voids the code.
+   - **Gmail:** turn on 2-Step Verification, then create an app password at myaccount.google.com/apppasswords. Server `smtp.gmail.com`, 465 for SSL (587 is TLS); user name is the full address ([Google Workspace help, "Send email from a printer, scanner, or app"](https://knowledge.workspace.google.com/admin/gmail/send-email-from-a-printer-scanner-or-app), checked 2026-10-31). Changing the Google password revokes app passwords.
+2. Owner: fill the server's `~/leapashore/deploy/.env` (template `deploy/.env.example`) **yourself**, not in a chat or the repository: `AUTH_ENABLED=true`, `MAIL_BACKEND=smtp`, `SMTP_HOST=smtp.qq.com` (or `smtp.gmail.com`), `SMTP_PORT=465`, `SMTP_USER=<the full mailbox address>`, `SMTP_PASSWORD=<the authorisation code or app password>`, `MAIL_FROM=鱼跃彼岸 <the same address as SMTP_USER>` (a personal mailbox may refuse or rewrite another sender address). `SMTP_HOST` must be set: its default is the SES host.
+3. Check that the six variables are present without printing the password: `grep -E '^(AUTH_ENABLED|MAIL_BACKEND|SMTP_HOST|SMTP_PORT|SMTP_USER|MAIL_FROM)=' ~/leapashore/deploy/.env` and `grep -c '^SMTP_PASSWORD=.' ~/leapashore/deploy/.env` (1).
+4. Back up the database as for a deploy (sign-in mode starts writing accounts and sessions).
+5. `... up -d --force-recreate --no-deps api`; the start-up succeeded only if `docker compose logs api` does not contain `AUTH_ENABLED=true in production needs a real mail backend`. The owner signs in on the site with their own email once and confirms the mail arrives (check the spam folder); a failed send shows in `docker compose logs api` as `login code mail to … failed: <exception class>`.
 6. The 90-day clean-up cron (`crontab -e`, server local time): `17 3 * * * cd ~/leapashore/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply >> ~/cleanup.log 2>&1`. Run it once by hand without `--apply` first to see the report. (Since PR #50 beat runs this clean-up at 03:17 in sign-in mode, so this cron is no longer needed.)
 7. Rollback: remove `AUTH_ENABLED=true` from `.env` and recreate the api; that returns to anonymous mode, and the tables can stay.
+
 8. Make the owner an admin (P2 #3): the owner signs in once on the site with their email (the account must exist), then `... exec -T api python -m app.roles grant <the owner's sign-in email>`, and `... exec -T api python -m app.roles list` to confirm. Ask the owner for the email; never write it into the repository. Only then does `https://leapashore.mortyyjt.site/admin` open (verification and the knowledge-gap queue). Revoke: `python -m app.roles revoke <email>`.
+
+Tencent Cloud SES instead of a personal mailbox (the earlier plan): enable SES (the server is in Hong Kong, so `smtp.qcloudmail.com:465`; `gz-smtp.qcloudmail.com` if opened in Guangzhou), add a sender domain such as `mail.mortyyjt.site` and its SPF, DKIM and DMARC records in DNSPod (values from the SES console's verification page), create `noreply@mail.mortyyjt.site` with an SMTP password, then use those values in step 2.
 
 ## Pitfalls on the server
 

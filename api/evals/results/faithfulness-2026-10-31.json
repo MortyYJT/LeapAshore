@@ -1,0 +1,11420 @@
+{
+ "date": "2026-10-31",
+ "set": "faithfulness_set_v2.json",
+ "models": [
+  "deepseek-flash"
+ ],
+ "calls": {
+  "fields": [
+   {
+    "ids": [
+     "f001"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "7,5 ECTS"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 870,
+     "output_tokens": 59,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f002"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f003"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 921,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f004"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f005"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f006"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Fall 2027 final deadline; quote gives undated table values"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 67,
+     "cache_read_tokens": 763
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f007"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "priority; Fall 2027 attribution of December 1, 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 69,
+     "cache_read_tokens": 763
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f008"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f009"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 949,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f010"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f011"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "\"Minimum\" / required overall score; quote says \"if required\""
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 893,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f012"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 928,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f013"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 883,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f014"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 910,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f015"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f016"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "in addition to the required documents for the uni-assist VPD (quote says only 'the required documents')"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 987,
+     "output_tokens": 76,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f017"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 935,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f018"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "overall 100 as the minimum for tests from 21 January 2026 (quote gives 5.5 per section for those tests)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1024,
+     "output_tokens": 82,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f019"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1001,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f020"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f021",
+     "s062"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "TOEFL iBT 80 out of 120; the quote gives 80 out of 120 / 4.5 out of 6 for tests taken on or after 21 Jan 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1143,
+     "output_tokens": 106,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f022"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 954,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f023"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 945,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f024"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f025"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Course page names the standard university English requirement; scores are from Imperial's English language requirements page"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 948,
+     "output_tokens": 72,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f026",
+     "s074"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Course page names the standard university English requirement; scores are from Imperial's English language requirements page"
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 995,
+     "output_tokens": 82,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f027"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 898,
+     "output_tokens": 47,
+     "cache_read_tokens": 764
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f028"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f029"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "at universities KCL considers prestigious / at other recognised Chinese universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 935,
+     "output_tokens": 66,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f030"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1069,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f031"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Korean language classes excepted"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 59,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f032"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f033"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "TOPIK level 3, TOEFL iBT, IELTS, TEPS, CEFR B2, exemptions"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 933,
+     "output_tokens": 78,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f034"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 980,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f035"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 22 (quote gives 23 reading, 24 writing)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1025,
+     "output_tokens": 69,
+     "cache_read_tokens": 891
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f036"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Chinese degree, 2:2 (50%), and the 67%/70%/75% tier marks"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 965,
+     "output_tokens": 75,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f037"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f038"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 893,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f039"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f040"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1082,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f041"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 19 (quote gives only a speaking minimum, and 80 applies only to tests before Jan 21, 2026)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 952,
+     "output_tokens": 82,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f042"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 972,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f043"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f044"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f045"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f046"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 937,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f047"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f048",
+     "s176"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "Chinese applicants (quote does not say who)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 983,
+     "output_tokens": 73,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f049"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f050"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "exact requirements are in the programme's Academic and Examination Regulations (PDF, not read)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 952,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f051"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "grades and written documents scored; admitted, rejected or invited to interview"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 67,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f052"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 893,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f053"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f054"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f055",
+     "s198"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1186,
+     "output_tokens": 58,
+     "cache_read_tokens": 1024
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f056"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f057"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f058",
+     "s214"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 949,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f059"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 885,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f060"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "lower CGPA bands accepted with work experience; non-computing degrees need prerequisite courses"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f061"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f062"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f063"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 17 (reading 18, speaking 20, writing 21)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 71,
+     "cache_read_tokens": 763
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f064"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1034,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f065"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 921,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f066"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f067"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f068"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f069"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f070"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 910,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f071"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f072"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1048,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f073"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f074"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f075"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 entry, international applicants"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 62,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f076"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f077"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f078"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f079"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1014,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f080"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Main Round"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 893,
+     "output_tokens": 56,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f081"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f082"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 766
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f083"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 6 (quote allows one sub-skill at 5.5)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f084"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 6.5 (quote gives 7.0 in listening, speaking & reading)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 935,
+     "output_tokens": 74,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f085"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "incl. China"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 57,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f086"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 883,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f087"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f088"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f089",
+     "s333"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 991,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f090"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f091"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f092"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f093"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1005,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f094"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 876,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f095"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 17 (quote requires 20 in Speaking and Writing)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 960,
+     "output_tokens": 68,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f096"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f097"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f098"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 18 (quote gives section minimums 19/19/18/22)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 909,
+     "output_tokens": 73,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f099"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "f100"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "omits that the 92/20 applies only to tests before January 21, 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 995,
+     "output_tokens": 74,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s001"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "45 ECTS and 'two-track specialisation'"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 63,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s002"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 894,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s003"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 953,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s004"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s005"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 948,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s006"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 956,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s007"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 968,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s008"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 927,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s009",
+     "s010"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1021,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s011"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s012"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "examples of fields and 'applied fields welcome if prerequisites are met'"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 925,
+     "output_tokens": 67,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s013"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 883,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s014"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s015"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 20 (Reading/Listening/Writing minimums are 22)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 979,
+     "output_tokens": 70,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s016"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s017"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s018"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 917,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s019"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 885,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s020"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s021"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s022"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s023"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "uploaded with the application"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 59,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s024"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s025"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "uploaded with the application"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 59,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s026"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "omits the 4 score for tests from 21 January 2026; states 79 as the overall minimum without the date condition"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 81,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s027"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 766
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s028"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s029"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "priority"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 898,
+     "output_tokens": 55,
+     "cache_read_tokens": 764
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s030"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s031"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "overall 100 without the date condition (before Jan 21, 2026)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s032"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 898,
+     "output_tokens": 47,
+     "cache_read_tokens": 764
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s033"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s034",
+     "s035"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1002,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s036"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s037"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1044,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s038"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 964,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s039"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "states a minimum requirement; quote says the Graduate School 'generally seeks' scores no less than 90"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1000,
+     "output_tokens": 74,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s040"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Fall 2027 Round 3 labels; quote gives undated dates only"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 912,
+     "output_tokens": 69,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s041"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s042"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s043"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Minimum/overall requirement; quote only lists score values without stating a minimum"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 69,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s044"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Autumn Semester 2027, international Bachelor's degree applicants, window 1-30 November"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 73,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s045"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s046"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "completed Bachelor's degree; subject prerequisites and minimum percentages in the requirement profile (PDF)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 70,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s047"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Autumn Semester 2027, international Bachelor's degree, window 1-30 November"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 72,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s048"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Autumn Semester 2027, international Bachelor's degree, window 1-30 November 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 75,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s049"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s050"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "completed; subject prerequisites and minimum percentages in the requirement profile (PDF)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 67,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s051"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "upload it to the FU application portal"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 61,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s052"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 953,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s053"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s054"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "in addition to the required documents for the uni-assist VPD (quote says only 'the required documents')"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 983,
+     "output_tokens": 76,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s055"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 978,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s056"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 934,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s057"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 880,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s058"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 934,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s059"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "TOEFL iBT overall 100 with no section below 25 for tests from 21 January 2026 (quote gives 5.5 sub-scores for those tests)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1028,
+     "output_tokens": 89,
+     "cache_read_tokens": 894
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s060"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s061"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Sept 2027 intake, non-local Mixed Mode"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 64,
+     "cache_read_tokens": 766
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s063"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 924,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s064"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 957,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s065"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s066"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "2027/28 Fall Term Intake, non-local"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s067"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s068"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s069"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s070"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 909,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s071"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 972,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s072"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 981,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s073"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 967,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s075"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Course page names the higher university English requirement; scores are from Imperial's English language requirements page"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 944,
+     "output_tokens": 72,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s076"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 969,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s077"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 969,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s078"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "minimum average 80% for the higher group of universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 973,
+     "output_tokens": 65,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s079"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 957,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s080"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Course page names the higher university English requirement; scores are from Imperial's English language requirements page"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 945,
+     "output_tokens": 72,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s081"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s082"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 928,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s083"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s084"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s085"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Strong background in"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 870,
+     "output_tokens": 57,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s086"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s087"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 763
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s088"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 766
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s089"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s090"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 entry, final deadline"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 62,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s091"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "which universities get 80% vs 85% (prestigious vs other recognised)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s092"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "KCL considers prestigious; other recognised Chinese universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 63,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s093"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 938,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s094"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "KIT does not accept group APS certificates"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 62,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s095"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 941,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s096"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s097"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s098"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 917,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s099"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s100"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 888,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s101"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Minimum TOEFL iBT; new 1-6 band scale"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 932,
+     "output_tokens": 67,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s102"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Minimum TOEFL iBT; new 1-6 band scale"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 932,
+     "output_tokens": 67,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s103"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s104"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1033,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s105"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s106"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s107"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 971,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s108"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 933,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s109"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 979,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s110"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s111"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 931,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s112"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 937,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s113"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Chinese; tier percentages (67%/70%/75%) and 2:2 mapping"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 951,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s114"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s115"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s116"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s117"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 995,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s118"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s119"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s120"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s121"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s122"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "For the TESOL specialisation"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 909,
+     "output_tokens": 60,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s123"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 987,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s124"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 944,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s125"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Baccalaureate degree in English or a related field"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 66,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s126"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s127"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Minimum / iBT requirement; quote only lists a score, not a minimum"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 69,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s128"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s129"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 966,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s130"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "tiers are Newcastle's own, not 985/211 lists; contact Newcastle for a university's tier"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 993,
+     "output_tokens": 75,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s131"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s132"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s133"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "tiers are Newcastle's own, not 985/211 lists; contact Newcastle for a university's tier"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 990,
+     "output_tokens": 75,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s134"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s135"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 892,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s136"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 880,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s137"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s138"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 888,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s139"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 intake, Engineering 2nd call"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 65,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s140"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s141"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 intake, Engineering 1st call"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 65,
+     "cache_read_tokens": 767
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s142"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 961,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s143"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 909,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s144"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 974,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s145"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s146"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s147"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s148"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 977,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s149"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 977,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s150"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 910,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s151",
+     "s152"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1024,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s153"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "1-6 scale and section scores (writing 5, speaking 4, reading 4.5, listening 4.5)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 936,
+     "output_tokens": 81,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s154"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s155"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Environmental Engineering track"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 57,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s156"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s157"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s158"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s159"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "documentation required at enrollment"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 880,
+     "output_tokens": 59,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s160"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "must be documented (requirement)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 884,
+     "output_tokens": 60,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s161"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s162"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s163"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s164"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s165"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s166"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s167"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "or the Postgraduate Qualifying Program"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 61,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s168"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 917,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s169"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s170"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 765
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s171"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 937,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s172"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1020,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s173"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 881,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s174"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s175"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 884,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s177",
+     "s178"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "grades and written documents scored; admitted, rejected or invited to interview"
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 969,
+     "output_tokens": 77,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s179"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 932,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s180"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "grades and written documents scored; admitted, rejected or invited to interview"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 67,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s181"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 925,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s182"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Chinese applicants (quote does not say who)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 938,
+     "output_tokens": 62,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s183"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Chinese applicants (quote does not say China)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 932,
+     "output_tokens": 62,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s184"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s185"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "exact requirements are in the programme's Academic and Examination Regulations (PDF, not read)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 951,
+     "output_tokens": 71,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s186"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s187"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "the specific ECTS breakdown (20 math/stats, 25 algorithms, 15 CS foundations, 18 visual computing)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1009,
+     "output_tokens": 78,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s188"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s189"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 936,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s190"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 885,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s191"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "gives no percentage for Chinese degrees (absence not stated)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 934,
+     "output_tokens": 65,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s192"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "gives no percentage for Chinese degrees"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 934,
+     "output_tokens": 61,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s193"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s194"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s195"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1131,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s196",
+     "s197"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "September 2027 entry, Full-time"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 970,
+     "output_tokens": 73,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s199"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1130,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s200"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 998,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s201"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s202"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 876,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s203"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 912,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s204"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s205"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "sign language courses of at least 100 hours; special admission route"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 921,
+     "output_tokens": 67,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s206"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s207"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s208"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s209"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "also this programme's threshold; separate 80% minimums for the higher group and other universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1012,
+     "output_tokens": 73,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s210"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 766
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s211"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no test score stated"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 885,
+     "output_tokens": 58,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s212"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 931,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s213"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s215"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s216"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "CGPA 2.50-2.99 accepted with a listed condition"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 927,
+     "output_tokens": 69,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s217"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s218"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 898,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s219"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s220"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s221"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s222"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 983,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s223"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 964,
+     "output_tokens": 80,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s224"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 891,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s225"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s226"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 913,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s227"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s228"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Quarter Two 2027 (international)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 61,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s229"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s230"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s231"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 972,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s232"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1033,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s233"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1026,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s234"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1027,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s235"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 892,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s236"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s237"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 894,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s238",
+     "s239"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 927,
+     "output_tokens": 58,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s240"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 989,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s241"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 909,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s242"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s243"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s244"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 925,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s245"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 898,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s246"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s247"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 962,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s248"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 952,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s249"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "UCLA-wide all Chinese universities; separate 80% minimums for higher group and other universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 954,
+     "output_tokens": 73,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s250"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s251"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s252"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s253"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s254"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Cambridge's own named university lists"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1132,
+     "output_tokens": 60,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s255"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s256"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s257"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Group A / Group B are Cambridge's own named university lists"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1132,
+     "output_tokens": 66,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s258"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 940,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s259"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s260"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "documented by an approved test (IELTS/TOEFL); not required of applicants with legal right of admission"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 76,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s261"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 78,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s262"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1039,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s263"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 946,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s264"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1041,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s265"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1042,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s266"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 892,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s267"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s268"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s269"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 987,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s270"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 910,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s271"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s272"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 911,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s273"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 916,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s274"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "2026 entry standard label; 2:1/2:2 mapping to 75%/70% is not stated as such, and 'all Chinese universities' uniform standard is only partly supported"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 980,
+     "output_tokens": 93,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s275",
+     "s276"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "labels the table as the 2026 entry standard"
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1050,
+     "output_tokens": 74,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s277"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s278"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s279"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 913,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s280",
+     "s281"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1022,
+     "output_tokens": 58,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s282"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 entry, international applicants"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 62,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s283"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "September 2027 entry, international applicants"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 62,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s284"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "first round (application code GU-12007); Autumn 2027"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s285"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 951,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s286",
+     "s287"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Autumn 2026, first round, application code GU-03002"
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "Autumn 2027, second round, application code GU-03004"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 959,
+     "output_tokens": 101,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s288"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s289"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "A B.A. degree or a comparable degree"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 981,
+     "output_tokens": 63,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s290"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 963,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s291"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 939,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s292"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1123,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s293"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "English Placement Test on arrival for limited-status minimums"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 994,
+     "output_tokens": 64,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s294"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 888,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s295"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s296"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s297"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 910,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s298"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 908,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s299"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 927,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s300"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s301"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s302"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 894,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s303",
+     "s304"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "omits that 88 applies only to tests taken on or before 20 January 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1011,
+     "output_tokens": 84,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s305"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 969,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s306"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 896,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s307"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s308"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 878,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s309"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 893,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s310"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 894,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s311"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s312"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s313"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 886,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s314"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "overall 100 as the minimum, ignoring the 5 for exams on/after Jan 21, 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 913,
+     "output_tokens": 78,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s315"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s316"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s317"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 22 (writing minimum is 23)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 65,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s318",
+     "s319",
+     "s320"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Graduate School guideline for Asian countries (incl. China) — quote only says 'Other Asian countries', not China or Graduate School"
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1147,
+     "output_tokens": 101,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s321"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 899,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s322"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 972,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s323"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 884,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s324"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 923,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s325"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 938,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s326"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s327"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 938,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s328"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "omits the exam-date condition; states 100/24 as the overall minimum without the on/before January 20, 2026 limit"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 953,
+     "output_tokens": 83,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s329"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 892,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s330"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 19 (writing minimum is 21)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 65,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s331"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s332"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s334"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s335"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1047,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s336"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "tier of each institution is on a separate list, not 985/211; look up the institution's tier on Southampton's tier list"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1218,
+     "output_tokens": 82,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s337"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s338"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s339"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 919,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s340"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 931,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s341"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 930,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s342"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 942,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s343"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no minimum score; exempts from ISE English exam"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1020,
+     "output_tokens": 65,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s344",
+     "s345"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no minimum score; exempts from ISE English exam"
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1055,
+     "output_tokens": 75,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s346"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no minimum English score; exempts from ISE English exam"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1013,
+     "output_tokens": 66,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s347"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "TOEFL iBT; reviewed even if below"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 917,
+     "output_tokens": 63,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s348"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no separate figure for 985/211; UK 2.1 or equivalent; higher group vs other universities"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1006,
+     "output_tokens": 76,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s349"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 903,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s350"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "overall 80, no section below 17 (as a general minimum)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1026,
+     "output_tokens": 69,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s351"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 931,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s352"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 892,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s353"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 895,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s354"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 897,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s355"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 929,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s356"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 973,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s357"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1038,
+     "output_tokens": 47,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s358"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s359"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s360"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "75% or 80% depending on group; groups listed on page"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 937,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s361"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s362"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 907,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s363"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "attached only to programmes that ask for the university minimum (75%)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 922,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s364"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Minimum TOEFL iBT (quote gives no test name or iBT)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 948,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s365"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 920,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s366",
+     "s367"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "Minimum TOEFL iBT: TOEFL 4.5 (quote gives no test name/score scale; TOEFL 4.5 is not an iBT score)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1012,
+     "output_tokens": 99,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s368"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s369"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s370"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "no section below 17 (quote gives 20 in Speaking and Writing)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 960,
+     "output_tokens": 68,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s371"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "English proficiency test required"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 894,
+     "output_tokens": 58,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s372"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "English proficiency test required"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 58,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s373"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 935,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s374"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 935,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s375"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 915,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s376"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s377"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s378"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s379"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 902,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s380"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "admission is by sur dossier examination of transcript and documents"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 960,
+     "output_tokens": 65,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s381"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 904,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s382"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s383"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 901,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s384"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 887,
+     "output_tokens": 47,
+     "cache_read_tokens": 512
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s385"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 885,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s386"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 900,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s387"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 906,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s388"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 890,
+     "output_tokens": 47,
+     "cache_read_tokens": 640
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s389"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "Block 1, 2027 (Melbourne)"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 889,
+     "output_tokens": 64,
+     "cache_read_tokens": 256
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "s390"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "omits that the 86/20 minimum applies only to tests taken before January 21, 2026"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 997,
+     "output_tokens": 76,
+     "cache_read_tokens": 256
+    },
+    "error": null
+   }
+  ],
+  "sentences": [
+   {
+    "ids": [
+     "t01-s1",
+     "t01-s2",
+     "t01-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1071,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t02-s1",
+     "t02-s2",
+     "t02-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "国际学生 (international students)"
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1067,
+     "output_tokens": 81,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t03-s1",
+     "t03-s2",
+     "t03-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1031,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t04-s1",
+     "t04-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 995,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t05-s1",
+     "t05-s2",
+     "t05-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1040,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t06-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "摘录中没有房地产投资硕士项目页面（引文只给出另一项目学费，未说明缺页）"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 905,
+     "output_tokens": 76,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t07-s1",
+     "t07-s2",
+     "t07-s3",
+     "t07-s4"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       },
+       {
+        "id": 4,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1130,
+     "output_tokens": 80,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t08-s1",
+     "t08-s2",
+     "t08-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "只说明 (only) — quote also mentions part-time students/four semesters"
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1043,
+     "output_tokens": 91,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t09-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 958,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t10-s1",
+     "t10-s2",
+     "t10-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1134,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t11-s1",
+     "t11-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "claims absence of MS Supply Chain and Analytics tuition info, but quote is from MS Entrepreneurial Leadership page"
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 977,
+     "output_tokens": 84,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "t12-s1",
+     "t12-s2",
+     "t12-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1085,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r01-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 921,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r02-s1",
+     "r02-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 993,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r03-s1",
+     "r03-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 990,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r04-s1",
+     "r04-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 964,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r05-s1",
+     "r05-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 966,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r06-s1",
+     "r06-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1000,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r07-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 914,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r08-s1",
+     "r08-s2",
+     "r08-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1030,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r09-s1",
+     "r09-s2",
+     "r09-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1135,
+     "output_tokens": 69,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "r10-s1",
+     "r10-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 980,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i01-s1",
+     "i01-s2",
+     "i01-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "把面试列为申请流程的第二步"
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1150,
+     "output_tokens": 82,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i02-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 918,
+     "output_tokens": 47,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i03-s1",
+     "i03-s2",
+     "i03-s3",
+     "i03-s4"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       },
+       {
+        "id": 4,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1207,
+     "output_tokens": 80,
+     "cache_read_tokens": 1024
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i04-s1"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "摘录来自MBA页面，但claim称没有MIDS页面/无法回答——quote本身未说明来源项目或缺失MIDS信息"
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 948,
+     "output_tokens": 82,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i05-s1",
+     "i05-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 998,
+     "output_tokens": 58,
+     "cache_read_tokens": 768
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i06-s1",
+     "i06-s2",
+     "i06-s3"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": false,
+        "unsupported": "采用滚动录取 (rolling admission)"
+       },
+       {
+        "id": 3,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1044,
+     "output_tokens": 82,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i07-s1",
+     "i07-s2",
+     "i07-s3",
+     "i07-s4"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "面试是附加申请要求（quote says some may be invited, not a requirement）"
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       },
+       {
+        "id": 4,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1156,
+     "output_tokens": 103,
+     "cache_read_tokens": 1022
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i08-s1",
+     "i08-s2",
+     "i08-s3",
+     "i08-s4"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": false,
+        "unsupported": "该页面显示申请者需先获知面试资格结果 (quote only mentions an email in September or November)"
+       },
+       {
+        "id": 2,
+        "supported": true
+       },
+       {
+        "id": 3,
+        "supported": true
+       },
+       {
+        "id": 4,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1110,
+     "output_tokens": 109,
+     "cache_read_tokens": 896
+    },
+    "error": null
+   },
+   {
+    "ids": [
+     "i09-s1",
+     "i09-s2"
+    ],
+    "raw": [
+     {
+      "verdicts": [
+       {
+        "id": 1,
+        "supported": true
+       },
+       {
+        "id": 2,
+        "supported": true
+       }
+      ]
+     }
+    ],
+    "usage": {
+     "input_tokens": 1029,
+     "output_tokens": 58,
+     "cache_read_tokens": 895
+    },
+    "error": null
+   }
+  ]
+ },
+ "usage": {
+  "fields": {
+   "input_tokens": 437381,
+   "output_tokens": 25108,
+   "cache_read_tokens": 329648
+  },
+  "sentences": {
+   "input_tokens": 31889,
+   "output_tokens": 2143,
+   "cache_read_tokens": 26109
+  }
+ },
+ "cost_cny_upper_bound": {
+  "fields": 0.4295,
+  "sentences": 0.0297
+ },
+ "seconds_per_call": {
+  "fields": {
+   "median": 1.09,
+   "max": 2.25,
+   "calls": 470
+  },
+  "sentences": {
+   "median": 1.15,
+   "max": 1.4,
+   "calls": 31
+  }
+ },
+ "metrics": {
+  "fields": {
+   "n": 490,
+   "labelled_unsupported": 147,
+   "labelled_supported": 343,
+   "blocked": 130,
+   "block_rate": 0.2653,
+   "caught": 103,
+   "catch_rate": 0.7007,
+   "false_blocks": 27,
+   "false_block_rate": 0.0787,
+   "precision": 0.7923,
+   "not_checked": 0,
+   "false_block_ids": [
+    "f011",
+    "f018",
+    "f050",
+    "f100",
+    "s026",
+    "s031",
+    "s043",
+    "s059",
+    "s062",
+    "s071",
+    "s072",
+    "s073",
+    "s076",
+    "s077",
+    "s078",
+    "s127",
+    "s160",
+    "s211",
+    "s254",
+    "s257",
+    "s304",
+    "s314",
+    "s328",
+    "s350",
+    "s364",
+    "s367",
+    "s390"
+   ],
+   "missed_ids": [
+    "f010",
+    "f082",
+    "f088",
+    "f092",
+    "s014",
+    "s017",
+    "s027",
+    "s032",
+    "s041",
+    "s081",
+    "s083",
+    "s088",
+    "s089",
+    "s099",
+    "s105",
+    "s111",
+    "s124",
+    "s135",
+    "s144",
+    "s145",
+    "s148",
+    "s149",
+    "s165",
+    "s169",
+    "s179",
+    "s188",
+    "s206",
+    "s212",
+    "s232",
+    "s233",
+    "s234",
+    "s237",
+    "s242",
+    "s250",
+    "s253",
+    "s259",
+    "s291",
+    "s307",
+    "s310",
+    "s329",
+    "s353",
+    "s384",
+    "s385",
+    "s388"
+   ]
+  },
+  "fields_by_field": {
+   "academic": {
+    "n": 87,
+    "labelled_unsupported": 16,
+    "labelled_supported": 71,
+    "blocked": 13,
+    "block_rate": 0.1494,
+    "caught": 12,
+    "catch_rate": 0.75,
+    "false_blocks": 1,
+    "false_block_rate": 0.0141,
+    "precision": 0.9231,
+    "not_checked": 0,
+    "false_block_ids": [
+     "f050"
+    ],
+    "missed_ids": [
+     "f092",
+     "s165",
+     "s206",
+     "s353"
+    ]
+   },
+   "china_requirement": {
+    "n": 74,
+    "labelled_unsupported": 38,
+    "labelled_supported": 36,
+    "blocked": 37,
+    "block_rate": 0.5,
+    "caught": 29,
+    "catch_rate": 0.7632,
+    "false_blocks": 8,
+    "false_block_rate": 0.2222,
+    "precision": 0.7838,
+    "not_checked": 0,
+    "false_block_ids": [
+     "s071",
+     "s072",
+     "s073",
+     "s076",
+     "s077",
+     "s078",
+     "s254",
+     "s257"
+    ],
+    "missed_ids": [
+     "s105",
+     "s111",
+     "s144",
+     "s148",
+     "s149",
+     "s179",
+     "s232",
+     "s233",
+     "s234"
+    ]
+   },
+   "deadlines": {
+    "n": 80,
+    "labelled_unsupported": 50,
+    "labelled_supported": 30,
+    "blocked": 22,
+    "block_rate": 0.275,
+    "caught": 22,
+    "catch_rate": 0.44,
+    "false_blocks": 0,
+    "false_block_rate": 0.0,
+    "precision": 1.0,
+    "not_checked": 0,
+    "false_block_ids": [],
+    "missed_ids": [
+     "f010",
+     "f082",
+     "f088",
+     "s014",
+     "s017",
+     "s027",
+     "s032",
+     "s041",
+     "s081",
+     "s083",
+     "s088",
+     "s089",
+     "s099",
+     "s135",
+     "s145",
+     "s188",
+     "s212",
+     "s237",
+     "s242",
+     "s250",
+     "s253",
+     "s259",
+     "s307",
+     "s310",
+     "s329",
+     "s384",
+     "s385",
+     "s388"
+    ]
+   },
+   "ielts": {
+    "n": 81,
+    "labelled_unsupported": 7,
+    "labelled_supported": 74,
+    "blocked": 6,
+    "block_rate": 0.0741,
+    "caught": 6,
+    "catch_rate": 0.8571,
+    "false_blocks": 0,
+    "false_block_rate": 0.0,
+    "precision": 1.0,
+    "not_checked": 0,
+    "false_block_ids": [],
+    "missed_ids": [
+     "s291"
+    ]
+   },
+   "prerequisites": {
+    "n": 86,
+    "labelled_unsupported": 19,
+    "labelled_supported": 67,
+    "blocked": 19,
+    "block_rate": 0.2209,
+    "caught": 17,
+    "catch_rate": 0.8947,
+    "false_blocks": 2,
+    "false_block_rate": 0.0299,
+    "precision": 0.8947,
+    "not_checked": 0,
+    "false_block_ids": [
+     "s160",
+     "s211"
+    ],
+    "missed_ids": [
+     "s124",
+     "s169"
+    ]
+   },
+   "toefl": {
+    "n": 82,
+    "labelled_unsupported": 17,
+    "labelled_supported": 65,
+    "blocked": 33,
+    "block_rate": 0.4024,
+    "caught": 17,
+    "catch_rate": 1.0,
+    "false_blocks": 16,
+    "false_block_rate": 0.2462,
+    "precision": 0.5152,
+    "not_checked": 0,
+    "false_block_ids": [
+     "f011",
+     "f018",
+     "f100",
+     "s026",
+     "s031",
+     "s043",
+     "s059",
+     "s062",
+     "s127",
+     "s304",
+     "s314",
+     "s328",
+     "s350",
+     "s364",
+     "s367",
+     "s390"
+    ],
+    "missed_ids": []
+   }
+  },
+  "fields_by_sample": {
+   "random-20261030": {
+    "n": 100,
+    "labelled_unsupported": 27,
+    "labelled_supported": 73,
+    "blocked": 27,
+    "block_rate": 0.27,
+    "caught": 23,
+    "catch_rate": 0.8519,
+    "false_blocks": 4,
+    "false_block_rate": 0.0548,
+    "precision": 0.8519,
+    "not_checked": 0,
+    "false_block_ids": [
+     "f011",
+     "f018",
+     "f050",
+     "f100"
+    ],
+    "missed_ids": [
+     "f010",
+     "f082",
+     "f088",
+     "f092"
+    ]
+   },
+   "stratified-20261031": {
+    "n": 390,
+    "labelled_unsupported": 120,
+    "labelled_supported": 270,
+    "blocked": 103,
+    "block_rate": 0.2641,
+    "caught": 80,
+    "catch_rate": 0.6667,
+    "false_blocks": 23,
+    "false_block_rate": 0.0852,
+    "precision": 0.7767,
+    "not_checked": 0,
+    "false_block_ids": [
+     "s026",
+     "s031",
+     "s043",
+     "s059",
+     "s062",
+     "s071",
+     "s072",
+     "s073",
+     "s076",
+     "s077",
+     "s078",
+     "s127",
+     "s160",
+     "s211",
+     "s254",
+     "s257",
+     "s304",
+     "s314",
+     "s328",
+     "s350",
+     "s364",
+     "s367",
+     "s390"
+    ],
+    "missed_ids": [
+     "s014",
+     "s017",
+     "s027",
+     "s032",
+     "s041",
+     "s081",
+     "s083",
+     "s088",
+     "s089",
+     "s099",
+     "s105",
+     "s111",
+     "s124",
+     "s135",
+     "s144",
+     "s145",
+     "s148",
+     "s149",
+     "s165",
+     "s169",
+     "s179",
+     "s188",
+     "s206",
+     "s212",
+     "s232",
+     "s233",
+     "s234",
+     "s237",
+     "s242",
+     "s250",
+     "s253",
+     "s259",
+     "s291",
+     "s307",
+     "s310",
+     "s329",
+     "s353",
+     "s384",
+     "s385",
+     "s388"
+    ]
+   }
+  },
+  "fields_weighted": {
+   "unsupported_share": 0.2766,
+   "block_rate": 0.2329,
+   "catch_rate": 0.6928,
+   "false_block_rate": 0.057,
+   "precision": 0.8228
+  },
+  "sentences": {
+   "n": 75,
+   "labelled_unsupported": 7,
+   "labelled_supported": 68,
+   "blocked": 9,
+   "block_rate": 0.12,
+   "caught": 5,
+   "catch_rate": 0.7143,
+   "false_blocks": 4,
+   "false_block_rate": 0.0588,
+   "precision": 0.5556,
+   "not_checked": 0,
+   "false_block_ids": [
+    "i04-s1",
+    "t06-s1",
+    "t08-s2",
+    "t11-s1"
+   ],
+   "missed_ids": [
+    "t11-s2",
+    "t12-s1"
+   ]
+  }
+ }
+}

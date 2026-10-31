@@ -26,6 +26,7 @@ from evals.faithfulness import (
 )
 
 RECORDED = Path(__file__).resolve().parents[1] / "evals" / "results" / "faithfulness-2026-10-30.json"
+RECORDED_V2 = Path(__file__).resolve().parents[1] / "evals" / "results" / "faithfulness-2026-10-31.json"
 
 
 def test_the_recorded_run_replays_to_its_reported_metrics():
@@ -128,3 +129,18 @@ def test_the_second_set_keeps_the_first_draw_and_relabels_its_china_rows_on_the_
     keys = {(r["school_key"], r["program_index"], r["field"], r["item_index"]) for r in new["fields"]}
     assert len(keys) == len(new["fields"])  # no field drawn twice
     assert [r["id"] for r in new["sentences"]] == [r["id"] for r in old["sentences"]]
+
+
+def test_the_second_run_replays_to_its_reported_metrics():
+    """The one live run (DeepSeek, 2026-10-31) over the second set, labelled before it ran."""
+    again, same = replay(RECORDED_V2)
+    assert same
+    fields, sentences = again["fields"], again["sentences"]
+    assert (fields["n"], fields["labelled_unsupported"], fields["blocked"], fields["caught"],
+            fields["false_blocks"]) == (490, 147, 130, 103, 27)
+    first, stratified = again["fields_by_sample"]["random-20261030"], again["fields_by_sample"][f"stratified-{SEED_V2}"]
+    assert (first["n"], first["labelled_unsupported"], first["caught"], first["false_blocks"]) == (100, 27, 23, 4)
+    assert (stratified["n"], stratified["labelled_unsupported"], stratified["caught"],
+            stratified["false_blocks"]) == (390, 120, 80, 23)
+    assert (sentences["n"], sentences["blocked"], sentences["caught"], sentences["false_blocks"]) == (75, 9, 5, 4)
+    assert again["fields_weighted"]["catch_rate"] == 0.6928
