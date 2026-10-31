@@ -1,7 +1,7 @@
 # advisor-passages Specification
 
 ## Purpose
-TBD - created by archiving change snapshot-rag. Update Purpose after archive.
+How the advisor answers tuition, reference and interview questions from the official pages' own text: page chunks stored without local paths, passages retrieved inside the named schools, and every shown sentence checked against verbatim quotes.
 ## Requirements
 ### Requirement: Official page text is stored as chunks without local paths
 

@@ -16,7 +16,7 @@
 - **忠实度评估：** 第二版（10-31，PR #83）：490 个字段（旧随机 100 + 按字段分层 390），「推不出」147 条，标签 Claude 盲标、**不人工复核**（MortyYJT 决定）；DeepSeek 判官检出 103/147（70.1%）、误伤 27/343（7.9%）、精确率 103/130（79.2%），按总体加权 69.3% / 5.7% / 82.3%；截止日期只检出 22/50（判官放过标签里多出的入学季）。旧集和 10-30 结果原样保留，CI 两份都回放。细节 `docs/measurements.md`「Summary faithfulness evaluation, second set」。
 - **未归档的 OpenSpec change：** 只剩 ledger-redesign（P2 #4 进行中）。hybrid-retrieval、snapshot-rag 在向量上线后归档（`openspec/changes/archive/2026-10-31-*`，日期是 UTC）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
-- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`、`images/`（README 截图）；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
+- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`、`images/`（README 截图）；`TASKS.md` 每条只留一行；`openspec/specs/` 16 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
 - **README（10-31，PR #82 已合并）：** 全英文，每个数字链到 `docs/measurements.md` 或 PRD；忠实度那条在 PR #83 换成第二版评估的数。决定见 `note/decisions.md` 10-31「README 重写」。
 - **MortyYJT 10-31 的两个决定**（见 `note/decisions.md`）：① 不做「用户自带 API key」，项目自用；登录模式打开后把顾问限制为只有登录账号能用（还没做，排在登录模式之后）。② 登录模式不等腾讯云 SES，改用个人 QQ 邮箱或 Gmail 的 SMTP 授权码（见「卡在 MortyYJT」第 1 条）。
 - **DeepSeek 余额（10-31）：** 19.00 元（本任务前 19.29；忠实度评估第二版花约 0.29 元，含一次中途停掉的启动和同期生产用量）。
