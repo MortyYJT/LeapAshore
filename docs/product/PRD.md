@@ -170,7 +170,7 @@ The background assessment page (`/assess`) was removed on 2026-10-30. Tiering ne
 | F8.4 | At first sign-in, the same browser's earlier anonymous profile, portfolio, roadmap tasks and documents merge into the account; existing account data is not overwritten (conflict rules in `openspec/changes/archive/2026-10-30-account-login/design.md` D7); unclaimed anonymous data is cleaned up after 90 days | P0 |
 | F8.5 | Every API and advisor tool identifies the user by account and cannot read or write anyone else's data | P0 |
 | F8.6 | Deleting an account deletes all its data (including uploaded files); the privacy policy page is public | P0 |
-| F8.7 | Code emails go through Tencent Cloud SES (SMTP); locally and in CI codes are only written to the log, which production forbids | P0 |
+| F8.7 | Code emails go through SMTP over implicit TLS (planned: the owner's QQ Mail or Gmail with an authorisation code or app password; Tencent Cloud SES also works); locally and in CI codes are only written to the log, which production forbids | P0 |
 
 ## 7. Core business rules
 

@@ -13,7 +13,7 @@
 
 - [x] **修复个人网站 mortyyjt.site** — PR #28。`mortyyjt.site` 200、`www` 301。[详情](docs/measurements.md#fix-the-personal-site-mortyyjtsite-pr-28)
 - [x] **按新范围收缩学校库** — PR #34。346 → 287 所，生产范围外项目 0。[详情](docs/measurements.md#shrink-the-school-list-to-the-new-scope-pr-34)
-- [x] **账号与登录（邮箱 + 验证码），砍掉背景测评** — PR #36（代码已上线，登录模式未开，等 MortyYJT 配 SES）。并发首次登录只建 1 个账号，猜码第 5 次起作废。[详情](docs/measurements.md#accounts-and-sign-in-email--code-background-assessment-removed-pr-36)
+- [x] **账号与登录（邮箱 + 验证码），砍掉背景测评** — PR #36（代码已上线，登录模式未开，等 MortyYJT 在服务器填个人邮箱的 SMTP 授权码）。并发首次登录只建 1 个账号，猜码第 5 次起作废。[详情](docs/measurements.md#accounts-and-sign-in-email--code-background-assessment-removed-pr-36)
 - [x] **修顾问检索：先测基线，再改** — PR #38。报数组 Recall@4 0.10 → 0.889，误拦 0.60 → 0。[详情](docs/measurements.md#fix-advisor-retrieval-baseline-first-then-change-pr-38)
 - [x] **顾问接口限流与额度** — PR #40、#44。限流检查 p99 5.61 ms（50 并发），伪造转发头无效。[详情](docs/measurements.md#advisor-rate-limits-and-quotas-pr-40-follow-up-pr-44)
 - [x] **抽取写成代码**（`app/collect/extract.py`）— PR #42（离线工具）。10 校 95 页拒收率 10.3%。[详情](docs/measurements.md#extraction-as-code-appcollectextractpy-pr-42-offline-tool)
@@ -28,6 +28,7 @@
 - [x] **混合检索** — PR #58（全文 + 管线；**向量部分卡在 MortyYJT 的硅基流动 key**）。报数组 Recall@4 0.8958 → 0.9583（只用全文）。[详情](docs/measurements.md#hybrid-retrieval-pr-58-vector-part-waiting-for-the-owners-siliconflow-key)
 - [x] **快照 RAG** — PR #60。引文核对通过率 82/82，不可答 6/6 拒答。[详情](docs/measurements.md#snapshot-rag-pr-60)
 - [x] **概括忠实度校验** — PR #62。字段越界检出 81.5%，误伤 6.8%；**125 个项目和中国学生要求 2,278 条等 DeepSeek 充值后补判**。[详情](docs/measurements.md#summary-faithfulness-check-pr-62)
+- [x] **忠实度评估扩样**（490 个字段，Claude 盲标、不人工复核）— PR #83。检出 103/147（70.1%），误伤 27/343（7.9%），精确率 103/130。[详情](docs/measurements.md#summary-faithfulness-evaluation-second-set-pr-83)
 
 ## P2：有余力再做
 
