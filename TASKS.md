@@ -25,7 +25,7 @@
 - [x] **截止日期和学术要求入库** — PR #48。3,986 条截止日期、4,831 个学术要求入库，重导 0 写入。[详情](docs/measurements.md#deadlines-and-academic-requirements-pr-48)
 - [x] **采集队列 + 变更检测** — PR #50、#51、#52、#54。补采 3,628 页，模型费 36.37 元；生产「有要求」7,545（P1 第六条重导后为 7,374）。[详情](docs/measurements.md#collection-queue-and-change-detection-pr-50-queue-code-pr-51-data-pr-52-review-pr-54-second-round)
 - [x] **对话持久化** — PR #56。等待确认时 `kill -9` 重启后确认，只写一次。[详情](docs/measurements.md#conversation-persistence-pr-56)
-- [x] **混合检索** — PR #58（全文 + 管线；**向量部分卡在 MortyYJT 的硅基流动 key**）。报数组 Recall@4 0.8958 → 0.9583（只用全文）。[详情](docs/measurements.md#hybrid-retrieval-pr-58-vector-part-waiting-for-the-owners-siliconflow-key)
+- [x] **混合检索** — PR #58（全文 + 管线；向量部分 10-31 拿到 key 后在 PR #85 实测）。报数组 Recall@4 0.8958 → 0.9583（只用全文）。[详情](docs/measurements.md#hybrid-retrieval-pr-58-vector-part-waiting-for-the-owners-siliconflow-key)
 - [x] **快照 RAG** — PR #60。引文核对通过率 82/82，不可答 6/6 拒答。[详情](docs/measurements.md#snapshot-rag-pr-60)
 - [x] **概括忠实度校验** — PR #62。字段越界检出 81.5%，误伤 6.8%；**125 个项目和中国学生要求 2,278 条等 DeepSeek 充值后补判**。[详情](docs/measurements.md#summary-faithfulness-check-pr-62)
 - [x] **忠实度评估扩样**（490 个字段，Claude 盲标、不人工复核）— PR #83。检出 103/147（70.1%），误伤 27/343（7.9%），精确率 103/130。[详情](docs/measurements.md#summary-faithfulness-evaluation-second-set-pr-83)
@@ -37,6 +37,7 @@
   - 注：没有 key，按清单跳过；需要 MortyYJT 提供 Langfuse Cloud key 后再做（10-30 查过：本机和生产 `deploy/.env` 都没有 Langfuse 的 key）。
 - [x] **人工核验入口** — PR #69。数据库触发器 + 静态扫描保证只有管理员确认能写 `verified_at`。[详情](docs/measurements.md#manual-verification-entry-pr-69)
 - [x] **顾问检索评估 v2：分级标注 + nDCG/MRR**（MortyYJT 10-31 加，为开向量后的四路对比做准备）— PR #84。369 题，报数组 253 道要求题：全文 nDCG@4 0.524、MRR 0.519，规则 0.446、0.394，误放 0/26；标注由 Claude 写、不做人工复核。[详情](docs/measurements.md#advisor-retrieval-evaluation-v2-graded-set-and-rank-aware-metrics-pr-84)
+- [x] **向量 / 混合检索实测 + 选 K**（10-31 拿到硅基流动 key 后）— PR #85。报数组 nDCG@4 全文 0.524 → 混合 0.736、MRR 0.519 → 0.768，误放 0/26，回退 0/253；调参组扫 K，K 保持 4。[详情](docs/measurements.md#vector-and-hybrid-retrieval-on-the-v2-set-and-choosing-k-pr-85)
 - [ ] **界面收尾**：做完 `ledger-redesign` 剩下的 6 项（4.4、5.12、7.1、7.2、7.3、7.5）。
 
 ## 不做

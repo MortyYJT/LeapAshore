@@ -214,6 +214,18 @@ def test_the_gate_answers_by_full_text_when_the_question_does_not_embed(catalogu
     assert update["citations"][0]["programId"] == catalogue["tesol"]
 
 
+def test_the_gate_hands_the_model_at_most_the_rows_it_is_asked_for(catalogue):
+    # The K sweep (evals/run_advisor.py --sweep-k) varies this; production uses TOP_K.
+    question = "混检测试大学教育硕士要求"
+    with SessionLocal() as s:
+        default = evidence.gate(s, question, ranking="fts")
+        two = evidence.gate(s, question, ranking="fts", limit=2)
+        one = evidence.gate(s, question, ranking="fts", limit=1)
+    assert len(default["citations"]) == evidence.TOP_K
+    assert [c["programId"] for c in two["citations"]] == [c["programId"] for c in default["citations"]][:2]
+    assert len(one["citations"]) == 1 and len(one["evidence"]) < len(two["evidence"])
+
+
 def test_the_gate_uses_the_configured_ranking(catalogue, monkeypatch):
     monkeypatch.setattr(settings, "advisor_retrieval", "rules")
     with SessionLocal() as s:

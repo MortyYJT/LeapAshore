@@ -64,9 +64,11 @@ def test_percentile_is_nearest_rank():
     assert ra.percentile([1, 2, 3], 50) == 2
 
 
-def row(id_, passed=True, answerable=True, ndcg=1.0, rr=1.0, recall=1.0, precision=1.0, ms=1.0, type_="subject"):
+def row(id_, passed=True, answerable=True, ndcg=1.0, rr=1.0, recall=1.0, precision=1.0, ms=1.0, type_="subject",
+        evidence_chars=None):
     return {"id": id_, "type": type_, "answerable": answerable, "passed": passed, "ndcg": ndcg, "rr": rr,
-            "recall": recall, "precision": precision, "ms": ms, "rows_read": 10, "statements": 3}
+            "recall": recall, "precision": precision, "ms": ms, "rows_read": 10, "statements": 3,
+            "evidence_chars": evidence_chars if evidence_chars is not None else (100 if passed else None)}
 
 
 def test_summary_and_per_type_breakdown():
@@ -181,3 +183,52 @@ def test_embedding_summary_is_not_applicable_without_vectors_and_counts_fallback
     assert out["fallbacks"] == 1 and out["fallback_rate"] == 0.5
     assert out["mean_tokens_per_query"] == pytest.approx(8)
     assert out["cost_cny_per_query"] == pytest.approx(8 * 0.5 / 1_000_000)
+
+
+def test_the_summary_measures_the_evidence_text_of_the_questions_that_passed():
+    rows = [row(f"q{i}", evidence_chars=c) for i, c in enumerate([100, 200, 300, 400, 1000])]
+    rows.append(row("blocked", passed=False, ndcg=0.0, rr=0.0, recall=0.0, precision=None))
+    s = ra.summarise(rows)
+    assert s["evidence_chars_mean"] == pytest.approx(400)
+    assert s["evidence_chars_p90"] == 1000  # nearest rank over the five that passed
+    assert ra.summarise([row("x", passed=False, precision=None)])["evidence_chars_mean"] is None
+
+
+def test_k_values_parse_as_distinct_positive_integers_in_order():
+    assert ra.parse_ks("1,2,3,4,6,8,10") == [1, 2, 3, 4, 6, 8, 10]
+    assert ra.parse_ks(" 4, 2 ,4") == [2, 4]
+    for bad in ("", "0,2", "a", "-1"):
+        with pytest.raises(ValueError):
+            ra.parse_ks(bad)
+
+
+def test_a_k_sweep_scores_every_k_and_keeps_one_row_each():
+    seen = []
+
+    def fake_score(questions, details, ranking=None, k=None):
+        seen.append((ranking, k, details))
+        rows = [row("a", recall=min(1.0, k / 4), evidence_chars=100 * k),
+                row("b", answerable=False, passed=False, ndcg=None, rr=None, recall=None, precision=None)]
+        for r in rows:
+            r["fell_back"] = k == 1
+        return {"summary": {"ranking": ranking, "k": k, **ra.summarise(rows)}, "questions": rows}
+
+    table = ra.sweep_k([{"id": "a"}], "fts", [1, 2, 8], score=fake_score)
+    assert [(r, k) for r, k, _ in seen] == [("fts", 1), ("fts", 2), ("fts", 8)] and all(d for *_, d in seen)
+    assert [t["k"] for t in table] == [1, 2, 8]
+    assert table[1]["recall_at_k"] == 0.5 and table[2]["evidence_chars_mean"] == 800
+    assert table[0]["fallbacks"] == 2 and table[1]["fallbacks"] == 0
+    assert set(table[0]) >= {"ranking", "k", "ndcg_at_k", "mrr", "recall_at_k", "precision_at_k", "false_pass_rate",
+                             "false_block_rate", "evidence_chars_mean", "evidence_chars_p90", "latency_ms_p50"}
+
+
+def test_a_question_is_embedded_once_however_many_k_values_are_swept(monkeypatch):
+    from app.agent import embeddings
+
+    calls = []
+    monkeypatch.setattr(embeddings, "embed_query", lambda text: calls.append(text) or ([0.1] if text != "bad" else None))
+    with ra.embedding_once_per_question():
+        assert embeddings.embed_query("q") == [0.1] and embeddings.embed_query("q") == [0.1]
+        assert embeddings.embed_query("bad") is None and embeddings.embed_query("bad") is None
+    assert calls == ["q", "bad"]  # a failure is kept too, so every K ranks that question the same way
+    assert embeddings.embed_query("q") == [0.1] and calls[-1] == "q"  # restored afterwards

@@ -3,6 +3,7 @@
     python -m evals.run_passages --check                      # gold quotes are in the stored chunks
     python -m evals.run_passages --live [--out FILE] [--budget-cny 5]
     python -m evals.run_passages --replay FILE                # no database, no model
+    python -m evals.run_passages --retrieve [--retrieval fts|vector|hybrid] [--out FILE]   # no model
 
 Questions and labels: ``evals/passage_questions.json`` (openspec snapshot-rag D11).
 
@@ -29,6 +30,13 @@ Metrics:
   by a shown sentence;
 - gold quote retrieved / cited: the same for the passage that holds the labelled sentence itself (a
   page can be retrieved through another of its chunks).
+
+``--retrieve`` runs only the passage gate, with no model call: topics come from the question's words
+(``passages.detect_topics``, what the router would pass), and the ranking is ``--retrieval`` (default:
+the production setting). It reports, over answerable questions, how many retrieved the gold page and
+the gold sentence's passage and the mean reciprocal rank of each (0 when missing), and how many
+questions of each kind the gate refused. A vector ranking is refused without a key or when no
+question embedded, as in ``run_advisor``.
 
 The answered count includes answers whose only shown sentences say the passages do not cover the
 asked program (they quote a passage verbatim, so the check keeps them); the gold counts are the
@@ -115,6 +123,70 @@ def metrics(items: list[dict]) -> dict:
         "gold_quote_cited": sum(1 for _, s in answerable if s["gold_quote_cited"]),
         "per_question": {i["id"]: s for i, s in zip(items, scored)},
     }
+
+
+def retrieval_item(item: dict) -> dict:
+    """Where one question's gold page and gold sentence came among its retrieved passages (1-based)."""
+    from app.collect.text import normalize
+
+    passages = item.get("passages") or []
+    gold = item.get("gold") or {}
+    quote = normalize(gold.get("quote") or "")
+    on_page = [n for n, p in enumerate(passages, 1) if gold.get("url") and p["url"] == gold["url"]]
+    holding = [n for n in on_page if quote and quote in normalize(passages[n - 1]["text"])]
+    return {"gate": "pass" if passages else "refuse", "gold_page_rank": on_page[0] if on_page else None,
+            "gold_quote_rank": holding[0] if holding else None}
+
+
+def retrieval_metrics(items: list[dict]) -> dict:
+    """Retrieval-only metrics: no answer is needed, only the passages each question retrieved."""
+    scored = {i["id"]: retrieval_item(i) for i in items}
+    answerable = [scored[i["id"]] for i in items if i["answerable"]]
+    unanswerable = [scored[i["id"]] for i in items if not i["answerable"]]
+
+    def mrr(key):
+        return round(sum(1 / s[key] for s in answerable if s[key]) / len(answerable), 4) if answerable else None
+
+    return {
+        "questions": len(items), "answerable": len(answerable), "unanswerable": len(unanswerable),
+        "gold_page_retrieved": sum(1 for s in answerable if s["gold_page_rank"]),
+        "gold_quote_retrieved": sum(1 for s in answerable if s["gold_quote_rank"]),
+        "gold_page_mrr": mrr("gold_page_rank"), "gold_quote_mrr": mrr("gold_quote_rank"),
+        "answerable_gate_refused": sum(1 for s in answerable if s["gate"] == "refuse"),
+        "unanswerable_refused": sum(1 for s in unanswerable if s["gate"] == "refuse"),
+        "per_question": scored,
+    }
+
+
+def run_retrieval(ranking: str | None) -> dict:
+    """The passage gate alone over every question; nothing is sent to a chat model."""
+    from app.agent import embeddings, passages
+    from app.config import settings
+    from app.db import SessionLocal
+
+    ranking = ranking or settings.advisor_retrieval
+    if ranking in ("vector", "hybrid") and embeddings.configured_client() is None:
+        raise SystemExit(f"--retrieval {ranking} needs EMBED_API_KEY; not scoring")
+    items, used = [], {}
+    started = time.monotonic()
+    for q in load_questions():
+        topics = passages.detect_topics(q["question"])
+        t0 = time.perf_counter()
+        with SessionLocal() as s:
+            update = passages.gate(s, q["question"], topics, ranking=ranking)
+        ms = round((time.perf_counter() - t0) * 1000, 1)
+        signals = update["trace"]["gate_signals"]
+        if signals["schools"]:
+            used[signals["ranking"]] = used.get(signals["ranking"], 0) + 1
+        items.append({"id": q["id"], "question": q["question"], "topic": q["topic"], "answerable": q["answerable"],
+                      "gold": q.get("gold"), "topics": [t.key for t in topics], "ranking": signals["ranking"],
+                      "ms": ms, "refusal": update.get("refusal"),
+                      "passages": [{"chunk_id": p["chunk_id"], "url": p["url"], "text": p["text"]}
+                                   for p in update.get("passages") or []]})
+    if ranking in ("vector", "hybrid") and used and set(used) == {"fts"}:
+        raise SystemExit(f"--retrieval {ranking}: no question embedded; not scoring a full-text run as a vector one")
+    return {"date": date.today().isoformat(), "ranking": ranking, "ranking_used": used,
+            "seconds": round(time.monotonic() - started, 1), "items": items, "metrics": retrieval_metrics(items)}
 
 
 def replay(path: Path) -> tuple[dict, bool]:
@@ -205,6 +277,9 @@ def main(argv: list[str] | None = None) -> int:
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--live", action="store_true")
     mode.add_argument("--replay", type=Path)
+    mode.add_argument("--retrieve", action="store_true", help="the passage gate only, no model call")
+    parser.add_argument("--retrieval", choices=("fts", "vector", "hybrid"),
+                        help="ranking for --retrieve (default: the ADVISOR_RETRIEVAL setting)")
     parser.add_argument("--out", type=Path)
     parser.add_argument("--budget-cny", type=float, default=5.0)
     args = parser.parse_args(argv)
@@ -217,6 +292,13 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({k: v for k, v in again.items() if k != "per_question"} | {"matches_recorded": same},
                          ensure_ascii=False))
         return 0 if same else 1
+    if args.retrieve:
+        result = run_retrieval(args.retrieval)
+        if args.out:
+            args.out.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(json.dumps({k: v for k, v in result["metrics"].items() if k != "per_question"}
+                         | {"ranking": result["ranking"], "ranking_used": result["ranking_used"]}, ensure_ascii=False))
+        return 0
     result = asyncio.run(run_live(args.budget_cny))
     out = args.out or HERE / "results" / f"passages-{result['date']}.json"
     out.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

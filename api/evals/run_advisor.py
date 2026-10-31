@@ -3,6 +3,7 @@
     python -m evals.run_advisor [--split tune|heldout|all] [--retrieval rules|fts|vector|hybrid]
                                 [--details] [--intent] [--out FILE] [--check]
     python -m evals.run_advisor --compare A.json B.json [--out FILE]
+    python -m evals.run_advisor --sweep-k 1,2,3,4,6,8,10 [--retrieval R] [--out FILE]   # tune split only
     python -m evals.run_advisor --relabel
 
 ``--retrieval`` picks the ranking inside the named schools (openspec hybrid-retrieval D7). A ranking
@@ -42,12 +43,19 @@ the number of rows the gate hands the model:
 - false-block rate (误拦率): answerable questions the gate refused / answerable questions.
 - latency: wall time of one ``gate`` call (embedding included), p50 / p99 by nearest rank.
 - rows read: rows the database returned to Python while gating one question, and statements run.
+- evidence length: characters of the evidence text the gate hands the model (``evidence.gate(...)
+  ["evidence"]``), mean and p90 (nearest rank) over the questions the gate let through.
 - embedding: queries embedded, fallbacks to full text and their rate, tokens and cost per embedded
   query (``EMBED_PRICE_CNY_PER_MTOK``); ``null`` when nothing was sent to the embedding service (a
   ranking without vectors, or no key).
 
 Each of these is also reported per question type. ``--compare`` pairs two ``--details`` reports on the
 same labels question by question and counts wins, losses and ties on nDCG@K and on reciprocal rank.
+
+``--sweep-k`` scores the tune split once per K (the rows the gate hands the model, ``evidence.TOP_K``
+in production) and prints one row per K: the metrics above at that K and the evidence length, the cost
+side of a larger K. Each question is embedded once for the whole sweep, so every K ranks it the same
+way. It refuses the held-out split: K is chosen on tune, and held-out is run once at the chosen K.
 
 Intent accuracy is over every question in the split.
 """
@@ -301,6 +309,9 @@ def summarise(rows: list[dict]) -> dict:
         "mean_rows_read": _mean(p["rows_read"] for p in rows),
         "max_rows_read": max((p["rows_read"] for p in rows), default=0),
         "mean_statements": _mean(p["statements"] for p in rows),
+        "evidence_chars_mean": _mean(p.get("evidence_chars") for p in rows if p["passed"]),
+        "evidence_chars_p90": percentile([p["evidence_chars"] for p in rows
+                                          if p["passed"] and p.get("evidence_chars") is not None], 90),
     }
 
 
@@ -432,12 +443,14 @@ def check_vectors(session, ranking: str) -> None:
                          "`python -m app.agent.embeddings` first")
 
 
-def score_retrieval(questions: list[dict], details: bool, ranking: str | None = None) -> dict:
+def score_retrieval(questions: list[dict], details: bool, ranking: str | None = None, k: int | None = None) -> dict:
+    """Gate every requirement question once. ``k`` is the rows handed to the model (default: the
+    production ``TOP_K``)."""
     from app.config import settings
 
     strict = ranking is not None
     ranking = ranking or settings.advisor_retrieval
-    k = top_k()
+    k = k or top_k()
     counter = QueryCounter()
     counter.hook()
     per_question = []
@@ -455,7 +468,7 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
                 counter.statements = counter.rows = 0
                 counter.active = True
                 started = time.perf_counter()
-                update = evidence.gate(session, q["question"], ranking=ranking)
+                update = evidence.gate(session, q["question"], ranking=ranking, limit=k)
                 elapsed = time.perf_counter() - started
                 counter.active = False
             signals = update["trace"]["gate_signals"]
@@ -480,6 +493,7 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
                 "embed_calls": len(mine), "embedded": any(c["ok"] for c in mine),
                 "embed_tokens": sum(c["tokens"] for c in mine if c["ok"]),
                 "statements": counter.statements, "rows_read": counter.rows, "ms": round(elapsed * 1000, 1),
+                "evidence_chars": len(update["evidence"]) if passed else None,
             })
     emb = embedding_summary(per_question, ranking, settings.embed_price_cny_per_mtok)
     ranked = sum(p["has_school"] for p in per_question)
@@ -494,6 +508,57 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
         "by_type": by_type(per_question),
     }
     return {"summary": summary, "questions": per_question if details else []}
+
+
+# ---- choosing K ---------------------------------------------------------------------------------
+
+
+SWEEP_KEYS = ("ndcg_at_k", "mrr", "recall_at_k", "precision_at_k", "false_pass_rate", "false_block_rate",
+              "false_passes", "false_blocks", "evidence_chars_mean", "evidence_chars_p90", "latency_ms_p50",
+              "latency_ms_p99", "mean_rows_read")
+
+
+def parse_ks(text: str) -> list[int]:
+    """``"1,2,4"`` -> ``[1, 2, 4]``: distinct positive integers, ascending."""
+    try:
+        ks = sorted({int(part) for part in text.split(",") if part.strip()})
+    except ValueError as exc:
+        raise ValueError(f"K values must be integers: {text!r}") from exc
+    if not ks or ks[0] < 1:
+        raise ValueError(f"K values must be positive integers: {text!r}")
+    return ks
+
+
+@contextmanager
+def embedding_once_per_question():
+    """Memoise the question embedding for the block (a failure too), so a sweep sends each question
+    once and every K ranks it with the same vector or the same fallback."""
+    cache: dict[str, list[float] | None] = {}
+    original = embeddings.embed_query
+
+    def embed_query(text, *args, **kwargs):
+        if text not in cache:
+            cache[text] = original(text, *args, **kwargs)
+        return cache[text]
+
+    embeddings.embed_query = embed_query
+    try:
+        yield cache
+    finally:
+        embeddings.embed_query = original
+
+
+def sweep_k(questions: list[dict], ranking: str | None, ks: list[int], score=None) -> list[dict]:
+    """One row per K: the retrieval summary at that K and the questions that fell back to full text."""
+    score = score or score_retrieval
+    table = []
+    with embedding_once_per_question():
+        for k in ks:
+            result = score(questions, True, ranking=ranking, k=k)
+            summary = result["summary"]
+            table.append({"ranking": summary["ranking"], "k": k, **{key: summary[key] for key in SWEEP_KEYS},
+                          "fallbacks": sum(bool(p.get("fell_back")) for p in result["questions"])})
+    return table
 
 
 async def _classify_all(questions: list[dict]) -> tuple[list[dict], dict]:
@@ -555,6 +620,8 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--check", action="store_true", help="fail when the tune split misses the thresholds")
     parser.add_argument("--compare", nargs=2, metavar=("A", "B"),
                         help="per-question wins/losses/ties between two --details reports; runs nothing")
+    parser.add_argument("--sweep-k", metavar="K1,K2,...",
+                        help="score the tune split once per K (rows handed to the model); runs nothing else")
     parser.add_argument("--relabel", action="store_true",
                         help="rewrite the frozen grades from the label rules (after a catalogue change)")
     args = parser.parse_args(argv)
@@ -562,6 +629,20 @@ def main(argv: list[str]) -> int:
         parser.error("--check only applies to the tune split")
     if args.relabel:
         return relabel()
+    if args.sweep_k:
+        if args.split != "tune":
+            parser.error("--sweep-k only runs on the tune split; K is not chosen on held-out")
+        try:
+            ks = parse_ks(args.sweep_k)
+        except ValueError as exc:
+            parser.error(str(exc))
+        table = sweep_k(load_questions("tune"), args.retrieval, ks)
+        for line in table:
+            print(json.dumps(line, ensure_ascii=False))
+        if args.out:
+            Path(args.out).write_text(json.dumps({"split": "tune", "labels_sha256": labels_sha256(), "sweep": table},
+                                                 ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        return 0
     if args.compare:
         a, b = (json.loads(Path(p).read_text(encoding="utf-8")) for p in args.compare)
         result = compare(a, b)
