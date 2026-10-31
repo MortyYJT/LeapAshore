@@ -165,6 +165,8 @@ def run_retrieval(ranking: str | None) -> dict:
     from app.db import SessionLocal
 
     ranking = ranking or settings.advisor_retrieval
+    if ranking not in ("fts", "vector", "hybrid"):
+        raise SystemExit(f"passages rank by fts, vector or hybrid, not {ranking!r}; pass --retrieval")
     if ranking in ("vector", "hybrid") and embeddings.configured_client() is None:
         raise SystemExit(f"--retrieval {ranking} needs EMBED_API_KEY; not scoring")
     items, used = [], {}
