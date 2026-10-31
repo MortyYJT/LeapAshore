@@ -58,7 +58,7 @@ From PR #58; follow this for any future rebuild of the database. Do not switch t
 1. Back up: `... exec -T db pg_dump -U leapashore -d leapashore | gzip > ~/db-backup-<date>-pre-pgvector.sql.gz`.
 2. Sync the code as above, but do not `up` yet.
 3. Stop the services that write: `... stop api worker beat`.
-4. Final dump (custom format) and digest: `... exec -T db pg_dump -U leapashore -d leapashore -Fc > ~/pgvector-move.dump`. The digest script (per table: row count + md5 of the sorted rows' md5s, independent of collation) is in PR #58's run log (`openspec/changes/hybrid-retrieval/tasks.md`); `docker cp` it into the container, run it with `psql -f` and save the output as `~/digest-old.txt`.
+4. Final dump (custom format) and digest: `... exec -T db pg_dump -U leapashore -d leapashore -Fc > ~/pgvector-move.dump`. The digest script (per table: row count + md5 of the sorted rows' md5s, independent of collation) is in PR #58's run log (`openspec/changes/archive/2026-10-31-hybrid-retrieval/tasks.md`); `docker cp` it into the container, run it with `psql -f` and save the output as `~/digest-old.txt`.
 5. `... up -d db`: new image, new volume `pgdata`, initialised with `POSTGRES_INITDB_ARGS` (`C` collation). Wait for healthy.
 6. `... exec -T db pg_restore -U leapashore -d leapashore --no-owner --exit-on-error < ~/pgvector-move.dump`, run the same digest script into `~/digest-new.txt`; `diff` must show no difference. Run `amcheck` once too (create the extension, check, drop the extension).
 7. `... up -d --build`: the api's Alembic goes to `e3a9c5d17b42`. Then read-only checks.
@@ -68,13 +68,13 @@ The old volume `deploy_db-data` from this move was deleted on 2026-10-31 (it sto
 
 ## Turn on vector retrieval
 
-Any agent can do this once `EMBED_API_KEY` (SiliconFlow) exists:
+Done on 2026-11-01 (PR #85; numbers in [measurements.md](measurements.md#vector-and-hybrid-retrieval-on-the-v2-set-and-choosing-k-pr-85)). To redo it (a new key, a new model, a rebuilt database):
 
-1. Add `EMBED_API_KEY=…` to the server's `deploy/.env`, then `... up -d --force-recreate --no-deps api worker beat`.
-2. `... exec -T api python -m app.agent.embeddings --dry-run` to see how much will be sent (locally on 10-30: 9,748 programs, 455,121 characters), then run it without `--dry-run`; the output has `tokens`, `cost_cny` and `seconds`, which go into [measurements.md](measurements.md). If it fails midway (for example on a 429), running it again continues.
-3. **Change the privacy policy in the same deploy** (`web/app/privacy/page.tsx`): the advisor will send requirement questions' text to SiliconFlow for embeddings.
-4. Locally: `export EMBED_API_KEY=…`, `cd api && .venv/bin/python -m app.agent.embeddings` against the database the v2 held-out runs used (built like CI's; see [measurements.md](measurements.md#advisor-retrieval-evaluation-v2-graded-set-and-rank-aware-metrics-pr-84)), then run `python -m evals.run_advisor --split heldout --retrieval vector --details --out evals/results/v2-heldout-vector.json` and the same with `hybrid`, once each (the held-out set is run once per ranking). Compare each with `--compare evals/results/v2-heldout-fts.json evals/results/v2-heldout-vector.json` (and `hybrid`) and add the summaries, the embedding fallback rate and cost, and the per-type wins to [measurements.md](measurements.md).
-5. Snapshot chunks (from P1 #5): in production `... exec -T worker python -m app.agent.embeddings --chunks --dry-run`, then without `--dry-run` (locally 134,843 chunks, about 4,200 requests, about 550 MB of vectors; a failed run continues when run again). After doing the same locally, `evals.run_passages` can get a `--retrieval` option to compare `fts`/`vector`/`hybrid` (it currently follows the production setting).
+1. Put `EMBED_API_KEY=…` in the server's `deploy/.env` and change the privacy policy (`web/app/privacy/page.tsx`) in the same deploy if the provider changes; then `... up -d --force-recreate --no-deps api worker beat` (a changed `.env` reaches the containers only when they are recreated). `exec -T api sh -c 'test -n "$EMBED_API_KEY" && echo set'` checks it without printing it.
+2. Programs: `... exec -T api python -m app.agent.embeddings --dry-run`, then `... exec -T -e EMBED_TIMEOUT_SECONDS=30 api python -m app.agent.embeddings` (the 3 s default is for single questions; a batch of 32 can take longer). About 2.5 minutes in production.
+3. Page chunks: `... exec -T worker python -m app.agent.embeddings --chunks --dry-run`, then embed them **throttled**: one unthrottled run hit SiliconFlow's `TPM limit reached` (HTTP 429) after 6 minutes and 19,680 chunks (about 4.65 M tokens, while a local run used the same key). Run it in a loop of `--chunks --limit 1500` (about 350 k tokens) at most once a minute, waiting 2 minutes after an error, until the dry run reports `stale: 0`; every run continues where the last stopped. Do not run a local backfill on the same key at the same time.
+4. Read-only check: `... exec -T api python -m evals.run_advisor --split tune` must report `hybrid (used: hybrid)` and `fallback_rate` 0.
+5. Locally, the held-out comparison is in `evals/run_advisor.py` (`--retrieval vector|hybrid`, run once each on held-out, `--compare` with the committed `fts` file) and the passage comparison in `evals/run_passages.py --retrieve --retrieval fts|vector|hybrid` (no model call).
 
 ## Switch to sign-in mode
 

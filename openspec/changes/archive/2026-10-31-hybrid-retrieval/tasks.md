@@ -16,7 +16,7 @@ Branch `claude/hybrid-retrieval`.
 - [x] 2.1 Held-out once per available ranking on the final code (960ed1a); `vector`, `hybrid` wait for the key
 - [x] 3.1 Deploy (2026-10-30): backup, stop writers, dump, restore into `pgdata`; 28 table digests identical,
       amcheck 0/53; migrated to `e3a9c5d17b42`; tune split in the container 1.0 / 0.98; pages 200
-- [ ] 4.1 Blocked on MortyYJT: `EMBED_API_KEY`; then backfill, held-out `vector` and `hybrid`, privacy page
+- [x] 4.1 `EMBED_API_KEY` (2026-10-31): backfill, held-out `vector` and `hybrid`, privacy page (PR #85; production backfill 2026-11-01)
 
 ## Run log
 

@@ -74,7 +74,7 @@ class Settings(BaseSettings):
     # pages that need it are deferred there and collected on a machine that can render.
     collect_can_render: bool = True
 
-    # --- Hybrid retrieval (openspec/changes/hybrid-retrieval) ---
+    # --- Hybrid retrieval (openspec/changes/archive/2026-10-31-hybrid-retrieval) ---
     # How the advisor orders the rows inside the named schools: `rules` (the P0 #4 name patterns),
     # `fts`, `vector` or `hybrid` (RRF of the two). `hybrid` without a question vector ranks by full text.
     advisor_retrieval: str = "hybrid"

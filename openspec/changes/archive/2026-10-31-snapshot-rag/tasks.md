@@ -18,7 +18,7 @@ Branch `claude/snapshot-rag`.
 - [x] 3.1 Deploy (2026-10-30): backup, migrated to `f7c2d9a4e816`, 9,320 cited snapshot texts copied
       into `snapshots`, ingest in the worker: 9,344 pages, 132,204 chunks (second run writes nothing);
       database 33 MB -> 385 MB; pages 200; one real advisor turn (see TASKS.md)
-- [ ] 4.1 Blocked on MortyYJT: `EMBED_API_KEY`; then `embeddings --chunks` and a vector/hybrid run
+- [x] 4.1 `EMBED_API_KEY` (2026-10-31): `embeddings --chunks` locally and in production, and a retrieval-only vector/hybrid run (PR #85 and its follow-up)
 
 ## Run log
 
