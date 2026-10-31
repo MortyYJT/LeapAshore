@@ -36,6 +36,7 @@
 - [ ] **可观测性**：接入 Langfuse Cloud，记录每轮对话的 token、耗时和工具调用，算出单轮平均成本。需要 MortyYJT 提供 key；没有 key 就跳过这条；不上报用户标识和邮箱。
   - 注：没有 key，按清单跳过；需要 MortyYJT 提供 Langfuse Cloud key 后再做（10-30 查过：本机和生产 `deploy/.env` 都没有 Langfuse 的 key）。
 - [x] **人工核验入口** — PR #69。数据库触发器 + 静态扫描保证只有管理员确认能写 `verified_at`。[详情](docs/measurements.md#manual-verification-entry-pr-69)
+- [x] **顾问检索评估 v2：分级标注 + nDCG/MRR**（MortyYJT 10-31 加，为开向量后的四路对比做准备）— PR #84。369 题，报数组 253 道要求题：全文 nDCG@4 0.524、MRR 0.519，规则 0.446、0.394，误放 0/26；标注由 Claude 写、不做人工复核。[详情](docs/measurements.md#advisor-retrieval-evaluation-v2-graded-set-and-rank-aware-metrics-pr-84)
 - [ ] **界面收尾**：做完 `ledger-redesign` 剩下的 6 项（4.4、5.12、7.1、7.2、7.3、7.5）。
 
 ## 不做

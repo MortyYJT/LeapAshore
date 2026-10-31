@@ -177,8 +177,8 @@ Evaluation sets, runners and recorded results live in [api/evals/](api/evals/). 
 
 | Command | What it measures | Calls a model |
 | --- | --- | --- |
-| `python -m evals.run_advisor --split tune --check` | Retrieval and evidence gate: Recall@4, Precision@4, false pass and false block rates, rows read | No |
-| `python -m evals.run_advisor --split heldout --retrieval fts` | The same on the held-out split (run once per ranking, never tuned on) | No |
+| `python -m evals.run_advisor --split tune --check` | Retrieval and evidence gate on graded labels: nDCG@4, MRR, Recall@4, Precision@4, false pass and false block rates, latency, rows read, per question type | No |
+| `python -m evals.run_advisor --split heldout --retrieval fts --details --out …` | The same on the held-out split (run once per ranking, never tuned on); `--compare A B` counts per-question wins between two runs | No |
 | `python -m evals.run_advisor --split tune --intent` | Adds intent-router accuracy | Yes |
 | `python -m evals.run_passages --replay evals/results/passages-2026-10-30.json` | Snapshot answers: quote check, refusals, gold page and sentence retrieval, from a recorded run (`--live` reruns it) | No |
 | `python -m evals.faithfulness --replay evals/results/faithfulness-2026-10-31.json` | The summary judge against labelled fields and sentences (`--live` reruns it) | No |
