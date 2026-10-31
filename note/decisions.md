@@ -334,7 +334,7 @@
 
 ## 2026-10-30 混合检索：dump/restore 换 pgvector 镜像、只换排序不换门槛、国家只区分同名学校（Claude 自主（待 MortyYJT 复核））
 
-- **决定**（设计全文 `openspec/changes/hybrid-retrieval/design.md`）：
+- **决定**（设计全文 `openspec/changes/archive/2026-10-31-hybrid-retrieval/design.md`）：
   - 数据库换 `pgvector/pgvector:pg16` 时**不复用旧数据卷**，用 `pg_dump -Fc` / `pg_restore` 搬进新卷，新库按 `--lc-collate=C --lc-ctype=en_US.utf8` 初始化。理由：旧镜像是 Alpine（musl，`en_US.utf8` 实际按码位排），新镜像是 glibc（按语言排）；本机实测直接复用时 PostgreSQL 不报警，但 7 个 btree 索引顺序错（含主键和唯一索引）。`C` 排序保持和以前一样的 `ORDER BY` 结果。旧卷不动，回滚就是指回旧卷。
   - 四种排序共用同一套过滤和门槛，只换学校内的顺序；生产 `hybrid`，没有问题向量时回退全文并在 trace 里写明。RRF k=60 不调。
   - 全文只索引项目名（`english` 配置）；中文学科词经 `subjects.json` 的英文 gloss 进检索，英文词照原样，去掉通用词。
@@ -348,7 +348,7 @@
 
 ## 2026-10-30 快照 RAG：引用页的正文切块入库、学费/推荐信/面试走快照、逐字核对后才显示（Claude 自主（待 MortyYJT 复核））
 
-- **决定**（设计全文和测量 `openspec/changes/snapshot-rag/design.md`）：
+- **决定**（设计全文和测量 `openspec/changes/archive/2026-10-31-snapshot-rag/design.md`）：
   - **哪些页面**：只切采集文件引用的页面，各取它被核对时的那份快照（项目页 + 有 `source_url` 的共用页）；`待人工` 的项目页也切（学费、面试照样写在上面）；队列有更新的快照就用队列的。旧版本、列表页、被拒页面不切。本机 9,345 页、1.76 亿字符（14,026 份快照、2.55 亿字节文本是全部，含旧版本）。
   - **去模板**：一所学校一半以上页面（至少 3 页）开头和结尾都有的行算导航/页脚，只在页首页尾去掉（-21%）；页面中间重复的行不去，因为「所有项目都要面试」这类句子正是答案。
   - **切块**：按行拼，每块最多 1,200 字符，不重叠，超长行在句末或空格处断。本机 134,843 块，表 358 MB。

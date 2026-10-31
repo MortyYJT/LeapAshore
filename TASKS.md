@@ -37,7 +37,7 @@
   - 注：没有 key，按清单跳过；需要 MortyYJT 提供 Langfuse Cloud key 后再做（10-30 查过：本机和生产 `deploy/.env` 都没有 Langfuse 的 key）。
 - [x] **人工核验入口** — PR #69。数据库触发器 + 静态扫描保证只有管理员确认能写 `verified_at`。[详情](docs/measurements.md#manual-verification-entry-pr-69)
 - [x] **顾问检索评估 v2：分级标注 + nDCG/MRR**（MortyYJT 10-31 加，为开向量后的四路对比做准备）— PR #84。369 题，报数组 253 道要求题：全文 nDCG@4 0.524、MRR 0.519，规则 0.446、0.394，误放 0/26；标注由 Claude 写、不做人工复核。[详情](docs/measurements.md#advisor-retrieval-evaluation-v2-graded-set-and-rank-aware-metrics-pr-84)
-- [x] **向量 / 混合检索实测 + 选 K**（10-31 拿到硅基流动 key 后）— PR #85。报数组 nDCG@4 全文 0.524 → 混合 0.736、MRR 0.519 → 0.768，误放 0/26，回退 0/253；调参组扫 K，K 保持 4。[详情](docs/measurements.md#vector-and-hybrid-retrieval-on-the-v2-set-and-choosing-k-pr-85)
+- [x] **向量 / 混合检索实测 + 选 K**（10-31 拿到硅基流动 key 后）— PR #85。报数组 nDCG@4 全文 0.524 → 混合 0.736、MRR 0.519 → 0.768，误放 0/26，回退 0/253；调参组扫 K，K 保持 4；段落检索金句 21 → 23/32；生产 13.2 万块已回填。[详情](docs/measurements.md#vector-and-hybrid-retrieval-on-the-v2-set-and-choosing-k-pr-85)
 - [ ] **界面收尾**：做完 `ledger-redesign` 剩下的 6 项（4.4、5.12、7.1、7.2、7.3、7.5）。
 
 ## 不做
