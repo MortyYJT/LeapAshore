@@ -11,11 +11,12 @@
 - **产品站收尾（10-31，已部署）：** PR #79 标签页图标（`/icon.svg`、`/favicon.ico`、`/apple-icon.png`）；PR #80 删掉 `/programs` 列表（线上 404），学校详情页按项目名和方向筛选（在页面里筛，不用 API 的 `q`，因为它也匹配校名），项目详情只列有值的要求，去掉「未核对」「自动标注」等内部字样和每页底注，全站一行页脚署名（QS、CRICOS CC BY 2.5 AU、3 枚 CC BY-SA 校徽、隐私政策），路线图没填入学时间时只给一句话和按钮，加载占位，首页示例路线图在服务器端就画好；顾问拒答话术的「项目库」改成「学校库里该校的页面」（后端只改了这一句）。部署后线上只读检查都通过。决定和理由见 `note/decisions.md` 10-31「产品站收尾」。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
 - **已有能力**（细节在对应 OpenSpec change 和 `docs/measurements.md`）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
-- **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
+- **评估（10-31，PR #84，CI 过后合并）：** 顾问检索评估集扩到 369 题（调参 107 / 报数组 262），每道要求题按项目 id 分级（2 点名/明确指、1 同校同学科、0 其他）并标题型；`run_advisor.py` 加了 nDCG@4、MRR、按题型、逐题胜负（`--compare`）、p50/p99 延迟、向量回退率和每次嵌入成本（没开向量时为 null）。**标注是 Claude 写的，MortyYJT 决定不做人工复核。** 报数组已在最终代码和标注上各跑一次 `rules`、`fts`（结果 `api/evals/results/v2-heldout-*.json`）：全文 nDCG@4 0.524、MRR 0.519，规则 0.446、0.394，误放 0/26、误拦 16/227；**别再拿报数组调参**，重跑只照实记录。CI 的 `advisor-eval` 只跑调参组（门槛见 `api/evals/advisor_thresholds.json`）。报数组用的是照 CI 方式从 `origin/main` `6fb121c` 已提交数据建的库：本机 PG 里的 `leapashore_evalci`（建法见 `docs/measurements.md` 对应一节；本机开发库多 4 个项目，分级相同）。
 - **未归档的 OpenSpec change：** hybrid-retrieval、snapshot-rag（各剩 1 项，都卡在 MortyYJT 的 `EMBED_API_KEY`）、ledger-redesign（P2 #4 进行中）。account-login、knowledge-gaps 已在 10-31 文档审计 PR 里归档（最后一项「部署」10-30 已做完）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
 - **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`、`images/`（README 截图）；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
-- **README（10-31，PR 待合并）：** 全英文重写（不写中文名），每个数字链到 `docs/measurements.md` 或 PRD 对应一节；6 张截图在 `docs/images/`；`docs/deploy.md` 加了「First-time setup」。分支 `claude/readme-rewrite`，PR #82，CI 过了才能合并（只改文档，不用部署）。决定见 `note/decisions.md` 10-31「README 重写」。
+- **README（10-31，PR #82 已合并）：** 全英文重写（不写中文名），每个数字链到 `docs/measurements.md` 或 PRD 对应一节；6 张截图在 `docs/images/`；`docs/deploy.md` 加了「First-time setup」。决定见 `note/decisions.md` 10-31「README 重写」。
+- **并行的 PR #83**（另一个会话，`claude/faithfulness-eval-v2`）10-31 也开着，也改 `note/` 和 `TASKS.md`；后合并的那个要先 rebase 再合并这几处。
 - **本机：** 库卷 `leapashore_pgdata`、Redis 卷 `leapashore_redis-data`（10-31 从旧卷复制并改名，旧卷已删），连接串 `leapashore:leapashore@localhost:55432/leapashore`。`make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
@@ -23,11 +24,11 @@
 1. **开登录模式**：开通腾讯云 SES、DNSPod 加发信域名记录（SPF/DKIM/DMARC）、建发信地址并把 SMTP 账号密码填进服务器 `deploy/.env`。步骤见`docs/deploy.md`「Switch to sign-in mode」第 1–3 步；之后任何 agent 都能做第 4–7 步。
 2. **审核隐私政策** `/privacy`（AI 草稿）正文，补联系方式。
 3. **GitHub 邮箱隐私**：Settings → Emails 勾选「Keep my email addresses private」，否则合并提交会带私人邮箱。
-4. **硅基流动 key（P1 混合检索的向量部分）**：本机 shell、`api/.env`、服务器 `deploy/.env` 都没有硅基流动的 key（10-30 只查了变量名）。MortyYJT 在 cloud.siliconflow.cn 建一个 API key，填进服务器 `deploy/.env` 的 `EMBED_API_KEY=`（本机评估另外 `export EMBED_API_KEY=…`）。之后任何 agent 都能做`docs/deploy.md`「Turn on vector retrieval」的步骤，并补跑报数组的 `vector`、`hybrid` 两组。`BAAI/bge-m3` 在价格页标「免费」（10-30 查）。
+4. **硅基流动 key（P1 混合检索的向量部分）**：本机 shell、`api/.env`、服务器 `deploy/.env` 都没有硅基流动的 key（10-30 只查了变量名）。MortyYJT 在 cloud.siliconflow.cn 建一个 API key，填进服务器 `deploy/.env` 的 `EMBED_API_KEY=`（本机评估另外 `export EMBED_API_KEY=…`）。之后任何 agent 都能做`docs/deploy.md`「Turn on vector retrieval」的步骤，并在 v2 报数组上各跑一次 `vector`、`hybrid`，用 `--compare` 和已提交的 `v2-heldout-fts.json` 逐题对比（第 4 步）。`BAAI/bge-m3` 在价格页标「免费」（10-30 查）。
 5. **DeepSeek 充值（10-30 起，最急）**：（余额恢复前生产也记不到知识缺口：意图分类先调模型就 402 了。）P1 第六条的回填把 DeepSeek 账户用到 −0.06 元（`/user/balance` 显示 `is_available: false`）。**生产 `deploy/.env` 的 key 和本机 `DEEPSEEK_API_KEY` 是同一个账户**，所以生产顾问（每轮回答都调模型）和 beat 的采集都会 402，直到充值。充值后：生产不用重启（顾问下一轮就恢复；采集队列里因 402 记成 `deferred`、`last_error` 以 `model unavailable: ` 开头的页面照旧到期，第二天 04:07 的 beat 会再挑到，Redis 的暂停标记 1 小时后自动消失）；本机先查余额（「坑」里 DeepSeek 余额那条），再 `cd api && python -m app.collect.faithful --apply --budget-cny 5` 补判 125 个项目和中国学生要求 2,278 条（估约 3 元，见 `docs/measurements.md`「Summary faithfulness check」），提交改动的采集文件，按 `docs/deploy.md`「Import collected data」导入生产。看有多少页在等模型：`... exec -T db psql -U leapashore -d leapashore -c "select count(*) from collect_pages where last_error like 'model unavailable:%'"`。
 6. **Langfuse Cloud key（P2 第二条「可观测性」，已跳过）**：没有 key，按清单跳过；需要 MortyYJT 提供 Langfuse Cloud key 后再做（public + secret key，填服务器 `deploy/.env`；之后任何 agent 都能接着做这一条）。
 7. **成为管理员（P2 第三条「人工核验入口」）**：要先开登录模式（第 1 条），然后 MortyYJT 用自己的邮箱在网站上登录一次，再由任何 agent 在服务器上跑`docs/deploy.md`「Switch to sign-in mode」第 8 步。之前 `/admin` 对谁都是 404。
-8. **复核 AI 自主决定**（`note/decisions.md` 里标「待 MortyYJT 复核」的各条），主要是：顾问限流默认额度和 Redis 挂了就 503；顾问门槛「只有 CRICOS 课程名不算证据」是否太严、简称表、评估集标签；抽取器多条学术路线只留第一条；README 数据条款措辞和 QS 转载授权；两个手填占位项目要不要删（见下）。
+8. **复核 AI 自主决定**（`note/decisions.md` 里标「待 MortyYJT 复核」的各条），主要是：顾问检索评估 v2 的标注（10-31，AI 写、按 MortyYJT 决定不做人工复核，但「同一学科」的边界和出题偏向仍值得看一眼）；顾问限流默认额度和 Redis 挂了就 503；顾问门槛「只有 CRICOS 课程名不算证据」是否太严、简称表、评估集标签；抽取器多条学术路线只留第一条；README 数据条款措辞和 QS 转载授权；两个手填占位项目要不要删（见下）。
 
 ## 开放问题
 
@@ -48,7 +49,7 @@
 - 还没采到项目的学校 37 所，多数被拒，规则不允许绕过。找列表页还能接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。
 - 队列采的 1,366 个项目页没有要求通过核对（多数学校把入学要求写在另一页，队列只读项目页本身），在文件里是 `待人工`、不入库。
 - 快照 RAG 的已知局限（10-30）：段落排序只看主题短语（学费/推荐信/面试），不看问题里的项目词（「MADS」），所以学费那句在同页另一块时可能排不进前 6（评估 t09、生产那一轮都是这样，回答只说「摘录里没有学费金额」）；核对只查逐字和数字，引文支不支持句子不查；4 道题的回答只是「摘录里没有该项目的页面」。南昆士兰大学 1 页当时没入库（两条同英文名的 CRICOS 学校行），PR #63 合并后已补。
-- 混合检索评估的局限：调参组的相关集按学科大类标，`rules` 和 `fts` 都是 Recall@4 1.0 / Precision@4 0.98，分不出谁排得更好；要比较排序得补「点名具体项目」的标注题。
+- 检索评估 v2 的局限：出题和标注是同一个了解闸门与全文检索实现的作者（Claude），题目可能偏向系统处理得好的说法；`exact_name` 题照抄库里英文名，天然有利于全文检索；同义词题和描述题两种排序都最低（nDCG@4 约 0.27–0.30），是向量最可能帮上的地方。误拦 16 题全是闸门的事（13 题认不出学校，如「Edinburgh's」「诺丁汉」「教大」，3 题方向里没有项目），排序改不了。
 - 被拦的学校（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB、Stanford 计算机系。
 
 ## 部署
@@ -79,6 +80,7 @@
 - 顾问的限流在 endpoint 里、请求体校验通过之后才查（不要改回 `Depends`：依赖先于校验运行，422 也会占名额、预扣也不会还）。一轮对话在后台任务（`advisor._detached`）里跑完，结束时 `limits.settle` 归还预扣；新加花钱的路径要拿 ticket 并保证 settle。`check` 超时会先撤回本次放行（`_WITHDRAW`，按放行 id 幂等）再抛 `LimitsUnavailable`，所以 503 不会留下预扣；改 `_CHECK` 的 KEYS/ARGV 顺序时两个脚本一起改。
 
 - 顾问的学科名称模式（`subjects.json` 的 `name`）在 PostgreSQL 里跑，别写 `\b`（PG 里是退格），用 `(^|[^a-z])…([^a-z]|$)`。改简称表后跑 `python -m evals.run_advisor --split tune`：它会检查每个 id 都在库里、标签和库一致。
+- 在 git worktree 里跑 `make verify`：`web/node_modules` 不能是软链接（Turbopack 报「points out of the filesystem root」），用 `cp -cR` 克隆；走查读的是运行目录下的 `api/var/mail.log`，而 :8000 的后端若从主检出启动，验证码写在主检出那份，要把它链接过来，否则「走查顺利跑完」失败。
 - `make verify` 的走查（PR #80 起）在浏览器里拦下 `/api/advisor/*` 返回桩回复，不会真的问顾问、不花模型钱；要验证顾问本身走后端测试和 `api/evals/`。本机后端也没有 `CHAT_API_KEY`。
 - 线上只读检查别打开 `/roadmap`、`/tiers`、`/portfolio`、`/me`：匿名模式下它们会读 `/api/profile`，建一个匿名主体（`/roadmap` 还会写 31 条任务）。**项目详情页 `/programs/<id>` 也会**读 `/api/profile` 和 `/api/applications`（`ProgramActions` 的 `useProfile`），10-31 截 README 图时才发现；要在线上截项目页，就在浏览器里把这些请求拦掉（README 截图就是这么做的）。10-31 部署后的检查打开过 `/roadmap`，那个主体已按 id 删除。
 - 本机 :3000 的 dev server 若是很早起的旧进程，`/assess` 会 404、走查 28/30；对 `make build` 产物走查即可（见下一条）。
