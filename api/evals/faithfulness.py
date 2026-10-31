@@ -287,6 +287,8 @@ def run_live(budget_cny: float, set_path: Path = SET_V2) -> dict:
     from app.agent.llm import get_chat_model
     from app.collect.faithful import JUDGE_MAX_TOKENS, Claim, cost_cny, judge, program_context
 
+    if set_path.resolve().parent != HERE:
+        raise SystemExit(f"{set_path}: the set must be in {HERE.name}/ (a results file names it by file name)")
     data = load_set(set_path)
     problems = check_labels(data) + [f"{i}: claim wording changed since labelling" for i in stale_claims(data)]
     if problems:

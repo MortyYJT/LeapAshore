@@ -94,7 +94,7 @@ class Settings(BaseSettings):
 
     # --- Accounts (openspec/changes/archive/2026-10-30-account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until
-    # MortyYJT has a verified SES sender and SMTP credentials; `make api-dev-bg` turns it on locally.
+    # MortyYJT has put working SMTP credentials into deploy/.env; `make api-dev-bg` turns it on locally.
     auth_enabled: bool = False
     # `production` arms the guard in `check_settings`: login mode there must have a real mail backend.
     app_env: str = "development"

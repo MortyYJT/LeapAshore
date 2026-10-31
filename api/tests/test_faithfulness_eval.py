@@ -144,3 +144,16 @@ def test_the_second_run_replays_to_its_reported_metrics():
             stratified["false_blocks"]) == (390, 120, 80, 23)
     assert (sentences["n"], sentences["blocked"], sentences["caught"], sentences["false_blocks"]) == (75, 9, 5, 4)
     assert again["fields_weighted"]["catch_rate"] == 0.6928
+
+
+def test_a_live_run_refuses_a_set_outside_the_evals_folder(tmp_path):
+    """The results file names its set by file name only and replay looks it up next to the eval, so a set
+    elsewhere would make a paid run whose metrics cannot be recomputed. Refused before any model call."""
+    import pytest
+
+    from evals.faithfulness import run_live
+
+    outside = tmp_path / "faithfulness_set_v2.json"
+    outside.write_text(SET_V2.read_text(encoding="utf-8"), encoding="utf-8")
+    with pytest.raises(SystemExit, match="evals"):
+        run_live(1.0, outside)
