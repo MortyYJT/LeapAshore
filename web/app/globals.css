@@ -569,3 +569,14 @@ input[type="checkbox"],input[type="radio"] {accent-color:var(--primary)}
  .sidebar-collapsed .workspace-sidebar nav a{justify-content:flex-start;padding:10px;min-height:42px}
  .sidebar-collapsed .sidebar-account .uc-trigger{justify-content:flex-start;padding:8px 6px}
 }
+
+/* In the icon rail, the product mark doubles as the reveal control. */
+.sidebar-brand-expand {display:none}
+@media(min-width:701px){
+ .sidebar-collapsed .sidebar-brand .brand,.sidebar-collapsed .sidebar-collapse{display:none}
+ .sidebar-collapsed .sidebar-brand-expand{display:flex;width:36px;height:36px;color:var(--foreground)}
+ .sidebar-brand-expand span{display:flex;align-items:center;justify-content:center}
+ .sidebar-brand-expand .rail-expand{display:none}
+ .sidebar-brand-expand:hover .rail-mark,.sidebar-brand-expand:focus-visible .rail-mark{display:none}
+ .sidebar-brand-expand:hover .rail-expand,.sidebar-brand-expand:focus-visible .rail-expand{display:flex}
+}

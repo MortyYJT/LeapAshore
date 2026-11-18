@@ -245,6 +245,11 @@ async function adminPass(browser, email, errors) {
     await page.reload();
     await page.getByRole("button", { name: "展开侧边栏" }).waitFor();
     check("侧栏：刷新保留折叠", true);
+    const railBrand = page.getByRole("button", {name:"展开侧边栏"});
+    await page.mouse.move(500, 400);
+    check("折叠图标：默认显示产品标识", await railBrand.locator(".rail-mark").isVisible() && !await railBrand.locator(".rail-expand").isVisible());
+    await railBrand.hover();
+    check("折叠图标：悬停切换展开图标", !await railBrand.locator(".rail-mark").isVisible() && await railBrand.locator(".rail-expand").isVisible());
     await page.getByRole("button", { name: "展开侧边栏" }).click();
     await page.getByRole("button", { name: "搜索", exact:true }).click();
     await page.getByRole("textbox", { name: "搜索页面或学校" }).fill("Imperial");
@@ -253,7 +258,7 @@ async function adminPass(browser, email, errors) {
     check("搜索：真实学校库返回帝国理工", await page.getByRole("link", {name:/帝国理工/}).count() > 0);
     await page.goto(`${BASE}/`);
     await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
-    check("头像菜单：包含登录、设置和外观", await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button", {name:"设置",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button",{name:"深色",exact:true}).isVisible());
+    check("头像菜单：包含登录和设置，外观收进设置", await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button", {name:"设置",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button",{name:"深色",exact:true}).count() === 0);
     await page.keyboard.press("Escape");
     await screenshot(page, "home");
 
