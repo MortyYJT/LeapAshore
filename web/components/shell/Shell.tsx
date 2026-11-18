@@ -59,7 +59,12 @@ export function Shell({ children }: { children: ReactNode }) {
         event.preventDefault();
         search.current?.showModal();
       }
-      if (event.key === "Escape") setOpen(false);
+      if (
+        event.key === "Escape" &&
+        !document.getElementById("user-menu") &&
+        !document.querySelector("dialog[open]")
+      )
+        setOpen(false);
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);

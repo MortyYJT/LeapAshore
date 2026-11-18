@@ -677,6 +677,12 @@ async function adminPass(browser, email, errors) {
 
     await intro.getByRole("button", { name: "打开导航" }).click();
     check("390：按菜单后出现导航链接", await intro.locator("#workspace-nav").getByRole("link", { name: "学校库" }).isVisible());
+    await intro.getByRole("button", {name:"我的，打开用户菜单"}).click();
+    await intro.keyboard.press("Escape");
+    check("390：Esc 先关闭头像菜单", await intro.locator("#workspace-nav").isVisible() && await intro.locator("#user-menu").count() === 0);
+    await intro.keyboard.press("Escape");
+    check("390：再次 Esc 关闭侧栏", !await intro.locator("#workspace-nav").isVisible());
+    await intro.getByRole("button", {name:"打开导航"}).click();
     await screenshot(intro, "home-390");
     await sidebarLogin(intro);
     await intro.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();

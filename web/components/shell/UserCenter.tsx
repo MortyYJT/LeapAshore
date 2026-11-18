@@ -91,6 +91,7 @@ export function UserCenter() {
     };
     const keyboard = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.stopPropagation();
         setOpen(false);
         trigger.current?.focus();
       }
