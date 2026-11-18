@@ -8,4 +8,4 @@
 ## 3. Documentation and validation
 - [x] 3.1 Verify API behavior, production build, existing tests and browser flows; capture current desktop/mobile screenshots.
 - [x] 3.2 Update README, PRD, navigation copy and status/limitations to the agreed product positioning.
-- [ ] 3.3 Release with database backup and additive migration; validate production without writing test data.
+- [x] 3.3 Release with database backup and additive migration; validate production without writing test data.
