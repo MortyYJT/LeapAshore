@@ -4,8 +4,8 @@ The supplied dashboard screenshot is the visual source of truth. The application
 
 ## Shared layout
 
-- No top bar. A 260 px sidebar places the English product identity, search and collapse controls above five primary destinations. The bottom avatar opens account/settings links and light/dark/system controls.
-- The sidebar collapses to a 68 px icon rail; its state persists across refreshes. Search supports page shortcuts, real school queries and Cmd/Ctrl K.
+- No top bar. A 260 px sidebar places the English product identity, search and collapse controls above five primary destinations. The bottom avatar opens account/settings links. Appearance controls live exclusively in Settings → Appearance.
+- The sidebar collapses to a 68 px icon rail; its state persists across refreshes. In the rail, the product mark changes to the expand icon on hover or keyboard focus and expands on click. Search supports page shortcuts, real school queries and Cmd/Ctrl K.
 - At widths up to 700 px the sidebar becomes a toggleable drawer with a dismissible backdrop and layered Escape dismissal.
 - Dashboard: breadcrumb, welcome, two metric cards, current-stage progress, and directly editable current-stage tasks.
 - The stage counter and progress indicate the current stage's position. Pending count covers the current stage. Neither is hardcoded.

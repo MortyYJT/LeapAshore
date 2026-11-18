@@ -6,15 +6,15 @@ import { Mark } from "./Mark";
 import { UserCenter } from "./UserCenter";
 
 const links = [
-  ["总览", "/", "M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"],
+  ["工作台", "/", "M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"],
   [
     "申请路线图",
     "/roadmap",
     "M6 3v12m0 0a3 3 0 1 0 3 3 3 3 0 0 0-3-3Zm3 3c7 0 9-5 9-10m0-6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z",
   ],
   [
-    "我的选校",
-    "/portfolio",
+    "我的申请",
+    "/applications",
     "m2 9 10-5 10 5-10 5-10-5Zm4 2v6c4 3 8 3 12 0v-6M22 9v8",
   ],
   ["学校库", "/schools", "M3 21h18M5 21V5h8v16m0-12h6v12M8 8h2m-2 4h2m-2 4h2"],
@@ -153,7 +153,8 @@ export function Shell({ children }: { children: ReactNode }) {
               href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(href) ||
-                  (href === "/portfolio" && pathname === "/tiers") ||
+                  (href === "/applications" &&
+                    ["/portfolio", "/tiers"].includes(pathname)) ||
                   (href === "/schools" && pathname.startsWith("/programs"));
             return (
               <Link

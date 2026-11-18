@@ -11,6 +11,7 @@ from sqlalchemy import delete, exists, select, update
 from sqlalchemy.orm import Session
 
 from app.models.account import Account, LoginCode
+from app.models.application_plan import ApplicationPlan
 from app.models.application import Application
 from app.models.client import Client, Profile
 from app.models.document import Document, DocumentVersion
@@ -135,6 +136,11 @@ def merge_subject(session: Session, source_id: str, target_id: str) -> dict[str,
     counts["conversations"] = move_conversations(session, source_id, target_id)["moved"]
     # Knowledge-gap reports follow the subject, so deleting the account later deletes them too.
     counts["gap_reports"] = knowledge_gaps.rekey_reports(session, source_id, target_id)
+    held_plans = set(session.scalars(select(ApplicationPlan.catalog_program_id).where(ApplicationPlan.client_id == target_id, ApplicationPlan.catalog_program_id.is_not(None))))
+    for plan in session.scalars(select(ApplicationPlan).where(ApplicationPlan.client_id == source_id)).all():
+        if plan.catalog_program_id is None or plan.catalog_program_id not in held_plans:
+            plan.client_id = target_id
+    session.flush()
     session.execute(delete(Client).where(Client.id == source_id))
     session.flush()
     session.expire_all()

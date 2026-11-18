@@ -190,6 +190,16 @@ STATUS_LABELS = {
 
 
 @tool
+def get_my_applications(config: RunnableConfig) -> str:
+    """读取当前申请者的全部个人申请（含手动项目）、选定轮次、截止日期、来源核查、状态和材料自查备注。
+    规划申请或梳理材料时先读取；用户自查和学校库采集不等于学校官方已核验。此工具只读。
+    """
+    from app.routers.application_records import read_records
+    with SessionLocal() as session:
+        return _json(read_records(_client_id(config), session))
+
+
+@tool
 def propose_portfolio_change(
     program_id: str, action: str, config: RunnableConfig, tier: str = "稳", status: str = ""
 ) -> str:
@@ -261,4 +271,4 @@ def propose_portfolio_change(
     return f"{PORTFOLIO_CHANGED}{summary}。变化：{_json(counts)}"
 
 
-TOOLS = [search_programs, get_my_profile, update_my_profile, get_my_portfolio, propose_portfolio_change]
+TOOLS = [search_programs, get_my_profile, update_my_profile, get_my_portfolio, get_my_applications, propose_portfolio_change]

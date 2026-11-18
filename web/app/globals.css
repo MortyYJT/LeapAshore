@@ -580,3 +580,18 @@ input[type="checkbox"],input[type="radio"] {accent-color:var(--primary)}
  .sidebar-brand-expand:hover .rail-mark,.sidebar-brand-expand:focus-visible .rail-mark{display:none}
  .sidebar-brand-expand:hover .rail-expand,.sidebar-brand-expand:focus-visible .rail-expand{display:flex}
 }
+/* Application workspace: compact lists, clear actions and applicant-owned data. */
+.application-toolbar,.application-card-heading,.application-card-details,.application-card-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.application-list{display:grid;gap:12px}.application-card{padding:18px}.application-card-heading h2{font-size:16px;line-height:24px;margin-top:3px}
+.application-card-details{margin-top:14px;font-size:13px}.application-card-actions{justify-content:flex-start;margin-top:14px}
+.application-notes{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;margin:12px 0 0}
+.application-form{display:grid;gap:14px}.application-form>label:not(.check-label){display:grid;gap:5px}.application-form textarea{height:auto;padding:8px 12px;resize:vertical}
+.check-label{display:flex;align-items:center;gap:8px}.application-dialog{width:min(560px,calc(100vw - 28px))}
+.workspace-onboarding{padding:30px 0;border-block:1px solid var(--border)}.workspace-onboarding p{margin:8px 0 18px}
+.workspace-application-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--border);text-decoration:none}
+.workspace-application-row:hover{background:var(--accent)}.workspace-application-row>div:first-child{min-width:0;overflow-wrap:anywhere}
+.workspace-deadline{display:grid;gap:3px;text-align:right;flex-shrink:0}
+.workspace-advisor{border:1px solid var(--border);border-radius:10px;padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.workspace-advisor h2{font-size:15px}.workspace-advisor p{margin:4px 0 0;font-size:13px}
+@media(max-width:700px){.workspace-application-row{align-items:flex-start;flex-direction:column;gap:8px}.workspace-deadline{text-align:left}.application-card{padding:14px}.application-card-details{align-items:flex-start;flex-direction:column}}
+.workspace-advisor-form{width:100%}.workspace-advisor-form textarea{width:100%;min-height:68px;resize:vertical;padding:0;border:0;background:transparent;font:inherit;color:var(--foreground);outline-offset:4px}.workspace-advisor-form textarea::placeholder{color:var(--muted-foreground)}
