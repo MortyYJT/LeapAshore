@@ -99,10 +99,26 @@ export function Shell({ children }: { children: ReactNode }) {
         aria-label="工作空间导航"
       >
         <div className="sidebar-top">
-          <Link className="brand" href="/" title="LeapAshore">
-            <Mark />
-            <span className="sidebar-text">LeapAshore</span>
-          </Link>
+          <div className="sidebar-brand">
+            <Link className="brand" href="/" title="LeapAshore">
+              <Mark />
+              <span className="sidebar-text">LeapAshore</span>
+            </Link>
+            <button
+              className="icon-button sidebar-brand-expand"
+              aria-label="展开侧边栏"
+              title="展开侧边栏"
+              aria-expanded={false}
+              onClick={toggleSidebar}
+            >
+              <span className="rail-mark">
+                <Mark />
+              </span>
+              <span className="rail-expand">
+                <Icon path="M3 4h18v16H3zM9 4v16" />
+              </span>
+            </button>
+          </div>
           <div className="sidebar-tools">
             <button
               className="icon-button sidebar-search"
@@ -114,9 +130,9 @@ export function Shell({ children }: { children: ReactNode }) {
             </button>
             <button
               className="icon-button sidebar-collapse"
-              aria-label={collapsed ? "展开侧边栏" : "折叠侧边栏"}
+              aria-label="折叠侧边栏"
               aria-expanded={!collapsed}
-              title={collapsed ? "展开侧边栏" : "折叠侧边栏"}
+              title="折叠侧边栏"
               onClick={toggleSidebar}
             >
               <Icon path="M3 4h18v16H3zM9 4v16" />

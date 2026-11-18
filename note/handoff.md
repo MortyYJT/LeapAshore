@@ -2,13 +2,15 @@
 
 ## 当前发布（2026-11-18）
 
-- 生产地址：https://leapashore.mortyyjt.site 。PR #88 已合并，合并提交 `88e79c6`；发布源码提交 `3cd0d37`（两者前端内容相同）。
-- 已发布 Neutral 工作台：五项侧栏、真实业务总览、当前阶段及待办、可保存 Checkbox、选校分组、明暗主题与手机导航。此前用户中心、页脚整理和校徽补齐一并合入 main。
-- 只替换 web；api、数据库、worker、beat、Caddy 均未重启，没有迁移或修改生产业务数据。
-- `make verify` 成功：生产构建、日期与路线图守卫、854 后端测试、256 前端测试、171/171 浏览器检查。付费 AI 回复用测试替身，检查真实认证请求链路。
-- 线上只读检查覆盖首页工作台标记、学校库真实数据、API 健康与登录状态接口、主题刷新恢复、桌面和手机导航与溢出。真实账号登录/选校/任务写入在本地走查验证，没有对生产运行完整测试或发送验证码。
-- 当前镜像 `deploy-web:workspace-3cd0d37`；回滚镜像 `deploy-web:pre-workspace-20261118`；数据库备份 `~/db-backup-20261118-workspace.dump`（pg_restore --list 检查通过）；源码备份 `~/web-backup-20261118-workspace.tgz`。
-- 运维步骤见 `docs/deploy.md`；此前生产数据、检索评估和历史事项见本文件在 `ea27c68` 的版本及 `docs/measurements.md`。
+- 生产地址：https://leapashore.mortyyjt.site 。PR #89 已合并，合并提交 `6578723`；发布源码提交 `8c20654`。
+- 侧栏按新参考调整：删除顶栏；英文 LeapAshore 标识位于工作空间上方；顶部搜索与折叠按钮；68px 图标栏和刷新恢复；左下头像菜单统一承载资料、材料、设置、登录/退出及明暗/系统主题。
+- 搜索支持页面入口和真实学校库查询，快捷键 Cmd/Ctrl K。手机使用抽屉，Esc 按菜单、侧栏逐层关闭。
+- Neutral 总览、选校、真实学校数据、任务保存与现有 API 保留。产品下一步仍是「我的申请 + 截止日期管理」。
+- 验证：完整 make verify 通过（构建、守卫、854 后端测试、256 前端测试、174 浏览器检查）；最终 Esc 修正后，前端测试、生产构建、176/176 浏览器检查通过。CI web/backend/advisor-eval 全通过。
+- 线上 16 项只读检查通过：顶栏移除、英文标识、头像位置、真实学校数据、68px 栏、折叠持久化、快捷搜索、主题持久化及移动抽屉和菜单；无页面错误。生产未运行写入走查或发送验证码。
+- 只替换 web，api/数据库/worker/beat/Caddy 未重启，无迁移或生产业务数据修改。
+- 当前镜像 `deploy-web:sidebar-8c20654`；回滚镜像 `deploy-web:pre-sidebar-20261118`；备份 `~/db-backup-20261118-sidebar.dump`（pg_restore --list 检查通过）、`~/web-backup-20261118-sidebar.tgz`。
+- 运维步骤见 `docs/deploy.md`；生产数据、检索评估和历史事项见本文件在 `ea27c68` 的版本及 `docs/measurements.md`。
 
 ## 用户确认的产品方向与下一步
 

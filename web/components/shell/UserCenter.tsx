@@ -209,24 +209,6 @@ export function UserCenter() {
           <div className="uc-menu-group">
             <button onClick={() => settings()}>设置</button>
           </div>
-          <div className="uc-menu-group uc-theme-options">
-            <span className="uc-hint">外观</span>
-            <div className="uc-modes" role="group" aria-label="快捷显示模式">
-              {[
-                { id: "light", label: "浅色" },
-                { id: "dark", label: "深色" },
-                { id: "system", label: "系统" },
-              ].map((mode) => (
-                <button
-                  key={mode.id}
-                  aria-pressed={prefs.mode === mode.id}
-                  onClick={() => setPrefs((p) => ({ ...p, mode: mode.id }))}
-                >
-                  {mode.label}
-                </button>
-              ))}
-            </div>
-          </div>
           {gated && (
             <div className="uc-menu-group">
               <button
