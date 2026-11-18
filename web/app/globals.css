@@ -523,3 +523,49 @@ h1 {font-size:23px;line-height:32px} h2 {font-size:18px;line-height:26px}
 :focus-visible {outline-color:var(--ring)}
 .input:focus,.select:focus {outline-color:var(--ring)}
 input[type="checkbox"],input[type="radio"] {accent-color:var(--primary)}
+/* Sidebar-only workspace, matching the expanded / icon-rail references. */
+.workspace-layout {--workspace-sidebar-width:260px}
+.workspace-sidebar {top:0;width:var(--workspace-sidebar-width);min-width:0;max-width:none;padding:12px 12px 14px;border-right:1px solid var(--sidebar-border)}
+.workspace-content {margin-left:var(--workspace-sidebar-width);min-height:100dvh}
+.sidebar-top {display:flex;align-items:center;justify-content:space-between;gap:4px;min-height:48px;margin-bottom:22px}
+.workspace-sidebar .brand {min-height:36px;padding:4px 6px;gap:8px;font-size:16px;font-weight:600;color:var(--foreground);border-radius:6px;white-space:nowrap}
+.sidebar-tools {display:flex;gap:2px}.sidebar-tools .icon-button {width:28px;height:30px}
+.sidebar-label {padding-left:10px;margin-bottom:4px}
+.workspace-sidebar nav {gap:5px;overflow-y:auto;min-height:0}
+.workspace-sidebar nav a {min-height:42px;padding:10px;gap:12px}
+.workspace-sidebar a svg {flex-shrink:0}
+.sidebar-account {margin-top:auto;padding-top:16px}
+.sidebar-account .user-center {margin:0;width:100%}
+.sidebar-account .uc-trigger {width:100%;padding:8px 6px;gap:10px;text-align:left;min-height:48px}
+.sidebar-account .uc-avatar {width:32px;height:32px;background:var(--accent);color:var(--foreground)}
+.sidebar-account .uc-name {max-width:170px;flex:1}
+.sidebar-account .uc-menu {top:auto;bottom:calc(100% + 8px);left:0;right:auto;width:250px;max-width:calc(100vw - 24px);animation:none}
+.sidebar-account .uc-theme-options {padding:10px 12px}.uc-theme-options .uc-modes {margin-top:6px}.uc-theme-options .uc-modes button {flex:1;text-align:center}
+.sidebar-collapsed {--workspace-sidebar-width:68px}
+.sidebar-collapsed .workspace-sidebar {padding-left:10px;padding-right:10px}
+.sidebar-collapsed .sidebar-top {flex-direction:column;gap:12px;margin-bottom:10px}
+.sidebar-collapsed .sidebar-tools {flex-direction:column;gap:8px;align-items:center}
+.sidebar-collapsed .sidebar-tools .icon-button {width:36px;height:36px}
+.sidebar-collapsed .sidebar-text,.sidebar-collapsed .sidebar-label,.sidebar-collapsed .uc-trigger .uc-name,.sidebar-collapsed .uc-trigger>span:last-child {display:none}
+.sidebar-collapsed .workspace-sidebar nav a {justify-content:center;padding:12px 0;min-height:44px}
+.sidebar-collapsed .sidebar-account .uc-trigger {justify-content:center;padding:8px 0}
+.sidebar-collapsed .sidebar-account .uc-menu {left:0}
+.mobile-sidebar-toggle,.mobile-sidebar-close {display:none}
+.workspace-search-dialog {width:min(520px,calc(100vw - 32px))}
+.workspace-search-form {display:flex;gap:8px;padding:16px}.workspace-search-form input{flex:1;width:0}
+.workspace-search-results {display:grid;padding:0 8px}
+.workspace-search-results a {display:flex;align-items:center;gap:10px;padding:10px;border-radius:6px;text-decoration:none}
+.workspace-search-results a:hover {background:var(--accent)}
+.workspace-search-hint {padding:0 16px 12px;margin-bottom:0}
+@media(max-width:700px){
+ .workspace-layout,.sidebar-collapsed{--workspace-sidebar-width:260px}
+ .workspace-content{margin-left:0;min-height:100dvh}.workspace-content .page{padding-top:60px}
+ .workspace-sidebar{top:0;bottom:0;transform:translateX(-100%)}.workspace-sidebar.is-open{transform:none}
+ .mobile-sidebar-toggle{display:flex;position:fixed;left:14px;top:12px;z-index:24;background:var(--sidebar);border:1px solid var(--border)}
+ .mobile-sidebar-close{display:flex}.sidebar-collapse{display:none!important}.sidebar-backdrop{inset:0}
+ .sidebar-collapsed .sidebar-top{flex-direction:row;gap:4px;margin-bottom:22px}
+ .sidebar-collapsed .sidebar-tools{flex-direction:row;gap:2px}.sidebar-collapsed .sidebar-text{display:inline}
+ .sidebar-collapsed .sidebar-label{display:block}.sidebar-collapsed .uc-trigger .uc-name{display:block}
+ .sidebar-collapsed .workspace-sidebar nav a{justify-content:flex-start;padding:10px;min-height:42px}
+ .sidebar-collapsed .sidebar-account .uc-trigger{justify-content:flex-start;padding:8px 6px}
+}

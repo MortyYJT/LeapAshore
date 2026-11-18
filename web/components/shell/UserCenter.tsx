@@ -19,7 +19,7 @@ const DEFAULTS: Preferences = {
 };
 
 export function UserCenter() {
-  const { state, signOut } = useAuth();
+  const { state, signOut, gated, openLogin } = useAuth();
   const [prefs, setPrefs] = useState(DEFAULTS);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -91,6 +91,7 @@ export function UserCenter() {
     };
     const keyboard = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.stopPropagation();
         setOpen(false);
         trigger.current?.focus();
       }
@@ -154,7 +155,22 @@ export function UserCenter() {
   function avatar(large = false) {
     return (
       <span className={`uc-avatar${large ? " uc-avatar-large" : ""}`}>
-        {prefs.avatar ? <img src={prefs.avatar} alt="用户头像" /> : null}
+        {prefs.avatar ? (
+          <img src={prefs.avatar} alt="用户头像" />
+        ) : (
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
+          </svg>
+        )}
       </span>
     );
   }
@@ -193,6 +209,36 @@ export function UserCenter() {
           <div className="uc-menu-group">
             <button onClick={() => settings()}>设置</button>
           </div>
+          <div className="uc-menu-group uc-theme-options">
+            <span className="uc-hint">外观</span>
+            <div className="uc-modes" role="group" aria-label="快捷显示模式">
+              {[
+                { id: "light", label: "浅色" },
+                { id: "dark", label: "深色" },
+                { id: "system", label: "系统" },
+              ].map((mode) => (
+                <button
+                  key={mode.id}
+                  aria-pressed={prefs.mode === mode.id}
+                  onClick={() => setPrefs((p) => ({ ...p, mode: mode.id }))}
+                >
+                  {mode.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {gated && (
+            <div className="uc-menu-group">
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  openLogin(window.location.pathname);
+                }}
+              >
+                登录
+              </button>
+            </div>
+          )}
           {state?.account && (
             <div className="uc-menu-group">
               <button
