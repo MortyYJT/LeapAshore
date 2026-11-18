@@ -556,7 +556,10 @@ async function adminPass(browser, email, errors) {
     check("项目库列表页已删除（404）", list.status() === 404, list.status());
     await page.goto(`${BASE}/privacy`);
     await settle(page);
-    check("隐私政策：公开可读并标明是草稿", (await page.getByText("等待 MortyYJT 审核").count()) === 1);
+    check("隐私政策：移除草稿提示", (await page.getByText("等待 MortyYJT 审核").count()) === 0);
+    check("隐私政策：集中展示来源声明", await page.getByRole("heading", { name: "数据来源与版权声明", exact: true }).count() === 1);
+    check("隐私政策：联系邮箱可点击", await page.locator('a[href="mailto:1360242321y@gmail.com"]').count() === 1);
+    check("页脚：仅保留隐私政策入口", (await page.locator(".site-foot").innerText()).trim() === "隐私政策");
     await layout(page, "隐私政策");
     await screenshot(page, "privacy");
 
