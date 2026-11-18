@@ -490,3 +490,10 @@ html[data-appearance] .input, html[data-appearance] .select, html[data-appearanc
 html[data-appearance] .btn-secondary { background-color: var(--color-surface); border-color: var(--color-control); color: var(--color-ink); }
 html[data-appearance] .btn-secondary:hover { background-color: var(--color-raised); border-color: var(--color-muted); }
 html[data-appearance] option { background: var(--color-surface); color: var(--color-ink); }
+
+/* Explicit mode controls avoid native popup colour overrides in dark appearance. */
+.uc-modes { display: flex; gap: 3px; padding: 3px; border: 1px solid var(--color-control); border-radius: 8px; background: var(--color-raised); }
+.uc-modes button { border: 0; border-radius: 5px; padding: 7px 10px; color: var(--color-muted); background: transparent; font: inherit; cursor: pointer; white-space: nowrap; }
+.uc-modes button[aria-pressed="true"] { background: var(--color-surface); color: var(--color-ink); font-weight: 600; }
+html[data-appearance] select, html[data-appearance] option { -webkit-text-fill-color: var(--color-ink); }
+@media (max-width: 600px) { .uc-row:has(.uc-modes) { align-items: flex-start; flex-direction: column; gap: 12px; } }

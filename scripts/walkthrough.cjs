@@ -322,7 +322,7 @@ async function adminPass(browser, email, errors) {
     await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
     await page.getByRole("button", { name: "设置", exact: true }).click();
     await page.getByRole("tab", { name: "外观", exact: true }).click();
-    await page.getByLabel("显示模式", { exact: true }).selectOption("dark");
+    await page.getByRole("button", { name: "深色", exact: true }).click();
     await page.getByRole("button", { name: "雾蓝色", exact: true }).click();
     check("设置：主题应用到全站", await page.locator("html").getAttribute("data-appearance") === "dark" && await page.locator("html").getAttribute("data-accent") === "blue");
     await page.getByRole("button", { name: "关闭设置" }).click();
@@ -484,6 +484,15 @@ async function adminPass(browser, email, errors) {
     check("我的：材料库列出上传的文件", true);
     check("我的：显示登录邮箱", (await page.getByText(emails[0]).count()) > 0);
     await layout(page, "我的");
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("link", { name: "我的材料", exact: true }).click();
+    await page.waitForURL("**/materials");
+    await page.getByRole("heading", { name: "我的材料", exact: true }).waitFor();
+    await page.getByText("walkthrough-transcript.pdf").first().waitFor({ timeout: 15000 });
+    check("用户菜单：材料独立页面保留上传文件", (await page.getByText("transcript.pdf", { exact: false }).count()) > 0);
+    check("材料页：不重复显示申请背景", await page.getByRole("heading", { name: "申请背景", exact: true }).count() === 0);
+    await page.goto(`${BASE}/me`);
+    await settle(page);
     await screenshot(page, "me");
 
     await page.goto(`${BASE}/schools`);
