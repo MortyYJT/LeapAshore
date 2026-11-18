@@ -1,3 +1,4 @@
+from app.models.application_plan import ApplicationPlan
 from app.models.account import Account, AuthSession, LoginCode
 from app.models.application import (
     Application,

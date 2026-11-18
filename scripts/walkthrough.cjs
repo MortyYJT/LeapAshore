@@ -390,6 +390,37 @@ async function adminPass(browser, email, errors) {
     check("组合：状态和首选按草稿保存", stored.some((r) => r.status === "offered") && stored.filter((r) => r.isPrimary).length === 1);
     check("组合：自选档位的项目保存为 needsReview", stored.filter((r) => r.needsReview).length === 1);
 
+    // Personal records use the real scoped API, alongside saved catalogue choices.
+    await page.goto(`${BASE}/applications`);
+    await page.getByRole("button", {name:"添加申请项目",exact:true}).click();
+    const applicationForm=page.locator(".application-dialog");
+    await applicationForm.getByLabel("学校名称", {exact:true}).fill("示例大学（演示账号）");
+    await applicationForm.getByLabel("项目名称", {exact:true}).fill("硕士项目 · 申请管理演示");
+    await applicationForm.getByLabel("申请轮次", {exact:true}).fill("第一轮");
+    await applicationForm.getByLabel("截止日期", {exact:true}).fill("2027-01-15");
+    await applicationForm.getByLabel("日期来源链接", {exact:true}).fill("https://example.edu/apply");
+    await applicationForm.getByLabel("我已自行核对本轮截止日期与来源").check();
+    await applicationForm.getByLabel("材料与准备备注").fill("演示记录：个人陈述初稿待完成，推荐人待确认。");
+    await applicationForm.getByRole("button", {name:"保存申请",exact:true}).click();
+    await page.reload();
+    const manualCard=page.locator(".application-card").filter({hasText:"示例大学（演示账号）"});
+    await manualCard.waitFor();
+    check("我的申请：手动项目及轮次刷新后保留", await manualCard.getByText(/第一轮/).count()>0 && await manualCard.getByText(/已自行核对/).count()>0);
+    await screenshot(page,"applications");
+    await manualCard.getByRole("button",{name:"编辑申请"}).click();
+    await applicationForm.getByLabel("申请轮次",{exact:true}).fill("第二轮");
+    await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
+    await page.locator(".application-dialog").waitFor({state:"hidden"});
+    await page.reload();
+    await manualCard.getByText(/待自行核对/).waitFor();
+    check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
+
+    await page.goto(`${BASE}/`);
+    await page.getByLabel("向 AI 顾问提问").fill("帮我整理申请材料");
+    await page.getByRole("button",{name:"询问 AI 顾问 →"}).click();
+    await page.waitForURL(/advisor.*q=/);
+    check("首页：问题带入顾问且不自动发送", await page.locator(".composer textarea").inputValue() === "帮我整理申请材料");
+
     // ---------- 我的: the rest of the profile ----------
     await page.goto(`${BASE}/me`);
     await settle(page);
@@ -588,7 +619,7 @@ async function adminPass(browser, email, errors) {
       sessionStorage.clear();
     });
     await page.goto(`${BASE}/`);
-    await page.locator(".dashboard-metrics").waitFor();
+    await page.locator(".workspace-attention").waitFor();
     check("回访：总览读取真实申请状态", await page.locator(".dashboard-task").count() > 0);
     await screenshot(page, "dashboard");
     const overviewTask = page.locator('.dashboard-task input:not(:disabled)').first();
@@ -696,10 +727,11 @@ async function adminPass(browser, email, errors) {
     // Header login returns to the current workspace; respect the 60 s code resend window.
     await new Promise((r) => setTimeout(r, Math.max(0, 61000 - (Date.now() - firstCodeAt))));
     await loginThroughDialog(intro, emails[0]);
-    await intro.locator(".dashboard-metrics").waitFor({ timeout: 15000 });
+    await intro.locator(".workspace-attention").waitFor({ timeout: 15000 });
     check("直接点登录：登录后显示真实总览", true);
     for (const [route, name] of [
       ["/", "dashboard-390"],
+      ["/applications", "applications-390"],
       ["/tiers", "tiers-390"],
       ["/portfolio", "portfolio-390"],
       ["/roadmap", "roadmap-390"],
