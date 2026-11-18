@@ -235,8 +235,7 @@ async function adminPass(browser, email, errors) {
     const homeHtml = await (await fetch(`${BASE}/`)).text();
     check("首页：示例路线图在服务器返回的 HTML 里就已画好", /<figure[\s\S]*?<svg[^>]*timeline-svg/.test(homeHtml));
     check("首页：示例路线图不显示空的截止行和未收录栏", (await page.locator("figure").getByText(/各项目官方截止|未收录/).count()) === 0);
-    check("首页：没有每页底部的说明段落，只有一行页脚", (await page.locator("footer.foot, .source-note").count()) === 0 && (await page.locator("footer.site-foot").count()) === 1);
-    check("页脚：保留 CRICOS 和 QS 的出处与隐私政策", /CC BY 2\.5 AU/.test(await page.locator("footer.site-foot").innerText()) && /QS/.test(await page.locator("footer.site-foot").innerText()) && (await page.locator('footer.site-foot a[href="/privacy"]').count()) === 1);
+    check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
     check("首页：未登录时顶栏有“登录”", await page.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
     await screenshot(page, "home");
@@ -559,7 +558,7 @@ async function adminPass(browser, email, errors) {
     check("隐私政策：移除草稿提示", (await page.getByText("等待 MortyYJT 审核").count()) === 0);
     check("隐私政策：集中展示来源声明", await page.getByRole("heading", { name: "数据来源与版权声明", exact: true }).count() === 1);
     check("隐私政策：联系邮箱可点击", await page.locator('a[href="mailto:1360242321y@gmail.com"]').count() === 1);
-    check("页脚：仅保留隐私政策入口", (await page.locator(".site-foot").innerText()).trim() === "隐私政策");
+    check("隐私政策：不显示全局页脚", await page.locator(".site-foot").count() === 0);
     await layout(page, "隐私政策");
     await screenshot(page, "privacy");
 

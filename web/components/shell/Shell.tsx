@@ -23,7 +23,7 @@ function isCurrent(pathname: string, matches: string[]): boolean {
   return matches.some((m) => pathname === m || pathname.startsWith(`${m}/`));
 }
 
-export function Shell({ children, footer }: { children: ReactNode; footer?: ReactNode }) {
+export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -77,7 +77,6 @@ export function Shell({ children, footer }: { children: ReactNode; footer?: Reac
         </div>
       </header>
       {children}
-      <footer className="site-foot">{footer}</footer>
     </>
   );
 }
