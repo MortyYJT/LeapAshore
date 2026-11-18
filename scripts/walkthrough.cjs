@@ -140,7 +140,7 @@ async function adminPass(browser, email, errors) {
   try {
     await a.goto(`${BASE}/`);
     await settle(a);
-    await a.locator(".bar").getByRole("button", { name: "登录" }).click();
+    await a.locator(".workspace-header").getByRole("button", { name: "登录" }).click();
     await a.locator("dialog.dialog").waitFor();
     await loginThroughDialog(a, email);
     // A new account is offered the four-basics step; skipping it is what an admin would do.
@@ -229,16 +229,11 @@ async function adminPass(browser, email, errors) {
     await page.goto(`${BASE}/`);
     await settle(page);
     await layout(page, "首页");
-    check("首页：有“看看能申哪些”和“先看学校”", (await page.getByRole("link", { name: "看看能申哪些" }).count()) > 0 && (await page.getByRole("link", { name: "先看学校" }).count()) > 0);
-    check("首页：示例时间线标了“示例”", (await page.locator("figure .pill-sample").count()) === 1);
-    // The sample used to be drawn only after the scripts measured its box, so the server sent a blank card.
-    const homeHtml = await (await fetch(`${BASE}/`)).text();
-    check("首页：示例路线图在服务器返回的 HTML 里就已画好", /<figure[\s\S]*?<svg[^>]*timeline-svg/.test(homeHtml));
-    check("首页：示例路线图不显示空的截止行和未收录栏", (await page.locator("figure").getByText(/各项目官方截止|未收录/).count()) === 0);
-    check("首页：没有每页底部的说明段落，只有一行页脚", (await page.locator("footer.foot, .source-note").count()) === 0 && (await page.locator("footer.site-foot").count()) === 1);
-    check("页脚：保留 CRICOS 和 QS 的出处与隐私政策", /CC BY 2\.5 AU/.test(await page.locator("footer.site-foot").innerText()) && /QS/.test(await page.locator("footer.site-foot").innerText()) && (await page.locator('footer.site-foot a[href="/privacy"]').count()) === 1);
+    check("首页：展示总览位置", await page.getByText("我的工作台 / 总览").isVisible());
+    check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
+    check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
-    check("首页：未登录时顶栏有“登录”", await page.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
+    check("首页：未登录时顶栏有“登录”", await page.locator(".workspace-header").getByRole("button", { name: "登录" }).isVisible());
     await screenshot(page, "home");
 
     await page.goto(`${BASE}/roadmap`);
@@ -318,7 +313,21 @@ async function adminPass(browser, email, errors) {
     await screenshot(page, "advisor");
     const basics = await page.evaluate(async () => (await fetch("/api/profile")).json());
     check("信息页：服务器档案就是填的四项", basics.schoolName === "北京邮电大学" && basics.domesticTier === "211" && Number(basics.gpaScore) === 85 && basics.targetField === "计算机与数据" && basics.englishScore === "IELTS 6.5", basics);
-    check("登录后顶栏显示“我的”", await page.locator(".bar .me-link").isVisible());
+    check("登录后顶栏显示用户菜单", await page.getByRole("button", { name: "我的，打开用户菜单" }).isVisible());
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "外观", exact: true }).click();
+    await page.getByRole("button", { name: "深色", exact: true }).click();
+    check("设置：主题应用到全站", await page.locator("html").getAttribute("data-appearance") === "dark" && await page.locator("html").getAttribute("data-accent") === "graphite");
+    await page.getByRole("button", { name: "关闭设置" }).click();
+    await page.reload();
+    await page.waitForFunction(() => document.documentElement.dataset.appearance === "dark");
+    check("设置：刷新后保留外观", await page.locator("html").getAttribute("data-appearance") === "dark");
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "外观", exact: true }).click();
+    await page.getByRole("button", { name: "恢复默认外观" }).click();
+    await page.getByRole("button", { name: "关闭设置" }).click();
 
     // ---------- tiers -> portfolio ----------
     await page.goto(`${BASE}/tiers`);
@@ -469,6 +478,15 @@ async function adminPass(browser, email, errors) {
     check("我的：材料库列出上传的文件", true);
     check("我的：显示登录邮箱", (await page.getByText(emails[0]).count()) > 0);
     await layout(page, "我的");
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("link", { name: "我的材料", exact: true }).click();
+    await page.waitForURL("**/materials");
+    await page.getByRole("heading", { name: "我的材料", exact: true }).waitFor();
+    await page.getByText("walkthrough-transcript.pdf").first().waitFor({ timeout: 15000 });
+    check("用户菜单：材料独立页面保留上传文件", (await page.getByText("transcript.pdf", { exact: false }).count()) > 0);
+    check("材料页：不重复显示申请背景", await page.getByRole("heading", { name: "申请背景", exact: true }).count() === 0);
+    await page.goto(`${BASE}/me`);
+    await settle(page);
     await screenshot(page, "me");
 
     await page.goto(`${BASE}/schools`);
@@ -524,7 +542,7 @@ async function adminPass(browser, email, errors) {
       && /均分门槛.*英语/.test(await page.locator(".req-table tr.req-missing").innerText()));
     check("项目详情：来源是指向官方页面的链接", (await page.locator('.req-table a.link[target="_blank"]').count()) > 0);
     check("项目详情：面包屑是学校库 › 学校", (await page.locator('nav.crumb a[href="/schools"]').count()) === 1 && (await page.locator('nav.crumb a[href^="/schools/"]').count()) === 1);
-    check("项目详情：页脚引用 CRICOS 数据集", (await page.getByText("澳大利亚教育部").count()) > 0);
+    check("项目详情：保留官方来源链接", await page.locator('a[target="_blank"][href^="https://"]').count() > 0);
     await layout(page, "项目详情");
     await screenshot(page, "program");
 
@@ -532,7 +550,10 @@ async function adminPass(browser, email, errors) {
     check("项目库列表页已删除（404）", list.status() === 404, list.status());
     await page.goto(`${BASE}/privacy`);
     await settle(page);
-    check("隐私政策：公开可读并标明是草稿", (await page.getByText("等待 MortyYJT 审核").count()) === 1);
+    check("隐私政策：移除草稿提示", (await page.getByText("等待 MortyYJT 审核").count()) === 0);
+    check("隐私政策：集中展示来源声明", await page.getByRole("heading", { name: "数据来源与版权声明", exact: true }).count() === 1);
+    check("隐私政策：联系邮箱可点击", await page.locator('a[href="mailto:1360242321y@gmail.com"]').count() === 1);
+    check("隐私政策：不显示全局页脚", await page.locator(".site-foot").count() === 0);
     await layout(page, "隐私政策");
     await screenshot(page, "privacy");
 
@@ -541,10 +562,21 @@ async function adminPass(browser, email, errors) {
       sessionStorage.clear();
     });
     await page.goto(`${BASE}/`);
-    check("回访：清空浏览器存储后仍从首页进入路线图", page.url().endsWith("/roadmap"), page.url());
+    await page.locator(".dashboard-metrics").waitFor();
+    check("回访：总览读取真实申请状态", await page.locator(".dashboard-task").count() > 0);
+    await screenshot(page, "dashboard");
+    const overviewTask = page.locator('.dashboard-task input:not(:disabled)').first();
+    const beforeTick = await overviewTask.isChecked();
+    await overviewTask.setChecked(!beforeTick);
+    await settle(page);
+    await page.reload();
+    await page.locator('.dashboard-task input:not(:disabled)').first().waitFor();
+    check("总览：任务完成状态刷新后保留", await page.locator('.dashboard-task input').first().isChecked() === !beforeTick);
+    await page.locator('.dashboard-task input').first().setChecked(beforeTick);
+    await settle(page);
     const gone = await page.goto(`${BASE}/prototype/schools`);
     check("旧的原型路由已移除", gone.status() === 404, gone.status());
-    const admin = await page.goto(`${BASE}/admin`);
+    const admin = await page.request.get(`${BASE}/admin`);
     check("顾问后台不提供", admin.status() === 404, admin.status());
     session = (await context.cookies(BASE)).find((c) => c.name === "leapashore_session") ?? null;
     check("登录会话是 httpOnly cookie", session && session.httpOnly, session && { httpOnly: session.httpOnly });
@@ -557,7 +589,7 @@ async function adminPass(browser, email, errors) {
     await leaving.goto(`${BASE}/me`);
     await leaving.getByRole("button", { name: "退出登录" }).click();
     await leaving.waitForURL(`${BASE}/`);
-    await leaving.locator(".bar").getByRole("button", { name: "登录" }).waitFor();
+    await leaving.locator(".workspace-header").getByRole("button", { name: "登录" }).waitFor();
     const afterLogout = await leaving.evaluate(async () => (await fetch("/api/profile")).status);
     check("退出登录：之后读档案返回 401", afterLogout === 401, afterLogout);
     await other.close();
@@ -619,21 +651,22 @@ async function adminPass(browser, email, errors) {
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
-    check("390：导航收进菜单", !(await intro.locator("#main-nav").isVisible()) && (await intro.getByRole("button", { name: "菜单" }).isVisible()));
-    check("390：未登录时“登录”按钮可见", await intro.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
-    await intro.getByRole("button", { name: "菜单" }).click();
-    check("390：按菜单后出现导航链接", await intro.locator("#main-nav").getByRole("link", { name: "学校库" }).isVisible());
+    check("390：导航收进菜单", !(await intro.locator("#workspace-nav").isVisible()) && (await intro.getByRole("button", { name: "打开导航" }).isVisible()));
+    check("390：未登录时“登录”按钮可见", await intro.locator(".workspace-header").getByRole("button", { name: "登录" }).isVisible());
+    await intro.getByRole("button", { name: "打开导航" }).click();
+    check("390：按菜单后出现导航链接", await intro.locator("#workspace-nav").getByRole("link", { name: "学校库" }).isVisible());
     await screenshot(intro, "home-390");
-    await intro.locator(".bar").getByRole("button", { name: "登录" }).click();
+    await intro.locator(".workspace-header").getByRole("button", { name: "登录" }).click();
     await intro.locator("dialog.dialog").waitFor();
     await layout(intro, "登录弹窗 390");
     await screenshot(intro, "login-390");
-    // Logging in from the header lands on the tiers page; the code resend window is 60 s, so wait it out.
+    // Header login returns to the current workspace; respect the 60 s code resend window.
     await new Promise((r) => setTimeout(r, Math.max(0, 61000 - (Date.now() - firstCodeAt))));
     await loginThroughDialog(intro, emails[0]);
-    await intro.waitForURL("**/tiers", { timeout: 15000 });
-    check("直接点登录：登录后去分档页", true);
+    await intro.locator(".dashboard-metrics").waitFor({ timeout: 15000 });
+    check("直接点登录：登录后显示真实总览", true);
     for (const [route, name] of [
+      ["/", "dashboard-390"],
       ["/tiers", "tiers-390"],
       ["/portfolio", "portfolio-390"],
       ["/roadmap", "roadmap-390"],

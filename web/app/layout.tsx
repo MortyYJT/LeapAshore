@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { Shell } from "@/components/shell/Shell";
-import { SiteFooter } from "@/components/shell/SiteFooter";
 
 import "./globals.css";
 
@@ -16,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-CN">
       <body>
         <AuthProvider>
-          <Shell footer={<SiteFooter />}>{children}</Shell>
+          <Shell>{children}</Shell>
         </AuthProvider>
       </body>
     </html>

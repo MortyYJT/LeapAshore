@@ -1,25 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { Notice } from "@/components/ui";
+import { DataAttribution } from "@/components/shell/DataAttribution";
 
 export const metadata: Metadata = { title: "隐私政策 · 鱼跃彼岸" };
 
-/**
- * The privacy policy (openspec account-login, spec privacy-policy). Drafted by Claude on 2026-10-30 from
- * what the code actually stores and sends; MortyYJT has to review it before login mode is switched on.
- */
+/** Privacy policy and data-source attribution. */
 export default function PrivacyPage() {
   return (
     <main className="page privacy">
       <div className="title-row">
         <div>
           <h1>隐私政策</h1>
-          <p className="lede">鱼跃彼岸是 MortyYJT 的个人项目。这里说明它收集什么、为什么、交给谁处理、存多久、怎么删除。</p>
         </div>
-      </div>
-      <div className="section">
-        <Notice>草稿：由 AI 按代码实际行为起草（2026-10-30），等待 MortyYJT 审核，审核前不作为正式承诺。</Notice>
       </div>
 
       <section className="panel panel-pad section">
@@ -47,7 +40,7 @@ export default function PrivacyPage() {
             <b>登录会话</b>：登录成功后，浏览器保存一个名为 <code>leapashore_session</code> 的 Cookie（仅服务器可读），服务器保存它的摘要、创建时间、IP 和浏览器标识，有效期 30 天。未登录时用过的网站会在浏览器保存匿名标识 <code>leapashore_client</code>。
           </li>
         </ul>
-        <p>我们不收集姓名、电话、身份证号，也不使用第三方统计或广告追踪。</p>
+        <p>显示名称、头像和外观偏好保存在当前浏览器，不上传服务器。我们不要求填写真实姓名、电话或身份证号，也不使用第三方统计或广告追踪。</p>
       </section>
 
       <section className="panel panel-pad section">
@@ -87,8 +80,13 @@ export default function PrivacyPage() {
       </section>
 
       <section className="panel panel-pad section">
+        <h2>数据来源与版权声明</h2>
+        <DataAttribution />
+      </section>
+
+      <section className="panel panel-pad section">
         <h2>联系我们</h2>
-        <p>联系方式待 MortyYJT 补充。</p>
+        <p><a className="link" href="mailto:1360242321y@gmail.com">1360242321y@gmail.com</a></p>
       </section>
     </main>
   );

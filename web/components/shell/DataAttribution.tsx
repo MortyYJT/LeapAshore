@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { overseasInstitutions } from "@/lib/catalog-server";
 
 const CC_LICENSE = /^CC (BY(?:-SA)?) (\d\.\d)$/;
@@ -10,12 +8,8 @@ function licenseUrl(license: string): string | null {
   return match ? `https://creativecommons.org/licenses/${match[1].toLowerCase()}/${match[2]}/` : null;
 }
 
-/**
- * The one line every page ends with: the caveat on requirements and the attributions the data's licences
- * require (CRICOS under CC BY 2.5 AU, the QS ranking, and each school logo used under a CC BY or CC BY-SA
- * licence, read from the library file so a new one is credited without editing this component).
- */
-export function SiteFooter() {
+/** Data sources and licence attribution, shown in the privacy policy. */
+export function DataAttribution() {
   const credited = overseasInstitutions.filter((s) => s.logo && s.logo_source && s.logo_license && licenseUrl(s.logo_license));
   return (
     <p>
@@ -35,7 +29,7 @@ export function SiteFooter() {
           的校徽来自 Wikimedia Commons
         </>
       )}
-      。<Link href="/privacy">隐私政策</Link>
+      。
     </p>
   );
 }

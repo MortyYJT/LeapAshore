@@ -2,7 +2,46 @@
 
 **当前状态文件。每次任务结束整份重写，不追加；开始时先读，并对照 `git status` 和 `git log`。历史看 git 和 `note/decisions.md`。**
 
-## 现在（2026-11-01）
+## 补齐 36 所学校校徽（2026-11-18）
+
+- 按用户要求用 Chromium 操作 Bing 图片搜索，先采集首轮候选，再集中看图审核；错校、建筑、动物表情、水印及院系／学生会图已排除并补搜。
+- 为之前缺图的 36 所学校新增原始图片与 `logo` / `logo_source`；当前学校库 287 所均有配置，原有 251 所未修改。
+- 来源与逐图审核记录：`docs/school-logo-review-20261118.md`、`docs/school-logo-sources-20261118.json`；汇总图 `docs/images/school-logos-20261118.png`。原缺图名单更新为历史核对清单。
+- 已完成：正式构建、256 前端测试；新图片 36/36 浏览器解码成功；部署后线上 36/36 解码通过，学校库首屏可见新增图，未出现页面错误。只部署前端，未改数据库数据。
+- 回滚镜像 `deploy-web:pre-school-logos-20261118`；数据库备份 `~/db-backup-20261118-school-logos.dump`；源码备份 `~/web-backup-20261118-school-logos.tgz`。
+
+## 移除全局页脚与缺校徽清单（2026-11-18）
+
+- 移除 Shell 的全局页脚、布局中的 SiteFooter 注入并删除组件；隐私政策正文与设置内入口保留。
+- 缺校徽清单在 `docs/schools-missing-logos.md`：287 所学校中 36 所 logo 未配置；其余 251 张图片文件均存在且浏览器解码成功。线上目录源文件与本地 SHA-256 一致。
+- 检查：正式构建、256 前端测试通过；浏览器检查首页、学校库、政策页均无全局 footer，政策归属声明保留。
+- 本次只更新前端；回滚镜像 `deploy-web:pre-remove-footer-20261118`，数据库 `~/db-backup-20261118-remove-footer.dump`，源码 `~/web-backup-20261118-remove-footer.tgz`。
+
+## 页脚与隐私政策调整（2026-11-18）
+
+- 来源、QS 排名、CRICOS 授权及校徽归属声明集中到隐私政策的「数据来源与版权声明」，保留自动生成的校徽署名及原始许可链接；全站页脚仅显示隐私政策入口。
+- 按用户要求移除政策页开头的个人项目介绍与 AI 起草提示。联系我们使用用户明确指定的公开邮箱链接。
+- 补充现有头像、显示名称与外观偏好仅保存在浏览器的实际行为。
+- 检查：正式构建成功、256 前端测试通过；浏览器核对声明位置、移除文案、联系链接及手机布局。
+- 本次只更新前端；回滚镜像 `deploy-web:pre-privacy-20261118`，数据库 `~/db-backup-20261118-privacy.dump`，源码 `~/web-backup-20261118-privacy.tgz`。
+
+## 用户中心修正（2026-11-18）
+
+- 已再次部署：无账号时默认显示「未登录」，默认头像不显示首字；去掉菜单的浏览器空间说明及设置侧栏品牌名。
+- 设置的显示模式改为三个直接可见的按钮，避免原生 select 弹出选项在深色模式下的颜色问题；原有 select / option 补充文字填充颜色。
+- 「我的材料」改走独立 `/materials`，复用 `components/profile/MeView.tsx` 的材料库；材料页只读取材料，不请求背景。此前两入口同在 `/me`，异步挂载使锚点定位不可靠。
+- 验证：生产构建、256 前端测试、正式构建上的 168/168 浏览器检查通过；已在线上核对默认身份、空头像、删除文案、深色选中项颜色和材料独立路由。
+- 回滚：服务器镜像 `deploy-web:pre-usercenter-fix-20261118`；源码 `~/web-backup-20261118-usercenter-fix.tgz`；数据库 `~/db-backup-20261118-usercenter-fix.dump`。只更新前端服务，登录系统留作下一步。
+
+## 用户中心更新（2026-11-18）
+
+- 已部署到线上：右上角头像菜单、设置弹窗（个人资料 / 外观 / 账号），上传头像并居中裁切为 256px WebP，支持移除和显示名称编辑。
+- 头像与偏好仅保存在当前浏览器，按登录账号区分；未新增服务器上传接口。外观支持跟随系统 / 浅色 / 深色及四种主题色，作用于全站。
+- 动效：按钮弹簧曲线，菜单与面板缓出，卡片 45ms 错峰，遵循 prefers-reduced-motion。
+- 验证：生产构建成功；854 后端测试、256 前端测试、166/166 浏览器走查通过；线上只读核对菜单、外观、持久化和手机宽度。完整 make verify 首次受本地环境阻挡，启用数据库及登录模式后分别补齐所有检查。
+- 本次仅替换 web 服务。服务器回滚镜像 `deploy-web:pre-usercenter-20261118`；源码备份 `~/web-backup-20261118-usercenter.tgz`；数据库备份 `~/db-backup-20261118-usercenter.dump`（pg_restore 目录检查通过）。
+
+## 原有服务状态（2026-11-01，以下为历史交接）
 
 - **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #85（11-01 北京时间 03:58 左右部署），**匿名模式**（`AUTH_ENABLED` 未设），**向量检索已开**（`ADVISOR_RETRIEVAL` 默认 `hybrid`，见下「向量检索」）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261101-pre-vectors.sql.gz`（#85 没有迁移），服务器上只留最近 3 份备份。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序），角色和库名 `leapashore`。项目目录 `~/leapashore`，compose 项目名仍是 `deploy`。换 pgvector 前的旧卷 `deploy_db-data` 和镜像 `postgres:16-alpine` 已删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
 - **服务器 SSH（10-31）：** 只认密钥，密码登录和 root 登录都关了；fail2ban 已开（5 次失败封 1 小时）。细节和解封命令见 `docs/deploy.md`。没检查腾讯云安全组的 22 端口来源限制。
