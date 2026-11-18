@@ -2,6 +2,14 @@
 
 **当前状态文件。每次任务结束整份重写，不追加；开始时先读，并对照 `git status` 和 `git log`。历史看 git 和 `note/decisions.md`。**
 
+## 补齐 36 所学校校徽（2026-11-18）
+
+- 按用户要求用 Chromium 操作 Bing 图片搜索，先采集首轮候选，再集中看图审核；错校、建筑、动物表情、水印及院系／学生会图已排除并补搜。
+- 为之前缺图的 36 所学校新增原始图片与 `logo` / `logo_source`；当前学校库 287 所均有配置，原有 251 所未修改。
+- 来源与逐图审核记录：`docs/school-logo-review-20261118.md`、`docs/school-logo-sources-20261118.json`；汇总图 `docs/images/school-logos-20261118.png`。原缺图名单更新为历史核对清单。
+- 已完成：正式构建、256 前端测试；新图片 36/36 浏览器解码成功；部署后线上 36/36 解码通过，学校库首屏可见新增图，未出现页面错误。只部署前端，未改数据库数据。
+- 回滚镜像 `deploy-web:pre-school-logos-20261118`；数据库备份 `~/db-backup-20261118-school-logos.dump`；源码备份 `~/web-backup-20261118-school-logos.tgz`。
+
 ## 移除全局页脚与缺校徽清单（2026-11-18）
 
 - 移除 Shell 的全局页脚、布局中的 SiteFooter 注入并删除组件；隐私政策正文与设置内入口保留。
