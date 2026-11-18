@@ -36,6 +36,12 @@ function check(name, ok, detail) {
   console.log(`${ok ? "通过" : "失败"}  ${name}${!ok && detail !== undefined ? `  ${JSON.stringify(detail)}` : ""}`);
 }
 
+async function sidebarLogin(page) {
+  if (!await page.locator("#workspace-nav").isVisible()) await page.getByRole("button", {name:"打开导航"}).click();
+  if (!await page.locator("#user-menu").isVisible()) await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
+  await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).click();
+}
+
 /** One statement against the API's own database; a failure is returned as text, never thrown. */
 function dbRun(sql) {
   const script = [
@@ -82,7 +88,7 @@ async function codeFor(email, since) {
 
 /** Log in through the dialog that is already open. Returns once the code is accepted. */
 async function loginThroughDialog(page, email) {
-  const dialog = page.locator("dialog.dialog");
+  const dialog = page.locator("dialog.dialog:not(.workspace-search-dialog)");
   await dialog.locator("#login-email").fill(email);
   const since = Date.now() - 2000;
   await dialog.getByRole("button", { name: "发送验证码" }).click();
@@ -140,11 +146,11 @@ async function adminPass(browser, email, errors) {
   try {
     await a.goto(`${BASE}/`);
     await settle(a);
-    await a.locator(".workspace-header").getByRole("button", { name: "登录" }).click();
-    await a.locator("dialog.dialog").waitFor();
+    await sidebarLogin(a);
+    await a.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();
     await loginThroughDialog(a, email);
     // A new account is offered the four-basics step; skipping it is what an admin would do.
-    await a.locator("dialog.dialog").getByRole("button", { name: "跳过，以后再填" }).click({ timeout: 15000 }).catch(() => {});
+    await a.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("button", { name: "跳过，以后再填" }).click({ timeout: 15000 }).catch(() => {});
     const before = await a.goto(`${BASE}/admin`);
     check("管理页：授予管理员之前也是 404", before.status() === 404, before.status());
     grantAdmin(email);
@@ -233,7 +239,22 @@ async function adminPass(browser, email, errors) {
     check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
     check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
-    check("首页：未登录时顶栏有“登录”", await page.locator(".workspace-header").getByRole("button", { name: "登录" }).isVisible());
+    check("布局：没有顶栏", await page.locator(".workspace-header").count() === 0);
+    await page.getByRole("button", { name: "折叠侧边栏" }).click();
+    check("侧栏：折叠为图标栏", await page.locator(".sidebar-collapsed").count() === 1 && await page.getByRole("link", {name:"学校库",exact:true}).isVisible());
+    await page.reload();
+    await page.getByRole("button", { name: "展开侧边栏" }).waitFor();
+    check("侧栏：刷新保留折叠", true);
+    await page.getByRole("button", { name: "展开侧边栏" }).click();
+    await page.getByRole("button", { name: "搜索", exact:true }).click();
+    await page.getByRole("textbox", { name: "搜索页面或学校" }).fill("Imperial");
+    await page.getByRole("button", {name:"搜索学校",exact:true}).click();
+    await page.waitForURL(/schools.*q=Imperial/);
+    check("搜索：真实学校库返回帝国理工", await page.getByRole("link", {name:/帝国理工/}).count() > 0);
+    await page.goto(`${BASE}/`);
+    await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
+    check("头像菜单：包含登录、设置和外观", await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button", {name:"设置",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button",{name:"深色",exact:true}).isVisible());
+    await page.keyboard.press("Escape");
     await screenshot(page, "home");
 
     await page.goto(`${BASE}/roadmap`);
@@ -271,7 +292,7 @@ async function adminPass(browser, email, errors) {
     const question = "我是北邮软件工程，均分 85，雅思 6.5，能申哪些计算机硕士？";
     await page.locator("#msg").fill(question);
     await page.getByRole("button", { name: "发送" }).click();
-    const dialog = page.locator("dialog.dialog");
+    const dialog = page.locator("dialog.dialog:not(.workspace-search-dialog)");
     await dialog.waitFor();
     check("顾问：未登录点发送弹出登录", await dialog.getByRole("heading", { name: "登录" }).isVisible());
     check("顾问：登录时原句还在输入框里", (await page.locator("#msg").inputValue()) === question);
@@ -589,7 +610,8 @@ async function adminPass(browser, email, errors) {
     await leaving.goto(`${BASE}/me`);
     await leaving.getByRole("button", { name: "退出登录" }).click();
     await leaving.waitForURL(`${BASE}/`);
-    await leaving.locator(".workspace-header").getByRole("button", { name: "登录" }).waitFor();
+    await leaving.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await leaving.locator("#user-menu").getByRole("button", { name: "登录", exact: true }).waitFor();
     const afterLogout = await leaving.evaluate(async () => (await fetch("/api/profile")).status);
     check("退出登录：之后读档案返回 401", afterLogout === 401, afterLogout);
     await other.close();
@@ -603,10 +625,10 @@ async function adminPass(browser, email, errors) {
     await b.goto(`${BASE}/programs/0100139`);
     await settle(b);
     await b.getByRole("button", { name: "加入选校组合" }).click();
-    await b.locator("dialog.dialog").waitFor();
+    await b.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();
     await loginThroughDialog(b, emails[1]);
-    await b.locator("dialog.dialog").getByRole("heading", { name: "补充四项信息" }).waitFor({ timeout: 15000 });
-    await b.locator("dialog.dialog").getByRole("button", { name: "跳过，以后再填" }).click();
+    await b.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("heading", { name: "补充四项信息" }).waitFor({ timeout: 15000 });
+    await b.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("button", { name: "跳过，以后再填" }).click();
     await b.getByRole("group", { name: "选择档位" }).waitFor({ timeout: 15000 });
     check("加入选校：登录后回到项目页并接着选档位", true);
     await b.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "稳" }).click();
@@ -652,12 +674,12 @@ async function adminPass(browser, email, errors) {
     await settle(intro);
     await layout(intro, "首页 390");
     check("390：导航收进菜单", !(await intro.locator("#workspace-nav").isVisible()) && (await intro.getByRole("button", { name: "打开导航" }).isVisible()));
-    check("390：未登录时“登录”按钮可见", await intro.locator(".workspace-header").getByRole("button", { name: "登录" }).isVisible());
+
     await intro.getByRole("button", { name: "打开导航" }).click();
     check("390：按菜单后出现导航链接", await intro.locator("#workspace-nav").getByRole("link", { name: "学校库" }).isVisible());
     await screenshot(intro, "home-390");
-    await intro.locator(".workspace-header").getByRole("button", { name: "登录" }).click();
-    await intro.locator("dialog.dialog").waitFor();
+    await sidebarLogin(intro);
+    await intro.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();
     await layout(intro, "登录弹窗 390");
     await screenshot(intro, "login-390");
     // Header login returns to the current workspace; respect the 60 s code resend window.
