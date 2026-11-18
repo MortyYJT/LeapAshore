@@ -1,52 +1,117 @@
-import type { Metadata } from "next";
-
-import { SampleTimeline } from "@/components/home/SampleTimeline";
-import { LinkButton } from "@/components/ui";
-import { chineseInstitutions, overseasInstitutions } from "@/lib/catalog-server";
-import { serverProgramPage } from "@/lib/server-api";
-
-export const dynamic = "force-dynamic";
-export const metadata: Metadata = { title: "鱼跃彼岸 · 把硕士申请排成一条时间线" };
-
-async function programCount(): Promise<number | null> {
-  try {
-    return (await serverProgramPage({ limit: 1 })).total;
-  } catch {
-    return null; // unknown stays unknown
-  }
-}
-
-/** The first visit (spec app-navigation). A returning applicant is redirected to /roadmap by proxy.ts. */
-export default async function Home() {
-  const programs = await programCount();
-  const facts: [string, string][] = [
-    [overseasInstitutions.length.toLocaleString("en"), "所海外大学：29 个国家和地区里的 QS 2027 前 300，加上澳洲、香港、澳门的其他大学"],
-    [programs === null ? "未知" : programs.toLocaleString("en"), "个授课型硕士项目，事实来自 CRICOS 登记或学校官网"],
-    [chineseInstitutions.length.toLocaleString("en"), "所国内院校，来自教育部名单，用来判断适用哪条均分门槛"],
-  ];
+"use client";
+import Link from "next/link";
+import { RequireAccount } from "@/components/auth/AuthProvider";
+import { LoadingPanel, Notice } from "@/components/ui";
+import { useProfile } from "@/lib/hooks/useProfile";
+import { useRoadmap } from "@/lib/hooks/useRoadmap";
+import { timelineOf } from "@/lib/roadmap-timeline";
+import { intakeAnchor } from "@/lib/roadmap";
+export default function Home() {
   return (
-    <main className="page">
-      <section className="intro stagger">
-        <div>
-          <h1 className="intro-title">把硕士申请排成一条时间线</h1>
-          <p className="lede intro-lede">填四项背景，看哪些硕士项目的官方要求你已经满足，再把从今天到入学的每一步排进一张图。</p>
-          <div className="toolbar" style={{ marginTop: 28 }}>
-            <LinkButton href="/tiers" variant="primary">
-              看看能申哪些
-            </LinkButton>
-            <LinkButton href="/schools">先看学校</LinkButton>
-          </div>
-        </div>
-        <SampleTimeline />
-      </section>
-      <section className="facts stagger" aria-label="收录范围">
-        {facts.map(([n, t]) => (
-          <div key={t}>
-            <div className="n num">{n}</div>
-            <div className="t">{t}</div>
-          </div>
-        ))}
-      </section>
+    <main className="page dashboard">
+      <div className="workspace-crumb">我的工作台 / 总览</div>
+      <h1>你好，欢迎回来</h1>
+      <RequireAccount what="申请总览">
+        <Dashboard />
+      </RequireAccount>
     </main>
+  );
+}
+function Dashboard() {
+  const profile = useProfile();
+  const roadmap = useRoadmap(profile.data);
+  const model = roadmap.roadmap
+    ? timelineOf(roadmap.roadmap, new Date())
+    : null;
+  const phase = model?.current;
+  const tasks = phase?.phase.tasks ?? [];
+  const total = model?.phases.length ?? 0;
+  const pending = tasks.filter((t) => !t.done).length;
+  const currentStage = model?.current
+    ? model.phases.findIndex((p) => p.current) + 1
+    : total;
+
+  const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
+  return (
+    <>
+      <p className="lede">
+        {anchor
+          ? `${anchor.getUTCFullYear()} 年 ${anchor.getUTCMonth() + 1} 月入学 · `
+          : ""}
+        查看你的申请准备情况
+      </p>
+      {(profile.loading || roadmap.loading) && !model ? (
+        <LoadingPanel what="申请进度" />
+      ) : profile.error ? (
+        <Notice error>无法读取申请资料：{profile.error}</Notice>
+      ) : model ? (
+        <>
+          <div className="dashboard-metrics">
+            <section className="metric-card">
+              <div className="muted">申请进度</div>
+              <div className="metric-value">
+                {currentStage} / {total} <span>阶段</span>
+              </div>
+            </section>
+            <section className="metric-card">
+              <div className="muted">待完成事项</div>
+              <div className="metric-value">
+                {pending} <span>项</span>
+              </div>
+            </section>
+          </div>
+          <section className="dashboard-progress">
+            <h2>申请进度</h2>
+            <div
+              className="dashboard-progress-track"
+              role="progressbar"
+              aria-label="当前申请阶段位置"
+              aria-valuemin={0}
+              aria-valuemax={total}
+              aria-valuenow={currentStage}
+            >
+              <div
+                style={{
+                  width: `${total ? (currentStage / total) * 100 : 0}%`,
+                }}
+              />
+            </div>
+            <p className="muted">当前阶段：{phase?.title ?? "全部完成"}</p>
+          </section>
+          <div className="dashboard-tasks-heading">
+            <h2>接下来要做</h2>
+            <Link href="/roadmap">全部任务 →</Link>
+          </div>
+          <div className="dashboard-tasks">
+            {tasks.map((t) => (
+              <div key={t.materialId}>
+                <label className={`dashboard-task${t.done ? " done" : ""}`}>
+                  <input
+                    type="checkbox"
+                    checked={t.done}
+                    disabled={roadmap.taskIdFor(t.materialId) === null}
+                    onChange={(e) =>
+                      void roadmap.tick(t.materialId, e.target.checked)
+                    }
+                  />
+                  <span>{t.label}</span>
+                </label>
+                {roadmap.failedTicks.has(t.materialId) && (
+                  <Notice error>保存失败，请重试。</Notice>
+                )}
+              </div>
+            ))}
+            {!phase && <Notice>所有申请步骤已完成。</Notice>}
+          </div>
+        </>
+      ) : (
+        <Notice>
+          完善申请背景后，这里会显示你的申请进度。
+          <Link href="/me">填写背景 →</Link>
+        </Notice>
+      )}
+      {roadmap.notice && <Notice>{roadmap.notice}</Notice>}
+      {roadmap.syncError && <Notice error>{roadmap.syncError}</Notice>}
+    </>
   );
 }

@@ -9,7 +9,15 @@ import { Button, LoadingPanel, Notice, Pill } from "@/components/ui";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
-import { clearDraft, draftChanged, readDraft, removeFromDraft, setPrimary, setStatus, writeDraft } from "@/lib/portfolio-draft";
+import {
+  clearDraft,
+  draftChanged,
+  readDraft,
+  removeFromDraft,
+  setPrimary,
+  setStatus,
+  writeDraft,
+} from "@/lib/portfolio-draft";
 import { toApplicationRows } from "@/lib/programs-source";
 import { APPLICATION_STATUSES, TIER_OF_BAND } from "@/lib/taxonomy";
 import type { ApplicationStatus, PortfolioItem, Program } from "@/lib/types";
@@ -59,11 +67,20 @@ function Portfolio() {
     setDraft(readDraft(sessionStorage) ?? saved.data ?? []);
   }, [draft, saved.loading, saved.data]);
 
-  const ids = useMemo(() => (draft ?? []).map((r) => r.programSlug).filter((id) => !programs.has(id)), [draft, programs]);
+  const ids = useMemo(
+    () =>
+      (draft ?? []).map((r) => r.programSlug).filter((id) => !programs.has(id)),
+    [draft, programs],
+  );
   useEffect(() => {
     if (ids.length === 0) return;
     fetchProgramPage({ ids: ids.slice(0, 100), limit: 100 })
-      .then(({ programs: found }) => setPrograms((prev) => new Map([...prev, ...found.map((p) => [p.slug, p] as const)])))
+      .then(({ programs: found }) =>
+        setPrograms(
+          (prev) =>
+            new Map([...prev, ...found.map((p) => [p.slug, p] as const)]),
+        ),
+      )
       .catch(() => undefined); // the rows still render from the portfolio's own program names
   }, [ids]);
 
@@ -82,9 +99,13 @@ function Portfolio() {
       clearDraft(sessionStorage);
       saved.reload();
       setDraft(null);
-      setSavedNote(`已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`);
+      setSavedNote(
+        `已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`,
+      );
     } catch (error: unknown) {
-      setSaveError(`组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`);
+      setSaveError(
+        `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
+      );
     } finally {
       setSaving(false);
     }
@@ -95,8 +116,12 @@ function Portfolio() {
     setDraft(saved.data ?? []);
   }
 
-  const rows = draft ?? [];
-  const changed = draft !== null && saved.data !== null && draftChanged(draft, saved.data);
+  const rows = [...(draft ?? [])].sort(
+    (a, b) =>
+      ["冲", "稳", "保"].indexOf(a.tier) - ["冲", "稳", "保"].indexOf(b.tier),
+  );
+  const changed =
+    draft !== null && saved.data !== null && draftChanged(draft, saved.data);
   const primary = rows.find((r) => r.isPrimary);
 
   return (
@@ -109,7 +134,10 @@ function Portfolio() {
               {rows.length} 个项目 ·{" "}
               {primary ? (
                 <>
-                  首选 <strong>{primary.program?.university} {primary.program?.nameEn}</strong>
+                  首选{" "}
+                  <strong>
+                    {primary.program?.university} {primary.program?.nameEn}
+                  </strong>
                 </>
               ) : (
                 "还没有设首选"
@@ -123,27 +151,39 @@ function Portfolio() {
           </div>
         </div>
 
-        {saved.error && !saved.data && <div className="section"><Notice error>没有读到已保存的组合（{saved.error}）。</Notice></div>}
+        {saved.error && !saved.data && (
+          <div className="section">
+            <Notice error>没有读到已保存的组合（{saved.error}）。</Notice>
+          </div>
+        )}
         {draft === null && !saved.error && <LoadingPanel what="选校组合" />}
 
         {draft !== null && (
           <div className="stagger">
             <section className="panel section" aria-label="申请状态分布">
               <div className="strip">
-                {APPLICATION_STATUSES.filter((s) => s.value !== "excluded").map((s) => {
-                  const n = rows.filter((r) => (r.status ?? "considering") === s.value).length;
-                  return (
-                    <div key={s.value}>
-                      <div className="label">{s.label}</div>
-                      <div className={`value num${n === 0 ? " muted" : ""}`}>{n}</div>
-                    </div>
-                  );
-                })}
+                {APPLICATION_STATUSES.filter((s) => s.value !== "excluded").map(
+                  (s) => {
+                    const n = rows.filter(
+                      (r) => (r.status ?? "considering") === s.value,
+                    ).length;
+                    return (
+                      <div key={s.value}>
+                        <div className="label">{s.label}</div>
+                        <div className={`value num${n === 0 ? " muted" : ""}`}>
+                          {n}
+                        </div>
+                      </div>
+                    );
+                  },
+                )}
               </div>
             </section>
 
             <section className="panel section" aria-labelledby="list-h">
-              <h2 id="list-h" className="sr-only">项目列表</h2>
+              <h2 id="list-h" className="sr-only">
+                项目列表
+              </h2>
               <table className="stack">
                 <thead>
                   <tr>
@@ -152,7 +192,9 @@ function Portfolio() {
                     <th>官方截止</th>
                     <th>申请状态</th>
                     <th>首选</th>
-                    <th className="num"><span className="sr-only">操作</span></th>
+                    <th className="num">
+                      <span className="sr-only">操作</span>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -160,31 +202,61 @@ function Portfolio() {
                     <tr>
                       <td colSpan={6} className="wide">
                         <div className="empty">
-                          还没有选项目。<Link href="/tiers">从分档结果添加</Link>
+                          还没有选项目。
+                          <Link href="/tiers">从分档结果添加</Link>
                         </div>
                       </td>
                     </tr>
                   )}
                   {rows.map((r, i) => {
                     const program = programs.get(r.programSlug);
-                    const deadline = deadlineOf({ ...r, deadlines: r.collectedDeadlines ?? program?.deadlines }, today);
+                    const deadline = deadlineOf(
+                      {
+                        ...r,
+                        deadlines: r.collectedDeadlines ?? program?.deadlines,
+                      },
+                      today,
+                    );
                     return (
-                      <tr key={r.programSlug}>
+                      <tr
+                        key={r.programSlug}
+                        className={
+                          i === 0 || rows[i - 1].tier !== r.tier
+                            ? "portfolio-group-start"
+                            : undefined
+                        }
+                      >
                         <td className="wide">
+                          {(i === 0 || rows[i - 1].tier !== r.tier) && (
+                            <div className="portfolio-group-label">
+                              {r.tier === "保" ? "保底" : TIER_OF_BAND[r.tier]}{" "}
+                              · {rows.filter((x) => x.tier === r.tier).length}{" "}
+                              个项目
+                            </div>
+                          )}
                           <div className="two-line">
-                            <Link className="l1" href={`/programs/${encodeURIComponent(r.programSlug)}`}>
+                            <Link
+                              className="l1"
+                              href={`/programs/${encodeURIComponent(r.programSlug)}`}
+                            >
                               {r.program?.nameEn ?? program?.name ?? "未知"}
                             </Link>
                             <div className="l2">
-                              {r.program?.university ?? program?.university ?? "未知"}
-                              {program?.duration ? ` · ${program.duration}` : ""}
+                              {r.program?.university ??
+                                program?.university ??
+                                "未知"}
+                              {program?.duration
+                                ? ` · ${program.duration}`
+                                : ""}
                             </div>
                           </div>
                         </td>
                         <td>
                           <span className="toolbar" style={{ gap: 4 }}>
                             <Pill kind="tier">{TIER_OF_BAND[r.tier]}</Pill>
-                            {r.needsReview && <Pill kind="outline">未经系统分档</Pill>}
+                            {r.needsReview && (
+                              <Pill kind="outline">未经系统分档</Pill>
+                            )}
                           </span>
                         </td>
                         <td className="wide">
@@ -194,7 +266,12 @@ function Portfolio() {
                             <>
                               <DeadlineText view={deadline} />{" "}
                               {program && (
-                                <a className="muted small" href={program.source.url} target="_blank" rel="noreferrer">
+                                <a
+                                  className="muted small"
+                                  href={program.source.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
                                   去官网查
                                 </a>
                               )}
@@ -210,7 +287,15 @@ function Portfolio() {
                             className="select"
                             style={{ height: 32, width: 128 }}
                             value={r.status ?? "considering"}
-                            onChange={(e) => update(setStatus(rows, r.programSlug, e.target.value as ApplicationStatus))}
+                            onChange={(e) =>
+                              update(
+                                setStatus(
+                                  rows,
+                                  r.programSlug,
+                                  e.target.value as ApplicationStatus,
+                                ),
+                              )
+                            }
                           >
                             {APPLICATION_STATUSES.map((s) => (
                               <option key={s.value} value={s.value}>
@@ -221,12 +306,24 @@ function Portfolio() {
                         </td>
                         <td>
                           <label className="primary-radio">
-                            <input type="radio" name="primary" checked={!!r.isPrimary} onChange={() => update(setPrimary(rows, r.programSlug))} />
+                            <input
+                              type="radio"
+                              name="primary"
+                              checked={!!r.isPrimary}
+                              onChange={() =>
+                                update(setPrimary(rows, r.programSlug))
+                              }
+                            />
                             {r.isPrimary ? "首选" : "设为首选"}
                           </label>
                         </td>
                         <td className="num">
-                          <Button variant="text" onClick={() => update(removeFromDraft(rows, r.programSlug))}>
+                          <Button
+                            variant="text"
+                            onClick={() =>
+                              update(removeFromDraft(rows, r.programSlug))
+                            }
+                          >
                             移出
                           </Button>
                         </td>
@@ -241,7 +338,9 @@ function Portfolio() {
 
         {(changed || saveError) && (
           <div className="unsaved" role="status">
-            <span className={saveError ? "negative" : undefined}>{saveError ?? "组合有改动，还没保存到服务器。"}</span>
+            <span className={saveError ? "negative" : undefined}>
+              {saveError ?? "组合有改动，还没保存到服务器。"}
+            </span>
             <span className="toolbar">
               <Button variant="text" onClick={discard} disabled={saving}>
                 放弃改动
@@ -252,7 +351,11 @@ function Portfolio() {
             </span>
           </div>
         )}
-        {savedNote && !changed && <div className="section"><Notice>{savedNote}</Notice></div>}
+        {savedNote && !changed && (
+          <div className="section">
+            <Notice>{savedNote}</Notice>
+          </div>
+        )}
       </main>
     </>
   );
