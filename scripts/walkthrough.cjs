@@ -318,7 +318,22 @@ async function adminPass(browser, email, errors) {
     await screenshot(page, "advisor");
     const basics = await page.evaluate(async () => (await fetch("/api/profile")).json());
     check("信息页：服务器档案就是填的四项", basics.schoolName === "北京邮电大学" && basics.domesticTier === "211" && Number(basics.gpaScore) === 85 && basics.targetField === "计算机与数据" && basics.englishScore === "IELTS 6.5", basics);
-    check("登录后顶栏显示“我的”", await page.locator(".bar .me-link").isVisible());
+    check("登录后顶栏显示用户菜单", await page.getByRole("button", { name: "我的，打开用户菜单" }).isVisible());
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "外观", exact: true }).click();
+    await page.getByLabel("显示模式", { exact: true }).selectOption("dark");
+    await page.getByRole("button", { name: "雾蓝色", exact: true }).click();
+    check("设置：主题应用到全站", await page.locator("html").getAttribute("data-appearance") === "dark" && await page.locator("html").getAttribute("data-accent") === "blue");
+    await page.getByRole("button", { name: "关闭设置" }).click();
+    await page.reload();
+    await page.waitForFunction(() => document.documentElement.dataset.accent === "blue");
+    check("设置：刷新后保留外观", await page.locator("html").getAttribute("data-appearance") === "dark");
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "外观", exact: true }).click();
+    await page.getByRole("button", { name: "恢复默认外观" }).click();
+    await page.getByRole("button", { name: "关闭设置" }).click();
 
     // ---------- tiers -> portfolio ----------
     await page.goto(`${BASE}/tiers`);
@@ -544,7 +559,7 @@ async function adminPass(browser, email, errors) {
     check("回访：清空浏览器存储后仍从首页进入路线图", page.url().endsWith("/roadmap"), page.url());
     const gone = await page.goto(`${BASE}/prototype/schools`);
     check("旧的原型路由已移除", gone.status() === 404, gone.status());
-    const admin = await page.goto(`${BASE}/admin`);
+    const admin = await page.request.get(`${BASE}/admin`);
     check("顾问后台不提供", admin.status() === 404, admin.status());
     session = (await context.cookies(BASE)).find((c) => c.name === "leapashore_session") ?? null;
     check("登录会话是 httpOnly cookie", session && session.httpOnly, session && { httpOnly: session.httpOnly });

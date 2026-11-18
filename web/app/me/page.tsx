@@ -55,7 +55,7 @@ function Mine() {
   const [editing, setEditing] = useState(false);
   return (
     <div className="stagger">
-      <section className={editing ? "section" : "panel section"} aria-labelledby="bg-h">
+      <section className={editing ? "section" : "panel section"} id="background" aria-labelledby="bg-h">
         <div className={editing ? "section-head" : "panel-head"}>
           <h2 id="bg-h">申请背景</h2>
           {!editing && profile.data && (
@@ -120,7 +120,7 @@ function AccountPanel() {
   }
 
   return (
-    <section className="panel section" aria-labelledby="acct-h">
+    <section className="panel section" id="account" aria-labelledby="acct-h">
       <div className="panel-head">
         <h2 id="acct-h">账号</h2>
         <Button small onClick={() => void signOut()}>
@@ -188,7 +188,7 @@ function MaterialsLibrary({ materials }: { materials: ReturnType<typeof useMater
   }
 
   return (
-    <section className="panel section" aria-labelledby="mat-h">
+    <section className="panel section" id="materials" aria-labelledby="mat-h">
       <div className="panel-head">
         <h2 id="mat-h">
           材料库<span className="count num muted" style={{ fontWeight: 400, marginLeft: 6 }}>{list.length}</span>

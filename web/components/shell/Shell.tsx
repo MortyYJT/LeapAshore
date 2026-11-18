@@ -7,6 +7,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 import { Mark } from "./Mark";
+import { UserCenter } from "./UserCenter";
 
 // Spec app-navigation: four links and 我的, the current one marked, folding into a menu below 640px.
 // Programs are browsed on their school's page; /programs/[id] still marks 学校库 as current.
@@ -36,7 +37,7 @@ export function Shell({ children, footer }: { children: ReactNode; footer?: Reac
   }, []);
 
   const meCurrent = isCurrent(pathname, ["/me"]);
-  const { gated, state, openLogin } = useAuth();
+  const { gated, openLogin } = useAuth();
   return (
     <>
       <header className={`bar${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
@@ -62,9 +63,7 @@ export function Shell({ children, footer }: { children: ReactNode; footer?: Reac
               登录
             </button>
           ) : (
-            <Link className="me-link" href="/me" aria-current={meCurrent ? "page" : undefined} title={state?.account?.email}>
-              我的
-            </Link>
+            <UserCenter />
           )}
           <button
             type="button"

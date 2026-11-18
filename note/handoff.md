@@ -2,7 +2,15 @@
 
 **当前状态文件。每次任务结束整份重写，不追加；开始时先读，并对照 `git status` 和 `git log`。历史看 git 和 `note/decisions.md`。**
 
-## 现在（2026-11-01）
+## 用户中心更新（2026-11-18）
+
+- 已部署到线上：右上角头像菜单、设置弹窗（个人资料 / 外观 / 账号），上传头像并居中裁切为 256px WebP，支持移除和显示名称编辑。
+- 头像与偏好仅保存在当前浏览器，按登录账号区分；未新增服务器上传接口。外观支持跟随系统 / 浅色 / 深色及四种主题色，作用于全站。
+- 动效：按钮弹簧曲线，菜单与面板缓出，卡片 45ms 错峰，遵循 prefers-reduced-motion。
+- 验证：生产构建成功；854 后端测试、256 前端测试、166/166 浏览器走查通过；线上只读核对菜单、外观、持久化和手机宽度。完整 make verify 首次受本地环境阻挡，启用数据库及登录模式后分别补齐所有检查。
+- 本次仅替换 web 服务。服务器回滚镜像 `deploy-web:pre-usercenter-20261118`；源码备份 `~/web-backup-20261118-usercenter.tgz`；数据库备份 `~/db-backup-20261118-usercenter.dump`（pg_restore 目录检查通过）。
+
+## 原有服务状态（2026-11-01，以下为历史交接）
 
 - **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #85（11-01 北京时间 03:58 左右部署），**匿名模式**（`AUTH_ENABLED` 未设），**向量检索已开**（`ADVISOR_RETRIEVAL` 默认 `hybrid`，见下「向量检索」）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261101-pre-vectors.sql.gz`（#85 没有迁移），服务器上只留最近 3 份备份。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序），角色和库名 `leapashore`。项目目录 `~/leapashore`，compose 项目名仍是 `deploy`。换 pgvector 前的旧卷 `deploy_db-data` 和镜像 `postgres:16-alpine` 已删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
 - **服务器 SSH（10-31）：** 只认密钥，密码登录和 root 登录都关了；fail2ban 已开（5 次失败封 1 小时）。细节和解封命令见 `docs/deploy.md`。没检查腾讯云安全组的 22 端口来源限制。
