@@ -2,8 +2,8 @@
 
 | Item | Value |
 | --- | --- |
-| Version | v0.1 first draft |
-| Date | 2026-10-28 (translated into English 2026-10-31) |
+| Version | v0.2 application workspace |
+| Date | 2026-11-18 |
 | Author | MortyYJT |
 | Status | Draft; items marked **[Open]** need a decision |
 | Sources | `note/decisions.md`, `openspec/specs/`, the `/prototype` prototype |
@@ -14,7 +14,13 @@ Interface text is Chinese; it is quoted in Chinese with an English gloss. Counts
 
 ## 1. Positioning
 
-**LeapAshore is a study-abroad application agent covering 287 universities in 29 countries and regions (mostly the QS 2027 World University Rankings top 300).** It turns an application into a visual roadmap: what to prepare at each stage, when to prepare it, and which official page each requirement comes from, all one click away.
+**LeapAshore is a personal application-management tool for master's applicants.** It brings application projects, different deadlines, preparation tasks, materials and progress into one workspace. The core flow is: add a project → confirm the chosen round and date → prepare materials and tasks → track submission and results.
+
+The homepage prioritizes the applicant's current work: dated active applications, unknown dates needing confirmation and editable roadmap tasks. New applicants see a first-project entry. A source-backed advisor and school library assist this workflow.
+
+Manual applications are supported independently of catalogue coverage. One record tracks one selected round; additional rounds can be entered as separate manual applications. Material readiness is self-reported. Reminders, automatic multi-round scheduling, automated submission and automatic document-to-project completeness checks remain future work.
+
+The detailed sections below retain historical catalogue and engineering requirements; the current workspace implementation is specified in `openspec/changes/application-workspace/`.
 
 **[Decided D5] Coverage follows the school list:** the 241 schools of the QS 2027 top 300 that are inside the covered regions, plus 46 schools added to complete regional coverage, 287 in total across 29 countries and regions (`web/prototype-fixtures/overseas-institutions.json`, fetched 2026-10-10). Covered regions (decided 2026-10-29): the United States, the United Kingdom, Australia, Canada, New Zealand, Hong Kong, Macau, Singapore, South Korea, Malaysia, 16 European countries (Germany, the Netherlands, Switzerland, France, Belgium, Sweden, Italy, Spain, Ireland, Denmark, Norway, Austria, Finland, Portugal, Czechia, Poland) and 3 Middle Eastern countries (UAE, Saudi Arabia, Qatar). The 59 out-of-scope schools (mainland China, Japan, India, Taiwan, Indonesia, Thailand, Kazakhstan, South Africa, Latin America, Israel, Lebanon, Turkey, Russia) were removed from the school list on 2026-10-30.
 

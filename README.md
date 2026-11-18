@@ -1,16 +1,19 @@
 # LeapAshore
 
-**An application-planning agent for taught master's degrees at the world's top universities, where every requirement traces to an official page.**
+**A personal workspace for managing master's applications: projects, deadlines, preparation tasks, materials and progress.**
+
+面向硕士申请者的个人申请管理工具，把各个项目的截止日期、材料与准备进度集中到一个工作台。
 
 [![CI](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live site](https://img.shields.io/badge/live-leapashore.mortyyjt.site-2f6f4f.svg)](https://leapashore.mortyyjt.site)
 
-![LeapAshore home page: the application drawn as one timeline from today to the intake](docs/images/home.webp)
+![Application workspace: upcoming deadlines, dates to confirm and preparation tasks](docs/images/home.png)
 
 **Live site:** <https://leapashore.mortyyjt.site> (the interface is in Chinese; it is built for applicants from mainland China).
 
-Applicants plan a master's application over 6 to 12 months from facts scattered across dozens of university pages. Agencies are opaque, spreadsheets go stale, and general chatbots invent admission requirements that applicants then act on. LeapAshore collects the requirements from the official pages themselves, checks every quote against a saved snapshot of the page, and refuses to answer when it has no source.
+Applying to several master's programs means tracking different deadlines, rounds, documents and submission states. LeapAshore brings those details into a personal workspace: add a project, record or check its deadline, prepare materials and keep the application moving. The school library and source-backed AI advisor support this workflow.
+
 
 ## Contents
 
@@ -28,6 +31,13 @@ Applicants plan a master's application over 6 to 12 months from facts scattered 
 
 ## What it does
 
+- **Personal workspace.** An actionable home shows active applications ordered by deadline, a separate group for dates still to confirm, and directly editable preparation tasks. First-time users start with adding their first application.
+- **My applications.** Saved school selections appear automatically. Add projects outside the library manually; edit the chosen round, deadline, source link, application status, self-reported material readiness and preparation notes. Human date confirmation is explicit and becomes stale when the date, source or round changes.
+- **Materials.** Keep versions and review states in the existing document library. A project's “materials ready” flag is an applicant's self-check, not an automated review result.
+
+![My applications: persisted projects, selected rounds, source checks and preparation notes](docs/images/applications.png)
+
+
 - **School library.** 287 universities in 29 countries and regions, ordered by QS 2027 rank. Each school page lists its collected taught master's programs, filterable by name and study area; each program page shows only the requirements that were found (mark thresholds, English, academic background, deadlines), each linked to the official page it came from.
 - **Requirement tiers.** An applicant enters four facts (undergraduate school, average mark, English score, target field). Every program with a stated requirement in that field is placed in a tier by how many published requirements the background meets, with the items still to confirm on the official page. Tiers describe requirements met, not admission odds.
 - **Portfolio.** The chosen programs with a tier, an application status, the official deadline and one first choice.
@@ -36,13 +46,20 @@ Applicants plan a master's application over 6 to 12 months from facts scattered 
 
 | Requirement tiers | Application roadmap |
 | --- | --- |
-| ![Tiers page: programs grouped by how many published requirements the background meets](docs/images/tiers.webp) | ![Roadmap: phases from today to a July 2027 intake, with three official deadlines on the axis](docs/images/roadmap.webp) |
+| ![Tiers page: programs grouped by how many published requirements the background meets](docs/images/tiers.png) | ![Roadmap: phases from today to a July 2027 intake, with three official deadlines on the axis](docs/images/roadmap.png) |
 
 | School page | Program page | Portfolio |
 | --- | --- | --- |
-| ![Imperial College London with its 165 collected programs](docs/images/school.webp) | ![A program page: mark threshold, academic requirement, three deadline rounds and the source page](docs/images/program.webp) | ![Portfolio of three programs with tiers and official deadlines](docs/images/portfolio.webp) |
+| ![Imperial College London with its 165 collected programs](docs/images/school.png) | ![A program page: mark threshold, academic requirement, three deadline rounds and the source page](docs/images/program.png) | ![Saved school selections with tiers and deadline information](docs/images/portfolio.png) |
 
-The tiers, portfolio and roadmap screenshots come from a local build with a made-up profile.
+All application screenshots come from the actual local production build using a demonstration account. Example University records and dates illustrate the workflow and are not admissions guidance.
+
+<details>
+<summary>Mobile workspace</summary>
+
+![The application workspace on a phone](docs/images/home-mobile.png)
+
+</details>
 
 ## How it works
 
@@ -188,8 +205,12 @@ CI ([.github/workflows/ci.yml](.github/workflows/ci.yml)) runs three jobs on eve
 
 ## Status and limitations
 
+- Each application record tracks one chosen round. Additional rounds can be represented by separate manual records; automatic multi-round scheduling, reminders and submission automation are not implemented.
+- User-entered dates without a source remain unconfirmed. “Checked by me” records an applicant's explicit check and never changes the catalogue's official verification status. Collected dates still need review for the intended intake and round.
+- Preparation notes and readiness are per project; document uploads, versions and reviews remain in the materials library. Automatic document-to-project completeness checks are not implemented.
+
 - Production runs in anonymous mode: the profile is tied to a browser cookie. Email sign-in is built and tested but off until outgoing mail is configured.
-- Production retrieval ranks by PostgreSQL full text only. The vector half of hybrid retrieval (pgvector, `bge-m3`, Reciprocal Rank Fusion) is built but waits for an embedding key, so vector and hybrid ranking have not been measured.
+- Retrieval supports hybrid full-text/vector ranking. Deployment settings and historical measurements are recorded in [the handoff](note/handoff.md) and [measurements](docs/measurements.md).
 - The advisor depends on a paid model account and can be unavailable; it then says so instead of answering.
 - Requirements are collected for 250 of the 287 schools. The other 37 refused the crawler (robots.txt or HTTP 403), had no listing the queue could read, or publish no list of taught master's programs. Many program pages put their requirements on a separate page the queue does not follow yet, and requirements published only in PDFs are not read.
 - No requirement has been verified by a person yet; every source is unverified or machine-checked.
