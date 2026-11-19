@@ -166,6 +166,8 @@ const MAX_HORIZON = 730;
 const HORIZON_MARGIN = 5;
 /** A month label needs this share of the axis between it and the label before it. */
 const LABEL_GAP = 0.11;
+/** On a scale long enough to name years, labels are wider and need more room. */
+const LONG_LABEL_GAP = 0.15;
 /** The "today" label occupies the start of the axis. */
 const TODAY_LABEL = 0.14;
 const NEXT_ACTIONS = 3;
@@ -180,7 +182,9 @@ function byDate(a: OverviewRow, b: OverviewRow): number {
   return a.days - b.days || byId(a, b);
 }
 
+/** Month starts inside the scale. A scale of about a year or more is ticked by quarter instead. */
 function monthTicks(today: string, horizon: number): AxisTick[] {
+  const long = horizon > NEEDS_YEAR;
   const ticks: AxisTick[] = [];
   let year = Number(today.slice(0, 4));
   let month = Number(today.slice(5, 7));
@@ -193,10 +197,11 @@ function monthTicks(today: string, horizon: number): AxisTick[] {
     const offset = daysUntil(date, today);
     // Written so that anything that is not a day count inside the scale ends the loop.
     if (!(offset < horizon)) return ticks;
+    if (long && month % 3 !== 1) continue;
     const position = offset / horizon;
     let label: string | null = null;
-    if (position - last > LABEL_GAP) {
-      const withYear = horizon > NEEDS_YEAR && labelledYear !== year;
+    if (position - last > (long ? LONG_LABEL_GAP : LABEL_GAP)) {
+      const withYear = long && labelledYear !== year;
       label = `${withYear ? `${String(year).slice(2)} 年 ` : ""}${month} 月`;
       last = position;
       labelledYear = year;

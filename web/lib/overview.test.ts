@@ -151,8 +151,9 @@ test("overviewOf stops the scale at two years; a later deadline runs off its end
   assert.equal(near.beyond, false);
   assert.equal(far.position, 1);
   assert.equal(far.beyond, true);
-  assert.equal(model.ticks.length, 24);
-  assert.equal(model.ticks.at(-1)!.date, "2028-11-01");
+  // A long scale is ticked by quarter, and labelled less often still.
+  assert.deepEqual(model.ticks.map((tick) => tick.date.slice(0, 7)), ["2027-01", "2027-04", "2027-07", "2027-10", "2028-01", "2028-04", "2028-07", "2028-10"]);
+  assert.deepEqual(model.ticks.map((tick) => tick.label).filter(Boolean), ["27 年 7 月", "28 年 1 月", "7 月"]);
 });
 
 test("overviewOf reads a date it cannot parse as unknown", () => {
@@ -168,10 +169,10 @@ test("overviewOf labels months sparsely and names the year when the scale is abo
   const long = overviewOf([record("a", { deadline: "2028-02-01" })], TODAY);
   const labels = long.ticks.map((tick) => tick.label).filter(Boolean);
   // The first label and the first one of each later year carry the year; the others do not.
-  assert.deepEqual(labels, ["27 年 4 月", "6 月", "8 月", "10 月", "12 月", "28 年 2 月"]);
-  // Labels keep their distance on a long scale.
+  assert.deepEqual(labels, ["27 年 4 月", "7 月", "10 月", "28 年 1 月"]);
+  // A label with a year is wider, so labels on a long scale keep more distance.
   const labelled = long.ticks.filter((tick) => tick.label);
-  for (let i = 1; i < labelled.length; i++) assert.ok(labelled[i].position - labelled[i - 1].position > 0.11);
+  for (let i = 1; i < labelled.length; i++) assert.ok(labelled[i].position - labelled[i - 1].position > 0.15);
 });
 
 test("overviewOf lists what to do next: unknown dates first, then the nearest, three at most", () => {
