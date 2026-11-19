@@ -254,13 +254,20 @@ def render(checked: Verification, passages: list[dict]) -> tuple[str, list[dict]
             numbers.setdefault(n, len(numbers) + 1)
             marks += f"[{numbers[n]}]"
         lines.append(s.text.rstrip() + marks)
+    # The quotes that passed the check, per passage, in the order the answer uses them. Each one is in
+    # the stored page text word for word (`verify`), so the interface can show it as a quotation.
+    quotes: dict[int, list[str]] = {}
+    for s in checked.kept:
+        for n, quote in s.quotes:
+            if quote not in quotes.setdefault(n, []):
+                quotes[n].append(quote)
     citations = []
     for original, shown in sorted(numbers.items(), key=lambda kv: kv[1]):
         p = passages[original - 1]
         citations.append({
             "n": shown, "programId": "", "program": p.get("program") or p["school"],
             "title": p.get("program") or p.get("title") or p["url"], "url": p["url"], "status": "待核验",
-            "fetchedAt": p.get("fetched_at"),
+            "fetchedAt": p.get("fetched_at"), "quotes": quotes.get(original, []),
         })
     dates = sorted({(p.get("fetched_at") or "")[:10] for p in (passages[o - 1] for o in numbers) if p.get("fetched_at")})
     when = f"（抓取于 {'、'.join(dates)}）" if dates else ""

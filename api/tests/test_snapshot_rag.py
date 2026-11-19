@@ -357,12 +357,23 @@ def test_a_turn_shows_only_the_checked_sentences(school, monkeypatch):
         {"text": "学费每年 59,000 美元。", "citations": [{"passage": 1, "quote": "Tuition fee: US$59,000 per year."}]},
     ]}
     events = run_turn(monkeypatch, "切片检索测试大学数据科学硕士学费多少？", args)
-    kinds = [e["type"] for e in events]
+    kinds = [e["type"] for e in events if e["type"] != "step"]
     assert kinds[:2] == ["intent", "citations"] and kinds[-1] == "done"
     citations = next(e for e in events if e["type"] == "citations")
     assert citations["gate"] == "pass" and len(citations["citations"]) == 1
     text = "".join(e["text"] for e in events if e["type"] == "token")
     assert "61,000" in text and "59,000" not in text and "另有 1 句" in text
+    # The card shows the sentence the answer rests on, word for word, and what it is about.
+    cited = citations["citations"][0]
+    assert cited["quotes"] == ["Tuition fee: US$61,000 per year."] and cited["field"] == "学费"
+    # The turn as steps: the router, the page retrieval, then the quote check, each opened and closed.
+    steps = [(e.get("name"), e["status"]) for e in events if e["type"] == "step"]
+    assert steps[:3] == [("classify_intent", "running"), (None, "done"), ("retrieve_passages", "running")]
+    assert steps[4] == ("answer_passages", "running") and steps[5] == (None, "done")
+    closed = [e for e in events if e["type"] == "step" and e["status"] != "running"]
+    assert "到官方页面的原文里找" in closed[0]["result"]
+    assert closed[1]["result"].startswith("找到 ") and "官方页面" in closed[1]["result"]
+    assert closed[2]["result"] == "1 句和原文核对上了，删去 1 句"
 
 
 def test_a_sentence_whose_quote_does_not_back_it_is_dropped_after_the_verbatim_check(school, monkeypatch):
@@ -386,6 +397,8 @@ def test_a_support_check_without_an_answer_refuses_rather_than_show_unchecked_se
     assert citations["gate"] == "refuse"
     text = "".join(e["text"] for e in events if e["type"] == "token")
     assert "不作判断" in text and "61,000" not in text
+    check = [e for e in events if e["type"] == "step"][-1]
+    assert check["status"] == "empty" and check["result"] == "没有一句能和原文核对上"
 
 
 def test_a_turn_with_nothing_checkable_refuses(school, monkeypatch):

@@ -31,6 +31,9 @@ export interface ApplicationRecordsState {
   /** The application picked in the rail; the other lines step back while one is picked. */
   selected: string | null;
   select: (id: string | null) => void;
+  /** The catalogue program the advisor just wrote to; the overview flashes its row once. */
+  changedProgram: string | null;
+  markChanged: (programId: string | null) => void;
 }
 
 const Ctx = createContext<ApplicationRecordsState | null>(null);
@@ -47,6 +50,7 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
   const { reload, set } = resource;
   const [syncedAt, setSyncedAt] = useState<Date | null>(null);
   const [selected, select] = useState<string | null>(null);
+  const [changedProgram, markChanged] = useState<string | null>(null);
 
   // The first read runs before the session is known and reads nothing; read again once it is, and
   // on every route change after that.
@@ -80,8 +84,10 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
       set,
       selected: picked,
       select,
+      changedProgram,
+      markChanged,
     }),
-    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, picked],
+    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, picked, changedProgram],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

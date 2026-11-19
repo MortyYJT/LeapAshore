@@ -2,8 +2,10 @@
 import Link, { useLinkStatus } from "next/link";
 import type {} from "react/canary";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useRef, useState, ViewTransition, type ReactNode } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState, ViewTransition, type ReactNode } from "react";
 
+import { useAdvisorDock } from "@/components/advisor/AdvisorProvider";
+import { Dock } from "@/components/advisor/Dock";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { beijingToday } from "@/lib/deadlines";
 import { overviewOf, type OverviewRow } from "@/lib/overview";
@@ -28,17 +30,41 @@ const searchable: { label: string; href: string; icon: IconName }[] = [
   { label: "我的材料", href: "/materials", icon: "materials" },
 ];
 
+/** Three panes need this much room; below it an open dock folds the rail to its icons. */
+const THREE_PANES = "(min-width: 901px) and (max-width: 1439px)";
+
 /**
  * The frame every route sits in. From 901px it is a rail on the left: navigation, the applicant's
  * applications with the days each has left, the sync state, the account and the theme. At 900px and
  * below the same elements become a top bar and a bottom tab bar (app/shell.css); nothing is rendered twice.
+ *
+ * From 901px the advisor is a dock on the right of every route but its own. Between 901px and 1439px
+ * the three panes do not fit, so an open dock folds the rail; the rail's own button still opens it.
  */
 export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "/";
+  const dock = useAdvisorDock();
+  const hasDock = pathname !== "/advisor";
   const [collapsed, setCollapsed] = useState(false);
   const [sidebarInteracted, setSidebarInteracted] = useState(false);
+  const [tight, setTight] = useState(false);
+  /** The applicant opened the rail beside an open dock on a tight screen; kept until the dock closes. */
+  const [railForced, setRailForced] = useState(false);
   const [query, setQuery] = useState("");
   const search = useRef<HTMLDialogElement>(null);
+  const crowded = hasDock && dock.open && tight;
+  const folded = crowded ? !railForced : collapsed;
+
+  useEffect(() => {
+    const media = window.matchMedia(THREE_PANES);
+    const read = () => setTight(media.matches);
+    read();
+    media.addEventListener("change", read);
+    return () => media.removeEventListener("change", read);
+  }, []);
+  useEffect(() => {
+    if (!crowded) setRailForced(false);
+  }, [crowded]);
 
   useEffect(() => {
     try {
@@ -56,6 +82,8 @@ export function Shell({ children }: { children: ReactNode }) {
 
   function toggleSidebar() {
     setSidebarInteracted(true);
+    // Beside an open dock on a tight screen the button moves the rail for now, not the saved choice.
+    if (crowded) return setRailForced((previous) => !previous);
     setCollapsed((previous) => {
       const next = !previous;
       try {
@@ -69,7 +97,10 @@ export function Shell({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className={`shell${collapsed ? " sidebar-collapsed" : ""}`} data-sidebar-interacted={sidebarInteracted || undefined}>
+    <div
+      className={`shell${folded ? " sidebar-collapsed" : ""}${hasDock ? " has-dock" : ""}`}
+      data-sidebar-interacted={sidebarInteracted || undefined}
+    >
       <a className="skip" href="#main">
         跳到主要内容
       </a>
@@ -102,7 +133,7 @@ export function Shell({ children }: { children: ReactNode }) {
             <button className="rail-button sidebar-search" aria-label="搜索" title="搜索（⌘/Ctrl K）" onClick={() => search.current?.showModal()}>
               <Icon name="search" />
             </button>
-            <button className="rail-button sidebar-collapse" aria-label="折叠侧边栏" aria-expanded={!collapsed} title="折叠侧边栏" onClick={toggleSidebar}>
+            <button className="rail-button sidebar-collapse" aria-label="折叠侧边栏" aria-expanded={!folded} title="折叠侧边栏" onClick={toggleSidebar}>
               <Icon name="sidebar" />
             </button>
           </div>
@@ -116,10 +147,34 @@ export function Shell({ children }: { children: ReactNode }) {
                   : pathname.startsWith(href) ||
                     (href === "/applications" && ["/portfolio", "/tiers"].includes(pathname)) ||
                     (href === "/schools" && pathname.startsWith("/programs"));
+              // From 901px the advisor's entry opens the dock; on a phone it is the tab that leads to its page.
+              const asDock = href === "/advisor" && hasDock;
               return (
+                <Fragment key={href}>
+                {asDock && (
+                  <button
+                    type="button"
+                    id="advisor-toggle"
+                    className="nav-dock"
+                    title={`${label}（⌘/Ctrl J）`}
+                    aria-label={label}
+                    aria-expanded={dock.open}
+                    aria-controls="advisor-dock"
+                    onClick={() => dock.setOpen(!dock.open)}
+                  >
+                    <Icon name={icon} />
+                    <span className="nav-label nav-long">{label}</span>
+                    {/* The pane on the right, filled while the dock is open; a turn running out of sight spins here. */}
+                    {dock.running && !dock.open ? (
+                      <span className="nav-dock-state is-running" aria-hidden="true" />
+                    ) : (
+                      <Icon name={dock.open ? "dockOpen" : "dock"} className="nav-dock-state" />
+                    )}
+                  </button>
+                )}
                 <Link
                   href={href}
-                  key={href}
+                  className={asDock ? "nav-tab-only" : undefined}
                   title={label}
                   aria-label={label}
                   aria-current={current ? "page" : undefined}
@@ -137,6 +192,7 @@ export function Shell({ children }: { children: ReactNode }) {
                   <span className="nav-label nav-short">{short}</span>
                   <NavigationStatus />
                 </Link>
+                </Fragment>
               );
             })}
           </nav>
@@ -155,6 +211,7 @@ export function Shell({ children }: { children: ReactNode }) {
           {children}
         </div>
       </ViewTransition>
+      {hasDock && <Dock />}
       <dialog
         className="dialog workspace-search-dialog"
         ref={search}

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, type ReactNode } from "react";
 
+import { DOCK_QUERY, useAdvisorDock } from "@/components/advisor/AdvisorProvider";
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { DeadlineTable, editHref } from "@/components/home/DeadlineTable";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
@@ -94,6 +95,15 @@ function Workspace() {
     const timer = window.setTimeout(() => setFlash(null), 2000);
     return () => window.clearTimeout(timer);
   }, [flash]);
+
+  // A change the advisor wrote flashes its row too, once the records have been read again.
+  const { changedProgram, markChanged } = records;
+  useEffect(() => {
+    if (!changedProgram || records.loading) return;
+    const row = records.data?.find((record) => record.programId === changedProgram);
+    if (row) setFlash(row.id);
+    markChanged(null);
+  }, [changedProgram, records.loading, records.data, markChanged]);
 
   if (!model) {
     return records.error ? (
@@ -200,6 +210,10 @@ function Finding({ model }: { model: Overview }) {
   );
 }
 
+function deadlineQuestion(record: ApplicationRecord): string {
+  return `${record.school} ${record.name} 的申请截止日期是哪天？`;
+}
+
 function statusLabel(status: string): string {
   return RECORD_STATUSES.find(([value]) => value === status)?.[1] ?? status;
 }
@@ -210,6 +224,7 @@ function statusLabel(status: string): string {
  * because the record changed on another device is settled in place (lib/sync-conflict.ts).
  */
 function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (record: ApplicationRecord) => void }) {
+  const advisor = useAdvisorDock();
   const [busy, setBusy] = useState<string | null>(null);
   const [failed, setFailed] = useState<{ id: string; message: string } | null>(null);
   const [conflict, setConflict] = useState<{ id: string; current: ApplicationRecord } | null>(null);
@@ -257,9 +272,16 @@ function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (re
             </div>
             <p>{nextSentence(action)}</p>
             {kind === "confirm" ? (
+              // The question goes into the composer unsent: in the dock where there is one, and through
+              // the link itself on a phone, where the advisor is its own page.
               <Link
                 className={`btn ${record.id === primary ? "btn-primary" : "btn-secondary"}`}
-                href={`/advisor?q=${encodeURIComponent(`${record.school} ${record.name} 的申请截止日期是哪天？`)}`}
+                href={`/advisor?q=${encodeURIComponent(deadlineQuestion(record))}`}
+                onClick={(event) => {
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || !window.matchMedia(DOCK_QUERY).matches) return;
+                  event.preventDefault();
+                  advisor.ask(deadlineQuestion(record));
+                }}
               >
                 让顾问去查
               </Link>

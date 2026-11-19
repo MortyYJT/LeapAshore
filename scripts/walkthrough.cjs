@@ -315,12 +315,12 @@ async function adminPass(browser, email, errors) {
     await settle(page);
     check("顾问：页面里没有 emoji", !/[\u{1F300}-\u{1FAFF}]/u.test(await page.locator("main").innerText()));
     const question = "我是北邮软件工程，均分 85，雅思 6.5，能申哪些计算机硕士？";
-    await page.locator("#msg").fill(question);
-    await page.getByRole("button", { name: "发送" }).click();
+    await page.locator("#advisor-input").fill(question);
+    await page.getByRole("button", { name: "发送", exact: true }).click();
     const dialog = page.locator("dialog.dialog:not(.workspace-search-dialog)");
     await dialog.waitFor();
     check("顾问：未登录点发送弹出登录", await dialog.getByRole("heading", { name: "登录" }).isVisible());
-    check("顾问：登录时原句还在输入框里", (await page.locator("#msg").inputValue()) === question);
+    check("顾问：登录时原句还在输入框里", (await page.locator("#advisor-input").inputValue()) === question);
     await layout(page, "登录弹窗");
     await screenshot(page, "login");
     await dialog.locator("#login-email").fill("not-an-email");
@@ -348,7 +348,7 @@ async function adminPass(browser, email, errors) {
     const sentBody = JSON.parse(chat.postData() || "{}");
     check("顾问：登录后发出的就是原句", sentBody.message === question, sentBody);
     await page.locator(".msg-user", { hasText: question }).waitFor({ timeout: 15000 });
-    check("顾问：对话里显示原句，输入框已清空", (await page.locator("#msg").inputValue()) === "");
+    check("顾问：对话里显示原句，输入框已清空", (await page.locator("#advisor-input").inputValue()) === "");
     // The stubbed request never reaches the network, so its cookie header is not a reliable witness. The
     // request is checked for where it went and what it carried, and the session is read from the server.
     check("顾问：发送请求打到 /api/advisor/chat（POST，带对话 id）", new URL(chat.url()).pathname === "/api/advisor/chat" && chat.method() === "POST" && typeof sentBody.conversationId === "string" && sentBody.conversationId.length > 0, { url: chat.url(), sentBody });
@@ -504,8 +504,185 @@ async function adminPass(browser, email, errors) {
     await applicationForm.getByLabel("申请轮次", { exact: true }).waitFor();
     check("总览：点校名打开这条申请的表单", (await applicationForm.getByLabel("申请轮次", { exact: true }).inputValue()) === "第四轮");
     await page.goto(`${BASE}/advisor?q=${encodeURIComponent("帮我整理申请材料")}`);
-    await page.locator(".composer textarea").waitFor();
-    check("顾问：问题从链接带入且不自动发送", await page.locator(".composer textarea").inputValue() === "帮我整理申请材料" && (await page.locator(".msg-user", { hasText: "帮我整理申请材料" }).count()) === 0);
+    await page.locator("#advisor-input").waitFor();
+    await page.waitForFunction(() => document.querySelector("#advisor-input")?.value !== "");
+    check("顾问：问题从链接带入且不自动发送", await page.locator("#advisor-input").inputValue() === "帮我整理申请材料" && (await page.locator(".msg-user", { hasText: "帮我整理申请材料" }).count()) === 0);
+
+    // ---------- 顾问停靠栏 ----------
+    // The dock is driven with scripted streams in the shape `api/app/routers/advisor.py` sends (the
+    // event sequences are the ones `api/tests/test_advisor_steps.py` asserts); no model is called.
+    await page.unroute("**/api/advisor/**");
+    const advisorCalls = [];
+    const stream = (route, events) => route.fulfill({
+      status: 200,
+      contentType: "text/event-stream",
+      body: [...events, { type: "done" }].map((event) => `data: ${JSON.stringify(event)}\n\n`).join(""),
+    });
+    const intentStep = (result) => [
+      { type: "step", id: "t-intent", status: "running", kind: "intent", name: "classify_intent", title: "判断问题类型" },
+      { type: "step", id: "t-intent", status: "done", ms: 420, result },
+    ];
+    const SOURCE = "https://example.edu/walkthrough-source";
+    await page.route("**/api/advisor/**", (route) => {
+      const pathname = new URL(route.request().url()).pathname;
+      const body = JSON.parse(route.request().postData() || "{}");
+      advisorCalls.push({ pathname, body });
+      if (pathname.endsWith("/stop")) return route.fulfill({ status: 200, contentType: "application/json", body: '{"stopping":true}' });
+      if (pathname.endsWith("/confirm")) {
+        return stream(route, [
+          { type: "step", id: "call-1:write", status: "running", kind: "tool", name: "propose_portfolio_change", title: "写入", write: true },
+          { type: "step", id: "call-1", status: "done", result: "你已确认" },
+          { type: "step", id: "call-1:write", status: "done", ms: 180, result: "已保存", write: true },
+          { type: "token", text: "已经写入。" },
+        ]);
+      }
+      const message = body.message || "";
+      // Never answered: the turn stays running until the walkthrough stops it.
+      if (message.includes("慢")) return;
+      if (message.includes("加入")) {
+        return stream(route, [
+          ...intentStep("归为「修改申请」，交给顾问处理"),
+          { type: "step", id: "call-1", status: "running", kind: "tool", name: "propose_portfolio_change", title: "提议修改", args: [{ label: "项目", value: "走查大学 走查项目" }, { label: "操作", value: "加入组合" }] },
+          { type: "step", id: "call-1", status: "waiting", ms: 12, result: "等你确认" },
+          { type: "confirm", id: "int-1", stepId: "call-1", kind: "confirm_portfolio", summary: "把「走查大学 走查项目」加入选校组合，档位：稳",
+            target: { programId: "walkthrough-none", school: "走查大学", program: "走查项目" },
+            changes: [{ label: "选校组合", before: "不在组合里", after: "加入" }, { label: "档位", before: null, after: "稳" }] },
+        ]);
+      }
+      if (message.includes("麻省")) {
+        return stream(route, [
+          ...intentStep("归为「官方要求」，先查学校库再回答"),
+          { type: "step", id: "t-retrieval", status: "running", kind: "retrieval", name: "retrieve_requirements", title: "检索学校库" },
+          { type: "step", id: "t-retrieval", status: "empty", ms: 90, result: "没有可引用的官方来源" },
+          { type: "citations", gate: "refuse", citations: [] },
+          { type: "token", text: "这所学校还没有收录这个方向的项目，我不能凭印象回答。" },
+        ]);
+      }
+      if (message.includes("坏了")) {
+        return stream(route, [...intentStep("归为「一般问题」，交给顾问处理"), { type: "error", code: "model_unavailable", message: "顾问暂时不可用，请稍后再试。" }]);
+      }
+      return stream(route, [
+        ...intentStep("归为「官方要求」，先查学校库再回答"),
+        { type: "step", id: "t-retrieval", status: "running", kind: "retrieval", name: "retrieve_requirements", title: "检索学校库" },
+        { type: "step", id: "t-retrieval", status: "done", ms: 310, result: "找到 1 个有官方来源的项目", items: ["走查大学 走查项目"] },
+        { type: "citations", gate: "pass", citations: [{
+          n: 1, programId: "walkthrough-none", program: "走查大学 走查项目", title: "Walkthrough source page", url: SOURCE, status: "待核验",
+          fields: [{ label: "语言", value: "走查用的占位值" }, { label: "申请截止", value: "Round 1 2099-01-15", quote: "Walkthrough placeholder sentence, not an official page." }],
+        }] },
+        { type: "token", text: "走查用的占位回答，见来源 [1]。\n\n- 第一项\n- 第二项" },
+      ]);
+    });
+    const dock = page.locator("#advisor-dock");
+    const input = page.locator("#advisor-input");
+    const lastTurn = page.locator(".turn").last();
+    const ended = () => page.waitForFunction(() => {
+      const turn = [...document.querySelectorAll(".turn")].at(-1);
+      return turn && turn.dataset.state !== "running";
+    });
+    await page.locator('.rail-nav a[href="/"]').click();
+    await page.locator(".lt-row").first().waitFor();
+    check("停靠栏：1440 宽时默认在工作区右侧", await dock.isVisible() && (await dock.boundingBox()).x >= 1000);
+    check("停靠栏：从顾问页换到总览，没发的问题还在输入框里", (await input.inputValue()) === "帮我整理申请材料");
+    check("停靠栏：侧栏入口是开关，标明已展开", (await page.locator("#advisor-toggle").getAttribute("aria-expanded")) === "true");
+    check("停靠栏：这个账号之前在顾问页的对话也在这里", (await page.locator(".turn .msg-user").first().innerText()) === question);
+    await page.getByRole("button", { name: "新对话" }).click();
+    const mine = await page.evaluate(async () => (await fetch("/api/application-records")).json());
+    const starters = await page.locator(".asks button").allInnerTexts();
+    check("停靠栏：开场问题用的是这个账号自己的申请", starters.length >= 2 && starters.some((text) => mine.some((r) => text.includes(`${r.school} ${r.name}`))), starters);
+    const workspaceRight = () => page.evaluate(() => parseFloat(getComputedStyle(document.querySelector(".workspace-content")).marginRight));
+    check("停靠栏：打开时工作区让出位置", (await workspaceRight()) >= 380, await workspaceRight());
+    await page.keyboard.press("Control+j");
+    await dock.waitFor({ state: "hidden" });
+    check("停靠栏：Ctrl J 收起，工作区收回位置", (await workspaceRight()) === 0 && (await page.locator("#advisor-toggle").getAttribute("aria-expanded")) === "false");
+    await page.reload();
+    await page.locator(".lt-row").first().waitFor();
+    check("停靠栏：收起的状态刷新后还在", await dock.isHidden());
+    await page.getByRole("link", { name: "让顾问去查" }).first().click();
+    await dock.waitFor();
+    const asked = await input.inputValue();
+    const undated = mine.filter((r) => !r.deadline && ["considering", "applying"].includes(r.status)).map((r) => `${r.school} ${r.name} 的申请截止日期是哪天？`);
+    check("总览：让顾问去查在停靠栏里填好问题，不自动发送，也不换页", undated.includes(asked) && (await page.locator(".turn").count()) === 0 && new URL(page.url()).pathname === "/", { asked, url: page.url() });
+    check("停靠栏：打开后焦点在输入框", await input.evaluate((element) => element === document.activeElement));
+
+    await input.press("Enter");
+    await ended();
+    const sent = advisorCalls.at(-1);
+    check("停靠栏：Enter 发出填好的问题", sent.pathname === "/api/advisor/chat" && sent.body.message === asked, sent);
+    check("顾问：一轮画成一条线，每一步一个站，做完的是实心", (await lastTurn.locator(".run .step.is-done").count()) === 2 && (await lastTurn.locator(".step .label").allInnerTexts()).join("|") === "判断问题类型|检索学校库");
+    check("顾问：每一步有一行结果和用时", (await lastTurn.locator(".step .out").nth(1).innerText()) === "找到 1 个有官方来源的项目" && (await lastTurn.locator(".step .time").first().innerText()) === "0.4s");
+    const detail = lastTurn.locator(".step").nth(1).locator(".detail");
+    check("顾问：步骤默认收起", await detail.isHidden());
+    await lastTurn.locator("button.call").click();
+    check("顾问：点开一步能看到它找到的项目", (await detail.innerText()).includes("走查大学 走查项目"));
+    const card = lastTurn.locator(".cite");
+    const link = card.locator("a.cite-link");
+    check("顾问：来源卡片有项目、字段、原文和官方链接", (await card.locator(".cite-program").innerText()) === "走查大学 走查项目" && (await card.locator(".cite-record dt").allInnerTexts()).join("|") === "语言|申请截止" && (await card.locator(".cite-quote").innerText()).includes("Walkthrough placeholder sentence") && (await link.getAttribute("href")) === SOURCE && (await link.getAttribute("target")) === "_blank");
+    check("顾问：没核对过的来源不标「已核对」", (await card.getByText("已核对").count()) === 0);
+    await lastTurn.locator(".cite-ref").click();
+    check("顾问：回答里的编号跳到对应的来源卡片", await card.evaluate((element) => element === document.activeElement));
+    check("顾问：回答里的列表按列表显示", (await lastTurn.locator(".answer li").count()) === 2);
+    await screenshot(page, "advisor-dock");
+    await page.locator('.rail-nav a[href="/applications"]').click();
+    await page.waitForURL(/\/applications$/);
+    check("停靠栏：换页面后对话还在", (await page.locator(".turn").count()) === 1 && await dock.isVisible());
+    await page.waitForTimeout(600);
+    await page.reload();
+    await page.locator(".turn").first().waitFor({ timeout: 15000 });
+    check("停靠栏：刷新后对话还在", (await lastTurn.locator(".msg-user").innerText()) === asked && (await lastTurn.locator(".step.is-done").count()) === 2);
+
+    await input.fill("把走查项目加入选校");
+    await input.press("Enter");
+    await ended();
+    const proposal = lastTurn.locator(".confirm");
+    check("顾问：要写入的改动先列出旧值和新值，等确认", (await proposal.locator(".confirm-head").innerText()) === "写入前请你确认" && (await proposal.locator(".changes del").first().innerText()) === "不在组合里" && (await proposal.locator(".changes ins").allInnerTexts()).join("|") === "加入|稳" && (await lastTurn.getAttribute("data-state")) === "waiting");
+    check("顾问：等确认的那一步是空心站", (await lastTurn.locator(".step.is-waiting .out").innerText()) === "等你确认");
+    await screenshot(page, "advisor-confirm");
+    await proposal.getByRole("button", { name: "确认写入" }).click();
+    await ended();
+    const confirmed = advisorCalls.at(-1);
+    check("顾问：确认发到 /api/advisor/confirm，带上这个改动的 id", confirmed.pathname === "/api/advisor/confirm" && confirmed.body.approved === true && confirmed.body.interruptId === "int-1" && confirmed.body.conversationId === sent.body.conversationId, confirmed);
+    check("顾问：确认后卡片留在对话里，写入是单独一步", (await proposal.locator(".confirm-head").innerText()) === "你已确认" && (await proposal.getByRole("button").count()) === 0 && (await lastTurn.locator(".step").last().locator(".label").innerText()) === "写入" && (await lastTurn.locator(".step").last().locator(".out").innerText()) === "已保存");
+
+    await input.fill("麻省理工的雅思要求");
+    await input.press("Enter");
+    await ended();
+    check("顾问：查不到来源时显示为拒答，不像一条回答", (await lastTurn.locator(".answer.is-refusal .refusal-label").innerText()).startsWith("没有回答") && (await lastTurn.locator(".step.is-empty").count()) === 1 && (await lastTurn.locator(".cite").count()) === 0);
+
+    await input.fill("写慢一点");
+    await input.press("Enter");
+    await page.locator('.turn[data-state="running"]').waitFor();
+    check("顾问：运行时发送键变成停止", await page.getByRole("button", { name: "停止", exact: true }).isVisible());
+    await page.keyboard.press("Escape");
+    await page.locator('.turn[data-state="stopped"]').waitFor();
+    const stopped = advisorCalls.at(-1);
+    check("顾问：Esc 停止这一轮，并告诉服务器停下", (await lastTurn.locator(".run-note").innerText()).startsWith("已停止") && stopped.pathname === "/api/advisor/stop" && stopped.body.conversationId === sent.body.conversationId, stopped);
+    check("顾问：停止后可以重试", await lastTurn.getByRole("button", { name: "重试" }).isVisible());
+
+    await input.fill("模型坏了");
+    await input.press("Enter");
+    await ended();
+    check("顾问：模型连不上时有自己的提示", (await lastTurn.locator(".problem").innerText()).includes("模型现在连不上") && (await lastTurn.getAttribute("data-state")) === "failed");
+    await layout(page, "停靠栏打开的我的申请");
+
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await page.waitForTimeout(400);
+    check("1024：停靠栏打开时侧栏自动收成图标", (await page.locator(".shell.sidebar-collapsed").count()) === 1 && await dock.isVisible());
+    await layout(page, "1024 停靠栏");
+    await screenshot(page, "advisor-dock-1024");
+    await page.getByRole("button", { name: "收起顾问" }).click();
+    await dock.waitFor({ state: "hidden" });
+    check("1024：收起停靠栏后侧栏回到原来的宽度", (await page.locator(".shell.sidebar-collapsed").count()) === 0 && await page.locator("#advisor-toggle").evaluate((element) => element === document.activeElement));
+    await page.setViewportSize(DESKTOP);
+    await page.locator("#advisor-toggle").click();
+    await dock.waitFor();
+    await page.getByRole("button", { name: "新对话" }).click();
+    check("顾问：新对话清空对话，回到开场", (await page.locator(".turn").count()) === 0 && await page.locator(".hello").isVisible());
+    await input.fill("新的一轮");
+    await input.press("Enter");
+    await ended();
+    check("顾问：新对话用新的对话 id", advisorCalls.at(-1).body.conversationId !== sent.body.conversationId);
+    await page.getByRole("button", { name: "新对话" }).click();
+    await page.unroute("**/api/advisor/**");
 
     // ---------- 我的: the rest of the profile ----------
     await page.goto(`${BASE}/me`);
@@ -534,8 +711,10 @@ async function adminPass(browser, email, errors) {
     const taskId = await firstOpen.getAttribute("id");
     // A first visit writes the task rows; the box is enabled once its row is back.
     await page.locator(".task:not(.done) input[type=checkbox]:not([disabled])").first().waitFor({ timeout: 15000 });
+    // Listen before ticking: the save can answer before a listener registered afterwards exists.
+    const taskSaved = page.waitForResponse((r) => r.url().includes("/api/roadmap/tasks/") && r.request().method() === "PATCH", { timeout: 15000 });
     await page.locator(`[id="${taskId}"]`).check();
-    await page.waitForResponse((r) => r.url().includes("/api/roadmap/tasks/") && r.request().method() === "PATCH", { timeout: 15000 });
+    await taskSaved;
     await page.reload();
     await page.locator(".task input[type=checkbox]").first().waitFor();
     await settle(page);
@@ -868,6 +1047,7 @@ async function adminPass(browser, email, errors) {
     await intro.locator(".lt-row").first().waitFor({ timeout: 15000 });
     check("直接点登录：登录后显示真实总览", true);
     check("390：总览的每一行叠成三层，不画表头", !(await intro.locator(".lt-head").isVisible()) && await intro.locator(".lt-row .c-track .org").first().isVisible());
+    check("390：没有停靠栏，顾问是底部标签里的一页", await intro.locator("#advisor-dock").isHidden() && await intro.locator("#advisor-toggle").isHidden() && await intro.locator('.rail-nav a[href="/advisor"]').isVisible());
     for (const [route, name] of [
       ["/", "dashboard-390"],
       ["/applications", "applications-390"],
@@ -890,7 +1070,7 @@ async function adminPass(browser, email, errors) {
     }
     await fresh.close();
   } catch (error) {
-    check("走查顺利跑完", false, String(error && error.message ? error.message : error).split("\n")[0]);
+    check("走查顺利跑完", false, String(error && error.stack ? error.stack : error).split("\n").filter((line) => !line.includes("node_modules")).slice(0, 6).join(" | "));
   } finally {
     await browser.close();
     const quoted = emails.map((e) => `'${e}'`).join(",");

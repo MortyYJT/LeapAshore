@@ -10,8 +10,8 @@
   --motion-scale: .985;
 }
 
-.btn, .icon-button, .rail-button, .rail-sync, .choice, .conv, .prompt, .seg button, .user-center button,
-.uc-menu a, .rail-nav a, .rail-legend button, .nav-label, .rail-sync span, .uc-name, .workspace-search-results a,
+.btn, .icon-button, .rail-button, .rail-sync, .choice, .seg button, .user-center button,
+.uc-menu a, .rail-nav :is(a, button), .rail-legend button, .nav-label, .rail-sync span, .uc-name, .workspace-search-results a,
 tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
   transition-property: background-color, border-color, color, fill, opacity, text-decoration-color;
   transition-duration: var(--motion-fast);
@@ -20,7 +20,7 @@ tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
 
 /* A press moves the control down by one pixel; nothing changes colour twice. */
 .btn:not(:disabled, [aria-disabled="true"]):active,
-.icon-button:not(:disabled):active, .rail-button:active, .prompt:not(:disabled):active {
+.icon-button:not(:disabled):active, .rail-button:active, .btn-quiet:not(:disabled):active {
   translate: 0 1px;
 }
 
@@ -29,15 +29,9 @@ tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
   outline-offset: 2px;
 }
 
-.input, .select, .composer textarea {
+.input, .select {
   transition: border-color var(--motion-fast) var(--motion-ease),
     outline-color var(--motion-fast) var(--motion-ease);
-}
-
-.composer textarea {
-  field-sizing: content;
-  height: auto;
-  min-height: 40px;
 }
 
 .skeleton-line {
@@ -52,8 +46,7 @@ tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
   from { opacity: .7; translate: 0 var(--motion-distance); }
 }
 
-.motion-content,
-.chat-body[data-streaming] > :is(.msg-user, .msg-assistant):nth-last-of-type(-n+2) {
+.motion-content {
   animation: content-in var(--motion-normal) var(--motion-ease);
 }
 
@@ -185,6 +178,22 @@ dialog[open]::backdrop { opacity: 1; }
   .shell[data-sidebar-interacted] .workspace-content {
     transition: margin-left var(--motion-smooth) var(--motion-ease);
   }
+
+  /* The dock slides in from the right edge, and the workspace gives way at the same pace. Only a
+     change the applicant made moves: the first paint is already in place. */
+  html[data-dock-moved] .dock {
+    transition: translate var(--motion-smooth) var(--motion-ease),
+      display var(--motion-smooth) allow-discrete;
+  }
+  html[data-dock-moved][data-dock="closed"] .dock { translate: 100% 0; }
+  html[data-dock-moved] .workspace-content {
+    transition: margin-left var(--motion-smooth) var(--motion-ease),
+      margin-right var(--motion-smooth) var(--motion-ease);
+  }
+  html[data-dock-moved] .rail { transition: width var(--motion-smooth) var(--motion-ease); }
+  @starting-style {
+    html[data-dock-moved][data-dock="open"] .dock { translate: 100% 0; }
+  }
 }
 
 @media (forced-colors: active) {
@@ -202,9 +211,6 @@ dialog[open]::backdrop { opacity: 1; }
     transition: none !important;
   }
 }
-
-.chat-body > * { flex-shrink: 0; }
-.advisor-pending { margin-block: 0; }
 
 @supports (interpolate-size: allow-keywords) and selector(details::details-content) {
   details::details-content {

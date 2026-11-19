@@ -175,9 +175,12 @@
 .task-rows .notice { margin: 0 0 10px 26px; }
 .block-count { font: 700 var(--fs-13)/1 var(--font-num); font-variant-numeric: tabular-nums; color: var(--ink-2); }
 
-@media (max-width: 720px) {
+/* By the workspace's width, like the pages' own layouts: beside the dock it can be this narrow. */
+@container workspace (max-width: 760px) {
   .next > li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; padding: 12px 0; }
   .next .who { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
   .task-row { min-height: 48px; }
 }
 

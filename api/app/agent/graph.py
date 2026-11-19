@@ -10,6 +10,9 @@ The router decides the exit from the intent, requirement questions take a
 deterministic retrieval path whose gate runs *before* the model writes anything, and the ReAct loop
 stops on a step count rather than a token budget, because a step is one model call and is easy to
 count and explain.
+
+Every edge that chooses the next node also ends the turn when the applicant has asked it to stop
+(`app.agent.halt`): the node that was running finishes, and no other starts.
 """
 
 from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemMessage, ToolMessage
@@ -17,7 +20,7 @@ from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 
-from app.agent import answer, evidence, intent, passages
+from app.agent import answer, evidence, halt, intent, passages
 from app.agent.checkpoint import checkpointer
 from app.agent.llm import get_chat_model
 from app.agent.state import AdvisorState
@@ -93,7 +96,9 @@ def _record_gap(state: AdvisorState, config: RunnableConfig | None, reason: str,
     )
 
 
-def route_by_intent(state: AdvisorState) -> str:
+def route_by_intent(state: AdvisorState, config: RunnableConfig | None = None) -> str:
+    if halt.halted(config):
+        return "halt"
     if state.get("page_topics"):
         return "passages"
     return intent.INTENT_TO_ROUTE.get(state.get("intent", ""), "agent")
@@ -124,6 +129,10 @@ async def answer_passages(state: AdvisorState, config: RunnableConfig | None = N
             _record_gap(state, config, "nothing_checkable")
     else:
         text, citations = answer.render(checked, found)
+        # What each quotation is about, in the applicant's words, for the citation cards.
+        topic = passages.topic_label(state.get("page_topics"))
+        if topic:
+            citations = [{**c, "field": topic} for c in citations]
     return {
         "messages": [AIMessage(content=text)],
         "citations": citations,
@@ -143,7 +152,9 @@ def retrieve_requirements(state: AdvisorState, config: RunnableConfig | None = N
     return update
 
 
-def evidence_gate(state: AdvisorState) -> str:
+def evidence_gate(state: AdvisorState, config: RunnableConfig | None = None) -> str:
+    if halt.halted(config):
+        return "halt"
     return "strong" if state.get("evidence_strong") else "weak"
 
 
@@ -209,14 +220,22 @@ async def main_agent(state: AdvisorState) -> dict:
     return {"messages": [reply], "steps": state.get("steps", 0) + 1}
 
 
-def should_continue(state: AdvisorState) -> str:
-    """Stop when the model calls no tool, or when the step cap is reached."""
+def should_continue(state: AdvisorState, config: RunnableConfig | None = None) -> str:
+    """Stop when the model calls no tool, when the step cap is reached, or when asked to stop: a tool
+    the model asked for is then not run."""
+    if halt.halted(config):
+        return "stop"
     last = state["messages"][-1]
     if not (isinstance(last, AIMessage) and last.tool_calls):
         return "stop"
     if state.get("steps", 0) >= settings.max_agent_steps:
         return "stop"
     return "continue"
+
+
+def after_tools(state: AdvisorState, config: RunnableConfig | None = None) -> str:
+    """Back to the model with the tools' answers, unless the applicant has asked the turn to stop."""
+    return "halt" if halt.halted(config) else "continue"
 
 
 def build_graph(checkpointer=None):
@@ -232,17 +251,18 @@ def build_graph(checkpointer=None):
     b.add_edge(START, "classify_intent")
     b.add_conditional_edges(
         "classify_intent", route_by_intent,
-        {"requirements": "retrieve_requirements", "passages": "retrieve_passages", "agent": "main_agent"},
+        {"requirements": "retrieve_requirements", "passages": "retrieve_passages", "agent": "main_agent",
+         "halt": END},
     )
     b.add_conditional_edges(
-        "retrieve_passages", evidence_gate, {"strong": "answer_passages", "weak": "refuse"}
+        "retrieve_passages", evidence_gate, {"strong": "answer_passages", "weak": "refuse", "halt": END}
     )
     b.add_edge("answer_passages", END)
     b.add_conditional_edges(
-        "retrieve_requirements", evidence_gate, {"strong": "main_agent", "weak": "refuse"}
+        "retrieve_requirements", evidence_gate, {"strong": "main_agent", "weak": "refuse", "halt": END}
     )
     b.add_conditional_edges("main_agent", should_continue, {"continue": "tools", "stop": END})
-    b.add_edge("tools", "main_agent")
+    b.add_conditional_edges("tools", after_tools, {"continue": "main_agent", "halt": END})
     b.add_edge("refuse", END)
     return b.compile(checkpointer=checkpointer)
 
