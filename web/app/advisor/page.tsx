@@ -3,6 +3,7 @@
 import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
+import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { Pill } from "@/components/ui";
 import {
   confirmAdvisorAction,
@@ -67,6 +68,7 @@ export default function AdvisorPage() {
   const scrollPositions = useRef(new Map<string, number>());
   const shownConversation = useRef(activeId);
   const { requireLogin, refresh } = useAuth();
+  const { reload: reloadRecords } = useApplicationRecords();
   const asking = useRef(false);
   useEffect(() => {
     const question = new URLSearchParams(window.location.search).get("q");
@@ -210,6 +212,8 @@ export default function AdvisorPage() {
       message.confirm?.id,
     )
       .then((outcome) => {
+        // An approved change wrote the portfolio, which the rail lists as applications.
+        reloadRecords();
         if (outcome === "unauthorized") void refresh();
         // Refused before anything ran: the change is still pending, so offer the buttons again.
         if (outcome === "limited" || outcome === "unauthorized")

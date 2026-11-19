@@ -61,7 +61,8 @@ const STOP_WORDS = new Set(["the", "of", "and", "at", "in", "for", "de", "la", "
  */
 export function lineCode(school: string): string {
   const bracketed = /[（(]\s*([A-Z]{2,5})\s*[)）]/.exec(school)?.[1];
-  const name = school.replace(/[（(][^）)]*[)）]/g, " ").trim();
+  // An apostrophe belongs to its word: King's is one word, not two.
+  const name = school.replace(/[（(][^）)]*[)）]/g, " ").replace(/['\u2019]/g, "").trim();
   if (CJK.test(name)) {
     const characters = Array.from(name).filter((c) => /[\p{L}\p{N}]/u.test(c)).join("");
     const stem = characters.replace(CJK_SUFFIX, "") || characters;
@@ -117,6 +118,8 @@ export interface OverviewRow {
   days: number | null;
   /** Where the line ends on the axis, 0 to 1. Null without a date, and for a date that has passed. */
   position: number | null;
+  /** The date is past the end of the axis: the line runs off it and has no stop to end on. */
+  beyond: boolean;
   /** Submitted: the line is retired and no longer counted down. */
   sent: boolean;
   /** Still open and due within `SOON_DAYS`. */
@@ -158,6 +161,8 @@ export interface Overview {
 
 /** The axis never covers less than this, so two near deadlines do not stretch across the whole table. */
 const MIN_HORIZON = 90;
+/** Nor more than two years: one distant date must not squeeze every other line against today's bar. */
+const MAX_HORIZON = 730;
 const HORIZON_MARGIN = 5;
 /** A month label needs this share of the axis between it and the label before it. */
 const LABEL_GAP = 0.11;
@@ -186,7 +191,8 @@ function monthTicks(today: string, horizon: number): AxisTick[] {
     if (month > 12) [year, month] = [year + 1, 1];
     const date = `${year}-${String(month).padStart(2, "0")}-01`;
     const offset = daysUntil(date, today);
-    if (offset >= horizon) return ticks;
+    // Written so that anything that is not a day count inside the scale ends the loop.
+    if (!(offset < horizon)) return ticks;
     const position = offset / horizon;
     let label: string | null = null;
     if (position - last > LABEL_GAP) {
@@ -202,8 +208,15 @@ function monthTicks(today: string, horizon: number): AxisTick[] {
 export function overviewOf(records: readonly ApplicationRecord[], today: string): Overview {
   const lines = assignLines(records.map((record) => record.id));
   const drawn = records.filter((record) => activeRecord(record) || record.status === "submitted");
-  const days = new Map(drawn.map((record) => [record.id, record.deadline ? daysUntil(record.deadline, today) : null]));
-  const horizon = Math.max(MIN_HORIZON, ...[...days.values()].filter((value): value is number => value !== null)) + HORIZON_MARGIN;
+  // A date that cannot be read is unknown, like a missing one.
+  const days = new Map(
+    drawn.map((record) => {
+      const left = record.deadline ? daysUntil(record.deadline, today) : null;
+      return [record.id, left !== null && Number.isFinite(left) ? left : null];
+    }),
+  );
+  const furthest = Math.max(MIN_HORIZON, ...[...days.values()].filter((value): value is number => value !== null));
+  const horizon = Math.min(furthest, MAX_HORIZON) + HORIZON_MARGIN;
 
   const rows = drawn.map((record): OverviewRow => {
     const left = days.get(record.id) ?? null;
@@ -214,7 +227,8 @@ export function overviewOf(records: readonly ApplicationRecord[], today: string)
       code: lineCode(record.school),
       line: lines.get(record.id)!,
       days: left,
-      position: ahead ? left / horizon : null,
+      position: ahead ? Math.min(left / horizon, 1) : null,
+      beyond: ahead && left > horizon,
       sent,
       soon: !sent && ahead && left <= SOON_DAYS,
     };

@@ -98,6 +98,8 @@
    the label sits beside the "today" bar. */
 .c-track.is-off .when { left: calc(var(--x0) + 14px); font: 400 var(--fs-12)/1 var(--font-ui); color: var(--ink-3); }
 .c-track.is-off .when b { margin-right: 6px; font: 700 var(--fs-13)/1 var(--font-num); color: var(--ink-2); }
+/* The date is past the end of the axis: the line runs to the edge and the label says when. */
+.c-track.is-beyond .when { right: 0; left: auto; padding-left: 6px; background: var(--bg); }
 /* Materials ready: the last stop is filled. */
 .c-track.is-complete .stn { background: var(--lc); }
 /* Submitted: the line is retired and its last stop is filled. */

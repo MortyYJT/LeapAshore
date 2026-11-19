@@ -22,8 +22,9 @@ export function editHref(row: OverviewRow): string {
  * The deadline table: one line per application on a shared linear axis that starts at today's bar.
  *
  * What a row draws follows what is known. A date ahead is a line to a stop, filled once the applicant
- * has ticked the materials as ready. No date is a dotted line to a dashed stop. A date that has passed
- * has no line at all. A submitted application's line is retired grey. `empty` replaces the rows when
+ * has ticked the materials as ready; a date past the end of the axis is a line that runs off it, with
+ * no stop. No date is a dotted line to a dashed stop. A date that has passed has no line at all. A
+ * submitted application's line is retired grey. `empty` replaces the rows when
  * there are none, so the axis is still drawn.
  */
 export function DeadlineTable({
@@ -151,14 +152,14 @@ function Track({ row, today }: { row: OverviewRow; today: string }) {
   }
   return (
     <div
-      className={`c-track${row.sent ? " is-sent" : record.materialsReady ? " is-complete" : ""}`}
+      className={`c-track${row.sent ? " is-sent" : record.materialsReady ? " is-complete" : ""}${row.beyond ? " is-beyond" : ""}`}
       role="cell"
       aria-label={`${record.deadline} 截止`}
       style={at(row.position)}
     >
       <span className="org" />
       <span className="ln" />
-      <span className="stn" />
+      {!row.beyond && <span className="stn" />}
       <span className="when">{date}</span>
     </div>
   );

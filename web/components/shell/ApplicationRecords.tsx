@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
@@ -12,6 +13,10 @@ import { useResource } from "@/lib/hooks/useResource";
  * The rail lists the applications on every route and the overview and 我的申请 show the same
  * records, so they share one read: a change saved on one of them is what the rail shows next.
  * Nothing is read for a visitor who is not signed in.
+ *
+ * The provider outlives every page, so it reads again whenever the records may have changed without
+ * it: on each route change (the portfolio and the advisor write the same rows), and when the tab is
+ * shown again (another device may have). A page that writes those rows itself calls `reload`.
  */
 export interface ApplicationRecordsState {
   /** Null until the first read lands, and for a visitor who is not signed in. */
@@ -32,6 +37,7 @@ const Ctx = createContext<ApplicationRecordsState | null>(null);
 
 export function ApplicationRecordsProvider({ children }: { children: ReactNode }) {
   const { ready, gated } = useAuth();
+  const pathname = usePathname();
   const signedIn = ready && !gated;
   const signedInRef = useRef(signedIn);
   signedInRef.current = signedIn;
@@ -42,10 +48,19 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
   const [syncedAt, setSyncedAt] = useState<Date | null>(null);
   const [selected, select] = useState<string | null>(null);
 
-  // The first read runs before the session is known and reads nothing; read again once it is.
+  // The first read runs before the session is known and reads nothing; read again once it is, and
+  // on every route change after that.
   useEffect(() => {
     reload();
-  }, [signedIn, reload]);
+  }, [signedIn, pathname, reload]);
+
+  useEffect(() => {
+    const shown = () => {
+      if (document.visibilityState === "visible") reload();
+    };
+    document.addEventListener("visibilitychange", shown);
+    return () => document.removeEventListener("visibilitychange", shown);
+  }, [reload]);
 
   useEffect(() => {
     if (resource.data && !resource.loading && !resource.error) setSyncedAt(new Date());

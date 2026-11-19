@@ -297,7 +297,8 @@ function SyncStatus() {
       </button>
     );
   }
-  const label = records.syncedAt && !records.loading ? `已同步 ${CLOCK.format(records.syncedAt)}` : "正在同步…";
+  // A re-read behind data already on screen keeps the last time; only the first read says "syncing".
+  const label = records.syncedAt ? `已同步 ${CLOCK.format(records.syncedAt)}` : "正在同步…";
   return (
     <button type="button" className="rail-sync" title={`${label}，点击重新同步`} aria-label={`${label}，点击重新同步`} onClick={records.reload}>
       <Icon name={records.syncedAt ? "synced" : "unsynced"} />

@@ -59,6 +59,9 @@ test("lineCode reads a Latin name's own abbreviation or its initials", () => {
   assert.equal(lineCode("The University of Hong Kong"), "UHK");
   assert.equal(lineCode("Durham University"), "DU");
   assert.equal(lineCode("Stanford"), "STA");
+  // An apostrophe is part of its word.
+  assert.equal(lineCode("King's College London"), "KCL");
+  assert.equal(lineCode("Queen’s University Belfast"), "QUB");
   assert.equal(lineCode("  "), "?");
 });
 
@@ -138,6 +141,25 @@ test("overviewOf never shortens the scale below 90 days and gives no position wi
   assert.equal(passed.days, -19);
   assert.equal(passed.position, null);
   assert.equal(passed.soon, false);
+});
+
+test("overviewOf stops the scale at two years; a later deadline runs off its end", () => {
+  const model = overviewOf([record("far", { deadline: "9999-12-31" }), record("near", { deadline: "2026-12-15" })], TODAY);
+  assert.equal(model.horizon, 730 + 5);
+  const [near, far] = model.rows;
+  assert.equal(near.position, 25 / 735);
+  assert.equal(near.beyond, false);
+  assert.equal(far.position, 1);
+  assert.equal(far.beyond, true);
+  assert.equal(model.ticks.length, 24);
+  assert.equal(model.ticks.at(-1)!.date, "2028-11-01");
+});
+
+test("overviewOf reads a date it cannot parse as unknown", () => {
+  const model = overviewOf([record("odd", { deadline: "not a date" })], TODAY);
+  assert.equal(model.rows[0].days, null);
+  assert.equal(model.rows[0].position, null);
+  assert.equal(model.horizon, 95);
 });
 
 test("overviewOf labels months sparsely and names the year when the scale is about a year or longer", () => {

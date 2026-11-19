@@ -405,6 +405,10 @@ async function adminPass(browser, email, errors) {
     await screenshot(page, "portfolio");
     await page.getByRole("button", { name: `确认 ${added} 个项目` }).click();
     await page.getByText(`已保存 ${added} 个项目`).waitFor({ timeout: 15000 });
+    // The rail lists the applications that are being prepared or are submitted (one row here is 已获 offer).
+    const listed = await page.evaluate(async () => (await (await fetch("/api/application-records")).json()).filter((r) => ["considering", "applying", "submitted"].includes(r.status)).length);
+    const inRail = await page.waitForFunction((n) => document.querySelectorAll(".rail-legend li").length === n, listed, { timeout: 15000 }).then(() => true, () => false);
+    check("组合：确认后侧栏不用刷新就列出这些申请", inRail && listed > 0, { listed, shown: await page.locator(".rail-legend li").count() });
     const stored = await page.evaluate(async () => (await fetch("/api/applications")).json());
     check("组合：确认后服务器保存了全部项目", stored.length === added, stored.length);
     check("组合：状态和首选按草稿保存", stored.some((r) => r.status === "offered") && stored.filter((r) => r.isPrimary).length === 1);
@@ -476,7 +480,8 @@ async function adminPass(browser, email, errors) {
     check("总览：每个在准备或已提交的申请是一行", (await page.locator(".lt-row").count()) === drawnRecords.length, { rows: await page.locator(".lt-row").count(), drawn: drawnRecords.length });
     check("总览：侧栏列出同样的申请", (await page.locator(".rail-legend li").count()) === drawnRecords.length);
     const demoRow = page.locator(".lt-row", { hasText: "示例大学（演示账号）" });
-    check("总览：有日期的申请画到它的截止日期，并写出轮次", (await demoRow.locator('.c-track[aria-label="2027-01-15 截止"]').count()) === 1 && (await demoRow.locator(".round").innerText()) === "第四轮");
+    // The label reads "… 截止" while the date is ahead and "… 的截止日期已过" after it; either names the date.
+    check("总览：有日期的申请按它的截止日期画，并写出轮次", (await demoRow.locator('.c-track[aria-label^="2027-01-15 "]').count()) === 1 && (await demoRow.locator(".round").innerText()) === "第四轮");
     check("总览：没核对过的日期标「待核对」", (await demoRow.locator(".c-due .unchecked").count()) === 1);
     check("总览：线路代号取自校名，不是编出来的缩写", (await demoRow.locator(".bullet").innerText()) === "示例");
     const unknownRows = drawnRecords.filter((r) => !r.deadline && r.status !== "submitted").length;
@@ -765,7 +770,16 @@ async function adminPass(browser, email, errors) {
     const nearRow = b.locator(".lt-row", { hasText: "走查大学" });
     await nearRow.waitFor({ timeout: 15000 });
     await settle(b);
-    check("总览：两周内的截止日期用红色数字", (await nearRow.locator(".c-due.is-soon .n").innerText()) === "10" && (await b.locator(".rail-legend button", { hasText: "走查大学" }).locator(".left.is-soon").count()) === 1);
+    const urgent = await b.evaluate(() => {
+      const probe = document.body.appendChild(document.createElement("span"));
+      probe.style.color = "var(--urgent)";
+      const colour = getComputedStyle(probe).color;
+      probe.remove();
+      return colour;
+    });
+    const dueColour = await nearRow.locator(".c-due .n").evaluate((node) => getComputedStyle(node).color);
+    check("总览：两周内的截止日期用红色数字", (await nearRow.locator(".c-due.is-soon .n").innerText()) === "10" && dueColour === urgent
+      && (await b.locator(".rail-legend button", { hasText: "走查大学" }).locator(".left.is-soon").count()) === 1, { dueColour, urgent });
     check("总览：自查过的日期不标「待核对」，材料就绪的终点是实心", (await nearRow.locator(".c-due .unchecked").count()) === 0 && (await nearRow.locator(".c-track.is-complete").count()) === 1);
     const nearAction = b.locator(".next > li", { hasText: "走查大学" });
     check("接下来：材料就绪的申请提示还没提交", (await nearAction.locator("p").innerText()) === "还有 10 天，材料已就绪，还没提交。");
