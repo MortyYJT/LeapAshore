@@ -1,82 +1,59 @@
 "use client";
 import Link, { useLinkStatus } from "next/link";
 import type {} from "react/canary";
-import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, ViewTransition, type ReactNode } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState, ViewTransition, type ReactNode } from "react";
+
+import { useAuth } from "@/components/auth/AuthProvider";
+import { beijingToday } from "@/lib/deadlines";
+import { overviewOf, type OverviewRow } from "@/lib/overview";
+
+import { useApplicationRecords } from "./ApplicationRecords";
+import { Icon, type IconName } from "./Icon";
 import { Mark } from "./Mark";
 import { UserCenter } from "./UserCenter";
 
-const links = [
-  ["工作台", "/", "M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"],
-  [
-    "申请路线图",
-    "/roadmap",
-    "M6 3v12m0 0a3 3 0 1 0 3 3 3 3 0 0 0-3-3Zm3 3c7 0 9-5 9-10m0-6a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z",
-  ],
-  [
-    "我的申请",
-    "/applications",
-    "m2 9 10-5 10 5-10 5-10-5Zm4 2v6c4 3 8 3 12 0v-6M22 9v8",
-  ],
-  ["学校库", "/schools", "M3 21h18M5 21V5h8v16m0-12h6v12M8 8h2m-2 4h2m-2 4h2"],
-  [
-    "AI 顾问",
-    "/advisor",
-    "m12 3 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Zm7-1v4m-2-2h4",
-  ],
+/** `short` is the label under the icon in the phone's tab bar. */
+const links: { label: string; short: string; href: string; icon: IconName }[] = [
+  { label: "总览", short: "总览", href: "/", icon: "overview" },
+  { label: "申请路线图", short: "路线图", href: "/roadmap", icon: "roadmap" },
+  { label: "我的申请", short: "申请", href: "/applications", icon: "applications" },
+  { label: "学校库", short: "学校库", href: "/schools", icon: "schools" },
+  { label: "AI 顾问", short: "顾问", href: "/advisor", icon: "advisor" },
 ];
-export function Icon({ path }: { path: string }) {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d={path} />
-    </svg>
-  );
-}
+
+const searchable: { label: string; href: string; icon: IconName }[] = [
+  ...links,
+  { label: "申请背景与资料", href: "/me", icon: "profile" },
+  { label: "我的材料", href: "/materials", icon: "materials" },
+];
+
+/**
+ * The frame every route sits in. From 901px it is a rail on the left: navigation, the applicant's
+ * applications with the days each has left, the sync state, the account and the theme. At 900px and
+ * below the same elements become a top bar and a bottom tab bar (app/shell.css); nothing is rendered twice.
+ */
 export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "/";
-  const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
   const [sidebarInteracted, setSidebarInteracted] = useState(false);
   const [query, setQuery] = useState("");
   const search = useRef<HTMLDialogElement>(null);
-  const sidebarToggle = useRef<HTMLButtonElement>(null);
-  useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
     try {
-      setCollapsed(
-        localStorage.getItem("leapashore:sidebar-collapsed") === "true",
-      );
+      setCollapsed(localStorage.getItem("leapashore:sidebar-collapsed") === "true");
     } catch {}
     const keydown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
         search.current?.showModal();
       }
-      if (
-        event.key === "Escape" &&
-        !document.querySelector('#user-menu[data-open="true"]') &&
-        !document.querySelector("dialog[open]")
-      ) {
-        if (sidebarToggle.current?.getAttribute("aria-expanded") === "true") {
-          sidebarToggle.current.focus();
-          setOpen(false);
-        }
-      }
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
   }, []);
+
   function toggleSidebar() {
     setSidebarInteracted(true);
     setCollapsed((previous) => {
@@ -87,42 +64,27 @@ export function Shell({ children }: { children: ReactNode }) {
       return next;
     });
   }
-  function closeMobileSidebar() {
-    sidebarToggle.current?.focus();
-    setOpen(false);
-  }
   function closeSearch() {
     search.current?.close();
-    setOpen(false);
   }
+
   return (
-    <div
-      className={`workspace-layout${collapsed ? " sidebar-collapsed" : ""}`}
-      data-sidebar-interacted={sidebarInteracted || undefined}
-    >
-      <button
-        className="icon-button mobile-sidebar-toggle"
-        ref={sidebarToggle}
-        aria-label="打开导航"
-        aria-expanded={open}
-        aria-controls="workspace-nav"
-        onClick={() => setOpen(!open)}
-      >
-        <Icon path="M4 6h16M4 12h16M4 18h16" />
-      </button>
-      <aside
-        className={`workspace-sidebar${open ? " is-open" : ""}`}
-        id="workspace-nav"
-        aria-label="工作空间导航"
-      >
-        <div className="sidebar-top">
+    <div className={`shell${collapsed ? " sidebar-collapsed" : ""}`} data-sidebar-interacted={sidebarInteracted || undefined}>
+      <a className="skip" href="#main">
+        跳到主要内容
+      </a>
+      <aside className="rail" id="workspace-nav" aria-label="工作空间导航">
+        <div className="rail-top">
           <div className="sidebar-brand">
-            <Link className="brand" href="/" title="LeapAshore">
+            <Link className="brand" href="/" title="鱼跃彼岸 LeapAshore">
               <Mark />
-              <span className="sidebar-text">LeapAshore</span>
+              <span className="brand-name">
+                <b>鱼跃彼岸</b>
+                <span>LeapAshore</span>
+              </span>
             </Link>
             <button
-              className="icon-button sidebar-brand-expand"
+              className="rail-button sidebar-brand-expand"
               aria-label="展开侧边栏"
               title="展开侧边栏"
               aria-expanded={false}
@@ -132,84 +94,66 @@ export function Shell({ children }: { children: ReactNode }) {
                 <Mark />
               </span>
               <span className="rail-expand">
-                <Icon path="M3 4h18v16H3zM9 4v16" />
+                <Icon name="sidebar" />
               </span>
             </button>
           </div>
           <div className="sidebar-tools">
-            <button
-              className="icon-button sidebar-search"
-              aria-label="搜索"
-              title="搜索（⌘/Ctrl K）"
-              onClick={() => search.current?.showModal()}
-            >
-              <Icon path="m21 21-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z" />
+            <button className="rail-button sidebar-search" aria-label="搜索" title="搜索（⌘/Ctrl K）" onClick={() => search.current?.showModal()}>
+              <Icon name="search" />
             </button>
-            <button
-              className="icon-button sidebar-collapse"
-              aria-label="折叠侧边栏"
-              aria-expanded={!collapsed}
-              title="折叠侧边栏"
-              onClick={toggleSidebar}
-            >
-              <Icon path="M3 4h18v16H3zM9 4v16" />
-            </button>
-            <button
-              className="icon-button mobile-sidebar-close"
-              aria-label="收起导航"
-              onClick={closeMobileSidebar}
-            >
-              <Icon path="m6 6 12 12M6 18 18 6" />
+            <button className="rail-button sidebar-collapse" aria-label="折叠侧边栏" aria-expanded={!collapsed} title="折叠侧边栏" onClick={toggleSidebar}>
+              <Icon name="sidebar" />
             </button>
           </div>
         </div>
-        <div className="sidebar-label">工作空间</div>
-        <nav aria-label="主导航">
-          {links.map(([label, href, path]) => {
-            const current =
-              href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(href) ||
-                  (href === "/applications" &&
-                    ["/portfolio", "/tiers"].includes(pathname)) ||
-                  (href === "/schools" && pathname.startsWith("/programs"));
-            return (
-              <Link
-                href={href}
-                key={href}
-                title={label}
-                aria-label={label}
-                aria-current={current ? "page" : undefined}
-                onNavigate={() => {
-                  // Release an in-flight fade when the user chooses another route.
-                  for (const animation of document.getAnimations()) {
-                    if (animation instanceof CSSAnimation && ["route-in", "route-out"].includes(animation.animationName)) {
-                      animation.finish();
+        <div className="rail-scroll">
+          <nav className="rail-nav" aria-label="主导航">
+            {links.map(({ label, short, href, icon }) => {
+              const current =
+                href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(href) ||
+                    (href === "/applications" && ["/portfolio", "/tiers"].includes(pathname)) ||
+                    (href === "/schools" && pathname.startsWith("/programs"));
+              return (
+                <Link
+                  href={href}
+                  key={href}
+                  title={label}
+                  aria-label={label}
+                  aria-current={current ? "page" : undefined}
+                  onNavigate={() => {
+                    // Release an in-flight fade when the user chooses another route.
+                    for (const animation of document.getAnimations()) {
+                      if (animation instanceof CSSAnimation && ["route-in", "route-out"].includes(animation.animationName)) {
+                        animation.finish();
+                      }
                     }
-                  }
-                  if (open) closeMobileSidebar();
-                }}
-              >
-                <Icon path={path} />
-                <span className="sidebar-text">{label}</span>
-                <NavigationStatus />
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="sidebar-account">
-          <UserCenter />
+                  }}
+                >
+                  <Icon name={icon} />
+                  <span className="nav-label nav-long">{label}</span>
+                  <span className="nav-label nav-short">{short}</span>
+                  <NavigationStatus />
+                </Link>
+              );
+            })}
+          </nav>
+          <RailLegend />
+        </div>
+        <div className="rail-foot">
+          <SyncStatus />
+          <div className="rail-me">
+            <UserCenter />
+            <ThemeToggle />
+          </div>
         </div>
       </aside>
-      <button
-        className="sidebar-backdrop"
-        aria-label="关闭导航"
-        data-open={open}
-        inert={!open}
-        onClick={closeMobileSidebar}
-      />
       <ViewTransition default="none" update="workspace-route">
-        <div className="workspace-content">{children}</div>
+        <div className="workspace-content" id="main" tabIndex={-1}>
+          {children}
+        </div>
       </ViewTransition>
       <dialog
         className="dialog workspace-search-dialog"
@@ -221,19 +165,11 @@ export function Shell({ children }: { children: ReactNode }) {
       >
         <div className="panel-head">
           <h2 id="workspace-search-title">搜索工作空间</h2>
-          <button
-            className="icon-button"
-            aria-label="关闭搜索"
-            onClick={closeSearch}
-          >
-            ×
+          <button className="icon-button" aria-label="关闭搜索" onClick={closeSearch}>
+            <Icon name="close" />
           </button>
         </div>
-        <form
-          action="/schools"
-          onSubmit={closeSearch}
-          className="workspace-search-form"
-        >
+        <form action="/schools" onSubmit={closeSearch} className="workspace-search-form">
           <label className="sr-only" htmlFor="workspace-search">
             搜索页面或学校
           </label>
@@ -251,24 +187,16 @@ export function Shell({ children }: { children: ReactNode }) {
           </button>
         </form>
         <nav className="workspace-search-results" aria-label="搜索结果">
-          {[
-            ...links,
-            ["申请背景与资料", "/me", "M4 4h16v16H4z"],
-            ["我的材料", "/materials", "M4 4h16v16H4z"],
-          ]
-            .filter(([label]) =>
-              label.toLowerCase().includes(query.trim().toLowerCase()),
-            )
-            .map(([label, href, path]) => (
+          {searchable
+            .filter(({ label }) => label.toLowerCase().includes(query.trim().toLowerCase()))
+            .map(({ label, href, icon }) => (
               <Link href={href} key={href} onClick={closeSearch}>
-                <Icon path={path} />
+                <Icon name={icon} />
                 {label}
               </Link>
             ))}
         </nav>
-        <p className="muted small workspace-search-hint">
-          输入校名后按 Enter，搜索真实学校库。Esc 关闭。
-        </p>
+        <p className="muted small workspace-search-hint">输入校名后按 Enter，在学校库里搜索。按 Esc 关闭。</p>
       </dialog>
     </div>
   );
@@ -277,4 +205,122 @@ export function Shell({ children }: { children: ReactNode }) {
 function NavigationStatus() {
   const { pending } = useLinkStatus();
   return <span className="sidebar-navigation-pending" data-pending={pending || undefined} aria-hidden="true" />;
+}
+
+/** What the rail prints at the right of an application: the days left, or why there is no count. */
+function Remaining({ row }: { row: OverviewRow }) {
+  if (row.sent) return <span className="left">已提交</span>;
+  if (row.days === null) return <span className="left">待确认</span>;
+  if (row.days < 0) return <span className="left">已截止</span>;
+  if (row.days === 0) return <span className={`left${row.soon ? " is-soon" : ""}`}>今天</span>;
+  return (
+    <span className={`left${row.soon ? " is-soon" : ""}`}>
+      <b>{row.days}</b>天
+    </span>
+  );
+}
+
+/**
+ * The applicant's applications, one per line colour. Picking one makes the other lines step back on
+ * the overview; picking it again releases it. From another route the pick also opens the overview,
+ * which is where the lines are drawn.
+ */
+function RailLegend() {
+  const records = useApplicationRecords();
+  const pathname = usePathname() ?? "/";
+  const router = useRouter();
+  const rows = useMemo(() => (records.data ? overviewOf(records.data, beijingToday()).rows : []), [records.data]);
+  if (!rows.length) return null;
+  return (
+    <section className="rail-legend" aria-labelledby="rail-legend-title">
+      <h2 className="rail-legend-title" id="rail-legend-title">
+        我的申请
+      </h2>
+      <ul>
+        {rows.map((row) => {
+          const picked = records.selected === row.record.id;
+          return (
+            <li key={row.record.id}>
+              <button
+                type="button"
+                className={`line-${row.line}${records.selected && !picked ? " is-dimmed" : ""}`}
+                title={`${row.record.school} · ${row.record.name}`}
+                aria-pressed={picked}
+                onClick={() => {
+                  records.select(picked ? null : row.record.id);
+                  if (!picked && pathname !== "/") router.push("/");
+                }}
+              >
+                <span className="bullet">{row.code}</span>
+                <span className="name">{row.record.school}</span>
+                <Remaining row={row} />
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+const CLOCK = new Intl.DateTimeFormat("zh-CN", { hour: "2-digit", minute: "2-digit", hour12: false });
+
+/**
+ * Whether what is on screen is the account's data. It states only what the app knows: the time of the
+ * last read, a failed read, or that nobody is signed in. For a visitor it is the sign-in entry.
+ */
+function SyncStatus() {
+  const { state, ready, gated, openLogin } = useAuth();
+  const records = useApplicationRecords();
+  if (!ready) return <p className="rail-sync" aria-hidden="true" />;
+  if (gated) {
+    return (
+      <button type="button" className="rail-sync" title="登录后同步到账号" onClick={() => openLogin(window.location.pathname)}>
+        <Icon name="unsynced" />
+        <span>登录后同步到账号</span>
+      </button>
+    );
+  }
+  if (!state?.account) {
+    return (
+      <p className="rail-sync" title="未开启账号，数据只跟着这个浏览器">
+        <Icon name="unsynced" />
+        <span>未开启账号同步</span>
+      </p>
+    );
+  }
+  if (records.error) {
+    return (
+      <button type="button" className="rail-sync is-failed" title="同步失败，点击重试" onClick={records.reload}>
+        <Icon name="unsynced" />
+        <span>同步失败，点击重试</span>
+      </button>
+    );
+  }
+  // A re-read behind data already on screen keeps the last time; only the first read says "syncing".
+  const label = records.syncedAt ? `已同步 ${CLOCK.format(records.syncedAt)}` : "正在同步…";
+  return (
+    <button type="button" className="rail-sync" title={`${label}，点击重新同步`} aria-label={`${label}，点击重新同步`} onClick={records.reload}>
+      <Icon name={records.syncedAt ? "synced" : "unsynced"} />
+      <span className="num">{label}</span>
+    </button>
+  );
+}
+
+/** A quick switch between light and dark. The full setting, with "follow the system", is under 设置 → 外观. */
+function ThemeToggle() {
+  return (
+    <button
+      type="button"
+      className="rail-button theme-toggle"
+      aria-label="切换深色或浅色"
+      title="切换深色或浅色"
+      onClick={() => {
+        const next = document.documentElement.dataset.appearance === "dark" ? "light" : "dark";
+        window.dispatchEvent(new CustomEvent("leapashore-theme", { detail: next }));
+      }}
+    >
+      <Icon name="theme" />
+    </button>
+  );
 }

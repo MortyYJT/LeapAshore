@@ -6,6 +6,11 @@
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
 // /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px. Each step writes docs/screenshots/NN-*.png.
 //
+// The overview is checked in each state an account can be in: signed out (the axis, no rows), a new
+// account (the same, with the way to add the first application), an account with applications (one
+// line each, the rail's list, stable colours), and a deadline within two weeks that is marked as
+// submitted while another device has changed the record.
+//
 // The run fails on a console error, a page error, a page that scrolls sideways, a page without an h1,
 // or a failed check. The accounts it creates are deleted from the database at the end, whatever happened.
 //
@@ -36,12 +41,8 @@ function check(name, ok, detail) {
   console.log(`${ok ? "通过" : "失败"}  ${name}${!ok && detail !== undefined ? `  ${JSON.stringify(detail)}` : ""}`);
 }
 
+// The account menu is in the rail on a desktop and in the top bar on a phone: the same button.
 async function sidebarLogin(page) {
-  if (!await page.locator("#workspace-nav").isVisible()) {
-    const toggle = page.getByRole("button", {name:"打开导航"});
-    if (await toggle.getAttribute("aria-expanded") !== "true") await toggle.click();
-    await page.locator("#workspace-nav").waitFor({ state: "visible" });
-  }
   if (!await page.locator("#user-menu").isVisible()) await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
   await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).click();
 }
@@ -160,6 +161,12 @@ async function adminPass(browser, email, errors) {
     await loginThroughDialog(a, email);
     // A new account is offered the four-basics step; skipping it is what an admin would do.
     await a.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("button", { name: "跳过，以后再填" }).click({ timeout: 15000 }).catch(() => {});
+    // A new account has no applications: the overview draws the axis and asks for the first one.
+    await a.locator(".lt-empty").getByRole("link", { name: "添加申请项目" }).waitFor({ timeout: 15000 });
+    await settle(a);
+    check("总览（空账号）：只有时间轴和添加入口，没有申请行", (await a.locator(".lt-row").count()) === 0 && (await a.locator(".rail-legend").count()) === 0 && (await a.getByText("还没有申请。").count()) === 1);
+    check("侧栏：登录后显示同步时间", /^已同步 \d\d:\d\d$/.test(await a.locator("button.rail-sync").innerText()), await a.locator("button.rail-sync").innerText());
+    await screenshot(a, "overview-empty");
     const before = await a.goto(`${BASE}/admin`);
     check("管理页：授予管理员之前也是 404", before.status() === 404, before.status());
     grantAdmin(email);
@@ -244,7 +251,11 @@ async function adminPass(browser, email, errors) {
     await page.goto(`${BASE}/`);
     await settle(page);
     await layout(page, "首页");
-    check("首页：展示总览位置", await page.getByText("我的工作台 / 总览").isVisible());
+    check("首页：标题是总览", await page.getByRole("heading", { level: 1, name: "总览", exact: true }).isVisible());
+    check("首页（未登录）：画出从今天开始的时间轴，不画示例申请", await page.locator(".lt .a-today").isVisible() && (await page.locator(".lt-row").count()) === 0 && (await page.getByText(/示例数据|预设演示/).count()) === 0);
+    check("首页（未登录）：给出登录入口", await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
+    check("侧栏：未登录时不列申请，同步状态是登录入口", (await page.locator(".rail-legend").count()) === 0 && await page.locator("button.rail-sync", { hasText: "登录后同步到账号" }).isVisible());
+    check("字体：不从其他主机加载", await page.evaluate(() => performance.getEntriesByType("resource").every((entry) => new URL(entry.name).origin === location.origin)));
     check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
     check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
@@ -394,6 +405,10 @@ async function adminPass(browser, email, errors) {
     await screenshot(page, "portfolio");
     await page.getByRole("button", { name: `确认 ${added} 个项目` }).click();
     await page.getByText(`已保存 ${added} 个项目`).waitFor({ timeout: 15000 });
+    // The rail lists the applications that are being prepared or are submitted (one row here is 已获 offer).
+    const listed = await page.evaluate(async () => (await (await fetch("/api/application-records")).json()).filter((r) => ["considering", "applying", "submitted"].includes(r.status)).length);
+    const inRail = await page.waitForFunction((n) => document.querySelectorAll(".rail-legend li").length === n, listed, { timeout: 15000 }).then(() => true, () => false);
+    check("组合：确认后侧栏不用刷新就列出这些申请", inRail && listed > 0, { listed, shown: await page.locator(".rail-legend li").count() });
     const stored = await page.evaluate(async () => (await fetch("/api/applications")).json());
     check("组合：确认后服务器保存了全部项目", stored.length === added, stored.length);
     check("组合：状态和首选按草稿保存", stored.some((r) => r.status === "offered") && stored.filter((r) => r.isPrimary).length === 1);
@@ -456,11 +471,41 @@ async function adminPass(browser, email, errors) {
     check("同步冲突：使用服务器上的内容后保留另一台设备的轮次", (await demoRecord()).round === "第四轮");
     conflictSteps.running = false;
 
+    // ---------- overview: the applicant's applications as lines on one time axis ----------
     await page.goto(`${BASE}/`);
-    await page.getByLabel("向 AI 顾问提问").fill("帮我整理申请材料");
-    await page.getByRole("button",{name:"询问 AI 顾问 →"}).click();
-    await page.waitForURL(/advisor.*q=/);
-    check("首页：问题带入顾问且不自动发送", await page.locator(".composer textarea").inputValue() === "帮我整理申请材料");
+    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
+    await settle(page);
+    const served = await page.evaluate(async () => (await fetch("/api/application-records")).json());
+    const drawnRecords = served.filter((r) => ["considering", "applying", "submitted"].includes(r.status));
+    check("总览：每个在准备或已提交的申请是一行", (await page.locator(".lt-row").count()) === drawnRecords.length, { rows: await page.locator(".lt-row").count(), drawn: drawnRecords.length });
+    check("总览：侧栏列出同样的申请", (await page.locator(".rail-legend li").count()) === drawnRecords.length);
+    const demoRow = page.locator(".lt-row", { hasText: "示例大学（演示账号）" });
+    // The label reads "… 截止" while the date is ahead and "… 的截止日期已过" after it; either names the date.
+    check("总览：有日期的申请按它的截止日期画，并写出轮次", (await demoRow.locator('.c-track[aria-label^="2027-01-15 "]').count()) === 1 && (await demoRow.locator(".round").innerText()) === "第四轮");
+    check("总览：没核对过的日期标「待核对」", (await demoRow.locator(".c-due .unchecked").count()) === 1);
+    check("总览：线路代号取自校名，不是编出来的缩写", (await demoRow.locator(".bullet").innerText()) === "示例");
+    const unknownRows = drawnRecords.filter((r) => !r.deadline && r.status !== "submitted").length;
+    check("总览：没有日期的申请画成虚线并写「待确认」", (await page.locator(".c-track.is-unknown").count()) === unknownRows, { unknownRows });
+    check("总览：时间轴标出今天和两周内", await page.locator(".lt .a-today").isVisible() && await page.locator(".lt-under .zone", { hasText: "两周内" }).isVisible());
+    const colours = await page.locator(".lt-row").evaluateAll((rows) => rows.map((row) => [...row.classList].find((name) => name.startsWith("line-"))));
+    check("总览：八个以内的申请各用一种线路颜色", new Set(colours).size === Math.min(colours.length, 8), colours);
+    await page.reload();
+    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
+    const coloursAgain = await page.locator(".lt-row").evaluateAll((rows) => rows.map((row) => [...row.classList].find((name) => name.startsWith("line-"))));
+    check("总览：线路颜色刷新后不变", JSON.stringify(colours) === JSON.stringify(coloursAgain), { colours, coloursAgain });
+    await page.locator(".rail-legend button", { hasText: "示例大学" }).click();
+    check("总览：在侧栏选中一个申请，其余的线退后", (await page.locator(".lt.has-sel .lt-row.is-sel").count()) === 1 && (await demoRow.getAttribute("class")).includes("is-sel"));
+    await page.locator(".rail-legend button", { hasText: "示例大学" }).click();
+    check("总览：再点一次取消选中", (await page.locator(".lt.has-sel").count()) === 0);
+    await layout(page, "总览");
+    await screenshot(page, "overview");
+    await demoRow.getByRole("link", { name: "示例大学（演示账号）" }).click();
+    await page.waitForURL(/applications\?edit=/);
+    await applicationForm.getByLabel("申请轮次", { exact: true }).waitFor();
+    check("总览：点校名打开这条申请的表单", (await applicationForm.getByLabel("申请轮次", { exact: true }).inputValue()) === "第四轮");
+    await page.goto(`${BASE}/advisor?q=${encodeURIComponent("帮我整理申请材料")}`);
+    await page.locator(".composer textarea").waitFor();
+    check("顾问：问题从链接带入且不自动发送", await page.locator(".composer textarea").inputValue() === "帮我整理申请材料" && (await page.locator(".msg-user", { hasText: "帮我整理申请材料" }).count()) === 0);
 
     // ---------- 我的: the rest of the profile ----------
     await page.goto(`${BASE}/me`);
@@ -664,17 +709,18 @@ async function adminPass(browser, email, errors) {
       sessionStorage.clear();
     });
     await page.goto(`${BASE}/`);
-    await page.locator(".workspace-attention").waitFor();
-    check("回访：总览读取真实申请状态", await page.locator(".dashboard-task").count() > 0);
+    await page.locator(".lt-row").first().waitFor();
+    await page.locator(".task-row").first().waitFor({ timeout: 15000 });
+    check("回访：总览读取真实申请状态", await page.locator(".task-row").count() > 0);
     await screenshot(page, "dashboard");
-    const overviewTask = page.locator('.dashboard-task input:not(:disabled)').first();
+    const overviewTask = page.locator('.task-row input:not(:disabled)').first();
     const beforeTick = await overviewTask.isChecked();
     await overviewTask.setChecked(!beforeTick);
     await settle(page);
     await page.reload();
-    await page.locator('.dashboard-task input:not(:disabled)').first().waitFor();
-    check("总览：任务完成状态刷新后保留", await page.locator('.dashboard-task input').first().isChecked() === !beforeTick);
-    await page.locator('.dashboard-task input').first().setChecked(beforeTick);
+    await page.locator('.task-row input:not(:disabled)').first().waitFor();
+    check("总览：任务完成状态刷新后保留", await page.locator('.task-row input').first().isChecked() === !beforeTick);
+    await page.locator('.task-row input').first().setChecked(beforeTick);
     await settle(page);
     const gone = await page.goto(`${BASE}/prototype/schools`);
     check("旧的原型路由已移除", gone.status() === 404, gone.status());
@@ -714,6 +760,46 @@ async function adminPass(browser, email, errors) {
     check("加入选校：登录后回到项目页并接着选档位", true);
     await b.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "稳" }).click();
     check("加入选校：选了档位后显示“已加入”", (await b.getByRole("button", { name: /已加入/ }).count()) === 1);
+    // ---------- overview: a deadline within two weeks, and 标记为已提交 against another device's edit ----------
+    const inTenDays = new Date(Date.now() + 8 * 3600e3 + 10 * 86400e3).toISOString().slice(0, 10);
+    const near = await b.evaluate(async (deadline) => (await fetch("/api/application-records", {
+      method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": `walkthrough-${Date.now()}` },
+      body: JSON.stringify({ school: "走查大学", name: "MSc Walkthrough", deadline, sourceUrl: "https://example.edu/near", confirmDeadline: true, materialsReady: true }),
+    })).json(), inTenDays);
+    await b.goto(`${BASE}/`);
+    const nearRow = b.locator(".lt-row", { hasText: "走查大学" });
+    await nearRow.waitFor({ timeout: 15000 });
+    await settle(b);
+    const urgent = await b.evaluate(() => {
+      const probe = document.body.appendChild(document.createElement("span"));
+      probe.style.color = "var(--urgent)";
+      const colour = getComputedStyle(probe).color;
+      probe.remove();
+      return colour;
+    });
+    const dueColour = await nearRow.locator(".c-due .n").evaluate((node) => getComputedStyle(node).color);
+    check("总览：两周内的截止日期用红色数字", (await nearRow.locator(".c-due.is-soon .n").innerText()) === "10" && dueColour === urgent
+      && (await b.locator(".rail-legend button", { hasText: "走查大学" }).locator(".left.is-soon").count()) === 1, { dueColour, urgent });
+    check("总览：自查过的日期不标「待核对」，材料就绪的终点是实心", (await nearRow.locator(".c-due .unchecked").count()) === 0 && (await nearRow.locator(".c-track.is-complete").count()) === 1);
+    const nearAction = b.locator(".next > li", { hasText: "走查大学" });
+    check("接下来：材料就绪的申请提示还没提交", (await nearAction.locator("p").innerText()) === "还有 10 天，材料已就绪，还没提交。");
+    await screenshot(b, "overview-soon");
+    conflictSteps.running = true;
+    const otherDevice = await b.evaluate(async (record) => (await fetch(`/api/application-records/${encodeURIComponent(record.id)}`, {
+      method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ status: "applying", baseVersion: record.version }),
+    })).status, near);
+    check("总览同步冲突：另一台设备改了状态", otherDevice === 200, otherDevice);
+    await nearAction.getByRole("button", { name: "标记为已提交" }).click();
+    await nearAction.getByText("已在其他设备上改为「准备中」").waitFor({ timeout: 15000 });
+    const refusedMark = await b.evaluate(async (id) => (await (await fetch("/api/application-records")).json()).find((r) => r.id === id).status, near.id);
+    check("总览同步冲突：过期的标记被拒绝，没有写入", refusedMark === "applying", refusedMark);
+    await nearAction.getByRole("button", { name: "保留我的修改", exact: true }).click();
+    await nearRow.locator(".st.is-sent").waitFor({ timeout: 15000 });
+    conflictSteps.running = false;
+    const marked = await b.evaluate(async (id) => (await (await fetch("/api/application-records")).json()).find((r) => r.id === id).status, near.id);
+    check("总览同步冲突：保留我的修改后标记为已提交，线路退役", marked === "submitted" && (await nearRow.locator(".c-track.is-sent").count()) === 1 && (await b.locator(".next > li", { hasText: "走查大学" }).count()) === 0, marked);
+    check("总览：侧栏里这条申请显示已提交", (await b.locator(".rail-legend button", { hasText: "走查大学" }).locator(".left").innerText()) === "已提交");
+
     await b.goto(`${BASE}/roadmap`);
     await b.locator(".roadmap-empty").waitFor({ timeout: 15000 }).catch(() => {});
     check("路线图：没有入学时间时只有一句话和去填的按钮，不画空时间轴", (await b.locator('.roadmap-empty a[href="/me"]').count()) === 1 && (await b.locator("svg.timeline-svg").count()) === 0);
@@ -754,20 +840,23 @@ async function adminPass(browser, email, errors) {
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
-    check("390：导航收进菜单", !(await intro.locator("#workspace-nav").isVisible()) && (await intro.getByRole("button", { name: "打开导航" }).isVisible()));
-
-    await intro.getByRole("button", { name: "打开导航" }).click();
+    const bars = await intro.evaluate(() => {
+      const top = document.querySelector("#workspace-nav").getBoundingClientRect();
+      const tabs = document.querySelector('nav[aria-label="主导航"]').getBoundingClientRect();
+      return { top: [top.top, top.height, top.width], tabs: [Math.round(tabs.bottom), tabs.width], height: window.innerHeight, width: window.innerWidth };
+    });
+    // Both bars span the page. With classic scrollbars that is the window less the scrollbar's gutter.
+    check("390：顶栏在上，五个入口在底部标签栏", bars.top[0] === 0 && bars.top[1] === 48 && bars.top[2] === bars.tabs[1] && bars.top[2] > bars.width - 20 && bars.tabs[0] === bars.height
+      && (await intro.locator('nav[aria-label="主导航"] a').count()) === 5, bars);
     const mobileSchools = intro.locator("#workspace-nav").getByRole("link", { name: "学校库" });
-    await mobileSchools.waitFor({ state: "visible" });
-    check("390：按菜单后出现导航链接", await mobileSchools.isVisible());
+    check("390：标签栏的链接可见，当前页是总览", await mobileSchools.isVisible() && (await intro.locator('nav[aria-label="主导航"] a[aria-current="page"]').innerText()).trim() === "总览");
     await intro.getByRole("button", {name:"我的，打开用户菜单"}).click();
+    await intro.locator("#user-menu").waitFor({ state: "visible" });
+    const menuBox = await intro.locator("#user-menu").boundingBox();
+    check("390：头像菜单在屏幕内", menuBox && menuBox.x >= 0 && menuBox.x + menuBox.width <= bars.width && menuBox.y >= 48, menuBox);
     await intro.keyboard.press("Escape");
     await intro.locator("#user-menu").waitFor({ state: "hidden" });
-    check("390：Esc 先关闭头像菜单", await intro.locator("#workspace-nav").isVisible() && !await intro.locator("#user-menu").isVisible());
-    await intro.keyboard.press("Escape");
-    await intro.locator("#workspace-nav").waitFor({ state: "hidden" });
-    check("390：再次 Esc 关闭侧栏", !await intro.locator("#workspace-nav").isVisible());
-    await intro.getByRole("button", {name:"打开导航"}).click();
+    check("390：Esc 关闭头像菜单", !await intro.locator("#user-menu").isVisible());
     await screenshot(intro, "home-390");
     await sidebarLogin(intro);
     await intro.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();
@@ -776,8 +865,9 @@ async function adminPass(browser, email, errors) {
     // Header login returns to the current workspace; respect the 60 s code resend window.
     await new Promise((r) => setTimeout(r, Math.max(0, 61000 - (Date.now() - firstCodeAt))));
     await loginThroughDialog(intro, emails[0]);
-    await intro.locator(".workspace-attention").waitFor({ timeout: 15000 });
+    await intro.locator(".lt-row").first().waitFor({ timeout: 15000 });
     check("直接点登录：登录后显示真实总览", true);
+    check("390：总览的每一行叠成三层，不画表头", !(await intro.locator(".lt-head").isVisible()) && await intro.locator(".lt-row .c-track .org").first().isVisible());
     for (const [route, name] of [
       ["/", "dashboard-390"],
       ["/applications", "applications-390"],

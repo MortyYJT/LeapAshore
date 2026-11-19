@@ -2,11 +2,11 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { RequireAccount } from "@/components/auth/AuthProvider";
+import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
+import { Icon } from "@/components/shell/Icon";
 import { ConflictNotice, LoadingPanel, Notice } from "@/components/ui";
-import { useResource } from "@/lib/hooks/useResource";
 import {
   differsFromForm,
-  loadApplicationRecords,
   writeApplicationRecord,
   RECORD_STATUSES,
   deadlineLabel,
@@ -16,7 +16,6 @@ import { StaleVersionError, changedFields, newIdempotencyKey } from "@/lib/sync-
 export default function ApplicationsPage() {
   return (
     <main className="page personal-applications">
-      <div className="workspace-crumb">我的工作台 / 我的申请</div>
       <h1>我的申请</h1>
       <p className="lede">集中管理每个项目的截止日期、材料和申请进度。</p>
       <RequireAccount what="你的申请">
@@ -26,7 +25,8 @@ export default function ApplicationsPage() {
   );
 }
 function Applications() {
-  const records = useResource(loadApplicationRecords);
+  // Shared with the rail and the overview, so a change saved here is what they show next.
+  const records = useApplicationRecords();
   const [editor, setEditor] = useState<{ record: ApplicationRecord | null; key: number; open: boolean } | null>(null);
   const [filter, setFilter] = useState("all");
   const [deleting, setDeleting] = useState<string | null>(null);
@@ -44,6 +44,17 @@ function Applications() {
   useEffect(() => {
     if (new URLSearchParams(location.search).has("add")) openEditor(null);
   }, []);
+
+  // `?edit=<id>` (the overview's links) opens that record's form once the records are here. It is
+  // read once: closing the form must not open it again.
+  const editParam = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (editParam.current === undefined) editParam.current = new URLSearchParams(location.search).get("edit");
+    if (!editParam.current || !records.data) return;
+    const record = records.data.find((r) => r.id === editParam.current);
+    editParam.current = null;
+    if (record) openEditor(record);
+  }, [records.data]);
 
   useEffect(() => {
     if (editor?.open) dialog.current?.showModal();
@@ -312,7 +323,7 @@ function ApplicationForm({
           aria-label="关闭申请表单"
           onClick={onClose}
         >
-          ×
+          <Icon name="close" />
         </button>
       </div>
       <div className="application-form panel-pad">

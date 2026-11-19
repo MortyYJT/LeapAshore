@@ -1,0 +1,186 @@
+/*
+  The overview: one line per application on a shared, linear time axis that starts today, then the
+  rows that say what to do next. A station is filled when the thing is ready and hollow when it is not.
+*/
+
+/* ---------- status tag ---------- */
+.st {
+  display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 7px;
+  border: 1px solid transparent; border-radius: var(--r-tag);
+  background: var(--sunken); color: var(--ink-2); font-size: var(--fs-12); white-space: nowrap;
+}
+.st.is-idea { background: none; border: 1px dashed var(--line-2); }
+.st.is-sent { background: none; padding-left: 0; color: var(--ink-3); }
+.st .icon { width: 12px; height: 12px; stroke-width: 2; }
+
+/* ---------- deadline table ---------- */
+.lt-frame { container: deadlines / inline-size; }
+.lt {
+  --col-id: 228px; --col-due: 72px; --col-state: 96px; --gap: 16px;
+  --x0: 14px; --padr: 50px;
+  --span: calc(100% - var(--x0) - var(--padr));
+  position: relative; padding-bottom: 22px;
+}
+.lt-head, .lt-row {
+  display: grid; grid-template-columns: var(--col-id) minmax(0, 1fr) var(--col-due) var(--col-state);
+  column-gap: var(--gap); align-items: center;
+}
+.lt-head { height: 32px; font-size: var(--fs-12); color: var(--ink-3); }
+.lt-head .h-due { text-align: right; }
+.lt-row { position: relative; z-index: 1; height: 64px; border-top: 1px solid var(--line); transition: opacity var(--t-base); }
+.lt-row:last-of-type { border-bottom: 1px solid var(--line); }
+/* Rules stay on the content edge; only the hover tint bleeds past it. */
+.lt-row::before {
+  content: ""; position: absolute; inset: 0 -10px; z-index: -1; border-radius: var(--r-control);
+  background: var(--hover); opacity: 0; transition: opacity var(--t-fast);
+}
+.lt-row:hover::before { opacity: 1; }
+/* A row that was just written flashes the highlighter once. */
+.lt-row.is-flash::before { animation: row-flash 2s var(--ease-out); }
+@keyframes row-flash { 0%, 30% { opacity: 1; background: var(--mark-soft); } 100% { opacity: 0; background: var(--mark-soft); } }
+
+.axis { position: relative; height: 100%; }
+.axis span { position: absolute; top: 50%; transform: translateY(-50%); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.axis .a-today { left: calc(var(--x0) - 6px); z-index: 1; padding-right: 6px; background: var(--bg); color: var(--ink); font-weight: 600; }
+.axis .a-month { left: calc(var(--x0) + var(--span) * var(--p) + 5px); }
+
+/* Layers over the track column only: month lines and the two-week zone under the rows, the "today"
+   bar over them. */
+.lt-under, .lt-over {
+  position: absolute; top: 32px; bottom: 22px; pointer-events: none;
+  left: calc(var(--col-id) + var(--gap));
+  right: calc(var(--col-due) + var(--col-state) + var(--gap) * 2);
+}
+.lt-under { z-index: 0; }
+.lt-over { z-index: 2; }
+.lt-under .zone {
+  position: absolute; top: 0; bottom: 0; left: var(--x0);
+  width: calc(var(--span) * var(--p)); background: var(--urgent-soft);
+}
+.lt-under .zone span { position: absolute; left: 0; top: 100%; margin-top: 4px; font-size: var(--fs-12); line-height: 1.4; color: var(--urgent); white-space: nowrap; }
+.lt-under .tick { position: absolute; top: -8px; bottom: 0; left: calc(var(--x0) + var(--span) * var(--p)); width: 1px; background: var(--line); }
+.lt-over .origin {
+  position: absolute; top: 10px; bottom: 10px; left: calc(var(--x0) - 6px); width: 12px;
+  border-radius: 6px; background: var(--ink);
+}
+
+.c-id { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.c-id .txt { min-width: 0; }
+.c-id .school { display: flex; align-items: baseline; gap: 8px; min-width: 0; font-weight: 600; white-space: nowrap; }
+.c-id .school a { overflow: hidden; text-overflow: ellipsis; text-decoration: none; }
+.c-id .school a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.c-id .round { flex: none; max-width: 50%; overflow: hidden; text-overflow: ellipsis; font-size: var(--fs-12); font-weight: 400; color: var(--ink-3); }
+.c-id .program { overflow: hidden; text-overflow: ellipsis; font-size: var(--fs-13); color: var(--ink-3); white-space: nowrap; }
+
+.c-track { position: relative; height: 100%; min-width: 0; }
+.c-track .ln {
+  position: absolute; top: 50%; left: var(--x0); height: 6px; margin-top: -3px;
+  width: calc(var(--span) * var(--p)); border-radius: 3px; background: var(--lc);
+  transition: width var(--t-line) var(--ease-out);
+}
+.c-track .stn {
+  position: absolute; top: 50%; left: calc(var(--x0) + var(--span) * var(--p));
+  width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%;
+  background: var(--bg); border: 3.5px solid var(--lc);
+  transition: left var(--t-line) var(--ease-out);
+}
+.c-track .when {
+  position: absolute; top: 50%; left: calc(var(--x0) + var(--span) * var(--p) + 13px); transform: translateY(-50%);
+  font: 700 var(--fs-13)/1 var(--font-num); font-variant-numeric: tabular-nums; color: var(--ink-2); white-space: nowrap;
+  transition: left var(--t-line) var(--ease-out);
+}
+.c-track .org { display: none; }
+/* Date not known yet: a dotted line of no particular length and a dashed stop. */
+.c-track.is-unknown .ln { height: 0; margin-top: -3px; border-top: 6px dotted var(--lc); border-radius: 0; background: none; }
+.c-track.is-unknown .stn { border-style: dashed; border-width: 2px; }
+.c-track.is-unknown .when { font: 400 var(--fs-12)/1 var(--font-ui); color: var(--ink-3); }
+/* Nothing to draw ahead of today (the date has passed, or a submitted application has none):
+   the label sits beside the "today" bar. */
+.c-track.is-off .when { left: calc(var(--x0) + 14px); font: 400 var(--fs-12)/1 var(--font-ui); color: var(--ink-3); }
+.c-track.is-off .when b { margin-right: 6px; font: 700 var(--fs-13)/1 var(--font-num); color: var(--ink-2); }
+/* The date is past the end of the axis: the line runs to the edge and the label says when. */
+.c-track.is-beyond .when { right: 0; left: auto; padding-left: 6px; background: var(--bg); }
+/* Materials ready: the last stop is filled. */
+.c-track.is-complete .stn { background: var(--lc); }
+/* Submitted: the line is retired and its last stop is filled. */
+.c-track.is-sent .ln { background: var(--l-retired); }
+.c-track.is-sent .stn { border-color: var(--l-retired); background: var(--l-retired); }
+.c-track.is-sent .when { color: var(--ink-3); }
+
+.c-due { text-align: right; white-space: nowrap; }
+.c-due .n { font: 700 var(--fs-20)/1 var(--font-num); font-variant-numeric: tabular-nums; }
+.c-due .n.is-word { font: 600 var(--fs-14)/1.4 var(--font-ui); }
+.c-due .u { margin-left: 3px; font-size: var(--fs-12); color: var(--ink-3); }
+.c-due.is-soon .n { color: var(--urgent); }
+.c-due .none { color: var(--ink-3); }
+.c-due .past { font-size: var(--fs-12); color: var(--ink-2); }
+/* A date nobody has checked against the official page yet says so under the count. */
+.c-due .unchecked { display: block; margin-top: 3px; font-size: var(--fs-12); line-height: 1.2; color: var(--ink-3); }
+.c-state { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.c-state .mat { display: flex; align-items: center; gap: 5px; font-size: var(--fs-12); line-height: 1.3; color: var(--ink-3); white-space: nowrap; }
+/* The one thing known about materials is the applicant's own "ready" tick: one stop, filled or hollow. */
+.c-state .stop { flex: none; width: 8px; height: 8px; border: 2px solid var(--lc); border-radius: 50%; background: var(--bg); }
+.c-state .stop.on { background: var(--lc); }
+.lt-row.is-sent .c-state .stop { --lc: var(--l-retired); }
+
+/* An application picked in the rail keeps its colour; the others step back. */
+.lt.has-sel .lt-row:not(.is-sel) { opacity: 0.6; }
+.lt.has-sel .lt-row:not(.is-sel) .c-track { opacity: 0.4; }
+
+/* No applications yet: the header keeps the table's shape, and the row below asks for the first one.
+   The "today" bar and the two-week zone need rows to stand in, so they are not drawn. */
+.lt.is-empty { padding-bottom: 0; }
+.lt.is-empty .lt-under, .lt.is-empty .lt-over { display: none; }
+.lt-empty { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 20px 0; border-block: 1px solid var(--line); }
+.lt-empty p { flex: 1 1 280px; margin: 0 12px 0 0; color: var(--ink-2); }
+.lt-empty p b { display: block; margin-bottom: 2px; color: var(--ink); font-weight: 600; }
+
+/* ---------- stacked rows: when the track column gets too narrow ---------- */
+@container deadlines (max-width: 720px) {
+  .lt { --x0: 8px; --padr: 58px; padding-bottom: 0; }
+  .lt-head, .lt-under, .lt-over { display: none; }
+  .lt-row {
+    height: auto; grid-template-columns: minmax(0, 1fr) auto; row-gap: 4px; padding-block: 14px 12px;
+    grid-template-areas: "id due" "track track" "state state";
+  }
+  .c-id { grid-area: id; }
+  .c-due { grid-area: due; align-self: start; }
+  .c-track { grid-area: track; height: 28px; }
+  .c-state { grid-area: state; flex-direction: row; align-items: center; gap: 10px; }
+  .c-track .org { display: block; position: absolute; top: 50%; left: 2px; z-index: 1; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--ink); }
+  .c-track.is-off .when { left: calc(var(--x0) + 16px); }
+  /* A row with nothing to say about its date gives the track no space. */
+  .c-track.is-off:not(:has(.when)) { display: none; }
+}
+
+/* ---------- next actions ---------- */
+.next { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.next > li {
+  display: grid; grid-template-columns: 228px minmax(0, 1fr) auto; column-gap: 16px; align-items: center;
+  min-height: 52px; padding: 8px 0; border-bottom: 1px solid var(--line);
+}
+.next .who { display: flex; align-items: center; gap: 10px; min-width: 0; font-weight: 600; }
+.next .who span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.next p { margin: 0; color: var(--ink-2); }
+.next .notice { grid-column: 1 / -1; margin-top: 8px; }
+.next > li.is-plain { display: block; padding: 14px 0; color: var(--ink-2); }
+
+/* ---------- preparation tasks ---------- */
+.task-rows { border-top: 1px solid var(--line); }
+.task-rows > div { border-bottom: 1px solid var(--line); }
+.task-row { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 8px 0; cursor: pointer; }
+.task-row input { flex: none; width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.task-row input:disabled { cursor: progress; }
+.task-row.done span { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line-2); }
+.task-rows .notice { margin: 0 0 10px 26px; }
+.block-count { font: 700 var(--fs-13)/1 var(--font-num); font-variant-numeric: tabular-nums; color: var(--ink-2); }
+
+@media (max-width: 720px) {
+  .next > li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 2px; padding: 12px 0; }
+  .next .who { grid-column: 1 / -1; }
+  .task-row { min-height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lt-row.is-flash::before { animation: none; }
+}

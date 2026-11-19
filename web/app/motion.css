@@ -10,32 +10,22 @@
   --motion-scale: .985;
 }
 
-.bar, .nav a, .me-link, .btn, .icon-button, .choice, .conv, .prompt, .seg button, .user-center button,
-.uc-menu a, .workspace-sidebar a, .workspace-search-results a,
-.workspace-application-row, tbody tr, .rows > .row, .dashboard-task,
-.dashboard-task input, .tl-bar, .task .t, .dashboard-task span {
+.btn, .icon-button, .rail-button, .rail-sync, .choice, .conv, .prompt, .seg button, .user-center button,
+.uc-menu a, .rail-nav a, .rail-legend button, .nav-label, .rail-sync span, .uc-name, .workspace-search-results a,
+tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
   transition-property: background-color, border-color, color, fill, opacity, text-decoration-color;
   transition-duration: var(--motion-fast);
   transition-timing-function: var(--motion-ease);
 }
 
+/* A press moves the control down by one pixel; nothing changes colour twice. */
 .btn:not(:disabled, [aria-disabled="true"]):active,
-.icon-button:not(:disabled):active, .prompt:not(:disabled):active {
-  background-color: color-mix(in srgb, currentColor 12%, var(--color-surface));
-  transition-duration: var(--motion-instant);
-}
-
-.btn-primary:not(:disabled):active {
-  background-color: var(--color-primary-hover);
-}
-
-.btn:disabled, .btn[aria-disabled="true"] {
-  opacity: .5;
-  cursor: default;
+.icon-button:not(:disabled):active, .rail-button:active, .prompt:not(:disabled):active {
+  translate: 0 1px;
 }
 
 .btn:focus-within:has(input[type="file"]:focus-visible) {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -77,15 +67,15 @@
   appearance: none;
   display: grid;
   place-items: center;
-  border: 1px solid var(--color-control);
+  border: 1px solid var(--line-2);
   border-radius: 3px;
-  background-color: var(--card);
+  background-color: var(--raised);
   transition: background-color var(--motion-instant), border-color var(--motion-instant);
 }
 
 .task input[type="checkbox"]:checked {
-  background-color: var(--primary);
-  border-color: var(--primary);
+  background-color: var(--action);
+  border-color: var(--action);
 }
 
 .task input[type="checkbox"]:disabled { opacity: .5; }
@@ -93,29 +83,28 @@
   content: "";
   width: 5px;
   height: 9px;
-  border: solid var(--primary-foreground);
+  border: solid var(--on-action);
   border-width: 0 2px 2px 0;
   transform: translateY(-1px) rotate(45deg);
 }
 
-.task input[type="checkbox"]::after,
-.dashboard-task input::after {
+.task input[type="checkbox"]::after {
   opacity: 0;
   transition: opacity var(--motion-instant) var(--motion-ease);
 }
 
-.task input[type="checkbox"]:checked::after,
-.dashboard-task input:checked::after { opacity: 1; }
+.task input[type="checkbox"]:checked::after { opacity: 1; }
 
 .task-progress {
   height: 4px;
-  background: var(--color-track);
+  border-radius: 2px;
+  background: var(--sunken);
   overflow: hidden;
 }
 
 .task-progress > div {
   height: 100%;
-  background: var(--success);
+  background: var(--ink);
   transform-origin: left;
   transition: transform var(--motion-emphasis) var(--motion-ease);
 }
@@ -188,64 +177,23 @@ dialog[open]::backdrop { opacity: 1; }
   animation: content-in var(--motion-normal) var(--motion-ease);
 }
 
-@media (min-width: 701px) {
-  .workspace-layout[data-sidebar-interacted] .workspace-sidebar {
+@media (min-width: 901px) {
+  .shell[data-sidebar-interacted] .rail {
     transition: width var(--motion-smooth) var(--motion-ease);
   }
 
-  .workspace-layout[data-sidebar-interacted] .workspace-content {
+  .shell[data-sidebar-interacted] .workspace-content {
     transition: margin-left var(--motion-smooth) var(--motion-ease);
-  }
-
-  .workspace-sidebar nav .sidebar-text,
-  .sidebar-collapsed .workspace-sidebar nav .sidebar-text {
-    display: block;
-    position: absolute;
-    left: 40px;
-    white-space: nowrap;
-    transition: opacity var(--motion-fast) var(--motion-ease);
-  }
-
-  .sidebar-collapsed .workspace-sidebar nav .sidebar-text {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .workspace-sidebar nav {
-    overflow-x: hidden;
-  }
-}
-
-@media (max-width: 700px) {
-  .workspace-sidebar {
-    transition: transform var(--motion-smooth) var(--motion-ease),
-      visibility var(--motion-smooth) allow-discrete;
-  }
-
-  .sidebar-backdrop {
-    opacity: 1;
-    transition: opacity var(--motion-fast) var(--motion-ease),
-      display var(--motion-fast) allow-discrete;
-  }
-
-  .sidebar-backdrop[data-open="false"] {
-    display: none;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  @starting-style {
-    .sidebar-backdrop[data-open="true"] { opacity: 0; }
   }
 }
 
 @media (forced-colors: active) {
-  .task input[type="checkbox"], .dashboard-task input {
+  .task input[type="checkbox"] {
     appearance: auto;
     display: inline-block;
   }
 
-  .task input[type="checkbox"]::after, .dashboard-task input::after { display: none; }
+  .task input[type="checkbox"]::after { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -254,9 +202,6 @@ dialog[open]::backdrop { opacity: 1; }
     transition: none !important;
   }
 }
-
-.dashboard-task-progress { margin-bottom: 12px; }
-.dashboard-task-progress .task-progress { border-radius: 999px; }
 
 .chat-body > * { flex-shrink: 0; }
 .advisor-pending { margin-block: 0; }
@@ -271,10 +216,6 @@ dialog[open]::backdrop { opacity: 1; }
   }
 
   details[open]::details-content { block-size: auto; }
-}
-
-@media (max-width: 700px) {
-  body:has(.mobile-sidebar-toggle[aria-expanded="true"]) { overflow: hidden; }
 }
 
 .school-filter-submit {
@@ -300,20 +241,8 @@ dialog[open]::backdrop { opacity: 1; }
 
 dialog:not([open])::backdrop { pointer-events: none; }
 
-.btn[aria-pressed="true"] {
-  color: var(--color-accent-text);
-}
-
 [aria-busy="true"]:is(.btn, .btn[aria-disabled="true"]) {
   cursor: progress;
-}
-
-/* Keep a closing off-canvas drawer out of the keyboard order during the exit. */
-@media (max-width: 700px) {
-  .workspace-sidebar:not(.is-open) { interactivity: inert; }
-  .workspace-sidebar.is-open {
-    transition-property: transform;
-  }
 }
 
 .uc-sidebar [role="tablist"] { position: relative; }
@@ -323,8 +252,8 @@ dialog:not([open])::backdrop { pointer-events: none; }
   position: absolute;
   inset: 0 auto auto 0;
   pointer-events: none;
-  background: var(--hover);
-  border-radius: 7px;
+  background: var(--selected);
+  border-radius: var(--r-control);
 }
 
 .uc-sidebar [data-positioned] .uc-tab-indicator {
@@ -351,7 +280,12 @@ dialog:not([open])::backdrop { pointer-events: none; }
 @keyframes route-out { to { opacity: 0; } }
 @keyframes route-in { from { opacity: 0; } }
 
-.workspace-sidebar nav a { position: relative; }
+/* On a phone the content runs under the top bar and the tab bar, so its snapshot would be drawn over
+   them for the length of the fade. Routes change without the fade there. */
+@media (max-width: 900px) {
+  ::view-transition-old(.workspace-route),
+  ::view-transition-new(.workspace-route) { animation: none; }
+}
 
 .sidebar-navigation-pending {
   position: absolute;

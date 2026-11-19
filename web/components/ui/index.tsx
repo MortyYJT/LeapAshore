@@ -1,5 +1,5 @@
-// The primitives that carry the visual tokens (design D7). Thin on purpose: the classes in
-// app/globals.css hold the look, and these keep the markup and the accessibility attributes consistent.
+// The primitives that carry the visual tokens. Thin on purpose: the classes in app/globals.css hold
+// the look, and these keep the markup and the accessibility attributes consistent.
 
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
@@ -121,7 +121,8 @@ export function Notice({ error = false, children }: { error?: boolean; children:
 /**
  * A save the server refused because the record changed on another device (`lib/sync-conflict.ts`).
  * The children say what changed; the two actions are the whole choice: send my edit again on top of
- * the server's version, or drop it and show the server's.
+ * the server's version, or drop it and show the server's. It is written on the highlighter, the
+ * system's colour for "differs or just changed"; red is kept for errors and near deadlines.
  */
 export function ConflictNotice({
   children,
@@ -135,17 +136,17 @@ export function ConflictNotice({
   busy?: boolean;
 }) {
   return (
-    <Notice error>
-      {children}
+    <div className="notice notice-conflict" role="alert">
+      <span>{children}</span>
       <span className="toolbar">
-        <Button variant="text" small disabled={busy} onClick={onKeepMine}>
+        <Button small disabled={busy} onClick={onKeepMine}>
           保留我的修改
         </Button>
-        <Button variant="text" small disabled={busy} onClick={onTakeTheirs}>
+        <Button small disabled={busy} onClick={onTakeTheirs}>
           使用服务器上的内容
         </Button>
       </span>
-    </Notice>
+    </div>
   );
 }
 

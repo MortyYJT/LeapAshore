@@ -1,21 +1,23 @@
-/** The product mark: an arc leaping over a line, in the workspace foreground. */
-export function Mark({ size = 22 }: { size?: number }) {
+/**
+ * The product mark: a leap that lands on a station of the line below it. The station is filled with
+ * the surface the mark sits on (`--mark-ground`, the rail by default), so it reads as a hollow stop.
+ */
+export function Mark({ size = 28 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 22 22" aria-hidden="true">
-      <path
-        d="M2 16.5h18"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M4.5 14c2.4-6.6 9.6-8.2 12.6-2.2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <circle cx="17.4" cy="12.2" r="1.5" fill="currentColor" />
+    <svg
+      className="mark"
+      width={size}
+      height={size}
+      viewBox="0 0 28 28"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <path d="M3.5 22C4 10.5 13 5 19.5 12.8" />
+      <path d="M11 22.5h14" />
+      <circle cx="20.5" cy="16.2" r="3.1" fill="var(--mark-ground, var(--rail))" />
     </svg>
   );
 }

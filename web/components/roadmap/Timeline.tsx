@@ -42,6 +42,7 @@ const C = {
   active: "var(--color-active)",
   surface: "var(--color-surface)",
   negative: "var(--color-negative)",
+  onPrimary: "var(--color-on-primary)",
 };
 
 const utc = (iso: string) => new Date(`${iso.slice(0, 10)}T00:00:00Z`);
@@ -174,7 +175,7 @@ function Horizontal({ model, today, deadlines, selected, onSelect, showDeadlines
             {/* The suggested start is dashed: the system made it up. */}
             <line x1={bx} x2={bx} y1={y - 1} y2={y + PITCH - 5} stroke={C.muted} strokeWidth={1.25} strokeDasharray="3 3" />
             {bw > 40 && (
-              <text className="num" x={bx + 10} y={y + (PITCH - 4) / 2 + 4} fontSize={12} fill={p.current ? "#ffffff" : C.ink}>
+              <text className="num" x={bx + 10} y={y + (PITCH - 4) / 2 + 4} fontSize={12} fill={p.current ? C.onPrimary : C.ink}>
                 {p.done}/{p.total}
               </text>
             )}

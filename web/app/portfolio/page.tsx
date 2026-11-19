@@ -6,6 +6,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { Button, LoadingPanel, Notice, Pill } from "@/components/ui";
+import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { loadPortfolio, usePortfolio } from "@/lib/hooks/usePortfolio";
@@ -60,6 +61,8 @@ export default function PortfolioPage() {
 
 function Portfolio() {
   const saved = usePortfolio();
+  // The rail lists these rows as applications; it reads them again after a confirm.
+  const { reload: reloadRecords } = useApplicationRecords();
   const [draft, setDraft] = useState<PortfolioItem[] | null>(null);
   const today = useMemo(() => beijingToday(), []);
   const [programs, setPrograms] = useState<Map<string, Program>>(new Map());
@@ -193,6 +196,7 @@ function Portfolio() {
       }
     } finally {
       setSaving(false);
+      reloadRecords();
     }
   }
 
