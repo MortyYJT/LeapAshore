@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 
-const COLORS = [{ id: "graphite", name: "Neutral 中性色" }] as const;
+import { Icon } from "./Icon";
+
+const COLORS = [{ id: "graphite", name: "默认" }] as const;
+/** The mode last applied, under a key that does not depend on the account: app/layout.tsx reads it before first paint. */
+export const APPEARANCE_KEY = "leapashore:appearance";
 type Preferences = {
   name: string;
   avatar: string;
@@ -19,7 +23,7 @@ const DEFAULTS: Preferences = {
 };
 
 export function UserCenter() {
-  const { state, signOut, gated, openLogin } = useAuth();
+  const { state, ready, signOut, gated, openLogin } = useAuth();
   const [prefs, setPrefs] = useState(DEFAULTS);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -56,6 +60,9 @@ export function UserCenter() {
 
   useEffect(() => {
     setLoadedKey(null);
+    // Preferences are kept per account, so nothing is read (or applied) until the session is known:
+    // reading the signed-out copy first would flash its theme before the account's.
+    if (!ready) return;
     try {
       const raw = JSON.parse(localStorage.getItem(key) || "null");
       setPrefs({
@@ -74,12 +81,13 @@ export function UserCenter() {
       setPrefs(DEFAULTS);
     }
     setLoadedKey(key);
-  }, [key]);
+  }, [key, ready]);
 
   useEffect(() => {
     if (loadedKey !== key) return;
     try {
       localStorage.setItem(key, JSON.stringify(prefs));
+      localStorage.setItem(APPEARANCE_KEY, prefs.mode);
     } catch {
       setMessage("浏览器存储空间不足，偏好暂未保存。请移除头像后重试。");
     }
@@ -181,8 +189,6 @@ export function UserCenter() {
           <img src={prefs.avatar} alt="用户头像" />
         ) : (
           <svg
-            width="20"
-            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -209,7 +215,6 @@ export function UserCenter() {
       >
         {avatar()}
         <span className="uc-name">{name}</span>
-        <span aria-hidden="true">⌄</span>
       </button>
       <div className="uc-menu" id="user-menu" aria-label="用户菜单" data-open={open} inert={!open}>
         <div className="uc-identity">
@@ -330,11 +335,11 @@ export function UserCenter() {
           </aside>
           <div className="uc-content">
             <button
-              className="uc-close"
+              className="icon-button uc-close"
               aria-label="关闭设置"
               onClick={() => dialog.current?.close()}
             >
-              ×
+              <Icon name="close" />
             </button>
             <section
               id="uc-panel-profile"
@@ -421,9 +426,6 @@ export function UserCenter() {
                   ))}
                 </div>
               </div>
-              <p className="uc-hint">
-                全站使用 Neutral 中性主题，绿色仅用于申请进度。
-              </p>
               <p className="uc-hint">修改即时生效，自动保存。</p>
               <button
                 className="btn btn-text"
