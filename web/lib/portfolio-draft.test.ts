@@ -6,6 +6,7 @@ import {
   addToDraft,
   clearDraft,
   draftChanged,
+  draftDifferences,
   readDraft,
   readDraftBase,
   removeFromDraft,
@@ -116,11 +117,28 @@ test("the draft remembers the saved rows it was first made from", () => {
   assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 5 }]);
 });
 
-test("an empty saved portfolio is a base too, and a draft from an older build has none", () => {
+test("a draft made without a readable portfolio claims an empty one; an older build's draft has no base", () => {
   const storage = memoryStorage();
   writeDraft(storage, [item("a")], []);
   assert.deepEqual(readDraftBase(storage), []);
   clearDraft(storage);
-  writeDraft(storage, [item("a")]);
+  // The portfolio could not be read, so the draft started from nothing. Stating an empty base makes
+  // the server refuse the confirm if a portfolio does exist, instead of replacing it unseen.
+  writeDraft(storage, [item("a")], null);
+  assert.deepEqual(readDraftBase(storage), []);
+  clearDraft(storage);
+  storage.setItem(DRAFT_KEY, JSON.stringify([item("a")]));
   assert.equal(readDraftBase(storage), null);
+});
+
+test("the differences between a draft and the server's portfolio name every program that would change", () => {
+  const mine = [item("a"), item("b", { status: "considering" }), item("mine-only")];
+  const theirs = [item("a"), item("b", { status: "submitted" }), item("theirs-only")];
+  assert.deepEqual(draftDifferences(mine, theirs), {
+    onlyMine: ["mine-only"],
+    onlyTheirs: ["theirs-only"],
+    // In both, but confirming the draft would put this row back to what the draft says.
+    changed: ["b"],
+  });
+  assert.deepEqual(draftDifferences(mine, mine), { onlyMine: [], onlyTheirs: [], changed: [] });
 });

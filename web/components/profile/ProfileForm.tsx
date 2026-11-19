@@ -58,7 +58,7 @@ export function ProfileForm({
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   // A save refused because another device saved the profile first: the edit, and the server's profile.
-  const [conflict, setConflict] = useState<{ patch: Partial<Profile>; next: Profile; current: Partial<Profile> } | null>(null);
+  const [conflict, setConflict] = useState<{ patch: Partial<Profile>; current: Partial<Profile> } | null>(null);
   const [hits, setHits] = useState<InstitutionHit[]>([]);
   const [listed, setListed] = useState<InstitutionHit | null>(null);
   const looked = useRef(false);
@@ -109,21 +109,27 @@ export function ProfileForm({
       mode === "basics"
         ? { schoolOrigin: next.schoolOrigin, schoolName, domesticTier, overseasBand: null, gpaScore: next.gpaScore, gpaScale: next.gpaScale, targetField: next.targetField, englishScore }
         : { ...next, overseasBand: null };
-    await save(patch, next, initial?.version ?? 1);
+    await save(patch, initial?.version ?? 1);
   }
 
   // `baseVersion` is the profile version the edit was made against. A refused save keeps the edit and
   // the server's profile, and `ConflictNotice` below offers the two ways out.
-  async function save(patch: Partial<Profile>, next: Profile, baseVersion: number) {
+  async function save(patch: Partial<Profile>, baseVersion: number) {
     setSaving(true);
     setSaveError(null);
     try {
+      // The reply is the whole profile as stored, with its new version.
       const saved = await patchProfile(patch, baseVersion);
       setConflict(null);
-      onSaved({ ...next, version: saved.version });
+      onSaved(toProfile(saved));
     } catch (error) {
-      if (error instanceof StaleVersionError) setConflict({ patch, next, current: error.current as Partial<Profile> });
-      else setSaveError("没有保存，请稍后再试。");
+      if (error instanceof StaleVersionError) {
+        const current = error.current as Partial<Profile>;
+        const { version: _version, ...fields } = patch;
+        // The server already holds every value this form sends: nothing to choose.
+        if (Object.keys(changedFields(fields, toProfile(current))).length === 0) onSaved(toProfile(current));
+        else setConflict({ patch, current });
+      } else setSaveError("没有保存，请稍后再试。");
     } finally {
       setSaving(false);
     }
@@ -288,11 +294,7 @@ export function ProfileForm({
         busy={saving}
         onKeepMine={() =>
           // Only what this form changed on the profile it was opened with; the rest stays the server's.
-          void save(
-            changedFields(conflict.patch, initial),
-            { ...toProfile(conflict.current), ...changedFields(conflict.next, initial) },
-            conflict.current.version ?? 1,
-          )
+          void save(changedFields(conflict.patch, initial), conflict.current.version ?? 1)
         }
         onTakeTheirs={() => onSaved(toProfile(conflict.current))}
       >

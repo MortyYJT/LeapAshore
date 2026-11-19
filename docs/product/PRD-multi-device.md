@@ -1,6 +1,6 @@
 # LeapAshore PRD: multi-device application tool
 
-Status: in the repository since 2026-11-20 (drafted 2026-11-19 with MortyYJT). Item 1, sign-in, has been live in production since 2026-11-19; item 3, sync conflict handling, is implemented (see [measurements](../measurements.md#sync-conflict-handling)). Each remaining large item gets an OpenSpec change, and work follows this repository's rules (branch, TDD, `make verify`, review, CI, deploy).
+Status: in the repository since 2026-11-20 (drafted 2026-11-19 with MortyYJT). Item 1, sign-in, has been live in production since 2026-11-19; item 3, sync conflict handling, is implemented (PR #94; see [measurements](../measurements.md#sync-conflict-handling-pr-94)). Each remaining large item gets an OpenSpec change, and work follows this repository's rules (branch, TDD, `make verify`, review, CI, deploy).
 
 ## 1. Why this iteration
 

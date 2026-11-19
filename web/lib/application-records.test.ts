@@ -92,18 +92,33 @@ test("a create carries its idempotency key, and a retry sends the same one", asy
   assert.equal(calls[0].headers["Idempotency-Key"], "key-12345678");
 });
 
-test("a replayed create restates the form on the record the first attempt made", async () => {
-  // The first attempt landed but its answer was lost; the applicant changed the round and saved again.
-  const first = { ...base, id: "new", round: "R1", version: "v1" };
-  const updated = { ...first, round: "R2", version: "v2" };
-  const { result, calls } = await withReplies([[200, first], [200, updated]], () =>
+test("a replayed create that matches the form is the record the first attempt made", async () => {
+  // The first attempt landed but its answer was lost; saving again must not create or change anything.
+  const first = { ...base, id: "new", school: "Example", name: "MSc", round: "R1", version: "v1" };
+  const { result, calls } = await withReplies([[200, first]], () =>
+    writeApplicationRecord(null, { school: "Example", name: "MSc", round: "R1", deadline: null, confirmDeadline: false }, { idempotencyKey: "key-12345678" }),
+  );
+  assert.deepEqual(result, { value: first });
+  assert.equal(calls.length, 1);
+});
+
+test("a replayed create that differs from the stored record is a conflict, not an overwrite", async () => {
+  // The record exists already and does not say what this form says: either the applicant changed the
+  // form between the two attempts, or another device edited the record after it was created. The two
+  // cannot be told apart here, so nothing is written and the applicant is shown the stored record.
+  const stored = { ...base, id: "new", school: "Example", name: "MSc", round: "R1", version: "v3" };
+  const { result, calls } = await withReplies([[200, stored]], () =>
     writeApplicationRecord(null, { school: "Example", name: "MSc", round: "R2" }, { idempotencyKey: "key-12345678" }),
   );
-  assert.deepEqual(result, { value: updated });
-  assert.equal(calls.length, 2, "no second record is created; the first is updated");
-  assert.equal(calls[1].method, "PATCH");
-  assert.equal(calls[1].url, "/api/application-records/new");
-  assert.deepEqual(calls[1].body, { school: "Example", name: "MSc", round: "R2", baseVersion: "v1" });
+  assert.equal(calls.length, 1, "the replay must not be followed by a write");
+  assert.ok("error" in result && result.error instanceof StaleVersionError);
+  assert.deepEqual((result.error as StaleVersionError<ApplicationRecord>).current, stored);
+
+  // A deadline confirmation the stored record does not carry is a difference too.
+  const unconfirmed = await withReplies([[200, stored]], () =>
+    writeApplicationRecord(null, { school: "Example", name: "MSc", round: "R1", confirmDeadline: true }, { idempotencyKey: "key-12345678" }),
+  );
+  assert.ok("error" in unconfirmed.result && unconfirmed.result.error instanceof StaleVersionError);
 });
 
 test("a stale update raises with the record the server holds", async () => {

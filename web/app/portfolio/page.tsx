@@ -13,6 +13,7 @@ import {
   baseOf,
   clearDraft,
   draftChanged,
+  draftDifferences,
   readDraft,
   readDraftBase,
   removeFromDraft,
@@ -173,9 +174,17 @@ function Portfolio() {
         // below are the choice: confirm again to save this draft over them, or discard it for theirs.
         const theirs = toPortfolioItems(error.current as ServedApplication[]);
         saved.set(theirs);
-        writeDraftBase(sessionStorage, baseOf(theirs));
-        setConflict(true);
-        setSaveError(`组合已在其他设备上修改，这次没有保存。${portfolioDifferences(draft, theirs)}`);
+        if (!draftChanged(draft, theirs)) {
+          // The server already holds exactly this draft (an earlier confirm landed): it is saved.
+          clearDraft(sessionStorage);
+          setDraft(theirs);
+          setConflict(false);
+          setSavedNote(`已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`);
+        } else {
+          writeDraftBase(sessionStorage, baseOf(theirs));
+          setConflict(true);
+          setSaveError(`组合已在其他设备上修改，这次没有保存。${portfolioDifferences(draft, theirs)}`);
+        }
       } else {
         setConflict(false);
         setSaveError(
@@ -441,14 +450,14 @@ function Portfolio() {
   );
 }
 
-/** What separates this draft from the portfolio the server holds, in the applicant's words. */
+/** What keeping this draft would do to the portfolio the server holds, in the applicant's words. */
 function portfolioDifferences(mine: PortfolioItem[], theirs: PortfolioItem[]): string {
-  const label = (row: PortfolioItem) => row.program?.nameEn ?? row.programSlug;
-  const onlyTheirs = theirs.filter((t) => !mine.some((m) => m.programSlug === t.programSlug)).map(label);
-  const onlyMine = mine.filter((m) => !theirs.some((t) => t.programSlug === m.programSlug)).map(label);
-  const parts = [
-    onlyTheirs.length ? `服务器上有、你的改动里没有：${onlyTheirs.join("、")}` : "",
-    onlyMine.length ? `你的改动里有、服务器上没有：${onlyMine.join("、")}` : "",
-  ].filter(Boolean);
-  return parts.length ? `${parts.join("；")}。` : "同一批项目的档位、状态或首选不同。";
+  const names = new Map([...theirs, ...mine].map((row) => [row.programSlug, row.program?.nameEn ?? row.programSlug]));
+  const list = (slugs: string[]) => slugs.map((slug) => names.get(slug)).join("、");
+  const { onlyMine, onlyTheirs, changed } = draftDifferences(mine, theirs);
+  return [
+    onlyTheirs.length ? `保留我的会移除服务器上的：${list(onlyTheirs)}。` : "",
+    onlyMine.length ? `会加入：${list(onlyMine)}。` : "",
+    changed.length ? `会把这些项目的档位、状态或首选改回你这里的：${list(changed)}。` : "",
+  ].join("");
 }

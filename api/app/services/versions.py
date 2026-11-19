@@ -18,7 +18,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
 STALE_CODE = "stale_version"
-STALE_DETAIL = "这条记录已在其他设备上更新，请确认后再保存。"
+STALE_DETAIL = "这条记录已在其他设备上修改。"
 
 
 class StaleVersion(Exception):

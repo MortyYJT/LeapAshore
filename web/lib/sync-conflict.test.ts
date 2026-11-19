@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { StaleVersionError, changedFields, resolveStaleField, staleOf } from "./sync-conflict.ts";
+import { StaleVersionError, changedFields, newIdempotencyKey, resolveStaleField, staleOf } from "./sync-conflict.ts";
 
 const json = (body: unknown, status: number) =>
   new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
@@ -48,4 +48,18 @@ test("keeping a form's edit keeps only the fields the applicant changed", () => 
   });
   // With no record to compare against (a new one), the whole form is the edit.
   assert.deepEqual(changedFields(form, null), form);
+});
+
+test("an idempotency key is unique, fits the header's pattern and needs no secure context", () => {
+  const keys = new Set(Array.from({ length: 50 }, newIdempotencyKey));
+  assert.equal(keys.size, 50);
+  for (const key of keys) assert.match(key, /^[A-Za-z0-9_-]{8,64}$/);
+  // `crypto.randomUUID` does not exist on a page served over plain http from a LAN address.
+  const original = Object.getOwnPropertyDescriptor(globalThis.crypto, "randomUUID") ?? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(globalThis.crypto), "randomUUID");
+  Object.defineProperty(globalThis.crypto, "randomUUID", { value: undefined, configurable: true });
+  try {
+    assert.match(newIdempotencyKey(), /^[A-Za-z0-9_-]{8,64}$/);
+  } finally {
+    if (original) Object.defineProperty(globalThis.crypto, "randomUUID", original);
+  }
 });

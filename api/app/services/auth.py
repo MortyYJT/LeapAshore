@@ -195,6 +195,10 @@ def login_account(session: Session, email: str, anonymous_client_id: str | None)
         account = _find_account(session, email)
     merged = {}
     if claimable and anonymous_client_id != account.client_id:
+        # The account's own subject is held as well, so a save from another device of this account
+        # waits for the merge instead of comparing its base version against rows the merge is moving.
+        # Always after the anonymous subject's lock above, and no other path takes two.
+        lock_client(session, account.client_id)
         merged = merge_subject(session, anonymous_client_id, account.client_id)
     account.last_login_at = now()
     return account, created, merged

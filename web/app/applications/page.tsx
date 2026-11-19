@@ -5,6 +5,7 @@ import { RequireAccount } from "@/components/auth/AuthProvider";
 import { ConflictNotice, LoadingPanel, Notice } from "@/components/ui";
 import { useResource } from "@/lib/hooks/useResource";
 import {
+  differsFromForm,
   loadApplicationRecords,
   writeApplicationRecord,
   RECORD_STATUSES,
@@ -248,7 +249,7 @@ function ApplicationForm({
   // One key per form: saving a new application again after a failure must not create a second one.
   const createKey = useRef(newIdempotencyKey());
   // A save refused because the record changed on another device: this form's edit and the server's record.
-  const [conflict, setConflict] = useState<{ payload: Record<string, unknown>; current: ApplicationRecord } | null>(null);
+  const [conflict, setConflict] = useState<{ payload: Record<string, unknown>; current: ApplicationRecord; message: string } | null>(null);
   async function save(payload: Record<string, unknown>, target: ApplicationRecord | null) {
     setBusy(true);
     setError("");
@@ -260,8 +261,13 @@ function ApplicationForm({
       );
       onSaved();
     } catch (e) {
-      if (e instanceof StaleVersionError) setConflict({ payload, current: e.current as ApplicationRecord });
-      else setError(e instanceof Error ? e.message : "保存失败");
+      if (e instanceof StaleVersionError) {
+        const current = e.current as ApplicationRecord;
+        // The server already holds everything this form says (an earlier attempt landed, or the other
+        // device made the same edit): there is nothing to choose, and the save is done.
+        if (!differsFromForm(current, payload)) onSaved();
+        else setConflict({ payload, current, message: e.message });
+      } else setError(e instanceof Error ? e.message : "保存失败");
     } finally {
       setBusy(false);
     }
@@ -414,7 +420,7 @@ function ApplicationForm({
             onKeepMine={() => void save(editOf(conflict.payload), conflict.current)}
             onTakeTheirs={onSaved}
           >
-            这条申请已在其他设备上修改，这次没有保存。保留我的修改只写入你在这里改过的内容。
+            {conflict.message}这次没有保存。保留我的修改只写入你在这里改过的内容。
             {serverDifferences(conflict.payload, conflict.current)}
           </ConflictNotice>
         )}

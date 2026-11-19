@@ -1,5 +1,5 @@
 import { beijingToday } from "./deadlines.ts";
-import { staleOf } from "./sync-conflict.ts";
+import { StaleVersionError, changedFields, staleOf } from "./sync-conflict.ts";
 export interface ApplicationRecord {
   id: string;
   programId: string | null;
@@ -59,8 +59,10 @@ export async function loadApplicationRecords(): Promise<ApplicationRecord[]> {
  *
  * - A create sends `options.idempotencyKey`, made once per form with `newIdempotencyKey` and reused
  *   when the applicant saves again. If an earlier attempt already created the record, the server
- *   answers 200 with it instead of creating a second one, and the form is then restated on that
- *   record as an ordinary update, so an edit made between the two attempts is saved.
+ *   answers 200 with it instead of creating a second one. When that record says what the form says,
+ *   it is the result. When it does not, either the form was changed between the attempts or another
+ *   device edited the record since; nothing is written and a `StaleVersionError` carries the stored
+ *   record, so the applicant chooses as for any other conflict.
  * - An update carries `baseVersion` in the payload, and a removal in `options.baseVersion`.
  * - A stale update or removal throws `StaleVersionError` with the record as the server holds it.
  */
@@ -95,8 +97,14 @@ export async function writeApplicationRecord(
   }
   if (response.status === 204) return null;
   const record = (await response.json()) as ApplicationRecord;
-  if (!id && response.status === 200) {
-    return writeApplicationRecord(record.id, { ...payload, baseVersion: record.version });
+  if (!id && response.status === 200 && differsFromForm(record, payload as Record<string, unknown>)) {
+    throw new StaleVersionError(record, "这条申请已经保存过，服务器上的内容和这里填写的不同。");
   }
   return record;
+}
+
+/** Whether a stored record says something else than the form that was submitted for it. */
+export function differsFromForm(record: ApplicationRecord, form: Record<string, unknown>): boolean {
+  const { confirmDeadline, ...fields } = form;
+  return Object.keys(changedFields(fields, record)).length > 0 || (confirmDeadline === true && !record.checkedAt);
 }

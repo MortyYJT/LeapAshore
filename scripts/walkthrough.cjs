@@ -434,7 +434,7 @@ async function adminPass(browser, email, errors) {
     check("同步冲突：另一台设备的修改已保存", elsewhere === 200, elsewhere);
     await applicationForm.getByLabel("申请轮次",{exact:true}).fill("第三轮");
     await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
-    await applicationForm.getByText("这条申请已在其他设备上修改").waitFor({ timeout: 15000 });
+    await applicationForm.getByText("已在其他设备上修改").waitFor({ timeout: 15000 });
     check("同步冲突：过期的保存被拒绝，并显示服务器上的内容", (await applicationForm.getByText(/服务器上的内容：.*备注：另一台设备写的备注/).count()) === 1);
     const refused = await demoRecord();
     check("同步冲突：被拒绝的保存没有写入", refused.round === "第二轮" && refused.materialNotes === "另一台设备写的备注", refused);

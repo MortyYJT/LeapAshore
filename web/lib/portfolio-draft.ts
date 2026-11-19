@@ -80,6 +80,30 @@ function signature(rows: PortfolioItem[]): string {
   );
 }
 
+function rowSignature(row: PortfolioItem): string {
+  return JSON.stringify([row.tier, row.status ?? "considering", row.isPrimary ?? false, row.needsReview ?? false]);
+}
+
+/**
+ * What confirming `mine` would do to the portfolio `theirs`, as program slugs: add (`onlyMine`),
+ * remove (`onlyTheirs`), or put a row both hold back to what the draft says (`changed`). Shown after
+ * a refused confirm, so keeping the draft is a choice made knowing all three.
+ */
+export function draftDifferences(
+  mine: PortfolioItem[],
+  theirs: PortfolioItem[],
+): { onlyMine: string[]; onlyTheirs: string[]; changed: string[] } {
+  const stored = new Map(theirs.map((row) => [row.programSlug, row]));
+  const drafted = new Set(mine.map((row) => row.programSlug));
+  return {
+    onlyMine: mine.filter((row) => !stored.has(row.programSlug)).map((row) => row.programSlug),
+    onlyTheirs: theirs.filter((row) => !drafted.has(row.programSlug)).map((row) => row.programSlug),
+    changed: mine
+      .filter((row) => stored.has(row.programSlug) && rowSignature(stored.get(row.programSlug)!) !== rowSignature(row))
+      .map((row) => row.programSlug),
+  };
+}
+
 /** Whether confirming the draft would change the saved portfolio. Row order is not a change. */
 export function draftChanged(draft: PortfolioItem[], saved: PortfolioItem[]): boolean {
   return signature(draft) !== signature(saved);
@@ -115,7 +139,10 @@ export function readDraft(storage: Storage): PortfolioItem[] | null {
  * base would overwrite the other device's change without either side being told.
  */
 export function writeDraft(storage: Storage, draft: PortfolioItem[], saved?: PortfolioItem[] | null): void {
-  if (saved && storage.getItem(DRAFT_BASE_KEY) === null) writeDraftBase(storage, baseOf(saved));
+  // A page whose read of the portfolio failed starts its draft from nothing, and says so: an empty
+  // base is refused by the server when a portfolio does exist, where a base taken later from a fresh
+  // read would let the draft replace it unseen.
+  if (storage.getItem(DRAFT_BASE_KEY) === null) writeDraftBase(storage, baseOf(saved ?? []));
   storage.setItem(DRAFT_KEY, JSON.stringify(draft));
 }
 

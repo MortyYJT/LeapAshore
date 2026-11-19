@@ -18,7 +18,7 @@ export const STALE_CODE = "stale_version";
 export class StaleVersionError<T = unknown> extends Error {
   readonly current: T;
 
-  constructor(current: T, message = "这条记录已在其他设备上更新。") {
+  constructor(current: T, message = "这条记录已在其他设备上修改。") {
     super(message);
     this.name = "StaleVersionError";
     this.current = current;
@@ -61,9 +61,15 @@ export function resolveStaleField<V>(base: V, mine: V, theirs: V): "adopt" | "re
   return "ask";
 }
 
-/** A key for one intended create. The same key is sent again when that create is retried. */
+/**
+ * A key for one intended create. The same key is sent again when that create is retried.
+ *
+ * 128 random bits as hex. `crypto.getRandomValues` rather than `crypto.randomUUID`, which browsers
+ * only provide on https and localhost: the app is also opened over plain http from a LAN address.
+ */
 export function newIdempotencyKey(): string {
-  return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 /** An untouched input reads as "", null or undefined depending on where it came from; all three are empty. */

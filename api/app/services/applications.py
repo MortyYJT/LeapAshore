@@ -471,9 +471,11 @@ def replace_applications(session: Session, client_id: str, rows: Sequence[Any]) 
     _reject_a_second_primary(rows, program_ids)
     _reject_unknown_programs(session, program_ids)
 
-    # One portfolio writer per subject at a time. The route compares the caller's base rows with the
-    # stored ones before it calls this, and the advisor's confirmed change calls this directly; with
-    # the subject's row held by both, neither can write between the other's read and its commit.
+    # One portfolio writer per subject at a time. The route takes the subject's row, compares the
+    # caller's base rows with the stored ones and then calls this, so nothing is written between its
+    # comparison and its commit. The advisor's confirmed change (`app/agent/tools.py`) calls this
+    # directly with rows it read a moment earlier in another session: its write waits its turn here,
+    # but it states no base, so a change committed between its read and this lock is replaced.
     # `FOR NO KEY UPDATE`, not `FOR UPDATE`: it excludes the other writers that take this lock, but
     # not an insert that only needs the foreign key to `clients`, so a writer that does not go
     # through here is still met by the constraint and the retry below rather than left waiting.
