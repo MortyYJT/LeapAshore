@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { SampleTimeline } from "@/components/home/SampleTimeline";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { drawnDeadlines, Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
-import { LoadingPanel, Notice } from "@/components/ui";
+import { LoadingPanel, Notice, TaskProgress } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { useProfile } from "@/lib/hooks/useProfile";
@@ -79,17 +79,15 @@ function Roadmap() {
   const profile = useProfile();
   const portfolio = usePortfolio();
   const roadmap = useRoadmap(profile.data);
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selection, setSelected] = useState<string | null>(null);
   const today = useMemo(() => new Date(), []);
-  const drawn = useRef(false);
 
   const model = useMemo(() => (roadmap.roadmap ? timelineOf(roadmap.roadmap, today) : null), [roadmap.roadmap, today]);
+  const defaultPhase = model?.current?.id ?? model?.phases[0]?.id ?? null;
+  const selected = model?.phases.some((phase) => phase.id === selection) ? selection : defaultPhase;
   useEffect(() => {
-    if (model && selected === null) setSelected(model.current?.id ?? model.phases[0]?.id ?? null);
-  }, [model, selected]);
-  useEffect(() => {
-    if (model) drawn.current = true;
-  });
+    if (selected !== selection) setSelected(selected);
+  }, [selected, selection]);
 
   // The row's own date wins; otherwise the program's next collected deadline; a past one is 已截止
   // (openspec requirement-dates D3, D4). Decided at render time, so nothing stored can go stale.
@@ -136,7 +134,7 @@ function Roadmap() {
           </section>
           {undatedPhase && (
             <div className="section">
-              <PhaseTasks key={undatedPhase.id} phase={undatedPhase} roadmap={roadmap} />
+              <PhaseTasks phase={undatedPhase} roadmap={roadmap} />
             </div>
           )}
         </div>
@@ -150,13 +148,13 @@ function Roadmap() {
               <Legend overdue={model.phases.some((p) => p.overdue)} recorded={drawnDeadlines(deadlines).length > 0} />
             </div>
             <div style={{ padding: "20px 24px 12px" }}>
-              <Timeline model={model} today={today} deadlines={deadlines} selected={selected} onSelect={setSelected} animate={!drawn.current} />
+              <Timeline model={model} today={today} deadlines={deadlines} selected={selected} onSelect={setSelected} />
             </div>
           </section>
 
           {phase && (
             <div className="grid grid-8-4 section">
-              <PhaseTasks key={phase.id} phase={phase} roadmap={roadmap} />
+              <PhaseTasks phase={phase} roadmap={roadmap} />
               <aside className="grid" style={{ gap: 16 }}>
                 <section className="panel panel-pad" aria-labelledby="dates-h">
                   <h2 id="dates-h" style={{ marginBottom: 12 }}>这一阶段的日期</h2>
@@ -248,20 +246,21 @@ function Legend({ overdue, recorded }: { overdue: boolean; recorded: boolean }) 
 }
 
 function PhaseTasks({ phase, roadmap }: { phase: TimelinePhase; roadmap: ReturnType<typeof useRoadmap> }) {
-  const [uploads, setUploads] = useState<Record<string, string>>({});
+  const [uploads, setUploads] = useState<Record<string, { busy: boolean; message: string }>>({});
   async function upload(materialKey: string, file: File | undefined) {
     if (!file) return;
     const taskId = roadmap.taskIdFor(materialKey);
-    setUploads((u) => ({ ...u, [materialKey]: `正在上传 ${file.name}…` }));
+    if (!taskId || uploads[materialKey]?.busy) return;
+    setUploads((u) => ({ ...u, [materialKey]: { busy: true, message: `正在上传 ${file.name}…` } }));
     try {
       await uploadMaterial(file, { title: file.name, taskId });
-      setUploads((u) => ({ ...u, [materialKey]: `已上传 ${file.name}，在「我的背景」的材料库里可以下载、归档和送审。` }));
+      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `已上传 ${file.name}，在「我的背景」的材料库里可以下载、归档和送审。` } }));
     } catch (error: unknown) {
-      setUploads((u) => ({ ...u, [materialKey]: `上传失败：${error instanceof Error ? error.message : "未知错误"}` }));
+      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `上传失败：${error instanceof Error ? error.message : "未知错误"}` } }));
     }
   }
   return (
-    <section className="panel swap" aria-labelledby="ph-h">
+    <section className="panel" aria-labelledby="ph-h">
       <div className="panel-head">
         <div>
           <h2 id="ph-h">
@@ -272,50 +271,63 @@ function PhaseTasks({ phase, roadmap }: { phase: TimelinePhase; roadmap: ReturnT
             {phase.detail ? `${phase.detail} ` : ""}清单是系统建议的步骤，标了「依据」的才对应官方要求。
           </p>
         </div>
-        <span className="num muted">
+        <span className="num muted" aria-live="polite">
           {phase.done}/{phase.total} 项完成
         </span>
       </div>
-      {phase.phase.tasks.length === 0 && <div className="task"><span /><span className="muted">这一阶段对你的背景没有要做的步骤。</span><span /></div>}
-      {phase.phase.tasks.map((t) => {
-        const failed = roadmap.failedTicks.has(t.materialId);
-        // A tick needs the server's row for this step. On a first visit the rows are written and read
-        // back first, so the box waits rather than taking a click that could not be saved.
-        const ready = roadmap.taskIdFor(t.materialId) !== null;
-        return (
-          <div className={`task${t.done ? " done" : ""}`} key={t.materialId}>
-            <input
-              type="checkbox"
-              id={`t-${t.materialId}`}
-              checked={t.done}
-              disabled={!ready}
-              title={ready ? undefined : "正在准备，稍等一下就能勾选"}
-              onChange={(e) => void roadmap.tick(t.materialId, e.target.checked)}
-            />
-            <div>
-              <label className="t" htmlFor={`t-${t.materialId}`}>
-                {t.label}
+      <TaskProgress done={phase.done} total={phase.total} label={phase.title} />
+      <div className="motion-content" key={phase.id}>
+        {phase.phase.tasks.length === 0 && <div className="task"><span /><span className="muted">这一阶段对你的背景没有要做的步骤。</span><span /></div>}
+        {phase.phase.tasks.map((t) => {
+          const failed = roadmap.failedTicks.has(t.materialId);
+          // A tick needs the server's row for this step. On a first visit the rows are written and read
+          // back first, so the box waits rather than taking a click that could not be saved.
+          const ready = roadmap.taskIdFor(t.materialId) !== null;
+          const uploadState = uploads[t.materialId];
+          return (
+            <div className={`task${t.done ? " done" : ""}`} key={t.materialId}>
+              <input
+                type="checkbox"
+                id={`t-${t.materialId}`}
+                checked={t.done}
+                disabled={!ready}
+                title={ready ? undefined : "正在准备，稍等一下就能勾选"}
+                onChange={(e) => void roadmap.tick(t.materialId, e.target.checked)}
+              />
+              <div>
+                <label className="t" htmlFor={`t-${t.materialId}`}>
+                  {t.label}
+                </label>
+                {t.detail && <div className="d">{t.detail}</div>}
+                {t.source && (
+                  <div className="d">
+                    依据：
+                    <a className="link" href={t.source.url} target="_blank" rel="noreferrer">
+                      {t.source.title}
+                    </a>
+                    {verifiedMark(t.source.status) && <> · {verifiedMark(t.source.status)}</>}
+                  </div>
+                )}
+                {failed && <div className="d negative" role="alert">这次勾选没有保存，已恢复原状。</div>}
+                {uploadState && <div className="d" role="status">{uploadState.message}</div>}
+              </div>
+              <label className="btn btn-secondary btn-small" aria-disabled={!ready || uploadState?.busy} aria-busy={uploadState?.busy}>
+                上传
+                <input
+                  type="file"
+                  className="sr-only"
+                  disabled={!ready || uploadState?.busy}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    e.target.value = "";
+                    void upload(t.materialId, file);
+                  }}
+                />
               </label>
-              {t.detail && <div className="d">{t.detail}</div>}
-              {t.source && (
-                <div className="d">
-                  依据：
-                  <a className="link" href={t.source.url} target="_blank" rel="noreferrer">
-                    {t.source.title}
-                  </a>
-                  {verifiedMark(t.source.status) && <> · {verifiedMark(t.source.status)}</>}
-                </div>
-              )}
-              {failed && <div className="d negative" role="alert">这次勾选没有保存，已恢复原状。</div>}
-              {uploads[t.materialId] && <div className="d" role="status">{uploads[t.materialId]}</div>}
             </div>
-            <label className="btn btn-secondary btn-small" aria-disabled={!ready}>
-              上传
-              <input type="file" className="sr-only" disabled={!ready} onChange={(e) => void upload(t.materialId, e.target.files?.[0])} />
-            </label>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </section>
   );
 }

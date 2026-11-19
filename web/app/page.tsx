@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { RequireAccount } from "@/components/auth/AuthProvider";
-import { LoadingPanel, Notice } from "@/components/ui";
+import { LoadingPanel, Notice, TaskProgress } from "@/components/ui";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { useResource } from "@/lib/hooks/useResource";
@@ -33,6 +33,10 @@ function Workspace() {
     : null;
   const attention = attentionRecords(records.data ?? []);
   const tasks = model?.current?.phase.tasks ?? [];
+  const totals = model?.phases.reduce(
+    (sum, phase) => ({ done: sum.done + phase.done, total: sum.total + phase.total }),
+    { done: 0, total: 0 },
+  );
   return (
     <>
       {records.loading && !records.data ? (
@@ -82,8 +86,16 @@ function Workspace() {
           <section className="section">
             <div className="dashboard-tasks-heading">
               <h2>接下来要做</h2>
-              <Link href="/roadmap">全部任务 →</Link>
+              <div className="toolbar">
+                {!!totals?.total && <span className="num muted" aria-live="polite">{totals.done}/{totals.total} 项完成</span>}
+                <Link href="/roadmap">全部任务 →</Link>
+              </div>
             </div>
+            {!!totals?.total && (
+              <div className="dashboard-task-progress">
+                <TaskProgress {...totals} label="路线图完成进度" />
+              </div>
+            )}
             {tasks.length ? (
               <div className="dashboard-tasks">
                 {tasks.slice(0, 4).map((task) => (

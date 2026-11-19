@@ -4,6 +4,7 @@ import { AuthProvider } from "@/components/auth/AuthProvider";
 import { Shell } from "@/components/shell/Shell";
 
 import "./globals.css";
+import "./motion.css";
 
 export const metadata: Metadata = {
   title: "鱼跃彼岸 · 硕士申请规划",

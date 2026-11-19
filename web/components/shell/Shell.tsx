@@ -1,7 +1,8 @@
 "use client";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
+import type {} from "react/canary";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, ViewTransition, type ReactNode } from "react";
 import { Mark } from "./Mark";
 import { UserCenter } from "./UserCenter";
 
@@ -45,9 +46,12 @@ export function Shell({ children }: { children: ReactNode }) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [sidebarInteracted, setSidebarInteracted] = useState(false);
   const [query, setQuery] = useState("");
   const search = useRef<HTMLDialogElement>(null);
+  const sidebarToggle = useRef<HTMLButtonElement>(null);
   useEffect(() => setOpen(false), [pathname]);
+
   useEffect(() => {
     try {
       setCollapsed(
@@ -61,15 +65,20 @@ export function Shell({ children }: { children: ReactNode }) {
       }
       if (
         event.key === "Escape" &&
-        !document.getElementById("user-menu") &&
+        !document.querySelector('#user-menu[data-open="true"]') &&
         !document.querySelector("dialog[open]")
-      )
-        setOpen(false);
+      ) {
+        if (sidebarToggle.current?.getAttribute("aria-expanded") === "true") {
+          sidebarToggle.current.focus();
+          setOpen(false);
+        }
+      }
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
   }, []);
   function toggleSidebar() {
+    setSidebarInteracted(true);
     setCollapsed((previous) => {
       const next = !previous;
       try {
@@ -78,14 +87,22 @@ export function Shell({ children }: { children: ReactNode }) {
       return next;
     });
   }
+  function closeMobileSidebar() {
+    sidebarToggle.current?.focus();
+    setOpen(false);
+  }
   function closeSearch() {
     search.current?.close();
     setOpen(false);
   }
   return (
-    <div className={`workspace-layout${collapsed ? " sidebar-collapsed" : ""}`}>
+    <div
+      className={`workspace-layout${collapsed ? " sidebar-collapsed" : ""}`}
+      data-sidebar-interacted={sidebarInteracted || undefined}
+    >
       <button
         className="icon-button mobile-sidebar-toggle"
+        ref={sidebarToggle}
         aria-label="打开导航"
         aria-expanded={open}
         aria-controls="workspace-nav"
@@ -140,7 +157,7 @@ export function Shell({ children }: { children: ReactNode }) {
             <button
               className="icon-button mobile-sidebar-close"
               aria-label="收起导航"
-              onClick={() => setOpen(false)}
+              onClick={closeMobileSidebar}
             >
               <Icon path="m6 6 12 12M6 18 18 6" />
             </button>
@@ -163,9 +180,19 @@ export function Shell({ children }: { children: ReactNode }) {
                 title={label}
                 aria-label={label}
                 aria-current={current ? "page" : undefined}
+                onNavigate={() => {
+                  // Release an in-flight fade when the user chooses another route.
+                  for (const animation of document.getAnimations()) {
+                    if (animation instanceof CSSAnimation && ["route-in", "route-out"].includes(animation.animationName)) {
+                      animation.finish();
+                    }
+                  }
+                  if (open) closeMobileSidebar();
+                }}
               >
                 <Icon path={path} />
                 <span className="sidebar-text">{label}</span>
+                <NavigationStatus />
               </Link>
             );
           })}
@@ -174,14 +201,16 @@ export function Shell({ children }: { children: ReactNode }) {
           <UserCenter />
         </div>
       </aside>
-      {open && (
-        <button
-          className="sidebar-backdrop"
-          aria-label="关闭导航"
-          onClick={() => setOpen(false)}
-        />
-      )}
-      <div className="workspace-content">{children}</div>
+      <button
+        className="sidebar-backdrop"
+        aria-label="关闭导航"
+        data-open={open}
+        inert={!open}
+        onClick={closeMobileSidebar}
+      />
+      <ViewTransition default="none" update="workspace-route">
+        <div className="workspace-content">{children}</div>
+      </ViewTransition>
       <dialog
         className="dialog workspace-search-dialog"
         ref={search}
@@ -243,4 +272,9 @@ export function Shell({ children }: { children: ReactNode }) {
       </dialog>
     </div>
   );
+}
+
+function NavigationStatus() {
+  const { pending } = useLinkStatus();
+  return <span className="sidebar-navigation-pending" data-pending={pending || undefined} aria-hidden="true" />;
 }

@@ -47,9 +47,10 @@ export function advisorRefusal(status: number, body: unknown): { outcome: Exclud
   return { outcome: "failed", message: `顾问服务不可用（HTTP ${status}）` };
 }
 
-async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void): Promise<StreamOutcome> {
+async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void, signal?: AbortSignal): Promise<StreamOutcome> {
   const response = await fetch(path, {
     method: "POST",
+    signal,
     credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
@@ -78,8 +79,8 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
   return "ok";
 }
 
-export function sendAdvisorMessage(conversationId: string, message: string, onEvent: (e: AdvisorEvent) => void) {
-  return stream("/api/advisor/chat", { conversationId, message }, onEvent);
+export function sendAdvisorMessage(conversationId: string, message: string, onEvent: (e: AdvisorEvent) => void, signal?: AbortSignal) {
+  return stream("/api/advisor/chat", { conversationId, message }, onEvent, signal);
 }
 
 /**

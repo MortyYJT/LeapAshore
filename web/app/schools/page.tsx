@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SchoolFilters } from "./SchoolFilters";
+
 import { SchoolMark } from "@/components/ui";
 import { universityIdsFor, type UniversityRow } from "@/lib/catalog";
 import { overseasInstitutions } from "@/lib/catalog-server";
@@ -51,20 +53,21 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
           </p>
         </div>
       </div>
-      <section className="panel section" aria-label="学校列表">
-        <form className="panel-head" action="/schools" style={{ padding: "12px 24px" }}>
-          <div className="toolbar" style={{ flex: 1 }}>
+      <SchoolFilters
+        count={list.length}
+        controls={
+          <>
             <label className="sr-only" htmlFor="q">搜索学校</label>
-            <input className="input" id="q" name="q" type="search" placeholder="搜索中文或英文校名" defaultValue={query.q ?? ""} style={{ maxWidth: 280 }} />
+            <input className="input" id="q" key={query.q ?? ""} name="q" type="search" placeholder="搜索中文或英文校名" defaultValue={query.q ?? ""} style={{ maxWidth: 280 }} />
             <label className="sr-only" htmlFor="region">地区</label>
-            <select className="select" id="region" name="region" defaultValue={query.region ?? ""} style={{ width: 140 }}>
+            <select className="select" id="region" key={query.region ?? ""} name="region" defaultValue={query.region ?? ""} style={{ width: 140 }}>
               <option value="">全部地区</option>
               {schoolRegions.map((r) => (
                 <option key={r}>{r}</option>
               ))}
             </select>
             <label className="sr-only" htmlFor="qs">QS 名次</label>
-            <select className="select" id="qs" name="qs" defaultValue={[...qs][0] ?? ""} style={{ width: 150 }}>
+            <select className="select" id="qs" key={query.qs ?? ""} name="qs" defaultValue={[...qs][0] ?? ""} style={{ width: 150 }}>
               <option value="">QS 名次不限</option>
               {schoolQsRanges.map(([key, label]) => (
                 <option key={key} value={key}>
@@ -72,17 +75,14 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
                 </option>
               ))}
             </select>
-            <button className="btn btn-secondary" type="submit">
-              筛选
-            </button>
             {(query.q || query.region || query.qs) && (
               <Link className="btn btn-text" href="/schools">
                 清空
               </Link>
             )}
-          </div>
-          <span className="muted num">{list.length} 所</span>
-        </form>
+          </>
+        }
+      >
         <table className="stack">
           <thead>
             <tr>
@@ -138,7 +138,7 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
             {page.page < page.pages && <Link className="btn btn-secondary btn-small" href={schoolListHref(query, { page: String(page.page + 1) })}>下一页</Link>}
           </span>
         </div>
-      </section>
+      </SchoolFilters>
     </main>
   );
 }

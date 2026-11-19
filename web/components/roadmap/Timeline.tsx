@@ -23,8 +23,6 @@ interface Props {
   deadlines: DeadlineMark[];
   selected: string | null;
   onSelect: (phaseId: string) => void;
-  /** Draw the entrance once, on the first render of the page. */
-  animate: boolean;
   /**
    * The deadlines row and the 未收录 lane, on by default. The home page's sample has no portfolio, so it
    * turns them off rather than show a row of zeros and an empty lane.
@@ -89,8 +87,6 @@ export function Timeline(props: Props) {
     };
   }, []);
 
-  // The wide layout stays first so that, once measured, React keeps the same node and the entrance
-  // animation the server's HTML started is not restarted.
   return (
     <div ref={host} style={{ minHeight: 120 }}>
       {(!box || !box.phone) && (
@@ -112,7 +108,8 @@ function phaseLabel(p: TimelinePhase): string {
   return `${p.title}，${start}${p.done}/${p.total} 项完成${p.overdue ? "，已过建议时间" : ""}${p.current ? "，当前阶段" : ""}`;
 }
 
-function Horizontal({ model, today, deadlines, selected, onSelect, animate, showDeadlines = true, width: W }: Props & { width: number }) {
+function Horizontal({ model, today, deadlines, selected, onSelect, showDeadlines = true, width: W }: Props & { width: number }) {
+  const selectedIndex = model.phases.findIndex((p) => p.id === selected);
   const compact = W < 760;
   const LABEL = compact ? 136 : 196, LANE = showDeadlines ? (compact ? 84 : 104) : 0, TOP = 58, PITCH = 44, BAR = 22;
   const x0 = LABEL + 8, x1 = W - LANE - 16;
@@ -141,7 +138,7 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, show
   const tx = xs(today);
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className={`timeline-svg${animate ? " tl-animate" : ""}`} role="group" aria-label="申请路线图时间轴">
+    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className="timeline-svg" role="group" aria-label="申请路线图时间轴">
       {showDeadlines && (
         <>
           <rect x={W - LANE} y={TOP - 8} width={LANE} height={H - TOP + 8} rx={14} fill={C.lane} />
@@ -158,6 +155,9 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, show
           )}
         </g>
       ))}
+      <rect className="phase-highlight" aria-hidden="true" x={0} y={0} width={LABEL - 4} height={PITCH - 4} rx={10}
+        fill={C.active} opacity={selectedIndex < 0 ? 0 : 1}
+        style={{ transform: `translateY(${TOP + selectedIndex * PITCH - 2}px)` }} />
       {model.phases.map((p, i) => {
         const y = TOP + i * PITCH;
         const bx = p.start ? xs(utc(p.start)) : x0;
@@ -168,14 +168,13 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, show
         return (
           <g key={p.id} className="phase-hit" tabIndex={0} role="button" aria-pressed={isSelected} aria-label={phaseLabel(p)} onClick={select} onKeyDown={(e) => onKey(e, select)}>
             <rect className="hit-bg" x={0} y={y - 2} width={W - LANE - 4} height={PITCH - 4} rx={6} fill="transparent" />
-            {isSelected && <rect x={0} y={y - 2} width={LABEL - 4} height={PITCH - 4} rx={10} fill={C.active} />}
             <text x={10} y={y + 15} fontSize={14} fontWeight={500} fill={C.ink}>{p.title}</text>
             <text x={10} y={y + 32} fontSize={12} fill={C.muted}>{p.start ? `建议 ${md(utc(p.start))} 起` : "未排日期"}</text>
-            <rect className="tl-bar" style={{ ["--i" as string]: i }} x={bx} y={y + (PITCH - 4 - BAR) / 2} width={bw} height={BAR} rx={bw < 40 ? 5 : 11} fill={fill} />
+            <rect className="tl-bar" x={bx} y={y + (PITCH - 4 - BAR) / 2} width={bw} height={BAR} rx={bw < 40 ? 5 : 11} fill={fill} />
             {/* The suggested start is dashed: the system made it up. */}
             <line x1={bx} x2={bx} y1={y - 1} y2={y + PITCH - 5} stroke={C.muted} strokeWidth={1.25} strokeDasharray="3 3" />
             {bw > 40 && (
-              <text className="tl-fade num" style={{ ["--i" as string]: i }} x={bx + 10} y={y + (PITCH - 4) / 2 + 4} fontSize={12} fill={p.current ? "#ffffff" : C.ink}>
+              <text className="num" x={bx + 10} y={y + (PITCH - 4) / 2 + 4} fontSize={12} fill={p.current ? "#ffffff" : C.ink}>
                 {p.done}/{p.total}
               </text>
             )}
@@ -215,8 +214,9 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, show
 }
 
 /** Below 640px: time runs down, one row per phase, so labels keep 14px instead of shrinking. */
-function Vertical({ model, today, deadlines, selected, onSelect, animate, showDeadlines = true, width: W }: Props & { width: number }) {
+function Vertical({ model, today, deadlines, selected, onSelect, showDeadlines = true, width: W }: Props & { width: number }) {
   const ROW = 64, TRACK_X = 18, TOP = 8;
+  const selectedIndex = model.phases.findIndex((p) => p.id === selected);
   const todayIso = today.toISOString().slice(0, 10);
   const rows = model.phases.length;
   const H = TOP + rows * ROW + (showDeadlines ? 64 : 8);
@@ -234,16 +234,19 @@ function Vertical({ model, today, deadlines, selected, onSelect, animate, showDe
   if (todayY === null && model.dated && model.phases[0]?.start && todayIso < model.phases[0].start) todayY = TOP;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className={`timeline-svg${animate ? " tl-animate" : ""}`} role="group" aria-label="申请路线图时间轴">
+    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} className="timeline-svg" role="group" aria-label="申请路线图时间轴">
       <line x1={TRACK_X} x2={TRACK_X} y1={TOP} y2={TOP + rows * ROW} stroke={C.track} strokeWidth={6} strokeLinecap="round" />
+      <rect className="phase-highlight" aria-hidden="true" x={0} y={0} width={W} height={ROW - 4} rx={10}
+        fill={C.active} opacity={selectedIndex < 0 ? 0 : 1}
+        style={{ transform: `translateY(${TOP + selectedIndex * ROW + 2}px)` }} />
       {model.phases.map((p, i) => {
         const y = TOP + i * ROW;
         const isSelected = p.id === selected;
         const select = () => onSelect(p.id);
         return (
           <g key={p.id} className="phase-hit" tabIndex={0} role="button" aria-pressed={isSelected} aria-label={phaseLabel(p)} onClick={select} onKeyDown={(e) => onKey(e, select)}>
-            <rect className="hit-bg" x={0} y={y + 2} width={W} height={ROW - 4} rx={10} fill={isSelected ? C.active : "transparent"} />
-            <rect className="tl-bar" style={{ ["--i" as string]: i }} x={TRACK_X - 3} y={y + 6} width={6} height={ROW - 12} rx={3} fill={p.current ? C.primary : p.complete ? C.done : C.track} />
+            <rect className="hit-bg" x={0} y={y + 2} width={W} height={ROW - 4} rx={10} fill="transparent" />
+            <rect className="tl-bar" x={TRACK_X - 3} y={y + 6} width={6} height={ROW - 12} rx={3} fill={p.current ? C.primary : p.complete ? C.done : C.track} />
             <line x1={TRACK_X - 10} x2={TRACK_X + 10} y1={y + 6} y2={y + 6} stroke={C.muted} strokeWidth={1.25} strokeDasharray="3 3" />
             <text x={40} y={y + 26} fontSize={14} fontWeight={500} fill={C.ink}>{p.title}</text>
             <text x={40} y={y + 46} fontSize={12} fill={C.muted}>

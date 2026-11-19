@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Pill } from "@/components/ui";
@@ -60,8 +60,12 @@ export default function AdvisorPage() {
   ]);
   const [activeId, setActiveId] = useState(() => conversations[0].id);
   const [draft, setDraft] = useState("");
-  const [thinking, setThinking] = useState(false);
+  const [request, setRequest] = useState<{ convId: string; controller?: AbortController } | null>(null);
+  const thinking = request !== null;
   const body = useRef<HTMLDivElement>(null);
+  const followTail = useRef(true);
+  const scrollPositions = useRef(new Map<string, number>());
+  const shownConversation = useRef(activeId);
   const { requireLogin, refresh } = useAuth();
   const asking = useRef(false);
   useEffect(() => {
@@ -71,15 +75,24 @@ export default function AdvisorPage() {
   const active =
     conversations.find((c) => c.id === activeId) ?? conversations[0];
 
-  useEffect(() => {
-    if (body.current) body.current.scrollTop = body.current.scrollHeight;
-  }, [active.messages.length, thinking]);
+  useLayoutEffect(() => {
+    const element = body.current;
+    if (!element) return;
+    if (shownConversation.current !== active.id) {
+      shownConversation.current = active.id;
+      element.scrollTop = scrollPositions.current.get(active.id) ?? element.scrollHeight;
+      followTail.current = element.scrollHeight - element.clientHeight - element.scrollTop <= 32;
+    }
+    if (followTail.current) element.scrollTop = element.scrollHeight;
+  }, [active.id, active.messages, request]);
 
-  function patch(
+  useEffect(() => () => request?.controller?.abort(), [request]);
+
+  const patch = useCallback((
     convId: string,
     msgId: string,
     change: (m: Message) => Message,
-  ) {
+  ) => {
     setConversations((prev) =>
       prev.map((c) =>
         c.id === convId
@@ -90,14 +103,11 @@ export default function AdvisorPage() {
           : c,
       ),
     );
-  }
+  }, []);
 
-  function handlerFor(convId: string, msgId: string) {
+  const handlerFor = useCallback((convId: string, msgId: string) => {
     return (e: AdvisorEvent) => {
-      if (e.type === "done") {
-        setThinking(false);
-        return;
-      }
+      if (e.type === "done") return;
       patch(convId, msgId, (m) => {
         switch (e.type) {
           case "intent":
@@ -118,7 +128,7 @@ export default function AdvisorPage() {
         }
       });
     };
-  }
+  }, [patch]);
 
   /**
    * Send `text`. In login mode a logged-out visitor gets the login dialog first; the sentence stays in the
@@ -128,10 +138,11 @@ export default function AdvisorPage() {
     const content = text.trim();
     if (!content || thinking || asking.current) return;
     asking.current = true;
-    const allowed = await requireLogin().finally(() => {
+    const allowed = await requireLogin().catch(() => false);
+    if (!allowed) {
       asking.current = false;
-    });
-    if (!allowed) return;
+      return;
+    }
     const convId = active.id;
     const reply: Message = { id: uid(), role: "assistant", content: "" };
     setConversations((prev) =>
@@ -149,22 +160,34 @@ export default function AdvisorPage() {
           : c,
       ),
     );
-    setDraft("");
-    setThinking(true);
-    sendAdvisorMessage(convId, content, handlerFor(convId, reply.id))
+    if (shownConversation.current === convId) {
+      followTail.current = true;
+      setDraft("");
+    }
+    const controller = new AbortController();
+    setRequest({ convId, controller });
+    sendAdvisorMessage(convId, content, handlerFor(convId, reply.id), controller.signal)
       .then((outcome) => outcome === "unauthorized" && void refresh())
       .catch(() => {
         patch(convId, reply.id, (m) => ({
           ...m,
-          error: "网络错误，请稍后再试。",
+          error: controller.signal.aborted ? undefined : "网络错误，请稍后再试。",
+          content: controller.signal.aborted && !m.content ? "已停止生成" : m.content,
         }));
-        setThinking(false);
+      })
+      .finally(() => {
+        asking.current = false;
+        setRequest(null);
       });
   }
 
-  async function answer(message: Message, approved: boolean) {
-    if (thinking) return;
-    if (!(await requireLogin())) return;
+  const answer = useCallback(async (message: Message, approved: boolean) => {
+    if (thinking || asking.current) return;
+    asking.current = true;
+    if (!(await requireLogin().catch(() => false))) {
+      asking.current = false;
+      return;
+    }
     const convId = active.id;
     patch(convId, message.id, (m) => ({
       ...m,
@@ -179,7 +202,7 @@ export default function AdvisorPage() {
         c.id === convId ? { ...c, messages: [...c.messages, reply] } : c,
       ),
     );
-    setThinking(true);
+    setRequest({ convId });
     confirmAdvisorAction(
       convId,
       approved,
@@ -189,7 +212,7 @@ export default function AdvisorPage() {
       .then((outcome) => {
         if (outcome === "unauthorized") void refresh();
         // Refused before anything ran: the change is still pending, so offer the buttons again.
-        if (outcome === "limited")
+        if (outcome === "limited" || outcome === "unauthorized")
           patch(convId, message.id, (m) => ({
             ...m,
             confirm: m.confirm && { ...m.confirm, state: "pending" },
@@ -200,9 +223,12 @@ export default function AdvisorPage() {
           ...m,
           error: "网络错误，请稍后再试。",
         }));
-        setThinking(false);
+      })
+      .finally(() => {
+        asking.current = false;
+        setRequest(null);
       });
-  }
+  }, [active.id, handlerFor, patch, requireLogin, thinking]);
 
   function startNew() {
     const conv = newConversation();
@@ -242,7 +268,14 @@ export default function AdvisorPage() {
           <div
             ref={body}
             className={`chat-body${active.messages.length === 0 ? " empty-chat" : ""}`}
+            data-streaming={request?.convId === active.id || undefined}
+            role="log"
             aria-live="polite"
+            onScroll={(event) => {
+              const element = event.currentTarget;
+              scrollPositions.current.set(active.id, element.scrollTop);
+              followTail.current = element.scrollHeight - element.clientHeight - element.scrollTop <= 32;
+            }}
           >
             {active.messages.length === 0 ? (
               <>
@@ -287,16 +320,17 @@ export default function AdvisorPage() {
                     key={m.id}
                     message={m}
                     busy={thinking}
-                    onAnswer={(m, ok) => void answer(m, ok)}
+                    onAnswer={answer}
                   />
                 ),
               )
             )}
-            {thinking &&
+            {request?.convId === active.id &&
               active.messages.at(-1)?.content === "" &&
-              !active.messages.at(-1)?.confirm && (
-                <p className="muted" role="status">
-                  正在整理…
+              !active.messages.at(-1)?.confirm &&
+              !active.messages.at(-1)?.error && (
+                <p className="muted advisor-pending" role="status">
+                  {request.controller ? "正在生成回复…" : "正在处理确认…"}
                 </p>
               )}
           </div>
@@ -313,23 +347,26 @@ export default function AdvisorPage() {
             <textarea
               id="msg"
               rows={1}
+              maxLength={4000}
               value={draft}
               placeholder="输入问题，Enter 发送"
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
+                if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
                   e.preventDefault();
                   void send(draft);
                 }
               }}
             />
-            <button
-              className="btn btn-primary"
-              type="submit"
-              disabled={!draft.trim() || thinking}
-            >
-              发送
-            </button>
+            {request?.controller && request.convId === active.id ? (
+              <button className="btn btn-secondary" type="button" onClick={() => request.controller?.abort()}>
+                停止生成
+              </button>
+            ) : (
+              <button className="btn btn-primary" type="submit" disabled={!draft.trim() || thinking}>
+                发送
+              </button>
+            )}
           </form>
         </div>
       </section>
@@ -337,7 +374,7 @@ export default function AdvisorPage() {
   );
 }
 
-function AssistantMessage({
+const AssistantMessage = memo(function AssistantMessage({
   message: m,
   busy,
   onAnswer,
@@ -411,4 +448,4 @@ function AssistantMessage({
       )}
     </div>
   );
-}
+});
