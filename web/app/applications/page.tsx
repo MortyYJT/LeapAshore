@@ -25,21 +25,28 @@ export default function ApplicationsPage() {
 }
 function Applications() {
   const records = useResource(loadApplicationRecords);
-  const [editing, setEditing] = useState<ApplicationRecord | null | undefined>(
-    undefined,
-  );
+  const [editor, setEditor] = useState<{ record: ApplicationRecord | null; key: number; open: boolean } | null>(null);
   const [filter, setFilter] = useState("all");
   const [deleting, setDeleting] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
+  function openEditor(record: ApplicationRecord | null) {
+    setEditor((previous) => ({ record, key: (previous?.key ?? 0) + 1, open: true }));
+  }
+
+  function closeEditor(key: number) {
+    setEditor((previous) => previous?.key === key ? { ...previous, open: false } : previous);
+  }
+
   useEffect(() => {
-    if (new URLSearchParams(location.search).has("add")) setEditing(null);
+    if (new URLSearchParams(location.search).has("add")) openEditor(null);
   }, []);
+
   useEffect(() => {
-    if (editing !== undefined) dialog.current?.showModal();
+    if (editor?.open) dialog.current?.showModal();
     else dialog.current?.close();
-  }, [editing]);
+  }, [editor?.open, editor?.key]);
   async function remove(id: string) {
     setBusy(true);
     setError("");
@@ -60,7 +67,7 @@ function Applications() {
     <>
       <div className="application-toolbar section">
         <div className="toolbar">
-          <button className="btn btn-primary" onClick={() => setEditing(null)}>
+          <button className="btn btn-primary" onClick={() => openEditor(null)}>
             添加申请项目
           </button>
           <Link className="btn btn-secondary" href="/portfolio">
@@ -154,7 +161,7 @@ function Applications() {
                 <div className="application-card-actions">
                   <button
                     className="btn btn-secondary btn-small"
-                    onClick={() => setEditing(record)}
+                    onClick={() => openEditor(record)}
                   >
                     编辑申请
                   </button>
@@ -203,14 +210,15 @@ function Applications() {
         ref={dialog}
         className="dialog application-dialog"
         aria-labelledby="application-dialog-title"
-        onCancel={() => setEditing(undefined)}
+        onCancel={() => editor && closeEditor(editor.key)}
       >
-        {editing !== undefined && (
+        {editor && (
           <ApplicationForm
-            record={editing}
-            onClose={() => setEditing(undefined)}
+            key={editor.key}
+            record={editor.record}
+            onClose={() => closeEditor(editor.key)}
             onSaved={() => {
-              setEditing(undefined);
+              closeEditor(editor.key);
               records.reload();
             }}
           />

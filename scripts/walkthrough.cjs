@@ -37,7 +37,11 @@ function check(name, ok, detail) {
 }
 
 async function sidebarLogin(page) {
-  if (!await page.locator("#workspace-nav").isVisible()) await page.getByRole("button", {name:"打开导航"}).click();
+  if (!await page.locator("#workspace-nav").isVisible()) {
+    const toggle = page.getByRole("button", {name:"打开导航"});
+    if (await toggle.getAttribute("aria-expanded") !== "true") await toggle.click();
+    await page.locator("#workspace-nav").waitFor({ state: "visible" });
+  }
   if (!await page.locator("#user-menu").isVisible()) await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
   await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).click();
 }
@@ -712,11 +716,15 @@ async function adminPass(browser, email, errors) {
     check("390：导航收进菜单", !(await intro.locator("#workspace-nav").isVisible()) && (await intro.getByRole("button", { name: "打开导航" }).isVisible()));
 
     await intro.getByRole("button", { name: "打开导航" }).click();
-    check("390：按菜单后出现导航链接", await intro.locator("#workspace-nav").getByRole("link", { name: "学校库" }).isVisible());
+    const mobileSchools = intro.locator("#workspace-nav").getByRole("link", { name: "学校库" });
+    await mobileSchools.waitFor({ state: "visible" });
+    check("390：按菜单后出现导航链接", await mobileSchools.isVisible());
     await intro.getByRole("button", {name:"我的，打开用户菜单"}).click();
     await intro.keyboard.press("Escape");
-    check("390：Esc 先关闭头像菜单", await intro.locator("#workspace-nav").isVisible() && await intro.locator("#user-menu").count() === 0);
+    await intro.locator("#user-menu").waitFor({ state: "hidden" });
+    check("390：Esc 先关闭头像菜单", await intro.locator("#workspace-nav").isVisible() && !await intro.locator("#user-menu").isVisible());
     await intro.keyboard.press("Escape");
+    await intro.locator("#workspace-nav").waitFor({ state: "hidden" });
     check("390：再次 Esc 关闭侧栏", !await intro.locator("#workspace-nav").isVisible());
     await intro.getByRole("button", {name:"打开导航"}).click();
     await screenshot(intro, "home-390");

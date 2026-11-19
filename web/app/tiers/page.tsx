@@ -388,7 +388,7 @@ function BandPicker({ onPick }: { onPick: (band: PortfolioTier) => void }) {
       </Button>
     );
   return (
-    <div className="seg" role="group" aria-label="选择档位">
+    <div className="seg motion-content" role="group" aria-label="选择档位">
       {(["冲", "稳", "保"] as const).map((b) => (
         <button key={b} type="button" onClick={() => onPick(b)}>
           {b}

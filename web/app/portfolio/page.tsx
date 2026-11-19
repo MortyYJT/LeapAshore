@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { Button, LoadingPanel, Notice, Pill } from "@/components/ui";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
-import { usePortfolio } from "@/lib/hooks/usePortfolio";
+import { loadPortfolio, usePortfolio } from "@/lib/hooks/usePortfolio";
 import {
   clearDraft,
   draftChanged,
@@ -61,6 +61,9 @@ function Portfolio() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedNote, setSavedNote] = useState<string | null>(null);
+  const tbody = useRef<HTMLTableSectionElement>(null);
+  const beforeRemoval = useRef<Map<string, number> | null>(null);
+  const rowMotion = useRef<Animation[]>([]);
 
   useEffect(() => {
     if (draft !== null || saved.loading) return;
@@ -84,6 +87,52 @@ function Portfolio() {
       .catch(() => undefined); // the rows still render from the portfolio's own program names
   }, [ids]);
 
+  useLayoutEffect(() => {
+    const before = beforeRemoval.current;
+    beforeRemoval.current = null;
+    if (!before || !tbody.current || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const style = getComputedStyle(tbody.current);
+    const duration = parseFloat(style.getPropertyValue("--motion-normal"));
+    const easing = style.getPropertyValue("--motion-ease").trim();
+    // Read the new positions before starting any animation.
+    const movement = Array.from(tbody.current.rows).flatMap((row) => {
+      const old = before.get(row.dataset.program ?? "");
+      if (old === undefined) return [];
+      const offset = old - row.getBoundingClientRect().top;
+      return Math.abs(offset) >= 1 ? [{ row, offset }] : [];
+    });
+    rowMotion.current = movement.map(({ row, offset }) => row.animate(
+      [{ translate: `0 ${offset}px` }, { translate: "none" }],
+      { duration, easing },
+    ));
+  }, [draft]);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const cancel = () => {
+      for (const animation of rowMotion.current) animation.cancel();
+      rowMotion.current = [];
+    };
+    const preferenceChanged = () => { if (reduced.matches) cancel(); };
+    reduced.addEventListener("change", preferenceChanged);
+    return () => {
+      reduced.removeEventListener("change", preferenceChanged);
+      cancel();
+    };
+  }, []);
+
+  function remove(slug: string) {
+    if (!draft || saving) return;
+    if (tbody.current && tbody.current.rows.length <= 40 &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      beforeRemoval.current = new Map(
+        Array.from(tbody.current.rows, (row) => [row.dataset.program ?? "", row.getBoundingClientRect().top]),
+      );
+      for (const animation of rowMotion.current) animation.cancel();
+    }
+    update(removeFromDraft(draft, slug));
+  }
+
   const update = (next: PortfolioItem[]) => {
     setDraft(next);
     setSavedNote(null);
@@ -91,17 +140,21 @@ function Portfolio() {
   };
 
   async function confirm() {
-    if (!draft) return;
+    if (!draft || saving) return;
     setSaving(true);
     setSaveError(null);
     try {
       await replaceApplications(toApplicationRows(draft));
       clearDraft(sessionStorage);
-      saved.reload();
-      setDraft(null);
-      setSavedNote(
-        `已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`,
-      );
+      try {
+        const confirmed = await loadPortfolio();
+        saved.set(confirmed);
+        setDraft(confirmed);
+        setSavedNote(`已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`);
+      } catch {
+        setSavedNote(`已保存 ${draft.length} 个项目。暂时无法刷新服务器上的组合显示。`);
+        saved.reload();
+      }
     } catch (error: unknown) {
       setSaveError(
         `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
@@ -121,7 +174,7 @@ function Portfolio() {
       ["冲", "稳", "保"].indexOf(a.tier) - ["冲", "稳", "保"].indexOf(b.tier),
   );
   const changed =
-    draft !== null && saved.data !== null && draftChanged(draft, saved.data);
+    !savedNote && draft !== null && saved.data !== null && draftChanged(draft, saved.data);
   const primary = rows.find((r) => r.isPrimary);
 
   return (
@@ -197,7 +250,7 @@ function Portfolio() {
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody ref={tbody}>
                   {rows.length === 0 && (
                     <tr>
                       <td colSpan={6} className="wide">
@@ -220,6 +273,7 @@ function Portfolio() {
                     return (
                       <tr
                         key={r.programSlug}
+                        data-program={r.programSlug}
                         className={
                           i === 0 || rows[i - 1].tier !== r.tier
                             ? "portfolio-group-start"
@@ -284,6 +338,7 @@ function Portfolio() {
                           </label>
                           <select
                             id={`status-${i}`}
+                            disabled={saving}
                             className="select"
                             style={{ height: 32, width: 128 }}
                             value={r.status ?? "considering"}
@@ -309,6 +364,7 @@ function Portfolio() {
                             <input
                               type="radio"
                               name="primary"
+                              disabled={saving}
                               checked={!!r.isPrimary}
                               onChange={() =>
                                 update(setPrimary(rows, r.programSlug))
@@ -320,9 +376,8 @@ function Portfolio() {
                         <td className="num">
                           <Button
                             variant="text"
-                            onClick={() =>
-                              update(removeFromDraft(rows, r.programSlug))
-                            }
+                            disabled={saving}
+                            onClick={() => remove(r.programSlug)}
                           >
                             移出
                           </Button>

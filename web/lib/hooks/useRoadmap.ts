@@ -9,6 +9,11 @@ import { toTaskRows } from "../roadmap-source";
 import { alreadyStored, toReplacePayload, type TaskRow } from "../roadmap-sync";
 import type { Profile, Roadmap } from "../types";
 
+interface TickWrite {
+  desired: string;
+  confirmed: TaskRow;
+}
+
 export interface RoadmapState {
   roadmap: Roadmap | null;
   /** True while the definition is being read. */
@@ -44,6 +49,27 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
   const [failedTicks, setFailedTicks] = useState<Set<string>>(new Set());
   const lastWritten = useRef<string | null>(null);
   const mounted = useRef(true);
+  const writes = useRef(new Map<string, TickWrite>());
+  const taskRevision = useRef(0);
+  const updatedAt = useRef(new Map<string, number>());
+  const latestRead = useRef(0);
+
+  const applySnapshot = useCallback((snapshot: TaskRow[], revision: number) => {
+    const protectedIds = new Set(writes.current.keys());
+    for (const [id, updated] of updatedAt.current) {
+      if (updated > revision) protectedIds.add(id);
+    }
+    setTasks((previous) => {
+      const protectedRows = new Map(previous.filter((row) => protectedIds.has(row.id)).map((row) => [row.id, row]));
+      const next = snapshot.map((row) => {
+        const current = protectedRows.get(row.id);
+        protectedRows.delete(row.id);
+        return current ?? row;
+      });
+      return [...next, ...protectedRows.values()];
+    });
+  }, []);
+
   useEffect(() => {
     mounted.current = true;
     return () => {
@@ -52,21 +78,24 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
   }, []);
 
   const load = useCallback(() => {
+    const readId = ++latestRead.current;
+    const revision = taskRevision.current;
     setLoading(true);
     void readRoadmapDefinition(fetchRoadmapDefinition).then((next) => {
+      if (!mounted.current || readId !== latestRead.current) return;
       setRead(next);
-      if (next.tasks !== null) setTasks(next.tasks);
+      if (next.tasks !== null) applySnapshot(next.tasks, revision);
       setLoading(false);
     });
-  }, []);
+  }, [applySnapshot]);
 
   useEffect(load, [load]);
 
   const roadmap = useMemo(() => {
-    if (!profile) return null;
+    if (!profile || read === NO_DEFINITION_READ) return null;
     const done = tasks.filter((t) => t.status === "completed").map((t) => t.material_key);
     return buildRoadmap(profile, done, undefined, read.definition ?? undefined);
-  }, [profile, tasks, read.definition]);
+  }, [profile, tasks, read]);
 
   useEffect(() => {
     if (!profile || !roadmap || read.definition === null) return;
@@ -81,10 +110,11 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
     // server's, and without their ids no box can be ticked. Only an unmounted page ignores it.
     replaceRoadmapTasks(payload)
       .then(async () => {
+        const revision = taskRevision.current;
         const served = await fetchRoadmapDefinition();
         if (!mounted.current) return;
         setSyncError(null);
-        setTasks(toTaskRows(served.tasks));
+        applySnapshot(toTaskRows(served.tasks), revision);
       })
       .catch((error: unknown) => {
         lastWritten.current = null;
@@ -93,7 +123,7 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
           `路线图没有保存到服务器，勾选可能不会生效（${error instanceof Error ? error.message : "未知错误"}）。`,
         );
       });
-  }, [profile, roadmap, read.definition, tasks]);
+  }, [profile, roadmap, read.definition, tasks, applySnapshot]);
 
   const taskIdFor = useCallback(
     (materialKey: string) => tasks.find((t) => t.material_key === materialKey && t.program_id === "")?.id ?? null,
@@ -109,23 +139,43 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
         fail();
         return;
       }
-      const before = row.status;
       const status = done ? "completed" : "pending";
       setFailedTicks((prev) => {
+        if (!prev.has(materialKey)) return prev;
         const next = new Set(prev);
         next.delete(materialKey);
         return next;
       });
       setTasks((prev) => prev.map((t) => (t.id === row.id ? { ...t, status } : t)));
-      try {
-        const served = await patchRoadmapTask(row.id, { status });
-        const [saved] = toTaskRows([served]);
-        setTasks((prev) => prev.map((t) => (t.id === row.id ? saved : t)));
-      } catch {
-        // The box goes back to what the server holds, and the row says the change was not saved.
-        setTasks((prev) => prev.map((t) => (t.id === row.id ? { ...t, status: before } : t)));
-        fail();
+
+      const pending = writes.current.get(row.id);
+      if (pending) {
+        pending.desired = status;
+        return;
       }
+
+      // One write per task at a time. While it runs, the checkbox keeps the latest user choice.
+      const write: TickWrite = { desired: status, confirmed: row };
+      writes.current.set(row.id, write);
+      let attempted: string;
+      let failed: boolean;
+      do {
+        attempted = write.desired;
+        failed = false;
+        try {
+          const served = await patchRoadmapTask(row.id, { status: attempted });
+          [write.confirmed] = toTaskRows([served]);
+        } catch {
+          failed = true;
+        }
+        // If another choice arrived, persist it before publishing a response or a rollback.
+      } while (write.desired !== attempted);
+
+      updatedAt.current.set(row.id, ++taskRevision.current);
+      writes.current.delete(row.id);
+      if (!mounted.current) return;
+      setTasks((prev) => prev.map((t) => (t.id === row.id ? write.confirmed : t)));
+      if (failed && write.confirmed.status !== attempted) fail();
     },
     [tasks],
   );

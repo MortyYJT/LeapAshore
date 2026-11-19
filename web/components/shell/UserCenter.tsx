@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 
 const COLORS = [{ id: "graphite", name: "Neutral 中性色" }] as const;
@@ -30,8 +30,29 @@ export function UserCenter() {
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const file = useRef<HTMLInputElement>(null);
+  const tabs = useRef<HTMLDivElement>(null);
+  const indicator = useRef<HTMLSpanElement>(null);
   const key = `leapashore:preferences:${state?.account?.email ?? "browser"}`;
   const name = state?.account ? prefs.name || "申请者" : "未登录";
+
+  useLayoutEffect(() => {
+    const list = tabs.current;
+    const highlight = indicator.current;
+    const selected = list?.querySelector<HTMLElement>('[aria-selected="true"]');
+    if (!list || !highlight || !selected) return;
+
+    const position = () => {
+      if (!selected.offsetWidth) return;
+      highlight.style.width = `${selected.offsetWidth}px`;
+      highlight.style.height = `${selected.offsetHeight}px`;
+      highlight.style.translate = `${selected.offsetLeft}px ${selected.offsetTop}px`;
+      list.dataset.positioned = "true";
+    };
+    position();
+    const observer = new ResizeObserver(position);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [tab]);
 
   useEffect(() => {
     setLoadedKey(null);
@@ -105,6 +126,7 @@ export function UserCenter() {
   }, [open]);
 
   function settings(next = "profile") {
+    trigger.current?.focus();
     setOpen(false);
     setTab(next);
     setMessage("");
@@ -189,54 +211,52 @@ export function UserCenter() {
         <span className="uc-name">{name}</span>
         <span aria-hidden="true">⌄</span>
       </button>
-      {open && (
-        <div className="uc-menu" id="user-menu" aria-label="用户菜单">
-          <div className="uc-identity">
-            {avatar()}
-            <div>
-              <strong>{name}</strong>
-              {state?.account?.email && <p>{state.account.email}</p>}
-            </div>
+      <div className="uc-menu" id="user-menu" aria-label="用户菜单" data-open={open} inert={!open}>
+        <div className="uc-identity">
+          {avatar()}
+          <div>
+            <strong>{name}</strong>
+            {state?.account?.email && <p>{state.account.email}</p>}
           </div>
-          <div className="uc-menu-group">
-            <Link href="/me#background" onClick={() => setOpen(false)}>
-              申请背景
-            </Link>
-            <Link href="/materials" onClick={() => setOpen(false)}>
-              我的材料
-            </Link>
-          </div>
-          <div className="uc-menu-group">
-            <button onClick={() => settings()}>设置</button>
-          </div>
-          {gated && (
-            <div className="uc-menu-group">
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  openLogin(window.location.pathname);
-                }}
-              >
-                登录
-              </button>
-            </div>
-          )}
-          {state?.account && (
-            <div className="uc-menu-group">
-              <button
-                onClick={() => {
-                  setOpen(false);
-                  void signOut().catch(() =>
-                    setMessage("退出失败，请稍后重试。"),
-                  );
-                }}
-              >
-                退出登录
-              </button>
-            </div>
-          )}
         </div>
-      )}
+        <div className="uc-menu-group">
+          <Link href="/me#background" onClick={() => setOpen(false)}>
+            申请背景
+          </Link>
+          <Link href="/materials" onClick={() => setOpen(false)}>
+            我的材料
+          </Link>
+        </div>
+        <div className="uc-menu-group">
+          <button onClick={() => settings()}>设置</button>
+        </div>
+        {gated && (
+          <div className="uc-menu-group">
+            <button
+              onClick={() => {
+                setOpen(false);
+                openLogin(window.location.pathname);
+              }}
+            >
+              登录
+            </button>
+          </div>
+        )}
+        {state?.account && (
+          <div className="uc-menu-group">
+            <button
+              onClick={() => {
+                setOpen(false);
+                void signOut().catch(() =>
+                  setMessage("退出失败，请稍后重试。"),
+                );
+              }}
+            >
+              退出登录
+            </button>
+          </div>
+        )}
+      </div>
       <dialog
         className="uc-dialog"
         ref={dialog}
@@ -257,7 +277,8 @@ export function UserCenter() {
         <div className="uc-settings">
           <aside className="uc-sidebar">
             <h2 id="uc-title">设置</h2>
-            <div role="tablist" aria-label="设置分类">
+            <div role="tablist" aria-label="设置分类" ref={tabs}>
+              <span className="uc-tab-indicator" aria-hidden="true" ref={indicator} />
               {[
                 { id: "profile", label: "个人资料" },
                 { id: "appearance", label: "外观" },

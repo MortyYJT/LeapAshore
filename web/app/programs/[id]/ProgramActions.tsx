@@ -101,14 +101,14 @@ function Actions({ program, resumeAdd }: { program: Program; resumeAdd: boolean 
             <button type="button" className="btn btn-secondary" aria-pressed onClick={() => draft && update(removeFromDraft(draft, program.slug))}>
               已加入 · {chosen.tier}
             </button>
-            <Link className="btn btn-text" href="/portfolio">去确认组合</Link>
+            <Link className="btn btn-text motion-content" href="/portfolio">去确认组合</Link>
           </>
         ) : band ? (
           <button type="button" className="btn btn-primary" disabled={!draft} onClick={() => add(band, false)}>
             加入选校组合
           </button>
         ) : picking ? (
-          <div className="seg" role="group" aria-label="选择档位">
+          <div className="seg motion-content" role="group" aria-label="选择档位">
             {(["冲", "稳", "保"] as const).map((b) => (
               <button key={b} type="button" onClick={() => add(b, true)}>{b}</button>
             ))}

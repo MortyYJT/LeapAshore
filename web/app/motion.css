@@ -1,0 +1,382 @@
+:root {
+  --motion-instant: 100ms;
+  --motion-fast: 140ms;
+  --motion-normal: 180ms;
+  --motion-smooth: 220ms;
+  --motion-emphasis: 300ms;
+  --motion-ease: cubic-bezier(.2, .8, .2, 1);
+  --motion-crossfade: cubic-bezier(.4, 0, .2, 1);
+  --motion-distance: 4px;
+  --motion-scale: .985;
+}
+
+.bar, .nav a, .me-link, .btn, .icon-button, .choice, .conv, .prompt, .seg button, .user-center button,
+.uc-menu a, .workspace-sidebar a, .workspace-search-results a,
+.workspace-application-row, tbody tr, .rows > .row, .dashboard-task,
+.dashboard-task input, .tl-bar, .task .t, .dashboard-task span {
+  transition-property: background-color, border-color, color, fill, opacity, text-decoration-color;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--motion-ease);
+}
+
+.btn:not(:disabled, [aria-disabled="true"]):active,
+.icon-button:not(:disabled):active, .prompt:not(:disabled):active {
+  background-color: color-mix(in srgb, currentColor 12%, var(--color-surface));
+  transition-duration: var(--motion-instant);
+}
+
+.btn-primary:not(:disabled):active {
+  background-color: var(--color-primary-hover);
+}
+
+.btn:disabled, .btn[aria-disabled="true"] {
+  opacity: .5;
+  cursor: default;
+}
+
+.btn:focus-within:has(input[type="file"]:focus-visible) {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.input, .select, .composer textarea {
+  transition: border-color var(--motion-fast) var(--motion-ease),
+    outline-color var(--motion-fast) var(--motion-ease);
+}
+
+.composer textarea {
+  field-sizing: content;
+  height: auto;
+  min-height: 40px;
+}
+
+.skeleton-line {
+  animation: skeleton-breathe 1.4s ease-in-out var(--motion-normal) 3;
+}
+
+@keyframes skeleton-breathe {
+  50% { opacity: .76; }
+}
+
+@keyframes content-in {
+  from { opacity: .7; translate: 0 var(--motion-distance); }
+}
+
+.motion-content,
+.chat-body[data-streaming] > :is(.msg-user, .msg-assistant):nth-last-of-type(-n+2) {
+  animation: content-in var(--motion-normal) var(--motion-ease);
+}
+
+.phase-highlight {
+  pointer-events: none;
+  transition: transform var(--motion-normal) var(--motion-ease),
+    opacity var(--motion-fast) var(--motion-ease);
+}
+
+.task input[type="checkbox"] {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-control);
+  border-radius: 3px;
+  background-color: var(--card);
+  transition: background-color var(--motion-instant), border-color var(--motion-instant);
+}
+
+.task input[type="checkbox"]:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.task input[type="checkbox"]:disabled { opacity: .5; }
+.task input[type="checkbox"]::after {
+  content: "";
+  width: 5px;
+  height: 9px;
+  border: solid var(--primary-foreground);
+  border-width: 0 2px 2px 0;
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.task input[type="checkbox"]::after,
+.dashboard-task input::after {
+  opacity: 0;
+  transition: opacity var(--motion-instant) var(--motion-ease);
+}
+
+.task input[type="checkbox"]:checked::after,
+.dashboard-task input:checked::after { opacity: 1; }
+
+.task-progress {
+  height: 4px;
+  background: var(--color-track);
+  overflow: hidden;
+}
+
+.task-progress > div {
+  height: 100%;
+  background: var(--success);
+  transform-origin: left;
+  transition: transform var(--motion-emphasis) var(--motion-ease);
+}
+
+body:has(dialog:modal) {
+  overflow: hidden;
+}
+
+html { scrollbar-gutter: stable; }
+
+dialog:is(.dialog, .uc-dialog) {
+  opacity: 0;
+  scale: var(--motion-scale);
+  transform-origin: center;
+  pointer-events: none;
+  transition: opacity var(--motion-fast) var(--motion-ease),
+    scale var(--motion-fast) var(--motion-ease),
+    display var(--motion-fast) allow-discrete,
+    overlay var(--motion-fast) allow-discrete;
+}
+
+dialog:is(.dialog, .uc-dialog)[open] {
+  opacity: 1;
+  scale: 1;
+  pointer-events: auto;
+  transition-duration: var(--motion-smooth);
+}
+
+dialog::backdrop {
+  opacity: 0;
+  transition: opacity var(--motion-fast) var(--motion-ease),
+    display var(--motion-fast) allow-discrete,
+    overlay var(--motion-fast) allow-discrete;
+}
+
+dialog[open]::backdrop { opacity: 1; }
+
+@starting-style {
+  dialog:is(.dialog, .uc-dialog)[open] {
+    opacity: 0;
+    scale: var(--motion-scale);
+  }
+  dialog[open]::backdrop { opacity: 0; }
+}
+
+.uc-menu {
+  transform-origin: bottom left;
+  opacity: 1;
+  translate: 0;
+  transition: opacity var(--motion-fast) var(--motion-ease),
+    translate var(--motion-fast) var(--motion-ease),
+    display var(--motion-fast) allow-discrete;
+}
+
+.uc-menu[data-open="false"] {
+  display: none;
+  opacity: 0;
+  translate: 0 var(--motion-distance);
+  pointer-events: none;
+}
+
+@starting-style {
+  .uc-menu[data-open="true"] {
+    opacity: 0;
+    translate: 0 var(--motion-distance);
+  }
+}
+
+.uc-content section:not([hidden]) {
+  animation: content-in var(--motion-normal) var(--motion-ease);
+}
+
+@media (min-width: 701px) {
+  .workspace-layout[data-sidebar-interacted] .workspace-sidebar {
+    transition: width var(--motion-smooth) var(--motion-ease);
+  }
+
+  .workspace-layout[data-sidebar-interacted] .workspace-content {
+    transition: margin-left var(--motion-smooth) var(--motion-ease);
+  }
+
+  .workspace-sidebar nav .sidebar-text,
+  .sidebar-collapsed .workspace-sidebar nav .sidebar-text {
+    display: block;
+    position: absolute;
+    left: 40px;
+    white-space: nowrap;
+    transition: opacity var(--motion-fast) var(--motion-ease);
+  }
+
+  .sidebar-collapsed .workspace-sidebar nav .sidebar-text {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .workspace-sidebar nav {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 700px) {
+  .workspace-sidebar {
+    transition: transform var(--motion-smooth) var(--motion-ease),
+      visibility var(--motion-smooth) allow-discrete;
+  }
+
+  .sidebar-backdrop {
+    opacity: 1;
+    transition: opacity var(--motion-fast) var(--motion-ease),
+      display var(--motion-fast) allow-discrete;
+  }
+
+  .sidebar-backdrop[data-open="false"] {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @starting-style {
+    .sidebar-backdrop[data-open="true"] { opacity: 0; }
+  }
+}
+
+@media (forced-colors: active) {
+  .task input[type="checkbox"], .dashboard-task input {
+    appearance: auto;
+    display: inline-block;
+  }
+
+  .task input[type="checkbox"]::after, .dashboard-task input::after { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.dashboard-task-progress { margin-bottom: 12px; }
+.dashboard-task-progress .task-progress { border-radius: 999px; }
+
+.chat-body > * { flex-shrink: 0; }
+.advisor-pending { margin-block: 0; }
+
+@supports (interpolate-size: allow-keywords) and selector(details::details-content) {
+  details::details-content {
+    interpolate-size: allow-keywords;
+    block-size: 0;
+    overflow: clip;
+    transition: block-size var(--motion-smooth) var(--motion-ease),
+      content-visibility var(--motion-smooth) allow-discrete;
+  }
+
+  details[open]::details-content { block-size: auto; }
+}
+
+@media (max-width: 700px) {
+  body:has(.mobile-sidebar-toggle[aria-expanded="true"]) { overflow: hidden; }
+}
+
+.school-filter-submit {
+  position: relative;
+  min-width: 92px;
+}
+
+.school-filter-pending {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: var(--color-surface);
+  animation: pending-in var(--motion-fast) var(--motion-normal) both;
+}
+
+@keyframes pending-in { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .school-filter-pending { animation: none; }
+}
+
+dialog:not([open])::backdrop { pointer-events: none; }
+
+.btn[aria-pressed="true"] {
+  color: var(--color-accent-text);
+}
+
+[aria-busy="true"]:is(.btn, .btn[aria-disabled="true"]) {
+  cursor: progress;
+}
+
+/* Keep a closing off-canvas drawer out of the keyboard order during the exit. */
+@media (max-width: 700px) {
+  .workspace-sidebar:not(.is-open) { interactivity: inert; }
+  .workspace-sidebar.is-open {
+    transition-property: transform;
+  }
+}
+
+.uc-sidebar [role="tablist"] { position: relative; }
+.uc-sidebar [role="tab"] { position: relative; }
+
+.uc-tab-indicator {
+  position: absolute;
+  inset: 0 auto auto 0;
+  pointer-events: none;
+  background: var(--hover);
+  border-radius: 7px;
+}
+
+.uc-sidebar [data-positioned] .uc-tab-indicator {
+  transition: translate var(--motion-normal) var(--motion-ease),
+    width var(--motion-normal) var(--motion-ease),
+    height var(--motion-normal) var(--motion-ease);
+}
+
+.uc-sidebar [data-positioned] [aria-selected="true"] { background: transparent; }
+
+/* Route snapshots cross-fade while the sidebar and page background stay still. */
+/* Exclude the root from capture so the persistent navigation stays live. */
+:root { view-transition-name: none; }
+::view-transition { pointer-events: none; }
+::view-transition-group(.workspace-route) { animation: none; }
+::view-transition-image-pair(.workspace-route) { overflow: clip; }
+::view-transition-old(.workspace-route) {
+  animation: route-out var(--motion-normal) var(--motion-crossfade) both;
+}
+::view-transition-new(.workspace-route) {
+  animation: route-in var(--motion-normal) var(--motion-crossfade) both;
+}
+
+@keyframes route-out { to { opacity: 0; } }
+@keyframes route-in { from { opacity: 0; } }
+
+.workspace-sidebar nav a { position: relative; }
+
+.sidebar-navigation-pending {
+  position: absolute;
+  right: 5px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+}
+
+.sidebar-navigation-pending[data-pending] {
+  opacity: 1;
+  transition: opacity var(--motion-fast) var(--motion-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(.workspace-route),
+  ::view-transition-old(.workspace-route),
+  ::view-transition-new(.workspace-route) { animation: none; }
+}
+
+/* Short loads retain the panel's space without flashing placeholder bars. */
+.skeleton {
+  animation: skeleton-appear var(--motion-fast) var(--motion-ease) var(--motion-fast) both;
+}
+
+@keyframes skeleton-appear { from { opacity: 0; } }
