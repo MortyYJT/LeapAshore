@@ -1,8 +1,8 @@
 # LeapAshore
 
-**A personal workspace for managing master's applications: projects, deadlines, preparation tasks, materials and progress.**
+**A personal workspace for tracking master's applications from shortlist to submission.**
 
-面向硕士申请者的个人申请管理工具，把各个项目的截止日期、材料与准备进度集中到一个工作台。
+鱼跃彼岸是面向硕士申请者的个人工作台。集中跟踪选校、申请轮次、截止日期和材料进度，也可以向 AI 顾问查询带官方出处的申请要求。
 
 [![CI](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -12,7 +12,7 @@
 
 **Live site:** <https://leapashore.mortyyjt.site> (the interface is in Chinese; it is built for applicants from mainland China).
 
-Applying to several master's programs means tracking different deadlines, rounds, documents and submission states. LeapAshore brings those details into a personal workspace: add a project, record or check its deadline, prepare materials and keep the application moving. The school library and source-backed AI advisor support this workflow.
+Start by adding an application or saving a program from the school library. Record the round and deadline, check the source, and use the roadmap to track preparation. The AI advisor links to official sources when it answers questions about admission requirements.
 
 
 ## Contents
@@ -31,35 +31,43 @@ Applying to several master's programs means tracking different deadlines, rounds
 
 ## What it does
 
-- **Personal workspace.** An actionable home shows active applications ordered by deadline, a separate group for dates still to confirm, and directly editable preparation tasks. First-time users start with adding their first application.
+- **Personal workspace.** An actionable home shows active applications ordered by deadline, a separate group for dates still to confirm, and preparation tasks with a live completion count and progress bar. New users can add an application directly from the workspace.
 - **My applications.** Saved school selections appear automatically. Add projects outside the library manually; edit the chosen round, deadline, source link, application status, self-reported material readiness and preparation notes. Human date confirmation is explicit and becomes stale when the date, source or round changes.
 - **Materials.** Keep versions and review states in the existing document library. A project's “materials ready” flag is an applicant's self-check, not an automated review result.
-
-![My applications: persisted projects, selected rounds, source checks and preparation notes](docs/images/applications.png)
-
-
 - **School library.** 287 universities in 29 countries and regions, ordered by QS 2027 rank. Each school page lists its collected taught master's programs, filterable by name and study area; each program page shows only the requirements that were found (mark thresholds, English, academic background, deadlines), each linked to the official page it came from.
 - **Requirement tiers.** An applicant enters four facts (undergraduate school, average mark, English score, target field). Every program with a stated requirement in that field is placed in a tier by how many published requirements the background meets, with the items still to confirm on the official page. Tiers describe requirements met, not admission odds.
 - **Portfolio.** The chosen programs with a tier, an application status, the official deadline and one first choice.
 - **Application roadmap.** A timeline from today to the intake, with phases, material checklists and file uploads. Suggested dates are drawn as system suggestions; official deadlines appear only when collected from an official page, and a past one is labelled as closed instead of being drawn as a future date.
-- **Cited advisor agent.** A LangGraph agent that answers requirement questions from the catalogue, and questions about tuition, references and interviews from saved page snapshots, citing the official page. It refuses when the evidence is weak, can update the applicant's profile, and proposes portfolio changes that are written only after the applicant confirms them.
+- **Cited advisor agent.** A LangGraph agent that answers requirement questions from the catalogue, and questions about tuition, references and interviews from saved page snapshots, citing the official page. It refuses when the evidence is weak, can update the applicant's profile, and proposes portfolio changes for the applicant to confirm. Replies stream as they arrive, users can stop generation, and scrolling up preserves their reading position.
 
-| Requirement tiers | Application roadmap |
+### See the workspace
+
+| My applications | Application roadmap |
 | --- | --- |
-| ![Tiers page: programs grouped by how many published requirements the background meets](docs/images/tiers.png) | ![Roadmap: phases from today to a July 2027 intake, with three official deadlines on the axis](docs/images/roadmap.png) |
+| ![Application list with rounds, personal deadline checks and preparation notes](docs/images/applications.png) | ![Application roadmap with phase navigation, task checklist and completion progress](docs/images/roadmap.png) |
 
-| School page | Program page | Portfolio |
-| --- | --- | --- |
-| ![Imperial College London with its 165 collected programs](docs/images/school.png) | ![A program page: mark threshold, academic requirement, three deadline rounds and the source page](docs/images/program.png) | ![Saved school selections with tiers and deadline information](docs/images/portfolio.png) |
-
-All application screenshots come from the actual local production build using a demonstration account. Example University records and dates illustrate the workflow and are not admissions guidance.
+| School library | Application portfolio |
+| --- | --- |
+| ![Searchable school library with region and QS rank filters](docs/images/schools.png) | ![Selected programs grouped by tier with application status and deadlines](docs/images/portfolio.png) |
 
 <details>
-<summary>Mobile workspace</summary>
+<summary>Mobile, program details and requirement tiers</summary>
 
-![The application workspace on a phone](docs/images/home-mobile.png)
+![Dashboard with upcoming deadlines and preparation progress on a phone](docs/images/home-mobile.png)
+
+| School page | Program page | Requirement tiers |
+| --- | --- | --- |
+| ![University page with its collected programs and program filters](docs/images/school.png) | ![Program details with admission requirements and source links](docs/images/program.png) | ![Programs grouped by published requirements met](docs/images/tiers.png) |
 
 </details>
+
+Screenshots show the current production build running locally. Personal pages use a demonstration account. Sample application names and dates illustrate the workflow.
+
+### Interaction details
+
+- Sidebar navigation keeps the current page visible while the next route loads, then cross-fades the content in browsers that support view transitions. Reduced Motion disables the cross-fade.
+- Task checkboxes update progress and counts immediately. Changes to the same task save in order, and a failed save restores the last confirmed state.
+- School filters keep existing results visible while the search runs. The portfolio stays visible while a save is reconciled with the server.
 
 ## How it works
 
