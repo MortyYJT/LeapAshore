@@ -67,6 +67,7 @@ from sqlalchemy.orm import Session
 
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.task import RoadmapTask, ScheduleOrigin, TaskOrigin, TaskStatus
+from app.services.versions import StaleVersion
 from app.services.writes import carries as _carries, row_value as _row_value, write_history
 
 
@@ -391,15 +392,24 @@ def update_task(
     field, so the only way to reach here with no change is a caller re-sending a value the row already
     holds, and an entry whose ``before`` and ``after`` are equal would say "something happened" about a
     moment when nothing did. The write commits once, at the end.
+
+    The patch states the version it was based on. A patch based on a version the row no longer holds
+    raises ``StaleVersion`` with the row as it is stored, and writes nothing.
     """
     row = session.execute(
-        select(RoadmapTask).where(
+        select(RoadmapTask)
+        .where(
             RoadmapTask.id == task_id,
             RoadmapTask.client_id == client_id,
         )
+        .with_for_update()
     ).scalar_one_or_none()
     if row is None:
         return None
+    # The row is locked until the commit below, so the comparison and the write are one step: a
+    # second device's edit waits here and then finds the version this one stored.
+    if _row_value(patch, "base_version") != row.version:
+        raise StaleVersion(row)
 
     before = _snapshot(row)
     if _carries(patch, "status"):

@@ -68,13 +68,18 @@ function dbRun(sql) {
 // A logged-out read of private data answers 401, and a refused code answers 400; the browser logs both.
 const EXPECTED = [/status of 404/, /status of 401/];
 
+// The sync-conflict steps make the server refuse a stale save on purpose; the browser logs that 409.
+// Only those steps set this, so a 409 anywhere else still fails the run.
+const conflictSteps = { running: false };
+
 /** Watch a page: console errors and page errors fail the run. */
 function watch(page, label, errors, expected = EXPECTED) {
   page.on("console", (msg) => {
     if (msg.type() !== "error") return;
     const text = msg.text();
     if (expected.some((pattern) => pattern.test(text))) return;
-    errors.push(`${label} console: ${text}`);
+    if (conflictSteps.running && /status of 409/.test(text)) return;
+    errors.push(`${label} console: ${text} (${new URL(page.url()).pathname})`);
   });
   page.on("pageerror", (error) => errors.push(`${label} pageerror: ${error.message}`));
 }
@@ -419,6 +424,38 @@ async function adminPass(browser, email, errors) {
     await manualCard.getByText(/待自行核对/).waitFor();
     check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
 
+    // Sync conflict (PRD-multi-device 3.3): another device edits the record while this form is open.
+    const demoRecord = () => page.evaluate(async () => (await (await fetch("/api/application-records")).json()).find((r) => r.school === "示例大学（演示账号）"));
+    conflictSteps.running = true;
+    await manualCard.getByRole("button",{name:"编辑申请"}).click();
+    const elsewhere = await page.evaluate(async (record) => (await fetch(`/api/application-records/${encodeURIComponent(record.id)}`, {
+      method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ materialNotes: "另一台设备写的备注", baseVersion: record.version }),
+    })).status, await demoRecord());
+    check("同步冲突：另一台设备的修改已保存", elsewhere === 200, elsewhere);
+    await applicationForm.getByLabel("申请轮次",{exact:true}).fill("第三轮");
+    await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
+    await applicationForm.getByText("这条申请已在其他设备上修改").waitFor({ timeout: 15000 });
+    check("同步冲突：过期的保存被拒绝，并显示服务器上的内容", (await applicationForm.getByText(/服务器上的内容：.*备注：另一台设备写的备注/).count()) === 1);
+    const refused = await demoRecord();
+    check("同步冲突：被拒绝的保存没有写入", refused.round === "第二轮" && refused.materialNotes === "另一台设备写的备注", refused);
+    await applicationForm.getByRole("button",{name:"保留我的修改",exact:true}).click();
+    await page.locator(".application-dialog").waitFor({state:"hidden"});
+    const kept = await demoRecord();
+    check("同步冲突：保留我的修改只写入改过的轮次，另一台设备写的备注还在", kept.round === "第三轮" && kept.materialNotes === "另一台设备写的备注", kept);
+    await manualCard.getByText(/第三轮/).waitFor();
+    // The same, taking the server's side: the stale edit is dropped and the list shows the server's record.
+    await manualCard.getByRole("button",{name:"编辑申请"}).click();
+    await page.evaluate(async (record) => fetch(`/api/application-records/${encodeURIComponent(record.id)}`, {
+      method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ round: "第四轮", baseVersion: record.version }),
+    }), await demoRecord());
+    await applicationForm.getByLabel("申请轮次",{exact:true}).fill("我的第五轮");
+    await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
+    await applicationForm.getByRole("button",{name:"使用服务器上的内容",exact:true}).click();
+    await page.locator(".application-dialog").waitFor({state:"hidden"});
+    await manualCard.getByText(/第四轮/).waitFor();
+    check("同步冲突：使用服务器上的内容后保留另一台设备的轮次", (await demoRecord()).round === "第四轮");
+    conflictSteps.running = false;
+
     await page.goto(`${BASE}/`);
     await page.getByLabel("向 AI 顾问提问").fill("帮我整理申请材料");
     await page.getByRole("button",{name:"询问 AI 顾问 →"}).click();
@@ -489,9 +526,13 @@ async function adminPass(browser, email, errors) {
     const originalRows = await page.evaluate(async () => (await (await fetch("/api/applications")).json()).map((r) => ({
       programId: r.programId, tier: r.tier, status: r.status, isPrimary: r.isPrimary, needsReview: r.needsReview,
     })));
-    const putRows = (rows) => page.evaluate(async (body) => (await fetch("/api/applications", {
-      method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rows: body }),
-    })).status, rows);
+    // A replacement states the stored rows it was based on (sync conflicts, PRD-multi-device 3.3).
+    const putRows = (rows) => page.evaluate(async (body) => {
+      const base = (await (await fetch("/api/applications")).json()).map((r) => ({ id: r.id, version: r.version }));
+      return (await fetch("/api/applications", {
+        method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rows: body, base }),
+      })).status;
+    }, rows);
     const [openProgram, closedProgram] = await page.evaluate(async (ids) => {
       const body = await (await fetch(`/api/programs?ids=${ids.join(",")}`)).json();
       return ids.map((id) => body.find((p) => p.slug === id));

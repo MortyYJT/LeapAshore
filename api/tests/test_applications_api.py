@@ -44,6 +44,7 @@ from app.models.task import TaskEvent
 from app.seed import seed_programs
 from app.services.applications import InvalidApplicationPayload, replace_applications
 from tests.test_seed import PROGRAM_IDS
+from tests.versioned import put_portfolio
 
 # Three of the six seeded programs, in the seed's own order, plus a program id that names nothing.
 REACH, MATCH, SAFETY = PROGRAM_IDS[:3]
@@ -58,7 +59,7 @@ def _row(program_id: str, **overrides) -> dict:
 
 
 def _put(client: TestClient, rows: list[dict]):
-    return client.put("/api/applications", json={"rows": rows})
+    return put_portfolio(client, rows)
 
 
 def _events(session, client_id: str) -> list[TaskEvent]:

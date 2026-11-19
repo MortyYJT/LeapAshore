@@ -5,7 +5,7 @@ from typing import Annotated
 from uuid import uuid4
 from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Response
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -16,13 +16,14 @@ from app.models.application_plan import ApplicationPlan
 from app.routers.applications import read_applications
 from app.schemas.common import _camel
 from app.services.accounts import lock_client
+from app.services.versions import stale_response, token_of
 
 router = APIRouter(prefix="/api/application-records", tags=["application records"])
 Subject = Annotated[str, Depends(get_subject)]
 Database = Annotated[Session, Depends(get_session)]
 
 
-class RecordPatch(BaseModel):
+class RecordFields(BaseModel):
     model_config = ConfigDict(
         alias_generator=_camel, populate_by_name=True, extra="forbid"
     )
@@ -65,7 +66,13 @@ class RecordPatch(BaseModel):
         return value.strip()
 
 
-class RecordCreate(RecordPatch):
+class RecordPatch(RecordFields):
+    # The record version this edit was based on, as the read served it. An edit based on a version
+    # the server no longer holds is refused with 409 and the record as it is stored.
+    base_version: str = Field(min_length=1, max_length=64)
+
+
+class RecordCreate(RecordFields):
     school: str = Field(min_length=1, max_length=200)
     name: str = Field(min_length=1, max_length=300)
 
@@ -118,6 +125,9 @@ def view(plan, selection=None):
         checkedAt=plan.checked_at if plan else None,
         materialsReady=plan.materials_ready if plan else False,
         materialNotes=plan.material_notes if plan else "",
+        # A catalogue record is read from the portfolio row and, once edited, its overlay; a change to
+        # either moves the version. A manual record is its plan alone.
+        version=token_of(selection, plan) if catalog else token_of(plan),
     )
 
 
@@ -173,8 +183,37 @@ def apply_patch(plan, payload):
 
 
 @router.post("", status_code=201)
-def create_record(payload: RecordCreate, client_id: Subject, session: Database):
+def create_record(
+    payload: RecordCreate,
+    client_id: Subject,
+    session: Database,
+    response: Response,
+    idempotency_key: Annotated[
+        str, Header(min_length=8, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")
+    ],
+):
+    """Create a manual application once per `Idempotency-Key`.
+
+    The client makes one key per record it intends to create and sends it again when it retries. The
+    first request creates the record and answers 201; a request carrying a key this subject has
+    already used answers 200 with that record as it is stored now, and writes nothing. A replay never
+    applies its payload, so a late duplicate of the create cannot undo an edit made after it.
+
+    The subject's row is locked first, as the update and delete routes do, so two requests with one
+    key that arrive together are handled one after the other and the second finds the first's row.
+    The unique constraint on `(client_id, create_key)` states the same rule in the table.
+    """
     load_or_create_profile(session, client_id)
+    lock_client(session, client_id)
+    existing = session.scalar(
+        select(ApplicationPlan).where(
+            ApplicationPlan.client_id == client_id,
+            ApplicationPlan.create_key == idempotency_key,
+        )
+    )
+    if existing is not None:
+        response.status_code = 200
+        return view(existing)
     plan = ApplicationPlan(
         id=str(uuid4()),
         client_id=client_id,
@@ -184,12 +223,20 @@ def create_record(payload: RecordCreate, client_id: Subject, session: Database):
         deadline_override=False,
         materials_ready=False,
         material_notes="",
+        create_key=idempotency_key,
     )
     apply_patch(plan, payload)
     session.add(plan)
     session.commit()
     session.refresh(plan)
     return view(plan)
+
+
+def current_view(plan, selection, client_id, session):
+    """The record as the read serves it, for a row pair `resolve` returned."""
+    if selection is None:
+        return view(plan)
+    return view(plan, selections(session, client_id).get(selection.program_id))
 
 
 def resolve(key, client_id, session):
@@ -225,8 +272,13 @@ def resolve(key, client_id, session):
 def update_record(
     key: str, payload: RecordPatch, client_id: Subject, session: Database
 ):
+    # The subject's row is held until the commit, and every writer of these rows takes it first, so
+    # the version read here is still the stored one when the edit is written.
     lock_client(session, client_id)
     plan, selection = resolve(key, client_id, session)
+    current = current_view(plan, selection, client_id, session)
+    if payload.base_version != current["version"]:
+        return stale_response(current)
     if selection and {"school", "name"} & payload.model_fields_set:
         raise HTTPException(422, "学校库项目名称请在学校库查看")
     if plan is None:
@@ -257,17 +309,29 @@ def update_record(
             )
     session.commit()
     session.refresh(plan)
-    return (
-        view(plan, selections(session, client_id).get(selection.program_id))
-        if selection
-        else view(plan)
-    )
+    if selection:
+        session.refresh(selection)
+    return current_view(plan, selection, client_id, session)
 
 
 @router.delete("/{key}", status_code=204)
-def delete_record(key: str, client_id: Subject, session: Database):
+def delete_record(
+    key: str,
+    client_id: Subject,
+    session: Database,
+    base_version: Annotated[str, Query(alias="baseVersion", min_length=1, max_length=64)],
+):
+    """Remove a record the caller has seen in its current state.
+
+    A removal states the version it was based on like any other change: removing a record another
+    device has just edited would discard that edit unseen, so it is refused with 409 and the record
+    as it is stored, and the applicant removes it again once they have seen it.
+    """
     lock_client(session, client_id)
     plan, selection = resolve(key, client_id, session)
+    current = current_view(plan, selection, client_id, session)
+    if base_version != current["version"]:
+        return stale_response(current)
     if plan:
         session.delete(plan)
     if selection:

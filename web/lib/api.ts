@@ -12,6 +12,8 @@
 
 import type { ServedDocument } from "./materials-source.ts";
 import type { MaterialKind, Profile } from "./types";
+import type { BaseRow } from "./portfolio-draft";
+import { staleOf } from "./sync-conflict.ts";
 import type { TaskReplacePayload, TaskReplaceResult } from "./roadmap-sync";
 import type {
   ServedMaterial,
@@ -269,19 +271,25 @@ function isStoredAsSent(key: keyof Profile, sent: unknown, saved: unknown): bool
  * The comparison is still exact for everything the column cannot explain, so a field the server
  * kept at its old value, or changed to anything else, still raises.
  */
-export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Profile>> {
+export async function patchProfile(patch: Partial<Profile>, baseVersion: number): Promise<Partial<Profile>> {
+  // `version` is the server's, not a field to save: it travels as `baseVersion`, the version this
+  // edit was based on. A profile another device has saved since is refused, and that refusal is
+  // thrown as a `StaleVersionError` carrying the server's profile (see `sync-conflict.ts`).
+  const { version: _version, ...fields } = patch;
   const response = await fetch("/api/profile", {
     method: "PATCH",
     credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(patch),
+    body: JSON.stringify({ ...fields, baseVersion }),
   });
+  const stale = await staleOf<Partial<Profile>>(response);
+  if (stale) throw stale;
   if (!response.ok) throw new Error(`保存档案失败：${response.status}`);
   const saved = (await response.json()) as Partial<Profile>;
   // Only the keys this call actually sent are compared. `JSON.stringify` drops a key whose value is
   // `undefined`, so such a key never reached the server and its absence from the reply says nothing
   // about whether the save landed.
-  const sent = Object.entries(patch).filter(([, value]) => value !== undefined);
+  const sent = Object.entries(fields).filter(([, value]) => value !== undefined);
   const diverged = sent
     .filter(
       ([key, value]) =>
@@ -389,7 +397,7 @@ export async function replaceRoadmapTasks(
  */
 export async function patchRoadmapTask(
   taskId: string,
-  patch: { status?: string; dueAt?: string | null; suggestedAt?: string | null },
+  patch: { status?: string; dueAt?: string | null; suggestedAt?: string | null; baseVersion: number },
 ): Promise<ServedTask> {
   const response = await fetch(`/api/roadmap/tasks/${encodeURIComponent(taskId)}`, {
     method: "PATCH",
@@ -397,6 +405,10 @@ export async function patchRoadmapTask(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(patch),
   });
+  // `baseVersion` is the row version the edit was based on; a row changed elsewhere since is refused
+  // and thrown as a `StaleVersionError` carrying the server's row.
+  const stale = await staleOf<ServedTask>(response);
+  if (stale) throw stale;
   if (!response.ok) throw new Error(`保存材料状态失败：${response.status}`);
   return (await response.json()) as ServedTask;
 }
@@ -467,13 +479,19 @@ export async function fetchApplications(): Promise<ServedApplication[]> {
  */
 export async function replaceApplications(
   rows: ApplicationRow[],
+  base: BaseRow[],
 ): Promise<ApplicationReplaceResult> {
   const response = await fetch("/api/applications", {
     method: "PUT",
     credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ rows }),
+    body: JSON.stringify({ rows, base }),
   });
+  // `base` is the saved rows the list was built from (`baseOf` in `portfolio-draft.ts`). If another
+  // device changed the portfolio since, nothing is written and the refusal is thrown as a
+  // `StaleVersionError` carrying the rows the server holds.
+  const stale = await staleOf<ServedApplication[]>(response);
+  if (stale) throw stale;
   if (!response.ok) throw new Error(`保存申请组合失败：${response.status}`);
   return (await response.json()) as ApplicationReplaceResult;
 }

@@ -1,84 +1,59 @@
 from fastapi.testclient import TestClient
 from app.main import app
+from tests.versioned import create_record, delete_record, patch_record, put_portfolio
 
 
 def test_manual_application_round_date_and_ownership(require_db):
     owner, stranger = TestClient(app), TestClient(app)
-    response = owner.post(
-        "/api/application-records",
-        json={"school": "Example University", "name": "Example MSc"},
-    )
+    response = create_record(owner, {"school": "Example University", "name": "Example MSc"})
     assert response.status_code == 201
     record = response.json()
     key = record["id"]
     assert record["deadline"] is None
     assert stranger.get("/api/application-records").json() == []
     assert (
-        stranger.patch(
-            f"/api/application-records/{key}", json={"status": "submitted"}
-        ).status_code
+        patch_record(stranger, key, {"status": "submitted"}).status_code
         == 404
     )
-    assert stranger.delete(f"/api/application-records/{key}").status_code == 404
-    response = owner.patch(
-        f"/api/application-records/{key}",
-        json={"deadline": "2027-01-15", "round": "Round 1", "materialsReady": True},
-    )
+    assert delete_record(stranger, key).status_code == 404
+    response = patch_record(owner, key, {"deadline": "2027-01-15", "round": "Round 1", "materialsReady": True})
     assert response.status_code == 200
     assert response.json()["checkedAt"] is None
     assert (
-        owner.patch(
-            f"/api/application-records/{key}", json={"confirmDeadline": True}
-        ).status_code
+        patch_record(owner, key, {"confirmDeadline": True}).status_code
         == 422
     )
-    response = owner.patch(
-        f"/api/application-records/{key}",
-        json={"sourceUrl": "https://example.edu/apply", "confirmDeadline": True},
-    )
+    response = patch_record(owner, key, {"sourceUrl": "https://example.edu/apply", "confirmDeadline": True})
     assert response.status_code == 200 and response.json()["checkedAt"]
-    changed = owner.patch(
-        f"/api/application-records/{key}", json={"round": "Round 2"}
-    ).json()
+    changed = patch_record(owner, key, {"round": "Round 2"}).json()
     assert changed["checkedAt"] is None
     assert changed["materialsReady"] is True
     assert owner.get("/api/application-records").json()[0]["round"] == "Round 2"
-    assert owner.put("/api/applications", json={"rows": []}).status_code == 200
+    assert put_portfolio(owner, []).status_code == 200
     assert len(owner.get("/api/application-records").json()) == 1
-    assert owner.delete(f"/api/application-records/{key}").status_code == 204
+    assert delete_record(owner, key).status_code == 204
     assert owner.get("/api/application-records").json() == []
 
 
 def test_application_record_validation(require_db):
     client = TestClient(app)
     assert (
-        client.post(
-            "/api/application-records", json={"school": " ", "name": "MSc"}
-        ).status_code
+        create_record(client, {"school": " ", "name": "MSc"}).status_code
         == 422
     )
-    response = client.post(
-        "/api/application-records", json={"school": "Example", "name": "MSc"}
-    )
+    response = create_record(client, {"school": "Example", "name": "MSc"})
     assert response.status_code == 201
     key = response.json()["id"]
     assert (
-        client.patch(
-            f"/api/application-records/{key}", json={"sourceUrl": "javascript:alert(1)"}
-        ).status_code
+        patch_record(client, key, {"sourceUrl": "javascript:alert(1)"}).status_code
         == 422
     )
     assert (
-        client.patch(
-            f"/api/application-records/{key}", json={"status": "invented"}
-        ).status_code
+        patch_record(client, key, {"status": "invented"}).status_code
         == 422
     )
     assert (
-        client.patch(
-            f"/api/application-records/{key}",
-            json={"deadline": None, "confirmDeadline": True},
-        ).status_code
+        patch_record(client, key, {"deadline": None, "confirmDeadline": True}).status_code
         == 422
     )
 
@@ -93,9 +68,7 @@ def test_catalogue_selection_round_edits_preserve_legacy_contract(
     client = TestClient(app)
     program = PROGRAM_IDS[0]
     assert (
-        client.put(
-            "/api/applications", json={"rows": [{"programId": program, "tier": "稳"}]}
-        ).status_code
+        put_portfolio(client, [{"programId": program, "tier": "稳"}]).status_code
         == 200
     )
     records = client.get("/api/application-records").json()
@@ -103,16 +76,13 @@ def test_catalogue_selection_round_edits_preserve_legacy_contract(
     record = records[0]
     assert record["programId"] == program
     assert (
-        client.patch(
-            f"/api/application-records/{record['id']}",
-            json={
+        patch_record(client, record['id'], {
                 "status": "submitted",
                 "deadline": "2027-02-01",
                 "sourceUrl": "https://example.edu/apply",
                 "round": "R1",
                 "confirmDeadline": True,
-            },
-        ).status_code
+            }).status_code
         == 200
     )
     legacy = client.get("/api/applications").json()[0]
@@ -120,13 +90,11 @@ def test_catalogue_selection_round_edits_preserve_legacy_contract(
         legacy["status"] == "submitted" and legacy["officialDeadline"] == "2027-02-01"
     )
     assert (
-        client.put(
-            "/api/applications", json={"rows": [{"programId": program, "tier": "冲"}]}
-        ).status_code
+        put_portfolio(client, [{"programId": program, "tier": "冲"}]).status_code
         == 200
     )
     assert client.get("/api/application-records").json()[0]["round"] == "R1"
-    assert client.delete(f"/api/application-records/{record['id']}").status_code == 204
+    assert delete_record(client, record['id']).status_code == 204
     assert client.get("/api/applications").json() == []
 
 
@@ -169,9 +137,7 @@ def test_advisor_reads_only_its_own_manual_applications(require_db):
     from app.deps import COOKIE_NAME
 
     owner, stranger = TestClient(app), TestClient(app)
-    owner.post(
-        "/api/application-records", json={"school": "Own Example", "name": "My MSc"}
-    )
+    create_record(owner, {"school": "Own Example", "name": "My MSc"})
     stranger.get("/api/application-records")
     owned = get_my_applications.invoke(
         {}, config={"configurable": {"client_id": owner.cookies[COOKIE_NAME]}}

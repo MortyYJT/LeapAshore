@@ -12,6 +12,7 @@ from app.models.task import RoadmapTask
 from app.schemas.roadmap import MaterialOut, PhaseOut, RoadmapDefinition, SourceRef
 from app.schemas.task import TaskOut, TaskPatch, TaskReplaceRequest, TaskReplaceResult
 from app.services.roadmap_tasks import InvalidTaskPayload, replace_system_tasks, update_task
+from app.services.versions import StaleVersion, stale_response
 
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
@@ -174,7 +175,7 @@ def update_one_task(
     payload: TaskPatch,
     client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
-) -> RoadmapTask:
+):
     """Apply the applicant's edit to one of their own rows.
 
     This is the per-row door: the applicant changes a task's status or its dates, and the row becomes
@@ -197,8 +198,14 @@ def update_one_task(
     reports are the values it stored, not the ones the caller sent. A payload that names no field, or
     that claims `origin`, `materialKey` or `phase`, is refused by `TaskPatch` with a 422 before the
     service is reached.
+
+    The payload states the row version it was based on (`baseVersion`). When another device has
+    changed the row since, nothing is written and the answer is 409 with the row as it is stored.
     """
-    task = update_task(session, client_id, task_id, payload)
+    try:
+        task = update_task(session, client_id, task_id, payload)
+    except StaleVersion as exc:
+        return stale_response(TaskOut.model_validate(exc.current).model_dump(by_alias=True, mode="json"))
     if task is None:
         raise HTTPException(
             status_code=404,

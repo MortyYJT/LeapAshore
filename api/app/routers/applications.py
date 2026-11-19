@@ -15,7 +15,9 @@ from app.schemas.application import (
     ProgramRef,
 )
 from app.schemas.program import deadlines_of
+from app.services.accounts import lock_client
 from app.services.applications import InvalidApplicationPayload, replace_applications
+from app.services.versions import stale_response
 
 router = APIRouter(prefix="/api/applications", tags=["applications"])
 
@@ -106,7 +108,7 @@ def replace_the_applications(
     client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
-) -> dict:
+):
     """Replace the caller's portfolio whole: what the payload names is what the subject holds.
 
     A row the payload names that the subject does not hold is created, a row it restates is moved,
@@ -146,6 +148,20 @@ def replace_the_applications(
     body it does not describe.
     """
     load_or_create_profile(session, client_id)
+    # Every write to this subject's portfolio takes the subject's row first (the application-record
+    # routes do the same), so the comparison below and the replacement are one step. `base` is the
+    # set of stored rows the caller built its list from; if another device has added, changed or
+    # removed a row since, the replacement is refused with the rows as they are stored.
+    lock_client(session, client_id)
+    stored = {
+        (row_id, version)
+        for row_id, version in session.execute(
+            select(Application.id, Application.version).where(Application.client_id == client_id)
+        )
+    }
+    if stored != {(row.id, row.version) for row in payload.base}:
+        current = read_applications(client_id, session)
+        return stale_response([row.model_dump(by_alias=True, mode="json") for row in current])
     try:
         return replace_applications(session, client_id, payload.rows)
     except InvalidApplicationPayload as exc:

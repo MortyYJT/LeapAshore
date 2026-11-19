@@ -7,6 +7,7 @@ import {
   clearDraft,
   draftChanged,
   readDraft,
+  readDraftBase,
   removeFromDraft,
   setPrimary,
   setStatus,
@@ -94,4 +95,32 @@ test("the draft survives in session storage and a damaged copy is ignored", () =
   writeDraft(storage, [item("a")]);
   clearDraft(storage);
   assert.equal(readDraft(storage), null);
+});
+
+test("the draft remembers the saved rows it was first made from", () => {
+  const storage = memoryStorage();
+  const saved = [item("a", { rowId: "row-a", version: 2 }), item("b", { rowId: "row-b", version: 1 })];
+  assert.equal(readDraftBase(storage), null);
+  writeDraft(storage, removeFromDraft(saved, "b"), saved);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 2 }, { id: "row-b", version: 1 }]);
+
+  // A later edit, after another device changed the portfolio and this page read it again, must not
+  // move the base: the draft is still the one made from the older rows.
+  const newer = [item("a", { rowId: "row-a", version: 5 })];
+  writeDraft(storage, [item("a"), item("c")], newer);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 2 }, { id: "row-b", version: 1 }]);
+
+  clearDraft(storage);
+  assert.equal(readDraftBase(storage), null);
+  writeDraft(storage, [item("c")], newer);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 5 }]);
+});
+
+test("an empty saved portfolio is a base too, and a draft from an older build has none", () => {
+  const storage = memoryStorage();
+  writeDraft(storage, [item("a")], []);
+  assert.deepEqual(readDraftBase(storage), []);
+  clearDraft(storage);
+  writeDraft(storage, [item("a")]);
+  assert.equal(readDraftBase(storage), null);
 });

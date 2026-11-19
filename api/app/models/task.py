@@ -14,6 +14,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy.types import JSON
 
 from app.db import Base
+from app.models.versioning import Versioned
 
 
 class TaskOrigin(StrEnum):
@@ -37,7 +38,7 @@ class ScheduleOrigin(StrEnum):
     USER = "user"
 
 
-class RoadmapTask(Base):
+class RoadmapTask(Versioned, Base):
     """One thing the applicant has to prepare. Derived from the profile, then owned by whoever edits it."""
 
     __tablename__ = "roadmap_tasks"

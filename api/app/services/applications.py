@@ -88,6 +88,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.models.application import Application, ApplicationOrigin, ApplicationStatus
+from app.models.client import Client
 from app.models.program import Program
 from app.models.task import TaskOrigin
 from app.services.writes import carries, row_value, write_history
@@ -469,6 +470,16 @@ def replace_applications(session: Session, client_id: str, rows: Sequence[Any]) 
     _reject_a_program_named_twice(program_ids)
     _reject_a_second_primary(rows, program_ids)
     _reject_unknown_programs(session, program_ids)
+
+    # One portfolio writer per subject at a time. The route compares the caller's base rows with the
+    # stored ones before it calls this, and the advisor's confirmed change calls this directly; with
+    # the subject's row held by both, neither can write between the other's read and its commit.
+    # `FOR NO KEY UPDATE`, not `FOR UPDATE`: it excludes the other writers that take this lock, but
+    # not an insert that only needs the foreign key to `clients`, so a writer that does not go
+    # through here is still met by the constraint and the retry below rather than left waiting.
+    session.execute(
+        select(Client.id).where(Client.id == client_id).with_for_update(key_share=True)
+    )
 
     for attempt in (1, 2):
         try:

@@ -10,15 +10,19 @@ import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { loadPortfolio, usePortfolio } from "@/lib/hooks/usePortfolio";
 import {
+  baseOf,
   clearDraft,
   draftChanged,
   readDraft,
+  readDraftBase,
   removeFromDraft,
   setPrimary,
   setStatus,
   writeDraft,
+  writeDraftBase,
 } from "@/lib/portfolio-draft";
-import { toApplicationRows } from "@/lib/programs-source";
+import { toApplicationRows, toPortfolioItems, type ServedApplication } from "@/lib/programs-source";
+import { StaleVersionError } from "@/lib/sync-conflict";
 import { APPLICATION_STATUSES, TIER_OF_BAND } from "@/lib/taxonomy";
 import type { ApplicationStatus, PortfolioItem, Program } from "@/lib/types";
 
@@ -61,6 +65,8 @@ function Portfolio() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedNote, setSavedNote] = useState<string | null>(null);
+  // True after a confirm was refused because another device changed the portfolio; see `confirm`.
+  const [conflict, setConflict] = useState(false);
   const tbody = useRef<HTMLTableSectionElement>(null);
   const beforeRemoval = useRef<Map<string, number> | null>(null);
   const rowMotion = useRef<Animation[]>([]);
@@ -136,7 +142,8 @@ function Portfolio() {
   const update = (next: PortfolioItem[]) => {
     setDraft(next);
     setSavedNote(null);
-    writeDraft(sessionStorage, next);
+    // The saved portfolio is stated with the first write, as the base the confirm is checked against.
+    writeDraft(sessionStorage, next, saved.data);
   };
 
   async function confirm() {
@@ -144,7 +151,11 @@ function Portfolio() {
     setSaving(true);
     setSaveError(null);
     try {
-      await replaceApplications(toApplicationRows(draft));
+      await replaceApplications(
+        toApplicationRows(draft),
+        readDraftBase(sessionStorage) ?? baseOf(saved.data ?? []),
+      );
+      setConflict(false);
       clearDraft(sessionStorage);
       try {
         const confirmed = await loadPortfolio();
@@ -156,9 +167,21 @@ function Portfolio() {
         saved.reload();
       }
     } catch (error: unknown) {
-      setSaveError(
-        `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
-      );
+      if (error instanceof StaleVersionError) {
+        // Another device changed the portfolio after this draft was made. Nothing was written. The
+        // server's rows become the saved portfolio on screen and the draft's base, so the two buttons
+        // below are the choice: confirm again to save this draft over them, or discard it for theirs.
+        const theirs = toPortfolioItems(error.current as ServedApplication[]);
+        saved.set(theirs);
+        writeDraftBase(sessionStorage, baseOf(theirs));
+        setConflict(true);
+        setSaveError(`组合已在其他设备上修改，这次没有保存。${portfolioDifferences(draft, theirs)}`);
+      } else {
+        setConflict(false);
+        setSaveError(
+          `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
+        );
+      }
     } finally {
       setSaving(false);
     }
@@ -167,6 +190,8 @@ function Portfolio() {
   function discard() {
     clearDraft(sessionStorage);
     setDraft(saved.data ?? []);
+    setConflict(false);
+    setSaveError(null);
   }
 
   const rows = [...(draft ?? [])].sort(
@@ -398,10 +423,10 @@ function Portfolio() {
             </span>
             <span className="toolbar">
               <Button variant="text" onClick={discard} disabled={saving}>
-                放弃改动
+                {conflict ? "使用服务器上的组合" : "放弃改动"}
               </Button>
               <Button variant="primary" onClick={confirm} disabled={saving}>
-                {saving ? "正在保存…" : `确认 ${rows.length} 个项目`}
+                {saving ? "正在保存…" : conflict ? `保留我的 ${rows.length} 个项目` : `确认 ${rows.length} 个项目`}
               </Button>
             </span>
           </div>
@@ -414,4 +439,16 @@ function Portfolio() {
       </main>
     </>
   );
+}
+
+/** What separates this draft from the portfolio the server holds, in the applicant's words. */
+function portfolioDifferences(mine: PortfolioItem[], theirs: PortfolioItem[]): string {
+  const label = (row: PortfolioItem) => row.program?.nameEn ?? row.programSlug;
+  const onlyTheirs = theirs.filter((t) => !mine.some((m) => m.programSlug === t.programSlug)).map(label);
+  const onlyMine = mine.filter((m) => !theirs.some((t) => t.programSlug === m.programSlug)).map(label);
+  const parts = [
+    onlyTheirs.length ? `服务器上有、你的改动里没有：${onlyTheirs.join("、")}` : "",
+    onlyMine.length ? `你的改动里有、服务器上没有：${onlyMine.join("、")}` : "",
+  ].filter(Boolean);
+  return parts.length ? `${parts.join("；")}。` : "同一批项目的档位、状态或首选不同。";
 }

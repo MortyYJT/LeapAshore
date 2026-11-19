@@ -25,6 +25,7 @@ import {
   uploadMaterial,
 } from "./api.ts";
 import type { TaskReplacePayload } from "./roadmap-sync.ts";
+import { StaleVersionError } from "./sync-conflict.ts";
 import type { Profile } from "./types.ts";
 
 // The local copy these merge tests start from: the values the old in-browser store started with. Kept
@@ -112,7 +113,7 @@ test("clearing a saved field survives the next load", async () => {
   const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学" };
   const { value } = await withFetch(
     () => new Response(JSON.stringify({ schoolName: "" }), { status: 200 }),
-    () => patchProfile({ schoolName: "" }),
+    () => patchProfile({ schoolName: "" }, 1),
   );
   assert.equal(value.schoolName, "");
   assert.equal(mergeServerProfile(value, local).schoolName, "");
@@ -145,17 +146,17 @@ test("fetchProfile refuses to treat an error page as a profile", async () => {
 test("patchProfile sends only the fields it was given, as PATCH", async () => {
   const { value, calls } = await withFetch(
     () => new Response(JSON.stringify({ major: "软件工程" }), { status: 200 }),
-    () => patchProfile({ major: "软件工程" }),
+    () => patchProfile({ major: "软件工程" }, 1),
   );
   assert.deepEqual(value, { major: "软件工程" });
   assert.equal(calls[0].init?.method, "PATCH");
-  assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程" }));
+  assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程", baseVersion: 1 }));
   assert.deepEqual(calls[0].init?.headers, { "Content-Type": "application/json" });
 });
 
 test("patchProfile raises on a rejected save so the caller can roll the edit back", async () => {
   await assert.rejects(
-    () => withFetch(() => new Response("", { status: 422 }), () => patchProfile({ major: "x" })),
+    () => withFetch(() => new Response("", { status: 422 }), () => patchProfile({ major: "x" }, 1)),
     /保存档案失败：422/,
   );
 });
@@ -171,7 +172,7 @@ test("patchProfile raises when the server did not store the value it was sent", 
           new Response(JSON.stringify({ major: "计算机科学与技术", schoolName: "北京邮电大学" }), {
             status: 200,
           }),
-        () => patchProfile({ major: "软件工程" }),
+        () => patchProfile({ major: "软件工程" }, 1),
       ),
     /保存档案失败：服务器没有按提交的值保存（major）/,
   );
@@ -188,7 +189,7 @@ test("a reply the column rounded is the same answer, not a divergence", async ()
   const { value } = await withFetch(
     () =>
       new Response(JSON.stringify({ gpaScore: 85.38, annualBudgetCny: 250000.51 }), { status: 200 }),
-    () => patchProfile({ gpaScore: 85.375, annualBudgetCny: 250000.505 }),
+    () => patchProfile({ gpaScore: 85.375, annualBudgetCny: 250000.505 }, 1),
   );
   assert.equal(value.gpaScore, 85.38);
   assert.equal(value.annualBudgetCny, 250000.51);
@@ -200,7 +201,7 @@ test("the rounding matches the column's ties, not binary scaling", async () => {
   // 85.375, opposite float luck, which is why the digits are rounded as digits.
   const { value } = await withFetch(
     () => new Response(JSON.stringify({ gpaScore: 4.68 }), { status: 200 }),
-    () => patchProfile({ gpaScore: 4.675 }),
+    () => patchProfile({ gpaScore: 4.675 }, 1),
   );
   assert.equal(value.gpaScore, 4.68);
 });
@@ -212,11 +213,11 @@ test("a stored value the column cannot explain still raises", async () => {
   const replyWith = (body: unknown) => () =>
     new Response(JSON.stringify(body), { status: 200 });
   await assert.rejects(
-    () => withFetch(replyWith({ gpaScore: 82 }), () => patchProfile({ gpaScore: 85.375 })),
+    () => withFetch(replyWith({ gpaScore: 82 }), () => patchProfile({ gpaScore: 85.375 }, 1)),
     /保存档案失败：服务器没有按提交的值保存（gpaScore）/,
   );
   await assert.rejects(
-    () => withFetch(replyWith({ gpaScore: 85.4 }), () => patchProfile({ gpaScore: 85.375 })),
+    () => withFetch(replyWith({ gpaScore: 85.4 }), () => patchProfile({ gpaScore: 85.375 }, 1)),
     /保存档案失败：服务器没有按提交的值保存（gpaScore）/,
   );
 });
@@ -227,7 +228,7 @@ test("patchProfile ignores the rest of the profile the server echoes back", asyn
   const body = { major: "软件工程", schoolName: "北京邮电大学", gpaScore: 82 };
   const { value } = await withFetch(
     () => new Response(JSON.stringify(body), { status: 200 }),
-    () => patchProfile({ major: "软件工程" }),
+    () => patchProfile({ major: "软件工程" }, 1),
   );
   assert.deepEqual(value, body);
 });
@@ -238,9 +239,10 @@ test("patchProfile does not compare a key the request never sent", async () => {
   // a save that landed, and the onboarding caller treats that as "do not advance".
   const { value, calls } = await withFetch(
     () => new Response(JSON.stringify({ major: "软件工程", schoolName: null }), { status: 200 }),
-    () => patchProfile({ major: "软件工程", schoolName: undefined }),
+    () => patchProfile({ major: "软件工程", schoolName: undefined, version: 7 }, 1),
   );
-  assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程" }));
+  // `version` is the server's own and is never sent as a field; the base version travels beside them.
+  assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程", baseVersion: 1 }));
   assert.deepEqual(value, { major: "软件工程", schoolName: null });
 });
 
@@ -590,19 +592,35 @@ test("patchRoadmapTask edits one row by id, and returns the row the server store
   };
   const { value, calls } = await withFetch(
     () => new Response(JSON.stringify(stored), { status: 200 }),
-    () => patchRoadmapTask("task-9", { status: "completed" }),
+    () => patchRoadmapTask("task-9", { status: "completed", baseVersion: 4 }),
   );
   assert.equal(value.status, "completed");
   assert.equal(value.origin, "user");
   assert.equal(calls[0].url, "/api/roadmap/tasks/task-9");
   assert.equal(calls[0].init?.method, "PATCH");
-  assert.equal(calls[0].init?.body, JSON.stringify({ status: "completed" }));
+  assert.equal(calls[0].init?.body, JSON.stringify({ status: "completed", baseVersion: 4 }));
+});
+
+test("a stale tick, profile save or portfolio confirm raises with what the server holds", async () => {
+  const refusal = (current: unknown) => () =>
+    new Response(JSON.stringify({ detail: "已在其他设备上更新", code: "stale_version", current }), { status: 409 });
+  const stale = async (run: () => Promise<unknown>, current: unknown) => {
+    const error = await withFetch(refusal(current), run).then(
+      () => null,
+      (raised: unknown) => raised,
+    );
+    assert.ok(error instanceof StaleVersionError, "a stale write must be told apart from a failed one");
+    assert.deepEqual(error.current, current);
+  };
+  await stale(() => patchRoadmapTask("task-9", { status: "completed", baseVersion: 4 }), { id: "task-9", version: 5 });
+  await stale(() => patchProfile({ major: "x" }, 1), { major: "y", version: 2 });
+  await stale(() => replaceApplications([], [{ id: "row-1", version: 1 }]), [{ id: "row-1", version: 2 }]);
 });
 
 test("patchRoadmapTask raises when the tick was not stored", async () => {
   await assert.rejects(
     () =>
-      withFetch(() => new Response("", { status: 404 }), () => patchRoadmapTask("task-9", { status: "completed" })),
+      withFetch(() => new Response("", { status: 404 }), () => patchRoadmapTask("task-9", { status: "completed", baseVersion: 4 })),
     /保存材料状态失败：404/,
   );
 });
@@ -704,13 +722,13 @@ test("replaceApplications sends the rows as a PUT and returns the server's count
   const counts = { created: 1, updated: 1, kept: 0, removed: 0 };
   const { value, calls } = await withFetch(
     () => new Response(JSON.stringify(counts), { status: 200 }),
-    () => replaceApplications(rows),
+    () => replaceApplications(rows, [{ id: "row-1", version: 3 }]),
   );
   assert.deepEqual(value, counts);
   assert.equal(calls[0].url, "/api/applications");
   assert.equal(calls[0].init?.method, "PUT");
   assert.equal(calls[0].init?.credentials, "same-origin");
-  assert.equal(calls[0].init?.body, JSON.stringify({ rows }));
+  assert.equal(calls[0].init?.body, JSON.stringify({ rows, base: [{ id: "row-1", version: 3 }] }));
 });
 
 test("replaceApplications raises on a refused portfolio so the picker can show it", async () => {
@@ -723,9 +741,10 @@ test("replaceApplications raises on a refused portfolio so the picker can show i
       withFetch(
         () => new Response(JSON.stringify({ detail: "..." }), { status: 422 }),
         () =>
-          replaceApplications([
-            { programId: "unsw-master-it", tier: "冲", status: "considering", isPrimary: true, needsReview: false },
-          ]),
+          replaceApplications(
+            [{ programId: "unsw-master-it", tier: "冲", status: "considering", isPrimary: true, needsReview: false }],
+            [],
+          ),
       ),
     /保存申请组合失败：422/,
   );

@@ -87,7 +87,8 @@ function Tiers() {
 
   const update = (next: PortfolioItem[]) => {
     setDraft(next);
-    writeDraft(sessionStorage, next);
+    // The saved portfolio is stated with the first write, as the base a later confirm is checked against.
+    writeDraft(sessionStorage, next, portfolio.data);
   };
 
   const tiered = useMemo(() => {

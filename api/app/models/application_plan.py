@@ -12,11 +12,16 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 from app.db import Base
+from app.models.versioning import Versioned
 
 
-class ApplicationPlan(Base):
+class ApplicationPlan(Versioned, Base):
     __tablename__ = "application_plans"
-    __table_args__ = (UniqueConstraint("client_id", "catalog_program_id"),)
+    __table_args__ = (
+        UniqueConstraint("client_id", "catalog_program_id"),
+        # One row per create request: a retried `POST` carries the same key and finds this row.
+        UniqueConstraint("client_id", "create_key", name="uq_application_plans_create_key"),
+    )
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     client_id: Mapped[str] = mapped_column(
         String(36), ForeignKey("clients.id", ondelete="CASCADE"), index=True
@@ -36,3 +41,5 @@ class ApplicationPlan(Base):
     )
     materials_ready: Mapped[bool] = mapped_column(Boolean, default=False)
     material_notes: Mapped[str] = mapped_column(Text, default="")
+    # The `Idempotency-Key` of the request that created a manual record; null for overlays.
+    create_key: Mapped[str | None] = mapped_column(String(64), nullable=True)

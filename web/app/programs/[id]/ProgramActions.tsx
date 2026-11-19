@@ -59,7 +59,8 @@ function Actions({ program, resumeAdd }: { program: Program; resumeAdd: boolean 
   const chosen = draft?.find((r) => r.programSlug === program.slug) ?? null;
   const update = (next: PortfolioItem[]) => {
     setDraft(next);
-    writeDraft(sessionStorage, next);
+    // The saved portfolio is stated with the first write, as the base a later confirm is checked against.
+    writeDraft(sessionStorage, next, portfolio.data);
   };
   const add = (tier: PortfolioTier, needsReview: boolean) =>
     draft && update(addToDraft(draft, { programSlug: program.slug, program: { university: program.university, nameEn: program.name }, tier, needsReview }));

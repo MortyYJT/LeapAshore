@@ -93,6 +93,8 @@ class TaskPatch(BaseModel):
     status: TaskStatus | None = None
     suggested_at: date | None = None
     due_at: date | None = None
+    # The row version this edit was made against; a stale one is refused with 409 by the service.
+    base_version: int
 
     @model_validator(mode="after")
     def _must_state_something(self) -> "TaskPatch":
@@ -102,7 +104,7 @@ class TaskPatch(BaseModel):
         same distinction the service makes for the dates, and the only way to see it: both spellings
         leave the attribute equal to its default, so the value alone cannot tell them apart.
         """
-        if not self.model_fields_set:
+        if not self.model_fields_set - {"base_version"}:
             raise ValueError(
                 "a patch must carry at least one of status, suggestedAt or dueAt: an edit that states "
                 "nothing cannot be told apart from an accident, and accepting it would claim the row "
@@ -157,6 +159,8 @@ class TaskOut(BaseModel):
     origin: str
     document_id: str | None = None
     completed_at: datetime | None = None
+    # Grows by one with every change to the row; an edit sends it back as `baseVersion`.
+    version: int
     created_at: datetime
     updated_at: datetime
 

@@ -445,6 +445,7 @@ const SERVED_ROW: ServedApplication = {
     dataStatus: "待核验",
     deadlines: [{ label: "Term 1 2027", date: "2026-11-30", sourceUrl: "https://example.edu/dates" }],
   },
+  version: 3,
   createdAt: "2026-10-07T12:41:51.352633Z",
   updatedAt: "2026-10-07T12:41:51.352633Z",
 };
@@ -455,6 +456,9 @@ test("maps a served portfolio row onto the item the interface renders", () => {
   ]);
   assert.deepEqual(item, {
     programSlug: "unsw-master-it",
+    // The stored row's id and version, which a later replacement states as its base.
+    rowId: "0f0f0f0f-0000-0000-0000-000000000000",
+    version: 3,
     // The program the route served alongside the row travels with the item: the two portfolio views
     // render it, so it is part of what this mapping produces rather than a field of the row left behind.
     // Narrowed to the two fields those views read — the institution and the English name — because the
@@ -491,8 +495,10 @@ test("a row the server does not flag is not flagged here", () => {
     "officialDeadline",
     "program",
     "programSlug",
+    "rowId",
     "status",
     "tier",
+    "version",
   ]);
   // The row's program projection travels with the item since M2d, because the two portfolio views
   // render it: they resolved the row through `web/lib/programs.ts` before, and a program that array

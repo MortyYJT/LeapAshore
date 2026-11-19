@@ -6,6 +6,7 @@ from sqlalchemy import func, select
 from app.db import SessionLocal
 from app.main import app
 from app.models.client import Client, Profile
+from tests.versioned import patch_profile
 
 COOKIE = "leapashore_client"
 
@@ -29,7 +30,7 @@ def test_first_request_creates_a_client_and_returns_an_empty_profile(require_db)
 def test_patch_persists_and_reads_back(require_db):
     client = TestClient(app)
     client.get("/api/profile")
-    response = client.patch("/api/profile", json={"schoolName": "北京邮电大学", "gpaScore": 82})
+    response = client.patch("/api/profile", json={"schoolName": "北京邮电大学", "gpaScore": 82, "baseVersion": 1})
     assert response.status_code == 200
     assert response.json()["schoolName"] == "北京邮电大学"
 
@@ -41,7 +42,7 @@ def test_patch_persists_and_reads_back(require_db):
 def test_a_second_subject_cannot_see_the_first_ones_profile(require_db):
     """The core isolation guarantee: two cookies must never resolve to the same profile."""
     first = TestClient(app)
-    first.patch("/api/profile", json={"schoolName": "北京邮电大学"})
+    first.patch("/api/profile", json={"schoolName": "北京邮电大学", "baseVersion": 1})
 
     second = TestClient(app)
     assert second.get("/api/profile").json()["schoolName"] is None
@@ -49,7 +50,7 @@ def test_a_second_subject_cannot_see_the_first_ones_profile(require_db):
 
 def test_rejects_an_unknown_field(require_db):
     client = TestClient(app)
-    response = client.patch("/api/profile", json={"gpaScoreTypo": 82})
+    response = client.patch("/api/profile", json={"gpaScoreTypo": 82, "baseVersion": 1})
     assert response.status_code == 422
 
 
@@ -65,7 +66,7 @@ def test_a_rejected_body_does_not_mint_an_unreachable_subject(require_db):
     """
     before = row_counts()
     client = TestClient(app)
-    response = client.patch("/api/profile", json={"gpaScoreTypo": 82})
+    response = client.patch("/api/profile", json={"gpaScoreTypo": 82, "baseVersion": 1})
     assert response.status_code == 422
     assert "set-cookie" not in {key.lower() for key in response.headers}
     assert row_counts() == before, "a rejected request created a subject"
@@ -79,7 +80,7 @@ def test_an_accepted_body_mints_the_subject_exactly_once(require_db):
     """
     before_clients, before_profiles = row_counts()
     client = TestClient(app)
-    response = client.patch("/api/profile", json={"schoolName": "北京邮电大学"})
+    response = client.patch("/api/profile", json={"schoolName": "北京邮电大学", "baseVersion": 1})
     assert response.status_code == 200
 
     after_clients, after_profiles = row_counts()
@@ -126,7 +127,7 @@ def test_a_second_spelling_of_a_client_id_does_not_mint_a_second_profile(require
     applicant silently acquires a second, empty profile.
     """
     owner = TestClient(app)
-    owner.patch("/api/profile", json={"schoolName": "北京邮电大学"})
+    owner.patch("/api/profile", json={"schoolName": "北京邮电大学", "baseVersion": 1})
     client_id = owner.cookies[COOKIE]
 
     same_subject = TestClient(app)
@@ -138,10 +139,10 @@ def test_a_partial_patch_leaves_the_other_fields_alone(require_db):
     client = TestClient(app)
     client.patch(
         "/api/profile",
-        json={"schoolName": "北京邮电大学", "major": "计算机科学与技术", "gpaScore": 82},
+        json={"schoolName": "北京邮电大学", "major": "计算机科学与技术", "gpaScore": 82, "baseVersion": 1},
     )
 
-    response = client.patch("/api/profile", json={"major": "软件工程"})
+    response = patch_profile(client, {"major": "软件工程"})
     assert response.status_code == 200
     body = response.json()
     assert body["major"] == "软件工程"
@@ -152,9 +153,9 @@ def test_a_partial_patch_leaves_the_other_fields_alone(require_db):
 def test_an_explicit_null_clears_the_field_it_names(require_db):
     """Only omitted fields are protected; a field the caller sends as null is a real edit."""
     client = TestClient(app)
-    client.patch("/api/profile", json={"schoolName": "北京邮电大学", "major": "计算机科学与技术"})
+    client.patch("/api/profile", json={"schoolName": "北京邮电大学", "major": "计算机科学与技术", "baseVersion": 1})
 
-    body = client.patch("/api/profile", json={"schoolName": None}).json()
+    body = patch_profile(client, {"schoolName": None}).json()
     assert body["schoolName"] is None
     assert body["major"] == "计算机科学与技术"
 
@@ -173,11 +174,11 @@ def test_a_value_finer_than_its_column_is_stored_rounded(require_db):
     instead of rounding the digits goes the wrong way: `4.675 * 100` is `467.49999999999994`.
     """
     client = TestClient(app)
-    body = client.patch("/api/profile", json={"annualBudgetCny": 250000.505}).json()
+    body = patch_profile(client, {"annualBudgetCny": 250000.505}).json()
     assert float(body["annualBudgetCny"]) == 250000.51
 
     for sent, stored in ((85.375, 85.38), (3.756, 3.76), (4.675, 4.68), (1.005, 1.01)):
-        answer = client.patch("/api/profile", json={"gpaScore": sent}).json()
+        answer = patch_profile(client, {"gpaScore": sent}).json()
         assert float(answer["gpaScore"]) == stored, sent
 
 

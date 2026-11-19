@@ -55,6 +55,8 @@ export interface Profile {
   englishScore: string;
   annualBudgetCny: number | null;
   intake: string;
+  /** The server's version of the profile row, sent back as `baseVersion` when saving. Not a field to edit. */
+  version?: number;
 }
 
 /** The stored verification states (PRD §7.7 rule 1). The interface marks only `已核验`, through `verifiedMark`. */
@@ -128,6 +130,9 @@ export type ApplicationStatus =
 
 export interface PortfolioItem {
   programSlug: string;
+  /** The stored row's id and version, present on items read from the server; see `baseOf` in `portfolio-draft.ts`. */
+  rowId?: string;
+  version?: number;
   /**
    * The program the row names, as `GET /api/applications` served it, or `null` when the route had none.
    *

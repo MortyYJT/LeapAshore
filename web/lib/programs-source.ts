@@ -221,6 +221,8 @@ export interface ServedApplication {
    * `toProgramLabel`, so the row no longer depends on `web/lib/programs.ts` to be renderable.
    */
   program: ServedProgramRef | null;
+  /** Grows with every change to the row. Optional only so fixtures captured before it existed still type-check. */
+  version?: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -345,6 +347,8 @@ export function toProgramView(program: ServedProgram): Program {
 export function toPortfolioItems(rows: ServedApplication[]): PortfolioItem[] {
   return (rows ?? []).map((row) => ({
     programSlug: row.programId,
+    rowId: row.id,
+    version: row.version,
     program: row.program ? toProgramRef(row.program) : null,
     tier: row.tier as PortfolioTier,
     confirmed: true,

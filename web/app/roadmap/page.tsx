@@ -7,13 +7,14 @@ import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { SampleTimeline } from "@/components/home/SampleTimeline";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { drawnDeadlines, Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
-import { LoadingPanel, Notice, TaskProgress } from "@/components/ui";
+import { ConflictNotice, LoadingPanel, Notice, TaskProgress } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { intakeAnchor } from "@/lib/roadmap";
+import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf, type Timeline as TimelineModel, type TimelinePhase } from "@/lib/roadmap-timeline";
 import { verifiedMark } from "@/lib/taxonomy";
 
@@ -280,6 +281,7 @@ function PhaseTasks({ phase, roadmap }: { phase: TimelinePhase; roadmap: ReturnT
         {phase.phase.tasks.length === 0 && <div className="task"><span /><span className="muted">这一阶段对你的背景没有要做的步骤。</span><span /></div>}
         {phase.phase.tasks.map((t) => {
           const failed = roadmap.failedTicks.has(t.materialId);
+          const conflict = roadmap.tickConflicts.get(t.materialId);
           // A tick needs the server's row for this step. On a first visit the rows are written and read
           // back first, so the box waits rather than taking a click that could not be saved.
           const ready = roadmap.taskIdFor(t.materialId) !== null;
@@ -309,6 +311,14 @@ function PhaseTasks({ phase, roadmap }: { phase: TimelinePhase; roadmap: ReturnT
                   </div>
                 )}
                 {failed && <div className="d negative" role="alert">这次勾选没有保存，已恢复原状。</div>}
+                {conflict && (
+                  <ConflictNotice
+                    onKeepMine={() => roadmap.settleTick(t.materialId, true)}
+                    onTakeTheirs={() => roadmap.settleTick(t.materialId, false)}
+                  >
+                    这一步已在其他设备上改为「{taskStatusLabel(conflict.theirs)}」，这次勾选没有保存。
+                  </ConflictNotice>
+                )}
                 {uploadState && <div className="d" role="status">{uploadState.message}</div>}
               </div>
               <label className="btn btn-secondary btn-small" aria-disabled={!ready || uploadState?.busy} aria-busy={uploadState?.busy}>

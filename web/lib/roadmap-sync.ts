@@ -65,6 +65,8 @@ export interface TaskRow {
    */
   origin: "system" | "user" | "agent";
   completed_at: string | null;
+  /** The row's version on the server; an edit sends it back as `baseVersion`. */
+  version: number;
 }
 
 /** One row of `PUT /api/roadmap/tasks`, in the camelCase the route serialises. */
@@ -228,4 +230,16 @@ export function alreadyStored(payload: TaskReplacePayload, tasks: TaskRow[]): bo
   }
 
   return true;
+}
+
+const TASK_STATUS_LABELS: Record<string, string> = {
+  pending: "未完成",
+  in_progress: "进行中",
+  completed: "已完成",
+  skipped: "已跳过",
+};
+
+/** A task status in the applicant's words, for saying what another device set it to. */
+export function taskStatusLabel(status: string): string {
+  return TASK_STATUS_LABELS[status] ?? status;
 }

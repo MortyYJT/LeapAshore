@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 
-import { Field, Pill } from "@/components/ui";
+import { ConflictNotice, Field, Pill } from "@/components/ui";
 import { patchProfile } from "@/lib/api";
 import {
   ENGLISH_TESTS,
@@ -13,7 +13,9 @@ import {
   type BasicField,
   type EnglishTest,
 } from "@/lib/assess";
+import { toProfile } from "@/lib/hooks/useProfile";
 import { exactInstitution, findInstitutions, type InstitutionHit } from "@/lib/institution-search";
+import { StaleVersionError, changedFields } from "@/lib/sync-conflict";
 import { BUDGET_OPTIONS, DEGREE_OPTIONS, EDUCATION_OPTIONS, GPA_SCALE_OPTIONS, INTAKE_OPTIONS, STUDY_AREAS } from "@/lib/taxonomy";
 import type { Profile } from "@/lib/types";
 
@@ -55,6 +57,8 @@ export function ProfileForm({
   const [errors, setErrors] = useState<Partial<Record<BasicField, string>>>({});
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  // A save refused because another device saved the profile first: the edit, and the server's profile.
+  const [conflict, setConflict] = useState<{ patch: Partial<Profile>; next: Profile; current: Partial<Profile> } | null>(null);
   const [hits, setHits] = useState<InstitutionHit[]>([]);
   const [listed, setListed] = useState<InstitutionHit | null>(null);
   const looked = useRef(false);
@@ -101,17 +105,25 @@ export function ProfileForm({
       document.getElementById(id(FOCUS[first]))?.focus();
       return;
     }
-    setSaving(true);
-    setSaveError(null);
     const patch: Partial<Profile> =
       mode === "basics"
         ? { schoolOrigin: next.schoolOrigin, schoolName, domesticTier, overseasBand: null, gpaScore: next.gpaScore, gpaScale: next.gpaScale, targetField: next.targetField, englishScore }
         : { ...next, overseasBand: null };
+    await save(patch, next, initial?.version ?? 1);
+  }
+
+  // `baseVersion` is the profile version the edit was made against. A refused save keeps the edit and
+  // the server's profile, and `ConflictNotice` below offers the two ways out.
+  async function save(patch: Partial<Profile>, next: Profile, baseVersion: number) {
+    setSaving(true);
+    setSaveError(null);
     try {
-      await patchProfile(patch);
-      onSaved(next);
-    } catch {
-      setSaveError("没有保存，请稍后再试。");
+      const saved = await patchProfile(patch, baseVersion);
+      setConflict(null);
+      onSaved({ ...next, version: saved.version });
+    } catch (error) {
+      if (error instanceof StaleVersionError) setConflict({ patch, next, current: error.current as Partial<Profile> });
+      else setSaveError("没有保存，请稍后再试。");
     } finally {
       setSaving(false);
     }
@@ -270,6 +282,23 @@ export function ProfileForm({
   );
 
   const actions = (
+    <>
+    {conflict && (
+      <ConflictNotice
+        busy={saving}
+        onKeepMine={() =>
+          // Only what this form changed on the profile it was opened with; the rest stays the server's.
+          void save(
+            changedFields(conflict.patch, initial),
+            { ...toProfile(conflict.current), ...changedFields(conflict.next, initial) },
+            conflict.current.version ?? 1,
+          )
+        }
+        onTakeTheirs={() => onSaved(toProfile(conflict.current))}
+      >
+        背景已在其他设备上修改，这次没有保存。保留我的修改只写入你在这里改过的内容；使用服务器上的内容会放弃这次修改。
+      </ConflictNotice>
+    )}
     <div className="actions">
       <span className={saveError ? "negative" : "muted"} role="status" style={{ marginRight: "auto", alignSelf: "center" }}>
         {saveError ?? (Object.values(errors).some(Boolean) ? `还差 ${Object.values(errors).filter(Boolean).length} 项，见标红的字段。` : "")}
@@ -288,6 +317,7 @@ export function ProfileForm({
         {saving ? "正在保存…" : submitLabel}
       </button>
     </div>
+    </>
   );
 
   if (mode === "basics") {

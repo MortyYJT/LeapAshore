@@ -7,6 +7,21 @@ import type { PortfolioProgram } from "./programs-source.ts";
 import type { ApplicationStatus, PortfolioItem, PortfolioTier } from "./types.ts";
 
 export const DRAFT_KEY = "leapashore-portfolio-draft";
+/** The saved rows the stored draft was first made from; see `writeDraft`. */
+export const DRAFT_BASE_KEY = "leapashore-portfolio-draft-base";
+
+/** One saved portfolio row as it was read: what `PUT /api/applications` takes in `base`. */
+export interface BaseRow {
+  id: string;
+  version: number;
+}
+
+/** The base a replacement built from these saved items states. Items the server never stored have none. */
+export function baseOf(saved: PortfolioItem[]): BaseRow[] {
+  return saved.flatMap((row) =>
+    row.rowId !== undefined && row.version !== undefined ? [{ id: row.rowId, version: row.version }] : [],
+  );
+}
 
 const TIERS: readonly PortfolioTier[] = ["冲", "稳", "保"];
 const STATUSES: readonly ApplicationStatus[] = [
@@ -91,10 +106,40 @@ export function readDraft(storage: Storage): PortfolioItem[] | null {
   }
 }
 
-export function writeDraft(storage: Storage, draft: PortfolioItem[]): void {
+/**
+ * Store the draft, and with the first write the saved portfolio it was made from.
+ *
+ * The base is what the confirm action sends so the server can refuse a draft made from a portfolio
+ * another device has since changed. It is recorded once per draft and kept until `clearDraft`: the
+ * draft outlives a page load, and a page that read the newer portfolio and then stated it as the
+ * base would overwrite the other device's change without either side being told.
+ */
+export function writeDraft(storage: Storage, draft: PortfolioItem[], saved?: PortfolioItem[] | null): void {
+  if (saved && storage.getItem(DRAFT_BASE_KEY) === null) writeDraftBase(storage, baseOf(saved));
   storage.setItem(DRAFT_KEY, JSON.stringify(draft));
+}
+
+/** The saved rows the stored draft was made from, or null when that was never recorded. */
+export function readDraftBase(storage: Storage): BaseRow[] | null {
+  const raw = storage.getItem(DRAFT_BASE_KEY);
+  if (raw === null) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    const valid =
+      Array.isArray(parsed) &&
+      parsed.every((row) => typeof row?.id === "string" && typeof row?.version === "number");
+    return valid ? (parsed as BaseRow[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Restate the base, after a refused confirm showed the applicant the portfolio the server holds. */
+export function writeDraftBase(storage: Storage, base: BaseRow[]): void {
+  storage.setItem(DRAFT_BASE_KEY, JSON.stringify(base));
 }
 
 export function clearDraft(storage: Storage): void {
   storage.removeItem(DRAFT_KEY);
+  storage.removeItem(DRAFT_BASE_KEY);
 }

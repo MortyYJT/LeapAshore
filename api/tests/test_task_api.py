@@ -28,6 +28,7 @@ from app.deps import COOKIE_NAME
 from app.main import app
 from app.models.task import RoadmapTask, TaskEvent, TaskOrigin, TaskStatus
 from app.seed_roadmap import seed_roadmap
+from tests.versioned import patch_task
 
 MATERIAL = "aca-transcript"
 OTHER_MATERIAL = "aca-scale"
@@ -96,9 +97,7 @@ def test_a_user_edit_flips_the_origin_and_records_history(require_db, db_session
     task = _write_one_row(client)
     assert task["origin"] == TaskOrigin.SYSTEM
 
-    edited = client.patch(
-        f"/api/roadmap/tasks/{task['id']}", json={"status": TaskStatus.IN_PROGRESS.value}
-    )
+    edited = patch_task(client, task['id'], {"status": TaskStatus.IN_PROGRESS.value})
     assert edited.status_code == 200, edited.text
     assert edited.json()["origin"] == TaskOrigin.USER, "the applicant's own edit did not claim the row"
     assert edited.json()["status"] == TaskStatus.IN_PROGRESS.value
@@ -137,16 +136,12 @@ def test_a_second_subject_cannot_edit_the_first_ones_task(require_db, db_session
 
     # The control, and the half the earlier isolation test was missing: the same request, on the row
     # this cookie addresses, succeeds. A route that refused every edit would satisfy the 404 below.
-    accepted = stranger.patch(
-        f"/api/roadmap/tasks/{strangers_task['id']}", json={"status": TaskStatus.COMPLETED.value}
-    )
+    accepted = patch_task(stranger, strangers_task['id'], {"status": TaskStatus.COMPLETED.value})
     assert accepted.status_code == 200, accepted.text
     assert accepted.json()["status"] == TaskStatus.COMPLETED.value
 
     # The claim: the owner's task id, presented under the stranger's cookie, is a miss.
-    refused = stranger.patch(
-        f"/api/roadmap/tasks/{owners_task['id']}", json={"status": TaskStatus.COMPLETED.value}
-    )
+    refused = patch_task(stranger, owners_task['id'], {"status": TaskStatus.COMPLETED.value})
     assert refused.status_code == 404, (
         f"another subject's row was editable through this cookie: {refused.text}"
     )
@@ -170,7 +165,7 @@ def test_ticking_a_task_stamps_completed_at(require_db, db_session):
     task = _write_one_row(client)
     assert task["completedAt"] is None, "a pending row has no completion time"
 
-    edited = client.patch(f"/api/roadmap/tasks/{task['id']}", json={"status": TaskStatus.COMPLETED.value})
+    edited = patch_task(client, task['id'], {"status": TaskStatus.COMPLETED.value})
     assert edited.status_code == 200, edited.text
     served = edited.json()["completedAt"]
     assert served is not None, "ticking a task did not record when it was finished"
@@ -189,13 +184,11 @@ def test_unticking_clears_completed_at(require_db, db_session):
     client = TestClient(app)
     task = _write_one_row(client)
 
-    ticked = client.patch(f"/api/roadmap/tasks/{task['id']}", json={"status": TaskStatus.COMPLETED.value})
+    ticked = patch_task(client, task['id'], {"status": TaskStatus.COMPLETED.value})
     assert ticked.status_code == 200, ticked.text
     assert ticked.json()["completedAt"] is not None
 
-    unticked = client.patch(
-        f"/api/roadmap/tasks/{task['id']}", json={"status": TaskStatus.IN_PROGRESS.value}
-    )
+    unticked = patch_task(client, task['id'], {"status": TaskStatus.IN_PROGRESS.value})
     assert unticked.status_code == 200, unticked.text
     assert unticked.json()["status"] == TaskStatus.IN_PROGRESS.value
     assert unticked.json()["completedAt"] is None, "leaving completed kept the completion time"
@@ -213,12 +206,10 @@ def test_an_unknown_task_id_is_404_not_a_silent_no_op(require_db, db_session):
     # The control: the route addresses this subject's own rows, so the same request on the row the
     # cookie names succeeds. Without it this test would also pass on a route that was never written,
     # which is exactly how the 404 it asserts could stop meaning anything.
-    accepted = client.patch(
-        f"/api/roadmap/tasks/{task['id']}", json={"status": TaskStatus.IN_PROGRESS.value}
-    )
+    accepted = patch_task(client, task['id'], {"status": TaskStatus.IN_PROGRESS.value})
     assert accepted.status_code == 200, accepted.text
 
-    refused = client.patch(f"/api/roadmap/tasks/{unknown}", json={"status": TaskStatus.COMPLETED.value})
+    refused = patch_task(client, unknown, {"status": TaskStatus.COMPLETED.value})
     assert refused.status_code == 404, refused.text
 
     assert not _events(db_session, unknown), "a miss wrote history for a row that does not exist"
@@ -250,7 +241,7 @@ def test_an_advisor_owned_row_keeps_its_origin(require_db, db_session):
     )
     db_session.commit()
 
-    edited = client.patch(f"/api/roadmap/tasks/{task_id}", json={"status": TaskStatus.COMPLETED.value})
+    edited = patch_task(client, task_id, {"status": TaskStatus.COMPLETED.value})
     assert edited.status_code == 200, edited.text
     assert edited.json()["status"] == TaskStatus.COMPLETED.value
     assert edited.json()["origin"] == TaskOrigin.AGENT, (
@@ -292,7 +283,7 @@ def test_a_patch_cannot_claim_an_origin(require_db, db_session):
         ("phase", {"status": TaskStatus.IN_PROGRESS.value, "phase": "visa"}),
         ("scheduleOrigin", {"status": TaskStatus.IN_PROGRESS.value, "scheduleOrigin": "official"}),
     ):
-        refused = client.patch(f"/api/roadmap/tasks/{task['id']}", json=body)
+        refused = patch_task(client, task['id'], body)
         assert refused.status_code == 422, f"{body} was accepted: {refused.text}"
         assert field in refused.text, f"the refusal did not name {field}: {refused.text}"
 
@@ -322,7 +313,7 @@ def test_a_patch_that_names_no_field_is_refused(require_db, db_session):
     task = _write_one_row(client)
 
     for body in ({}, {"status": None}):
-        refused = client.patch(f"/api/roadmap/tasks/{task['id']}", json=body)
+        refused = patch_task(client, task['id'], body)
         assert refused.status_code == 422, f"{body} was accepted: {refused.text}"
 
     served = _row(client, task["id"])
@@ -343,12 +334,12 @@ def test_a_date_the_patch_omits_survives_and_a_null_clears_it(require_db, db_ses
     task = _write_one_row(client, suggestedAt="2027-06-01", dueAt="2027-07-01")
     assert (task["suggestedAt"], task["dueAt"]) == ("2027-06-01", "2027-07-01")
 
-    moved = client.patch(f"/api/roadmap/tasks/{task['id']}", json={"suggestedAt": "2027-06-15"})
+    moved = patch_task(client, task['id'], {"suggestedAt": "2027-06-15"})
     assert moved.status_code == 200, moved.text
     assert moved.json()["suggestedAt"] == "2027-06-15"
     assert moved.json()["dueAt"] == "2027-07-01", "a date the patch did not mention was wiped"
 
-    cleared = client.patch(f"/api/roadmap/tasks/{task['id']}", json={"dueAt": None})
+    cleared = patch_task(client, task['id'], {"dueAt": None})
     assert cleared.status_code == 200, cleared.text
     assert cleared.json()["dueAt"] is None
     assert cleared.json()["suggestedAt"] == "2027-06-15", "clearing one date cleared the other"

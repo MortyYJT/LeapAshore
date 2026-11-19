@@ -118,6 +118,37 @@ export function Notice({ error = false, children }: { error?: boolean; children:
   );
 }
 
+/**
+ * A save the server refused because the record changed on another device (`lib/sync-conflict.ts`).
+ * The children say what changed; the two actions are the whole choice: send my edit again on top of
+ * the server's version, or drop it and show the server's.
+ */
+export function ConflictNotice({
+  children,
+  onKeepMine,
+  onTakeTheirs,
+  busy = false,
+}: {
+  children: ReactNode;
+  onKeepMine: () => void;
+  onTakeTheirs: () => void;
+  busy?: boolean;
+}) {
+  return (
+    <Notice error>
+      {children}
+      <span className="toolbar">
+        <Button variant="text" small disabled={busy} onClick={onKeepMine}>
+          保留我的修改
+        </Button>
+        <Button variant="text" small disabled={busy} onClick={onTakeTheirs}>
+          使用服务器上的内容
+        </Button>
+      </span>
+    </Notice>
+  );
+}
+
 /** A school's mark: its logo, or the first character of its name. Logos identify, they imply no tie. */
 export function SchoolMark({ logo, name }: { logo?: string | null; name: string }) {
   return logo ? (
