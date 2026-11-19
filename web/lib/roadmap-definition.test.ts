@@ -90,6 +90,7 @@ const SERVED: ServedRoadmapDefinition = {
       origin: "system",
       documentId: null,
       completedAt: null,
+      version: 1,
       createdAt: "2026-10-07T12:41:51.352633Z",
       updatedAt: "2026-10-07T12:41:51.352633Z",
     },

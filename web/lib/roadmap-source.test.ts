@@ -301,6 +301,7 @@ const SERVED_TASK: ServedTask = {
   origin: "system",
   documentId: null,
   completedAt: null,
+  version: 1,
   createdAt: "2026-10-07T12:41:51.352633Z",
   updatedAt: "2026-10-07T12:41:51.352633Z",
 };
@@ -324,6 +325,7 @@ test("maps a served task row from the wire's camelCase to the names the payload 
     schedule_origin: "suggested",
     origin: "system",
     completed_at: null,
+    version: 1,
   });
 });
 
@@ -340,7 +342,8 @@ test("the task adapter reads the field names of a captured response body", () =>
   // spellings of one guess, and a wire name both halves got wrong keeps every one of those tests
   // green. `roadmap-response.fixture.json` now carries the `tasks` array of a real `GET /api/roadmap`,
   // captured after a `PUT` wrote two rows and a `PATCH` claimed one, so the names below are the
-  // server's and the two `origin` values are both present in the data.
+  // server's and the two `origin` values are both present in the data. `version` was added to the
+  // capture by hand when the server began serving it (1 for a row as written, 2 for the claimed one).
   const captured = CAPTURED_RESPONSE.tasks ?? [];
   assert.ok(captured.length > 0, "the capture must carry the caller's own task rows");
 
@@ -361,6 +364,7 @@ test("the task adapter reads the field names of a captured response body", () =>
       schedule_origin: wire["scheduleOrigin"],
       origin: wire["origin"],
       completed_at: wire["completedAt"],
+      version: wire["version"],
     };
   });
   assert.deepEqual(toTaskRows(captured), expected);

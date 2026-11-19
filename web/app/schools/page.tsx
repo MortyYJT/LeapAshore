@@ -58,16 +58,16 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
         controls={
           <>
             <label className="sr-only" htmlFor="q">搜索学校</label>
-            <input className="input" id="q" key={query.q ?? ""} name="q" type="search" placeholder="搜索中文或英文校名" defaultValue={query.q ?? ""} style={{ maxWidth: 280 }} />
+            <input className="input" id="q" key={`q:${query.q ?? ""}`} name="q" type="search" placeholder="搜索中文或英文校名" defaultValue={query.q ?? ""} style={{ maxWidth: 280 }} />
             <label className="sr-only" htmlFor="region">地区</label>
-            <select className="select" id="region" key={query.region ?? ""} name="region" defaultValue={query.region ?? ""} style={{ width: 140 }}>
+            <select className="select" id="region" key={`region:${query.region ?? ""}`} name="region" defaultValue={query.region ?? ""} style={{ width: 140 }}>
               <option value="">全部地区</option>
               {schoolRegions.map((r) => (
                 <option key={r}>{r}</option>
               ))}
             </select>
             <label className="sr-only" htmlFor="qs">QS 名次</label>
-            <select className="select" id="qs" key={query.qs ?? ""} name="qs" defaultValue={[...qs][0] ?? ""} style={{ width: 150 }}>
+            <select className="select" id="qs" key={`qs:${query.qs ?? ""}`} name="qs" defaultValue={[...qs][0] ?? ""} style={{ width: 150 }}>
               <option value="">QS 名次不限</option>
               {schoolQsRanges.map(([key, label]) => (
                 <option key={key} value={key}>

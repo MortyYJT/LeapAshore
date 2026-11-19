@@ -24,6 +24,7 @@ from app.services.documents import storage_root
 from tests.auth_helpers import login, login_mode, new_client, outbox, unique_email  # noqa: F401
 from tests.test_documents_api import an_upload
 from tests.test_seed import PROGRAM_IDS
+from tests.versioned import patch_profile, put_portfolio
 
 
 @pytest.fixture
@@ -45,8 +46,8 @@ def _blobs() -> set[str]:
 def test_deleting_the_account_removes_every_row_and_its_files(login_mode, definition):
     browser = new_client()
     email = login(browser, login_mode)["account"]["email"]
-    browser.patch("/api/profile", json={"major": "软件工程"})
-    browser.put("/api/applications", json={"rows": [{"programId": PROGRAM_IDS[0], "tier": "稳"}]})
+    patch_profile(browser, {"major": "软件工程"})
+    put_portfolio(browser, [{"programId": PROGRAM_IDS[0], "tier": "稳"}])
     browser.put(
         "/api/roadmap/tasks",
         json={"applicableKeys": ["aca-transcript"], "rows": [{"materialKey": "aca-transcript", "phase": "academic"}]},
@@ -144,7 +145,7 @@ def test_the_sweep_removes_expired_sessions_and_old_codes(login_mode):
 
 def test_activity_moves_last_seen_at_most_daily(require_db):
     browser = new_client()
-    browser.patch("/api/profile", json={"major": "x"})
+    patch_profile(browser, {"major": "x"})
     cid = browser.cookies.get(COOKIE_NAME)
     week_ago = datetime.now(UTC) - timedelta(days=7)
     with SessionLocal() as s:

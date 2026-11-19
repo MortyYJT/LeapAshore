@@ -82,6 +82,7 @@ function row(overrides: Partial<TaskRow> & Pick<TaskRow, "material_key" | "origi
     suggested_at: null,
     due_at: "2026-06-09",
     completed_at: null,
+    version: 1,
     ...overrides,
   };
 }

@@ -95,6 +95,15 @@ class ApplicationIn(BaseModel):
         return self
 
 
+class BaseRow(BaseModel):
+    """One stored portfolio row as the caller last read it: its id and its version."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    id: str
+    version: int
+
+
 class ApplicationReplaceRequest(BaseModel):
     """The applicant's whole portfolio, as one statement.
 
@@ -107,6 +116,10 @@ class ApplicationReplaceRequest(BaseModel):
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, extra="forbid")
 
     rows: list[ApplicationIn] = Field(default_factory=list)
+    # The stored rows this replacement was based on, as `GET /api/applications` served them. Leaving
+    # it out claims the portfolio was empty. A replacement whose base is not what is stored is refused
+    # with 409, because it would remove or overwrite what another device saved in between.
+    base: list[BaseRow] = Field(default_factory=list)
 
 
 class ProgramRef(BaseModel):
@@ -170,6 +183,8 @@ class ApplicationOut(BaseModel):
     needs_review: bool
     origin: str
     program: ProgramRef | None = None
+    # Grows by one with every change to the row; a replacement sends it back in `base`.
+    version: int
     created_at: datetime
     updated_at: datetime
 

@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 PROFILE_FIELDS = tuple(
     column.key
     for column in Profile.__table__.columns
-    if column.key not in ("client_id", "created_at", "updated_at")
+    if column.key not in ("client_id", "created_at", "updated_at", "version")
 )
 
 

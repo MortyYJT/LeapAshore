@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import { RequireAccount } from "@/components/auth/AuthProvider";
-import { LoadingPanel, Notice, TaskProgress } from "@/components/ui";
+import { ConflictNotice, LoadingPanel, Notice, TaskProgress } from "@/components/ui";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { useResource } from "@/lib/hooks/useResource";
+import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf } from "@/lib/roadmap-timeline";
 import {
   attentionRecords,
@@ -118,6 +119,16 @@ function Workspace() {
                     </label>
                     {roadmap.failedTicks.has(task.materialId) && (
                       <Notice error>保存失败，请重试。</Notice>
+                    )}
+                    {roadmap.tickConflicts.has(task.materialId) && (
+                      <ConflictNotice
+                        onKeepMine={() => roadmap.settleTick(task.materialId, true)}
+                        onTakeTheirs={() => roadmap.settleTick(task.materialId, false)}
+                      >
+                        这一步已在其他设备上改为「
+                        {taskStatusLabel(roadmap.tickConflicts.get(task.materialId)!.theirs)}
+                        」，这次勾选没有保存。
+                      </ConflictNotice>
                     )}
                   </div>
                 ))}

@@ -6,6 +6,7 @@ from sqlalchemy import DateTime, ForeignKey, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
+from app.models.versioning import Versioned
 
 
 def new_client_id() -> str:
@@ -25,7 +26,7 @@ class Client(Base):
     profile: Mapped["Profile"] = relationship(back_populates="client", cascade="all, delete-orphan")
 
 
-class Profile(Base):
+class Profile(Versioned, Base):
     """The applicant's background. One row per client."""
 
     __tablename__ = "profiles"

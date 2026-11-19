@@ -21,6 +21,7 @@ from tests.auth_helpers import login, login_mode, new_client, outbox, unique_ema
 from tests.test_auth import _age_codes
 from tests.test_documents_api import an_upload
 from tests.test_seed import PROGRAM_IDS
+from tests.versioned import patch_profile, put_portfolio
 
 P, Q, R = PROGRAM_IDS[:3]
 MATERIAL, OTHER = "aca-transcript", "aca-scale"
@@ -140,9 +141,9 @@ def test_tasks_merge_and_materials_follow_to_the_accounts_task():
 def _anonymous_browser_with_data(monkeypatch):
     monkeypatch.setattr(settings, "auth_enabled", False)
     browser = new_client()
-    assert browser.patch("/api/profile", json={"major": "匿名专业", "targetField": "计算机"}).status_code == 200
+    assert patch_profile(browser, {"major": "匿名专业", "targetField": "计算机"}).status_code == 200
     rows = [{"programId": P, "tier": "稳", "isPrimary": True}, {"programId": Q, "tier": "保"}]
-    assert browser.put("/api/applications", json={"rows": rows}).status_code == 200
+    assert put_portfolio(browser, rows).status_code == 200
     assert browser.post("/api/documents", files=an_upload()).status_code == 201
     anonymous = browser.cookies.get(COOKIE_NAME)
     monkeypatch.setattr(settings, "auth_enabled", True)
@@ -166,8 +167,8 @@ def test_login_to_an_existing_account_merges_without_overwriting(login_mode, mon
     email = unique_email()
     elsewhere = new_client()
     login(elsewhere, login_mode, email)
-    elsewhere.patch("/api/profile", json={"major": "账号专业"})
-    elsewhere.put("/api/applications", json={"rows": [{"programId": P, "tier": "冲", "isPrimary": True}]})
+    patch_profile(elsewhere, {"major": "账号专业"})
+    put_portfolio(elsewhere, [{"programId": P, "tier": "冲", "isPrimary": True}])
 
     browser, anonymous = _anonymous_browser_with_data(monkeypatch)
     _age_codes(email, 61)

@@ -6,7 +6,9 @@ import {
   addToDraft,
   clearDraft,
   draftChanged,
+  draftDifferences,
   readDraft,
+  readDraftBase,
   removeFromDraft,
   setPrimary,
   setStatus,
@@ -94,4 +96,49 @@ test("the draft survives in session storage and a damaged copy is ignored", () =
   writeDraft(storage, [item("a")]);
   clearDraft(storage);
   assert.equal(readDraft(storage), null);
+});
+
+test("the draft remembers the saved rows it was first made from", () => {
+  const storage = memoryStorage();
+  const saved = [item("a", { rowId: "row-a", version: 2 }), item("b", { rowId: "row-b", version: 1 })];
+  assert.equal(readDraftBase(storage), null);
+  writeDraft(storage, removeFromDraft(saved, "b"), saved);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 2 }, { id: "row-b", version: 1 }]);
+
+  // A later edit, after another device changed the portfolio and this page read it again, must not
+  // move the base: the draft is still the one made from the older rows.
+  const newer = [item("a", { rowId: "row-a", version: 5 })];
+  writeDraft(storage, [item("a"), item("c")], newer);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 2 }, { id: "row-b", version: 1 }]);
+
+  clearDraft(storage);
+  assert.equal(readDraftBase(storage), null);
+  writeDraft(storage, [item("c")], newer);
+  assert.deepEqual(readDraftBase(storage), [{ id: "row-a", version: 5 }]);
+});
+
+test("a draft made without a readable portfolio claims an empty one; an older build's draft has no base", () => {
+  const storage = memoryStorage();
+  writeDraft(storage, [item("a")], []);
+  assert.deepEqual(readDraftBase(storage), []);
+  clearDraft(storage);
+  // The portfolio could not be read, so the draft started from nothing. Stating an empty base makes
+  // the server refuse the confirm if a portfolio does exist, instead of replacing it unseen.
+  writeDraft(storage, [item("a")], null);
+  assert.deepEqual(readDraftBase(storage), []);
+  clearDraft(storage);
+  storage.setItem(DRAFT_KEY, JSON.stringify([item("a")]));
+  assert.equal(readDraftBase(storage), null);
+});
+
+test("the differences between a draft and the server's portfolio name every program that would change", () => {
+  const mine = [item("a"), item("b", { status: "considering" }), item("mine-only")];
+  const theirs = [item("a"), item("b", { status: "submitted" }), item("theirs-only")];
+  assert.deepEqual(draftDifferences(mine, theirs), {
+    onlyMine: ["mine-only"],
+    onlyTheirs: ["theirs-only"],
+    // In both, but confirming the draft would put this row back to what the draft says.
+    changed: ["b"],
+  });
+  assert.deepEqual(draftDifferences(mine, mine), { onlyMine: [], onlyTheirs: [], changed: [] });
 });

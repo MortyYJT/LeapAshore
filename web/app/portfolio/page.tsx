@@ -10,15 +10,20 @@ import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { loadPortfolio, usePortfolio } from "@/lib/hooks/usePortfolio";
 import {
+  baseOf,
   clearDraft,
   draftChanged,
+  draftDifferences,
   readDraft,
+  readDraftBase,
   removeFromDraft,
   setPrimary,
   setStatus,
   writeDraft,
+  writeDraftBase,
 } from "@/lib/portfolio-draft";
-import { toApplicationRows } from "@/lib/programs-source";
+import { toApplicationRows, toPortfolioItems, type ServedApplication } from "@/lib/programs-source";
+import { StaleVersionError } from "@/lib/sync-conflict";
 import { APPLICATION_STATUSES, TIER_OF_BAND } from "@/lib/taxonomy";
 import type { ApplicationStatus, PortfolioItem, Program } from "@/lib/types";
 
@@ -61,6 +66,8 @@ function Portfolio() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedNote, setSavedNote] = useState<string | null>(null);
+  // True after a confirm was refused because another device changed the portfolio; see `confirm`.
+  const [conflict, setConflict] = useState(false);
   const tbody = useRef<HTMLTableSectionElement>(null);
   const beforeRemoval = useRef<Map<string, number> | null>(null);
   const rowMotion = useRef<Animation[]>([]);
@@ -136,7 +143,8 @@ function Portfolio() {
   const update = (next: PortfolioItem[]) => {
     setDraft(next);
     setSavedNote(null);
-    writeDraft(sessionStorage, next);
+    // The saved portfolio is stated with the first write, as the base the confirm is checked against.
+    writeDraft(sessionStorage, next, saved.data);
   };
 
   async function confirm() {
@@ -144,7 +152,11 @@ function Portfolio() {
     setSaving(true);
     setSaveError(null);
     try {
-      await replaceApplications(toApplicationRows(draft));
+      await replaceApplications(
+        toApplicationRows(draft),
+        readDraftBase(sessionStorage) ?? baseOf(saved.data ?? []),
+      );
+      setConflict(false);
       clearDraft(sessionStorage);
       try {
         const confirmed = await loadPortfolio();
@@ -156,9 +168,29 @@ function Portfolio() {
         saved.reload();
       }
     } catch (error: unknown) {
-      setSaveError(
-        `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
-      );
+      if (error instanceof StaleVersionError) {
+        // Another device changed the portfolio after this draft was made. Nothing was written. The
+        // server's rows become the saved portfolio on screen and the draft's base, so the two buttons
+        // below are the choice: confirm again to save this draft over them, or discard it for theirs.
+        const theirs = toPortfolioItems(error.current as ServedApplication[]);
+        saved.set(theirs);
+        if (!draftChanged(draft, theirs)) {
+          // The server already holds exactly this draft (an earlier confirm landed): it is saved.
+          clearDraft(sessionStorage);
+          setDraft(theirs);
+          setConflict(false);
+          setSavedNote(`已保存 ${draft.length} 个项目，路线图会按新组合显示截止日期。`);
+        } else {
+          writeDraftBase(sessionStorage, baseOf(theirs));
+          setConflict(true);
+          setSaveError(`组合已在其他设备上修改，这次没有保存。${portfolioDifferences(draft, theirs)}`);
+        }
+      } else {
+        setConflict(false);
+        setSaveError(
+          `组合没有保存（${error instanceof Error ? error.message : "未知错误"}），改动还在，可以再试一次。`,
+        );
+      }
     } finally {
       setSaving(false);
     }
@@ -167,6 +199,8 @@ function Portfolio() {
   function discard() {
     clearDraft(sessionStorage);
     setDraft(saved.data ?? []);
+    setConflict(false);
+    setSaveError(null);
   }
 
   const rows = [...(draft ?? [])].sort(
@@ -398,10 +432,10 @@ function Portfolio() {
             </span>
             <span className="toolbar">
               <Button variant="text" onClick={discard} disabled={saving}>
-                放弃改动
+                {conflict ? "使用服务器上的组合" : "放弃改动"}
               </Button>
               <Button variant="primary" onClick={confirm} disabled={saving}>
-                {saving ? "正在保存…" : `确认 ${rows.length} 个项目`}
+                {saving ? "正在保存…" : conflict ? `保留我的 ${rows.length} 个项目` : `确认 ${rows.length} 个项目`}
               </Button>
             </span>
           </div>
@@ -414,4 +448,16 @@ function Portfolio() {
       </main>
     </>
   );
+}
+
+/** What keeping this draft would do to the portfolio the server holds, in the applicant's words. */
+function portfolioDifferences(mine: PortfolioItem[], theirs: PortfolioItem[]): string {
+  const names = new Map([...theirs, ...mine].map((row) => [row.programSlug, row.program?.nameEn ?? row.programSlug]));
+  const list = (slugs: string[]) => slugs.map((slug) => names.get(slug)).join("、");
+  const { onlyMine, onlyTheirs, changed } = draftDifferences(mine, theirs);
+  return [
+    onlyTheirs.length ? `保留我的会移除服务器上的：${list(onlyTheirs)}。` : "",
+    onlyMine.length ? `会加入：${list(onlyMine)}。` : "",
+    changed.length ? `会把这些项目的档位、状态或首选改回你这里的：${list(changed)}。` : "",
+  ].join("");
 }

@@ -7,6 +7,21 @@ import type { PortfolioProgram } from "./programs-source.ts";
 import type { ApplicationStatus, PortfolioItem, PortfolioTier } from "./types.ts";
 
 export const DRAFT_KEY = "leapashore-portfolio-draft";
+/** The saved rows the stored draft was first made from; see `writeDraft`. */
+export const DRAFT_BASE_KEY = "leapashore-portfolio-draft-base";
+
+/** One saved portfolio row as it was read: what `PUT /api/applications` takes in `base`. */
+export interface BaseRow {
+  id: string;
+  version: number;
+}
+
+/** The base a replacement built from these saved items states. Items the server never stored have none. */
+export function baseOf(saved: PortfolioItem[]): BaseRow[] {
+  return saved.flatMap((row) =>
+    row.rowId !== undefined && row.version !== undefined ? [{ id: row.rowId, version: row.version }] : [],
+  );
+}
 
 const TIERS: readonly PortfolioTier[] = ["冲", "稳", "保"];
 const STATUSES: readonly ApplicationStatus[] = [
@@ -65,6 +80,30 @@ function signature(rows: PortfolioItem[]): string {
   );
 }
 
+function rowSignature(row: PortfolioItem): string {
+  return JSON.stringify([row.tier, row.status ?? "considering", row.isPrimary ?? false, row.needsReview ?? false]);
+}
+
+/**
+ * What confirming `mine` would do to the portfolio `theirs`, as program slugs: add (`onlyMine`),
+ * remove (`onlyTheirs`), or put a row both hold back to what the draft says (`changed`). Shown after
+ * a refused confirm, so keeping the draft is a choice made knowing all three.
+ */
+export function draftDifferences(
+  mine: PortfolioItem[],
+  theirs: PortfolioItem[],
+): { onlyMine: string[]; onlyTheirs: string[]; changed: string[] } {
+  const stored = new Map(theirs.map((row) => [row.programSlug, row]));
+  const drafted = new Set(mine.map((row) => row.programSlug));
+  return {
+    onlyMine: mine.filter((row) => !stored.has(row.programSlug)).map((row) => row.programSlug),
+    onlyTheirs: theirs.filter((row) => !drafted.has(row.programSlug)).map((row) => row.programSlug),
+    changed: mine
+      .filter((row) => stored.has(row.programSlug) && rowSignature(stored.get(row.programSlug)!) !== rowSignature(row))
+      .map((row) => row.programSlug),
+  };
+}
+
 /** Whether confirming the draft would change the saved portfolio. Row order is not a change. */
 export function draftChanged(draft: PortfolioItem[], saved: PortfolioItem[]): boolean {
   return signature(draft) !== signature(saved);
@@ -91,10 +130,43 @@ export function readDraft(storage: Storage): PortfolioItem[] | null {
   }
 }
 
-export function writeDraft(storage: Storage, draft: PortfolioItem[]): void {
+/**
+ * Store the draft, and with the first write the saved portfolio it was made from.
+ *
+ * The base is what the confirm action sends so the server can refuse a draft made from a portfolio
+ * another device has since changed. It is recorded once per draft and kept until `clearDraft`: the
+ * draft outlives a page load, and a page that read the newer portfolio and then stated it as the
+ * base would overwrite the other device's change without either side being told.
+ */
+export function writeDraft(storage: Storage, draft: PortfolioItem[], saved?: PortfolioItem[] | null): void {
+  // A page whose read of the portfolio failed starts its draft from nothing, and says so: an empty
+  // base is refused by the server when a portfolio does exist, where a base taken later from a fresh
+  // read would let the draft replace it unseen.
+  if (storage.getItem(DRAFT_BASE_KEY) === null) writeDraftBase(storage, baseOf(saved ?? []));
   storage.setItem(DRAFT_KEY, JSON.stringify(draft));
+}
+
+/** The saved rows the stored draft was made from, or null when that was never recorded. */
+export function readDraftBase(storage: Storage): BaseRow[] | null {
+  const raw = storage.getItem(DRAFT_BASE_KEY);
+  if (raw === null) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    const valid =
+      Array.isArray(parsed) &&
+      parsed.every((row) => typeof row?.id === "string" && typeof row?.version === "number");
+    return valid ? (parsed as BaseRow[]) : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Restate the base, after a refused confirm showed the applicant the portfolio the server holds. */
+export function writeDraftBase(storage: Storage, base: BaseRow[]): void {
+  storage.setItem(DRAFT_BASE_KEY, JSON.stringify(base));
 }
 
 export function clearDraft(storage: Storage): void {
   storage.removeItem(DRAFT_KEY);
+  storage.removeItem(DRAFT_BASE_KEY);
 }

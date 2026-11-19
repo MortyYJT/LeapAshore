@@ -91,6 +91,8 @@ export interface ServedTask {
   origin: string;
   documentId: string | null;
   completedAt: string | null;
+  /** Grows by one with every change to the row. */
+  version: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -117,6 +119,7 @@ export function toTaskRows(served: ServedTask[] | undefined): TaskRow[] {
     schedule_origin: task.scheduleOrigin as TaskRow["schedule_origin"],
     origin: task.origin as TaskRow["origin"],
     completed_at: task.completedAt,
+    version: task.version,
   }));
 }
 

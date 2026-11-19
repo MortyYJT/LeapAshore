@@ -16,6 +16,7 @@ from sqlalchemy import (
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db import Base
+from app.models.versioning import Versioned
 
 
 class ApplicationOrigin(StrEnum):
@@ -50,7 +51,7 @@ class ApplicationStatus(StrEnum):
     EXCLUDED = "excluded"
 
 
-class Application(Base):
+class Application(Versioned, Base):
     """One program in one applicant's portfolio. Its own row, so the choice can be traced and edited."""
 
     __tablename__ = "applications"

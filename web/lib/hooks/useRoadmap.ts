@@ -5,14 +5,26 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchRoadmapDefinition, patchRoadmapTask, replaceRoadmapTasks } from "../api";
 import { buildRoadmap } from "../roadmap";
 import { NO_DEFINITION_READ, readRoadmapDefinition, type DefinitionRead } from "../roadmap-definition";
-import { toTaskRows } from "../roadmap-source";
+import { toTaskRows, type ServedTask } from "../roadmap-source";
 import { alreadyStored, toReplacePayload, type TaskRow } from "../roadmap-sync";
+import { StaleVersionError, resolveStaleField } from "../sync-conflict";
 import type { Profile, Roadmap } from "../types";
 
 interface TickWrite {
   desired: string;
   confirmed: TaskRow;
 }
+
+/** A tick the server refused because another device set this task to a different status. */
+export interface TickConflict {
+  /** The status this device tried to save. */
+  mine: string;
+  /** The status the server holds, which is what the checkbox shows until the applicant chooses. */
+  theirs: string;
+}
+
+/** How many times one tick is restated on a newer version before it is reported as not saved. */
+const STALE_RETRIES = 3;
 
 export interface RoadmapState {
   roadmap: Roadmap | null;
@@ -24,6 +36,10 @@ export interface RoadmapState {
   syncError: string | null;
   /** Material keys whose last tick failed and was undone. */
   failedTicks: Set<string>;
+  /** Material keys whose last tick met a different status set on another device, and was not saved. */
+  tickConflicts: Map<string, TickConflict>;
+  /** Answer a conflict: keep this device's tick (saved over the server's) or take the server's. */
+  settleTick: (materialKey: string, keepMine: boolean) => void;
   /** The server's id for a material's row, needed to attach an upload to it. */
   taskIdFor: (materialKey: string) => string | null;
   tick: (materialKey: string, done: boolean) => Promise<void>;
@@ -47,6 +63,7 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
   const [tasks, setTasks] = useState<TaskRow[]>([]);
   const [syncError, setSyncError] = useState<string | null>(null);
   const [failedTicks, setFailedTicks] = useState<Set<string>>(new Set());
+  const [tickConflicts, setTickConflicts] = useState<Map<string, TickConflict>>(new Map());
   const lastWritten = useRef<string | null>(null);
   const mounted = useRef(true);
   const writes = useRef(new Map<string, TickWrite>());
@@ -146,6 +163,12 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
         next.delete(materialKey);
         return next;
       });
+      setTickConflicts((prev) => {
+        if (!prev.has(materialKey)) return prev;
+        const next = new Map(prev);
+        next.delete(materialKey);
+        return next;
+      });
       setTasks((prev) => prev.map((t) => (t.id === row.id ? { ...t, status } : t)));
 
       const pending = writes.current.get(row.id);
@@ -159,25 +182,69 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
       writes.current.set(row.id, write);
       let attempted: string;
       let failed: boolean;
+      let restate: boolean;
+      let staleRounds = 0;
+      let conflict: TickConflict | null;
       do {
         attempted = write.desired;
         failed = false;
+        restate = false;
+        conflict = null;
         try {
-          const served = await patchRoadmapTask(row.id, { status: attempted });
+          // Each edit states the version of the last confirmed row, so a row another device changed
+          // in the meantime is refused instead of overwritten.
+          const served = await patchRoadmapTask(row.id, {
+            status: attempted,
+            baseVersion: write.confirmed.version,
+          });
           [write.confirmed] = toTaskRows([served]);
-        } catch {
-          failed = true;
+        } catch (error) {
+          if (error instanceof StaleVersionError) {
+            // The server's row is the confirmed state from here on, whatever happens to this tick.
+            const base = write.confirmed.status;
+            [write.confirmed] = toTaskRows([error.current as ServedTask]);
+            const action = resolveStaleField(base, attempted, write.confirmed.status);
+            if (action === "retry") {
+              if (++staleRounds <= STALE_RETRIES) restate = true;
+              else failed = true;
+            } else if (action === "ask") {
+              conflict = { mine: attempted, theirs: write.confirmed.status };
+            }
+          } else {
+            failed = true;
+          }
         }
         // If another choice arrived, persist it before publishing a response or a rollback.
-      } while (write.desired !== attempted);
+      } while (write.desired !== attempted || restate);
 
       updatedAt.current.set(row.id, ++taskRevision.current);
       writes.current.delete(row.id);
       if (!mounted.current) return;
       setTasks((prev) => prev.map((t) => (t.id === row.id ? write.confirmed : t)));
-      if (failed && write.confirmed.status !== attempted) fail();
+      if (conflict) {
+        const found = conflict;
+        setTickConflicts((prev) => new Map(prev).set(materialKey, found));
+      } else if (failed && write.confirmed.status !== attempted) fail();
     },
     [tasks],
+  );
+
+  const settleTick = useCallback(
+    (materialKey: string, keepMine: boolean) => {
+      const conflict = tickConflicts.get(materialKey);
+      if (!conflict) return;
+      // Keeping mine is the same tick again, now based on the row the refusal returned; taking the
+      // server's needs no write, because the checkbox already shows it. Both clear the notice.
+      if (keepMine) void tick(materialKey, conflict.mine === "completed");
+      else {
+        setTickConflicts((prev) => {
+          const next = new Map(prev);
+          next.delete(materialKey);
+          return next;
+        });
+      }
+    },
+    [tick, tickConflicts],
   );
 
   return {
@@ -186,6 +253,8 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
     notice: read.notice,
     syncError,
     failedTicks,
+    tickConflicts,
+    settleTick,
     taskIdFor,
     tick,
     reload: load,

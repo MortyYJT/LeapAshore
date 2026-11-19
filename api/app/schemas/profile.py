@@ -42,3 +42,19 @@ class ProfileFields(BaseModel):
 
 class ProfilePatch(ProfileFields):
     """Every field optional. `extra="forbid"` inherited from ProfileFields rejects typos."""
+
+
+class ProfileOut(ProfileFields):
+    """The profile as it is served: the fields plus the row version an update has to send back."""
+
+    version: int
+
+
+class ProfileUpdate(ProfilePatch):
+    """A profile edit over HTTP: the fields to change and the version the edit was based on.
+
+    Separate from `ProfilePatch`, which the advisor's `update_my_profile` tool validates with: that
+    tool reads and writes inside one server-side step and has no earlier read to be stale against.
+    """
+
+    base_version: int

@@ -2,15 +2,17 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { RequireAccount } from "@/components/auth/AuthProvider";
-import { LoadingPanel, Notice } from "@/components/ui";
+import { ConflictNotice, LoadingPanel, Notice } from "@/components/ui";
 import { useResource } from "@/lib/hooks/useResource";
 import {
+  differsFromForm,
   loadApplicationRecords,
   writeApplicationRecord,
   RECORD_STATUSES,
   deadlineLabel,
   type ApplicationRecord,
 } from "@/lib/application-records";
+import { StaleVersionError, changedFields, newIdempotencyKey } from "@/lib/sync-conflict";
 export default function ApplicationsPage() {
   return (
     <main className="page personal-applications">
@@ -47,15 +49,21 @@ function Applications() {
     if (editor?.open) dialog.current?.showModal();
     else dialog.current?.close();
   }, [editor?.open, editor?.key]);
-  async function remove(id: string) {
+  async function remove(record: ApplicationRecord) {
     setBusy(true);
     setError("");
     try {
-      await writeApplicationRecord(id);
+      await writeApplicationRecord(record.id, undefined, { baseVersion: record.version });
       setDeleting(null);
       records.reload();
     } catch (e) {
-      setError(e instanceof Error ? e.message : "删除失败");
+      if (e instanceof StaleVersionError) {
+        // The record was edited on another device after this list was read. Nothing was removed; the
+        // list is read again so the applicant sees that edit before deciding to remove it.
+        setDeleting(null);
+        records.reload();
+        setError("这条申请已在其他设备上修改，没有移除。列表已更新，确认后可以再次移除。");
+      } else setError(e instanceof Error ? e.message : "删除失败");
     } finally {
       setBusy(false);
     }
@@ -181,7 +189,7 @@ function Applications() {
                       <button
                         disabled={busy}
                         className="btn btn-text btn-small negative"
-                        onClick={() => void remove(record.id)}
+                        onClick={() => void remove(record)}
                       >
                         确认移除
                       </button>
@@ -238,11 +246,35 @@ function ApplicationForm({
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  // One key per form: saving a new application again after a failure must not create a second one.
+  const createKey = useRef(newIdempotencyKey());
+  // A save refused because the record changed on another device: this form's edit and the server's record.
+  const [conflict, setConflict] = useState<{ payload: Record<string, unknown>; current: ApplicationRecord; message: string } | null>(null);
+  async function save(payload: Record<string, unknown>, target: ApplicationRecord | null) {
+    setBusy(true);
+    setError("");
+    try {
+      await writeApplicationRecord(
+        target?.id ?? null,
+        target ? { ...payload, baseVersion: target.version } : payload,
+        { idempotencyKey: createKey.current },
+      );
+      onSaved();
+    } catch (e) {
+      if (e instanceof StaleVersionError) {
+        const current = e.current as ApplicationRecord;
+        // The server already holds everything this form says (an earlier attempt landed, or the other
+        // device made the same edit): there is nothing to choose, and the save is done.
+        if (!differsFromForm(current, payload)) onSaved();
+        else setConflict({ payload, current, message: e.message });
+      } else setError(e instanceof Error ? e.message : "保存失败");
+    } finally {
+      setBusy(false);
+    }
+  }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    setBusy(true);
-    setError("");
     const payload = {
       ...(!record?.programId
         ? { school: data.get("school"), name: data.get("name") }
@@ -255,14 +287,18 @@ function ApplicationForm({
       materialsReady: data.has("materialsReady"),
       materialNotes: data.get("materialNotes"),
     };
-    try {
-      await writeApplicationRecord(record?.id ?? null, payload);
-      onSaved();
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "保存失败");
-    } finally {
-      setBusy(false);
-    }
+    // After a refused save, saving the form again is the applicant's answer to the server's record.
+    const target = conflict?.current ?? record;
+    setConflict(null);
+    await save(conflict ? editOf(payload) : payload, target);
+  }
+  // What this form changed on the record it was opened on. A confirmed deadline is confirmed as this
+  // form shows it, so the three fields it covers travel with the confirmation.
+  function editOf(payload: Record<string, unknown>): Record<string, unknown> {
+    const confirmed = payload.confirmDeadline
+      ? { round: payload.round, deadline: payload.deadline, sourceUrl: payload.sourceUrl }
+      : {};
+    return { ...changedFields(payload, record), ...confirmed };
   }
   return (
     <form onSubmit={(event) => void submit(event)}>
@@ -378,6 +414,16 @@ function ApplicationForm({
           />
         </label>
         {error && <Notice error>{error}</Notice>}
+        {conflict && (
+          <ConflictNotice
+            busy={busy}
+            onKeepMine={() => void save(editOf(conflict.payload), conflict.current)}
+            onTakeTheirs={onSaved}
+          >
+            {conflict.message}这次没有保存。保留我的修改只写入你在这里改过的内容。
+            {serverDifferences(conflict.payload, conflict.current)}
+          </ConflictNotice>
+        )}
         <div className="toolbar">
           <button disabled={busy} className="btn btn-primary" type="submit">
             {busy ? "正在保存…" : "保存申请"}
@@ -394,4 +440,29 @@ function ApplicationForm({
       </div>
     </form>
   );
+}
+
+const FIELD_LABELS: [keyof ApplicationRecord, string][] = [
+  ["school", "学校"],
+  ["name", "项目"],
+  ["round", "轮次"],
+  ["status", "状态"],
+  ["deadline", "截止日期"],
+  ["sourceUrl", "来源链接"],
+  ["materialsReady", "材料就绪"],
+  ["materialNotes", "备注"],
+];
+
+/** The fields where the server's record differs from this form, with the server's value. */
+function serverDifferences(payload: Record<string, unknown>, current: ApplicationRecord): string {
+  const shown = (key: keyof ApplicationRecord, value: unknown) =>
+    key === "status"
+      ? (RECORD_STATUSES.find(([v]) => v === value)?.[1] ?? String(value))
+      : typeof value === "boolean"
+        ? value ? "是" : "否"
+        : value ? String(value) : "空";
+  const differing = FIELD_LABELS.filter(
+    ([key]) => key in payload && (payload[key] ?? "") !== (current[key] ?? ""),
+  ).map(([key, label]) => `${label}：${shown(key, current[key])}`);
+  return differing.length ? `服务器上的内容：${differing.join("；")}。` : "";
 }

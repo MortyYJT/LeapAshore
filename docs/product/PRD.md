@@ -22,6 +22,8 @@ Manual applications are supported independently of catalogue coverage. One recor
 
 The detailed sections below retain historical catalogue and engineering requirements; the current workspace implementation is specified in `openspec/changes/application-workspace/`.
 
+The current iteration, which makes the tool usable across devices (sign-in, sync conflict handling, an installable app, deadline reminders, material merging), is specified in [PRD-multi-device.md](PRD-multi-device.md).
+
 **[Decided D5] Coverage follows the school list:** the 241 schools of the QS 2027 top 300 that are inside the covered regions, plus 46 schools added to complete regional coverage, 287 in total across 29 countries and regions (`web/prototype-fixtures/overseas-institutions.json`, fetched 2026-10-10). Covered regions (decided 2026-10-29): the United States, the United Kingdom, Australia, Canada, New Zealand, Hong Kong, Macau, Singapore, South Korea, Malaysia, 16 European countries (Germany, the Netherlands, Switzerland, France, Belgium, Sweden, Italy, Spain, Ireland, Denmark, Norway, Austria, Finland, Portugal, Czechia, Poland) and 3 Middle Eastern countries (UAE, Saudi Arabia, Qatar). The 59 out-of-scope schools (mainland China, Japan, India, Taiwan, Indonesia, Thailand, Kazakhstan, South Africa, Latin America, Israel, Lebanon, Turkey, Russia) were removed from the school list on 2026-10-30.
 
 The difference is not "recommending schools" but two things:
