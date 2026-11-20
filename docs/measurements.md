@@ -320,6 +320,16 @@ Item 3.6 of [PRD-multi-device.md](product/PRD-multi-device.md). No OpenSpec chan
 - Not verified: installing on a real iPhone or Android phone (launch screen, status bar, home-screen icon); Safari and Firefox behaviour beyond the manifest and metas being present; the worker's cold-start cost on a phone.
 
 
+### Transparent icons (PR #101)
+
+- What: the tab icon and the manifest's `any` icons lost their ground; the maskable icons and the Apple touch icon kept it. Measured locally on 2026-11-20.
+- Ink contrast (WCAG formula, computed from the pixels of the generated files in `web/lib/icons.test.ts`): the bitmaps' one ink `#6c80a1` is 4.0:1 on white, 3.0:1 on `#dee1e6` (a light tab strip), 3.0:1 on `#35363a` (a dark selected tab), 4.0:1 on `#202124` and 4.9:1 on `#0b0c0e`. `icon.svg` uses `#121a28` in a light scheme (17.4:1 on white, 13.3:1 on `#dee1e6`) and `#f2f5f9` in a dark one (11.0:1 on `#35363a`, 14.7:1 on `#202124`).
+- Stroke at 16 px: about 1.8 px (3 units at scale 1.224 in a 32-unit box), 1.5 px before.
+- Local production build (Chrome 157, headless): `Page.getInstallabilityErrors` empty, `beforeinstallprompt` fired, the four manifest icons 200 as `image/png` at the stated sizes; `/icon.svg` 200 `image/svg+xml`, `/favicon.ico` 200 `image/x-icon`, `/apple-icon.png` 200 `image/png`. Next adds a content hash to the three icon links in the page head, so a page loaded after the deploy asks for a new URL.
+- Web tests: 362 passed (357 before; 5 new in `lib/icons.test.ts`). The backend tests and the walkthrough were not rerun: nothing outside the icon files, the generator, the manifest's comment and their tests changed.
+- Looked at: a rendered sheet with the SVG at 16 and 32 px on light and dark tab strips, the ICO's three sizes on four grounds, the `any` icons on white and near-black, the maskable icons under circle and squircle masks.
+- Not verified: a real browser's tab strip (the sheet draws one), Safari, an installed app on Windows, macOS, Android or iOS.
+
 ## Line-map interface
 
 ### Line-map interface: tokens, shell and overview (PR #95)
