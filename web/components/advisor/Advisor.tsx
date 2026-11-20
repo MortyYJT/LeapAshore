@@ -142,8 +142,9 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
                     type="button"
                     disabled={running}
                     onClick={() => {
-                      // Signed out, the question waits in the composer while the sign-in dialog is open.
-                      if (gated) chat.setDraft(question);
+                      // Signed out, the question waits in the composer while the sign-in dialog is open,
+                      // unless the visitor has already written one of their own there.
+                      if (gated && !chat.draft.trim()) chat.setDraft(question);
                       void chat.send(question);
                     }}
                   >

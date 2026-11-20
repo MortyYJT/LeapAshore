@@ -249,19 +249,38 @@ async function adminPass(browser, email, errors) {
     const context = await browser.newContext({ viewport: DESKTOP });
     const page = await context.newPage();
     watch(page, "desktop", errors);
+    // Nothing a signed-out visitor's overview does may write: every request until the demo checks end is a GET.
+    const demoWrites = [];
+    const noteWrite = (request) => {
+      if (request.method() !== "GET") demoWrites.push(`${request.method()} ${new URL(request.url()).pathname}`);
+    };
+    page.on("request", noteWrite);
 
     await page.goto(`${BASE}/`);
     await settle(page);
     await layout(page, "首页");
     check("首页：标题是总览", await page.getByRole("heading", { level: 1, name: "总览", exact: true }).isVisible());
     // ---------- the signed-out demo ----------
-    // Nothing in it may write: every request the page makes from here to the end of the demo checks is a GET.
-    const demoWrites = [];
-    const noteWrite = (request) => {
-      if (request.method() !== "GET") demoWrites.push(`${request.method()} ${new URL(request.url()).pathname}`);
+    // What the rule gives for this catalogue today, worked out apart from the page. Once every collected
+    // date has passed there is no demo to check, and the page must show the plain block instead.
+    const demoRule = await import(path.join(ROOT, "web/lib/demo.ts"));
+    const demoToday = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    const readCatalogue = async (query) => {
+      const params = new URLSearchParams();
+      if (query.ids) params.set("ids", query.ids.join(","));
+      if (query.provider) params.set("provider", query.provider.join(","));
+      if (query.hasRequirements !== undefined) params.set("has_requirements", String(query.hasRequirements));
+      if (query.q) params.set("q", query.q);
+      if (query.limit !== undefined) params.set("limit", String(query.limit));
+      return (await context.request.get(`${BASE}/api/programs?${params}`)).json();
     };
-    page.on("request", noteWrite);
-    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
+    const expectedDemo = demoRule.demoRecords(await demoRule.loadDemoPrograms(demoToday, readCatalogue), demoToday);
+    await page.locator(".lt-row, .lt-empty").first().waitFor({ timeout: 25000 });
+    check("首页（未登录）：学校库给得出演示时画演示，给不出时不画", ((await page.locator(".lt-row").count()) > 0) === (expectedDemo !== null), { expected: expectedDemo && expectedDemo.length });
+    if (!expectedDemo) {
+      console.log("跳过  演示的各项检查：本地学校库里有未过期截止日期的项目不到两个");
+      check("首页（未登录）：给出登录入口", await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
+    } else {
     const demoRows = await page.locator(".lt-row").evaluateAll((rows) => rows.map((row) => ({
       href: row.querySelector(".school a").getAttribute("href"),
       school: row.querySelector(".school a").textContent.trim(),
@@ -277,7 +296,6 @@ async function adminPass(browser, email, errors) {
     // What the catalogue serves for the same programs, read apart from the page: the demo may show nothing else.
     const demoIds = demoRows.map((row) => decodeURIComponent((row.href || "").replace("/programs/", "")));
     const catalogued = await page.evaluate(async (ids) => (await fetch(`/api/programs?ids=${ids.map(encodeURIComponent).join(",")}`)).json(), demoIds);
-    const demoToday = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
     const mismatched = demoRows.filter((row, index) => {
       const program = catalogued.find((item) => item.slug === demoIds[index]);
       if (!program || !row.href.startsWith("/programs/")) return true;
@@ -286,6 +304,7 @@ async function adminPass(browser, email, errors) {
       return row.track !== expected || row.school !== program.university || row.name !== (program.nameEn || program.name);
     });
     check("演示：每一行的学校、项目和日期都是学校库接口给的，行名链接到公开的项目页", mismatched.length === 0, mismatched);
+    check("演示：画的正是规则选出的那几个项目", JSON.stringify([...demoIds].sort()) === JSON.stringify(expectedDemo.map((record) => record.programId).sort()), demoIds);
     check("演示：状态有一个已提交，没日期的只在学校库确实没有日期时画成待确认", demoRows.filter((row) => row.sent).length === 1
       && demoRows.filter((row) => row.track === "截止日期待确认").length <= 1);
     check("演示：不显示要读账号的「准备任务」", (await page.locator("#h-tasks").count()) === 0);
@@ -320,17 +339,20 @@ async function adminPass(browser, email, errors) {
     check("停靠栏（未登录）：登录入口打开登录", await gate.getByRole("heading", { name: "登录" }).isVisible());
     await page.keyboard.press("Escape");
     await gate.waitFor({ state: "hidden" });
-    check("演示：整个过程没有发出任何写入请求", demoWrites.length === 0, demoWrites);
+    }
+    check("演示：从打开首页起没有发出任何写入请求", demoWrites.length === 0, demoWrites);
     page.off("request", noteWrite);
-    // The catalogue has nothing to draw: the page falls back to the plain block, with nothing labelled a demo.
-    await page.route("**/api/programs?**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: "[]" }));
+    // The catalogue has nothing to draw, or cannot be read: the plain block, with nothing labelled a demo.
+    for (const [body, name] of [["[]", "学校库给不出项目"], ["{}", "读到的不是项目列表"]]) {
+      await page.route("**/api/programs?**", (route) => route.fulfill({ status: 200, contentType: "application/json", body }));
+      await page.goto(`${BASE}/`);
+      await page.locator(".lt-empty").waitFor({ timeout: 15000 });
+      check(`首页（未登录）：${name}时退回登录入口，不画演示`, (await page.locator(".lt-row").count()) === 0 && (await page.locator(".rail-legend").count()) === 0
+        && (await page.getByText("演示").count()) === 0 && await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
+      await page.unroute("**/api/programs?**");
+    }
     await page.goto(`${BASE}/`);
-    await page.locator(".lt-empty").waitFor({ timeout: 15000 });
-    check("首页（未登录）：学校库给不出项目时退回登录入口，不画演示", (await page.locator(".lt-row").count()) === 0 && (await page.locator(".rail-legend").count()) === 0
-      && (await page.getByText("演示").count()) === 0 && await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
-    await page.unroute("**/api/programs?**");
-    await page.goto(`${BASE}/`);
-    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
+    await page.locator(".lt-row, .lt-empty").first().waitFor({ timeout: 25000 });
     check("字体：不从其他主机加载", await page.evaluate(() => performance.getEntriesByType("resource").every((entry) => new URL(entry.name).origin === location.origin)));
     check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
     check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
@@ -1096,7 +1118,7 @@ async function adminPass(browser, email, errors) {
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
-    check("390（未登录）：演示叠成三层，说明和登录入口在第一屏", (await intro.locator(".lt-row").count()) >= 2 && !(await intro.locator(".lt-head").isVisible())
+    if (expectedDemo) check("390（未登录）：演示叠成三层，说明和登录入口在第一屏", (await intro.locator(".lt-row").count()) >= 2 && !(await intro.locator(".lt-head").isVisible())
       && await intro.locator(".demo-note").getByRole("button", { name: "登录", exact: true }).isVisible()
       && (await intro.locator(".demo-note").boundingBox()).y < 844);
     const bars = await intro.evaluate(() => {

@@ -55,7 +55,11 @@ export const DEMO_SCHOOL_IDS: readonly string[] = [
 export const DEMO_DATED = 4;
 /** Fewer dated programs than this is not worth calling a demo; the page shows its plain sign-in block. */
 const DEMO_MIN_DATED = 2;
-/** What the top-up asks the catalogue for: programs whose name says computing, at the schools above. */
+/**
+ * What the top-up asks the catalogue for: programs whose name says computing, at the schools above.
+ * One page, the route's largest. The schools above have about fifty such programs between them; if
+ * that ever passes a hundred, the page is the first hundred by id and the rest are not considered.
+ */
 const TOP_UP_TERM = "Comput";
 const TOP_UP_LIMIT = 100;
 

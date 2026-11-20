@@ -50,9 +50,15 @@ export interface ApplicationRecordsState {
 
 const Ctx = createContext<ApplicationRecordsState | null>(null);
 
+/** A catalogue read that has not answered by now counts as failed, so the page is never left waiting on it. */
+const DEMO_READ_TIMEOUT = 20000;
+
 /** One read of the public catalogue, which answers without a session. */
 async function readPrograms(query: DemoQuery): Promise<DemoProgram[]> {
-  const response = await fetch(`/api/programs${programQueryString(query)}`, { credentials: "same-origin" });
+  const response = await fetch(`/api/programs${programQueryString(query)}`, {
+    credentials: "same-origin",
+    signal: AbortSignal.timeout(DEMO_READ_TIMEOUT),
+  });
   if (!response.ok) throw new Error(`读取项目目录失败：${response.status}`);
   const programs = (await response.json()) as DemoProgram[];
   if (!Array.isArray(programs)) throw new Error("读取项目目录失败：响应不是项目列表");
