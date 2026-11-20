@@ -21,7 +21,7 @@ import { Icon } from "./Icon";
 
 type Conflict = { change: ReminderChange; theirs: ReminderSettings };
 
-const days = (list: number[]) => list.map((value) => `${value} 天`).join("、");
+const days = (list: number[]) => `${list.join("、")} 天`;
 
 function describe(theirs: ReminderSettings, change: ReminderChange) {
   if ("enabled" in change) return `别的设备刚把邮件提醒${theirs.enabled ? "开启" : "关闭"}了。`;
