@@ -614,6 +614,8 @@ async function adminPass(browser, email, errors) {
     await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
     await page.locator(".application-dialog").waitFor({state:"hidden"});
     await page.reload();
+    await manualCard.getByText(/待自行核对/).waitFor();
+    check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
     check("材料清单：两项都勾上后显示都勾了", (await manualCard.getByText("材料 2/2，都勾了", {exact:true}).count()) === 1);
     // A catalogue program whose page has not been read for materials says so, and offers the own list.
     const catalogCard = page.locator(".application-card").filter({ has: page.getByRole("link", { name: "项目详情" }) }).first();
@@ -622,8 +624,6 @@ async function adminPass(browser, email, errors) {
     check("材料清单：没提取的项目在表单里说明，并可以列自己的清单", (await applicationForm.getByText(/材料要求还没提取/).count()) === 1 && (await applicationForm.getByLabel("加一项自己的材料").count()) === 1);
     await applicationForm.getByRole("button",{name:"取消",exact:true}).click();
     await page.locator(".application-dialog").waitFor({state:"hidden"});
-    await manualCard.getByText(/待自行核对/).waitFor();
-    check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
 
     // Sync conflict (PRD-multi-device 3.3): another device edits the record while this form is open.
     const demoRecord = () => page.evaluate(async () => (await (await fetch("/api/application-records")).json()).find((r) => r.school === "示例大学（演示账号）"));
