@@ -4,11 +4,12 @@ import { useEffect, useMemo, useState, type ReactNode } from "react";
 
 import { DOCK_QUERY, useAdvisorDock } from "@/components/advisor/AdvisorProvider";
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
-import { DeadlineTable, editHref } from "@/components/home/DeadlineTable";
+import { DeadlineTable, editHref, type RowLink } from "@/components/home/DeadlineTable";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { ConflictNotice, Loading, Notice } from "@/components/ui";
 import { RECORD_STATUSES, writeApplicationRecord, type ApplicationRecord } from "@/lib/application-records";
 import { beijingToday } from "@/lib/deadlines";
+import { demoProgramHref } from "@/lib/demo";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { nextSentence, overviewOf, sentenceDate, type NextAction, type Overview } from "@/lib/overview";
@@ -34,13 +35,20 @@ export default function Home() {
   );
 }
 
-/** The title, the sentence under it, and the blocks. */
-function Frame({ finding, children }: { finding: ReactNode; children: ReactNode }) {
+/** The title, the sentence under it, and the blocks. `demo` marks the title of a page that shows sample data. */
+function Frame({ finding, demo = false, children }: { finding: ReactNode; demo?: boolean; children: ReactNode }) {
   return (
     <>
-      <header className="page-head">
+      <header className={`page-head${demo ? " has-note" : ""}`}>
         <div>
-          <h1>总览</h1>
+          {demo ? (
+            <div className="marked">
+              <h1>总览</h1>
+              <DemoMark />
+            </div>
+          ) : (
+            <h1>总览</h1>
+          )}
           <p className="finding">{finding}</p>
         </div>
       </header>
@@ -49,8 +57,29 @@ function Frame({ finding, children }: { finding: ReactNode; children: ReactNode 
   );
 }
 
-/** For a visitor: the same axis, today on it, and the way in. No sample applications are drawn. */
+/** The dashed tag that says a row is not the visitor's own. */
+function DemoMark() {
+  return <span className="pill pill-sample">演示</span>;
+}
+
+/**
+ * For a visitor: the overview drawn for a few programs from the catalogue, labelled as a demo. When
+ * the catalogue cannot supply one, the plain block below.
+ */
 function SignedOut() {
+  const { demo, demoPending } = useApplicationRecords();
+  if (demoPending) {
+    return (
+      <Frame finding="正在读取学校库…">
+        <Loading what="学校库" />
+      </Frame>
+    );
+  }
+  return demo ? <Demo records={demo} /> : <SignedOutBlock />;
+}
+
+/** The same axis with today on it, and the way in. No applications are drawn. */
+function SignedOutBlock() {
   const { requireLogin } = useAuth();
   const today = beijingToday();
   return (
@@ -80,6 +109,92 @@ function SignedOut() {
         />
       </section>
     </Frame>
+  );
+}
+
+const DEMO_LINK: RowLink = { href: (row) => demoProgramHref(row.record), title: "在学校库里看这个项目和日期的来源" };
+
+/**
+ * The overview as a signed-in applicant has it, drawn for catalogue programs (lib/demo.ts). The
+ * school, the program and the date of each row are the catalogue's; the status and the materials are
+ * made up, and the note under the title says which is which. Nothing here writes: a row leads to the
+ * program's public page, and the actions that would save something ask the visitor to sign in.
+ */
+function Demo({ records }: { records: ApplicationRecord[] }) {
+  const { requireLogin } = useAuth();
+  const { selected } = useApplicationRecords();
+  const today = beijingToday();
+  const model = useMemo(() => overviewOf(records, today), [records, today]);
+  return (
+    <Frame demo finding={<Finding model={model} />}>
+      <div className="demo-note" role="note">
+        <p id="demo-note">这是演示：项目和截止日期来自学校库，状态和材料是示例。登录后这里是你自己的申请。</p>
+        <button type="button" className="btn btn-primary" onClick={() => void requireLogin()}>
+          登录
+        </button>
+      </div>
+      <section className="block" aria-labelledby="h-deadlines">
+        <div className="block-head">
+          <h2 id="h-deadlines">截止日期</h2>
+          <p className="block-note">
+            <Link href="/schools">浏览学校库</Link>
+          </p>
+        </div>
+        <DeadlineTable model={model} today={today} labelledBy="h-deadlines" selected={selected} link={DEMO_LINK} />
+      </section>
+      <section className="block" aria-labelledby="h-next">
+        <div className="block-head">
+          <div className="marked">
+            <h2 id="h-next">接下来</h2>
+            <DemoMark />
+          </div>
+        </div>
+        <DemoNext actions={model.next} onSignIn={() => void requireLogin()} />
+      </section>
+    </Frame>
+  );
+}
+
+/**
+ * "接下来" for the demo. The rows and their sentences are the real ones. Asking the advisor puts the
+ * question in the composer unsent, as it does for an applicant (sending it is what needs an account);
+ * the two actions that would save something open the sign-in dialog instead.
+ */
+function DemoNext({ actions, onSignIn }: { actions: NextAction[]; onSignIn: () => void }) {
+  const advisor = useAdvisorDock();
+  return (
+    <ol className="next">
+      {actions.map((action) => {
+        const { row, kind } = action;
+        const { record } = row;
+        return (
+          <li className={`line-${row.line}`} key={record.id}>
+            <div className="who">
+              <span className="bullet">{row.code}</span>
+              <span>{record.school}</span>
+            </div>
+            <p>{nextSentence(action)}</p>
+            {kind === "confirm" ? (
+              <Link
+                className="btn btn-secondary"
+                href={`/advisor?q=${encodeURIComponent(deadlineQuestion(record))}`}
+                onClick={(event) => {
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || !window.matchMedia(DOCK_QUERY).matches) return;
+                  event.preventDefault();
+                  advisor.ask(deadlineQuestion(record));
+                }}
+              >
+                让顾问去查
+              </Link>
+            ) : (
+              <button type="button" className="btn btn-secondary" aria-describedby="demo-note" title="演示里不会保存，登录后可用" onClick={onSignIn}>
+                {kind === "submit" ? "标记为已提交" : kind === "passed" ? "更新日期" : "更新材料"}
+              </button>
+            )}
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 

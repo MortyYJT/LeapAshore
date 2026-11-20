@@ -281,18 +281,29 @@ function Remaining({ row }: { row: OverviewRow }) {
  * The applicant's applications, one per line colour. Picking one makes the other lines step back on
  * the overview; picking it again releases it. From another route the pick also opens the overview,
  * which is where the lines are drawn.
+ *
+ * A signed-out visitor sees the overview's demo programs here instead, under a mark that says so.
  */
 function RailLegend() {
   const records = useApplicationRecords();
   const pathname = usePathname() ?? "/";
   const router = useRouter();
-  const rows = useMemo(() => (records.data ? overviewOf(records.data, beijingToday()).rows : []), [records.data]);
+  const isDemo = !records.data && records.demo !== null;
+  const source = records.data ?? records.demo;
+  const rows = useMemo(() => (source ? overviewOf(source, beijingToday()).rows : []), [source]);
   if (!rows.length) return null;
   return (
     <section className="rail-legend" aria-labelledby="rail-legend-title">
-      <h2 className="rail-legend-title" id="rail-legend-title">
-        我的申请
-      </h2>
+      {isDemo ? (
+        <h2 className="rail-legend-title is-demo" id="rail-legend-title">
+          <span>我的申请</span>
+          <span className="pill pill-sample">演示</span>
+        </h2>
+      ) : (
+        <h2 className="rail-legend-title" id="rail-legend-title">
+          我的申请
+        </h2>
+      )}
       <ul>
         {rows.map((row) => {
           const picked = records.selected === row.record.id;
@@ -301,7 +312,7 @@ function RailLegend() {
               <button
                 type="button"
                 className={`line-${row.line}${records.selected && !picked ? " is-dimmed" : ""}`}
-                title={`${row.record.school} · ${row.record.name}`}
+                title={`${isDemo ? "演示：" : ""}${row.record.school} · ${row.record.name}`}
                 aria-pressed={picked}
                 onClick={() => {
                   records.select(picked ? null : row.record.id);

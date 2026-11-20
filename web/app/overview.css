@@ -3,6 +3,18 @@
   rows that say what to do next. A station is filled when the thing is ready and hollow when it is not.
 */
 
+/* ---------- the signed-out demo ---------- */
+/* A heading with the dashed tag that marks sample data beside it. */
+.marked { display: flex; align-items: center; gap: 10px; }
+.page-head.has-note { margin-bottom: 16px; }
+/* What on this page is real and what is made up, with the way in. One tone step, like any notice. */
+.demo-note {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px;
+  margin-bottom: 28px; padding: 8px 8px 8px 14px; border-radius: var(--r-box);
+  background: var(--panel); color: var(--ink-2);
+}
+.demo-note p { flex: 1 1 260px; margin: 0; text-wrap: pretty; }
+
 /* ---------- status tag ---------- */
 .st {
   display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 7px;

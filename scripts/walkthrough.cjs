@@ -6,7 +6,8 @@
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
 // /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px. Each step writes docs/screenshots/NN-*.png.
 //
-// The overview is checked in each state an account can be in: signed out (the axis, no rows), a new
+// The overview is checked in each state an account can be in: signed out (a labelled demo drawn from the
+// catalogue, with the dates the catalogue serves, and the plain sign-in block when it cannot be read), a new
 // account (the same, with the way to add the first application), an account with applications (one
 // line each, the rail's list, stable colours), and a deadline within two weeks that is marked as
 // submitted while another device has changed the record.
@@ -164,7 +165,8 @@ async function adminPass(browser, email, errors) {
     // A new account has no applications: the overview draws the axis and asks for the first one.
     await a.locator(".lt-empty").getByRole("link", { name: "添加申请项目" }).waitFor({ timeout: 15000 });
     await settle(a);
-    check("总览（空账号）：只有时间轴和添加入口，没有申请行", (await a.locator(".lt-row").count()) === 0 && (await a.locator(".rail-legend").count()) === 0 && (await a.getByText("还没有申请。").count()) === 1);
+    check("总览（空账号）：只有时间轴和添加入口，没有申请行，也没有演示", (await a.locator(".lt-row").count()) === 0 && (await a.locator(".rail-legend").count()) === 0 && (await a.getByText("还没有申请。").count()) === 1
+      && (await a.locator(".demo-note, .pill-sample").count()) === 0 && (await a.locator("#advisor-dock .composer-hint").innerText()).includes("只引用已收录的官方页面"));
     check("侧栏：登录后显示同步时间", /^已同步 \d\d:\d\d$/.test(await a.locator("button.rail-sync").innerText()), await a.locator("button.rail-sync").innerText());
     await screenshot(a, "overview-empty");
     const before = await a.goto(`${BASE}/admin`);
@@ -252,9 +254,83 @@ async function adminPass(browser, email, errors) {
     await settle(page);
     await layout(page, "首页");
     check("首页：标题是总览", await page.getByRole("heading", { level: 1, name: "总览", exact: true }).isVisible());
-    check("首页（未登录）：画出从今天开始的时间轴，不画示例申请", await page.locator(".lt .a-today").isVisible() && (await page.locator(".lt-row").count()) === 0 && (await page.getByText(/示例数据|预设演示/).count()) === 0);
-    check("首页（未登录）：给出登录入口", await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
-    check("侧栏：未登录时不列申请，同步状态是登录入口", (await page.locator(".rail-legend").count()) === 0 && await page.locator("button.rail-sync", { hasText: "登录后同步到账号" }).isVisible());
+    // ---------- the signed-out demo ----------
+    // Nothing in it may write: every request the page makes from here to the end of the demo checks is a GET.
+    const demoWrites = [];
+    const noteWrite = (request) => {
+      if (request.method() !== "GET") demoWrites.push(`${request.method()} ${new URL(request.url()).pathname}`);
+    };
+    page.on("request", noteWrite);
+    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
+    const demoRows = await page.locator(".lt-row").evaluateAll((rows) => rows.map((row) => ({
+      href: row.querySelector(".school a").getAttribute("href"),
+      school: row.querySelector(".school a").textContent.trim(),
+      name: row.querySelector(".program").textContent.trim(),
+      track: row.querySelector(".c-track").getAttribute("aria-label"),
+      sent: row.classList.contains("is-sent"),
+    })));
+    check("首页（未登录）：画出演示，并在标题、说明和「接下来」标明", demoRows.length >= 2 && await page.locator(".lt .a-today").isVisible()
+      && (await page.locator(".page-head .pill-sample", { hasText: "演示" }).count()) === 1
+      && (await page.locator(".demo-note").innerText()).includes("这是演示：项目和截止日期来自学校库")
+      && (await page.locator("#h-next + .pill-sample").count()) === 1, demoRows.length);
+    check("首页（未登录）：给出登录入口", await page.locator(".demo-note").getByRole("button", { name: "登录", exact: true }).isVisible());
+    // What the catalogue serves for the same programs, read apart from the page: the demo may show nothing else.
+    const demoIds = demoRows.map((row) => decodeURIComponent((row.href || "").replace("/programs/", "")));
+    const catalogued = await page.evaluate(async (ids) => (await fetch(`/api/programs?ids=${ids.map(encodeURIComponent).join(",")}`)).json(), demoIds);
+    const demoToday = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    const mismatched = demoRows.filter((row, index) => {
+      const program = catalogued.find((item) => item.slug === demoIds[index]);
+      if (!program || !row.href.startsWith("/programs/")) return true;
+      const ahead = program.deadlines.map((d) => d.date).filter((date) => date >= demoToday).sort();
+      const expected = program.deadlines.length === 0 ? "截止日期待确认" : ahead.length ? `${ahead[0]} 截止` : null;
+      return row.track !== expected || row.school !== program.university || row.name !== (program.nameEn || program.name);
+    });
+    check("演示：每一行的学校、项目和日期都是学校库接口给的，行名链接到公开的项目页", mismatched.length === 0, mismatched);
+    check("演示：状态有一个已提交，没日期的只在学校库确实没有日期时画成待确认", demoRows.filter((row) => row.sent).length === 1
+      && demoRows.filter((row) => row.track === "截止日期待确认").length <= 1);
+    check("演示：不显示要读账号的「准备任务」", (await page.locator("#h-tasks").count()) === 0);
+    check("侧栏：未登录时列出演示并标明，同步状态是登录入口", (await page.locator(".rail-legend li").count()) === demoRows.length
+      && (await page.locator(".rail-legend-title .pill-sample", { hasText: "演示" }).count()) === 1
+      && await page.locator("button.rail-sync", { hasText: "登录后同步到账号" }).isVisible());
+    await page.locator(".rail-legend button").first().click();
+    check("演示：在侧栏选中一行，其余的线退后", (await page.locator(".lt.has-sel .lt-row.is-sel").count()) === 1);
+    await page.locator(".rail-legend button").first().click();
+    const gate = page.locator("dialog.dialog:not(.workspace-search-dialog)");
+    const writing = page.locator(".next").getByRole("button", { name: /^(更新材料|标记为已提交)$/ });
+    let gatedActions = (await writing.count()) > 0;
+    for (let i = 0; i < await writing.count(); i++) {
+      await writing.nth(i).click();
+      gatedActions = gatedActions && await gate.getByRole("heading", { name: "登录" }).isVisible().catch(() => false);
+      await page.keyboard.press("Escape");
+      await gate.waitFor({ state: "hidden" });
+    }
+    check("演示：会写入的操作只打开登录", gatedActions);
+    const demoAsk = page.locator(".next").getByRole("link", { name: "让顾问去查" });
+    if (await demoAsk.count()) {
+      await demoAsk.first().click();
+      const put = await page.locator("#advisor-input").inputValue();
+      check("演示：让顾问去查只把问题放进输入框，不发送", put.endsWith("的申请截止日期是哪天？") && (await page.locator(".turn").count()) === 0 && !await gate.isVisible(), put);
+      await page.locator("#advisor-input").fill("");
+    }
+    check("停靠栏（未登录）：保留能力说明，输入区写明提问需要登录并给出登录入口", (await page.locator("#advisor-dock .how .step").count()) === 4
+      && (await page.locator("#advisor-dock .composer-hint").innerText()).includes("提问需要登录")
+      && await page.locator("#advisor-dock .composer-hint").getByRole("button", { name: "登录", exact: true }).isVisible()
+      && (await page.locator("#advisor-input").getAttribute("placeholder")).includes("登录后发送"));
+    await page.locator("#advisor-dock .composer-hint").getByRole("button", { name: "登录", exact: true }).click();
+    check("停靠栏（未登录）：登录入口打开登录", await gate.getByRole("heading", { name: "登录" }).isVisible());
+    await page.keyboard.press("Escape");
+    await gate.waitFor({ state: "hidden" });
+    check("演示：整个过程没有发出任何写入请求", demoWrites.length === 0, demoWrites);
+    page.off("request", noteWrite);
+    // The catalogue has nothing to draw: the page falls back to the plain block, with nothing labelled a demo.
+    await page.route("**/api/programs?**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: "[]" }));
+    await page.goto(`${BASE}/`);
+    await page.locator(".lt-empty").waitFor({ timeout: 15000 });
+    check("首页（未登录）：学校库给不出项目时退回登录入口，不画演示", (await page.locator(".lt-row").count()) === 0 && (await page.locator(".rail-legend").count()) === 0
+      && (await page.getByText("演示").count()) === 0 && await page.locator(".lt-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
+    await page.unroute("**/api/programs?**");
+    await page.goto(`${BASE}/`);
+    await page.locator(".lt-row").first().waitFor({ timeout: 15000 });
     check("字体：不从其他主机加载", await page.evaluate(() => performance.getEntriesByType("resource").every((entry) => new URL(entry.name).origin === location.origin)));
     check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
     check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
@@ -316,7 +392,8 @@ async function adminPass(browser, email, errors) {
     check("顾问：页面里没有 emoji", !/[\u{1F300}-\u{1FAFF}]/u.test(await page.locator("main").innerText()));
     const question = "我是北邮软件工程，均分 85，雅思 6.5，能申哪些计算机硕士？";
     await page.locator("#advisor-input").fill(question);
-    await page.getByRole("button", { name: "发送", exact: true }).click();
+    check("顾问页（未登录）：输入区写明提问需要登录", (await page.locator(".advisor-page .composer-hint").innerText()).includes("提问需要登录"));
+    await page.getByRole("button", { name: "登录后发送", exact: true }).click();
     const dialog = page.locator("dialog.dialog:not(.workspace-search-dialog)");
     await dialog.waitFor();
     check("顾问：未登录点发送弹出登录", await dialog.getByRole("heading", { name: "登录" }).isVisible());
@@ -1019,6 +1096,9 @@ async function adminPass(browser, email, errors) {
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
+    check("390（未登录）：演示叠成三层，说明和登录入口在第一屏", (await intro.locator(".lt-row").count()) >= 2 && !(await intro.locator(".lt-head").isVisible())
+      && await intro.locator(".demo-note").getByRole("button", { name: "登录", exact: true }).isVisible()
+      && (await intro.locator(".demo-note").boundingBox()).y < 844);
     const bars = await intro.evaluate(() => {
       const top = document.querySelector("#workspace-nav").getBoundingClientRect();
       const tabs = document.querySelector('nav[aria-label="主导航"]').getBoundingClientRect();
@@ -1044,8 +1124,10 @@ async function adminPass(browser, email, errors) {
     // Header login returns to the current workspace; respect the 60 s code resend window.
     await new Promise((r) => setTimeout(r, Math.max(0, 61000 - (Date.now() - firstCodeAt))));
     await loginThroughDialog(intro, emails[0]);
+    // The demo's rows were on screen before the login; the account's own replace them.
+    await intro.locator(".demo-note").waitFor({ state: "detached", timeout: 15000 });
     await intro.locator(".lt-row").first().waitFor({ timeout: 15000 });
-    check("直接点登录：登录后显示真实总览", true);
+    check("直接点登录：登录后显示真实总览，演示和它的标记都不在了", (await intro.locator(".pill-sample").count()) === 0 && (await intro.locator('.lt-row .school a[href^="/programs/"]').count()) === 0);
     check("390：总览的每一行叠成三层，不画表头", !(await intro.locator(".lt-head").isVisible()) && await intro.locator(".lt-row .c-track .org").first().isVisible());
     check("390：没有停靠栏，顾问是底部标签里的一页", await intro.locator("#advisor-dock").isHidden() && await intro.locator("#advisor-toggle").isHidden() && await intro.locator('.rail-nav a[href="/advisor"]').isVisible());
     for (const [route, name] of [

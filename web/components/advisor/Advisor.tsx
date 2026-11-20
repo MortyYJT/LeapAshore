@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 
+import { useAuth } from "@/components/auth/AuthProvider";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { Icon } from "@/components/shell/Icon";
 import { starterQuestions } from "@/lib/advisor-run";
@@ -22,11 +23,15 @@ const HOW: [string, string][] = [
 /**
  * The advisor: the conversation, and the composer under it. The same component is the dock beside the
  * workspace and the full page at /advisor; `variant` only changes the heading and the tools beside it.
+ *
+ * A visitor who is not signed in can write a question but not ask it: sending opens the sign-in
+ * dialog and the sentence goes out once they are in. The composer says so before they type.
  */
 export function Advisor({ variant }: { variant: "dock" | "page" }) {
   const chat = useAdvisorChat();
   const dock = useAdvisorDock();
   const records = useApplicationRecords();
+  const { gated, requireLogin } = useAuth();
   const thread = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLTextAreaElement>(null);
   const followTail = useRef(true);
@@ -132,7 +137,16 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
               </ol>
               <div className="asks">
                 {starters.map((question) => (
-                  <button key={question} type="button" disabled={running} onClick={() => void chat.send(question)}>
+                  <button
+                    key={question}
+                    type="button"
+                    disabled={running}
+                    onClick={() => {
+                      // Signed out, the question waits in the composer while the sign-in dialog is open.
+                      if (gated) chat.setDraft(question);
+                      void chat.send(question);
+                    }}
+                  >
                     <span>{question}</span>
                     <Icon name="arrow" />
                   </button>
@@ -171,7 +185,7 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
             rows={1}
             maxLength={2000}
             value={chat.draft}
-            placeholder="问问题，或者让顾问改选校组合"
+            placeholder={gated ? "先写下问题，登录后发送" : "问问题，或者让顾问改选校组合"}
             aria-label="给顾问的消息"
             onChange={(event) => chat.setDraft(event.target.value)}
             onKeyDown={(event) => {
@@ -186,15 +200,30 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
               <Icon name="stop" />
             </button>
           ) : (
-            <button type="submit" className="send" aria-label="发送" title="发送（Enter）" disabled={!chat.draft.trim()}>
+            <button
+              type="submit"
+              className="send"
+              aria-label={gated ? "登录后发送" : "发送"}
+              title={gated ? "登录后发送（Enter）" : "发送（Enter）"}
+              disabled={!chat.draft.trim()}
+            >
               <Icon name="send" />
             </button>
           )}
         </div>
-        <p className="composer-hint">
-          <span>只引用已收录的官方页面，查不到会直说。</span>
-          <kbd>{running ? "Esc 停止" : "Enter 发送"}</kbd>
-        </p>
+        {gated ? (
+          <p className="composer-hint is-gated">
+            <span>提问需要登录。</span>
+            <button type="button" onClick={() => void requireLogin()}>
+              登录
+            </button>
+          </p>
+        ) : (
+          <p className="composer-hint">
+            <span>只引用已收录的官方页面，查不到会直说。</span>
+            <kbd>{running ? "Esc 停止" : "Enter 发送"}</kbd>
+          </p>
+        )}
       </form>
     </section>
   );
