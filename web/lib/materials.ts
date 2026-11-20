@@ -4,7 +4,9 @@
 // page, each entry with the sentence it was read from, the page that sentence is on and the
 // applicant's own tick. `customMaterials` is the applicant's own checklist. `materialsExtracted` false
 // means nobody has read the program's page for materials yet, which is a different statement from a
-// page that asks for nothing.
+// page that asks for nothing. A page that was read and lists no documents is not "asks for nothing"
+// either: the list is usually on another page, so the screens say what was read and send the
+// applicant to the official page.
 //
 // A tick is the applicant saying "I have this ready". Nothing here, and nothing on the server, reviews
 // a document.
@@ -93,31 +95,42 @@ export function progressLabel(record: { materialsDone: number; materialsTotal: n
 }
 
 /**
+ * Whether the record is a catalogue program whose page was read and lists no documents. A record
+ * served without its `materials` list (the helpers below take partial records) is never one.
+ */
+export function listsNone(record: { programId: string | null; materialsExtracted: boolean; materials?: readonly unknown[] }): boolean {
+  return Boolean(record.programId) && record.materialsExtracted && record.materials !== undefined && record.materials.length === 0;
+}
+
+/**
  * The words for a record's materials in one short phrase: how many lines are ticked, or why there is
  * no count. `programId` tells a catalogue program whose page has not been read from a manual record.
  */
 export function materialsSummary(record: {
   programId: string | null;
   materialsExtracted: boolean;
+  materials?: readonly unknown[];
   materialsDone: number;
   materialsTotal: number;
 }): string {
   const progress = progressLabel(record);
   const unread = Boolean(record.programId) && !record.materialsExtracted;
-  if (!progress) return unread ? "材料要求还没提取" : "还没列材料清单";
+  const silent = listsNone(record);
+  if (!progress) return unread ? "材料要求还没提取" : silent ? "项目页没列材料" : "还没列材料清单";
   const counted = record.materialsDone === record.materialsTotal ? `材料 ${progress}，都勾了` : `材料 ${progress}`;
   // The count is of the applicant's own lines only: say so, or "all ticked" reads as "nothing else is asked".
-  return unread ? `${counted}（自己列的，官网要求还没提取）` : counted;
+  return unread ? `${counted}（自己列的，官网要求还没提取）` : silent ? `${counted}（自己列的，项目页没列材料）` : counted;
 }
 
 /**
  * The overview's few words for a record's materials. "就绪" is only said of a list that could be
- * complete: for a program whose page has not been read, every line ticked means the applicant's own
- * lines are ticked, and that is what it says.
+ * complete: for a program whose page has not been read, or lists no documents, every line ticked
+ * means the applicant's own lines are ticked, and that is what it says.
  */
 export function overviewMaterials(record: {
   programId: string | null;
   materialsExtracted: boolean;
+  materials?: readonly unknown[];
   materialsReady: boolean;
   materialsDone: number;
   materialsTotal: number;
@@ -125,7 +138,7 @@ export function overviewMaterials(record: {
   const progress = progressLabel(record);
   if (record.materialsReady) {
     // A record with nothing listed (the signed-out demo's examples) has no count to qualify.
-    return progress && record.programId && !record.materialsExtracted ? "自列材料已勾完" : "材料已就绪";
+    return progress && record.programId && (!record.materialsExtracted || listsNone(record)) ? "自列材料已勾完" : "材料已就绪";
   }
   return progress ? `材料 ${progress}` : "材料准备中";
 }

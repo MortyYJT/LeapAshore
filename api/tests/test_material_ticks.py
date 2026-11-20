@@ -12,6 +12,7 @@ from sqlalchemy import delete, select
 from app.db import SessionLocal
 from app.main import app
 from app.models.program import Program, ProgramMaterial
+from app.models.source import Source
 from app.seed import seed_programs
 from tests.test_seed import PROGRAM_IDS
 from tests.versioned import create_record, patch_record, put_portfolio
@@ -79,6 +80,27 @@ def test_a_record_lists_the_collected_materials_unticked_with_their_source(progr
     # Not read yet: no list, and the flag says so. It is not an empty list of requirements.
     assert unread["materialsExtracted"] is False and unread["materials"] == []
     assert (unread["materialsDone"], unread["materialsTotal"], unread["materialsReady"]) == (0, 0, False)
+
+
+def test_a_catalogue_record_names_the_program_s_official_page(programs):
+    """A page that was read and lists no documents has no entry to carry a source, so the record
+    itself says where the program's page is; a manual record has no such page."""
+    with SessionLocal() as s:
+        page = s.get(Source, s.get(Program, programs["unread"]).source_id).url
+        # Read, lists none: the snapshot is recorded and there are no entries.
+        s.get(Program, programs["unread"]).materials_snapshot_sha256 = "8" * 64
+        s.commit()
+    client, rows = applicant(programs["read"], programs["unread"])
+    silent = rows[programs["unread"]]
+    assert silent["materialsExtracted"] is True and silent["materials"] == []
+    assert silent["programUrl"] == page and page.startswith("http")
+    assert rows[programs["read"]]["programUrl"].startswith("http")
+    # The page comes with every way a record is served: the answer to an edit too.
+    edited = patch_record(client, silent["id"], {"customMaterials": [{"id": "c-1", "label": "成绩单"}]})
+    assert edited.status_code == 200 and edited.json()["programUrl"] == page
+
+    manual = create_record(client, {"school": "Example University", "name": "Example MSc"}).json()
+    assert manual["programUrl"] is None
 
 
 def test_ticks_are_set_and_cleared_one_material_at_a_time(programs):

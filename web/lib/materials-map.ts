@@ -5,7 +5,8 @@
 // count and nothing particular noted, is shared: an interchange all the lines pass through. Any other
 // material is a column where a line stops only if its program's page asks for it. A program whose page
 // has not been read for materials has no stops at all and is drawn apart from the others, because
-// nothing is known about it; it is never treated as asking for nothing.
+// nothing is known about it; it is never treated as asking for nothing. The same goes for a program
+// whose page was read and lists no documents: its list is on some other page, which nobody read.
 //
 // Pure functions, so the rules are tested without a browser. Nothing here fills a gap: a count the
 // page does not state stays unstated, and a note is the collector's own summary, shown as such.
@@ -47,10 +48,12 @@ export interface MaterialColumn {
 }
 
 export interface MaterialsModel {
-  /** Programs whose page has been read, in the overview's order: the lines of the map. */
+  /** Programs whose page lists at least one material, in the overview's order: the lines of the map. */
   lines: MapLine[];
   /** Catalogue programs whose page has not been read for materials. */
   unread: MapLine[];
+  /** Catalogue programs whose page was read and lists no documents: what they ask is not known either. */
+  silent: MapLine[];
   /** Applications added by hand: no page in the catalogue to read. */
   manual: MapLine[];
   shared: MaterialColumn[];
@@ -88,6 +91,11 @@ function mode<T>(values: readonly T[]): T | null {
   return top > 1 && leaders.length === 1 ? leaders[0][0] : null;
 }
 
+/** The programs the map knows no requirement of, in the order their dotted runs are drawn. */
+export function unknownLines(model: Pick<MaterialsModel, "unread" | "silent">): MapLine[] {
+  return [...model.unread, ...model.silent];
+}
+
 /** The words for a requirement the page states no number for: asked plainly, or asked with something noted. */
 export const ASKED = "要交";
 export const NOTED = "另有说明";
@@ -114,7 +122,10 @@ export function materialsModel(records: readonly ApplicationRecord[], rail?: rea
     code: lineCode(record.school),
     line: colours.get(record.id) ?? "green",
   });
-  const lines = open.filter((record) => record.programId && record.materialsExtracted).map(asLine);
+  const read = open.filter((record) => record.programId && record.materialsExtracted);
+  const lines = read.filter((record) => record.materials.length > 0).map(asLine);
+  // Read, and the page lists nothing: kept out of every "all of them ask" and "does not ask" below.
+  const silent = read.filter((record) => record.materials.length === 0).map(asLine);
   const unread = open.filter((record) => record.programId && !record.materialsExtracted).map(asLine);
   const manual = open.filter((record) => !record.programId).map(asLine);
 
@@ -163,6 +174,7 @@ export function materialsModel(records: readonly ApplicationRecord[], rail?: rea
   return {
     lines,
     unread,
+    silent,
     manual,
     shared,
     differing,
@@ -194,7 +206,7 @@ export interface MapGeometry {
   height: number;
   /** One path per extracted program: along the trunk, out at 45 degrees, then along its own run. */
   paths: { line: MapLine; d: string }[];
-  /** One dotted run per program that has not been read: it joins nothing. */
+  /** One dotted run per program whose requirements are not known (not read, or a page that lists none): it joins nothing. */
   dotted: { line: MapLine; d: string }[];
   hubs: { column: MaterialColumn; x: number; y: number; width: number; height: number; ready: boolean }[];
   stations: { requirement: Requirement; x: number; y: number }[];
@@ -244,13 +256,14 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
   const dotted: MapGeometry["dotted"] = [];
   const hasTrunk = model.shared.length > 0;
   const columns = model.differing;
+  const apart = unknownLines(model);
 
   if (drawsHorizontally(model, width)) {
     const pitch = 46;
     // A run nobody has read carries no caption, so it needs less room than a line with stops.
     const unreadPitch = 30;
     const head = n ? 30 : 8;
-    const height = head + n * pitch + model.unread.length * unreadPitch + (n || model.unread.length ? 4 : pitch);
+    const height = head + n * pitch + apart.length * unreadPitch + (n || apart.length ? 4 : pitch);
     const left = 3;
     const endRoom = 54;
     const fan = hasTrunk ? (pitch - TRUNK_PITCH) * mid : 0;
@@ -291,7 +304,7 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
         labels.push({ kind: "caption", text: requirement.caption, x: columnX(j), y: y + 9, line: requirement.line, differs: requirement.differs, align: "centre" });
       });
     });
-    model.unread.forEach((line, k) => {
+    apart.forEach((line, k) => {
       const y = head + n * pitch + unreadPitch * (k + 0.5);
       dotted.push({ line, d: `M${left} ${y}H${end}` });
       labels.push({ kind: "end", text: line.code, x: end + 8, y, line, align: "middle" });
@@ -307,7 +320,7 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
   const rowPitch = 50;
   const top = hasTrunk ? 28 : 8;
   const labelWidth = 62;
-  const all = n + model.unread.length;
+  const all = n + apart.length;
   const lane = (frame - labelWidth - 4) / Math.max(all, 1);
   const laneX = (i: number) => labelWidth + lane * (i + 0.5);
   const centre = labelWidth + (lane * n) / 2;
@@ -345,7 +358,7 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
       }
     });
   });
-  model.unread.forEach((line, k) => {
+  apart.forEach((line, k) => {
     const x = laneX(n + k);
     dotted.push({ line, d: `M${x} ${rowsStart - 4}V${end}` });
     labels.push({ kind: "end", text: line.code, x, y: end + 8, line, align: "centre" });

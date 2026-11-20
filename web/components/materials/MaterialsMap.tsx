@@ -7,7 +7,8 @@ import { layoutMap, type MapLabel, type MaterialsModel } from "@/lib/materials-m
 /**
  * The materials line map. Every extracted program is a line: they run together through one capsule per
  * shared material, split at 45 degrees, and each then stops only where its own page asks for
- * something. A program whose page has not been read is a dotted run beside them that joins nothing.
+ * something. A program whose page has not been read, or was read and lists no documents, is a dotted
+ * run beside them that joins nothing.
  *
  * The drawing is a picture of the lists under it and carries no control: its accessible name says what
  * is shared and what differs, and the ticks are in those lists. A wide frame draws it left to right, a
@@ -98,5 +99,6 @@ function describe(model: MaterialsModel): string {
     parts.push(model.lines.length > 1 ? `${names}各项目要求不同` : `${model.lines[0].record.school}要交${names}`);
   }
   if (model.unread.length) parts.push(`${model.unread.map((line) => line.record.school).join("、")}的要求还没提取`);
+  if (model.silent.length) parts.push(`${model.silent.map((line) => line.record.school).join("、")}的项目页没有列申请材料`);
   return parts.length ? `线路图：${parts.join("；")}。详见下方清单。` : "线路图：还没有可画的要求。";
 }

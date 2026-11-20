@@ -18,12 +18,14 @@ import {
  * lines and decides when they are saved.
  *
  * `extracted` false with `catalog` true is a program whose page nobody has read for materials yet. It
- * is said in words, and never drawn as an empty list of requirements.
+ * is said in words, and never drawn as an empty list of requirements. A page that was read and lists
+ * no documents is said in words too, with the page to check: it is not a program that asks for none.
  */
 export function MaterialChecklist({
   materials,
   extracted,
   catalog,
+  pageUrl = null,
   ticked,
   onTick,
   custom,
@@ -35,6 +37,8 @@ export function MaterialChecklist({
   extracted: boolean;
   /** Whether the record is a catalogue program (a manual one has no page in the catalogue to read). */
   catalog: boolean;
+  /** The program's official page, linked where the catalogue has no entry to cite. */
+  pageUrl?: string | null;
   ticked: Readonly<Record<string, boolean>>;
   onTick: (key: string, ready: boolean) => void;
   custom: readonly CustomMaterial[];
@@ -84,7 +88,17 @@ export function MaterialChecklist({
         </ul>
       )}
       {!compact && catalog && extracted && materials.length === 0 && (
-        <p className="small muted">采集的官网页面没有列出申请材料，以官网为准。可以在下面列自己的清单。</p>
+        <p className="small muted">
+          读到的项目页没有列申请材料，这不等于不用交。请到
+          {pageUrl ? (
+            <a className="link" href={pageUrl} target="_blank" rel="noreferrer">
+              官网页面
+            </a>
+          ) : (
+            "官网"
+          )}
+          核对，再在下面列自己的清单。
+        </p>
       )}
       {!compact && catalog && !extracted && (
         <p className="small muted">这个项目的材料要求还没提取。先在下面列自己的清单，以官网为准。</p>
@@ -138,7 +152,7 @@ export function MaterialChecklist({
       </div>
       {!compact && (
         <p className="small muted">
-          勾选是你自己的核对，不是审核。{catalog && extracted ? "官网要求来自采集到的页面，可能不全，提交前以官网为准。" : ""}
+          勾选是你自己的核对，不是审核。{catalog && extracted && materials.length > 0 ? "官网要求来自采集到的页面，可能不全，提交前以官网为准。" : ""}
         </p>
       )}
     </div>

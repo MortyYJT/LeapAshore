@@ -8,7 +8,7 @@ import { MaterialsMap } from "@/components/materials/MaterialsMap";
 import { Icon } from "@/components/shell/Icon";
 import type { ApplicationRecord } from "@/lib/application-records";
 import { countLabel, materialName, typeLabel, type CustomMaterial, type RecordMaterial } from "@/lib/materials";
-import { ASKED, NOTED, type MapLine, type MaterialColumn, type MaterialsModel, type Requirement } from "@/lib/materials-map";
+import { ASKED, NOTED, unknownLines, type MapLine, type MaterialColumn, type MaterialsModel, type Requirement } from "@/lib/materials-map";
 
 /** What the board asks its page to save. Each resolves when the server has answered. */
 export interface MaterialsActions {
@@ -22,6 +22,10 @@ export interface MaterialsActions {
  * The materials screen under its title: the line map, the shared materials (ticked once for every
  * program), the materials that differ (each program's requirement with the sentence it was read from)
  * and every application's own checklist, which is all a program has until its page has been read.
+ *
+ * A program whose page was read and lists no documents is drawn like one that was not read: a dotted
+ * run with no stops, a note that names it and links its page, and its own checklist. It is never
+ * counted among the programs that "do not ask" for a material.
  *
  * `actions` null draws the same blocks read-only (the signed-out demo); a control then calls
  * `onBlocked` instead of saving.
@@ -39,7 +43,8 @@ export function MaterialsBoard({
   onBlocked?: () => void;
   busy?: boolean;
 }) {
-  const own = [...model.unread, ...model.manual, ...model.lines];
+  const own = [...unknownLines(model), ...model.manual, ...model.lines];
+  const apart = unknownLines(model);
   const picked = (line: MapLine) => (selected ? (line.record.id === selected ? " is-sel" : " is-dim") : "");
   // A tick shows at once and is saved behind it; the controls stay enabled, so the keyboard's focus
   // stays where it was. Once nothing is being saved the page shows what the server holds again, which
@@ -59,7 +64,7 @@ export function MaterialsBoard({
   return (
     <>
       {/* Only manual applications: nothing the catalogue knows could be drawn, so no empty frame is. */}
-      {model.lines.length + model.unread.length > 0 && (
+      {model.lines.length + apart.length > 0 && (
       <section className="block block-map" aria-labelledby="h-map">
         <div className="block-head">
           <h2 id="h-map">各项目要什么</h2>
@@ -81,12 +86,12 @@ export function MaterialsBoard({
                 <span className="k-diff">3 封</span>和多数项目不一样
               </li>
             )}
-            {model.unread.length > 0 && (
+            {apart.length > 0 && (
               <li>
                 <svg className="k-line" viewBox="0 0 22 14" aria-hidden="true">
                   <path className="k-unread" d="M2 7H20" />
                 </svg>
-                还没提取
+                {[model.unread.length > 0 && "还没提取", model.silent.length > 0 && "页面没列材料"].filter(Boolean).join("，或")}
               </li>
             )}
           </ul>
@@ -97,6 +102,24 @@ export function MaterialsBoard({
         )}
         {actions && model.unread.length > 0 && (
           <p className="map-note">虚线是官网要求还没提取的项目，它要什么材料现在不知道。先在下面列自己的清单，以官网为准。</p>
+        )}
+        {model.silent.length > 0 && (
+          <p className="map-note">
+            {model.silent.map((line, index) => (
+              <span key={line.record.id}>
+                {index > 0 && "、"}
+                {line.record.programUrl ? (
+                  <a className="link" href={line.record.programUrl} target="_blank" rel="noreferrer">
+                    {line.record.school}
+                  </a>
+                ) : (
+                  line.record.school
+                )}
+              </span>
+            ))}
+            的项目页读过了，上面没有列申请材料，{model.unread.length > 0 ? "也" : ""}画成虚线。这不等于不用交：清单可能在官网的其他页面，请到官网核对
+            {actions ? "，再在下面列自己的清单。" : "。"}
+          </p>
         )}
       </section>
       )}
@@ -354,18 +377,21 @@ function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; bu
   // A program with its official list and no line of the applicant's own shows one quiet action, not an
   // empty field: most applicants add nothing here.
   const [adding, setAdding] = useState(false);
-  const quiet = record.materialsExtracted && lines.length === 0 && !adding;
+  const quiet = record.materials.length > 0 && lines.length === 0 && !adding;
   const list = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (adding) list.current?.querySelector<HTMLInputElement>(".material-add input")?.focus();
   }, [adding]);
   const state: ReactNode = !record.programId ? (
     <span className="st">手动添加</span>
-  ) : record.materialsExtracted ? (
+  ) : record.materials.length > 0 ? (
     <span className="st is-sent">官网要求 {record.materials.length} 项</span>
   ) : (
-    <span className="st is-idea">还没提取</span>
+    // Read with nothing listed is said as that: "0 项" would read as "nothing is asked".
+    <span className="st is-idea">{record.materialsExtracted ? "页面没列材料" : "还没提取"}</span>
   );
+  // Nothing collected to cite: the program's own page is where the applicant checks.
+  const page = record.materials.length === 0 ? record.programUrl : null;
   return (
     <li className={`own-row line-${line.line}${dim}`}>
       <div className="own-id">
@@ -376,6 +402,11 @@ function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; bu
             {state}
           </div>
           <div className="program">{record.name}</div>
+          {page && (
+            <a className="link own-page" href={page} target="_blank" rel="noreferrer">
+              官网页面
+            </a>
+          )}
         </div>
       </div>
       <div className="own-list" ref={list}>
@@ -390,6 +421,7 @@ function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; bu
             materials={[]}
             extracted={record.materialsExtracted}
             catalog={Boolean(record.programId)}
+            pageUrl={record.programUrl}
             ticked={{}}
             onTick={() => undefined}
             custom={lines}

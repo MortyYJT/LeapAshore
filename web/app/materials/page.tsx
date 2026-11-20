@@ -9,7 +9,7 @@ import { MaterialFiles } from "@/components/profile/MeView";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { Loading, Notice } from "@/components/ui";
 import { writeApplicationRecord, type ApplicationRecord } from "@/lib/application-records";
-import { materialsModel, type MaterialsModel } from "@/lib/materials-map";
+import { materialsModel, type MapLine, type MaterialsModel } from "@/lib/materials-map";
 import { StaleVersionError } from "@/lib/sync-conflict";
 
 /**
@@ -17,7 +17,7 @@ import { StaleVersionError } from "@/lib/sync-conflict";
  * the applicant's own checklists and the files they uploaded.
  *
  * Everything about a program's requirements is what the catalogue collected from its official page;
- * a program whose page has not been read says so. A signed-out visitor gets the same map for a few
+ * a program whose page has not been read says so, and so does one whose page lists no documents. A signed-out visitor gets the same map for a few
  * catalogue programs when enough of them have been read, and the plain sign-in block otherwise.
  */
 export default function MaterialsPage() {
@@ -59,13 +59,27 @@ function Frame({ finding, demo = false, children }: { finding: ReactNode; demo?:
   );
 }
 
+/** A few programs by name, more than two as a count. */
+function named(lines: readonly MapLine[]): string {
+  return lines.length > 2 ? `${lines.length} 个项目` : lines.map((line) => line.record.school).join("、");
+}
+
 /** The sentence under the title: how much is known, what is shared, what differs, how far along. */
 function Finding({ model }: { model: MaterialsModel }) {
-  const { lines, unread, manual, shared, differing, total, done, closed } = model;
-  const open = lines.length + unread.length + manual.length;
+  const { lines, unread, silent, manual, shared, differing, total, done, closed } = model;
+  const open = lines.length + unread.length + silent.length + manual.length;
   if (!open) return <>{closed ? `${closed} 个申请都已提交或已有结果，没有要备的材料。` : "还没有申请。"}</>;
-  const waiting = unread.length > 2 ? `${unread.length} 个项目` : unread.map((line) => line.record.school).join("、");
+  const waiting = named(unread);
   if (!lines.length) {
+    // A page that lists nothing is said as that, and never as a program that asks for nothing.
+    if (silent.length) {
+      return (
+        <>
+          {unread.length > 0 && `${waiting}的官网要求还没提取。`}
+          {named(silent)}的项目页没有列申请材料，要到官网核对。
+        </>
+      );
+    }
     return <>{unread.length ? `${waiting}的官网要求还没提取，先用自己的清单记。` : "手动添加的申请没有学校库的材料清单，用自己的清单记。"}</>;
   }
   return (
@@ -81,6 +95,7 @@ function Finding({ model }: { model: MaterialsModel }) {
         </>
       )}
       {unread.length > 0 && `${waiting}的官网要求还没提取。`}
+      {silent.length > 0 && `${named(silent)}的项目页没有列申请材料，要到官网核对。`}
       {closed > 0 && `另有 ${closed} 个已提交或已有结果的申请没有列出。`}
     </>
   );
@@ -164,7 +179,7 @@ function Workspace() {
       }),
     custom: (record, next) => save(record, { customMaterials: next }),
   };
-  const drawn = [...model.lines, ...model.unread, ...model.manual];
+  const drawn = [...model.lines, ...model.unread, ...model.silent, ...model.manual];
   const open = drawn.length;
   // The rail also lists submitted applications, which this screen leaves out: one of those picked
   // must not dim every line here.

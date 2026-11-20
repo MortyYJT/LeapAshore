@@ -72,7 +72,7 @@ Target: batch 1 deployed before applications start (2026-11-21). Batch 2 continu
 - The single "materials ready" checkbox becomes a per-material checklist. Ticks are still the applicant's own check, not an automated review.
 - Manual applications without catalogue data keep a free-form checklist.
 - A labelled set measures extraction precision and recall, and the faithfulness judge covers the new fields.
-- Status (2026-11-20): the scorer and the labelled-set format exist (`python -m evals.materials`); no set has been labelled and no extraction scored. The judge is not wired to materials: it calls a paid model, and none was called for this item.
+- Status (2026-11-21): 11 of the catalogue's programs have been extracted (the signed-out demo's), by a Claude subagent reading stored pages, and scored against labels written by another Claude subagent, not by a person. That is a pilot check of the pipeline and not a measure of precision or recall for the catalogue ([measurements](../measurements.md#first-material-extraction-the-11-demo-programs-pr-105)). The judge is not wired to materials: it calls a paid model, and none was called for this item.
 
 ### 3.8 Front end
 - Only the screens the items above need: sign-in entry and return, install hint, conflict notice, reminder settings, key settings, material checklist and merged view.
