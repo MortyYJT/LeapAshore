@@ -13,6 +13,8 @@ import {
   deadlineLabel,
   type ApplicationRecord,
 } from "@/lib/application-records";
+import { MaterialChecklist } from "@/components/materials/MaterialChecklist";
+import { materialsSummary, sameCustom, tickChanges, type CustomMaterial } from "@/lib/materials";
 import { StaleVersionError, changedFields, newIdempotencyKey } from "@/lib/sync-conflict";
 export default function ApplicationsPage() {
   return (
@@ -167,11 +169,7 @@ function Applications() {
                       )}
                     </div>
                   </div>
-                  <span className="muted">
-                    {record.materialsReady
-                      ? "材料已就绪（自查）"
-                      : "材料准备中"}
-                  </span>
+                  <span className="muted">{materialsSummary(record)}</span>
                 </div>
                 {record.materialNotes && (
                   <p className="application-notes muted">
@@ -194,7 +192,7 @@ function Applications() {
                     </Link>
                   )}
                   <Link className="btn btn-text btn-small" href="/materials">
-                    材料库
+                    材料
                   </Link>
                   {deleting === record.id ? (
                     <>
@@ -262,6 +260,9 @@ function ApplicationForm({
   const createKey = useRef(newIdempotencyKey());
   // A save refused because the record changed on another device: this form's edit and the server's record.
   const [conflict, setConflict] = useState<{ payload: Record<string, unknown>; current: ApplicationRecord; message: string } | null>(null);
+  // The checklist as this form shows it: ticks on the catalogue's materials by key, and the own lines.
+  const [ticked, setTicked] = useState<Record<string, boolean>>({});
+  const [custom, setCustom] = useState<CustomMaterial[]>(record?.customMaterials ?? []);
   async function save(payload: Record<string, unknown>, target: ApplicationRecord | null) {
     setBusy(true);
     setError("");
@@ -287,6 +288,7 @@ function ApplicationForm({
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const ticks = tickChanges(record?.materials ?? [], ticked);
     const payload = {
       ...(!record?.programId
         ? { school: data.get("school"), name: data.get("name") }
@@ -296,8 +298,10 @@ function ApplicationForm({
       deadline: data.get("deadline") || null,
       sourceUrl: data.get("sourceUrl") || null,
       confirmDeadline: data.has("confirmDeadline"),
-      materialsReady: data.has("materialsReady"),
       materialNotes: data.get("materialNotes"),
+      // Only what this form changed: ticks by key, and the own checklist when it differs.
+      ...(Object.keys(ticks).length ? { materialTicks: ticks } : {}),
+      ...(sameCustom(custom, record?.customMaterials ?? []) ? {} : { customMaterials: custom }),
     };
     // After a refused save, saving the form again is the applicant's answer to the server's record.
     const target = conflict?.current ?? record;
@@ -310,7 +314,13 @@ function ApplicationForm({
     const confirmed = payload.confirmDeadline
       ? { round: payload.round, deadline: payload.deadline, sourceUrl: payload.sourceUrl }
       : {};
-    return { ...changedFields(payload, record), ...confirmed };
+    const { materialTicks, customMaterials, ...fields } = payload;
+    return {
+      ...changedFields(fields, record),
+      ...(materialTicks ? { materialTicks } : {}),
+      ...(customMaterials ? { customMaterials } : {}),
+      ...confirmed,
+    };
   }
   return (
     <form onSubmit={(event) => void submit(event)}>
@@ -407,14 +417,19 @@ function ApplicationForm({
         <p className="small muted">
           日期或来源未知可以留空。修改日期、轮次或来源后，需要重新核对；这里的自查不会改变学校库的官方核验状态。
         </p>
-        <label className="check-label">
-          <input
-            type="checkbox"
-            name="materialsReady"
-            defaultChecked={record?.materialsReady ?? false}
+        <fieldset className="material-fieldset">
+          <legend>材料清单</legend>
+          <MaterialChecklist
+            materials={record?.materials ?? []}
+            extracted={record?.materialsExtracted ?? false}
+            catalog={Boolean(record?.programId)}
+            ticked={ticked}
+            onTick={(key, ready) => setTicked((previous) => ({ ...previous, [key]: ready }))}
+            custom={custom}
+            onCustom={setCustom}
+            disabled={busy}
           />
-          本项目所需材料已准备好（自查）
-        </label>
+        </fieldset>
         <label>
           材料与准备备注
           <textarea
@@ -461,7 +476,6 @@ const FIELD_LABELS: [keyof ApplicationRecord, string][] = [
   ["status", "状态"],
   ["deadline", "截止日期"],
   ["sourceUrl", "来源链接"],
-  ["materialsReady", "材料就绪"],
   ["materialNotes", "备注"],
 ];
 
@@ -476,5 +490,9 @@ function serverDifferences(payload: Record<string, unknown>, current: Applicatio
   const differing = FIELD_LABELS.filter(
     ([key]) => key in payload && (payload[key] ?? "") !== (current[key] ?? ""),
   ).map(([key, label]) => `${label}：${shown(key, current[key])}`);
+  // The checklist is a list, not one value: say that it moved and how far along the server's copy is.
+  if ("materialTicks" in payload || "customMaterials" in payload) {
+    differing.push(`材料清单：已备好 ${current.materialsDone}/${current.materialsTotal} 项`);
+  }
   return differing.length ? `服务器上的内容：${differing.join("；")}。` : "";
 }

@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 
 import { Icon } from "@/components/shell/Icon";
 import { RECORD_STATUSES } from "@/lib/application-records";
+import { progressLabel } from "@/lib/materials";
 import { dateLabel, type Overview, type OverviewRow } from "@/lib/overview";
 
 /** Where a line of unknown length ends: far enough to read as a line, short enough to claim no date. */
@@ -128,7 +129,7 @@ function Row({ row, today, picked, flash, link }: { row: OverviewRow; today: str
         {!row.sent && (
           <span className="mat">
             <span className={`stop${record.materialsReady ? " on" : ""}`} aria-hidden="true" />
-            {record.materialsReady ? "材料已就绪" : "材料准备中"}
+            {record.materialsReady ? "材料已就绪" : progressLabel(record) ? `材料 ${progressLabel(record)}` : "材料准备中"}
           </span>
         )}
       </div>
