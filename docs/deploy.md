@@ -106,6 +106,14 @@ The beat runs `reminders.send_due` every day at 09:07 Beijing time; the worker t
 - Turn the job off: remove the `send-deadline-reminders` entry from `api/app/worker.py` and redeploy beat, or stop the `beat` service (that also stops re-collection and the embedding backfill).
 - Rolling back to an image from before the reminders needs no database change: the migration only adds three tables.
 
+## Installed app and its service worker
+
+The site installs as an app (`web/app/manifest.ts`, icons under `web/public/icons/`). Nothing on the server is configured for it: Next serves `/manifest.webmanifest` and `/sw.js`, and sets `Cache-Control: no-cache, no-store, must-revalidate` on `/sw.js` itself (`web/next.config.ts`), so the Caddyfile is unchanged.
+
+- `/sw.js` keeps no cache. It answers a page navigation that cannot reach the server with a page stored inside the file, and touches nothing else (not `/api`, not scripts or data). A release that changes the file replaces the worker in an open page after its next navigation (2.9 s in the local two-build test).
+- After a deploy: `curl -sI https://leapashore.mortyyjt.site/sw.js` shows the no-cache header; `/manifest.webmanifest` answers `application/manifest+json`; each `/icons/*.png` answers `image/png`.
+- To retire the worker, ship a `sw.js` whose `activate` handler calls `self.registration.unregister()` and has no `fetch` handler, and remove the registration from `web/components/shell/Install.tsx`. Deleting the file is not a dependable way to remove it from browsers that already registered it.
+
 ## Pitfalls on the server
 
 - In a `while read` loop, `docker compose exec -T` needs `< /dev/null`, otherwise exec swallows the loop's input (on 10-30 the school merge first ran only the first group).

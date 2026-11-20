@@ -612,3 +612,27 @@
   - 新加一条 5 天内截止的申请，要等到下一个提前量（3 天）才提醒，不会立刻提醒。
   - 没有做全站的发送总量上限（QQ 邮箱有每日发信限额，账号多了以后要加）。
   - 隐私页「交给谁处理」写的是验证码邮件通过腾讯云 SES 发出，而 `docs/deploy.md` 记的是 10-31 改用个人邮箱的 SMTP。这次没有改这句。
+
+## 2026-11-20 可安装应用、退订先确认、隐私页的发信方（Claude 自主（待 MortyYJT 复核））
+
+- **背景**：`docs/product/PRD-multi-device.md` 3.2，加上 PR #99 留下的两件小事。MortyYJT 11-20 交代：一个 PR，做到能安装，不做离线，不主动弹安装横幅。数字见 `docs/measurements.md`「Installable app」。
+- **清单**（`web/app/manifest.ts`）：名称「鱼跃彼岸 LeapAshore」，短名「鱼跃彼岸」，`display: standalone`，`start_url` 和 `scope` 都是 `/`，三个快捷方式（总览、我的申请、AI 顾问）。清单里一种颜色只能写一个值，`theme_color` 和 `background_color` 都用浅色主题的侧栏色 `#121a28`：它是图标自己的底色，两种主题下都是深色，启动画面上就是一块色里一个标志。
+- **图标**：`scripts/make-icons.cjs` 从 `web/app/icon.svg` 多生成四张（192、512，各一张普通的和一张 maskable）。maskable 的底色铺满，标志缩到 0.8 倍，最远的笔画离中心 36%，在 40% 的安全圆内。没有画新图。
+- **主题色**：浏览器栏的颜色跟应用里显示的主题走，设置里选的深色在浅色系统上也要生效。所以页面只有一个 `theme-color`，由 `ThemeScript` 在首屏前写入，`UserCenter` 在切换时更新。没有用 Next 的 `viewport.themeColor`：它只能跟系统走，而且客户端跳转后 React 会把它重新插到最前面，浏览器先读到它（本地检查里实际出现过）。
+- **安装入口**：两处，都要用户自己点开才看得到。「设置 → 外观」最下面一行，头像菜单里一项「安装应用」。浏览器发出 `beforeinstallprompt` 时显示按钮，点了才弹浏览器自己的对话框；事件被接住（`preventDefault`），所以安卓 Chrome 不会自己弹横幅。iOS 没有这个事件，同一行改成步骤（Safari → 分享 → 添加到主屏幕），菜单项直接打开这一行。已经在独立窗口里运行，或者浏览器没有提出安装（桌面 Safari、Firefox），就不显示。
+- **service worker：做了，只做一件事**（`web/public/sw.js`）。打开页面连不上服务器时，返回一张写在文件里的说明页（503），不出浏览器的报错页。
+  - 不存任何东西：没有用 Cache Storage，说明页是文件里的一个字符串。页面、接口响应都不缓存，所以不会有过期的截止日期。
+  - 只处理本站的页面导航（GET、`mode: navigate`）。`/api` 下的请求、脚本、样式、数据请求、其他来源一律不碰。
+  - 发版后怎么更新：`/sw.js` 由 Next 加 `Cache-Control: no-cache, no-store, must-revalidate`（没有改 Caddyfile），注册时 `updateViaCache: "none"`；文件变了就 `skipWaiting` 加 `clients.claim()` 立即接管。它本身不存页面，所以不存在旧壳。
+  - 只在生产构建里注册，开发服务器不注册。
+  - 代价：每次页面导航要先经过它再去网络。没有开 navigation preload，worker 冷启动的时间没有测。
+  - Chromium 现在不要求 service worker 也能安装（web.dev「install criteria」和 MDN「Making PWAs installable」，11-20 查的）。做它是为了 PRD 里「没有网络时给出明确说明」，在 iOS 上也成立。
+- **独立窗口的安全区**：`viewport-fit=cover`，iOS 状态栏用 `black-translucent`（页面画到状态栏下面，状态栏文字固定是浅色）。手机顶栏、底部标签栏、侧栏、顾问停靠栏各自让出对应的边；平板上工作区顶部补一条侧栏色，否则白底上看不见状态栏的字。
+- **退订**：正文里的链接打开页面后不再自动发请求，页面上一个「确认退订」按钮，点了才 POST。邮件里的说明改成「打开链接后点「确认退订」，不用登录」。`List-Unsubscribe-Post` 一键退订那条路没有动。上一条决定里「正文链接一打开就退订」到此作废。
+- **隐私页**：「交给谁处理」里腾讯云只剩服务器和数据库；新增一条 QQ 邮箱（腾讯）：验证码和提醒邮件由运营者的一个 QQ 邮箱账号经 `smtp.qq.com` 发出。依据是生产 api 容器里的 `SMTP_HOST=smtp.qq.com`、`MAIL_BACKEND=smtp`（11-20 读的，只读了这两项）。没有写邮箱地址。
+- **待 MortyYJT 复核**：
+  - 没有在真机上装过。iPhone 和安卓上的安装、启动画面、状态栏颜色都没有实测，安全区是用 Chrome 的模拟值看的。
+  - 隐私页写了「发出的邮件也可能保存在这个邮箱的「已发送」里」。QQ 邮箱是否保存 SMTP 发出的信取决于邮箱设置，这一项没有查。不保存的话这半句可以删。
+  - 清单的两个颜色都用了深色侧栏色，浅色主题下启动时会先看到一块深色。
+  - 安装入口放在「外观」里，没有单独开一个分类（手机上四个分类刚好排一行）。
+  - 没有做 iOS 的启动图（`apple-touch-startup-image`）、清单里的截图、桌面 Safari「添加到程序坞」的说明。
