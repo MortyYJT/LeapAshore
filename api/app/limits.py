@@ -212,22 +212,31 @@ def _day_keys(subject: str, ip: str, day: str) -> list[str]:
     return [f"{p}tokens:subject:{subject}:{day}", f"{p}tokens:ip:{ip}:{day}", f"{p}tokens:site:{day}"]
 
 
-async def check(subject: str, ip: str | None, *, windows: bool = True) -> Ticket | Refusal:
+# A cap no counter reaches, for a turn that is not held to the daily quotas.
+_NO_CAP = 2**53
+
+
+async def check(subject: str, ip: str | None, *, windows: bool = True, quotas: bool = True) -> Ticket | Refusal:
     """A `Ticket` when the turn may run (its windows recorded, its tokens reserved), else why not.
+
+    `quotas=False` is a turn on the applicant's own model key: it spends none of the owner's tokens,
+    so the daily caps are not checked and nothing is reserved, while the windows still apply.
 
     Raises `LimitsUnavailable` when Redis cannot be reached in time. Every ticket must be given to
     `settle` once the turn is over, or its reservation stays on today's counters.
     """
     ip = ip or "unknown"
     day = _day()
+    if not windows and not quotas:
+        return Ticket(subject=subject, ip=ip, day=day, reserved=0)
     p = settings.limits_key_prefix
     keys = _day_keys(subject, ip, day)
-    reserve = max(0, settings.advisor_turn_token_reserve)
+    reserve = max(0, settings.advisor_turn_token_reserve) if quotas else 0
     caps = [
         settings.advisor_daily_tokens_per_subject,
         settings.advisor_daily_tokens_per_ip,
         settings.advisor_daily_tokens_site,
-    ]
+    ] if quotas else [_NO_CAP] * 3
     spans: list[tuple[str, int, int]] = []
     if windows:
         for scope, ident, spec in (

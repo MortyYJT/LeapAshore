@@ -6,6 +6,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 
 import { LoadingPanel } from "@/components/ui";
 import { AUTH_CHANGED, fetchAuthState, logout, type AuthState } from "@/lib/auth";
+import { forgetModelKey } from "@/lib/model-key";
 import { clearDraft } from "@/lib/portfolio-draft";
 
 import { LoginDialog } from "./LoginDialog";
@@ -67,6 +68,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     void refresh();
   }, [refresh]);
 
+  // A browser that is signed out keeps no model key: the session may have expired, or ended in
+  // another tab, without `signOut` running here.
+  useEffect(() => {
+    if (ready && state?.authEnabled && !state.account) forgetModelKey();
+  }, [ready, state]);
+
   const requireLogin = useCallback(async () => {
     const current = stateRef.current ?? (await refresh());
     // An unreadable auth state lets the action through; the server still refuses it without a session.
@@ -98,6 +105,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = useCallback(async () => {
     await logout().catch(() => undefined);
+    // The model key the applicant stored in this browser goes with the session.
+    forgetModelKey();
     // An unsaved portfolio draft belongs to the account that made it, not to whoever logs in next.
     clearDraft(sessionStorage);
     // A full load, not `router.push`: the client router may hold a prefetched `/` that the proxy answered

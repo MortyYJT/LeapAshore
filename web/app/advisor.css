@@ -73,6 +73,10 @@
   background: var(--bubble); color: var(--on-bubble); white-space: pre-wrap; overflow-wrap: anywhere;
 }
 
+/* Under the question when the turn runs on the applicant's own model key. */
+.run-key { display: flex; align-items: center; align-self: flex-end; gap: 6px; margin: -8px 0 0; font-size: var(--fs-12); color: var(--ink-3); }
+.run-key .icon { width: 14px; height: 14px; }
+
 /* A run is a line of stops. */
 .run { position: relative; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0 0 0 28px; list-style: none; }
 .run::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; border-radius: 1px; background: var(--line-2); }
@@ -208,6 +212,7 @@ button.call:hover .chev { color: var(--ink); }
 .problem b { font-weight: 600; color: var(--urgent); }
 .problem span { color: var(--ink); overflow-wrap: anywhere; }
 /* A limit or a wait is not a fault: it is said plainly, without the red. */
+.problem-action { justify-self: start; margin-top: 6px; }
 .problem.is-quiet { border: 1px solid var(--line); background: var(--raised); }
 .problem.is-quiet span { color: var(--ink); }
 

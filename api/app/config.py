@@ -21,6 +21,8 @@ class Settings(BaseSettings):
     chat_base_url: str = "https://api.siliconflow.cn/v1"
     chat_model: str = "deepseek-ai/DeepSeek-V4-Flash"
     chat_api_key: str = ""
+    # How long one chat call may take before it counts as the provider not answering.
+    chat_timeout_seconds: float = 60
     # Upper bound on model calls in one ReAct loop; counting steps is what stops a tool loop.
     max_agent_steps: int = 6
     # Output caps per model call (openspec/changes/archive/2026-10-30-advisor-limits, D5). Sent as `max_tokens` in the

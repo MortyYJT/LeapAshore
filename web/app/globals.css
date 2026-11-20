@@ -562,6 +562,20 @@ tbody tr:hover { background: var(--hover); }
 .uc-inline-icon { display: inline-block; width: 14px; height: 14px; margin: 0 1px 0 3px; vertical-align: -2px; color: var(--ink-2); }
 .uc-content .notice { margin: 0 0 16px; }
 .uc-content .notice p { margin: 0; }
+/* Settings → 模型密钥: the key's entry, the saved key by its ends, and where the key goes. */
+.uc-key-form .uc-field { margin-top: 20px; }
+.uc-key-entry { display: flex; align-items: stretch; gap: 8px; margin-top: 8px; }
+.uc-key-entry .input { flex: 1 1 0; min-width: 0; height: auto; min-height: var(--control-height); font-family: var(--font-code); }
+.uc-key-entry .input::placeholder { font-family: var(--font-ui); }
+/* Drawn as dots without being a password field, which a browser would offer to save and sync. */
+.uc-key-input:not(:placeholder-shown) { -webkit-text-security: disc; }
+.uc-key-saved .uc-hint { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
+.uc-key-saved .toolbar { flex: none; flex-wrap: nowrap; }
+.uc-key-mask { font-family: var(--font-code); color: var(--ink); }
+.uc-content .uc-key-problem { margin: 16px 0 0; }
+.uc-key-heading { margin: 28px 0 8px; font-size: var(--fs-13); font-weight: 600; }
+.uc-key-facts { display: grid; gap: 6px; margin: 0; padding-left: 16px; list-style: disc; font-size: var(--fs-12); line-height: 1.6; color: var(--ink-2); text-wrap: pretty; }
+.uc-key-facts li::marker { color: var(--ink-3); }
 .uc-row-leads { align-items: flex-start; }
 .uc-row-leads > div:first-child { flex: 1 1 0; min-width: 0; }
 .uc-leads { display: grid; flex: none; gap: 10px; justify-items: end; max-width: 300px; }

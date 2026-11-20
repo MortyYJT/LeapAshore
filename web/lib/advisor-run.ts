@@ -78,6 +78,8 @@ export interface Turn {
   refused: boolean;
   /** One line under a run that did not end by itself. */
   note?: string;
+  /** The provider whose model answered on the applicant's own key; absent on the site's key. */
+  ownKey?: string;
 }
 
 export function newTurn(id: string, question: string): Turn {
@@ -178,6 +180,8 @@ export function applyEvent(turn: Turn, event: AdvisorEvent): Turn {
       }
       return { ...turn, blocks };
     }
+    case "model":
+      return event.ownKey ? { ...turn, ownKey: event.label } : turn;
     case "stopped":
       // Stopped from somewhere else: a stop this page asked for is no longer listened to. Another tab
       // sent a message in this conversation, or stopped it.

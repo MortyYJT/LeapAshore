@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from app import logs
+from app.agent import model_key
 from app.config import check_settings, settings
 from app.middleware import BodySizeLimitMiddleware
 from app.routers import (
@@ -25,6 +26,8 @@ from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 check_settings(settings)
 # The unsubscribe token travels in a URL; keep it out of the access log.
 logs.install()
+# No log record may carry an applicant's model key while a turn uses one (`app.agent.model_key`).
+model_key.install_log_scrubbing()
 
 
 @asynccontextmanager
