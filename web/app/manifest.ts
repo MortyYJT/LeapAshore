@@ -9,9 +9,13 @@ const ICON = { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }
  * an app in its own window (docs/product/PRD-multi-device.md, 3.2). Icons come from
  * scripts/make-icons.cjs.
  *
+ * The `any` icons are transparent and drawn in one mid-tone ink, because the taskbar, dock or page
+ * behind them may be light or dark. The `maskable` ones keep a full-bleed ground: a launcher cuts
+ * them to its own shape.
+ *
  * A manifest has one colour per role, not one per theme. Both take the rail's light-theme colour: it
- * is the icon's own ground, so the launch screen shows the mark on one flat field, and it is dark in
- * both themes. Once a page is up, its theme-color meta takes over.
+ * is the maskable icon's own ground, so the launch screen shows the mark on one flat field, and it is
+ * dark in both themes. Once a page is up, its theme-color meta takes over.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
