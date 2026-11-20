@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       { source: "/assess/result", destination: "/tiers", permanent: false },
     ];
   },
+  // Next gzips what it proxies and holds a streamed body back until it has a full block, so the
+  // advisor's events reached the browser all at once in development. Compression is the proxy's job
+  // in production anyway (deploy/Caddyfile: `encode gzip`), where /api never passes through Next.
+  compress: false,
   async rewrites() {
     return [{ source: "/api/:path*", destination: "http://127.0.0.1:8000/api/:path*" }];
   },

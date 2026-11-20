@@ -201,6 +201,12 @@ def _topic_label(topics: list[Topic]) -> str:
     return "、".join(t.label for t in topics)
 
 
+def topic_label(keys: list[str] | None) -> str:
+    """The applicant's words for the page topics with these keys ("学费、推荐信"), in file order."""
+    wanted = set(keys or [])
+    return _topic_label([topic for topic, _ in _topics() if topic.key in wanted])
+
+
 def refusal(session: Session, found: PassageRetrieval) -> tuple[str, str]:
     tail = "我不能凭印象回答，以免你照着错误的信息去申请。已记录为待采集。"
     if not found.schools:

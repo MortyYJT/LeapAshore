@@ -13,7 +13,7 @@
   - No web font is loaded, so the page asks no other host for type.
 
   This file holds the tokens, the base rules and the components the pages share. The shell is in
-  shell.css, the overview in overview.css, motion in motion.css.
+  shell.css, the overview in overview.css, the advisor in advisor.css, motion in motion.css.
 */
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "MiSans",
@@ -118,8 +118,14 @@
   /* Shell */
   --rail-w: 236px;
   --rail-w-folded: 64px;
+  --dock-w: 392px;
   --topbar-h: 48px;
   --tabbar-h: 56px;
+}
+
+/* Under 1440px the dock gives the workspace back a little room. */
+@media (max-width: 1439px) {
+  :root { --dock-w: 380px; }
 }
 
 html[data-appearance="dark"] {
@@ -414,27 +420,6 @@ tbody tr:hover { background: var(--hover); }
 .task.done .t { color: var(--ink-3); font-weight: 400; text-decoration: line-through; text-decoration-color: var(--line-2); }
 .task .d { margin-top: 2px; font-size: var(--fs-13); color: var(--ink-3); overflow-wrap: anywhere; }
 
-/* ---------- chat ---------- */
-.chat { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 560px; }
-.chat-list { display: grid; align-content: start; gap: 2px; padding: 12px; border-right: 1px solid var(--line); background: var(--panel); border-radius: var(--r-box) 0 0 var(--r-box); }
-.chat-list button.conv { display: block; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--r-control); background: none; color: var(--ink-2); font: 400 var(--fs-14) var(--font-ui); text-align: left; cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.chat-list button.conv:hover { background: var(--hover); color: var(--ink); }
-.chat-list button.conv[aria-current="true"] { background: var(--selected); color: var(--ink); font-weight: 600; }
-.chat-main { display: flex; flex-direction: column; min-width: 0; }
-.chat-body { display: flex; flex-direction: column; gap: 16px; flex: 1; width: 100%; max-width: 680px; max-height: 64vh; margin: 0 auto; padding: 28px; overflow-y: auto; }
-.chat-body.empty-chat { justify-content: center; }
-.composer { display: flex; gap: 8px; align-items: flex-end; padding: 12px 20px 14px; border-top: 1px solid var(--line); }
-.composer textarea { flex: 1; min-width: 0; height: 36px; max-height: 128px; padding: 7px 12px; border: 1px solid var(--line-2); border-radius: var(--r-box); background: var(--raised); color: var(--ink); font: 400 var(--fs-14)/1.5 var(--font-ui); resize: none; }
-.composer textarea:focus { outline: 1px solid var(--focus); outline-offset: 0; border-color: var(--focus); }
-.prompt { padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); font: 400 var(--fs-14) var(--font-ui); text-align: left; cursor: pointer; }
-.prompt:hover { border-color: var(--ink-3); }
-.msg-user { align-self: flex-end; max-width: 88%; padding: 8px 12px; border-radius: var(--r-box); background: var(--bubble); color: var(--on-bubble); white-space: pre-wrap; overflow-wrap: anywhere; }
-.msg-assistant { line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
-.msg-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
-.citations { display: grid; gap: 4px; margin: 10px 0 0; padding: 10px 12px 12px 30px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); font-size: var(--fs-13); }
-/* The one heavy border in the system: a change that is waiting for the applicant's answer. */
-.confirm-box { margin-top: 10px; padding: 12px; border: 1.5px solid var(--ink); border-radius: var(--r-box); background: var(--raised); }
-
 /* ---------- introduction ---------- */
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 40px; }
 .facts > div { padding: 16px 20px; border-left: 1px solid var(--line); }
@@ -476,10 +461,6 @@ tbody tr:hover { background: var(--hover); }
 .kv2 dt { flex: none; color: var(--ink-3); }
 .kv2 dd { margin: 0; min-width: 0; text-align: right; font-weight: 600; overflow-wrap: anywhere; }
 .kv2 div:nth-last-child(-n+2) { border-bottom: 0; }
-.rules { display: grid; gap: 10px; margin: 16px 0 0; }
-.rules div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 12px; }
-.rules dt { font-weight: 600; }
-.rules dd { margin: 0; color: var(--ink-3); }
 .req-table td:first-child { width: 34%; color: var(--ink-3); }
 .req-table td { overflow-wrap: anywhere; }
 .deadline-list { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
@@ -573,8 +554,14 @@ tbody tr:hover { background: var(--hover); }
 .workspace-search-results .icon { color: var(--ink-3); }
 .workspace-search-hint { margin: 0; padding: 8px 16px 14px; }
 
-/* ---------- phone ---------- */
-@media (max-width: 760px) {
+/* ---------- narrow workspace ---------- */
+/*
+  The pages fold by the width of the workspace, not of the window: with the advisor docked beside it
+  a workspace on a laptop can be as narrow as a phone's, and gets the same layout.
+*/
+@container workspace (max-width: 760px) {
+  .page { padding: 20px 16px 32px; }
+  .page-head { margin-bottom: 20px; }
   .grid-8-4 { grid-template-columns: minmax(0, 1fr); }
   .strip { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .strip > div { padding: 12px 16px; border-left: 0; border-top: 1px solid var(--line); }
@@ -584,12 +571,8 @@ tbody tr:hover { background: var(--hover); }
   .panel-pad, .panel-head { padding-left: 16px; padding-right: 16px; }
   th:first-child, td:first-child, .task, .rows > .row, .pager { padding-left: 16px; }
   th:last-child, td:last-child, .task, .rows > .row, .pager { padding-right: 16px; }
-  .chat { grid-template-columns: minmax(0, 1fr); }
-  .chat-list { display: none; }
-  .chat-body { padding: 20px 16px; }
-  .composer { padding: 12px 16px; }
   .hide-phone { display: none !important; }
-  /* Tables fold into stacked rows on a phone instead of scrolling sideways. */
+  /* Tables fold into stacked rows instead of scrolling sideways. */
   table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; }
   table.stack thead { display: none; }
   table.stack tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
@@ -606,10 +589,17 @@ tbody tr:hover { background: var(--hover); }
   .kv2 div { padding: 12px 16px; border-right: 0 !important; border-bottom: 1px solid var(--line) !important; }
   .kv2 div:last-child { border-bottom: 0 !important; }
   .req-table td:first-child { width: 40%; }
-  .dialog-head, .dialog-body { padding-left: 16px; padding-right: 16px; }
-  .dialog .fields { grid-template-columns: minmax(0, 1fr); }
   .application-card { padding: 14px 16px; }
   .application-card-details { align-items: flex-start; flex-direction: column; }
+}
+
+/* ---------- phone ---------- */
+/* What is outside the workspace (dialogs opened from the rail or by the login), and touch sizes. */
+@media (max-width: 760px) {
+  .panel-pad, .panel-head { padding-left: 16px; padding-right: 16px; }
+  .hide-phone { display: none !important; }
+  .dialog-head, .dialog-body { padding-left: 16px; padding-right: 16px; }
+  .dialog .fields { grid-template-columns: minmax(0, 1fr); padding: 16px; }
   .btn { height: 36px; }
   .btn-text, .btn-small { height: 32px; }
 }

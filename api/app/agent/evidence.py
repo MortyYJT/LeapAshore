@@ -304,6 +304,42 @@ def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
     )
 
 
+def citation_fields(hit: Hit, today: date | None = None) -> list[dict]:
+    """What the catalogue holds for a cited program, for the applicant to read beside the answer: the
+    same values `evidence_line` gives the model, and only the ones that were collected. A deadline
+    carries the sentence it was read from, verbatim, and the page that sentence is on.
+
+    A value is the collector's record of the page, not a quotation, unless it has a `quote`.
+    """
+    p, s = hit.program, hit.source
+    today = today or beijing_today()
+    rows: list[dict] = []
+    if p.minimum_mark is not None:
+        rows.append({"label": "均分要求（211/985）", "value": _fmt_mark(p.minimum_mark)})
+    if p.non_211_minimum_mark is not None:
+        rows.append({"label": "均分要求（非211）", "value": _fmt_mark(p.non_211_minimum_mark)})
+    if p.english_requirement:
+        rows.append({"label": "语言", "value": p.english_requirement})
+    if p.academic_requirement:
+        row = {"label": "学术要求", "value": p.academic_requirement}
+        page = getattr(p, "academic_source_url", None)
+        if page and (s is None or page != s.url):
+            row["url"] = page
+        rows.append(row)
+    for d in sorted(p.deadlines, key=lambda x: x.sort_order):
+        value = f"{d.label} {d.deadline.isoformat()}" if d.label else d.deadline.isoformat()
+        row = {"label": "申请截止", "value": value + ("（已截止）" if d.deadline < today else "")}
+        if d.quote:
+            row["quote"] = d.quote
+        if d.source_url and (s is None or d.source_url != s.url):
+            row["url"] = d.source_url
+        rows.append(row)
+    prereqs = [x.label for x in sorted(p.prerequisites, key=lambda x: x.sort_order)]
+    if prereqs:
+        rows.append({"label": "先修要求", "value": "；".join(prereqs)})
+    return rows
+
+
 # ---- refusals, worded from the catalogue's own counts -------------------------------------------
 
 
@@ -451,6 +487,7 @@ def gate(session: Session, query: str, ranking: str | None = None, limit: int = 
             "title": h.source.title,
             "url": h.source.url,
             "status": "已核验" if h.source.verified_at else "待核验",
+            "fields": citation_fields(h),
         }
         for i, h in enumerate(strong)
     ]

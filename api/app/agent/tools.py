@@ -189,6 +189,18 @@ STATUS_LABELS = {
 }
 
 
+def _status_label(value: str) -> str:
+    try:
+        return STATUS_LABELS[ApplicationStatus(value)]
+    except ValueError:
+        return value
+
+
+def _change(label: str, before: str | None, after: str) -> dict:
+    """One line of a confirm question: the value a change replaces and the value it becomes."""
+    return {"label": label, "before": before, "after": after}
+
+
 @tool
 def get_my_applications(config: RunnableConfig) -> str:
     """读取当前申请者的全部个人申请（含手动项目）、选定轮次、截止日期、来源核查、状态和材料自查备注。
@@ -228,9 +240,26 @@ def propose_portfolio_change(
             for r in _portfolio(s, client_id)
         }
         label = f"{program.university.name} {program.name}"
+        target = {"programId": program_id, "school": program.university.name, "program": program.name}
+        primary = next((r["program_id"] for r in current.values() if r["is_primary"]), None)
+        primary_now = None
+        if action == "set_primary" and primary and primary != program_id:
+            held = s.get(Program, primary)
+            primary_now = f"{held.university.name} {held.name}" if held else primary
 
     rows = {k: dict(v) for k, v in current.items()}
+    before = current.get(program_id)
+    # What the applicant is shown before anything is written: every stored value this change replaces,
+    # beside the value it becomes. `before` is None for a value that does not exist yet.
+    changes: list[dict] = []
     if action == "add":
+        if before is None:
+            changes.append(_change("选校组合", "不在组合里", "加入"))
+        if before is None or before["tier"] != tier:
+            changes.append(_change("档位", before and before["tier"], tier))
+        if before is None or before["status"] != ApplicationStatus.CONSIDERING.value:
+            # Adding a program again puts its status back to 考虑中; say so rather than let it pass unseen.
+            changes.append(_change("申请状态", before and _status_label(before["status"]), STATUS_LABELS[ApplicationStatus.CONSIDERING]))
         rows[program_id] = {
             "program_id": program_id,
             "tier": tier,
@@ -242,24 +271,47 @@ def propose_portfolio_change(
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里。"
         rows.pop(program_id)
+        kept = f"在组合里（{before['tier']}，{_status_label(before['status'])}）"
+        changes.append(_change("选校组合", kept, "移出"))
+        if before["is_primary"]:
+            changes.append(_change("首选", "这个项目", "空缺"))
         summary = f"把「{label}」移出选校组合"
     elif action == "set_status":
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再改状态。"
+        if before["status"] == status:
+            return f"未执行：「{label}」的申请状态已经是{STATUS_LABELS[ApplicationStatus(status)]}。"
         rows[program_id]["status"] = status
+        changes.append(_change("申请状态", _status_label(before["status"]), STATUS_LABELS[ApplicationStatus(status)]))
         summary = f"把「{label}」的申请状态改为：{STATUS_LABELS[ApplicationStatus(status)]}"
     else:
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再设为首选。"
+        if primary == program_id:
+            return f"未执行：「{label}」已经是首选。"
         for r in rows.values():
             r["is_primary"] = r["program_id"] == program_id
+        changes.append(_change("首选", primary_now or "还没有设", label))
         summary = f"把「{label}」设为首选"
 
     # The graph stops here. Resuming re-runs this tool from the top, which is safe because nothing
     # above has written anything.
-    approved = interrupt({"type": "confirm_portfolio", "summary": summary})
+    if not changes:
+        return f"未执行：「{label}」已经在选校组合里，档位和状态都没有变化。"
+    # `tool` names this tool, so the stream can tie the question to the step that asked it.
+    answer = interrupt({
+        "type": "confirm_portfolio", "tool": "propose_portfolio_change", "summary": summary,
+        "target": target, "changes": changes,
+    })
+    # The answer comes back with the changes the applicant was shown (`routers.advisor`); a bare
+    # yes or no is an answer from before they were sent.
+    approved, shown = (answer.get("approved"), answer.get("changes")) if isinstance(answer, dict) else (answer, None)
     if not approved:
         return f"用户取消了操作：{summary}。组合未改动。"
+    if shown is not None and shown != changes:
+        # The portfolio was edited between the question and the answer: what would be written now is
+        # not what the applicant agreed to.
+        return f"未执行：「{label}」在确认之前已经被改过，和刚才列出的改动对不上。请重新提出这次修改。"
     with SessionLocal() as s:
         # A visitor who opened the advisor first has a cookie but no subject row yet, and the
         # portfolio's foreign key would refuse the write.

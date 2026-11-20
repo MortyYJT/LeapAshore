@@ -1,0 +1,263 @@
+/*
+  The advisor: a dock on the right of the workspace from 901px, and the page at /advisor (the phone's
+  顾问 tab). Both are the same component (components/advisor/Advisor.tsx).
+
+  A run is drawn as a line of stops, one per step: spinning while it runs, filled when it is done,
+  hollow when it found nothing or is waiting, dashed when it was stopped or declined. A step that
+  proposes or writes a change takes the line colour of the application it touches. Yellow marks the
+  new value of a change; red is what a failure is written in.
+
+  The dock opens and closes from `data-dock` on <html>, which a script in the document head sets
+  before first paint, so the workspace is laid out once.
+*/
+
+/* ---------- the dock in the shell ---------- */
+.dock {
+  position: fixed; inset: 0 0 0 auto; z-index: 20; display: none; width: var(--dock-w);
+  border-left: 1px solid var(--line); background: var(--panel);
+}
+@media (min-width: 901px) {
+  html[data-dock="open"] .shell.has-dock { --dock-current: var(--dock-w); }
+  html[data-dock="open"] .dock { display: block; }
+}
+
+/* ---------- frame ---------- */
+.advisor { --ground: var(--panel); display: flex; flex-direction: column; height: 100%; min-height: 0; background: var(--ground); }
+.advisor-head { display: flex; align-items: center; gap: 8px; flex: none; height: 52px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--line); }
+.advisor-head h2 { font-size: var(--fs-14); }
+.advisor-tools { display: flex; align-items: center; gap: 2px; margin-left: auto; }
+.thread { flex: 1; min-height: 0; overflow: hidden auto; overscroll-behavior: contain; }
+.thread:focus-visible { outline-offset: -2px; }
+.thread-inner { display: flex; flex-direction: column; gap: 24px; padding: 20px 16px 16px; }
+
+/* A quiet control: an icon and a word, no box until it is pointed at. */
+.btn-quiet {
+  display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 8px; border: 0; border-radius: var(--r-control);
+  background: none; color: var(--ink-3); font: 500 var(--fs-12)/1 var(--font-ui); white-space: nowrap; cursor: pointer;
+  transition: background-color var(--t-fast), color var(--t-fast);
+}
+.btn-quiet:hover:not(:disabled) { background: var(--hover); color: var(--ink); }
+.btn-quiet:disabled { opacity: 0.5; cursor: default; }
+.btn-quiet .icon { width: 14px; height: 14px; }
+
+/* The page at /advisor: the conversation in a column on the workspace's own ground. */
+.advisor-route { height: 100dvh; }
+.advisor-page { --ground: var(--bg); }
+.advisor-page .advisor-head { height: auto; padding: 28px 28px 16px; border-bottom: 0; }
+.advisor-page .advisor-head, .advisor-page .thread-inner, .advisor-page .advisor-composer { width: 100%; max-width: 816px; margin-inline: auto; }
+.advisor-page .thread-inner { padding: 12px 28px 24px; }
+.advisor-page .advisor-composer { padding: 12px 28px 20px; border-top: 0; }
+
+/* ---------- empty state ---------- */
+.hello h3 { font-size: var(--fs-16); line-height: 1.4; }
+.run.how { margin-top: 14px; gap: 10px; }
+.how .step { font-size: var(--fs-13); line-height: 1.45; }
+.how .step b { display: block; font-weight: 600; }
+.how .step span:not(.dot) { color: var(--ink-2); }
+.how .step .dot { top: 1px; border-color: var(--ink-3); }
+.asks { display: grid; gap: 8px; margin-top: 20px; }
+.asks button {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink);
+  font: 400 var(--fs-14)/1.5 var(--font-ui); text-align: left; cursor: pointer; transition: border-color var(--t-fast);
+}
+.asks button:hover:not(:disabled) { border-color: var(--ink-3); }
+.asks button:active:not(:disabled) { translate: 0 1px; }
+.asks button:disabled { opacity: 0.5; cursor: default; }
+.asks .icon { color: var(--ink-3); }
+
+/* ---------- a turn ---------- */
+.turn { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.msg-user {
+  align-self: flex-end; max-width: 88%; margin: 0; padding: 8px 12px; border-radius: var(--r-box);
+  background: var(--bubble); color: var(--on-bubble); white-space: pre-wrap; overflow-wrap: anywhere;
+}
+
+/* A run is a line of stops. */
+.run { position: relative; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0 0 0 28px; list-style: none; }
+.run::before { content: ""; position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; border-radius: 1px; background: var(--line-2); }
+/* One stop is not a line yet. */
+.run:has(> :only-child)::before { display: none; }
+.step, .run-item { position: relative; min-width: 0; }
+.step .dot {
+  position: absolute; left: -28px; top: 2px; display: grid; place-items: center; width: 18px; height: 18px;
+  border: 2px solid var(--ink); border-radius: 50%; background: var(--ground); color: var(--ground);
+  transition: background-color var(--t-base), border-color var(--t-base);
+}
+.step .dot .icon { width: 10px; height: 10px; stroke-width: 2.6; opacity: 0; }
+.step.is-done .dot { background: var(--ink); }
+.step.is-done .dot .icon { opacity: 1; }
+.step.has-line .dot { border-color: var(--lc); }
+.step.has-line.is-done .dot { background: var(--lc); color: var(--on-lc); }
+.step.is-running .dot { border-color: var(--line-2); border-top-color: var(--ink); animation: step-spin 0.8s linear infinite; }
+.step.is-empty .dot { border-color: var(--ink-3); }
+.step.is-failed .dot { border-color: var(--urgent); color: var(--urgent); }
+.step.is-failed .dot .icon { opacity: 1; }
+.step:is(.is-stopped, .is-declined) .dot { border-color: var(--ink-3); border-style: dashed; }
+@keyframes step-spin { to { rotate: 360deg; } }
+
+.call {
+  display: flex; align-items: baseline; gap: 8px; width: 100%; min-height: 22px; padding: 0; border: 0; border-radius: var(--r-tag);
+  background: none; color: inherit; font: inherit; text-align: left;
+}
+button.call { cursor: pointer; }
+.call .label { flex: none; font-size: var(--fs-13); font-weight: 600; }
+.call code { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: var(--fs-12)/1.5 var(--font-code); color: var(--ink-3); }
+.call .meta { display: flex; align-items: center; flex: none; gap: 6px; margin-left: auto; }
+.call .time { font-size: var(--fs-12); color: var(--ink-3); }
+.call .chev { flex: none; width: 12px; height: 12px; color: var(--ink-3); transition: rotate var(--t-fast); }
+button.call:hover .chev { color: var(--ink); }
+.call[aria-expanded="true"] .chev { rotate: 90deg; }
+.out { margin: 1px 0 0; font-size: var(--fs-13); color: var(--ink-2); overflow-wrap: anywhere; }
+.out:empty { display: none; }
+.step.is-running .out, .step:is(.is-stopped, .is-declined, .is-empty) .out { color: var(--ink-3); }
+.step.is-failed .out { color: var(--urgent); }
+.detail { margin: 8px 0 0; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); overflow: hidden; }
+.detail > div { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; padding: 6px 10px; }
+.detail > div + div { border-top: 1px solid var(--line); }
+.detail dt { font-size: var(--fs-12); line-height: 1.6; color: var(--ink-3); overflow-wrap: anywhere; }
+.detail dd { margin: 0; font-size: var(--fs-13); color: var(--ink-2); overflow-wrap: anywhere; }
+.detail ul { margin: 0; padding: 0; list-style: none; }
+
+/* A step arriving, and a card arriving on the line. */
+.step, .run-item, .answer, .problem, .run-note { animation: arrive var(--t-base) var(--ease-out) both; }
+.how .step { animation: none; }
+@keyframes arrive { from { opacity: 0; translate: 0 4px; } }
+
+.run-thinking { display: flex; align-items: center; gap: 10px; margin: 0; padding-left: 2px; font-size: var(--fs-13); color: var(--ink-3); }
+.spin { flex: none; width: 14px; height: 14px; border: 2px solid var(--line-2); border-top-color: var(--ink); border-radius: 50%; animation: step-spin 0.8s linear infinite; }
+/* A run that did not end by itself: the dashed stop of a stopped step, and what is known. */
+.run-note { display: flex; gap: 10px; margin: 0; font-size: var(--fs-13); color: var(--ink-2); }
+.run-note .dot { flex: none; width: 18px; height: 18px; margin-top: 1px; border: 2px dashed var(--ink-3); border-radius: 50%; }
+.turn-actions { display: flex; gap: 2px; margin: -6px 0 0 -8px; }
+
+/* ---------- sources ---------- */
+.sources { display: grid; gap: 8px; }
+.cite { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); }
+.cite:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+.cite-head { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.cite-n, .cite-ref {
+  display: inline-grid; place-items: center; flex: none; min-width: 18px; height: 18px; padding: 0 4px;
+  border-radius: var(--r-tag); background: var(--sunken); color: var(--ink-2); font-size: var(--fs-11); font-weight: 700; line-height: 1;
+}
+.cite-program { min-width: 0; font-size: var(--fs-13); font-weight: 600; overflow-wrap: anywhere; }
+.cite-head .st { margin-left: auto; }
+.cite blockquote { margin: 8px 0 0; }
+.cite blockquote p { margin: 0; font-size: var(--fs-14); line-height: 1.6; overflow-wrap: anywhere; }
+.cite-field { display: block; margin-bottom: 2px; font-size: var(--fs-12); color: var(--ink-3); }
+.cite-record { margin-top: 8px; }
+.cite-record summary { display: flex; align-items: center; gap: 6px; width: fit-content; font-size: var(--fs-12); color: var(--ink-2); list-style: none; cursor: pointer; border-radius: var(--r-tag); }
+.cite-record summary::-webkit-details-marker { display: none; }
+.cite-record summary:hover { color: var(--ink); }
+.cite-record .chev { width: 12px; height: 12px; color: var(--ink-3); transition: rotate var(--t-fast); }
+.cite-record[open] .chev { rotate: 90deg; }
+.cite-record dl { margin: 8px 0 0; border-top: 1px solid var(--line); }
+.cite-record dl > div { padding: 6px 0 7px; border-bottom: 1px solid var(--line); }
+.cite-record dt { font-size: var(--fs-12); line-height: 1.5; color: var(--ink-3); }
+.cite-record dd { margin: 0; font-size: var(--fs-13); overflow-wrap: anywhere; }
+.cite-quote { display: block; margin-top: 4px; color: var(--ink-2); quotes: "“" "”"; }
+.cite-page { display: inline-block; margin-top: 4px; font-size: var(--fs-12); }
+.cite-source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 10px 0 0; font-size: var(--fs-12); color: var(--ink-3); }
+/* The icon leads, so a long page title can wrap without leaving it on a line of its own. */
+.cite-link { display: flex; gap: 6px; min-width: 0; color: var(--ink-2); text-decoration: none; border-radius: var(--r-tag); }
+.cite-link .link { color: inherit; }
+.cite-link:hover { color: var(--ink); }
+.cite-link:hover .link { text-decoration-color: currentColor; }
+.cite-link .icon { width: 12px; height: 12px; margin-top: 3px; }
+
+/* ---------- a change waiting for an answer ---------- */
+/* The one heavy border in the system; it returns to a 1px rule once the change is answered. */
+.confirm { border: 1.5px solid var(--ink); border-radius: var(--r-box); background: var(--raised); }
+.confirm-head { padding: 12px 12px 0; font-size: var(--fs-14); font-weight: 600; line-height: 1.4; }
+.confirm-what { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; margin: 0; padding: 8px 12px 0; font-size: var(--fs-13); color: var(--ink-2); overflow-wrap: anywhere; }
+.confirm-summary { margin: 0; padding: 8px 12px 12px; font-size: var(--fs-13); overflow-wrap: anywhere; }
+.changes { display: grid; gap: 6px; margin: 0; padding: 10px 12px 12px; font-size: var(--fs-13); }
+.changes > div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 14px; align-items: baseline; }
+.changes dt { color: var(--ink-3); }
+.changes dd { margin: 0; overflow-wrap: anywhere; }
+.changes del { color: var(--ink-3); }
+.changes .to { display: inline; width: 14px; height: 14px; margin: 0 4px; vertical-align: -2px; color: var(--ink-3); }
+.changes ins { padding: 1px 4px; border-radius: 2px; background: var(--mark); color: var(--mark-ink); font-weight: 600; text-decoration: none; }
+.confirm-foot { display: flex; gap: 8px; padding: 0 12px 12px; }
+.confirm.is-settled { border: 1px solid var(--line); padding-bottom: 0; }
+.confirm.is-settled .confirm-head { font-size: var(--fs-13); font-weight: 400; color: var(--ink-3); }
+.confirm.is-void ins { padding: 0; background: none; color: var(--ink-3); font-weight: 400; }
+.confirm.is-void del { text-decoration: none; }
+
+/* ---------- the reply ---------- */
+.answer { line-height: 1.65; overflow-wrap: anywhere; }
+.answer > * { margin: 0; }
+.answer > * + * { margin-top: 8px; }
+.answer :is(ul, ol) { padding-left: 1.3em; }
+.answer ul { list-style: disc; }
+.answer ol { list-style: decimal; }
+.answer li::marker { color: var(--ink-3); }
+.answer li + li { margin-top: 2px; }
+.answer strong, .answer-heading { font-weight: 600; }
+.answer code { padding: 1px 4px; border-radius: var(--r-tag); background: var(--sunken); font: var(--fs-12)/1.5 var(--font-code); }
+.cite-ref { margin: 0 1px; border: 0; vertical-align: 1px; cursor: pointer; transition: background-color var(--t-fast), color var(--t-fast); }
+.cite-ref:hover { background: var(--ink); color: var(--bg); }
+.answer .caret { display: inline-block; width: 7px; height: 15px; margin-left: 2px; vertical-align: -2px; background: var(--ink); animation: caret-blink 1s steps(2) infinite; }
+@keyframes caret-blink { 50% { opacity: 0; } }
+/* A refusal is drawn as one: the dashed edge this system gives to what is not known. */
+.answer.is-refusal { padding: 10px 12px 12px; border: 1px dashed var(--line-2); border-radius: var(--r-box); color: var(--ink-2); }
+.refusal-label { font-size: var(--fs-13); font-weight: 600; color: var(--ink); }
+
+/* ---------- a turn that did not finish ---------- */
+.problem { display: grid; gap: 2px; padding: 10px 12px; border-radius: var(--r-box); background: var(--urgent-soft); font-size: var(--fs-13); }
+.problem b { font-weight: 600; color: var(--urgent); }
+.problem span { color: var(--ink); overflow-wrap: anywhere; }
+/* A limit or a wait is not a fault: it is said plainly, without the red. */
+.problem.is-quiet { border: 1px solid var(--line); background: var(--raised); }
+.problem.is-quiet span { color: var(--ink); }
+
+/* ---------- composer ---------- */
+.advisor-composer { flex: none; padding: 12px 16px 14px; border-top: 1px solid var(--line); }
+.composer-field {
+  display: flex; align-items: flex-end; gap: 8px; padding: 8px 8px 8px 12px;
+  border: 1px solid var(--line-2); border-radius: var(--r-box); background: var(--raised); transition: border-color var(--t-fast);
+}
+.composer-field:focus-within { border-color: var(--focus); outline: 1px solid var(--focus); }
+.composer-field textarea {
+  flex: 1; min-width: 0; min-height: 24px; max-height: 112px; padding: 3px 0; border: 0; outline: 0; resize: none; field-sizing: content;
+  background: none; color: var(--ink); font: inherit; line-height: 1.5;
+}
+.send {
+  display: grid; place-items: center; flex: none; width: 30px; height: 30px; padding: 0; border: 0; border-radius: var(--r-control);
+  background: var(--action); color: var(--on-action); cursor: pointer; transition: background-color var(--t-fast), opacity var(--t-fast);
+}
+.send:hover:not(:disabled) { background: var(--action-hover); }
+.send:active:not(:disabled) { scale: 0.94; }
+.send:disabled { opacity: 0.35; cursor: default; }
+.send .icon { stroke-width: 2; }
+.composer-hint { display: flex; justify-content: space-between; gap: 12px; margin: 6px 0 0; font-size: var(--fs-12); color: var(--ink-3); }
+.composer-hint kbd { flex: none; font: inherit; }
+
+/* ---------- the rail's entry for the dock ---------- */
+.nav-dock .nav-dock-state { width: 14px; height: 14px; margin-left: auto; }
+.nav-dock[aria-expanded="true"] { color: var(--rail-ink); }
+.nav-dock .nav-dock-state.is-running { width: 12px; height: 12px; border: 2px solid var(--rail-line); border-top-color: var(--rail-ink); border-radius: 50%; animation: step-spin 0.8s linear infinite; }
+@media (min-width: 901px) {
+  .rail-nav .nav-tab-only { display: none; }
+  /* The folded rail has room for the entry's own icon only: a filled stop says the dock is open. */
+  .sidebar-collapsed .nav-dock .nav-dock-state { position: absolute; top: 7px; right: 6px; width: 6px; height: 6px; border: 0; border-radius: 50%; background: none; stroke: none; animation: none; }
+  .sidebar-collapsed .nav-dock .nav-dock-state > * { display: none; }
+  .sidebar-collapsed .nav-dock[aria-expanded="true"] .nav-dock-state { background: var(--rail-ink); }
+  .sidebar-collapsed .nav-dock .nav-dock-state.is-running { background: var(--rail-ink-2); }
+}
+
+/* ---------- phone and small tablet: the advisor is its own screen ---------- */
+@media (max-width: 900px) {
+  .dock, .rail-nav .nav-dock, .advisor-redock { display: none; }
+  .advisor-route { height: calc(100dvh - var(--topbar-h) - var(--tabbar-h) - env(safe-area-inset-bottom)); }
+  .advisor-page { --ground: var(--panel); }
+  .advisor-page .advisor-head { height: 52px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--line); }
+  .advisor-page .advisor-head h1 { font-size: var(--fs-16); }
+  .advisor-page .thread-inner { padding: 20px 16px 16px; }
+  .advisor-page .advisor-composer { padding: 12px 16px 14px; border-top: 1px solid var(--line); }
+  .btn-quiet { height: 36px; }
+  .send { width: 36px; height: 36px; }
+  .composer-field textarea { font-size: var(--fs-16); }
+  .composer-hint kbd { display: none; }
+  .cite-ref { min-width: 22px; height: 22px; }
+}

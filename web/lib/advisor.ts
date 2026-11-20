@@ -5,6 +5,15 @@
  * the blank line that ends each event.
  */
 
+/** One value the catalogue holds for a cited program. With `quote`, the sentence it was read from. */
+export interface CitationField {
+  label: string;
+  value: string;
+  quote?: string;
+  /** The page the value is on, when it is not the citation's own page. */
+  url?: string;
+}
+
 export interface Citation {
   n: number;
   programId: string;
@@ -12,15 +21,69 @@ export interface Citation {
   title: string;
   url: string;
   status: "已核验" | "待核验";
+  /** A requirement answer: the collected values the answer was written from. */
+  fields?: CitationField[];
+  /** A page answer: what the quotations are about, and the sentences that passed the quote check. */
+  field?: string;
+  quotes?: string[];
+  fetchedAt?: string | null;
+}
+
+export interface Detail {
+  label: string;
+  value: string;
+}
+
+/** `running` opens a step; every other status closes it. */
+export type StepStatus = "running" | "done" | "empty" | "failed" | "waiting" | "declined" | "stopped";
+
+/** One thing the agent does in a turn. The first event of a step carries what it is; later ones how it ended. */
+export interface StepEvent {
+  type: "step";
+  id: string;
+  status: StepStatus;
+  kind?: string;
+  name?: string;
+  title?: string;
+  args?: Detail[];
+  ms?: number;
+  result?: string;
+  items?: string[];
+  write?: boolean;
+}
+
+export interface ChangeTarget {
+  programId?: string;
+  school?: string;
+  program?: string;
+}
+
+/** One line of a confirm question: the stored value and the value it becomes. `before` is null when there is none yet. */
+export interface Change {
+  label: string;
+  before: string | null;
+  after: string;
+}
+
+export interface ConfirmEvent {
+  type: "confirm";
+  summary: string;
+  id?: string;
+  /** The step that asked. */
+  stepId?: string;
+  target?: ChangeTarget;
+  changes?: Change[];
 }
 
 export type AdvisorEvent =
+  | StepEvent
   | { type: "intent"; intent: string; confidence: number }
   | { type: "citations"; gate: "pass" | "refuse"; citations: Citation[] }
   | { type: "tool"; name: string }
   | { type: "token"; text: string }
-  | { type: "confirm"; summary: string; id?: string }
-  | { type: "error"; message: string }
+  | ConfirmEvent
+  | { type: "error"; message: string; code?: string }
+  | { type: "stopped"; wrote?: boolean }
   | { type: "done" };
 
 /**
@@ -36,15 +99,22 @@ const LIMITED_FALLBACK: Record<number, string> = {
 };
 
 /** What to tell the applicant when the server refused a turn before streaming anything. */
-export function advisorRefusal(status: number, body: unknown): { outcome: Exclude<StreamOutcome, "ok">; message: string } {
-  if (status === 401) return { outcome: "unauthorized", message: "登录已失效，请重新登录后再发。" };
+export function advisorRefusal(
+  status: number,
+  body: unknown,
+): { outcome: Exclude<StreamOutcome, "ok">; message: string; code: string } {
+  if (status === 401) return { outcome: "unauthorized", message: "登录已失效，请重新登录后再发。", code: "unauthorized" };
   const detail = (body as { detail?: unknown } | null)?.detail;
-  const serverMessage =
-    detail && typeof detail === "object" && typeof (detail as { message?: unknown }).message === "string"
-      ? (detail as { message: string }).message
+  const field = (name: string) =>
+    detail && typeof detail === "object" && typeof (detail as Record<string, unknown>)[name] === "string"
+      ? ((detail as Record<string, unknown>)[name] as string)
       : null;
-  if (status in LIMITED_FALLBACK) return { outcome: "limited", message: serverMessage || LIMITED_FALLBACK[status] };
-  return { outcome: "failed", message: `顾问服务不可用（HTTP ${status}）` };
+  if (status in LIMITED_FALLBACK) {
+    // The server's code says which limit it was: `rate_limited`, `daily_tokens_*`, `limits_unavailable`.
+    const code = field("code") ?? (status === 429 ? "rate_limited" : "limits_unavailable");
+    return { outcome: "limited", message: field("message") || LIMITED_FALLBACK[status], code };
+  }
+  return { outcome: "failed", message: `顾问服务不可用（HTTP ${status}）`, code: "http" };
 }
 
 async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void, signal?: AbortSignal): Promise<StreamOutcome> {
@@ -57,7 +127,7 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
   });
   if (!response.ok || !response.body) {
     const refusal = advisorRefusal(response.status, await response.json().catch(() => null));
-    onEvent({ type: "error", message: refusal.message });
+    onEvent({ type: "error", message: refusal.message, code: refusal.code });
     onEvent({ type: "done" });
     return refusal.outcome;
   }
@@ -97,15 +167,22 @@ export function confirmAdvisorAction(
   approved: boolean,
   onEvent: (e: AdvisorEvent) => void,
   interruptId?: string,
+  signal?: AbortSignal,
 ) {
-  return stream("/api/advisor/confirm", confirmBody(conversationId, approved, interruptId), onEvent);
+  return stream("/api/advisor/confirm", confirmBody(conversationId, approved, interruptId), onEvent, signal);
 }
 
-/** Display names for the tools, so the interface shows what the agent did in the applicant's words. */
-export const TOOL_LABELS: Record<string, string> = {
-  search_programs: "搜索项目",
-  get_my_profile: "读取档案",
-  update_my_profile: "更新档案",
-  get_my_portfolio: "读取选校组合",
-  propose_portfolio_change: "提议修改组合",
-};
+/**
+ * Ask the server to stop the turn running in this conversation. The step in flight finishes and nothing
+ * else starts (`api/app/agent/halt.py`). Best effort: the page has already stopped listening, and
+ * `keepalive` lets the request outlive a navigation.
+ */
+export function stopAdvisorTurn(conversationId: string): void {
+  void fetch("/api/advisor/stop", {
+    method: "POST",
+    credentials: "same-origin",
+    keepalive: true,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ conversationId }),
+  }).catch(() => undefined);
+}

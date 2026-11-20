@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
+import { AdvisorProvider, DockScript } from "@/components/advisor/AdvisorProvider";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { ApplicationRecordsProvider } from "@/components/shell/ApplicationRecords";
 import { Shell } from "@/components/shell/Shell";
@@ -8,6 +9,7 @@ import { ThemeScript } from "@/components/shell/ThemeScript";
 import "./globals.css";
 import "./shell.css";
 import "./overview.css";
+import "./advisor.css";
 import "./motion.css";
 
 export const metadata: Metadata = {
@@ -29,11 +31,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
         <ThemeScript />
+        <DockScript />
       </head>
       <body>
         <AuthProvider>
           <ApplicationRecordsProvider>
-            <Shell>{children}</Shell>
+            <AdvisorProvider>
+              <Shell>{children}</Shell>
+            </AdvisorProvider>
           </ApplicationRecordsProvider>
         </AuthProvider>
       </body>
