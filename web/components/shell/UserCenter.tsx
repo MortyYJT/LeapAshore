@@ -167,6 +167,7 @@ export function UserCenter() {
     window.addEventListener(SETTINGS_EVENT, show);
     return () => window.removeEventListener(SETTINGS_EVENT, show);
   }, []);
+  /** From the settings row, where the status line under the panel can say how it went. */
   async function installApp() {
     if ((await install()) === "accepted") setMessage("已安装，可以从桌面或主屏幕打开。");
   }
@@ -270,7 +271,7 @@ export function UserCenter() {
                 // Where the browser has a dialog, open it; on iOS the steps are in the settings.
                 if (installMode === "ios") return settings("appearance");
                 setOpen(false);
-                void installApp();
+                void install();
               }}
             >
               安装应用

@@ -73,23 +73,32 @@ type Listener = (event: Record<string, unknown>) => void;
 
 function worker(fetcher: (request: unknown) => Promise<Response>) {
   const listeners = new Map<string, Listener>();
+  const calls: string[] = [];
+  const fetched: unknown[] = [];
   const scope = {
     location: { origin: ORIGIN },
     addEventListener: (type: string, listener: Listener) => listeners.set(type, listener),
-    skipWaiting: () => Promise.resolve(),
-    clients: { claim: () => Promise.resolve() },
+    skipWaiting: () => (calls.push("skipWaiting"), Promise.resolve()),
+    clients: { claim: () => (calls.push("claim"), Promise.resolve()) },
   };
-  new Function("self", "fetch", "caches", SOURCE)(scope, fetcher, undefined);
+  const fetch = (request: unknown) => (fetched.push(request), fetcher(request));
+  new Function("self", "fetch", "caches", SOURCE)(scope, fetch, undefined);
   return {
     listeners,
+    calls,
     /** The response the worker answers with, or `null` when it leaves the request to the browser. */
     async answer(path: string, init: { mode?: string; method?: string; origin?: string } = {}) {
       let answered: Promise<Response> | null = null;
-      listeners.get("fetch")!({
-        request: { url: `${init.origin ?? ORIGIN}${path}`, mode: init.mode ?? "navigate", method: init.method ?? "GET" },
-        respondWith: (response: Promise<Response>) => (answered = response),
-      });
-      return answered === null ? null : await (answered as Promise<Response>);
+      const request = { url: `${init.origin ?? ORIGIN}${path}`, mode: init.mode ?? "navigate", method: init.method ?? "GET" };
+      const before = fetched.length;
+      listeners.get("fetch")!({ request, respondWith: (response: Promise<Response>) => (answered = response) });
+      if (answered === null) {
+        assert.equal(fetched.length, before, "a request left to the browser is not fetched by the worker");
+        return null;
+      }
+      // The browser's own request object goes out, so its redirect mode, credentials and headers do too.
+      assert.equal(fetched.at(-1), request);
+      return await (answered as Promise<Response>);
     },
   };
 }
@@ -106,6 +115,7 @@ test("the worker answers a page navigation that cannot reach the server with its
   assert.match(html, /连不上/);
   // The page follows the theme the settings last applied, like the app's own first paint.
   assert.ok(html.includes(JSON.stringify(APPEARANCE_KEY)));
+  assert.ok(html.includes(`d?"${THEME_COLOR.dark}":"${THEME_COLOR.light}"`));
   // It loads nothing: no stylesheet, script file, image or font it could fail to fetch.
   assert.doesNotMatch(html, /<link|src=|url\(/);
 });
@@ -117,11 +127,33 @@ test("the worker hands a navigation that does reach the server straight through"
   assert.equal(await worker(async () => failing).answer("/applications"), failing);
 });
 
+test("one worker keeps no copy of a page between requests", async () => {
+  let online = true;
+  let served = 0;
+  const w = worker(async () => {
+    if (!online) throw new TypeError("Failed to fetch");
+    served += 1;
+    return new Response(`<p>deadline ${served}</p>`);
+  });
+  assert.equal(await (await w.answer("/applications"))!.text(), "<p>deadline 1</p>");
+  online = false;
+  // Offline, the same address gets the notice, not the page seen a moment ago.
+  const notice = await w.answer("/applications");
+  assert.equal(notice!.status, 503);
+  assert.doesNotMatch(await notice!.text(), /deadline/);
+  online = true;
+  assert.equal(await (await w.answer("/applications"))!.text(), "<p>deadline 2</p>");
+});
+
 test("the worker never touches the API, other origins, or anything that is not a page navigation", async () => {
   const w = worker(offline);
   assert.equal(await w.answer("/api/application-records"), null);
   assert.equal(await w.answer("/api"), null);
   assert.equal(await w.answer("/api/materials/1/file"), null);
+  // The proxy routes these to the API as well: it matches /api decoded and without regard to case.
+  assert.equal(await w.answer("/%61pi/reminders/unsubscribe?token=a.b"), null);
+  assert.equal(await w.answer("/API/health"), null);
+  assert.equal(await w.answer("/%E0%A4%A"), null);
   assert.equal(await w.answer("/_next/static/chunks/app.js", { mode: "no-cors" }), null);
   assert.equal(await w.answer("/applications", { mode: "cors" }), null);
   assert.equal(await w.answer("/applications", { mode: "same-origin" }), null);
@@ -137,6 +169,8 @@ test("the worker stores nothing and takes over as soon as it is installed", () =
   const w = worker(offline);
   let waited = 0;
   w.listeners.get("install")!({ waitUntil: () => (waited += 1) });
+  assert.deepEqual(w.calls, ["skipWaiting"]);
   w.listeners.get("activate")!({ waitUntil: () => (waited += 1) });
+  assert.deepEqual(w.calls, ["skipWaiting", "claim"]);
   assert.equal(waited, 2);
 });

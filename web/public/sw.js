@@ -5,7 +5,8 @@
 // read from an old copy could be wrong, so no page and no API response is ever kept, and the page
 // below is a string in this file rather than an entry in a cache. Requests under /api, requests to
 // other origins, and everything that is not a page navigation (scripts, styles, data, uploads) are
-// left to the browser untouched.
+// left to the browser untouched. The proxy matches /api without regard to case or percent-encoding
+// (deploy/Caddyfile), so the path is compared the same way.
 //
 // A release replaces it at once: the browser re-fetches this file on every navigation (it is served
 // with `Cache-Control: no-cache`, web/next.config.ts), and a changed copy skips waiting and takes
@@ -80,7 +81,14 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET" || request.mode !== "navigate") return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
-  if (url.pathname === "/api" || url.pathname.startsWith("/api/")) return;
+  let path;
+  try {
+    path = decodeURIComponent(url.pathname).toLowerCase();
+  } catch {
+    // A path that does not decode is not one of the app's pages.
+    return;
+  }
+  if (path === "/api" || path.startsWith("/api/")) return;
   event.respondWith(
     fetch(request).catch(
       () =>

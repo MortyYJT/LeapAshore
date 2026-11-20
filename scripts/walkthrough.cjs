@@ -511,6 +511,8 @@ async function adminPass(browser, email, errors) {
     await page.getByRole("heading", { level: 1, name: "退订截止提醒", exact: true }).waitFor();
     const confirmUnsubscribe = page.getByRole("button", { name: "确认退订", exact: true });
     await confirmUnsubscribe.waitFor();
+    // The button is in the server's HTML; wait until the page's scripts have run before counting.
+    await page.waitForLoadState("networkidle");
     await page.waitForTimeout(800);
     check("退订页：打开链接不发请求，页面上有「确认退订」", unsubscribePosts === 0, unsubscribePosts);
     await confirmUnsubscribe.click();

@@ -231,7 +231,7 @@ html[data-appearance="dark"] {
 
 /* ---------- base ---------- */
 * { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: var(--safe-top); }
 html, body { margin: 0; }
 body {
   min-height: 100vh;
@@ -493,7 +493,7 @@ tbody tr:hover { background: var(--hover); }
 
 /* ---------- dialogs ---------- */
 .dialog {
-  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; overflow: auto;
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom)); margin: auto; padding: 0; overflow: auto;
   border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float);
 }
 .dialog::backdrop, .uc-dialog::backdrop { background: var(--scrim); }
@@ -533,7 +533,7 @@ tbody tr:hover { background: var(--hover); }
 .uc-menu-group { padding: 4px 0; border-top: 1px solid var(--line); }
 .uc-menu-group a, .uc-menu-group button { display: block; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--r-control); background: transparent; color: var(--ink); font: inherit; text-align: left; text-decoration: none; cursor: pointer; }
 .uc-menu-group a:hover, .uc-menu-group button:hover { background: var(--hover); }
-.uc-dialog { width: min(760px, calc(100% - 32px)); max-height: 85dvh; margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float); }
+.uc-dialog { width: min(760px, calc(100% - 32px)); max-height: min(85dvh, calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom))); margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float); }
 .uc-settings { display: grid; grid-template-columns: 180px minmax(0, 1fr); min-height: 480px; }
 .uc-sidebar { padding: 20px 12px; background: var(--panel); border-right: 1px solid var(--line); }
 .uc-sidebar h2 { margin: 0 10px 20px; }
@@ -644,7 +644,7 @@ tbody tr:hover { background: var(--hover); }
   .uc-sidebar button { width: auto; margin: 0; }
   .uc-content { padding: 24px 20px; }
   .uc-photo { gap: 12px; }
-  .uc-dialog { max-height: 92dvh; }
+  .uc-dialog { max-height: min(92dvh, calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom))); }
   .uc-row:has(.uc-modes) { align-items: flex-start; flex-direction: column; gap: 12px; }
   .uc-row-leads { flex-direction: column; gap: 12px; }
   .uc-row-leads > div:first-child { flex: none; }
