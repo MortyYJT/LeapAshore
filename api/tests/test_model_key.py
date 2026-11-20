@@ -13,6 +13,8 @@ import json
 import logging
 import pickle
 import threading
+from collections.abc import Iterator
+from contextlib import contextmanager
 import time
 from dataclasses import replace
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -190,6 +192,14 @@ def program() -> Program:
         row = s.scalars(select(Program).order_by(Program.id).limit(1)).one()
         s.expunge_all()
         return row
+
+
+@contextmanager
+def browser() -> Iterator[TestClient]:
+    """One client that keeps its cookie between requests. The client is not entered as a context
+    manager: that would run the application's shutdown, which closes the checkpoint pool the other
+    test files share."""
+    yield TestClient(app)
 
 
 def events(response) -> list[dict]:
@@ -398,7 +408,7 @@ def test_a_judge_error_kept_with_the_turn_is_scrubbed():
 
 def test_a_turn_uses_the_applicants_key_and_leaves_it_nowhere(upstream, everything_logged):
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": "k1", "message": f"你好 {CANARY}"}, headers=own())
     assert response.status_code == 200
     evts = events(response)
@@ -415,7 +425,7 @@ def test_a_turn_uses_the_applicants_key_and_leaves_it_nowhere(upstream, everythi
 
 
 def test_a_turn_without_the_header_runs_on_the_owners_key(upstream):
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": "k2", "message": "你好"})
         # A key in the URL or the body is not a key: only the header is read.
         client.post(f"{CHAT}?x-model-key={KEY}&modelKey={KEY}",
@@ -439,7 +449,7 @@ def test_a_failure_on_the_applicants_key_says_what_to_do_and_never_repeats_the_k
     monkeypatch.setattr(llm, "MAX_RETRIES", 0)
     upstream.fail = fail
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": f"e{fail}", "message": "你好"}, headers=own())
     assert response.status_code == 200
     evts = events(response)
@@ -456,7 +466,7 @@ def test_a_failure_on_the_applicants_key_says_what_to_do_and_never_repeats_the_k
 def test_the_same_failure_on_the_owners_key_keeps_its_own_words(upstream, monkeypatch):
     monkeypatch.setattr(llm, "MAX_RETRIES", 0)
     upstream.fail = 402
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": "o1", "message": "你好"})
     assert codes(events(response)) == ["model_unavailable"]
 
@@ -471,7 +481,7 @@ def test_an_exception_that_prints_the_request_does_not_reach_the_log(upstream, e
     monkeypatch.setattr(graph_module, "get_chat_model", broken)
     monkeypatch.setattr(graph_module.intent, "classify", intent_fixed)
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": "x1", "message": "你好"}, headers=own())
     assert codes(events(response)) == ["advisor_failed"]
     assert "advisor stream failed" in logged(everything_logged)
@@ -490,7 +500,7 @@ def paused_turn(client: TestClient, upstream: Upstream, program: Program, conver
 
 def test_a_turn_waiting_for_an_answer_holds_no_key(upstream, program, everything_logged):
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         paused_turn(client, upstream, program, "p1")
         # While the turn waits, its whole state is in the checkpoint tables.
         assert tables_holding(KEY, since) == []
@@ -500,7 +510,7 @@ def test_a_turn_waiting_for_an_answer_holds_no_key(upstream, program, everything
 
 def test_a_resumed_turn_takes_the_key_from_the_new_request(upstream, program, everything_logged):
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         body = paused_turn(client, upstream, program, "p2")
         assert upstream.keys() == {KEY}
         upstream.seen.clear()
@@ -514,7 +524,7 @@ def test_a_resumed_turn_takes_the_key_from_the_new_request(upstream, program, ev
 
 
 def test_a_turn_resumed_without_a_key_runs_on_the_owners(upstream, program):
-    with TestClient(app) as client:
+    with browser() as client:
         body = paused_turn(client, upstream, program, "p3")
         upstream.seen.clear()
         response = client.post(CONFIRM, json=body)
@@ -530,7 +540,7 @@ def test_the_applicants_key_skips_the_daily_token_quotas(upstream, monkeypatch):
     monkeypatch.setattr(settings, "advisor_daily_tokens_per_subject", 0)
     monkeypatch.setattr(settings, "advisor_daily_tokens_per_ip", 0)
     monkeypatch.setattr(settings, "advisor_daily_tokens_site", 0)
-    with TestClient(app) as client:
+    with browser() as client:
         refused = client.post(CHAT, json={"conversationId": "q1", "message": "你好"})
         assert refused.status_code == 429 and refused.json()["detail"]["code"].startswith("daily_tokens_")
         admitted = client.post(CHAT, json={"conversationId": "q2", "message": "你好"}, headers=own())
@@ -544,7 +554,7 @@ def test_the_applicants_key_skips_the_daily_token_quotas(upstream, monkeypatch):
 
 def test_the_applicants_key_keeps_the_rate_windows(upstream, monkeypatch):
     monkeypatch.setattr(settings, "advisor_subject_limits", "1/60")
-    with TestClient(app) as client:
+    with browser() as client:
         first = client.post(CHAT, json={"conversationId": "r1", "message": "你好"}, headers=own())
         second = client.post(CHAT, json={"conversationId": "r2", "message": "你好"}, headers=own())
     assert first.status_code == 200
@@ -577,7 +587,7 @@ def test_a_ticket_without_quotas_reserves_nothing(monkeypatch):
 ])
 def test_a_bad_key_header_is_a_400_that_does_not_echo_it(upstream, everything_logged, headers, code):
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         for path, body in ((CHAT, {"conversationId": "b1", "message": "你好"}),
                            (CONFIRM, {"conversationId": "b1", "approved": True}), (CHECK, None)):
             response = client.post(path, json=body, headers=headers)
@@ -595,7 +605,7 @@ def test_question_embeddings_stay_on_the_owners_key(upstream, monkeypatch):
     monkeypatch.setattr(settings, "embed_base_url", upstream.url)
     monkeypatch.setattr(settings, "advisor_retrieval", "hybrid")
     upstream.intent = "官方要求核验"
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHAT, json={"conversationId": "m1", "message": "悉尼大学计算机硕士的雅思要求"}, headers=own())
     assert response.status_code == 200
     assert upstream.keys("/embeddings") == {OWNER_EMBED_KEY}
@@ -608,7 +618,7 @@ def test_question_embeddings_stay_on_the_owners_key(upstream, monkeypatch):
 
 def test_trying_a_key_lists_the_providers_models_and_spends_nothing(upstream, everything_logged):
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHECK, headers=own())
     assert response.status_code == 200
     assert response.json() == {"ok": True, "provider": "deepseek", "label": "DeepSeek"}
@@ -623,7 +633,7 @@ def test_trying_a_key_lists_the_providers_models_and_spends_nothing(upstream, ev
 def test_trying_a_key_that_fails_says_why(upstream, everything_logged, fail, code):
     upstream.fail = fail
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         response = client.post(CHECK, headers=own())
     assert response.status_code == 200
     body = response.json()
@@ -633,7 +643,7 @@ def test_trying_a_key_that_fails_says_why(upstream, everything_logged, fail, cod
 
 def test_trying_a_key_needs_the_header_and_takes_a_rate_window(upstream, monkeypatch):
     monkeypatch.setattr(settings, "advisor_subject_limits", "1/60")
-    with TestClient(app) as client:
+    with browser() as client:
         assert client.post(CHECK).status_code == 400
         assert client.post(CHECK, headers=own()).status_code == 200
         limited = client.post(CHECK, headers=own())
@@ -647,7 +657,7 @@ def test_trying_a_key_needs_the_header_and_takes_a_rate_window(upstream, monkeyp
 def test_signed_out_a_request_with_a_key_is_refused_and_the_key_is_not_logged(upstream, everything_logged, monkeypatch):
     monkeypatch.setattr(settings, "auth_enabled", True)
     since = transaction_mark()
-    with TestClient(app) as client:
+    with browser() as client:
         for path, body in ((CHAT, {"conversationId": "s1", "message": "你好"}), (CHECK, None)):
             response = client.post(path, json=body, headers=own())
             assert response.status_code == 401, path
