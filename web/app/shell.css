@@ -18,7 +18,15 @@
 
 .rail {
   position: fixed; inset: 0 auto 0 0; z-index: 30; display: flex; flex-direction: column;
-  width: var(--rail-current); padding: 16px 12px 12px; background: var(--rail); color: var(--rail-ink);
+  width: var(--rail-current); padding: calc(16px + var(--safe-top)) 12px calc(12px + var(--safe-bottom)) calc(12px + var(--safe-left));
+  background: var(--rail); color: var(--rail-ink);
+}
+/* Installed (--safe-* in globals.css): iOS draws the status bar's text light over the page, so the
+   rail's colour is kept behind it across the whole width, and the workspace starts below. On a
+   phone the top bar is already there and --topbar-h includes the inset. */
+.shell::before { content: ""; position: fixed; inset: 0 0 auto 0; z-index: 25; height: var(--safe-top); background: var(--rail); }
+@media (min-width: 901px) {
+  .workspace-content { padding-top: var(--safe-top); margin-right: max(var(--dock-current), var(--safe-right)); }
 }
 .rail :focus-visible { outline-color: var(--rail-ink); }
 .rail :is(.uc-menu, .uc-dialog) :focus-visible { outline-color: var(--focus); }
@@ -120,12 +128,11 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   html { scroll-padding-top: calc(var(--topbar-h) + 8px); }
   .shell { --rail-current: 0px; }
   .workspace-content {
-    padding-top: var(--topbar-h);
-    padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+    padding: var(--topbar-h) var(--safe-right) calc(var(--tabbar-h) + var(--safe-bottom)) var(--safe-left);
   }
   .rail {
     inset: 0 0 auto 0; flex-direction: row; align-items: center; gap: 0;
-    width: auto; height: var(--topbar-h); padding: 0 4px 0 16px;
+    width: auto; height: var(--topbar-h); padding: var(--safe-top) calc(4px + var(--safe-right)) 0 calc(16px + var(--safe-left));
   }
   .rail-top { flex: 1; min-height: 0; margin: 0; padding: 0; }
   .brand .mark { width: 24px; height: 24px; }
@@ -142,7 +149,7 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
 
   .rail-nav {
     position: fixed; inset: auto 0 0 0; z-index: 30; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;
-    height: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); padding: 0 0 env(safe-area-inset-bottom);
+    height: calc(var(--tabbar-h) + var(--safe-bottom)); padding: 0 var(--safe-right) var(--safe-bottom) var(--safe-left);
     background: var(--bg); border-top: 1px solid var(--line);
   }
   .rail-nav a { flex-direction: column; justify-content: center; gap: 3px; height: auto; padding: 0; border-radius: 0; color: var(--ink-3); font-size: var(--fs-12); line-height: 1.3; }
@@ -155,7 +162,7 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .sidebar-navigation-pending { top: 8px; right: calc(50% - 16px); }
 
   /* Anything that sticks to the bottom of the page sticks above the tab bar. */
-  .unsaved { bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 12px); }
+  .unsaved { bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px); }
 
   .page { padding: 20px 16px 32px; }
   .page-head { margin-bottom: 20px; }

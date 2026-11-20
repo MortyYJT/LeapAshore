@@ -80,6 +80,8 @@ const ICONS = {
   copy: <path d="M5.5 5.5v-3h8v8h-3M2.5 5.5h8v8h-8z" />,
   retry: <path d="M13 8a5 5 0 1 1-1.6-3.7M13 2.5v2.4h-2.4" />,
   plus: <path d="M8 3.5v9M3.5 8h9" />,
+  // The share button as iOS draws it: an arrow leaving a tray.
+  share: <path d="M8 9.8V2.3M5.4 4.8 8 2.2l2.6 2.6M5.3 7H3.5v6.5h9V7h-1.8" />,
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof ICONS;

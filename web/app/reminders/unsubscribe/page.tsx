@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   referrer: "no-referrer",
 };
 
-/** Where the unsubscribe link in a reminder email lands. Public: the token is the whole request. */
+/** Where the unsubscribe link in a reminder email lands. Public: the token and one press of the button are the whole request. */
 export default function UnsubscribePage() {
   return <Unsubscribe />;
 }

@@ -13,8 +13,8 @@
 
 /* ---------- the dock in the shell ---------- */
 .dock {
-  position: fixed; inset: 0 0 0 auto; z-index: 20; display: none; width: var(--dock-w);
-  border-left: 1px solid var(--line); background: var(--panel);
+  position: fixed; inset: var(--safe-top) 0 0 auto; z-index: 20; display: none; width: var(--dock-w);
+  padding-right: var(--safe-right); border-left: 1px solid var(--line); background: var(--panel);
 }
 @media (min-width: 901px) {
   html[data-dock="open"] .shell.has-dock { --dock-current: var(--dock-w); }
@@ -41,7 +41,7 @@
 .btn-quiet .icon { width: 14px; height: 14px; }
 
 /* The page at /advisor: the conversation in a column on the workspace's own ground. */
-.advisor-route { height: 100dvh; }
+.advisor-route { height: calc(100dvh - var(--safe-top)); }
 .advisor-page { --ground: var(--bg); }
 .advisor-page .advisor-head { height: auto; padding: 28px 28px 16px; border-bottom: 0; }
 .advisor-page .advisor-head, .advisor-page .thread-inner, .advisor-page .advisor-composer { width: 100%; max-width: 816px; margin-inline: auto; }
@@ -256,7 +256,7 @@ button.call:hover .chev { color: var(--ink); }
 /* ---------- phone and small tablet: the advisor is its own screen ---------- */
 @media (max-width: 900px) {
   .dock, .rail-nav .nav-dock, .advisor-redock { display: none; }
-  .advisor-route { height: calc(100dvh - var(--topbar-h) - var(--tabbar-h) - env(safe-area-inset-bottom)); }
+  .advisor-route { height: calc(100dvh - var(--topbar-h) - var(--tabbar-h) - var(--safe-bottom)); }
   .advisor-page { --ground: var(--panel); }
   .advisor-page .advisor-head { height: 52px; padding: 0 8px 0 16px; border-bottom: 1px solid var(--line); }
   .advisor-page .advisor-head h1 { font-size: var(--fs-16); }

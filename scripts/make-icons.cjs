@@ -3,7 +3,15 @@
 // Next.js serves files with these names from web/app/ as the site's icons: icon.svg for browsers that take
 // an SVG, favicon.ico (16, 32 and 48 px) for those that do not, and apple-icon.png (180 px) for an iOS home
 // screen. The Apple icon is drawn without the rounded corners, because iOS cuts its own and a transparent
-// corner would show black. Rerun after editing icon.svg: node scripts/make-icons.cjs
+// corner would show black.
+//
+// The web app manifest (web/app/manifest.ts) lists four more, written to web/public/icons/: 192 and 512 px
+// with the rounded corners, and the same two sizes as maskable icons. A maskable icon is cut to whatever
+// shape the launcher uses, and only the circle of 80% diameter in the middle is sure to survive, so there
+// the ground runs to the edges and the mark is drawn at 0.8 scale: its farthest stroke ends 36% of the
+// width from the centre.
+//
+// Rerun after editing icon.svg: node scripts/make-icons.cjs
 
 const fs = require("fs");
 const path = require("path");
@@ -11,6 +19,7 @@ const path = require("path");
 const { chromium } = require("./playwright.cjs");
 
 const APP = path.resolve(__dirname, "..", "web", "app");
+const INSTALL = path.resolve(__dirname, "..", "web", "public", "icons");
 
 async function render(browser, svg, size) {
   const page = await browser.newPage({ viewport: { width: size, height: size }, deviceScaleFactor: 1 });
@@ -53,8 +62,15 @@ function ico(images) {
     fs.writeFileSync(path.join(APP, "favicon.ico"), ico(images));
     const square = svg.replace(/<rect([^>]*?) rx="[^"]*"/, "<rect$1");
     fs.writeFileSync(path.join(APP, "apple-icon.png"), await render(browser, square, 180));
+    const maskable = square.replace(/<g transform="/, '<g transform="translate(16 16) scale(0.8) translate(-16 -16) ');
+    if (maskable === square) throw new Error("icon.svg: the mark's <g transform> was not found");
+    fs.mkdirSync(INSTALL, { recursive: true });
+    for (const size of [192, 512]) {
+      fs.writeFileSync(path.join(INSTALL, `icon-${size}.png`), await render(browser, svg, size));
+      fs.writeFileSync(path.join(INSTALL, `maskable-${size}.png`), await render(browser, maskable, size));
+    }
   } finally {
     await browser.close();
   }
-  console.log("wrote web/app/favicon.ico and web/app/apple-icon.png");
+  console.log("wrote web/app/favicon.ico, web/app/apple-icon.png and web/public/icons/*.png");
 })();

@@ -115,17 +115,26 @@
   --t-base: 200ms;
   --t-line: 600ms;
 
-  /* Shell */
-  --rail-w: 236px;
-  --rail-w-folded: 64px;
-  --dock-w: 392px;
-  --topbar-h: 48px;
+  /* The installed app paints to the screen's edges (viewport-fit=cover, app/layout.tsx): under the
+     status bar, beside a notch, behind the home indicator. These are what must stay clear, and all
+     four are zero in an ordinary browser window. */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+
+  /* Shell. The rail, the dock and the phone's top bar each reach a screen edge, so each carries
+     that edge's inset: the bar's colour runs to the edge and its content stays inside. */
+  --rail-w: calc(236px + var(--safe-left));
+  --rail-w-folded: calc(64px + var(--safe-left));
+  --dock-w: calc(392px + var(--safe-right));
+  --topbar-h: calc(48px + var(--safe-top));
   --tabbar-h: 56px;
 }
 
 /* Under 1440px the dock gives the workspace back a little room. */
 @media (max-width: 1439px) {
-  :root { --dock-w: 380px; }
+  :root { --dock-w: calc(380px + var(--safe-right)); }
 }
 
 html[data-appearance="dark"] {
@@ -222,7 +231,7 @@ html[data-appearance="dark"] {
 
 /* ---------- base ---------- */
 * { box-sizing: border-box; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: var(--safe-top); }
 html, body { margin: 0; }
 body {
   min-height: 100vh;
@@ -484,7 +493,7 @@ tbody tr:hover { background: var(--hover); }
 
 /* ---------- dialogs ---------- */
 .dialog {
-  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; overflow: auto;
+  width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom)); margin: auto; padding: 0; overflow: auto;
   border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float);
 }
 .dialog::backdrop, .uc-dialog::backdrop { background: var(--scrim); }
@@ -524,7 +533,7 @@ tbody tr:hover { background: var(--hover); }
 .uc-menu-group { padding: 4px 0; border-top: 1px solid var(--line); }
 .uc-menu-group a, .uc-menu-group button { display: block; width: 100%; padding: 8px 10px; border: 0; border-radius: var(--r-control); background: transparent; color: var(--ink); font: inherit; text-align: left; text-decoration: none; cursor: pointer; }
 .uc-menu-group a:hover, .uc-menu-group button:hover { background: var(--hover); }
-.uc-dialog { width: min(760px, calc(100% - 32px)); max-height: 85dvh; margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float); }
+.uc-dialog { width: min(760px, calc(100% - 32px)); max-height: min(85dvh, calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom))); margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); color: var(--ink); box-shadow: var(--shadow-float); }
 .uc-settings { display: grid; grid-template-columns: 180px minmax(0, 1fr); min-height: 480px; }
 .uc-sidebar { padding: 20px 12px; background: var(--panel); border-right: 1px solid var(--line); }
 .uc-sidebar h2 { margin: 0 10px 20px; }
@@ -545,6 +554,12 @@ tbody tr:hover { background: var(--hover); }
 .uc-modes button { padding: 6px 10px; border: 0; border-radius: var(--r-tag); background: transparent; color: var(--ink-3); font: 500 var(--fs-13) var(--font-ui); white-space: nowrap; cursor: pointer; }
 .uc-modes button[aria-pressed="true"] { background: var(--raised); color: var(--ink); }
 .uc-modes button:disabled { cursor: progress; }
+/* The install entry closes the appearance tab, under the text button that resets it. */
+.uc-row-install { margin-top: 20px; border-top: 1px solid var(--line); border-bottom: 0; padding-bottom: 0; }
+.uc-row-install > div { min-width: 0; }
+.uc-row-install .uc-hint { margin-top: 4px; text-wrap: pretty; }
+.uc-row-install .btn { flex: none; }
+.uc-inline-icon { display: inline-block; width: 14px; height: 14px; margin: 0 1px 0 3px; vertical-align: -2px; color: var(--ink-2); }
 .uc-content .notice { margin: 0 0 16px; }
 .uc-content .notice p { margin: 0; }
 .uc-row-leads { align-items: flex-start; }
@@ -629,7 +644,7 @@ tbody tr:hover { background: var(--hover); }
   .uc-sidebar button { width: auto; margin: 0; }
   .uc-content { padding: 24px 20px; }
   .uc-photo { gap: 12px; }
-  .uc-dialog { max-height: 92dvh; }
+  .uc-dialog { max-height: min(92dvh, calc(100dvh - 32px - var(--safe-top) - var(--safe-bottom))); }
   .uc-row:has(.uc-modes) { align-items: flex-start; flex-direction: column; gap: 12px; }
   .uc-row-leads { flex-direction: column; gap: 12px; }
   .uc-row-leads > div:first-child { flex: none; }
