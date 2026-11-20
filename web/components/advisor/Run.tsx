@@ -403,7 +403,7 @@ function Answer({ text, refused, streaming, cited, turnId }: { text: string; ref
           return (
             <List key={index}>
               {block.items.map((item, at) => (
-                <li key={at}>
+                <li key={at} value={block.numbers?.[at]}>
                   {inline(item)}
                   {at === block.items.length - 1 && caret}
                 </li>

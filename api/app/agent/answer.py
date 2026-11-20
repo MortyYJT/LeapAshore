@@ -20,6 +20,7 @@ left, the advisor refuses and lists the pages it read; it never states what it c
 """
 
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from datetime import datetime
 
@@ -28,7 +29,7 @@ from pydantic import BaseModel, Field
 from app.agent.llm import get_chat_model, outage
 from app.agent.passages import Passage
 from app.collect.faithful import OK, Claim, Judgement, ajudge
-from app.collect.text import normalize
+from app.collect.text import PUNCTUATION, normalize
 
 MIN_QUOTE_CHARS = 12
 
@@ -241,6 +242,46 @@ async def support_check(question: str, checked: Verification, passages: list[dic
     return judgement
 
 
+# ---- the page's own words ---------------------------------------------------------------------------
+
+
+def page_words(page_text: str, quote: str) -> str | None:
+    """The stretch of `page_text` that `quote` matched, in the page's own characters.
+
+    `verify` compares after folding (Unicode form, quotes, dashes, spacing, case), so a quote that
+    passed can still differ from the page in exactly those ways. What is shown to the applicant as the
+    official text is cut from the stored page instead. None when the stretch cannot be located.
+    """
+    folded: list[str] = []
+    origin: list[int] = []  # for each folded character, the index of the page character it came from
+    spaced = True  # a leading space is dropped, as `normalize` strips
+    for i, char in enumerate(page_text):
+        for piece in unicodedata.normalize("NFKC", char).translate(PUNCTUATION):
+            if piece.isspace():
+                if not spaced:
+                    folded.append(" ")
+                    origin.append(i)
+                spaced = True
+            else:
+                for low in piece.casefold():
+                    folded.append(low)
+                    origin.append(i)
+                spaced = False
+    if folded and folded[-1] == " ":
+        folded.pop()
+        origin.pop()
+    text = "".join(folded)
+    wanted = normalize(quote)
+    # Folding character by character is not the same as folding the whole text for every script
+    # (combining marks compose across characters); when the two disagree, nothing is cut.
+    if not wanted or text != normalize(page_text):
+        return None
+    at = text.find(wanted)
+    if at < 0:
+        return None
+    return page_text[origin[at]: origin[at + len(wanted) - 1] + 1]
+
+
 # ---- the reply -------------------------------------------------------------------------------------
 
 
@@ -254,13 +295,14 @@ def render(checked: Verification, passages: list[dict]) -> tuple[str, list[dict]
             numbers.setdefault(n, len(numbers) + 1)
             marks += f"[{numbers[n]}]"
         lines.append(s.text.rstrip() + marks)
-    # The quotes that passed the check, per passage, in the order the answer uses them. Each one is in
-    # the stored page text word for word (`verify`), so the interface can show it as a quotation.
+    # The quotes that passed the check, per passage, in the order the answer uses them, each cut from
+    # the stored page so the interface shows the page's own characters as the quotation.
     quotes: dict[int, list[str]] = {}
     for s in checked.kept:
         for n, quote in s.quotes:
-            if quote not in quotes.setdefault(n, []):
-                quotes[n].append(quote)
+            words = page_words(passages[n - 1]["text"], quote) or quote
+            if words not in quotes.setdefault(n, []):
+                quotes[n].append(words)
     citations = []
     for original, shown in sorted(numbers.items(), key=lambda kv: kv[1]):
         p = passages[original - 1]

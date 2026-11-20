@@ -48,8 +48,13 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
     if (element && followTail.current) element.scrollTop = element.scrollHeight;
   }, [chat.turns]);
 
+  // The composer takes the focus when it is asked to (the dock opening, a question put into it),
+  // not each time this component mounts: on a phone that would raise the keyboard on arrival.
+  const focusSeen = useRef(dock.focusRequest);
   useEffect(() => {
-    if (dock.focusRequest) input.current?.focus();
+    if (dock.focusRequest === focusSeen.current) return;
+    focusSeen.current = dock.focusRequest;
+    input.current?.focus();
   }, [dock.focusRequest]);
 
   const Heading = variant === "page" ? "h1" : "h2";

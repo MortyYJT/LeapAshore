@@ -16,7 +16,7 @@ export type Inline =
 export type TextBlock =
   | { type: "paragraph"; lines: Inline[][] }
   | { type: "heading"; content: Inline[] }
-  | { type: "list"; ordered: boolean; items: Inline[][] };
+  | { type: "list"; ordered: boolean; items: Inline[][]; /** The number each item was written with. */ numbers?: number[] };
 
 // In order: **bold**, `code`, [label](url), a bare url, [n].
 const INLINE = /\*\*([^*\n]+)\*\*|`([^`\n]+)`|\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>"'，。；、）】]+)|\[(\d{1,2})\]/g;
@@ -50,8 +50,10 @@ export function parseInline(text: string): Inline[] {
 }
 
 const BULLET = /^\s*[-*•]\s+(.*)$/;
-// "1. " and "1) " need the space, or a line that opens with "6.5 分" would read as item 6.
-const NUMBERED = /^\s*\d{1,2}(?:[.)]\s+|、\s*)(.*)$/;
+// A reply's figures must come through as written, so a line only counts as a list item when its
+// number cannot be part of the sentence: "1. " and "1) " need the space ("6.5 分" is not item 6), and
+// "1、" must not run into another number ("9、10 月截止" lists two months).
+const NUMBERED = /^\s*(\d{1,2})(?:[.)]\s+|、\s*(?!\d))(.*)$/;
 const HEADING = /^\s*#{1,6}\s+(.*)$/;
 
 export function parseAnswer(text: string): TextBlock[] {
@@ -76,11 +78,19 @@ export function parseAnswer(text: string): TextBlock[] {
     const numbered = bullet ? null : line.match(NUMBERED);
     if (bullet || numbered) {
       flush();
-      const ordered = !bullet;
-      const item = parseInline((bullet ?? numbered)![1]);
+      const item = parseInline(bullet ? bullet[1] : numbered![2]);
       const last = blocks.at(-1);
-      if (last?.type === "list" && last.ordered === ordered) last.items.push(item);
-      else blocks.push({ type: "list", ordered, items: [item] });
+      if (bullet) {
+        if (last?.type === "list" && !last.ordered) last.items.push(item);
+        else blocks.push({ type: "list", ordered: false, items: [item] });
+      } else {
+        // The item keeps the number the reply gave it, whatever the list it lands in.
+        const n = Number(numbered![1]);
+        if (last?.type === "list" && last.ordered) {
+          last.items.push(item);
+          last.numbers!.push(n);
+        } else blocks.push({ type: "list", ordered: true, items: [item], numbers: [n] });
+      }
       continue;
     }
     paragraph.push(parseInline(line.trim()));

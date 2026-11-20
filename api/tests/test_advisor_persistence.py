@@ -281,8 +281,11 @@ def test_a_confirm_whose_reply_hits_an_outage_keeps_the_change_written_once(serv
     # The reservations were given back: only the first turn's one model call was charged.
     assert asyncio.run(limits.usage_today(subject, "testclient")) == {"subject": 42, "ip": 42, "site": 42}
 
-    # When the provider is back, the same conversation carries on.
+    # When the provider is back, the same conversation carries on. The program is taken out first:
+    # adding it a second time would change nothing, and such a change is not put to the applicant.
     monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: model)
+    with SessionLocal() as s:
+        tools.replace_applications(s, subject, [])
     again = pause(client)
     replied = answer(client, again)
     assert errors(replied) == [] and "已执行" in said(replied)
@@ -515,11 +518,17 @@ def test_only_the_first_portfolio_change_of_a_reply_is_kept():
         ],
         additional_kwargs={"tool_calls": [{"id": "c1"}, {"id": "c2"}, {"id": "c3"}]},
     )
+    # A change that asks for a confirm never shares a step: the other call runs first, alone, or it
+    # would be saved while the turn waits and run again when the applicant answers.
     kept = one_change_per_step(reply)
-    assert [c["id"] for c in kept.tool_calls] == ["c1", "c2"]
+    assert [c["id"] for c in kept.tool_calls] == ["c1"]
     assert "tool_calls" not in kept.additional_kwargs
+    two = AIMessage(content="", tool_calls=[call("propose_portfolio_change", 2), call("propose_portfolio_change", 3)])
+    assert [c["id"] for c in one_change_per_step(two).tool_calls] == ["c2"]
     plain = AIMessage(content="", tool_calls=[call("propose_portfolio_change", 1)])
     assert one_change_per_step(plain) is plain
+    reads = AIMessage(content="", tool_calls=[call("get_my_profile", 1), call("search_programs", 2)])
+    assert one_change_per_step(reads) is reads
 
 
 # ---------------------------------------------------------------------------------------------------

@@ -581,3 +581,121 @@ def test_a_citation_carries_only_what_the_catalogue_holds():
          "url": "https://example.edu/dates"},
         {"label": "申请截止", "value": "2026-01-01（已截止）"},
     ]
+
+
+# ---------------------------------------------------------------------------------------------------
+# What a confirm promises
+# ---------------------------------------------------------------------------------------------------
+
+
+def test_a_change_never_shares_a_step_with_a_call_that_runs_at_once(advisor_with, program, monkeypatch):
+    """Beside a call that pauses, a profile update would be saved while the turn waits and run again
+    on the answer. The update runs first, alone; the change is proposed in the next step."""
+    saved: list[dict] = []
+    real = tools.ProfilePatch.model_validate
+
+    def counted(value):
+        saved.append(value)
+        return real(value)
+
+    monkeypatch.setattr(tools.ProfilePatch, "model_validate", staticmethod(counted))
+    both = [call("update_my_profile", fields_json=json.dumps({"major": "统计学"})),
+            call("propose_portfolio_change", program_id=program.id, action="add", tier="稳")]
+
+    def script(messages):
+        last_message = messages[-1]
+        if isinstance(last_message, ToolMessage) and last_message.name == "update_my_profile":
+            return AIMessage(content="", tool_calls=[both[1]])
+        if isinstance(last_message, ToolMessage):
+            return AIMessage(content="好的。")
+        return AIMessage(content="", tool_calls=both)
+
+    advisor_with(script)
+    client = TestClient(app)
+    evts = ask(client, "我是统计学专业，把这个项目加入选校")
+
+    update, proposal = opened(evts, "update_my_profile"), opened(evts, "propose_portfolio_change")
+    assert life(evts, update["id"]) == ["running", "done"]
+    assert evts.index(last(evts, update["id"])) < evts.index(proposal)
+    confirm = next(e for e in evts if e["type"] == "confirm")
+    assert confirm["stepId"] == proposal["id"]
+    answer(client, confirm, approved=True)
+    assert saved == [{"major": "统计学"}]
+
+
+def test_a_confirm_writes_only_what_the_card_listed(advisor_with, program):
+    """The portfolio is edited by hand between the question and the answer: the write is refused."""
+    advisor_with(propose(program.id, action="add", tier="稳"))
+    client = TestClient(app)
+    confirm = next(e for e in ask(client, "把这个项目加入选校") if e["type"] == "confirm")
+    subject = client.cookies.get(COOKIE_NAME)
+    with SessionLocal() as s:
+        load_or_create_profile(s, subject)
+        tools.replace_applications(s, subject, [{"program_id": program.id, "tier": "冲", "status": "submitted", "is_primary": False}])
+
+    evts = answer(client, confirm, approved=True)
+    write = last(evts, f"{confirm['stepId']}:write")
+    assert write["status"] == "failed" and "对不上" in write["result"] and "write" not in write
+    assert portfolio(subject) == [(program.id, "冲", "submitted")]
+
+
+def test_a_change_that_would_change_nothing_is_not_put_to_the_applicant(advisor_with, program):
+    client = TestClient(app)
+    advisor_with(propose(program.id, action="add", tier="稳"))
+    answer(client, next(e for e in ask(client, "加入") if e["type"] == "confirm"), approved=True)
+
+    for args, reason in [
+        ({"action": "add", "tier": "稳"}, "档位和状态都没有变化"),
+        ({"action": "set_status", "status": "considering"}, "申请状态已经是考虑中"),
+    ]:
+        advisor_with(propose(program.id, **args))
+        evts = ask(client, "再来一次")
+        end = last(evts, opened(evts, "propose_portfolio_change")["id"])
+        assert end["status"] == "failed" and reason in end["result"], end
+        assert not [e for e in evts if e["type"] == "confirm"]
+
+    advisor_with(propose(program.id, action="set_primary"))
+    first = next(e for e in ask(client, "设为首选") if e["type"] == "confirm")
+    assert first["changes"] == [{"label": "首选", "before": "还没有设", "after": f"{program.university.name} {program.name}"}]
+    answer(client, first, approved=True)
+    evts = ask(client, "设为首选")
+    assert "已经是首选" in last(evts, opened(evts, "propose_portfolio_change")["id"])["result"]
+    # Removing the first choice says that the portfolio is left without one.
+    advisor_with(propose(program.id, action="remove"))
+    gone = next(e for e in ask(client, "移出") if e["type"] == "confirm")
+    assert gone["changes"][1] == {"label": "首选", "before": "这个项目", "after": "空缺"}
+
+
+def test_the_step_cap_closes_the_call_it_never_ran(advisor_with, program, monkeypatch):
+    monkeypatch.setattr(settings, "max_agent_steps", 1)
+    advisor_with(then_say([call("search_programs", keyword=program.name)]))
+    evts = ask(TestClient(app))
+    end = last(evts, opened(evts, "search_programs")["id"])
+    assert end["status"] == "stopped" and end["result"] == steps.OUT_OF_STEPS
+    assert not [e for e in evts if e["type"] in ("stopped", "error")]
+
+
+def test_a_message_stopped_while_it_waited_for_the_thread_does_not_start(monkeypatch):
+    """Stop, retry, stop again: the retry is still waiting for the first turn, and must not run."""
+    from types import SimpleNamespace
+
+    async def gone() -> bool:
+        return True
+
+    async def never(*args, **kwargs):
+        raise AssertionError("a message nobody is waiting for must not be admitted")
+
+    monkeypatch.setattr(advisor, "_admit", never)
+    body = advisor.ChatIn(conversationId="c1", message="再问一次")
+    request = SimpleNamespace(is_disconnected=gone)
+    asyncio.run(advisor.chat(body, request, None, "subject-x"))
+    assert advisor._running == {}
+
+
+def test_a_quotation_is_cut_from_the_page_not_copied_from_the_model():
+    from app.agent import answer as answer_module
+
+    page = "Fees\n\nTuition Fee:  US$61,000 per  year — payable in two instalments."
+    assert answer_module.page_words(page, "tuition fee: us$61,000 per year") == "Tuition Fee:  US$61,000 per  year"
+    assert answer_module.page_words(page, "per year - payable") == "per  year — payable"
+    assert answer_module.page_words(page, "not on the page") is None

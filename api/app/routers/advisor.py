@@ -186,12 +186,27 @@ class Resumed:
 
 def _paused_calls(snapshot, interrupt_id: str | None) -> tuple[list[dict], str | None]:
     """The tool calls a paused turn is waiting on, and the id of the one that asked the question."""
-    messages = (snapshot.values or {}).get("messages", [])
+    messages = (getattr(snapshot, "values", None) or {}).get("messages", [])
     answered = {m.tool_call_id for m in messages if isinstance(m, ToolMessage)}
     last = next((m for m in reversed(messages) if isinstance(m, AIMessage)), None)
     calls = [c for c in (last.tool_calls if last else []) if c["id"] not in answered]
-    values = [i.value for i in snapshot.interrupts if interrupt_id is None or i.id == interrupt_id]
-    return calls, _asking_call(calls, values[0] if values else {})
+    questions = _questions(snapshot, interrupt_id)
+    return calls, _asking_call(calls, questions[0] if questions else {})
+
+
+def _resume_value(snapshot, interrupt_id: str | None, approved: bool):
+    """The applicant's answer as the paused tool receives it: yes or no, with the changes the
+    question listed, so the tool can refuse to write anything else. A question without a list (a turn
+    paused before the list existed) gets the bare answer."""
+    questions = _questions(snapshot, interrupt_id)
+    shown = questions[0].get("changes") if questions and isinstance(questions[0], dict) else None
+    return approved if shown is None else {"approved": approved, "changes": shown}
+
+
+def _questions(snapshot, interrupt_id: str | None) -> list:
+    """What the pending interrupts asked (the one named, or all of them)."""
+    return [getattr(i, "value", None) for i in snapshot.interrupts
+            if interrupt_id is None or getattr(i, "id", None) == interrupt_id]
 
 
 def _asking_call(calls: list[dict], question) -> str | None:
@@ -488,6 +503,11 @@ async def chat(
     ended = await _take_over(thread)
     if ended is None:
         return _sse(_busy(), client_id)
+    # A message that waited here may have been stopped while it waited (the page stops listening at
+    # once, and the stop it sends is for the turn that was running): it does not start.
+    if await request.is_disconnected():
+        _release(thread, ended)
+        return _sse(_busy(), client_id)
     try:
         ticket = await _admit(request, response, client_id, windows=True)
     except BaseException:
@@ -555,6 +575,8 @@ async def confirm(
         # A confirm resumes a turn that already took a window slot, and runs only when a change is
         # pending, so it is held to the token caps only; refusing it on a window would strand the change
         # (D7).
+        calls, asked = _paused_calls(snapshot, body.interrupt_id)
+        answer = _resume_value(snapshot, body.interrupt_id, body.approved)
         ticket = await _admit(request, response, client_id, windows=False)
     except BaseException:
         if ended is not None:
@@ -573,9 +595,8 @@ async def confirm(
             finally:
                 _release(thread, ended)
 
-    calls, asked = _paused_calls(snapshot, body.interrupt_id)
     # Named, the answer resumes exactly that change; unnamed (an older page), the only one pending.
-    resume = {body.interrupt_id: body.approved} if body.interrupt_id else body.approved
+    resume = {body.interrupt_id: answer} if body.interrupt_id else answer
     turn = _stream(Command(resume=resume), config, Resumed(approved=body.approved, calls=calls, asked=asked))
     return _sse(_detached(turn, ticket, after=after), client_id)
 

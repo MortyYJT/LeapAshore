@@ -197,6 +197,19 @@ test("stopping marks what was running and says only what is known", () => {
   assert.equal(answerText(afterWrite), "记下了，");
 });
 
+test("a turn the server stopped is shown as stopped, not as finished", () => {
+  const turn = finishTurn(
+    play(newTurn("t1", "q"), [
+      ...SEARCH.slice(0, 4),
+      { type: "step", id: "call-1", status: "stopped", ms: 900, result: "已停止，没有执行" },
+      { type: "stopped", wrote: false },
+    ]),
+  );
+  assert.equal(turn.state, "stopped");
+  assert.equal(steps(turn)[1].status, "stopped");
+  assert.ok(turn.note?.includes("别处"));
+});
+
 test("a dropped connection fails the turn and the step that was running", () => {
   const turn = failTurn(play(newTurn("t1", "q"), SEARCH.slice(0, 4)), "网络错误，请稍后再试。");
   assert.equal(turn.state, "failed");

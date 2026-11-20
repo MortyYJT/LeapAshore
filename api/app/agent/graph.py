@@ -188,21 +188,34 @@ def with_unanswered_calls_closed(messages: list[AnyMessage]) -> list[AnyMessage]
     return out
 
 
-CONFIRMED_TOOL = "propose_portfolio_change"
+# The tools that stop the graph to ask the applicant first. A tool added with a confirm goes here.
+CONFIRMED_TOOLS = {"propose_portfolio_change"}
 
 
 def one_change_per_step(reply: AIMessage) -> AIMessage:
-    """Keep only the first portfolio change of a reply that asks for several at once.
+    """Give a change that asks for a confirm a step of its own, and keep one such change per step.
 
     Every `interrupt` in one step shares the step's id, and a step that pauses twice hands the first
     answer to whichever of its parallel tool calls asks first. One change per step gives each confirm
-    card its own id and its own answer (openspec advisor-persistence D5). The dropped calls never reach
-    the history, so the model sees the first change's outcome and proposes the next one itself.
+    card its own id and its own answer (openspec advisor-persistence D5).
+
+    The step's other calls must not run beside it either. They run in parallel with the one that
+    pauses, so a profile update made beside a proposed change is already saved while the turn waits,
+    and is run a second time when the applicant answers (the paused step starts again from its top).
+    So when a reply mixes the two, the other calls run first and the change is left for the next step.
+
+    The dropped calls never reach the history, so the model sees the outcome of what did run and asks
+    for the rest itself.
     """
-    calls = [c for c in reply.tool_calls if c["name"] == CONFIRMED_TOOL]
-    if len(calls) < 2:
+    asking = [c for c in reply.tool_calls if c["name"] in CONFIRMED_TOOLS]
+    if not asking:
         return reply
-    dropped = {c["id"] for c in calls[1:]}
+    if len(asking) < len(reply.tool_calls):
+        dropped = {c["id"] for c in asking}
+    elif len(asking) > 1:
+        dropped = {c["id"] for c in asking[1:]}
+    else:
+        return reply
     # The raw OpenAI calls would otherwise be sent back alongside the kept ones.
     extra = {k: v for k, v in reply.additional_kwargs.items() if k != "tool_calls"}
     return reply.model_copy(

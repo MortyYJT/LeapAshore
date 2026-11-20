@@ -164,6 +164,10 @@ export function applyEvent(turn: Turn, event: AdvisorEvent): Turn {
       }
       return { ...turn, blocks };
     }
+    case "stopped":
+      // Stopped from somewhere else: a stop this page asked for is no longer listened to. Another tab
+      // sent a message in this conversation, or stopped it.
+      return { ...turn, state: "stopped", note: "这一轮在别处被停下了，没有写完。" };
     default:
       return turn;
   }
@@ -183,7 +187,7 @@ export function finishTurn(turn: Turn): Turn {
     return block;
   });
   const waiting = blocks.some((block) => isConfirm(block) && block.state === "pending");
-  return { ...turn, blocks, state: waiting ? "waiting" : failed ? "failed" : "done" };
+  return { ...turn, blocks, state: waiting ? "waiting" : failed ? "failed" : turn.state === "stopped" ? "stopped" : "done" };
 }
 
 /**

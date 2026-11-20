@@ -53,13 +53,24 @@ test("lists and headings are read by their first characters", () => {
   assert.deepEqual(parseAnswer("## 材料\n- 成绩单\n- **推荐信** 两封\n\n1. 先查日期\n2、再备材料\n结论。"), [
     { type: "heading", content: [{ type: "text", text: "材料" }] },
     { type: "list", ordered: false, items: [[{ type: "text", text: "成绩单" }], [{ type: "strong", text: "推荐信" }, { type: "text", text: " 两封" }]] },
-    { type: "list", ordered: true, items: [[{ type: "text", text: "先查日期" }], [{ type: "text", text: "再备材料" }]] },
+    { type: "list", ordered: true, items: [[{ type: "text", text: "先查日期" }], [{ type: "text", text: "再备材料" }]], numbers: [1, 2] },
     { type: "paragraph", lines: [[{ type: "text", text: "结论。" }]] },
   ]);
 });
 
-test("a sentence that opens with a decimal is not a list item", () => {
-  assert.deepEqual(parseAnswer("6.5 分是总分要求。"), [{ type: "paragraph", lines: [[{ type: "text", text: "6.5 分是总分要求。" }]] }]);
+test("a sentence that opens with a figure keeps the figure", () => {
+  for (const sentence of ["6.5 分是总分要求。", "9、10 月截止。", "80、85 分分别是两类院校的要求。"]) {
+    assert.deepEqual(parseAnswer(sentence), [{ type: "paragraph", lines: [[{ type: "text", text: sentence }]] }]);
+  }
+});
+
+test("a numbered item keeps the number it was written with", () => {
+  assert.deepEqual(parseAnswer("先说第二点：\n2. 语言成绩\n\n另外：\n5、推荐信"), [
+    { type: "paragraph", lines: [[{ type: "text", text: "先说第二点：" }]] },
+    { type: "list", ordered: true, items: [[{ type: "text", text: "语言成绩" }]], numbers: [2] },
+    { type: "paragraph", lines: [[{ type: "text", text: "另外：" }]] },
+    { type: "list", ordered: true, items: [[{ type: "text", text: "推荐信" }]], numbers: [5] },
+  ]);
 });
 
 test("a mark still being typed is shown as it is until it closes", () => {

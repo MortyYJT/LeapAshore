@@ -131,12 +131,18 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
       if ((event.metaKey || event.ctrlKey) && !event.altKey && !event.shiftKey && event.key.toLowerCase() === "j") {
         event.preventDefault();
         if (pathname === "/advisor") setFocusRequest((n) => n + 1);
-        else if (window.matchMedia(DOCK_QUERY).matches) setOpen(!readDock());
-        else router.push("/advisor");
+        else if (window.matchMedia(DOCK_QUERY).matches) {
+          const closing = readDock();
+          // Focus inside a dock that is closing would be left on nothing: it goes back to the switch.
+          if (closing && document.getElementById("advisor-dock")?.contains(document.activeElement)) {
+            document.getElementById("advisor-toggle")?.focus();
+          }
+          setOpen(!closing);
+        } else router.push("/advisor");
         return;
       }
-      // Esc belongs to whatever is open on top first: a dialog, then the account menu.
-      if (event.key !== "Escape" || event.defaultPrevented || !run.current) return;
+      // Esc belongs to whatever is open on top first: an input method's candidates, a dialog, the account menu.
+      if (event.key !== "Escape" || event.defaultPrevented || event.isComposing || event.keyCode === 229 || !run.current) return;
       if (document.querySelector('dialog[open], .uc-menu[data-open="true"]')) return;
       event.preventDefault();
       stopRef.current();
@@ -150,10 +156,14 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
   const owner = state?.account?.email ?? "";
   /** The owner the stored conversation was last read for; null before the session is known. */
   const settledFor = useRef<string | null>(null);
+  /** Whose conversation is on screen while nobody is signed in (a session that ran out). */
+  const leftBy = useRef<string | null>(null);
   const GATED = "\u0000signed-out";
 
   useEffect(() => {
-    if (!ready) return;
+    // Without an answer from /api/auth/me nothing is known about whose browser this is: the stored
+    // conversation is neither shown nor replaced.
+    if (!ready || !state) return;
     const previous = settledFor.current;
     if (gated) {
       // Signed out: the transcript is the account's, so it leaves this browser with the session.
@@ -164,15 +174,25 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
       // the last message was refused; a sign-out, or any other way of ending up signed out, clears it.
       const last = turnsRef.current.at(-1)?.blocks.at(-1);
       const expired = last?.type === "error" && last.code === "unauthorized";
-      if (previous !== null && previous !== GATED && !busy.current && !expired) {
-        setTurns([]);
-        setConversationId(uid());
+      if (previous !== null && previous !== GATED) {
+        leftBy.current = expired ? previous : null;
+        if (!busy.current && !expired) {
+          setTurns([]);
+          setConversationId(uid());
+        }
       }
       settledFor.current = GATED;
       return;
     }
     if (previous === owner) return;
     settledFor.current = owner;
+    if (previous === GATED && leftBy.current !== null && leftBy.current !== owner) {
+      // Somebody else signed in after a session ran out: what the last account left on screen goes,
+      // except a message this account is sending right now.
+      setTurns((turns) => turns.filter((turn) => turn.state === "running"));
+      if (!busy.current) setConversationId(uid());
+    }
+    leftBy.current = null;
     if (previous === null) {
       let raw: string | null = null;
       try {
@@ -188,7 +208,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
       setTurns([]);
       setConversationId(uid());
     }
-  }, [ready, gated, owner]);
+  }, [ready, state, gated, owner]);
 
   // Written a moment after the last change rather than on every token of a streaming reply.
   useEffect(() => {
@@ -196,7 +216,8 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
     const write = () => {
       try {
         if (turnsRef.current.length) localStorage.setItem(STORAGE_KEY, serialize(owner, conversation.current, turnsRef.current));
-        else localStorage.removeItem(STORAGE_KEY);
+        // An empty conversation removes this account's stored one, never another account's.
+        else if (restore(localStorage.getItem(STORAGE_KEY), owner)) localStorage.removeItem(STORAGE_KEY);
       } catch {}
     };
     const timer = window.setTimeout(write, 400);

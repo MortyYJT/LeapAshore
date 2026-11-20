@@ -273,30 +273,45 @@ def propose_portfolio_change(
         rows.pop(program_id)
         kept = f"在组合里（{before['tier']}，{_status_label(before['status'])}）"
         changes.append(_change("选校组合", kept, "移出"))
+        if before["is_primary"]:
+            changes.append(_change("首选", "这个项目", "空缺"))
         summary = f"把「{label}」移出选校组合"
     elif action == "set_status":
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再改状态。"
+        if before["status"] == status:
+            return f"未执行：「{label}」的申请状态已经是{STATUS_LABELS[ApplicationStatus(status)]}。"
         rows[program_id]["status"] = status
         changes.append(_change("申请状态", _status_label(before["status"]), STATUS_LABELS[ApplicationStatus(status)]))
         summary = f"把「{label}」的申请状态改为：{STATUS_LABELS[ApplicationStatus(status)]}"
     else:
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再设为首选。"
+        if primary == program_id:
+            return f"未执行：「{label}」已经是首选。"
         for r in rows.values():
             r["is_primary"] = r["program_id"] == program_id
-        changes.append(_change("首选", "这个项目" if primary == program_id else (primary_now or "还没有设"), label))
+        changes.append(_change("首选", primary_now or "还没有设", label))
         summary = f"把「{label}」设为首选"
 
     # The graph stops here. Resuming re-runs this tool from the top, which is safe because nothing
     # above has written anything.
+    if not changes:
+        return f"未执行：「{label}」已经在选校组合里，档位和状态都没有变化。"
     # `tool` names this tool, so the stream can tie the question to the step that asked it.
-    approved = interrupt({
+    answer = interrupt({
         "type": "confirm_portfolio", "tool": "propose_portfolio_change", "summary": summary,
         "target": target, "changes": changes,
     })
+    # The answer comes back with the changes the applicant was shown (`routers.advisor`); a bare
+    # yes or no is an answer from before they were sent.
+    approved, shown = (answer.get("approved"), answer.get("changes")) if isinstance(answer, dict) else (answer, None)
     if not approved:
         return f"用户取消了操作：{summary}。组合未改动。"
+    if shown is not None and shown != changes:
+        # The portfolio was edited between the question and the answer: what would be written now is
+        # not what the applicant agreed to.
+        return f"未执行：「{label}」在确认之前已经被改过，和刚才列出的改动对不上。请重新提出这次修改。"
     with SessionLocal() as s:
         # A visitor who opened the advisor first has a cookie but no subject row yet, and the
         # portfolio's foreign key would refuse the write.
