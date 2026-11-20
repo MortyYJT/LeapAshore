@@ -499,6 +499,23 @@ async function adminPass(browser, email, errors) {
     await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).leadDays.length === 4);
     await reminderSwitch.getByRole("button", { name: "开启", exact: true }).click();
     await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).enabled === true);
+    // ---------- settings: the applicant's own model key (PRD-multi-device 3.5) ----------
+    const OWN_KEY = "sk-walkthrough0000000000000000beef";
+    await page.getByRole("tab", { name: "模型密钥", exact: true }).click();
+    const keyPanel = page.locator("#uc-panel-model");
+    check("模型密钥：说明密钥存在哪里、会经过服务器、运营者读得到", await keyPanel.getByRole("heading", { name: "这把密钥会到哪里" }).isVisible() && /只存在这台设备的这个浏览器里/.test(await keyPanel.innerText()) && /运营者在技术上读得到/.test(await keyPanel.innerText()));
+    await keyPanel.getByRole("textbox", { name: "密钥" }).fill("sk-abc def");
+    await keyPanel.getByRole("button", { name: "保存", exact: true }).click();
+    check("模型密钥：带空格的密钥不保存，原因写在输入框下", await keyPanel.getByRole("alert").filter({ hasText: "不应该有空格" }).isVisible() && await page.evaluate(() => localStorage.getItem("leapashore:model-key")) === null);
+    await keyPanel.getByRole("group", { name: "服务商" }).getByRole("button", { name: "硅基流动", exact: true }).click();
+    await keyPanel.getByRole("textbox", { name: "密钥" }).fill(OWN_KEY);
+    await keyPanel.getByRole("button", { name: "保存", exact: true }).click();
+    await keyPanel.getByText("sk-…beef").waitFor();
+    const keyStored = await page.evaluate(() => JSON.parse(localStorage.getItem("leapashore:model-key") ?? "null"));
+    check("模型密钥：保存在这个浏览器里，页面上只显示头尾", keyStored && keyStored.provider === "siliconflow" && keyStored.key === OWN_KEY && !(await page.locator("body").innerText()).includes(OWN_KEY) && await keyPanel.getByRole("textbox").count() === 0, keyStored && keyStored.provider);
+    await keyPanel.getByRole("button", { name: "删除", exact: true }).click();
+    await keyPanel.getByRole("textbox", { name: "密钥" }).waitFor();
+    check("模型密钥：删除后浏览器里不再有它", await page.evaluate(() => localStorage.getItem("leapashore:model-key")) === null);
     await page.getByRole("button", { name: "关闭设置" }).click();
     // Opening the link sends nothing (a mail gateway opens every link); the button does.
     let unsubscribePosts = 0;
@@ -1116,8 +1133,11 @@ async function adminPass(browser, email, errors) {
     const leaving = await other.newPage();
     watch(leaving, "logout", errors);
     await leaving.goto(`${BASE}/me`);
+    // A model key stored in this browser goes with the session.
+    await leaving.evaluate(() => localStorage.setItem("leapashore:model-key", JSON.stringify({ provider: "deepseek", key: "sk-walkthrough0000000000000000beef" })));
     await leaving.getByRole("button", { name: "退出登录" }).click();
     await leaving.waitForURL(`${BASE}/`);
+    check("退出登录：浏览器里的模型密钥被删除", await leaving.evaluate(() => localStorage.getItem("leapashore:model-key")) === null);
     await leaving.getByRole("button", { name: "我的，打开用户菜单" }).click();
     await leaving.locator("#user-menu").getByRole("button", { name: "登录", exact: true }).waitFor();
     const afterLogout = await leaving.evaluate(async () => (await fetch("/api/profile")).status);
