@@ -224,8 +224,20 @@ def find_created(session: Session, client_id: str, create_key: str) -> Applicati
     )
 
 
+def _same_text(a: str, b: str) -> bool:
+    return "".join(a.casefold().split()) == "".join(b.casefold().split())
+
+
+def same_named(session: Session, client_id: str, payload: RecordCreate) -> bool:
+    """Whether the subject already has a record with this school and name, whatever the case and spacing."""
+    return any(
+        _same_text(row["school"], payload.school) and _same_text(row["name"], payload.name)
+        for row in read_records(client_id, session)
+    )
+
+
 def create_record(
-    session: Session, client_id: str, payload: RecordCreate, create_key: str
+    session: Session, client_id: str, payload: RecordCreate, create_key: str, *, unless_same_named: bool = False
 ) -> tuple[dict, bool]:
     """Create a manual application once per key; returns the record and whether this call made it.
 
@@ -243,6 +255,10 @@ def create_record(
     existing = find_created(session, client_id, create_key)
     if existing is not None:
         return view(existing), False
+    if unless_same_named and same_named(session, client_id, payload):
+        # The advisor's rule, not the form's: checked here, under the lock, so two cards for the same
+        # program confirmed together add one record.
+        raise InvalidRecord("已经有同名的申请")
     plan = ApplicationPlan(
         id=str(uuid4()),
         client_id=client_id,

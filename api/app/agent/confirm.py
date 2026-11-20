@@ -5,10 +5,15 @@ after the applicant says yes. The question it asks lists every stored value the 
 the value it becomes; the answer comes back with that list (`routers.advisor`), and the tool writes
 only when what it would write is still what was listed.
 
-A reply starts with one of four phrases, and `app.agent.steps` and `routers.advisor` read the outcome
+A reply starts with one of five phrases, and `app.agent.steps` and `routers.advisor` read the outcome
 from the phrase: `CHANGED` (it wrote), `ALREADY` (an earlier run of the same confirmed call wrote, this
-one wrote nothing), `DECLINED` (the applicant said no) and `REFUSED` (nothing was asked or written,
-with the reason).
+one wrote nothing), `SAME` (what was asked for is what is stored, so there was nothing to ask or
+write), `DECLINED` (the applicant said no) and `REFUSED` (nothing was asked or written, with the
+reason).
+
+`SAME` is not a refusal on purpose. A step that is run again after the process died between the write
+and its checkpoint finds its own change already stored; saying "refused" then would tell the applicant
+that a change they confirmed, and that was written, did not happen.
 """
 
 import json
@@ -20,6 +25,7 @@ from app.models.application import ApplicationStatus
 
 CHANGED = "已执行："
 ALREADY = "已生效："
+SAME = "已是如此："
 DECLINED = "用户取消了操作："
 REFUSED = "未执行："
 

@@ -37,7 +37,7 @@ from langgraph.types import Command
 from pydantic import BaseModel, Field
 
 from app import limits
-from app.agent import halt, steps
+from app.agent import halt, stated, steps
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
@@ -550,7 +550,8 @@ async def chat(
         finally:
             _release(thread, ended)
 
-    turn = _stream({"messages": [HumanMessage(content=body.message)], "trace": None}, config)
+    # The day it was sent stays with the message: a date written without a year is read from it later.
+    turn = _stream({"messages": [HumanMessage(content=body.message, additional_kwargs=stated.stamp())], "trace": None}, config)
     return _sse(_detached(turn, ticket, after=after), client_id)
 
 

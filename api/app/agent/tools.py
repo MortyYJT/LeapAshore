@@ -22,7 +22,7 @@ from sqlalchemy.orm import selectinload
 
 from app.agent import catalog_match
 from app.agent.application_tools import APPLICATION_TOOLS, applications_json
-from app.agent.confirm import CHANGED, DECLINED, REFUSED, STATUS_LABELS, answer_of
+from app.agent.confirm import CHANGED, DECLINED, REFUSED, SAME, STATUS_LABELS, answer_of
 from app.agent.confirm import change as _change
 from app.agent.confirm import client_id as _client_id
 from app.agent.confirm import status_label as _status_label
@@ -258,7 +258,7 @@ def propose_portfolio_change(
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再改状态。"
         if before["status"] == status:
-            return f"未执行：「{label}」的申请状态已经是{STATUS_LABELS[ApplicationStatus(status)]}。"
+            return f"{SAME}「{label}」的申请状态已经是{STATUS_LABELS[ApplicationStatus(status)]}。"
         rows[program_id]["status"] = status
         changes.append(_change("申请状态", _status_label(before["status"]), STATUS_LABELS[ApplicationStatus(status)]))
         summary = f"把「{label}」的申请状态改为：{STATUS_LABELS[ApplicationStatus(status)]}"
@@ -266,7 +266,7 @@ def propose_portfolio_change(
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再设为首选。"
         if primary == program_id:
-            return f"未执行：「{label}」已经是首选。"
+            return f"{SAME}「{label}」已经是首选。"
         for r in rows.values():
             r["is_primary"] = r["program_id"] == program_id
         changes.append(_change("首选", primary_now or "还没有设", label))
@@ -275,7 +275,7 @@ def propose_portfolio_change(
     # The graph stops here. Resuming re-runs this tool from the top, which is safe because nothing
     # above has written anything.
     if not changes:
-        return f"未执行：「{label}」已经在选校组合里，档位和状态都没有变化。"
+        return f"{SAME}「{label}」已经在选校组合里，档位和状态都没有变化。"
     # `tool` names this tool, so the stream can tie the question to the step that asked it.
     answer = interrupt({
         "type": "confirm_portfolio", "tool": "propose_portfolio_change", "summary": summary,

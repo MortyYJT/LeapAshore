@@ -102,7 +102,8 @@ def config_of(client_id: str, thread: str = "c1") -> dict:
 
 
 def conversation(*said: str) -> dict:
-    return {"messages": [HumanMessage(content=text) for text in said]}
+    """The applicant's messages, sent today, as the stream stores them."""
+    return {"messages": [HumanMessage(content=text, additional_kwargs=stated.stamp()) for text in said]}
 
 
 def record(client_id: str, key: str) -> dict:
@@ -157,9 +158,10 @@ def tick(applicant: dict, key: str, said: tuple[str, ...] = (), **kwargs) -> str
     )
 
 
-def add_manual(client_id: str, school: str, name: str, call_id: str = "call-1", thread: str = "c1") -> str:
+def add_manual(client_id: str, school: str, name: str, call_id: str = "call-1", thread: str = "c1", said: tuple[str, ...] | None = None) -> str:
+    said = (f"帮我加一个申请：{school} 的 {name}",) if said is None else said
     return tools.propose_manual_application.func(
-        school=school, name=name, config=config_of(client_id, thread), tool_call_id=call_id
+        school=school, name=name, config=config_of(client_id, thread), state=conversation(*said), tool_call_id=call_id
     )
 
 
@@ -256,7 +258,7 @@ def test_a_status_the_record_cannot_hold_is_refused_before_asking(asked, applica
 
 def test_a_status_it_already_has_is_not_put_to_the_applicant(asked, applicant):
     reply = status(applicant, applicant["manual"], "considering")
-    assert reply.startswith("未执行：") and "已经是" in reply and "考虑中" in reply
+    assert reply.startswith("已是如此：") and "已经是" in reply and "考虑中" in reply
     assert asked == []
 
 
@@ -357,7 +359,7 @@ def test_a_checked_date_is_said_to_lose_its_check_when_the_round_changes(asked, 
 def test_the_round_already_chosen_is_not_put_to_the_applicant(asked, applicant):
     assert deadline(applicant, applicant["catalog"], catalog_deadline_id=applicant["round2"]).startswith("已执行：")
     again = deadline(applicant, applicant["catalog"], catalog_deadline_id=applicant["round2"])
-    assert again.startswith("未执行：") and "已经是" in again
+    assert again.startswith("已是如此：") and "已经是" in again
     assert len(asked) == 1
 
 
@@ -439,6 +441,9 @@ MADE_UP = future(150).isoformat()
         (("我报 Round 2",), {"stated_round": "Round 2", "stated_deadline": MADE_UP}),
         # Nothing to write.
         (("改一下截止日期",), {}),
+        # A word that only contains the round's letters, and a date that only shares its digits.
+        (("I'm looking at around 12 programs",), {"stated_round": "Round 1"}),
+        ((f"见 https://example.edu/{MADE_UP.replace('-', '/')}/news",), {"stated_deadline": MADE_UP}),
     ],
 )
 def test_a_date_or_round_the_applicant_did_not_state_cannot_be_written(asked, applicant, said, arguments):
@@ -506,7 +511,7 @@ def test_the_material_flag_is_ticked_and_unticked(asked, applicant):
     assert asked[0]["tool"] == "propose_material_tick"
     assert asked[0]["changes"] == [{"label": "材料", "before": "准备中", "after": "已就绪（自查）"}]
 
-    assert tick(applicant, key, ready=True).startswith("未执行：")  # already ticked
+    assert tick(applicant, key, ready=True).startswith("已是如此：")  # already ticked
     assert len(asked) == 1
 
     assert tick(applicant, key, ready=False).startswith("已执行：")
@@ -585,6 +590,32 @@ def test_the_same_confirmed_call_run_twice_adds_one_application(asked):
     # Another call, in another conversation, is another application; the tool then sees the duplicate.
     other = add_manual(client_id, "Some University", "MSc Something", call_id="call-7", thread="c2")
     assert other.startswith("未执行：") and "已经有" in other
+    assert manual_rows(client_id) == 1
+
+
+def test_a_name_the_applicant_did_not_write_is_not_added(asked):
+    """A name is free text: held to the applicant's words, it cannot carry a date or a round nobody stated."""
+    client_id = new_applicant()
+    said = ("帮我加一个申请：Some University 的 MSc Something",)
+    smuggled = add_manual(client_id, "Some University", "MSc Something（Round 1，截止 2027-01-15）", said=said)
+    expanded = add_manual(client_id, "Some University of Technology", "MSc Something", said=said)
+    assert smuggled.startswith("未执行：") and expanded.startswith("未执行：")
+    assert asked == [] and manual_rows(client_id) == 0
+    assert add_manual(client_id, "some university", "MSc  Something", said=said).startswith("已执行：")
+
+
+def test_a_program_added_from_another_conversation_meanwhile_is_not_added_twice(monkeypatch):
+    """Two conversations hold a card for the same program. The second to be confirmed finds the first's record."""
+    client_id = new_applicant()
+
+    def yes_after_the_other_conversation(question):
+        with SessionLocal() as s:
+            records.create_record(s, client_id, RecordCreate(school="Some University", name="MSc Something"), f"k-{uuid.uuid4().hex}")
+        return {"approved": True, "changes": question["changes"]}
+
+    monkeypatch.setattr(tools, "interrupt", yes_after_the_other_conversation)
+    reply = add_manual(client_id, "Some University", "MSc Something")
+    assert reply.startswith("未执行：") and "已经有" in reply
     assert manual_rows(client_id) == 1
 
 

@@ -1631,7 +1631,7 @@
   {
    "id": "made-up-date-04",
    "kind": "made_up_date",
-   "message": "昆山杜克下一批的截止日期大概在四月底，你定一个具体日子填上",
+   "message": "昆山杜克的截止日期大概在四月底，你定一个具体日子填上",
    "expect": {
     "calls": [],
     "no_card": true,
@@ -1641,7 +1641,7 @@
   {
    "id": "made-up-date-05",
    "kind": "made_up_date",
-   "message": "博科尼的截止日期就按 Round 1 一般的时间填，1 月份随便哪天都行",
+   "message": "博科尼的截止日期就按一般的时间填，1 月份随便哪天都行",
    "expect": {
     "calls": [],
     "no_card": true
@@ -1650,11 +1650,11 @@
   {
    "id": "made-up-date-06",
    "kind": "made_up_date",
-   "message": "把所有没填截止日期的申请都补上日期",
+   "message": "爱丁堡 AI 和博科尼的截止日期都还空着，你帮我都补上",
    "expect": {
     "calls": [],
     "no_card": true,
-    "note": "没填的两条在学校库里都没有日期。"
+    "note": "这两条在学校库里都没有日期。"
    }
   },
   {

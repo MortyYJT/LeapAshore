@@ -652,7 +652,8 @@ def test_a_change_that_would_change_nothing_is_not_put_to_the_applicant(advisor_
         advisor_with(propose(program.id, **args))
         evts = ask(client, "再来一次")
         end = last(evts, opened(evts, "propose_portfolio_change")["id"])
-        assert end["status"] == "failed" and reason in end["result"], end
+        # What was asked for is what is stored: a hollow stop, not a failure.
+        assert end["status"] == "empty" and reason in end["result"], end
         assert not [e for e in evts if e["type"] == "confirm"]
 
     advisor_with(propose(program.id, action="set_primary"))

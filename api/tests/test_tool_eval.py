@@ -81,6 +81,8 @@ def test_no_date_in_a_made_up_date_case_was_written_by_the_applicant():
     for case in (c for c in CASES if c["kind"] == "made_up_date"):
         said = [t["content"] for t in case.get("history", []) if t["role"] == "user"] + [case["message"]]
         assert stated.dates_in(said, date(2026, 11, 20)) == set(), case["id"]
+        # Nor a round: a round the applicant named would be a card the tool is right to raise.
+        assert not re.search(r"(?i)round|轮|批|入学|intake", " ".join(said)), case["id"]
 
 
 def test_a_set_with_a_mistake_in_it_is_reported():
@@ -90,11 +92,13 @@ def test_a_set_with_a_mistake_in_it_is_reported():
         {"id": "a", "kind": "nonsense", "message": "", "expect": {"calls": [{"tool": "no_such_tool"}], "forbid": ["nor_this"]}},
         {"id": "b", "kind": "status", "message": "改", "expect": {"calls": [
             {"tool": "propose_application_status", "args": {"application_id": "@nobody"}}]}},
+        {"id": "c", "kind": "status", "message": "两个都改", "expect": {"ordered": False, "calls": [
+            {"tool": "propose_application_status"}, {"tool": "propose_application_status"}]}},
     ]}
     problems = "\n".join(check_set(broken))
     for expected in ("a: id used twice", "unknown kind 'nonsense'", "a: no message", "has no argument 'application'",
                      "unknown matcher ['equals']", "unknown tool 'no_such_tool'", "unknown tool 'nor_this'",
-                     "@nobody is not in the fixture", "no case of kind", "no case expects"):
+                     "@nobody is not in the fixture", "no case of kind", "no case expects", "need ordered matching"):
         assert expected in problems, expected
 
 
@@ -207,12 +211,16 @@ def test_a_made_up_date_is_scored_twice_the_model_s_attempt_and_the_server_s_car
     expect = {"calls": [], "no_card": True}
     held_back = score(recorded(expect, [call("get_my_applications")], kind="made_up_date"))
     assert held_back == {"tool_ok": True, "args_ok": None, "args_ok_any": None, "exact": True,
-                         "card_raised": False, "write_attempted": False}
+                         "card_raised": False, "deadline_card_raised": False, "write_attempted": False}
     tried = score(recorded(expect, [call("propose_application_deadline", application_id="a", stated_deadline="2027-01-15")], kind="made_up_date"))
     assert (tried["tool_ok"], tried["write_attempted"], tried["card_raised"]) == (False, True, False)
     leaked = score(recorded(expect, [call("propose_application_deadline", application_id="a", stated_deadline="2027-01-15")],
                             kind="made_up_date", cards=[{"tool": "propose_application_deadline", "changes": []}]))
-    assert leaked["card_raised"] is True
+    assert leaked["card_raised"] is True and leaked["deadline_card_raised"] is True
+    # A card for something else the case did not ask for is the model's miss, not a date getting through.
+    other = score(recorded(expect, [call("propose_application_status", application_id="a", status="applying")],
+                           kind="made_up_date", cards=[{"tool": "propose_application_status", "changes": []}]))
+    assert (other["card_raised"], other["deadline_card_raised"], other["tool_ok"]) == (True, False, False)
 
 
 def test_an_ambiguous_request_is_checked_for_a_question_by_its_punctuation_only():
@@ -235,7 +243,7 @@ def test_the_counts_cover_only_the_cases_that_ran(tmp_path):
     assert (out["cases"], out["ran"], out["not_run"], out["errors"]) == (6, 4, 1, 1)
     assert out["tool_choice"] == {"ok": 3, "of": 4} and out["exact"] == {"ok": 2, "of": 4}
     assert out["arguments"] == {"ok": 1, "of": 2}
-    assert out["no_card"] == {"cases": 1, "cards_raised": 0, "write_attempts": 1}
+    assert out["no_card"] == {"cases": 1, "cards_raised": 0, "deadline_cards_raised": 0, "write_attempts": 1}
     assert out["asked_back"] == {"cases": 1, "question_mark": 1}
     assert out["by_kind"]["status"] == {"cases": 2, "tool_choice_ok": 2, "exact_ok": 1}
 
@@ -367,7 +375,7 @@ def test_a_run_records_what_the_model_did_and_leaves_no_account_behind(scripted,
     assert m["tool_choice"] == {"ok": 5, "of": 6}, "the made-up date was attempted, which is the model's miss"
     assert m["arguments"] == {"ok": 2, "of": 3}, "the wrong round is an argument miss"
     assert m["exact"] == {"ok": 4, "of": 6}
-    assert m["no_card"] == {"cases": 1, "cards_raised": 0, "write_attempts": 1}
+    assert m["no_card"] == {"cases": 1, "cards_raised": 0, "deadline_cards_raised": 0, "write_attempts": 1}
     assert m["asked_back"] == {"cases": 1, "question_mark": 1}
 
     file = tmp_path / "tools.json"

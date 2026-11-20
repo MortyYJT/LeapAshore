@@ -426,7 +426,7 @@ def test_a_confirm_after_a_restart_writes_the_change_once(propose, service, appl
 
 def test_an_added_application_confirmed_after_a_restart_is_added_once(propose, service, applicant):
     propose("propose_manual_application", school="Another University", name="MSc Robotics")
-    card = confirm_of(ask(applicant["client"], "手动加一个申请"))
+    card = confirm_of(ask(applicant["client"], "手动加一个申请：Another University 的 MSc Robotics"))
     before = manual_rows(applicant["id"])
 
     service.restart()
@@ -526,7 +526,7 @@ CHILD = textwrap.dedent(
 
     async def main():
         if step == "pause":
-            out = await graph.ainvoke({"messages": [HumanMessage(content="改一下")], "trace": None}, config,
+            out = await graph.ainvoke({"messages": [HumanMessage(content=sys.argv[5])], "trace": None}, config,
                                       durability="sync")
             print(json.dumps({"paused": [i.id for i in out["__interrupt__"]]}), flush=True)
             return
@@ -551,8 +551,9 @@ CHILD = textwrap.dedent(
 
 def child(step: str, subject: str, tool: str, arguments: dict) -> subprocess.CompletedProcess:
     env = {**os.environ, "PYTHONPATH": str(API_DIR)}
+    message = "手动加一个申请：" + " 的 ".join(str(value) for value in arguments.values())
     return subprocess.run(
-        [sys.executable, "-c", CHILD, step, subject, tool, json.dumps(arguments)],
+        [sys.executable, "-c", CHILD, step, subject, tool, json.dumps(arguments), message],
         cwd=API_DIR, env=env, capture_output=True, text=True, timeout=120,
     )
 
@@ -578,7 +579,8 @@ def test_a_process_killed_after_the_write_does_not_write_again_when_the_card_is_
         again = json.loads(third.stdout)
         # The card was still waiting: the kill came before the checkpoint that would have closed it.
         assert again["pending"] is True
-        assert "未执行" in again["reply"] and "已经是已提交" in again["reply"]
+        # The change is stored, and the reply says so; it does not say the change was refused.
+        assert "已是如此" in again["reply"] and "已经是已提交" in again["reply"] and "未执行" not in again["reply"]
         assert version_of(key) == before + 1, "the second answer wrote nothing"
 
         assert json.loads(child("resume", client_id, "propose_application_status", arguments).stdout) == {"pending": False}
@@ -637,6 +639,23 @@ def test_a_change_an_earlier_run_already_wrote_is_a_finished_step_that_did_not_w
         "propose_manual_application", ToolMessage(content="已生效：「A B」之前已经加入我的申请，这次没有重复写入。", tool_call_id="c1")
     )
     assert (outcome.status, outcome.result, outcome.write) == ("done", "之前已经写入，这次没有重复写", False)
+
+
+def test_a_change_that_is_already_stored_is_a_hollow_stop_and_never_a_failed_write():
+    """After a crash between the write and its checkpoint the card is answered again; the write step must
+    not read as failed, or the card would say a change that was written was not."""
+    reply = ToolMessage(content="已是如此：「A B」的申请状态已经是已提交，没有要写入的改动。", tool_call_id="c1")
+    outcome = steps.call_result("propose_application_status", reply)
+    assert (outcome.status, outcome.write) == ("empty", False) and outcome.result == "「A B」的申请状态已经是已提交，没有要写入的改动。"
+    assert steps.call_result("propose_portfolio_change", ToolMessage(content="已是如此：「A B」已经是首选。", tool_call_id="c1")).status == "empty"
+
+
+def test_a_message_keeps_the_day_it_was_sent(propose, applicant):
+    """A date written without a year is read from the day of the message, which the stream stores with it."""
+    when = future(40)
+    propose("propose_application_deadline", application_id=applicant["manual"], stated_deadline=when.isoformat())
+    evts = ask(applicant["client"], f"手动加的那个申请，截止是 {when.month} 月 {when.day} 日")
+    assert confirm_of(evts)["changes"][0] == {"label": "截止日期", "before": None, "after": when.isoformat()}
 
 
 def test_the_status_tool_offers_every_status_in_the_overview_s_words():

@@ -247,7 +247,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
       setRunningTurn(turnId);
       // Undefined until a step of this stream has written; then the application it wrote to, if it named one.
       let wrote: string | null | undefined;
-      let refused = false;
+      let answered = false;
       try {
         const outcome = await start((event) => {
           if (current.stopped || event.type === "done") return;
@@ -256,8 +256,9 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
           if (event.type === "step" && event.write && event.status === "done") {
             wrote = targets.get(event.id.replace(/:write$/, "")) ?? wrote ?? null;
           }
-          // A confirmed write the server refused: the record moved elsewhere, so what is on screen is old.
-          if (event.type === "step" && event.status === "failed" && event.id.endsWith(":write")) refused = true;
+          // A confirmed write that ended any other way (refused because the record moved elsewhere,
+          // or found already stored): what is on screen may be old either way.
+          if (event.type === "step" && event.status !== "running" && event.id.endsWith(":write")) answered = true;
           patch(turnId, (turn) => applyEvent(turn, event));
         }, current.controller.signal);
         if (outcome === "unauthorized") void refresh();
@@ -268,7 +269,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
         if (run.current === current) run.current = null;
         busy.current = false;
         setRunningTurn((id) => (id === turnId ? null : id));
-        if (wrote !== undefined || refused) reloadRecords();
+        if (wrote !== undefined || answered) reloadRecords();
         if (wrote) markChanged(wrote);
       }
     },

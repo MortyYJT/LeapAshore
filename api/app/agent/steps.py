@@ -261,6 +261,9 @@ def _change(content: str) -> Outcome:
         return Outcome(DONE, SAVED, write=True)
     if content.startswith(confirm.ALREADY):
         return Outcome(DONE, ALREADY_SAVED)
+    if content.startswith(confirm.SAME):
+        # Nothing to ask or write: a hollow stop, not a failure (see `confirm.SAME`).
+        return Outcome(EMPTY, _short(content[len(confirm.SAME):].split("\n", 1)[0], 120))
     if content.startswith(confirm.DECLINED):
         return Outcome(DECLINED, DECLINED_NOTE)
     return _refused(content) or Outcome(FAILED, "没有执行")

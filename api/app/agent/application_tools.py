@@ -45,6 +45,7 @@ from app.agent.confirm import (
     CHANGED,
     DECLINED,
     REFUSED,
+    SAME,
     STATUS_LABELS,
     answer_of,
     change,
@@ -269,7 +270,7 @@ def propose_application_status(application_id: str, status: str, config: Runnabl
     def build(record: dict, session):
         label = STATUS_LABELS[wanted]
         if record["status"] == wanted.value:
-            return f"{REFUSED}「{_name(record)}」的申请状态已经是{label}，没有要写入的改动。"
+            return f"{SAME}「{_name(record)}」的申请状态已经是{label}，没有要写入的改动。"
         summary = f"把「{_name(record)}」的申请状态改为{label}"
         return summary, [change("申请状态", status_label(record["status"]), label)], {"status": wanted}
 
@@ -339,7 +340,7 @@ def propose_application_deadline(
                         "get_my_applications 里这条申请的 catalogDeadlines 列出的 id。")
             fields = {"round": row.label, "deadline": row.deadline, "source_url": row.source_url}
             if all(fields[key] == record[shown] for key, shown in (("round", "round"), ("deadline", "deadline"), ("source_url", "sourceUrl"))):
-                return f"{REFUSED}「{name}」的轮次和截止日期已经是学校库的这一条，没有要写入的改动。"
+                return f"{SAME}「{name}」的轮次和截止日期已经是学校库的这一条，没有要写入的改动。"
             origin = f"学校库采集（{_host(row.source_url)}），{UNCHECKED}"
             summary = f"把「{name}」的截止日期设为学校库采集的 {row.deadline.isoformat()}" + (f"（{row.label}）" if row.label else "")
             return summary, _schedule_changes(record, fields, COLLECTED, origin), fields
@@ -351,7 +352,7 @@ def propose_application_deadline(
                 wanted = date.fromisoformat(stated_deadline)
             except ValueError:
                 return f"{REFUSED}这不是一个日期。\nstated_deadline 要写成 YYYY-MM-DD，而且必须是申请者在对话里写出的那一天。"
-            if wanted not in stated.dates_in(texts, stated.today()):
+            if wanted not in stated.dates_in(texts):
                 return (f"{REFUSED}对话里没有写出 {wanted.isoformat()} 这个日期，顾问不能自己定日期。\n"
                         "请申请者直接写出截止日期（例如 2027-01-15 或 1 月 15 日；没写年份时按下一个这一天算）。")
             fields["deadline"] = wanted
@@ -368,7 +369,7 @@ def propose_application_deadline(
             return f"{REFUSED}没有给出要写的轮次或日期。\n传 catalog_deadline_id，或申请者说过的 stated_deadline、stated_round。"
         changes = _schedule_changes(record, fields, ENTERED, f"你在对话里说的，{UNCHECKED}")
         if not changes:
-            return f"{REFUSED}「{name}」的轮次和截止日期已经是这样，没有要写入的改动。"
+            return f"{SAME}「{name}」的轮次和截止日期已经是这样，没有要写入的改动。"
         return f"把「{name}」的" + "、".join(parts) + "（你说的）", changes, fields
 
     return _propose_update("propose_application_deadline", config, application_id, build)
@@ -416,7 +417,7 @@ def propose_material_tick(
                 changes.append(change("材料备注", None, f"加一行：{note}"))
                 parts.append("材料备注加一行")
         if not changes:
-            return f"{REFUSED}「{name}」的材料已经是这样（{_ready(record['materialsReady'])}），没有要写入的改动。"
+            return f"{SAME}「{name}」的材料已经是这样（{_ready(record['materialsReady'])}），没有要写入的改动。"
         return f"把「{name}」的" + "，".join(parts), changes, fields
 
     return _propose_update("propose_material_tick", config, application_id, build)
@@ -434,31 +435,36 @@ def _create_key(config: RunnableConfig, call_id: str) -> str:
     return "adv-" + hashlib.sha256(f"{thread}:{call_id}".encode()).hexdigest()[:40]
 
 
-def _same(a: str, b: str) -> bool:
-    return "".join(a.casefold().split()) == "".join(b.casefold().split())
-
-
 @tool
 def propose_manual_application(
-    school: str, name: str, config: RunnableConfig, tool_call_id: Annotated[str, InjectedToolCallId]
+    school: str,
+    name: str,
+    config: RunnableConfig,
+    state: Annotated[dict, InjectedState],
+    tool_call_id: Annotated[str, InjectedToolCallId],
 ) -> str:
     """提议往「我的申请」里手动加一个学校库没有收录的项目（必须经申请者确认后才写入）。先用 search_programs 搜；
-    学校库里搜得到的项目不要用这个工具，用 propose_portfolio_change 的 add。school 和 name 用申请者说的学校和
-    项目名称。轮次和截止日期不在这里填：加好以后拿返回的申请 id，另用 propose_application_deadline。"""
+    学校库里搜得到的项目不要用这个工具，用 propose_portfolio_change 的 add。school 和 name 要照抄申请者在对话里
+    写的学校和项目名称，不要翻译、补全或加别的内容。轮次和截止日期不在这里填：加好以后拿返回的申请 id，另用
+    propose_application_deadline。"""
     client = client_id(config)
     try:
         payload = RecordCreate(school=school or "", name=name or "")
     except ValidationError:
         return f"{REFUSED}学校和项目名称都要填（学校最长 200 字，项目名称最长 300 字）。"
+    texts = stated.applicant_texts(state)
+    for what, value in (("学校", payload.school), ("项目名称", payload.name)):
+        # A name is free text, so it is held to the applicant's own words like a note: otherwise a
+        # date or a round nobody stated could be written into it.
+        if not stated.said(texts, value):
+            return f"{REFUSED}对话里没有出现「{value[:40]}」这个{what}，顾问不能自己写。\nschool 和 name 要照抄申请者写过的原话。"
     label = f"{payload.school} {payload.name}"
     key = _create_key(config, tool_call_id)
+    duplicate = f"{REFUSED}「我的申请」里已经有「{label}」，没有再加一条。"
     with SessionLocal() as session:
         # Only a first run looks for a duplicate: a second run of the same call would find its own record.
-        if records.find_created(session, client, key) is None and any(
-            _same(row["school"], payload.school) and _same(row["name"], payload.name)
-            for row in records.read_records(client, session)
-        ):
-            return f"{REFUSED}「我的申请」里已经有「{label}」，没有再加一条。"
+        if records.find_created(session, client, key) is None and records.same_named(session, client, payload):
+            return duplicate
     summary = f"把「{label}」加入我的申请（手动添加）"
     answer = interrupt({
         "type": CONFIRM_TYPE, "tool": "propose_manual_application", "summary": summary,
@@ -472,8 +478,12 @@ def propose_manual_application(
     approved, _shown, _base = answer_of(answer)
     if not approved:
         return f"{DECLINED}{summary}。没有改动。"
-    with SessionLocal() as session:
-        record, created = records.create_record(session, client, payload, key)
+    try:
+        with SessionLocal() as session:
+            # Looked for again under the subject's lock: another conversation may have added it meanwhile.
+            record, created = records.create_record(session, client, payload, key, unless_same_named=True)
+    except records.InvalidRecord:
+        return duplicate
     if not created:
         return f"{ALREADY}「{label}」之前已经加入我的申请，这次没有重复写入。申请 id：{record['id']}。"
     return f"{CHANGED}{summary}。申请 id：{record['id']}。轮次和截止日期还没有填。"

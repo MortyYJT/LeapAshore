@@ -21,8 +21,10 @@ cards, the reply, the route and the tokens, and writes them with the metrics to 
 ``--budget-cny`` is a hard cap, checked before every model call: the call is not started unless its
 worst case (two tokens per character of the prompt and the tool schemas at the uncached input price,
 plus the output cap at the output price) fits in what is left. A call that reports no usage is charged
-its worst case. Prices are ``COLLECT_PRICE_*`` in ``app/config.py``, DeepSeek's peak prices, so the
-recorded spend is an upper bound.
+its worst case. Prices are ``COLLECT_PRICE_*`` in ``app/config.py`` (DeepSeek's own peak prices, as in
+the other evals). The cap is in those prices: if the provider behind ``CHAT_BASE_URL`` charges more for
+the configured model, set them to its prices before a live run. Query embeddings on the requirement
+path are not counted (``EMBED_PRICE_CNY_PER_MTOK``, 0 in the configuration).
 
 ``--replay`` recomputes every metric from a recorded file and exits 1 if they differ from what the file
 says; CI does this through ``tests/test_tool_eval.py`` with a stubbed model, and with a recorded live
@@ -38,8 +40,10 @@ Metrics (counts; nothing is a threshold until a live run has been looked at):
   model corrected itself after a refusal).
 - exact: tool choice and arguments together.
 - no card: cases that must never show a confirm card (a date nobody stated, an id that is not the
-  applicant's). ``cards_raised`` is the server's failure and must be 0; ``write_attempts`` is how
-  often the model tried anyway and was refused by the tool.
+  applicant's). ``deadline_cards_raised`` is the server's failure and must be 0: these cases are
+  written so that no date or round in them is one the tool may accept. ``cards_raised`` counts any
+  card, including one for a change the case did not ask for; ``write_attempts`` is how often the model
+  tried a change anyway.
 - asked back: for the ambiguous cases, whether the reply contains a question mark. A heuristic, not a
   judgement of the reply.
 """
@@ -138,6 +142,10 @@ def check_set(doc: dict, coverage: bool = True) -> list[str]:
             continue
         if expect.get("extra", "reads") not in ("reads", "none"):
             problems.append(f"{name}: extra must be reads or none")
+        tools = [alt["tool"] for element in expect["calls"] for alt in _alternatives(element) if "tool" in alt]
+        if expect.get("ordered") is False and len(tools) != len(set(tools)):
+            # Unordered calls are matched tool by tool; two of one tool need the order to tell them apart.
+            problems.append(f"{name}: calls of the same tool need ordered matching")
         labelled = [alt for element in expect["calls"] for alt in _alternatives(element)] + expect.get("if_called", [])
         for alt in labelled:
             if alt.get("tool") not in arguments:
@@ -262,6 +270,7 @@ def score(item: dict) -> dict:
                "exact": tool_ok and args_first is not False}
     if expect.get("no_card"):
         verdict["card_raised"] = bool(item.get("cards"))
+        verdict["deadline_card_raised"] = any(card.get("tool") == "propose_application_deadline" for card in item.get("cards") or [])
         verdict["write_attempted"] = any(call["tool"] in WRITE_TOOLS and call["tool"] != "update_my_profile" for call in calls)
     if expect.get("reply") == "ask":
         verdict["question_mark"] = any(mark in (item.get("reply") or "") for mark in ("？", "?"))
@@ -294,6 +303,7 @@ def metrics(items: list[dict]) -> dict:
         "exact": {"ok": count("exact"), "of": len(ran)},
         "by_kind": by_kind,
         "no_card": {"cases": len(no_card), "cards_raised": count("card_raised", no_card),
+                    "deadline_cards_raised": count("deadline_card_raised", no_card),
                     "write_attempts": count("write_attempted", no_card)},
         "asked_back": {"cases": len(asked), "question_mark": count("question_mark", asked)},
         "gate_refused": sum(1 for item in ran if item.get("gate_refused")),
@@ -536,14 +546,19 @@ def read_turn(values: dict, interrupts, skip: int) -> dict:
 async def run_case(graph, fixture: Fixture, case: dict, spend: Spend) -> dict:
     from langchain_core.messages import AIMessage, HumanMessage
 
-    history = [(HumanMessage if turn["role"] == "user" else AIMessage)(content=turn["content"]) for turn in case.get("history", [])]
+    from app.agent import stated
+
+    # The applicant's turns carry the day they were sent, as the stream stores them.
+    history = [HumanMessage(content=turn["content"], additional_kwargs=stated.stamp()) if turn["role"] == "user"
+               else AIMessage(content=turn["content"]) for turn in case.get("history", [])]
     config = {"configurable": {"thread_id": f"{fixture.subject}:eval-{case['id']}", "client_id": fixture.subject},
               "callbacks": [spend]}
     item = {"id": case["id"], "kind": case["kind"], "message": case["message"],
             "expected": resolve(case["expect"], fixture.refs), "ran": False}
     before = dict(spend.usage)
     try:
-        await graph.ainvoke({"messages": [*history, HumanMessage(content=case["message"])], "trace": None}, config)
+        said = HumanMessage(content=case["message"], additional_kwargs=stated.stamp())
+        await graph.ainvoke({"messages": [*history, said], "trace": None}, config)
     except BudgetReached:
         raise
     except Exception as error:  # noqa: BLE001 - one broken case must not end the run
@@ -574,8 +589,8 @@ async def run_live(doc: dict, budget_cny: float, only: set[str] | None = None, p
     # A refusal is not a knowledge gap of the catalogue while the eval is asking.
     recording, settings.knowledge_gaps_record = settings.knowledge_gaps_record, False
     spend, items, started, stopped = Spend(budget_cny), [], time.monotonic(), None
-    fixture.build()
     try:
+        fixture.build()
         expected_state = fixture.snapshot()
         graph = build_graph(checkpointer=MemorySaver())
         for case in cases:
@@ -642,8 +657,8 @@ def estimate(doc: dict) -> dict:
     problems = fixture.problems()
     if problems:
         raise SystemExit("not estimating: " + "; ".join(problems))
-    fixture.build()
     try:
+        fixture.build()
         config = {"configurable": {"client_id": fixture.subject}}
         results = {
             "get_my_applications": _tokens(get_my_applications.invoke({}, config=config)),
