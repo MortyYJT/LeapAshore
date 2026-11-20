@@ -251,10 +251,14 @@ def tables_holding(needle: str, since: int) -> list[str]:
 
 
 def redis_holding(needle: str) -> list[str]:
-    """The keys of the limits database and of Celery's broker database whose name or value holds `needle`."""
+    """The keys, in every database of the Redis server, whose name or value holds `needle`: the
+    limits are in database 0 and Celery's broker in database 1 (`REDIS_URL`, `CELERY_BROKER_URL`)."""
     found = []
-    for url in (settings.redis_url, settings.celery_broker_url):
-        client = redis.Redis.from_url(url, decode_responses=True)
+    server = redis.Redis.from_url(settings.redis_url, decode_responses=True)
+    databases = int(server.config_get("databases").get("databases", 16))
+    server.close()
+    for number in range(databases):
+        client = redis.Redis.from_url(settings.redis_url, db=number, decode_responses=True)
         for key in client.scan_iter(count=1000):
             kind = client.type(key)
             if kind == "string":
@@ -270,7 +274,7 @@ def redis_holding(needle: str) -> list[str]:
             else:
                 value = client.dump(key)
             if needle in key or needle in repr(value):
-                found.append(key)
+                found.append(f"{number}:{key}")
         client.close()
     return found
 
@@ -559,6 +563,8 @@ def test_a_turn_waiting_for_an_answer_holds_no_key(upstream, program, everything
         assert tables_holding(KEY, since) == []
         assert redis_holding(KEY) == []
         assert set(tables_holding(CANARY, since)) & {"checkpoints", "checkpoint_blobs", "checkpoint_writes"}
+        # The Redis search reaches the limits' keys: the turn's rate window is there.
+        assert redis_holding(settings.limits_key_prefix + "win:")
 
 
 def test_a_resumed_turn_takes_the_key_from_the_new_request(upstream, program, everything_logged):
