@@ -1,8 +1,11 @@
 """The material extraction scorer, on hand-made pages.
 
 `tests/fixtures/materials/` holds a made-up school with five made-up pages, a made-up "extraction" of
-them and made-up labels. The numbers asserted here are arithmetic on that fixture; they say nothing
-about any extractor, and no real extraction has been scored.
+them and made-up labels. The numbers asserted on it are arithmetic on that fixture and say nothing
+about any extractor.
+
+The last two tests are about the one real score in the repository: 11 chosen programs, labelled by a
+model (`evals/materials_gold.json`, `evals/results/materials-2026-11-21.json`).
 """
 
 import json
@@ -15,6 +18,11 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures" / "materials"
 GOLD = FIXTURES / "gold.json"
 DATA = FIXTURES / "requirements"
 ROOT = FIXTURES / "snapshots"
+
+API = Path(__file__).resolve().parents[1]
+REAL_GOLD = API / "evals" / "materials_gold.json"
+REAL_DATA = API / "data" / "requirements"
+RECORDED = API / "evals" / "results" / "materials-2026-11-21.json"
 
 
 def gold() -> dict:
@@ -134,9 +142,35 @@ def test_the_command_line(tmp_path, capsys):
     assert main(["--score", "--set", str(broken), "--data-dir", str(DATA), "--root", str(ROOT)]) == 1, "an unlabelled set is not scored"
 
 
-def test_no_labelled_set_and_no_recorded_score_ship_before_a_real_run():
-    """Until someone labels real pages and a real extraction is scored, the repository holds neither,
-    so no number can be quoted from one."""
-    evals = Path(__file__).resolve().parents[1] / "evals"
-    assert not (evals / "materials_gold.json").exists()
-    assert not list((evals / "results").glob("materials-*.json"))
+def test_the_first_recorded_score_replays_and_is_the_score_of_the_committed_files():
+    """The first real score: 11 programs that were chosen (the signed-out demo's), labelled by a model.
+
+    Its metrics follow from its own rows, and its rows are what the committed labels and requirement
+    files give today, so the figures in `docs/measurements.md` cannot drift from the data. It is a
+    pilot check of the pipeline and says nothing about the rest of the catalogue. An extraction or a
+    label that changes needs a new score file, and this test then names the new one.
+    """
+    again, same = replay(RECORDED)
+    assert same, "the recorded metrics are not the metrics of the recorded rows"
+    recorded = json.loads(RECORDED.read_text(encoding="utf-8"))
+    labelled = json.loads(REAL_GOLD.read_text(encoding="utf-8"))
+
+    # No snapshot store in CI: the shape of every label is still checked, the quotes are not.
+    problems, counts = check_set(labelled, None)
+    assert problems == []
+    assert (counts["programs"], counts["labels"], counts["quotes_checked"]) == (11, 40, 0)
+    # The set says what labelled it: a model, not a person.
+    assert "not a person" in labelled["labeller"] and recorded["labeller"] == labelled["labeller"]
+
+    assert rows_of(labelled, REAL_DATA) == recorded["rows"], "the files or the labels changed since the score was recorded"
+    assert again["programs"] == {"scored": 11, "not_extracted": 0, "snapshot_differs": 0, "not_on_file": 0}
+    assert again["pairs"] == {"gold": 32, "predicted": 32, "both": 32}
+    assert again["count_agreement"] == {"pairs": 4, "agree": 4, "rate": 1.0}
+    assert again["empty_pages"] == {"labelled_empty": 4, "extracted_empty_too": 4}
+    # Entries, which the pair unit hides: 40 on each side, in the same types program by program.
+    assert sum(len(row["gold"]) for row in recorded["rows"]) == sum(len(row["predicted"]) for row in recorded["rows"]) == 40
+
+
+def test_only_the_scores_this_file_replays_are_recorded():
+    """A score file nobody replays could be quoted without being checked."""
+    assert sorted(path.name for path in RECORDED.parent.glob("materials-*.json")) == [RECORDED.name]
