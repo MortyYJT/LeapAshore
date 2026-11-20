@@ -127,7 +127,11 @@ def reminder_mime(message: ReminderMessage) -> EmailMessage:
 
 
 def _send_reminder_smtp(message: ReminderMessage) -> None:
-    mime = reminder_mime(message)
+    try:
+        mime = reminder_mime(message)
+    except Exception as exc:  # noqa: BLE001 - nothing has been connected to yet, so nothing went out
+        logger.error("reminder mail %s not sent, could not be built: %s", message.reference, type(exc).__name__)
+        raise MailError("could not be built") from exc
     try:
         server = smtplib.SMTP_SSL(settings.smtp_host, settings.smtp_port, timeout=settings.smtp_timeout_seconds)
     except (smtplib.SMTPException, OSError) as exc:
@@ -158,9 +162,13 @@ def _write_reminder(message: ReminderMessage) -> None:
     """The `log` backend: the whole message goes to a file under `var/`, and only its name to the log."""
     if settings.is_production:
         raise MailError("the log mail backend is disabled in production")
+    try:
+        raw = reminder_mime(message).as_bytes()
+    except Exception as exc:  # noqa: BLE001 - the same answer the SMTP backend gives
+        raise MailError("could not be built") from exc
     folder = settings.mail_log_path.parent / "reminders"
     folder.mkdir(parents=True, exist_ok=True)
-    (folder / f"{message.reference}.eml").write_bytes(reminder_mime(message).as_bytes())
+    (folder / f"{message.reference}.eml").write_bytes(raw)
     logger.warning("reminder mail %s written to var/reminders (MAIL_BACKEND=log, not mailed)", message.reference)
 
 

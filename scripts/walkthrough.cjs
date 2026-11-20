@@ -73,6 +73,8 @@ const EXPECTED = [/status of 404/, /status of 401/];
 // The sync-conflict steps make the server refuse a stale save on purpose; the browser logs that 409.
 // Only those steps set this, so a 409 anywhere else still fails the run.
 const conflictSteps = { running: false };
+// The unsubscribe step opens a link the server refuses on purpose; the browser logs that 400.
+const refusedLinkStep = { running: false };
 
 /** Watch a page: console errors and page errors fail the run. */
 function watch(page, label, errors, expected = EXPECTED) {
@@ -81,6 +83,7 @@ function watch(page, label, errors, expected = EXPECTED) {
     const text = msg.text();
     if (expected.some((pattern) => pattern.test(text))) return;
     if (conflictSteps.running && /status of 409/.test(text)) return;
+    if (refusedLinkStep.running && /status of 400/.test(text)) return;
     errors.push(`${label} console: ${text} (${new URL(page.url()).pathname})`);
   });
   page.on("pageerror", (error) => errors.push(`${label} pageerror: ${error.message}`));
@@ -497,8 +500,10 @@ async function adminPass(browser, email, errors) {
     await reminderSwitch.getByRole("button", { name: "开启", exact: true }).click();
     await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).enabled === true);
     await page.getByRole("button", { name: "关闭设置" }).click();
+    refusedLinkStep.running = true;
     await page.goto(`${BASE}/reminders/unsubscribe?token=bad.token`);
     await page.getByRole("heading", { level: 1, name: "这个退订链接无效" }).waitFor();
+    refusedLinkStep.running = false;
     const remindersKept = await apiAs(context, "/api/reminders/settings");
     check("退订页：无效链接说明原因，提醒设置没有被改动", remindersKept.body && remindersKept.body.enabled === true && remindersKept.body.leadDays.join(",") === "14,7,3,1", remindersKept.body);
     await layout(page, "退订页");

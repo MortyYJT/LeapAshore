@@ -291,18 +291,22 @@ def due_items(session: Session, client_id: str, leads: Iterable[int], today: dat
     return sorted(due, key=lambda item: (item.deadline, item.record_key))
 
 
-def _unclaimed(session: Session, account_id: str, due: list[Due]) -> list[Due]:
+def _unclaimed(session: Session, account_id: str, due: list[Due], *, as_of: date | None = None) -> list[Due]:
+    """The due reminders nobody has claimed.
+
+    With `as_of`, a claim held by an email that an earlier day left waiting does not count: the plan
+    releases those before it claims (`_sweep`), and the preview has to see what the plan will.
+    """
     if not due:
         return []
-    taken = {
-        tuple(row)
-        for row in session.execute(
-            select(ReminderDelivery.record_key, ReminderDelivery.deadline, ReminderDelivery.lead_days).where(
-                ReminderDelivery.account_id == account_id,
-                ReminderDelivery.record_key.in_({item.record_key for item in due}),
-            )
-        )
-    }
+    query = select(ReminderDelivery.record_key, ReminderDelivery.deadline, ReminderDelivery.lead_days).where(
+        ReminderDelivery.account_id == account_id,
+        ReminderDelivery.record_key.in_({item.record_key for item in due}),
+    )
+    if as_of is not None:
+        stale = select(ReminderEmail.id).where(ReminderEmail.send_date < as_of, ReminderEmail.status.in_(WAITING))
+        query = query.where(ReminderDelivery.email_id.not_in(stale))
+    taken = {tuple(row) for row in session.execute(query)}
     return [item for item in due if (item.record_key, item.deadline, item.lead_days) not in taken]
 
 
@@ -494,7 +498,7 @@ def preview(session: Session, now: datetime, accounts: Iterable[Account] | None 
                 continue
             report["enabled"] += 1
             leads = row.lead_days if row is not None else DEFAULT_LEAD_DAYS
-            fresh = _unclaimed(session, account_id, due_items(session, client_id, leads, today))
+            fresh = _unclaimed(session, account_id, due_items(session, client_id, leads, today), as_of=today)
             if not fresh:
                 continue
             if _emails_on(session, account_id, today) >= settings.reminder_daily_cap:
@@ -583,35 +587,42 @@ def deliver(session: Session, email_id: str, now: datetime) -> str:
         return "not pending"
     account_id, attempts = taken
 
-    account = session.get(Account, account_id)
-    row = settings_for(session, account_id)
-    if account is None or row is None or not row.enabled:
-        return _close(session, email_id, "cancelled")
-    entries = _entries(session, account.client_id, email_id, today)
-    if not entries:
-        return _close(session, email_id, "cancelled")
-    one_click, page = unsubscribe_links(row)
-    applications_url = f"{settings.public_base_url.rstrip('/')}/applications"
-    subject = reminder_copy.subject(entries)
-    message = mail.ReminderMessage(
-        to=account.email,
-        subject=subject,
-        text=reminder_copy.text(entries, applications_url, page),
-        html=reminder_copy.html(entries, applications_url, page, subject),
-        unsubscribe_url=one_click,
-        unsubscribe_page=page,
-        reference=email_id,
-    )
-    # Nothing is held in the database while the mail server is spoken to.
-    session.commit()
+    def not_sent(error: Exception) -> str:
+        if attempts >= MAX_ATTEMPTS:
+            return _close(session, email_id, "failed", error, release=True)
+        return _close(session, email_id, "retry", error)
+
+    try:
+        account = session.get(Account, account_id)
+        row = settings_for(session, account_id) if account is not None else None
+        if account is None or row is None or not row.enabled:
+            return _close(session, email_id, "cancelled")
+        entries = _entries(session, account.client_id, email_id, today)
+        if not entries:
+            return _close(session, email_id, "cancelled")
+        one_click, page = unsubscribe_links(row)
+        applications_url = f"{settings.public_base_url.rstrip('/')}/applications"
+        subject = reminder_copy.subject(entries)
+        message = mail.ReminderMessage(
+            to=account.email,
+            subject=subject,
+            text=reminder_copy.text(entries, applications_url, page),
+            html=reminder_copy.html(entries, applications_url, page, subject),
+            unsubscribe_url=one_click,
+            unsubscribe_page=page,
+            reference=email_id,
+        )
+        # Nothing is held in the database while the mail server is spoken to.
+        session.commit()
+    except Exception as error:  # noqa: BLE001 - reading or writing the message failed: nothing was mailed
+        session.rollback()
+        return not_sent(error)
     try:
         mail.send_reminder(message)
     except mail.MailUncertain as error:
         return _close(session, email_id, "uncertain", error)
     except mail.MailError as error:
-        if attempts >= MAX_ATTEMPTS:
-            return _close(session, email_id, "failed", error, release=True)
-        return _close(session, email_id, "retry", error)
+        return not_sent(error)
     except Exception as error:  # noqa: BLE001 - an unknown failure may have followed the hand-over
         return _close(session, email_id, "uncertain", error)
     return _close(session, email_id, "sent", sent_at=datetime.now(UTC))

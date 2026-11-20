@@ -35,9 +35,14 @@ class Entry:
     origin: str | None
 
 
+def _line(value: str) -> str:
+    """A stored name on one line: a line break in it would end a mail header early."""
+    return " ".join(value.split())
+
+
 def _title(entry: Entry) -> str:
-    title = f"{entry.school} · {entry.name}"
-    return f"{title}（{entry.round}）" if entry.round else title
+    title = f"{_line(entry.school)} · {_line(entry.name)}"
+    return f"{title}（{_line(entry.round)}）" if entry.round else title
 
 
 def _when(entry: Entry) -> str:
@@ -69,7 +74,7 @@ def subject(entries: list[Entry]) -> str:
     nearest = entries[0]
     left = "今天" if nearest.days_left == 0 else f"还有 {nearest.days_left} 天"
     if len(entries) == 1:
-        return f"申请截止提醒：{nearest.school} {nearest.name}，{left}"
+        return f"申请截止提醒：{_line(nearest.school)} {_line(nearest.name)}，{left}"
     return f"申请截止提醒：{len(entries)} 个项目，最近的{'是今天' if nearest.days_left == 0 else left}"
 
 

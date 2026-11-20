@@ -97,7 +97,8 @@ async def unsubscribe(request: Request) -> dict:
             if int(request.headers.get("content-length") or 0) <= MAX_BODY_BYTES:
                 body = json.loads(await request.body())
                 token = body.get("token") if isinstance(body, dict) else None
-        except ValueError:
+        except (ValueError, RecursionError):
+            # Not JSON, or JSON nested deeper than the parser goes: either way, no token.
             token = None
     if not isinstance(token, str) or not await run_in_threadpool(_unsubscribe, token):
         raise HTTPException(400, INVALID_LINK)

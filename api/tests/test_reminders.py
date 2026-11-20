@@ -551,6 +551,50 @@ def test_an_error_inside_one_account_does_not_stop_the_plan_for_the_next(sent, s
     assert claims(session, first) == [] and len(claims(session, second)) == 1
 
 
+def test_a_failure_before_the_mail_server_is_reached_is_retried_not_left_sending(sent, session, monkeypatch):
+    account = make_account(session)
+    record = add_record(session, account, 7)
+    [email_id] = reminders.plan(session, NOW, accounts=[account])["emails"]
+    real = reminders._entries
+
+    def broken(*args, **kwargs):
+        raise RuntimeError("the database went away")
+
+    monkeypatch.setattr(reminders, "_entries", broken)
+    assert reminders.deliver(session, email_id, NOW) == "retry"
+    [email] = emails(session, account)
+    assert (email.status, email.attempts, email.last_error) == ("retry", 1, "RuntimeError")
+    assert claims(session, account) == [(record.id, record.deadline, 7)]
+    assert sent.messages == []
+
+    monkeypatch.setattr(reminders, "_entries", real)
+    assert reminders.deliver(session, email_id, NOW) == "sent"
+    assert len(sent.to(account)) == 1
+
+
+def test_a_name_with_a_line_break_is_mailed_on_one_line(session, require_db, monkeypatch):
+    # The form cannot enter one, but the API accepts it; in a Subject it would end the header early.
+    _smtp_settings(monkeypatch)
+    account = make_account(session)
+    add_record(session, account, 7, school="MIT\nEECS", name="MEng\r\nBcc: someone@example.test")
+    assert run_day(session, [account]) == ["sent"]
+    [raw] = FakeSMTP.delivered
+    message = message_from_bytes(raw, policy=policy.default)
+    assert message["Bcc"] is None
+    assert "MIT EECS MEng Bcc: someone@example.test" in message["Subject"]
+    assert "MIT EECS · MEng Bcc: someone@example.test" in message.get_body(("plain",)).get_content()
+
+
+def test_a_message_that_cannot_be_built_counts_as_not_sent(session, require_db, monkeypatch):
+    _smtp_settings(monkeypatch)
+    monkeypatch.setattr(mail, "reminder_mime", lambda message: (_ for _ in ()).throw(ValueError("bad header")))
+    account = make_account(session)
+    add_record(session, account, 7)
+    assert run_day(session, [account]) == ["retry"]
+    assert emails(session, account)[0].last_error == "MailError(ValueError)"
+    assert FakeSMTP.delivered == []
+
+
 def test_a_send_that_may_have_gone_out_is_not_retried(sent, session):
     account = make_account(session)
     record = add_record(session, account, 7)
@@ -1111,6 +1155,27 @@ def test_the_preview_counts_what_would_be_sent_and_writes_nothing(sent, session)
     run_day(session, [account, quiet])
     after = reminders.preview(session, NOW, accounts=[account, quiet])
     assert after["emails"] == 0 and after["reminders"] == 0
+
+
+def test_the_preview_sees_what_the_plan_will_release(sent, session):
+    account = make_account(session)
+    record = add_record(session, account, 7)
+    reminders.plan(session, NOW, accounts=[account])
+    # The delivery never ran. Tomorrow's plan expires that email and plans the reminder again, and
+    # the preview says so beforehand.
+    tomorrow = NOW + timedelta(days=1)
+    assert reminders.preview(session, NOW, accounts=[account])["reminders"] == 0
+    report = reminders.preview(session, tomorrow, accounts=[account])
+    assert [item["application"] for item in report["items"]] == [record.id]
+    assert emails(session, account)[0].status == "pending"
+    assert len(reminders.plan(session, tomorrow, accounts=[account])["emails"]) == 1
+
+
+def test_a_body_the_parser_cannot_take_is_just_an_invalid_link(require_db):
+    client = new_client()
+    for body in ("[" * 2000, "{", "", "null", "[1]", '{"token": 5}', "List-Unsubscribe=One-Click"):
+        response = client.post("/api/reminders/unsubscribe", content=body, headers={"Content-Type": "text/plain"})
+        assert response.status_code == 400, body[:20]
 
 
 def test_the_command_only_previews(capsys, sent, session, monkeypatch):
