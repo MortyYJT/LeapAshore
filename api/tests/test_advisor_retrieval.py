@@ -249,3 +249,40 @@ def test_an_evidence_line_carries_the_academic_requirement_and_the_deadlines():
                               "deadlines": []})
     line = evidence_line(1, Hit(bare, source), today=date(2026, 10, 30))
     assert "｜学术要求：未知" in line and "｜申请截止：未知" in line
+
+
+def test_an_evidence_line_says_what_the_page_asks_for_or_that_nobody_has_read_it():
+    """The model reads a program's materials with their page, and is told in words when there are none
+    to read: "not extracted" must not look like "nothing asked". The entries are made up for the test."""
+    from datetime import date
+    from types import SimpleNamespace
+
+    from app.agent.evidence import Hit, citation_fields, evidence_line
+
+    def program(sha, entries=()):
+        return SimpleNamespace(
+            university=SimpleNamespace(name="测试大学"), name="数据科学硕士", name_en="MSc Data Science",
+            minimum_mark=None, non_211_minimum_mark=None, english_requirement=None, prerequisites=[],
+            academic_requirement=None, academic_source_url=None, deadlines=[],
+            materials_snapshot_sha256=sha, materials=list(entries))
+
+    source = SimpleNamespace(title="MSc Data Science", url="https://example.edu/msc", verified_at=None)
+    letters = SimpleNamespace(type="recommendation", count=2, note="at least one academic referee", sort_order=0,
+                              quote="FIXTURE: Two references, at least one academic.", source_url="https://example.edu/msc")
+    essay = SimpleNamespace(type="personal_statement", count=None, note=None, sort_order=1,
+                            quote="FIXTURE: A personal statement.", source_url="https://example.edu/apply")
+
+    def line(row):
+        return evidence_line(1, Hit(row, source), today=date(2026, 11, 20))
+
+    assert "｜申请材料：未提取｜" in line(program(None))
+    assert "｜申请材料：官网这一页没有列出｜" in line(program("a" * 64))
+    assert ("｜申请材料：推荐信 2 封（at least one academic referee）；"
+            "个人陈述（出处 https://example.edu/apply）｜") in line(program("a" * 64, [letters, essay]))
+
+    # The applicant sees each entry with the sentence it was read from; nothing is shown for a page nobody read.
+    assert citation_fields(Hit(program(None), source)) == []
+    assert citation_fields(Hit(program("a" * 64, [letters, essay]), source)) == [
+        {"label": "申请材料", "value": "推荐信 2 封（at least one academic referee）", "quote": letters.quote},
+        {"label": "申请材料", "value": "个人陈述", "quote": essay.quote, "url": "https://example.edu/apply"},
+    ]
