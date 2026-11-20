@@ -5,6 +5,8 @@
  * the blank line that ends each event.
  */
 
+import { modelKeyHeaders, storedModelKey } from "./model-key.ts";
+
 /** One value the catalogue holds for a cited program. With `quote`, the sentence it was read from. */
 export interface CitationField {
   label: string;
@@ -85,6 +87,8 @@ export interface ConfirmEvent {
 
 export type AdvisorEvent =
   | StepEvent
+  /** Sent first by a turn that runs on the applicant's own model key; `label` names the provider. */
+  | { type: "model"; ownKey: boolean; provider: string; label: string }
   | { type: "intent"; intent: string; confidence: number }
   | { type: "citations"; gate: "pass" | "refuse"; citations: Citation[] }
   | { type: "tool"; name: string }
@@ -117,6 +121,10 @@ export function advisorRefusal(
     detail && typeof detail === "object" && typeof (detail as Record<string, unknown>)[name] === "string"
       ? ((detail as Record<string, unknown>)[name] as string)
       : null;
+  // The key header could not be used (a provider the server does not list, a malformed key).
+  if (status === 400 && field("code")?.startsWith("model_")) {
+    return { outcome: "failed", message: field("message") ?? "这把模型密钥用不了，请到设置里检查。", code: field("code") as string };
+  }
   if (status in LIMITED_FALLBACK) {
     // The server's code says which limit it was: `rate_limited`, `daily_tokens_*`, `limits_unavailable`.
     const code = field("code") ?? (status === 429 ? "rate_limited" : "limits_unavailable");
@@ -130,7 +138,8 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
     method: "POST",
     signal,
     credentials: "same-origin",
-    headers: { "Content-Type": "application/json" },
+    // A key the applicant stored in this browser rides in headers, never in the URL or the body.
+    headers: { "Content-Type": "application/json", ...modelKeyHeaders(storedModelKey()) },
     body: JSON.stringify(body),
   });
   if (!response.ok || !response.body) {

@@ -306,3 +306,23 @@ test("only the latest turns are kept in the browser", () => {
   assert.equal(back.turns.length, 30);
   assert.equal(back.turns[0].id, "t10");
 });
+
+test("a turn that ran on the applicant's own key says so, by provider; a turn on the site's key says nothing", () => {
+  const own = play(newTurn("t1", "q"), [
+    { type: "model", ownKey: true, provider: "deepseek", label: "DeepSeek" },
+    { type: "token", text: "好的。" },
+  ]);
+  assert.equal(own.ownKey, "DeepSeek");
+  assert.equal(finishTurn(own).ownKey, "DeepSeek");
+  assert.equal(play(newTurn("t2", "q"), [{ type: "token", text: "好的。" }]).ownKey, undefined);
+});
+
+test("a failure on the applicant's own key is an error block with the server's code and sentence", () => {
+  const turn = finishTurn(play(newTurn("t1", "q"), [
+    { type: "model", ownKey: true, provider: "deepseek", label: "DeepSeek" },
+    { type: "error", code: "own_key_rejected", message: "DeepSeek 没有接受这把密钥。" },
+    { type: "done" },
+  ]));
+  assert.equal(turn.state, "failed");
+  assert.deepEqual(turn.blocks.at(-1), { type: "error", code: "own_key_rejected", message: "DeepSeek 没有接受这把密钥。" });
+});

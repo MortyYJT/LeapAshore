@@ -38,3 +38,10 @@ test("a change is keyed by its application record, or by its catalogue program w
   assert.equal(targetKey({ applicationId: null, programId: null, school: "MIT", program: "EECS" }), undefined);
   assert.equal(targetKey(undefined), undefined);
 });
+
+test("a key header the server cannot use is told in the server's words", () => {
+  const refusal = advisorRefusal(400, { detail: { code: "model_key_malformed", message: "这把密钥的格式不对：应该是一串不带空格的英文字符。请重新粘贴。" } });
+  assert.deepEqual(refusal, { outcome: "failed", message: "这把密钥的格式不对：应该是一串不带空格的英文字符。请重新粘贴。", code: "model_key_malformed" });
+  // Any other 400 keeps the generic sentence.
+  assert.equal(advisorRefusal(400, { detail: "bad" }).code, "http");
+});

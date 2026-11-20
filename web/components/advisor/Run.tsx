@@ -3,6 +3,7 @@
 import { Fragment, memo, useId, useMemo, useState, type ReactNode } from "react";
 
 import { Icon } from "@/components/shell/Icon";
+import { SETTINGS_EVENT } from "@/components/shell/UserCenter";
 import type { ChangeTarget, Citation } from "@/lib/advisor";
 import {
   answerText,
@@ -63,6 +64,12 @@ export const TurnView = memo(function TurnView({ turn, running, busy, last, line
   return (
     <article className="turn" data-state={turn.state} aria-label={`提问：${turn.question}`}>
       <p className="msg-user">{turn.question}</p>
+      {turn.ownKey && (
+        <p className="run-key">
+          <Icon name="key" />
+          本轮用你自己的密钥 · {turn.ownKey}
+        </p>
+      )}
       {segments.map((part, index) =>
         part.kind === "rail" ? (
           <ol className="run" key={index}>
@@ -447,14 +454,37 @@ const QUIET = new Set([
   "unauthorized",
   "nothing_pending",
   "confirm_in_progress",
+  "own_key_rate_limited",
 ]);
 
+/** A failure on the applicant's own key: what it is called, and whether the key itself needs a look. */
+const OWN_KEY: Record<string, { title: string; settings: boolean }> = {
+  own_key_rejected: { title: "你的密钥没有被接受", settings: true },
+  own_key_no_balance: { title: "你的密钥账户余额不足", settings: true },
+  own_key_rate_limited: { title: "", settings: false },
+  own_key_provider_down: { title: "服务商没有响应", settings: false },
+  own_key_request_refused: { title: "服务商拒绝了这次请求", settings: true },
+  model_provider_unknown: { title: "密钥的服务商用不了", settings: true },
+  model_key_malformed: { title: "密钥的格式不对", settings: true },
+};
+
 function Problem({ error }: { error: ErrorBlock }) {
+  const own = OWN_KEY[error.code ?? ""];
   return (
     <div className={`problem${QUIET.has(error.code ?? "") ? " is-quiet" : ""}`} role="alert">
       {/* The provider's outage reads the same as any other in the server's words; say which it is. */}
       {error.code === "model_unavailable" && <b>模型现在连不上</b>}
+      {own?.title && <b>{own.title}</b>}
       <span>{error.message}</span>
+      {own?.settings && (
+        <button
+          type="button"
+          className="btn btn-secondary btn-small problem-action"
+          onClick={() => window.dispatchEvent(new CustomEvent(SETTINGS_EVENT, { detail: "model" }))}
+        >
+          打开密钥设置
+        </button>
+      )}
     </div>
   );
 }

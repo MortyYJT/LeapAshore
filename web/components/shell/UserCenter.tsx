@@ -7,6 +7,7 @@ import { APPEARANCE_KEY, applyThemeColor } from "@/lib/pwa";
 
 import { Icon } from "./Icon";
 import { useInstall } from "./Install";
+import { ModelKeySettingsPanel } from "./ModelKeySettings";
 import { ReminderSettingsPanel } from "./ReminderSettings";
 
 const COLORS = [{ id: "graphite", name: "默认" }] as const;
@@ -14,6 +15,7 @@ const TABS = [
   { id: "profile", label: "个人资料" },
   { id: "appearance", label: "外观" },
   { id: "reminders", label: "提醒" },
+  { id: "model", label: "模型密钥" },
   { id: "account", label: "账号" },
 ] as const;
 /** Another part of the page asks for the settings dialog on one tab: `detail` is the tab's id. */
@@ -507,6 +509,15 @@ export function UserCenter() {
             >
               <h2>截止提醒</h2>
               <ReminderSettingsPanel active={shown && tab === "reminders"} report={setMessage} />
+            </section>
+            <section
+              id="uc-panel-model"
+              role="tabpanel"
+              aria-labelledby="uc-tab-model"
+              hidden={tab !== "model"}
+            >
+              <h2>模型密钥</h2>
+              <ModelKeySettingsPanel report={setMessage} close={() => dialog.current?.close()} />
             </section>
             <section
               id="uc-panel-account"
