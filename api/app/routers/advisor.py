@@ -572,7 +572,6 @@ async def chat(
     body: ChatIn, request: Request, response: Response, client_id: Annotated[str, Depends(get_subject)]
 ) -> StreamingResponse:
     thread = _config(client_id, body.conversation_id)["configurable"]["thread_id"]
-    key = _own_key(request, response)
     ended = await _take_over(thread)
     if ended is None:
         return _sse(_busy(), client_id)
@@ -582,6 +581,7 @@ async def chat(
         _release(thread, ended)
         return _sse(_busy(), client_id)
     try:
+        key = _own_key(request, response)
         ticket = await _admit(request, response, client_id, windows=True, quotas=key is None)
     except BaseException:
         _release(thread, ended)
