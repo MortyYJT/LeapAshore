@@ -90,9 +90,14 @@ function mode<T>(values: readonly T[]): T | null {
   return best;
 }
 
+/** The words for a requirement the page states no number for: asked plainly, or asked with something noted. */
+export const ASKED = "要交";
+export const NOTED = "另有说明";
+
 function captionOf(type: string, entries: readonly RecordMaterial[]): string {
   if (entries.length > 1) return `${entries.length} 项`;
-  return countLabel(type, entries[0].count) || "要交";
+  // An `other` entry's note is its name, not a remark on it.
+  return countLabel(type, entries[0].count) || (entries[0].note && type !== "other" ? NOTED : ASKED);
 }
 
 /**

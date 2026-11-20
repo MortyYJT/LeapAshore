@@ -9,6 +9,7 @@ import { loadApplicationRecords, type ApplicationRecord } from "@/lib/applicatio
 import { beijingToday } from "@/lib/deadlines";
 import { demoRecords, loadDemoPrograms, type DemoProgram, type DemoQuery } from "@/lib/demo";
 import { useResource } from "@/lib/hooks/useResource";
+import { demoMaterialRecords } from "@/lib/materials-map";
 
 /**
  * The applicant's application records, read once for the whole shell.
@@ -40,6 +41,11 @@ export interface ApplicationRecordsState {
   demo: ApplicationRecord[] | null;
   /** The visitor will get a demo or its absence in a moment; nothing is known yet. */
   demoPending: boolean;
+  /**
+   * For the same visitor, the materials map's sample records: the listed programs whose page has been
+   * read for materials, with what the catalogue serves and nothing ticked. Null when too few have been.
+   */
+  demoMaterials: ApplicationRecord[] | null;
   /** The application picked in the rail; the other lines step back while one is picked. */
   selected: string | null;
   select: (id: string | null) => void;
@@ -117,9 +123,13 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
     [signedOut, demoPrograms, today],
   );
   const demoPending = signedOut && demoPrograms === null;
+  const demoMaterials = useMemo(
+    () => (signedOut && Array.isArray(demoPrograms) ? demoMaterialRecords(demoPrograms) : null),
+    [signedOut, demoPrograms],
+  );
 
   // A picked application that is gone (removed, or another account) is no longer picked.
-  const shown = signedIn ? resource.data : demo;
+  const shown = signedIn ? resource.data : [...(demo ?? []), ...(demoMaterials ?? [])];
   const picked = selected && shown?.some((record) => record.id === selected) ? selected : null;
 
   const value = useMemo<ApplicationRecordsState>(
@@ -133,12 +143,13 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
       set,
       demo,
       demoPending,
+      demoMaterials,
       selected: picked,
       select,
       changedProgram,
       markChanged,
     }),
-    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, demo, demoPending, picked, changedProgram],
+    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, demo, demoPending, demoMaterials, picked, changedProgram],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

@@ -85,7 +85,7 @@ test("something particular noted on one program marks that program only, and a p
   const [, essay, test_score] = materialsModel(five()).differing;
   assert.equal(essay.common, "", "most state no count: the common form is 'asked, no number'");
   assert.deepEqual(essay.requirements.map((r) => [r.line.record.programId, r.caption, r.differs]), [
-    ["a", "要交", false], ["b", "要交", true], ["c", "要交", false],
+    ["a", "要交", false], ["b", "另有说明", true], ["c", "要交", false],
   ]);
   assert.deepEqual(essay.absent.map((line) => line.record.programId), ["d", "e"]);
   // Asked by one program only: there is no common form, so nothing is said to differ.

@@ -12,6 +12,7 @@
 
 import type { ApplicationRecord } from "./application-records.ts";
 import { deadlineOf, type CollectedDeadline } from "./deadlines.ts";
+import type { RecordMaterial } from "./materials.ts";
 import { SOON_DAYS, daysUntil } from "./overview.ts";
 
 /**
@@ -71,6 +72,8 @@ export interface DemoProgram {
   university: string;
   universityId?: string | null;
   deadlines?: readonly CollectedDeadline[] | null;
+  /** What the catalogue collected from the program's page; null until the page has been read for materials. */
+  materials?: { items?: readonly Omit<RecordMaterial, "ready" | "changed" | "digest">[] | null } | null;
 }
 
 /** A filter of `GET /api/programs`; the same names as `ProgramQuery` in api.ts. */

@@ -1,0 +1,148 @@
+/*
+  The materials screen: every program is a line. The lines run together through one capsule per
+  shared material, split at 45 degrees, and each stops only where its own page asks for something.
+  A station is filled when the applicant has it ready and hollow when not, as on the overview.
+  Line colours say which program and nothing else; the highlighter marks a requirement that departs
+  from what most programs ask.
+*/
+
+/* ---------- legend ---------- */
+.keys { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 0; padding: 0; list-style: none; font-size: var(--fs-12); color: var(--ink-3); }
+.keys li { display: flex; align-items: center; gap: 6px; }
+.keys svg { width: 14px; height: 14px; flex: none; }
+.keys .k-line { width: 22px; }
+.k-stn { fill: var(--bg); stroke: var(--ink-2); stroke-width: 2.5; }
+.k-stn.is-ready { fill: var(--ink-2); }
+.k-unread { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 0.1 6; }
+.k-diff, .map .lbl-caption.is-diff, .diff .what mark {
+  padding: 0 5px; border-radius: var(--r-tag);
+  background: var(--mark); color: var(--mark-ink); font-weight: 600;
+}
+
+/* ---------- the map ---------- */
+.map-frame { min-width: 0; }
+.map { position: relative; margin-top: 4px; }
+.map.is-vertical { margin-inline: auto; }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.map .guide { stroke: var(--line); stroke-width: 1; }
+.map .ln { fill: none; stroke: var(--lc); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; transition: opacity var(--t-base); }
+/* Not read yet: round dots, the overview's drawing for a date nobody knows. It joins nothing. */
+.map .ln.is-unread { stroke-dasharray: 0.1 11; }
+.map .stn { fill: var(--bg); stroke: var(--lc); stroke-width: 3; transition: fill var(--t-base), opacity var(--t-base); }
+.map .stn.is-ready { fill: var(--lc); }
+.map .hub { fill: var(--bg); stroke: var(--ink); stroke-width: 2; transition: fill var(--t-base); }
+.map .hub.is-ready { fill: var(--ink); }
+.map .lbl { position: absolute; white-space: nowrap; font-size: var(--fs-13); line-height: 18px; transition: opacity var(--t-base); }
+.map .a-centre { transform: translateX(-50%); }
+.map .a-right { transform: translateX(-100%); }
+.map .a-middle { transform: translateY(-50%); }
+.map .lbl-column, .map .lbl-group { font-weight: 600; color: var(--ink-2); }
+.map .lbl-caption { padding: 0 4px; background: var(--bg); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.map .lbl-hub-name { font-weight: 600; color: var(--ink); }
+.map .lbl-hub-state { font-size: var(--fs-12); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.map .lbl-end { line-height: 1; }
+.map.is-vertical .lbl-column { padding-right: 6px; background: var(--bg); font-size: var(--fs-12); }
+.map.is-vertical .lbl-caption { font-size: var(--fs-12); }
+/* On a phone the lanes are narrow: the line ends are bullets no wider than their code. */
+.map.is-vertical .lbl-end .bullet { min-width: 0; padding: 0 5px; }
+/* One application picked in the rail: the others step back. */
+.map .is-dim { opacity: 0.25; }
+.map .lbl-caption.is-dim { opacity: 0.45; }
+.map-note { margin: 12px 0 0; max-width: 46em; font-size: var(--fs-12); color: var(--ink-3); text-wrap: pretty; }
+
+/* ---------- nothing to draw yet ---------- */
+.map-empty { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px; padding: 20px 0; border-block: 1px solid var(--line); }
+.map-empty p { flex: 1 1 320px; margin: 0; color: var(--ink-2); text-wrap: pretty; }
+.map-empty p b { display: block; margin-bottom: 2px; color: var(--ink); font-weight: 600; }
+
+/* ---------- shared materials ---------- */
+.shared { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); column-gap: 16px; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.shared > li { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; min-width: 0; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.shared .check { display: flex; align-items: baseline; gap: 10px; flex: 1 1 auto; min-width: 0; cursor: pointer; }
+.shared .check input { position: relative; top: 2px; flex: none; width: 16px; height: 16px; margin: 0; accent-color: var(--ink); }
+.shared .text { display: grid; min-width: 0; }
+.shared .text b { font-weight: 600; }
+.shared .text span { font-size: var(--fs-12); color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.shared .mat-cites { flex-basis: 100%; }
+
+/* ---------- materials that differ ---------- */
+.diffs { border-top: 1px solid var(--line); }
+.diff-head, .diff { display: grid; grid-template-columns: 88px minmax(0, 1fr) auto; column-gap: 16px; }
+.diff-head { padding: 8px 0 6px; font-size: var(--fs-12); color: var(--ink-3); }
+.diff-head span:last-child { text-align: right; }
+.diff { align-items: start; padding: 14px 0; border-top: 1px solid var(--line); }
+.diff:last-child { border-bottom: 1px solid var(--line); }
+.diff .diff-req { display: grid; gap: 8px; min-width: 0; }
+.diff .exc { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; min-width: 0; transition: opacity var(--t-base); }
+.diff .exc .who { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.diff .exc .what { min-width: 0; overflow-wrap: anywhere; }
+.diff .exc.is-common .what { color: var(--ink-2); }
+.diff .absent { margin: 0; font-size: var(--fs-12); color: var(--ink-3); }
+.diff .is-dim { opacity: 0.45; }
+.diff .mat-cites { flex-basis: 100%; }
+.toggles { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; max-width: 300px; padding-top: 1px; }
+.toggles-label { display: none; }
+
+/* A line bullet as a checkbox: hollow until ticked. */
+.bt { position: relative; display: inline-flex; transition: opacity var(--t-base); }
+.bt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.bt input:disabled { cursor: default; }
+.bt .bullet { gap: 3px; border: 2px solid var(--lc); background: var(--bg); color: var(--ink); transition: background var(--t-fast), color var(--t-fast); }
+.bt .bullet .icon { display: none; width: 10px; height: 10px; stroke-width: 2.4; }
+.bt input:checked + .bullet { background: var(--lc); color: var(--on-lc); }
+.bt input:checked + .bullet .icon { display: block; }
+.bt input:focus-visible + .bullet { outline: 2px solid var(--focus); outline-offset: 2px; }
+.bt input:active:not(:disabled) + .bullet { transform: translateY(1px); }
+.bt input:disabled + .bullet { opacity: 0.6; }
+/* Ticked for an earlier wording of the requirement: the highlighter says it changed. */
+.bt.is-changed .bullet { outline: 2px solid var(--mark); outline-offset: 1px; }
+
+/* ---------- where a requirement was read ---------- */
+.srcbtn {
+  padding: 0; border: 0; background: none; color: var(--ink-3); font: inherit; font-size: var(--fs-12); cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
+}
+.srcbtn:hover, .srcbtn[aria-expanded="true"] { color: var(--ink); text-decoration-color: currentColor; }
+.mat-cites { display: grid; gap: 8px; margin-top: 2px; }
+.mat-cite { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); }
+.mat-cite blockquote { margin: 0; font-size: var(--fs-14); line-height: 1.6; overflow-wrap: anywhere; }
+.mat-cite figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 8px; font-size: var(--fs-12); color: var(--ink-3); }
+.mat-cite figcaption .pill { font-size: var(--fs-12); }
+
+/* ---------- the applicant's own checklists ---------- */
+.own { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.own-row { display: grid; grid-template-columns: 228px minmax(0, 1fr); column-gap: 16px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line); transition: opacity var(--t-base); }
+.own-row.is-dim { opacity: 0.6; }
+.own-id { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+.own-id .bullet { margin-top: 1px; }
+.own-id .txt { min-width: 0; }
+.own-id .school { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; font-weight: 600; }
+.own-id .school a { color: inherit; text-decoration: none; }
+.own-id .school a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.own-id .program { font-size: var(--fs-12); color: var(--ink-3); overflow-wrap: anywhere; }
+.own-list { display: grid; gap: 8px; min-width: 0; }
+.own-note { margin: 0; font-size: var(--fs-13); color: var(--ink-2); text-wrap: pretty; }
+.own-list .material-lines { border-top: 0; }
+.own-list .material-lines > li:first-child { padding-top: 0; }
+.own-list .material-add { max-width: 420px; }
+.own-add { justify-self: start; gap: 4px; margin-left: -8px; color: var(--ink-2); }
+.own-add .icon { width: 14px; height: 14px; }
+
+/* The uploaded files keep their own panel under the lists. */
+.block-files .section { margin-top: 0; }
+
+@media (max-width: 900px) {
+  .block-map .block-head { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .bt { padding-block: 6px; }
+  .bt .bullet { height: 32px; min-width: 56px; border-radius: 16px; font-size: var(--fs-12); }
+  .srcbtn { padding: 8px 4px; margin: -8px -4px; }
+  .diff-head { display: none; }
+  .diff { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+  .toggles { justify-content: flex-start; align-items: center; max-width: none; padding-top: 4px; }
+  .toggles-label { display: block; flex-basis: 100%; font-size: var(--fs-12); color: var(--ink-3); }
+  .own-row { grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .shared { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map .ln, .map .stn, .map .hub, .map .lbl, .bt, .bt .bullet, .diff .exc, .own-row { transition: none; }
+}

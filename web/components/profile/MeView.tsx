@@ -33,23 +33,24 @@ function rowsOf(p: Profile): [string, string][] {
 }
 
 /** 我的: the profile every page uses, the materials library (spec document-library) and the account. */
-export default function MeView({ materialsOnly = false }: { materialsOnly?: boolean }) {
+export default function MeView() {
   return (
     <main className="page">
       <div className="title-row">
         <div>
-          <h1>{materialsOnly ? "我的材料" : "我的"}</h1>
-          <p className="lede">{materialsOnly ? "管理申请材料、查看版本和提交状态。" : "分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。"}</p>
+          <h1>我的</h1>
+          <p className="lede">分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。</p>
         </div>
       </div>
-      <RequireAccount what={materialsOnly ? "你的材料" : "你的背景和材料"}>
-        {materialsOnly ? <MaterialsOnly /> : <Mine />}
+      <RequireAccount what="你的背景和材料">
+        <Mine />
       </RequireAccount>
     </main>
   );
 }
 
-function MaterialsOnly() {
+/** The uploaded files (spec document-library) on their own, for the materials page. */
+export function MaterialFiles() {
   const materials = useMaterials();
   return <MaterialsLibrary materials={materials} />;
 }

@@ -29,6 +29,7 @@ export function MaterialChecklist({
   custom,
   onCustom,
   disabled = false,
+  compact = false,
 }: {
   materials: readonly RecordMaterial[];
   extracted: boolean;
@@ -39,6 +40,8 @@ export function MaterialChecklist({
   custom: readonly CustomMaterial[];
   onCustom: (next: CustomMaterial[]) => void;
   disabled?: boolean;
+  /** Only the applicant's own lines and the field that adds one: the page around it says the rest. */
+  compact?: boolean;
 }) {
   const [draft, setDraft] = useState("");
   const label = draft.trim();
@@ -80,10 +83,10 @@ export function MaterialChecklist({
           })}
         </ul>
       )}
-      {catalog && extracted && materials.length === 0 && (
+      {!compact && catalog && extracted && materials.length === 0 && (
         <p className="small muted">采集的官网页面没有列出申请材料，以官网为准。可以在下面列自己的清单。</p>
       )}
-      {catalog && !extracted && (
+      {!compact && catalog && !extracted && (
         <p className="small muted">这个项目的材料要求还没提取。先在下面列自己的清单，以官网为准。</p>
       )}
       {custom.length > 0 && (
@@ -133,9 +136,11 @@ export function MaterialChecklist({
           添加
         </button>
       </div>
-      <p className="small muted">
-        勾选是你自己的核对，不是审核。{catalog && extracted ? "官网要求来自采集到的页面，可能不全，提交前以官网为准。" : ""}
-      </p>
+      {!compact && (
+        <p className="small muted">
+          勾选是你自己的核对，不是审核。{catalog && extracted ? "官网要求来自采集到的页面，可能不全，提交前以官网为准。" : ""}
+        </p>
+      )}
     </div>
   );
 }
