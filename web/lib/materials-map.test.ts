@@ -159,6 +159,15 @@ test("an application keeps the overview's colour and code", () => {
   assert.equal(new Set(first.lines.map((line) => line.line)).size, 5, "five applications, five colours");
 });
 
+test("a subset of the rail's applications keeps the rail's colours", () => {
+  const records = five();
+  const rail = materialsModel(records);
+  const subset = materialsModel(records.slice(1, 4), records.map((r) => r.id));
+  for (const line of subset.lines) {
+    assert.equal(line.line, rail.lines.find((other) => other.record.id === line.record.id)!.line);
+  }
+});
+
 test("a wide frame draws left to right, and everything stays inside it", () => {
   const model = materialsModel([...five(), record("f", null)]);
   const map = layoutMap(model, 1000);

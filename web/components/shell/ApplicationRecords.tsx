@@ -123,10 +123,13 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
     [signedOut, demoPrograms, today],
   );
   const demoPending = signedOut && demoPrograms === null;
-  const demoMaterials = useMemo(
-    () => (signedOut && Array.isArray(demoPrograms) ? demoMaterialRecords(demoPrograms) : null),
-    [signedOut, demoPrograms],
-  );
+  // Drawn from the overview's demo programs when enough of those have collected materials, so the
+  // rail's list and the map show the same lines; otherwise from any of the listed programs.
+  const demoMaterials = useMemo(() => {
+    if (!signedOut || !Array.isArray(demoPrograms)) return null;
+    const drawn = new Set((demo ?? []).map((record) => record.programId));
+    return demoMaterialRecords(demoPrograms.filter((program) => drawn.has(program.slug))) ?? demoMaterialRecords(demoPrograms);
+  }, [signedOut, demoPrograms, demo]);
 
   // A picked application that is gone (removed, or another account) is no longer picked.
   const shown = signedIn ? resource.data : [...(demo ?? []), ...(demoMaterials ?? [])];

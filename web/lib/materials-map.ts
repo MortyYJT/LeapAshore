@@ -102,10 +102,11 @@ function captionOf(type: string, entries: readonly RecordMaterial[]): string {
 
 /**
  * The model for the applications that are still being prepared. Colours and codes are the overview's,
- * so an application is the same line on every screen.
+ * so an application is the same line on every screen: `palette` is the ids the rail's list is drawn
+ * from when that is not `records` itself (the signed-out demo draws a subset of the rail's programs).
  */
-export function materialsModel(records: readonly ApplicationRecord[]): MaterialsModel {
-  const colours = assignLines(records.map((record) => record.id));
+export function materialsModel(records: readonly ApplicationRecord[], palette?: readonly string[]): MaterialsModel {
+  const colours = assignLines(palette ?? records.map((record) => record.id));
   const open = records.filter(activeRecord).sort(byDeadline);
   const asLine = (record: ApplicationRecord): MapLine => ({
     record,

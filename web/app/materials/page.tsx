@@ -191,8 +191,12 @@ function Workspace() {
  */
 function SignedOut() {
   const { requireLogin } = useAuth();
-  const { demoMaterials, demoPending, selected } = useApplicationRecords();
-  const model = useMemo(() => (demoMaterials ? materialsModel(demoMaterials) : null), [demoMaterials]);
+  const { demo, demoMaterials, demoPending, selected } = useApplicationRecords();
+  // Coloured from the rail's demo list plus the map's own programs, so a program in both is one colour.
+  const model = useMemo(
+    () => (demoMaterials ? materialsModel(demoMaterials, [...new Set([...(demo ?? []), ...demoMaterials].map((record) => record.id))]) : null),
+    [demo, demoMaterials],
+  );
   if (demoPending) {
     return (
       <Frame finding="正在读取学校库…">

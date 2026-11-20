@@ -118,7 +118,8 @@ export function MaterialsBoard({
         </section>
       )}
 
-      {own.length > 0 && (
+      {/* A demo has no applicant, so it has no checklist of an applicant's own. */}
+      {actions && own.length > 0 && (
         <section className="block" aria-labelledby="h-own">
           <div className="block-head">
             <h2 id="h-own">自己的清单</h2>
