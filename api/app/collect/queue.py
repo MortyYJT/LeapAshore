@@ -577,6 +577,10 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
             added += 1
         else:
             _carry_summary_verdicts(programs[target], program)
+            if "materials" in programs[target]:
+                # The queue reads requirements, not materials: what the material pass wrote for this
+                # program stays, citing the snapshot it was checked against (`app.collect.materials`).
+                program["materials"] = programs[target]["materials"]
             programs[target] = program
             replaced += 1
     # The same rules as `python -m app.collect.tidy`, so an export does not undo a tidied file.

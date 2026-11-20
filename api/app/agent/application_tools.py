@@ -275,17 +275,20 @@ def _propose_update(tool_name: str, config: RunnableConfig, application_id: str,
         # The record moved between the card and the answer: the applicant agreed to a change to a
         # record that is no longer the stored one.
         return _stale(_name(record), seen, record)
-    if {"material_ticks", "custom_materials"} & set(fields) and seen and seen.get("ticks") not in (None, _ticks_digest(record)):
-        # The record's rows did not move, so it is the catalogue's list of materials that did: the
-        # applicant agreed to a tick on a requirement that no longer reads as the card showed it.
-        return (f"{REFUSED}学校库里这个项目的材料清单在确认之前变了，这次没有写入。\n"
-                "读取现在的内容后重新提出。")
     if shown is not None and shown != changes:
         # The record is the same, so what moved is the catalogue the change reads from.
         return f"{REFUSED}学校库里的这一项在确认之前变了，和卡片上列的对不上，这次没有写入。\n读取现在的内容后重新提出。"
     try:
         payload = RecordPatch(**fields, base_version=based_on)
         with SessionLocal() as session:
+            if {"material_ticks", "custom_materials"} & set(fields) and seen and seen.get("ticks"):
+                # A tick is stored for the requirement as it reads now. Read it once more: if the
+                # record's own rows did not move and the list still differs from the card's, the
+                # catalogue was re-imported in between, and the applicant agreed to another wording.
+                current = records.read_record(session, client, record["id"])
+                if current["version"] == based_on and _ticks_digest(current) != seen["ticks"]:
+                    return (f"{REFUSED}学校库里这个项目的材料清单在确认之前变了，这次没有写入。\n"
+                            "读取现在的内容后重新提出。")
             records.update_record(session, client, record["id"], payload)
     except ValidationError as exc:
         return f"{REFUSED}内容不合法（{exc.errors()[0].get('msg', exc.__class__.__name__)}）。"

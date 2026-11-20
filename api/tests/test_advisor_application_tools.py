@@ -227,14 +227,17 @@ def kinds(applicant: dict) -> dict:
             == ("Round 2", applicant["round2_date"], SOURCE, "collected", None),
         },
         "material": {
-            "message": "手动加的那个申请材料都齐了，另外记一下：成绩单已寄出",
-            "call": ("propose_material_tick", {"application_id": applicant["manual"], "ready": True, "add_note": "成绩单已寄出"}),
+            "message": "学校库那个申请的推荐信备好了，另外记一下：成绩单已寄出",
+            "call": ("propose_material_tick", {"application_id": applicant["catalog"], "material": "recommendation",
+                                               "ready": True, "add_note": "成绩单已寄出"}),
             "title": "提议改材料",
-            "args": [{"label": "申请", "value": "Example University Example MSc"}, {"label": "材料", "value": "勾上（全部就绪）"},
-                     {"label": "备注", "value": "成绩单已寄出"}],
-            "changes": [{"label": "材料", "before": "准备中", "after": "已就绪（自查）"},
+            "args": [{"label": "申请", "value": record(applicant["id"], applicant["catalog"])["school"] + " "
+                      + record(applicant["id"], applicant["catalog"])["name"]},
+                     {"label": "材料", "value": "推荐信 2 封：勾上"}, {"label": "备注", "value": "成绩单已寄出"}],
+            "changes": [{"label": "材料 · 推荐信 2 封", "before": "还没备好", "after": "已备好（自查）"},
                         {"label": "材料备注", "before": None, "after": "加一行：成绩单已寄出"}],
-            "key": applicant["manual"], "written": lambda r: r["materialsReady"] and r["materialNotes"] == "成绩单已寄出",
+            "key": applicant["catalog"],
+            "written": lambda r: r["materials"][0]["ready"] and not r["materials"][1]["ready"] and r["materialNotes"] == "成绩单已寄出",
         },
         "manual application": {
             "message": "帮我手动加一个申请：Another University 的 MSc Robotics",

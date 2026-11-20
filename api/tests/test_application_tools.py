@@ -27,7 +27,7 @@ from app.db import SessionLocal
 from app.deps import load_or_create_profile
 from app.models.application import Application
 from app.models.application_plan import ApplicationPlan
-from app.models.program import Program, ProgramDeadline
+from app.models.program import Program, ProgramDeadline, ProgramMaterial
 from app.seed import seed_programs
 from app.seed_catalog import seed_catalog
 from app.services import application_records as records
@@ -38,6 +38,14 @@ pytestmark = pytest.mark.usefixtures("require_db")
 
 SOURCE = "https://example.edu/admissions/deadlines"
 OTHER_SOURCE = "https://example.edu/another-program/deadlines"
+
+
+MATERIAL_SOURCE = "https://example.edu/fixture/how-to-apply"
+# Made up for these tests; no real page says this.
+FIXTURE_MATERIALS = [
+    ("recommendation", "recommendation", 2, None, "FIXTURE PAGE: Two letters of recommendation are required."),
+    ("cv", "cv", None, None, "FIXTURE PAGE: Upload a current CV."),
+]
 
 
 def future(days: int) -> date:
@@ -67,11 +75,22 @@ def catalogue():
             "round2": add(first, "Round 2", future(90), SOURCE, 1),
             "other": add(second, "Main round", future(60), OTHER_SOURCE, 0),
         }
+        # The first program's page has been read for materials (two made-up entries); the second's has not.
+        held = {pid: s.get(Program, pid).materials_snapshot_sha256 for pid in (first, second)}
+        s.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id.in_([first, second])))
+        s.get(Program, first).materials_snapshot_sha256 = "f" * 64
+        s.get(Program, second).materials_snapshot_sha256 = None
+        for order, (key, kind, count, note, quote) in enumerate(FIXTURE_MATERIALS):
+            s.add(ProgramMaterial(id=str(uuid.uuid4()), program_id=first, key=key, type=kind, count=count, note=note,
+                                  quote=quote, source_url=MATERIAL_SOURCE, sort_order=order))
         s.commit()
     yield {"first": first, "second": second, **ids,
            "round1_date": future(40), "round2_date": future(90), "other_date": future(60)}
     with SessionLocal() as s:
         s.execute(delete(ProgramDeadline).where(ProgramDeadline.id.in_(made)))
+        s.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id.in_([first, second])))
+        for pid, sha in held.items():
+            s.get(Program, pid).materials_snapshot_sha256 = sha
         s.commit()
 
 
@@ -170,12 +189,13 @@ def add_manual(client_id: str, school: str, name: str, call_id: str = "call-1", 
 # ---------------------------------------------------------------------------------------------------
 
 
-def test_the_read_gives_round_deadline_its_check_source_status_and_material_flag(applicant):
+def test_the_read_gives_round_deadline_its_check_source_status_and_materials(applicant):
     with SessionLocal() as s:
         base = records.read_record(s, applicant["id"], applicant["manual"])["version"]
         records.update_record(s, applicant["id"], applicant["manual"], RecordPatch(
             round="Round 1", deadline=date(2027, 1, 15), source_url="https://example.edu/apply",
-            confirm_deadline=True, materials_ready=True, material_notes="推荐信两封", status="applying",
+            confirm_deadline=True, material_notes="推荐信两封", status="applying",
+            custom_materials=[{"id": "c-ps", "label": "个人陈述", "done": True}],
             base_version=base,
         ))
     rows = {r["id"]: r for r in json.loads(get_my_applications.invoke({}, config=applicant["config"]))}
@@ -185,7 +205,11 @@ def test_the_read_gives_round_deadline_its_check_source_status_and_material_flag
     assert (manual["round"], manual["deadline"], manual["sourceUrl"]) == ("Round 1", "2027-01-15", "https://example.edu/apply")
     assert manual["deadlineOrigin"] == "entered" and manual["deadlineCheckedByApplicant"] is True
     assert (manual["status"], manual["statusLabel"]) == ("applying", "准备中")
-    assert manual["materialsReady"] is True and manual["materialNotes"] == "推荐信两封"
+    assert manual["materialNotes"] == "推荐信两封"
+    # A manual application has no catalogue list: only the applicant's own lines.
+    assert manual["materialsExtracted"] is False and manual["materials"] == []
+    assert manual["customMaterials"] == [{"id": "c-ps", "label": "个人陈述", "done": True}]
+    assert (manual["materialsDone"], manual["materialsTotal"]) == (1, 1)
     assert "catalogDeadlines" not in manual
 
     catalog = rows[applicant["catalog"]]
@@ -193,7 +217,16 @@ def test_the_read_gives_round_deadline_its_check_source_status_and_material_flag
     # Nothing was chosen yet, so the read shows the catalogue's next date, marked as collected and unchecked.
     assert catalog["deadline"] == applicant["round1_date"].isoformat() and catalog["sourceUrl"] == SOURCE
     assert catalog["deadlineOrigin"] == "collected" and catalog["deadlineCheckedByApplicant"] is False
-    assert catalog["round"] is None and catalog["materialsReady"] is False
+    assert catalog["round"] is None
+    # What the catalogue collected for the program, each with its quote, its page and the tick.
+    assert catalog["materialsExtracted"] is True
+    assert catalog["materials"] == [
+        {"key": "recommendation", "name": "推荐信 2 封", "type": "recommendation", "count": 2, "note": None,
+         "quote": FIXTURE_MATERIALS[0][4], "sourceUrl": MATERIAL_SOURCE, "ready": False, "requirementChangedSinceTick": False},
+        {"key": "cv", "name": "简历", "type": "cv", "count": None, "note": None,
+         "quote": FIXTURE_MATERIALS[1][4], "sourceUrl": MATERIAL_SOURCE, "ready": False, "requirementChangedSinceTick": False},
+    ]
+    assert (catalog["materialsDone"], catalog["materialsTotal"]) == (0, 2)
     assert catalog["catalogDeadlines"] == [
         {"id": applicant["round1"], "round": "Round 1", "date": applicant["round1_date"].isoformat(), "sourceUrl": SOURCE, "passed": False},
         {"id": applicant["round2"], "round": "Round 2", "date": applicant["round2_date"].isoformat(), "sourceUrl": SOURCE, "passed": False},
@@ -504,19 +537,109 @@ def test_the_advisor_never_marks_a_date_as_checked(asked, applicant):
 # ---------------------------------------------------------------------------------------------------
 
 
-def test_the_material_flag_is_ticked_and_unticked(asked, applicant):
-    key = applicant["manual"]
-    assert tick(applicant, key, ready=True).startswith("已执行：")
-    assert record(applicant["id"], key)["materialsReady"] is True
+def test_one_collected_material_is_ticked_and_unticked(asked, applicant):
+    key = applicant["catalog"]
+    assert tick(applicant, key, material="recommendation", ready=True).startswith("已执行：")
+    stored = record(applicant["id"], key)
+    assert [(m["key"], m["ready"]) for m in stored["materials"]] == [("recommendation", True), ("cv", False)]
+    assert (stored["materialsDone"], stored["materialsTotal"], stored["materialsReady"]) == (1, 2, False)
     assert asked[0]["tool"] == "propose_material_tick"
-    assert asked[0]["changes"] == [{"label": "材料", "before": "准备中", "after": "已就绪（自查）"}]
+    assert asked[0]["changes"] == [{"label": "材料 · 推荐信 2 封", "before": "还没备好", "after": "已备好（自查）"}]
 
-    assert tick(applicant, key, ready=True).startswith("已是如此：")  # already ticked
+    assert tick(applicant, key, material="recommendation", ready=True).startswith("已是如此：")  # already ticked
     assert len(asked) == 1
 
-    assert tick(applicant, key, ready=False).startswith("已执行：")
-    assert record(applicant["id"], key)["materialsReady"] is False
-    assert asked[1]["changes"] == [{"label": "材料", "before": "已就绪（自查）", "after": "准备中"}]
+    assert tick(applicant, key, material="recommendation", ready=False).startswith("已执行：")
+    assert record(applicant["id"], key)["materials"][0]["ready"] is False
+    assert asked[1]["changes"] == [{"label": "材料 · 推荐信 2 封", "before": "已备好（自查）", "after": "还没备好"}]
+
+
+def test_a_line_of_the_applicant_s_own_checklist_is_ticked(asked, applicant):
+    key, client_id = applicant["manual"], applicant["id"]
+    with SessionLocal() as s:
+        base = records.read_record(s, client_id, key)["version"]
+        records.update_record(s, client_id, key, RecordPatch(
+            custom_materials=[{"id": "c-a", "label": "在读证明"}, {"id": "c-b", "label": "作品集"}], base_version=base))
+
+    assert tick(applicant, key, material="c-b", ready=True).startswith("已执行：")
+
+    assert record(client_id, key)["customMaterials"] == [
+        {"id": "c-a", "label": "在读证明", "done": False}, {"id": "c-b", "label": "作品集", "done": True}]
+    assert asked[0]["changes"] == [{"label": "材料 · 作品集", "before": "还没备好", "after": "已备好（自查）"}]
+
+
+def test_all_ticks_every_line_the_record_lists_and_only_those(asked, applicant):
+    key, client_id = applicant["catalog"], applicant["id"]
+    with SessionLocal() as s:
+        base = records.read_record(s, client_id, key)["version"]
+        records.update_record(s, client_id, key, RecordPatch(
+            custom_materials=[{"id": "c-a", "label": "在读证明"}], material_ticks={"cv": True}, base_version=base))
+
+    assert tick(applicant, key, material=tools.ALL_MATERIALS, ready=True).startswith("已执行：")
+
+    stored = record(client_id, key)
+    assert (stored["materialsDone"], stored["materialsTotal"], stored["materialsReady"]) == (3, 3, True)
+    # The card lists each line that changes; the one already ticked is not on it.
+    assert [c["label"] for c in asked[0]["changes"]] == ["材料 · 推荐信 2 封", "材料 · 在读证明"]
+
+
+def test_a_material_the_record_does_not_list_cannot_be_ticked(asked, applicant):
+    """The model cannot tick, and so cannot introduce, a material nobody listed."""
+    before = record(applicant["id"], applicant["catalog"])
+    reply = tick(applicant, applicant["catalog"], material="portfolio", ready=True)
+    assert reply.startswith("未执行：") and "清单里没有" in reply and "recommendation（推荐信 2 封）" in reply
+    reply = tick(applicant, applicant["catalog"], ready=True)  # no line named
+    assert reply.startswith("未执行：") and "没有说明勾哪一项" in reply
+    assert asked == [] and record(applicant["id"], applicant["catalog"]) == before
+
+
+def test_a_program_whose_materials_are_not_extracted_has_nothing_to_tick(asked, catalogue):
+    """Not extracted is said as such; it is not turned into "nothing is asked" or into a tick."""
+    client_id = new_applicant([catalogue["second"]])
+    key = f"catalog:{catalogue['second']}"
+    row = next(r for r in tools.read_for_advisor(client_id) if r["id"] == key)
+    assert row["materialsExtracted"] is False and row["materials"] == []
+
+    for line in ("recommendation", tools.ALL_MATERIALS):
+        reply = tools.propose_material_tick.func(application_id=key, config=config_of(client_id), state=conversation("材料齐了"),
+                                                 material=line, ready=True)
+        assert reply.startswith("未执行：") and tools.NOT_EXTRACTED in reply
+    assert asked == []
+
+
+def test_a_tick_stops_counting_when_the_requirement_it_was_given_for_changes(asked, applicant):
+    key, client_id = applicant["catalog"], applicant["id"]
+    assert tick(applicant, key, material="recommendation", ready=True).startswith("已执行：")
+    with SessionLocal() as s:
+        row = s.scalar(select(ProgramMaterial).where(ProgramMaterial.program_id == applicant["first"],
+                                                     ProgramMaterial.key == "recommendation"))
+        row.count, row.quote = 3, "FIXTURE PAGE: Three letters of recommendation are required."
+        s.commit()
+
+    stored = record(client_id, key)["materials"][0]
+    assert (stored["count"], stored["ready"], stored["changed"]) == (3, False, True)
+    told = next(r for r in tools.read_for_advisor(client_id) if r["id"] == key)["materials"][0]
+    assert told["ready"] is False and told["requirementChangedSinceTick"] is True
+
+
+def test_a_tick_confirmed_after_the_catalogue_s_requirement_changed_is_not_written(monkeypatch, applicant):
+    """The card showed one wording; the catalogue was re-imported before the answer."""
+    key, client_id = applicant["catalog"], applicant["id"]
+
+    def reimported_then_yes(question):
+        with SessionLocal() as s:
+            row = s.scalar(select(ProgramMaterial).where(ProgramMaterial.program_id == applicant["first"],
+                                                         ProgramMaterial.key == "cv"))
+            row.note, row.quote = "one page", "FIXTURE PAGE: Upload a CV of one page."
+            s.commit()
+        return {"approved": True, "changes": question["changes"], "base": question["base"]}
+
+    monkeypatch.setattr(tools, "interrupt", reimported_then_yes)
+
+    reply = tick(applicant, key, material="cv", ready=True)
+
+    assert reply.startswith("未执行：") and "材料清单在确认之前变了" in reply
+    assert record(client_id, key)["materials"][1]["ready"] is False
 
 
 def test_a_material_note_is_added_in_the_applicant_s_words_and_keeps_what_was_there(asked, applicant):
@@ -526,7 +649,7 @@ def test_a_material_note_is_added_in_the_applicant_s_words_and_keeps_what_was_th
 
     stored = record(applicant["id"], key)
     assert stored["materialNotes"] == "推荐信已拿到两封\n成绩单在办了"
-    assert stored["materialsReady"] is False
+    assert stored["materialsDone"] == 0, "a note is not a tick"
     assert asked[1]["changes"] == [{"label": "材料备注", "before": None, "after": "加一行：成绩单在办了"}]
 
 
@@ -543,9 +666,10 @@ def test_a_material_change_with_nothing_in_it_is_refused(asked, applicant):
 
 
 def test_a_declined_material_change_writes_nothing(declined, applicant):
-    before = record(applicant["id"], applicant["manual"])
-    assert tick(applicant, applicant["manual"], ("推荐信齐了",), ready=True, add_note="推荐信齐了").startswith("用户取消了操作")
-    assert record(applicant["id"], applicant["manual"]) == before
+    before = record(applicant["id"], applicant["catalog"])
+    assert tick(applicant, applicant["catalog"], ("推荐信齐了",), material="recommendation", ready=True,
+                add_note="推荐信齐了").startswith("用户取消了操作")
+    assert record(applicant["id"], applicant["catalog"]) == before
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -646,7 +770,8 @@ def test_a_change_confirmed_after_the_record_moved_is_not_written_and_says_what_
         questions.append(question)
         with SessionLocal() as s:
             base = records.read_record(s, client_id, key)["version"]
-            records.update_record(s, client_id, key, RecordPatch(round="Round 9", materials_ready=True, base_version=base))
+            records.update_record(s, client_id, key, RecordPatch(
+                round="Round 9", custom_materials=[{"id": "c-a", "label": "在读证明", "done": True}], base_version=base))
         return {"approved": True, "changes": question["changes"], "base": question["base"]}
 
     monkeypatch.setattr(tools, "interrupt", edited_elsewhere_then_yes)
@@ -655,7 +780,7 @@ def test_a_change_confirmed_after_the_record_moved_is_not_written_and_says_what_
 
     assert reply.startswith("未执行：") and "别处" in reply
     # What moved, in the applicant's words: the round and the material flag, old value and new.
-    assert "轮次" in reply and "Round 9" in reply and "材料" in reply and "已就绪" in reply
+    assert "轮次" in reply and "Round 9" in reply and "材料：备好 0/0 → 1/1" in reply
     stored = record(client_id, key)
     assert stored["status"] == "considering", "the stale change must not be written"
     assert stored["round"] == "Round 9" and stored["materialsReady"] is True, "the other device's edit stands"

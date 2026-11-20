@@ -253,8 +253,9 @@ def _sync_materials(session: Session, row: Program, program: dict) -> bool:
     if same_rows and row.materials_snapshot_sha256 == sha:
         return False
     if not same_rows:
-        session.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id == row.id))
-        session.flush()
+        if stored:
+            session.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id == row.id))
+            session.flush()
         for values in wanted:
             session.add(ProgramMaterial(**values))
     if row.materials_snapshot_sha256 != sha:

@@ -39,7 +39,7 @@ CASES = DOC["cases"]
 
 def test_the_set_is_well_formed():
     assert check_set(DOC) == []
-    assert 60 <= len(CASES) <= 100
+    assert 60 <= len(CASES) <= 120
     assert len({case["id"] for case in CASES}) == len(CASES)
 
 
