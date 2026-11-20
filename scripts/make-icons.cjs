@@ -1,17 +1,26 @@
 // Derive the bitmap icons from web/app/icon.svg, the one hand-drawn source.
 //
-// Next.js serves files with these names from web/app/ as the site's icons: icon.svg for browsers that take
-// an SVG, favicon.ico (16, 32 and 48 px) for those that do not, and apple-icon.png (180 px) for an iOS home
-// screen. The Apple icon is drawn without the rounded corners, because iOS cuts its own and a transparent
-// corner would show black.
+// icon.svg has no ground. A browser that takes an SVG tab icon gets that file as it is, and its ink
+// follows the colour scheme. A bitmap cannot do that, so the files below come in two kinds.
 //
-// The web app manifest (web/app/manifest.ts) lists four more, written to web/public/icons/: 192 and 512 px
-// with the rounded corners, and the same two sizes as maskable icons. A maskable icon is cut to whatever
-// shape the launcher uses, and only the circle of 80% diameter in the middle is sure to survive, so there
-// the ground runs to the edges and the mark is drawn at 0.8 scale: its farthest stroke ends 36% of the
-// width from the centre.
+// Transparent, in one ink that reads on white and on near-black (MID: 4.0:1 on white, 4.9:1 on
+// near-black, and 3.0:1 on the greys of a light and a dark tab strip, which lie between them):
+//   web/app/favicon.ico (16, 32 and 48 px), for browsers that do not take an SVG;
+//   web/public/icons/icon-192.png and icon-512.png, the manifest's `purpose: any` icons.
+// A dark ink disappears on a dark taskbar and a light one on a white page. A light outline around a
+// dark ink (or the reverse) reads at 192 px and turns to a smudge at 16 px. A saturated blue reads
+// well and is ruled out because the product keeps saturated colours for program lines.
+//
+// Opaque, rail ink on the rail colour, the mark at its drawn size so it keeps a margin:
+//   web/app/apple-icon.png (180 px): iOS does not support transparency in a home-screen icon and
+//     fills it with black, and it cuts the corners itself, so the ground is a full square;
+//   web/public/icons/maskable-192.png and maskable-512.png: a launcher cuts a maskable icon to its
+//     own shape and only the circle of 80% diameter in the middle is sure to survive, so the ground
+//     runs to the edges and the mark is drawn at 0.8 scale (its farthest stroke ends 36% of the
+//     width from the centre).
 //
 // Rerun after editing icon.svg: node scripts/make-icons.cjs
+// web/lib/icons.test.ts reads the files this writes.
 
 const fs = require("fs");
 const path = require("path");
@@ -52,21 +61,45 @@ function ico(images) {
   return Buffer.concat([header, ...entries, ...images.map((i) => i.png)]);
 }
 
+const RAIL = "#121a28";
+const RAIL_INK = "#f2f5f9";
+const MID = "#6c80a1";
+// Where the mark sat on the 32-unit plate before the tab icon lost its ground.
+const ON_PLATE = "translate(2 1.6)";
+
+/** The mark's shapes and stroke attributes, taken from icon.svg so the geometry has one source. */
+function readMark(svg) {
+  const group = svg.match(/<g transform="([^"]*)"([^>]*)>([\s\S]*?)<\/g>/);
+  if (!group) throw new Error("icon.svg: the mark's <g transform> was not found");
+  return { fit: group[1], attributes: group[2], shapes: group[3] };
+}
+
+function compose({ attributes, shapes }, { transform, ink, ground }) {
+  const plate = ground ? `<rect width="32" height="32" fill="${ground}"/>` : "";
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">${plate}` +
+    `<g transform="${transform}" stroke="${ink}"${attributes}>${shapes}</g></svg>`
+  );
+}
+
 (async () => {
-  const svg = fs.readFileSync(path.join(APP, "icon.svg"), "utf8");
+  const mark = readMark(fs.readFileSync(path.join(APP, "icon.svg"), "utf8"));
+  const clear = compose(mark, { transform: mark.fit, ink: MID });
+  const plated = compose(mark, { transform: ON_PLATE, ink: RAIL_INK, ground: RAIL });
+  const maskable = compose(mark, {
+    transform: `translate(16 16) scale(0.8) translate(-16 -16) ${ON_PLATE}`,
+    ink: RAIL_INK,
+    ground: RAIL,
+  });
   const browser = await chromium.launch();
   try {
-    const sizes = [16, 32, 48];
     const images = [];
-    for (const size of sizes) images.push({ size, png: await render(browser, svg, size) });
+    for (const size of [16, 32, 48]) images.push({ size, png: await render(browser, clear, size) });
     fs.writeFileSync(path.join(APP, "favicon.ico"), ico(images));
-    const square = svg.replace(/<rect([^>]*?) rx="[^"]*"/, "<rect$1");
-    fs.writeFileSync(path.join(APP, "apple-icon.png"), await render(browser, square, 180));
-    const maskable = square.replace(/<g transform="/, '<g transform="translate(16 16) scale(0.8) translate(-16 -16) ');
-    if (maskable === square) throw new Error("icon.svg: the mark's <g transform> was not found");
+    fs.writeFileSync(path.join(APP, "apple-icon.png"), await render(browser, plated, 180));
     fs.mkdirSync(INSTALL, { recursive: true });
     for (const size of [192, 512]) {
-      fs.writeFileSync(path.join(INSTALL, `icon-${size}.png`), await render(browser, svg, size));
+      fs.writeFileSync(path.join(INSTALL, `icon-${size}.png`), await render(browser, clear, size));
       fs.writeFileSync(path.join(INSTALL, `maskable-${size}.png`), await render(browser, maskable, size));
     }
   } finally {
