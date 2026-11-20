@@ -178,9 +178,13 @@ def get_my_portfolio(config: RunnableConfig) -> str:
 def get_my_applications(config: RunnableConfig) -> str:
     """读取当前申请者的全部申请（学校库项目和手动添加的项目）。每条有：id（修改这条申请时要用）、学校、项目、轮次、
     截止日期、日期来历（deadlineOrigin：collected 学校库采集 / entered 申请者自己填的）、申请者是否对照官网核对过
-    （deadlineCheckedByApplicant）、来源链接、申请状态、材料是否就绪（自查）和材料备注。学校库项目还带
-    catalogDeadlines：学校库采集到的各轮截止日期和它们的 id。规划申请、梳理材料或修改任何一条申请之前先读取。
-    采集的日期和申请者的自查都不等于学校官方已核验。此工具只读。"""
+    （deadlineCheckedByApplicant）、来源链接、申请状态、材料和材料备注。学校库项目还带 catalogDeadlines：学校库
+    采集到的各轮截止日期和它们的 id。
+    材料：materials 是学校库从这个项目的官网页面采集到的材料要求，每项有 key（勾选时用）、name、份数 count、
+    说明 note、官网原文 quote、出处 sourceUrl、申请者是否勾了备好 ready；说材料要求时只能说这里列出的，并给出处。
+    materialsExtracted 为 false 表示学校库还没整理这个项目的材料清单（不是不需要材料），照实说，不要凭印象列。
+    清单可能不全，提醒申请者以官网为准。customMaterials 是申请者自己列的清单。
+    规划申请、梳理材料或修改任何一条申请之前先读取。采集的内容和申请者的自查都不等于学校官方已核验。此工具只读。"""
     return applications_json(config)
 
 

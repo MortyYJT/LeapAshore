@@ -40,6 +40,7 @@ from pydantic import BaseModel, Field
 
 from app import limits
 from app.agent import halt, model_key, stated, steps
+from app.agent.application_tools import material_names
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
@@ -212,6 +213,14 @@ def _named(client_id: str, args: dict) -> dict[str, str]:
                 try:
                     record = application_records.read_record(session, client_id, str(args["application_id"]))
                     named["application_id"] = f"{record['school']} {record['name']}"
+                    # The line a material tick names, in the words the record lists it under.
+                    wanted = str(args.get("material") or "")
+                    for item, name in zip(record["materials"], material_names(record)):
+                        if item["key"] == wanted:
+                            named["material"] = name
+                    for item in record["customMaterials"]:
+                        if item["id"] == wanted:
+                            named["material"] = item["label"]
                 except application_records.RecordNotFound:
                     pass
             if args.get("catalog_deadline_id"):

@@ -12,7 +12,8 @@
 - [x] **线路图界面第一步：设计系统、外壳、总览** — PR #95；换成已确认原型的设计变量和深色侧栏，手机改为顶栏加底部标签，其余页面只做变量适配。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
 - [x] **线路图界面第二步：顾问停靠栏** — PR #96；顾问停在工作区右侧，一轮画成一条线上的各个站，来源卡片、写入前确认、停止；接口新增步骤事件和停止。[详情](docs/measurements.md#advisor-dock-step-events-and-the-run-interface-pr-96)
 - [x] **未登录的总览画演示** — PR #97；用学校库里的真实项目和日期画一份只读演示并标明，会写入的操作引到登录；顾问输入区写明提问需要登录。只改前端。[决定](note/decisions.md)
-- [ ] **线路图界面后续** — 顾问的更多写入工具（改截止日期、材料等）；材料线路图（后端还没有逐项材料要求的数据）；其余页面的完整重做。
+- [ ] **材料归并**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.7）— PR #103 做了数据、逐项勾选、顾问勾选和提取工具：学校库能存每个项目官网要求的材料（类型、份数、原文、出处），「材料就绪」一个勾改成逐项勾选加自己的清单，顾问只能勾清单里已有的项。**还没有运行提取，学校库里没有材料，提取质量没有任何数字**；提取由 Claude 子代理读快照完成，忠实度判官没有覆盖新字段。[详情](docs/measurements.md#material-merging-data-checklist-and-extraction-tooling-pr-103)
+- [ ] **线路图界面后续** — 材料线路图；其余页面的完整重做。
 - [x] **多设备：同步冲突处理**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.3）— PR #94；两台设备同时改同一条记录只接受一个，另一个收到 409 和服务器上的内容；重试的创建不产生第二条。[详情](docs/measurements.md#sync-conflict-handling-pr-94)
 
 

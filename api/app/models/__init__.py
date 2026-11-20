@@ -16,7 +16,9 @@ from app.models.document import (
     UploadedBy,
 )
 from app.models.knowledge_gap import KnowledgeGap, KnowledgeGapReport
-from app.models.program import Program, ProgramDeadline, ProgramEmbedding, ProgramPrerequisite, University
+from app.models.program import (
+    Program, ProgramDeadline, ProgramEmbedding, ProgramMaterial, ProgramPrerequisite, University,
+)
 from app.models.reminder import ReminderDelivery, ReminderEmail, ReminderSettings
 from app.models.review import (
     CheckType,
@@ -69,6 +71,7 @@ __all__ = [
     "Profile",
     "Program",
     "ProgramDeadline",
+    "ProgramMaterial",
     "ProgramEmbedding",
     "ProgramPrerequisite",
     "ReviewCriterion",

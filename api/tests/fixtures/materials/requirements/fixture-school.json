@@ -1,0 +1,101 @@
+{
+ "school_key": "fixture-school",
+ "school_name_en": "Fixture School (hand-made, not a real school)",
+ "country": "United Kingdom",
+ "programs": [
+  {
+   "name": "MSc Fixture Alpha",
+   "url": "https://example.test/fixture/alpha",
+   "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+   "fields": {},
+   "materials": {
+    "snapshot_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "extractor": "hand-made fixture",
+    "extracted_at": "2026-11-20",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "recommendation",
+      "count": 2,
+      "quote": "Two letters of recommendation are required.",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "quote": "Upload a current CV.",
+      "check": "ok"
+     },
+     {
+      "type": "personal_statement",
+      "note": "up to 500 words",
+      "quote": "A personal statement of up to 500 words.",
+      "check": "ok"
+     },
+     {
+      "type": "portfolio",
+      "quote": "No portfolio is required.",
+      "check": "ok"
+     }
+    ]
+   }
+  },
+  {
+   "name": "MSc Fixture Beta",
+   "url": "https://example.test/fixture/beta",
+   "snapshot_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+   "fields": {},
+   "materials": {
+    "snapshot_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "extractor": "hand-made fixture",
+    "extracted_at": "2026-11-20",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "recommendation",
+      "count": 3,
+      "quote": "Two references are required; applicants to the research track provide three.",
+      "check": "ok"
+     }
+    ]
+   }
+  },
+  {
+   "name": "MSc Fixture Gamma",
+   "url": "https://example.test/fixture/gamma",
+   "snapshot_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+   "fields": {},
+   "materials": {
+    "snapshot_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "extractor": "hand-made fixture",
+    "extracted_at": "2026-11-20",
+    "rejected": 0,
+    "items": []
+   }
+  },
+  {
+   "name": "MSc Fixture Delta",
+   "url": "https://example.test/fixture/delta",
+   "snapshot_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+   "fields": {}
+  },
+  {
+   "name": "MSc Fixture Epsilon",
+   "url": "https://example.test/fixture/epsilon",
+   "snapshot_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "fields": {},
+   "materials": {
+    "snapshot_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "extractor": "hand-made fixture",
+    "extracted_at": "2026-11-20",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "cv",
+      "quote": "Upload a current CV.",
+      "check": "ok"
+     }
+    ]
+   }
+  }
+ ]
+}

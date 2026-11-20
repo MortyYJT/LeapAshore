@@ -12,6 +12,52 @@ nothing here is `已核验`, and no file carries `verified_at`.
 Snapshots (raw HTML + text) live in `api/var/snapshots/<school_key>/<sha256>.*`, which is not
 committed. Each program cites its snapshot by sha256, so the exact page version is identifiable.
 
+## Application materials
+
+A program may carry a `materials` block beside its `fields`: what the page asks an applicant to send
+(PRD-multi-device 3.7). It is written by a separate pass over the stored snapshots, with
+`python -m app.collect.material_extract` (see "Brief for a material-extracting agent" below), and
+checked by `verify` like every other value:
+
+```json
+"materials": {
+  "snapshot_sha256": "f97dbf6c…",
+  "extractor": "claude-subagent",
+  "extracted_at": "2026-11-21",
+  "rejected": 1,
+  "items": [
+    {"type": "recommendation", "count": 2, "note": "at least one academic referee",
+     "quote": "…verbatim…", "check": "ok"},
+    {"type": "other", "note": "course descriptions for core courses", "quote": "…",
+     "source_sha256": "…", "source_url": "https://…", "check": "ok"}
+  ]
+}
+```
+
+- `type` is one of `cv`, `personal_statement`, `recommendation`, `transcript`, `language_score`,
+  `test_score`, `portfolio`, `writing_sample`, `other`.
+- An entry passes when its `quote` is verbatim in the snapshot it cites (`source_sha256`, else the
+  block's) and is a sentence (10 characters or more), a `count` is written in the quote as a number
+  standing on its own (not the 1 of `1,000`, the 2 of `2nd`, the 4 of `A4`) or as an English number
+  word, and every number written in `note`, digits or words, is in the quote too. An `other` entry
+  needs a `note` that names it. A failing entry is refused whole, with the reason; nothing is ever
+  edited to make it pass.
+- **No block** means nobody has read the page for materials. **A block with no items and
+  `rejected` 0** means the page was read and lists none. A block left with refusals only, or
+  withdrawn (`"withdrawn": "<why>"`, written by the `withdraw` command), says "not extracted": the
+  importer removes what an earlier import wrote for the program. The catalogue keeps "not read" and
+  "read, lists none" apart (`programs.materials_snapshot_sha256` is NULL until a page was read).
+- The quote check is a substring check. It cannot tell "references are required" from the same words
+  in "no references are required", nor whose count a number is; only a labelled set can measure
+  that, and none exists yet.
+- `note` is the extractor's summary and is not judged by a model yet: the summary check below does
+  not cover materials.
+- The block cites the snapshot it was read from. When the queue later collects the page again, the
+  program's `snapshot_sha256` moves and the block keeps its own; `export` carries the block over.
+- Import: `python -m app.collect.importer --materials-only <file>…` writes only the materials of
+  programs the catalogue already holds, and nothing else; a full import writes them too. Either
+  way a rerun over the same file writes nothing.
+
 ## Extracting with the model
 
 `python -m app.collect.extract <school_key> <sha256> [--name "…"]` (run from `api/`) does step 3 below
@@ -234,3 +280,110 @@ and cite it with `source_sha256`. Typical cases:
 
 One line of JSON: `{"school_key": …, "programs": N, "machine_checked": N, "human_queue": N,
 "complete": true|false, "blocked": true|false, "note": "…"}`.
+
+## Brief for a material-extracting agent
+
+You read stored pages and say which application materials each one asks for. You do not fetch
+anything and you do not call a model: you are the reader. Work from `api/`, with
+`.venv/bin/python`. One run is about 30 programs; stop earlier if your context is getting long.
+
+### Rules (not negotiable)
+
+1. **Only what the page says.** Every entry needs a `quote` copied character for character from the
+   text the `text` command prints: the whole sentence that asks for the material, so that it reads
+   the same out of context ("No portfolio is required" must not be cut down to "portfolio is
+   required"). Nothing from memory, from another school's page, or from what
+   programs of this kind usually ask for.
+2. **Unknown stays unknown.** If the page does not ask for a material, there is no entry for it. If
+   the page lists no material at all, hand in `"materials": []`: that records "read, lists none".
+   If you cannot tell (the text is an error page, a cookie wall, another program), hand in nothing
+   for that program and say so in your report.
+3. **Materials are things an applicant sends.** A CV, a statement, letters, transcripts, score
+   reports, a portfolio, a writing sample, other documents. Entry requirements are not materials:
+   a degree class, a GPA, a minimum IELTS score, prerequisite courses, work experience and deadlines
+   are already in `fields`; leave them out. "IELTS 6.5 overall" is an eligibility rule; "upload your
+   English test certificate" is a `language_score` material.
+4. **`count` only when the page states a number** for this program ("two references", "3 letters").
+   "A CV" has no count. A number for another track or another degree is not this program's, and a
+   number that measures something else (a word limit, a page size) is not a count.
+5. **`note` says what is particular** about the requirement, in English, in a few words (a word
+   limit, who may write the letter, a set question, "optional"). No figure in it that is not in the
+   quote. Leave it out when there is nothing particular. An `other` entry must have one: it is the
+   material's name.
+6. **One page.** Read the snapshot `targets` lists for the program. Only when that page itself links
+   to a page that states this program's documents (and says so) may you use the linked page: fetch
+   it with `python -m app.collect.snapshot <url> --school <school_key>` (it honours robots.txt and
+   spaces requests out; a `{"blocked": …}` answer ends it, see rule 3 of the collecting brief), and
+   cite it on the entry with `"source_sha256"`. Never use WebFetch, curl or a search engine for a
+   quote.
+7. Do not edit a requirement file by hand, do not commit, do not touch any other file. Keep your
+   working files in `api/var/work/materials/`.
+
+### Types
+
+`cv`, `personal_statement` (statement of purpose, motivation letter, essays the page sets),
+`recommendation` (references, referee reports), `transcript` (transcripts, degree certificates,
+proof of enrolment), `language_score` (an English or other language test report), `test_score`
+(GRE, GMAT and the like), `portfolio`, `writing_sample`, `other` (anything else the page asks the
+applicant to send: a research proposal, a passport copy, course descriptions; name it in `note`).
+One entry per requirement: two different essays are two `personal_statement` entries.
+
+### Commands
+
+```bash
+# 1. What to read: one line of JSON per program (id, page, snapshot, whether it is done).
+.venv/bin/python -m app.collect.material_extract targets --school <school_key> --pending
+.venv/bin/python -m app.collect.material_extract targets --program <program_id> --program <program_id>
+
+# 2. Read one program's stored page. A long page is printed as the lines around material words;
+#    --full prints all of it, --lines A:B a range.
+.venv/bin/python -m app.collect.material_extract text <program_id> --school <school_key>
+
+# 3. Hand in what the page asks for. The command checks every entry, writes the ones that pass into
+#    the school's file and prints the refusals with their reasons. --dry-run checks without writing.
+.venv/bin/python -m app.collect.material_extract accept <program_id> --school <school_key> \
+    --extractor "<who you are>" --json api/var/work/materials/<program_id>.json
+
+# 4. Take back a program you handed in by mistake (the text was a cookie wall, an error page,
+#    another program). It is listed as pending again.
+.venv/bin/python -m app.collect.material_extract withdraw <program_id> --school <school_key> \
+    --reason "<what was wrong>"
+
+# 5. Where the extraction stands.
+.venv/bin/python -m app.collect.material_extract status --school <school_key>
+```
+
+The file you hand in:
+
+```json
+{
+  "snapshot_sha256": "<the snapshot_sha256 that `targets` printed for this program>",
+  "materials": [
+    {"type": "recommendation", "count": 2, "note": "at least one academic referee",
+     "quote": "Two references are required, at least one of which should be academic."},
+    {"type": "cv", "quote": "Upload a current CV."}
+  ]
+}
+```
+
+A refused entry was refused for a reason the report names (`quote not found in snapshot`,
+`count=3 not in quote`, …). Copy the quote again from the `text` output, or drop the entry. Never
+change a count or a note so that it passes. Handing a program in again replaces what was written.
+
+The snapshot store is `api/var/snapshots/`; when it lives elsewhere, set
+`LEAPASHORE_SNAPSHOT_ROOT` to it for every command.
+
+### What to report when you finish
+
+One line of JSON: `{"programs_read": N, "handed_in": N, "entries_accepted": N, "entries_refused": N,
+"pages_listing_none": N, "skipped": [{"program_id": "…", "why": "…"}]}`.
+
+## Labelling a set to measure the extraction
+
+`python -m evals.materials` scores an extraction against labels (`api/evals/materials.py` states the
+format and the metrics). The labeller must not see any extractor's output: start from
+`python -m evals.materials --template --program <id>… --out api/evals/materials_gold.json`, read each
+page with the `text` command above (it prints no extraction state), fill in `materials` for every
+program by the rules of the brief, set `labeller` and `labelled_at`, and run
+`python -m evals.materials --check`. Do not open the requirement files while labelling. No labelled
+set and no score exist yet.

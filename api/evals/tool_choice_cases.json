@@ -1,5 +1,5 @@
 {
- "about": "顾问工具选择评估集。由 Claude 编写，未经人工复核。每题给出期望调用的工具和关键参数；@ 开头的值在运行时换成评估账号里的申请、项目或学校库截止日期的 id。评估账号的数据见 fixture；其中学校库项目的日期来自学校库，手动添加的两条是为评估编的。",
+ "about": "顾问工具选择评估集。由 Claude 编写，未经人工复核。每题给出期望调用的工具和关键参数；@ 开头的值在运行时换成评估账号里的申请、项目或学校库截止日期的 id。评估账号的数据见 fixture；其中学校库项目的日期来自学校库，手动添加的两条是为评估编的。材料清单：学校库还没有任何项目的材料要求（材料提取尚未运行），所以评估账号的材料清单都是申请者自己列的条目（customMaterials，id 固定），写在 fixture 的 record 里；这些条目是为评估编的，不是任何项目的官方要求。",
  "fixture": {
   "profile": {
    "school_name": "武汉大学",
@@ -18,6 +18,25 @@
     "deadlines": {
      "main": "Main Round",
      "clearing": "Clearing Round"
+    },
+    "record": {
+     "custom_materials": [
+      {
+       "id": "c-rec",
+       "label": "推荐信",
+       "done": false
+      },
+      {
+       "id": "c-ps",
+       "label": "个人陈述",
+       "done": true
+      },
+      {
+       "id": "c-cv",
+       "label": "简历",
+       "done": false
+      }
+     ]
     }
    },
    {
@@ -29,6 +48,25 @@
      "r1": "Round 1, Fall 2027",
      "r2": "Round 2, Fall 2027",
      "r3": "Round 3, Fall 2027"
+    },
+    "record": {
+     "custom_materials": [
+      {
+       "id": "c-rec",
+       "label": "推荐信",
+       "done": false
+      },
+      {
+       "id": "c-ps",
+       "label": "个人陈述",
+       "done": false
+      },
+      {
+       "id": "c-cv",
+       "label": "简历",
+       "done": false
+      }
+     ]
     }
    },
    {
@@ -40,7 +78,23 @@
      "only": "August 2027 intake (closing date)"
     },
     "record": {
-     "materials_ready": true
+     "custom_materials": [
+      {
+       "id": "c-rec",
+       "label": "推荐信",
+       "done": true
+      },
+      {
+       "id": "c-ps",
+       "label": "个人陈述",
+       "done": true
+      },
+      {
+       "id": "c-cv",
+       "label": "简历",
+       "done": true
+      }
+     ]
     }
    },
    {
@@ -48,7 +102,26 @@
     "program_id": "university-of-edinburgh-artificial-intelligence-msc-775ffc",
     "tier": "稳",
     "status": "considering",
-    "deadlines": {}
+    "deadlines": {},
+    "record": {
+     "custom_materials": [
+      {
+       "id": "c-rec",
+       "label": "推荐信",
+       "done": false
+      },
+      {
+       "id": "c-ps",
+       "label": "个人陈述",
+       "done": false
+      },
+      {
+       "id": "c-cv",
+       "label": "简历",
+       "done": false
+      }
+     ]
+    }
    }
   ],
   "manual": [
@@ -60,7 +133,14 @@
      "status": "applying",
      "round": "第二批",
      "deadline": "2027-03-15",
-     "source_url": "https://example.edu/dku/apply"
+     "source_url": "https://example.edu/dku/apply",
+     "custom_materials": [
+      {
+       "id": "c-tr",
+       "label": "成绩单",
+       "done": false
+      }
+     ]
     }
    },
    {
@@ -1105,7 +1185,8 @@
       "tool": "propose_material_tick",
       "args": {
        "application_id": "@cmu",
-       "ready": true
+       "ready": true,
+       "material": "all"
       }
      }
     ]
@@ -1124,7 +1205,8 @@
       "tool": "propose_material_tick",
       "args": {
        "application_id": "@nus",
-       "ready": false
+       "ready": false,
+       "material": "all"
       }
      }
     ]
@@ -1147,6 +1229,9 @@
         "contains": "推荐信已经拿到两封"
        },
        "ready": {
+        "absent": true
+       },
+       "material": {
         "absent": true
        }
       }
@@ -1172,6 +1257,9 @@
        },
        "ready": {
         "absent": true
+       },
+       "material": {
+        "absent": true
        }
       }
      }
@@ -1194,7 +1282,8 @@
        "ready": true,
        "add_note": {
         "contains": "PS 还想再改一版"
-       }
+       },
+       "material": "all"
       }
      }
     ]
@@ -1205,7 +1294,92 @@
    "kind": "material",
    "message": "港大的推荐信搞定了",
    "expect": {
-    "calls": [],
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@hku",
+       "material": "c-rec",
+       "ready": true
+      }
+     }
+    ],
+    "note": "只有一样材料备好：勾清单里的那一项（推荐信），不是全部。"
+   }
+  },
+  {
+   "id": "material-07",
+   "kind": "material",
+   "message": "CMU MISM 的简历弄好了，勾一下",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@cmu",
+       "material": "c-cv",
+       "ready": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "material-08",
+   "kind": "material",
+   "message": "港大的个人陈述我想重写，先把那一项的勾去掉",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@hku",
+       "material": "c-ps",
+       "ready": false
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "material-09",
+   "kind": "material",
+   "message": "昆山杜克的成绩单办好了",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@dku",
+       "material": "c-tr",
+       "ready": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "material-10",
+   "kind": "material",
+   "message": "博科尼的推荐信准备好了，帮我勾上",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ],
     "allow": [
      "propose_material_tick"
     ],
@@ -1213,14 +1387,61 @@
      {
       "tool": "propose_material_tick",
       "args": {
-       "application_id": "@hku",
+       "application_id": "@bocconi",
        "ready": {
         "absent": true
        }
       }
      }
     ],
-    "note": "只有一样材料备好，不能把「全部材料就绪」勾上；可以提议记进备注，或者问一句。"
+    "note": "博科尼这条申请没有材料清单，没有可以勾的一项：照实说，可以提议把原话记进备注；不能凭空勾一项。"
+   }
+  },
+  {
+   "id": "material-11",
+   "kind": "material",
+   "message": "爱丁堡 AI 的作品集做完了，勾上",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ],
+    "allow": [
+     "propose_material_tick"
+    ],
+    "if_called": [
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@edi",
+       "ready": {
+        "absent": true
+       }
+      }
+     }
+    ],
+    "note": "爱丁堡的清单里没有作品集这一项（只有推荐信、个人陈述、简历）：不能勾别的项，也不能当作全部勾上；说明清单里没有，或提议记备注。"
+   }
+  },
+  {
+   "id": "material-12",
+   "kind": "material",
+   "message": "新加坡国立的推荐信还差一封，把推荐信那项的勾去掉，其他不动",
+   "expect": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "@nus",
+       "material": "c-rec",
+       "ready": false
+      }
+     }
+    ]
    }
   },
   {
@@ -1508,7 +1729,8 @@
         "tool": "propose_material_tick",
         "args": {
          "application_id": "@hku",
-         "ready": true
+         "ready": true,
+         "material": "all"
         }
        },
        {
@@ -1590,7 +1812,8 @@
         "tool": "propose_material_tick",
         "args": {
          "application_id": "@cmu",
-         "ready": true
+         "ready": true,
+         "material": "all"
         }
        }
       ]

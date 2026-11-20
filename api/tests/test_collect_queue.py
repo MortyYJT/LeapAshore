@@ -655,6 +655,23 @@ def test_export_replaces_by_url_and_keeps_the_rest(db_session, school, client):
     assert "verified_at" not in path.read_text()
 
 
+def test_export_keeps_the_materials_written_for_a_program_it_replaces(db_session, school, client):
+    """The queue collects a page again; the materials read from the earlier snapshot are not its to drop."""
+    path = school["data_dir"] / f"{school['key']}.json"
+    block = {"snapshot_sha256": "a" * 64, "extractor": "test", "extracted_at": "2026-11-20", "rejected": 0,
+             "items": [{"type": "cv", "quote": "FIXTURE PAGE: Upload a current CV.", "check": "ok"}]}
+    path.write_text(json.dumps({"school_key": school["key"], "school_name_en": "Example University", "programs": [
+        {"name": "Master of Data Science", "url": "https://www.example.edu.au/mds", "snapshot_sha256": "a" * 64,
+         "status": "机器核对", "fields": {"ielts": ielts(6.5)}, "materials": block}]}))
+    page = add_page(db_session, school)
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    assert queue.export_school(db_session, school["key"], data_dir=school["data_dir"])["replaced"] == 1
+    program = json.loads(path.read_text())["programs"][0]
+    assert program["snapshot_sha256"] == hashlib.sha256(PAGE.encode()).hexdigest()
+    assert program["materials"] == block
+
+
 def test_export_keeps_a_summary_verdict_for_a_value_stated_as_before(db_session, school, client):
     from app.collect.faithful import set_summary_verdict
 

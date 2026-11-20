@@ -593,19 +593,43 @@ async function adminPass(browser, email, errors) {
     await applicationForm.getByLabel("日期来源链接", {exact:true}).fill("https://example.edu/apply");
     await applicationForm.getByLabel("我已自行核对本轮截止日期与来源").check();
     await applicationForm.getByLabel("材料与准备备注").fill("演示记录：个人陈述初稿待完成，推荐人待确认。");
+    // Material checklist (PRD-multi-device 3.7): a manual application has only the applicant's own lines.
+    for (const line of ["个人陈述", "推荐信"]) {
+      await applicationForm.getByLabel("加一项自己的材料").fill(line);
+      await applicationForm.getByRole("button", {name:"添加",exact:true}).click();
+    }
+    await applicationForm.getByRole("checkbox", {name:"推荐信",exact:true}).check();
     await applicationForm.getByRole("button", {name:"保存申请",exact:true}).click();
     await page.reload();
     const manualCard=page.locator(".application-card").filter({hasText:"示例大学（演示账号）"});
     await manualCard.waitFor();
     check("我的申请：手动项目及轮次刷新后保留", await manualCard.getByText(/第一轮/).count()>0 && await manualCard.getByText(/已自行核对/).count()>0);
+    check("材料清单：自己列的两项保存下来，勾了一项", (await manualCard.getByText("材料 1/2", {exact:true}).count()) === 1);
     await screenshot(page,"applications");
     await manualCard.getByRole("button",{name:"编辑申请"}).click();
+    check("材料清单：表单写明勾选是自查，不是审核", (await applicationForm.getByText(/勾选是你自己的核对，不是审核/).count()) === 1);
+    check("材料清单：再打开表单时勾选还在", (await applicationForm.getByRole("checkbox", {name:"推荐信",exact:true}).isChecked()) && !(await applicationForm.getByRole("checkbox", {name:"个人陈述",exact:true}).isChecked()));
+    await applicationForm.getByRole("checkbox", {name:"个人陈述",exact:true}).check();
     await applicationForm.getByLabel("申请轮次",{exact:true}).fill("第二轮");
     await applicationForm.getByRole("button",{name:"保存申请",exact:true}).click();
     await page.locator(".application-dialog").waitFor({state:"hidden"});
     await page.reload();
     await manualCard.getByText(/待自行核对/).waitFor();
     check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
+    check("材料清单：两项都勾上后显示都勾了", (await manualCard.getByText("材料 2/2，都勾了", {exact:true}).count()) === 1);
+    // A catalogue program whose page has not been read for materials says so, and offers the own list.
+    // Which program that is comes from the records, not from the order of the cards: once materials
+    // are extracted for some programs, the first catalogue card may be one that has them.
+    const unread = await page.evaluate(async () => (await (await fetch("/api/application-records")).json()).find((r) => r.programId && !r.materialsExtracted));
+    check("材料清单：这个账号有一个还没提取材料的学校库项目可走查", Boolean(unread));
+    if (unread) {
+      const catalogCard = page.locator(".application-card").filter({ has: page.locator(`a[href="/programs/${encodeURIComponent(unread.programId)}"]`) });
+      check("材料清单：学校库项目没提取材料时写明还没提取", (await catalogCard.getByText("材料要求还没提取", {exact:true}).count()) === 1);
+      await catalogCard.getByRole("button",{name:"编辑申请"}).click();
+      check("材料清单：没提取的项目在表单里说明，并可以列自己的清单", (await applicationForm.getByText(/材料要求还没提取/).count()) === 1 && (await applicationForm.getByLabel("加一项自己的材料").count()) === 1);
+      await applicationForm.getByRole("button",{name:"取消",exact:true}).click();
+      await page.locator(".application-dialog").waitFor({state:"hidden"});
+    }
 
     // Sync conflict (PRD-multi-device 3.3): another device edits the record while this form is open.
     const demoRecord = () => page.evaluate(async () => (await (await fetch("/api/application-records")).json()).find((r) => r.school === "示例大学（演示账号）"));
@@ -1165,7 +1189,7 @@ async function adminPass(browser, email, errors) {
     const inTenDays = new Date(Date.now() + 8 * 3600e3 + 10 * 86400e3).toISOString().slice(0, 10);
     const near = await b.evaluate(async (deadline) => (await fetch("/api/application-records", {
       method: "POST", headers: { "Content-Type": "application/json", "Idempotency-Key": `walkthrough-${Date.now()}` },
-      body: JSON.stringify({ school: "走查大学", name: "MSc Walkthrough", deadline, sourceUrl: "https://example.edu/near", confirmDeadline: true, materialsReady: true }),
+      body: JSON.stringify({ school: "走查大学", name: "MSc Walkthrough", deadline, sourceUrl: "https://example.edu/near", confirmDeadline: true, customMaterials: [{ id: "c-walkthrough", label: "简历", done: true }] }),
     })).json(), inTenDays);
     await b.goto(`${BASE}/`);
     const nearRow = b.locator(".lt-row", { hasText: "走查大学" });

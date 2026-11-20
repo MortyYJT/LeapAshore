@@ -71,6 +71,11 @@ class Program(Base):
     # The page the academic requirement's quote is on: a shared admissions page or the program page.
     academic_source_url: Mapped[str | None] = mapped_column(Text)
 
+    # The snapshot the program's application materials were read from (`app.collect.materials`). NULL is
+    # "nobody has read the page for materials yet", which is not "the page asks for nothing": a
+    # program read and found to list none has this set and no `program_materials` rows.
+    materials_snapshot_sha256: Mapped[str | None] = mapped_column(String(64))
+
     # Mandatory, like `review_criteria.source_id` and `document_review_findings.criterion_id`: a
     # program is a claim about an official page, so a program with no page is not a program with an
     # unknown source. The router still checks the row it reads, because a check that only holds in
@@ -91,6 +96,9 @@ class Program(Base):
     )
     deadlines: Mapped[list["ProgramDeadline"]] = relationship(
         back_populates="program", cascade="all, delete-orphan", order_by="ProgramDeadline.sort_order"
+    )
+    materials: Mapped[list["ProgramMaterial"]] = relationship(
+        back_populates="program", cascade="all, delete-orphan", order_by="ProgramMaterial.sort_order"
     )
 
 
@@ -134,6 +142,36 @@ class ProgramDeadline(Base):
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
 
     program: Mapped[Program] = relationship(back_populates="deadlines")
+
+
+class ProgramMaterial(Base):
+    """One application material a program's official page asks for, as collected and checked.
+
+    A catalogue fact, shared by every applicant; an applicant's tick is stored on their own row
+    (`application_plans.material_ticks`) under `key`. The quote passed `verify` against the snapshot
+    named on the program; nobody has verified it by hand, and no model has judged `note`.
+    """
+
+    __tablename__ = "program_materials"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)
+    program_id: Mapped[str] = mapped_column(
+        String(64), ForeignKey("programs.id", ondelete="CASCADE"), index=True
+    )
+    # The name a tick is stored under: the type, then `type-2`… for more entries of one type.
+    key: Mapped[str] = mapped_column(String(48))
+    # One of `app.collect.materials.MATERIAL_TYPES`.
+    type: Mapped[str] = mapped_column(String(32))
+    # How many the page asks for; NULL when it states no number.
+    count: Mapped[int | None] = mapped_column(Integer)
+    # The extractor's summary of what is particular about this requirement; NULL when it gave none.
+    note: Mapped[str | None] = mapped_column(Text)
+    # The verified quote the entry was read from, and the page it is on.
+    quote: Mapped[str] = mapped_column(Text)
+    source_url: Mapped[str] = mapped_column(Text)
+    sort_order: Mapped[int] = mapped_column(Integer, default=0)
+
+    program: Mapped[Program] = relationship(back_populates="materials")
 
 
 def has_requirement_data():

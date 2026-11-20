@@ -85,7 +85,8 @@ PROFILE_LABELS = {
     "annual_budget_cny": "年预算（元）",
 }
 ACTION_LABELS = {"add": "加入组合", "remove": "移出组合", "set_primary": "设为首选", "set_status": "改申请状态"}
-TICK_LABELS = {True: "勾上（全部就绪）", False: "取消勾选"}
+TICK_LABELS = {True: "勾上", False: "取消勾选"}
+ALL_MATERIALS_LABEL = "清单里的全部材料"
 STATUS_LABELS = {status.value: label for status, label in _STATUS_LABELS.items()}
 
 WAITING_FOR_ANSWER = "等你确认"
@@ -172,7 +173,8 @@ def call_args(
                 rows.append(_row("轮次", args["stated_round"]))
         else:
             if isinstance(args.get("ready"), bool):
-                rows.append(_row("材料", TICK_LABELS[args["ready"]]))
+                line = named.get("material") or (ALL_MATERIALS_LABEL if args.get("material") == "all" else args.get("material"))
+                rows.append(_row("材料", f"{line}：{TICK_LABELS[args['ready']]}" if line else TICK_LABELS[args["ready"]]))
             if args.get("add_note"):
                 rows.append(_row("备注", args["add_note"]))
         return rows

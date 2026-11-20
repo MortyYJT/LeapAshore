@@ -35,6 +35,7 @@ from sqlalchemy.dialects.postgresql import REGCONFIG
 from sqlalchemy.orm import Session, joinedload, selectinload
 
 from app.agent import catalog_match, embeddings
+from app.collect import materials as material_rules
 from app.config import settings
 from app.models.program import Program, ProgramEmbedding, University, has_requirement_data
 from app.models.source import Source
@@ -239,7 +240,7 @@ def search_requirements(session: Session, query: str, limit: int = TOP_K, rankin
         select(Program)
         .where(Program.id.in_(chosen))
         .options(joinedload(Program.university), selectinload(Program.prerequisites),
-                 selectinload(Program.deadlines))
+                 selectinload(Program.deadlines), selectinload(Program.materials))
     ).all()
     sources = {s.id: s for s in session.scalars(select(Source).where(Source.id.in_({p.source_id for p in programs})))}
     by_id = {p.id: p for p in programs}
@@ -287,6 +288,28 @@ def _academic(p: Program, source: Source | None) -> str:
     return p.academic_requirement + _page(getattr(p, "academic_source_url", None), source)
 
 
+NOT_EXTRACTED = "未提取"
+NONE_LISTED = "官网这一页没有列出"
+# Said with the materials themselves: the line's 数据状态 is about the values a person reviewed, and
+# no person has reviewed a material entry.
+MATERIALS_UNREVIEWED = "机器核对原文，未经人工核验"
+
+
+def _materials(p: Program, source: Source | None) -> str:
+    """The materials the page asks for, each with its count, the collector's note and its page when
+    that is not the program's own. A program whose page has not been read for materials says so, in
+    words the model cannot take for "none"."""
+    if getattr(p, "materials_snapshot_sha256", None) is None:
+        return NOT_EXTRACTED
+    parts = []
+    for row in sorted(p.materials, key=lambda x: x.sort_order):
+        text = material_rules.label(row.type, row.count, row.note)
+        if row.note and row.type != material_rules.OTHER:
+            text += f"（{row.note}）"
+        parts.append(text + _page(row.source_url, source))
+    return f"{'；'.join(parts)}（{MATERIALS_UNREVIEWED}）" if parts else NONE_LISTED
+
+
 def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
     p, s = hit.program, hit.source
     prereqs = "；".join(x.label for x in sorted(p.prerequisites, key=lambda x: x.sort_order)) or "无"
@@ -299,6 +322,7 @@ def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
         f"｜学术要求：{_academic(p, s)}"
         f"｜申请截止：{_deadlines(p, s, today or beijing_today())}"
         f"｜先修要求：{prereqs}"
+        f"｜申请材料：{_materials(p, s)}"
         f"｜数据状态：{status}"
         f"｜来源：{s.title if s else '无'} {s.url if s else ''}"
     )
@@ -337,6 +361,15 @@ def citation_fields(hit: Hit, today: date | None = None) -> list[dict]:
     prereqs = [x.label for x in sorted(p.prerequisites, key=lambda x: x.sort_order)]
     if prereqs:
         rows.append({"label": "先修要求", "value": "；".join(prereqs)})
+    if getattr(p, "materials_snapshot_sha256", None) is not None:
+        for m in sorted(p.materials, key=lambda x: x.sort_order):
+            value = material_rules.label(m.type, m.count, m.note)
+            if m.note and m.type != material_rules.OTHER:
+                value += f"（{m.note}）"
+            row = {"label": "申请材料", "value": value, "quote": m.quote}
+            if m.source_url and (s is None or m.source_url != s.url):
+                row["url"] = m.source_url
+            rows.append(row)
     return rows
 
 

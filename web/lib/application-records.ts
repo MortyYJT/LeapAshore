@@ -1,4 +1,5 @@
 import { beijingToday } from "./deadlines.ts";
+import { sameCustom, type CustomMaterial, type RecordMaterial } from "./materials.ts";
 import { StaleVersionError, changedFields, staleOf } from "./sync-conflict.ts";
 import { APPLICATION_STATUSES } from "./taxonomy.ts";
 export interface ApplicationRecord {
@@ -12,6 +13,15 @@ export interface ApplicationRecord {
   sourceUrl: string | null;
   checkedAt: string | null;
   deadlineOrigin: string | null;
+  /** What the catalogue collected from the program's official page, each with the applicant's tick. */
+  materials: RecordMaterial[];
+  /** False for a manual record, and for a program whose page has not been read for materials yet. */
+  materialsExtracted: boolean;
+  /** The applicant's own checklist lines. */
+  customMaterials: CustomMaterial[];
+  materialsDone: number;
+  materialsTotal: number;
+  /** Every listed line is ticked (and there is at least one). The applicant's own check, not a review. */
   materialsReady: boolean;
   materialNotes: string;
   /** Opaque; changes whenever the record does. Sent back as `baseVersion` with an update or removal. */
@@ -102,6 +112,17 @@ export async function writeApplicationRecord(
 
 /** Whether a stored record says something else than the form that was submitted for it. */
 export function differsFromForm(record: ApplicationRecord, form: Record<string, unknown>): boolean {
-  const { confirmDeadline, ...fields } = form;
-  return Object.keys(changedFields(fields, record)).length > 0 || (confirmDeadline === true && !record.checkedAt);
+  const { confirmDeadline, materialTicks, materialBasis: _basis, customMaterials, ...fields } = form;
+  // Ticks are sent as changes by key and the checklist as a whole list, so each is compared as such.
+  const ticks = (materialTicks ?? {}) as Record<string, boolean>;
+  const ticksDiffer = Object.entries(ticks).some(
+    ([key, ready]) => (record.materials ?? []).find((material) => material.key === key)?.ready !== ready,
+  );
+  const customDiffers = Array.isArray(customMaterials) && !sameCustom(customMaterials as CustomMaterial[], record.customMaterials ?? []);
+  return (
+    Object.keys(changedFields(fields, record)).length > 0 ||
+    ticksDiffer ||
+    customDiffers ||
+    (confirmDeadline === true && !record.checkedAt)
+  );
 }

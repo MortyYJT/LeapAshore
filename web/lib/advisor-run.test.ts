@@ -250,6 +250,7 @@ function record(id: string, school: string, name: string, deadline: string | nul
   return {
     id, programId: null, school, name, round: null, status, deadline, sourceUrl: null, checkedAt: null,
     deadlineOrigin: null, materialsReady: false, materialNotes: "", version: "1",
+    materials: [], materialsExtracted: false, customMaterials: [], materialsDone: 0, materialsTotal: 0,
   };
 }
 

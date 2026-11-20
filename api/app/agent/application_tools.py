@@ -13,6 +13,9 @@ What a change may write:
   Either way the date is stored unchecked: only the applicant marks a date as checked, in 「我的申请」.
 - A material note is the applicant's own words, for the same reason: a note is where an invented
   requirement would otherwise be kept as if the applicant had written it.
+- A material tick names a line the record already lists: one of the materials the catalogue collected
+  from the program's page, or a line of the applicant's own checklist. The model cannot tick a
+  material nobody listed, and it cannot add a line. A tick is the applicant's own check, never a review.
 
 How a change is written:
 
@@ -40,6 +43,7 @@ from pydantic import ValidationError
 from sqlalchemy import select
 
 from app.agent import stated
+from app.collect import materials as material_rules
 from app.agent.confirm import (
     ALREADY,
     CHANGED,
@@ -63,13 +67,15 @@ from app.services.versions import StaleVersion
 CONFIRM_TYPE = "confirm_application"
 NO_SUCH_APPLICATION = f"{REFUSED}没有这个申请。\napplication_id 要用 get_my_applications 返回的 id。"
 
-READY, NOT_READY = "已就绪（自查）", "准备中"
+READY, NOT_READY = "已备好（自查）", "还没备好"
 UNCHECKED = "待核对"
 ORIGIN_LABELS = {COLLECTED: "学校库采集", ENTERED: "你自己填的"}
-# The one material tick an application has today: all of its materials at once. A tick per material
-# (PRD 3.7) adds keys beside this one; the tool, its card and its wording already speak of ticks.
+# What a material tick may name (PRD 3.7): the key of one material the catalogue collected for the
+# program (`materials[].key`), the id of one line of the applicant's own checklist
+# (`customMaterials[].id`), or this, every line the record lists at once.
 ALL_MATERIALS = "all"
 NOTE_LIMIT = 500
+NOT_EXTRACTED = "学校库还没有整理这个项目的材料清单"
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -109,7 +115,19 @@ def read_for_advisor(client: str) -> list[dict]:
                 "deadlineOrigin": row["deadlineOrigin"],
                 "deadlineCheckedByApplicant": row["checkedAt"] is not None,
                 "sourceUrl": row["sourceUrl"],
-                "materialsReady": row["materialsReady"],
+                # What the program's official page asks for, as the catalogue collected it. False means
+                # nobody has read the page for materials yet, which is not "nothing is asked".
+                "materialsExtracted": row["materialsExtracted"],
+                "materials": [
+                    {"key": m["key"], "name": name, "type": m["type"],
+                     "count": m["count"], "note": m["note"], "quote": m["quote"], "sourceUrl": m["sourceUrl"],
+                     "ready": m["ready"], "requirementChangedSinceTick": m["changed"]}
+                    for m, name in zip(row["materials"], material_names(row))
+                ],
+                # The applicant's own checklist lines.
+                "customMaterials": row["customMaterials"],
+                "materialsDone": row["materialsDone"],
+                "materialsTotal": row["materialsTotal"],
                 "materialNotes": row["materialNotes"],
             }
             if row["programId"]:
@@ -144,6 +162,30 @@ def _ready(value: bool) -> str:
     return READY if value else NOT_READY
 
 
+def material_names(record: dict) -> list[str]:
+    """A name for each collected material of the record that tells it from the others on the list."""
+    return material_rules.display_names([(m["type"], m["count"], m["note"], m["quote"]) for m in record["materials"]])
+
+
+def _lines(record: dict) -> dict[str, tuple[str, bool]]:
+    """Every line a tick may name on this record: key or id -> (the words for it, whether it is ticked)."""
+    lines = {m["key"]: (name, m["ready"]) for m, name in zip(record["materials"], material_names(record))}
+    lines.update({c["id"]: (c["label"], c["done"]) for c in record["customMaterials"]})
+    return lines
+
+
+def _progress(record: dict) -> str:
+    return f"{record['materialsDone']}/{record['materialsTotal']}"
+
+
+def _ticks_digest(record: dict) -> str:
+    """Which lines the record lists and which are ticked, as one short value: enough to tell that the
+    materials moved, and what the card saw of the catalogue's requirements."""
+    stated = [(m["key"], m["count"], m["note"], m["quote"], m["ready"]) for m in record["materials"]]
+    own = [(c["id"], c["label"], c["done"]) for c in record["customMaterials"]]
+    return hashlib.sha256(repr((stated, own)).encode()).hexdigest()[:12]
+
+
 def _seen(record: dict) -> dict:
     """The record as the card was drawn from it, kept with the question so a stale answer can say what
     moved. The note is kept as a digest: whether it moved is enough."""
@@ -154,7 +196,8 @@ def _seen(record: dict) -> dict:
         "deadline": _iso(record["deadline"]),
         "sourceUrl": record["sourceUrl"],
         "status": record["status"],
-        "materialsReady": record["materialsReady"],
+        "materials": _progress(record),
+        "ticks": _ticks_digest(record),
         "notes": hashlib.sha256((record["materialNotes"] or "").encode()).hexdigest()[:12],
         "checked": record["checkedAt"] is not None,
     }
@@ -177,7 +220,10 @@ def _moved(seen: dict | None, current: dict) -> list[str]:
     line("deadline", "截止日期")
     line("sourceUrl", "来源链接", lambda value: value or "没有")
     line("status", "申请状态", status_label)
-    line("materialsReady", "材料", _ready)
+    if seen.get("materials") != now["materials"]:
+        lines.append(f"材料：备好 {seen.get('materials') or '0/0'} → {now['materials']}")
+    elif seen.get("ticks") != now["ticks"]:
+        lines.append("材料清单：改过")
     line("checked", "核对状态", lambda value: "你核对过" if value else UNCHECKED)
     if seen.get("notes") != now["notes"]:
         lines.append("材料备注：改过")
@@ -236,10 +282,18 @@ def _propose_update(tool_name: str, config: RunnableConfig, application_id: str,
         return _stale(_name(record), seen, record)
     if shown is not None and shown != changes:
         # The record is the same, so what moved is the catalogue the change reads from.
-        return f"{REFUSED}学校库里的这条日期在确认之前变了，和卡片上列的对不上，这次没有写入。\n读取现在的内容后重新提出。"
+        return f"{REFUSED}学校库里的这一项在确认之前变了，和卡片上列的对不上，这次没有写入。\n读取现在的内容后重新提出。"
     try:
         payload = RecordPatch(**fields, base_version=based_on)
         with SessionLocal() as session:
+            if {"material_ticks", "custom_materials"} & set(fields) and seen and seen.get("ticks"):
+                # A tick is stored for the requirement as it reads now. Read it once more: if the
+                # record's own rows did not move and the list still differs from the card's, the
+                # catalogue was re-imported in between, and the applicant agreed to another wording.
+                current = records.read_record(session, client, record["id"])
+                if current["version"] == based_on and _ticks_digest(current) != seen["ticks"]:
+                    return (f"{REFUSED}学校库里这个项目的材料清单在确认之前变了，这次没有写入。\n"
+                            "读取现在的内容后重新提出。")
             records.update_record(session, client, record["id"], payload)
     except ValidationError as exc:
         return f"{REFUSED}内容不合法（{exc.errors()[0].get('msg', exc.__class__.__name__)}）。"
@@ -385,27 +439,61 @@ def propose_material_tick(
     application_id: str,
     config: RunnableConfig,
     state: Annotated[dict, InjectedState],
+    material: str = "",
     ready: bool | None = None,
     add_note: str = "",
 ) -> str:
-    """提议勾选或取消一条申请的材料自查，或往材料备注里加一行（必须经申请者确认后才写入）。application_id 取自
-    get_my_applications。现在每条申请只有一个勾，表示这条申请的全部材料是否就绪：ready=true 勾上，ready=false 取消。
-    申请者只说某一样材料备好了（例如推荐信）时不要勾，可以用 add_note 把他的原话加进材料备注。add_note 必须照抄
-    申请者在对话里说过的话，不要改写，也不要写你自己知道的材料要求。"""
+    """提议勾选或取消一条申请里的一项材料，或往材料备注里加一行（必须经申请者确认后才写入）。application_id 取自
+    get_my_applications。material 是要勾的那一项：这条申请 materials 里某一项的 key（学校库从官网采集的材料），
+    或 customMaterials 里某一项的 id（申请者自己列的）；申请者说这条申请的材料全都备好了，传 "all"。ready=true
+    勾上，ready=false 取消。勾选只表示申请者自己说备好了，不是审核。清单里没有的材料不能勾，也不要自己编材料要求：
+    materialsExtracted 为 false 表示学校库还没整理这个项目的材料清单，这时照实告诉申请者，可以用 add_note 把他的
+    原话记进备注。add_note 必须照抄申请者在对话里说过的话，不要改写。"""
     note = str(add_note or "").strip()
+    wanted_line = str(material or "").strip()
     texts = stated.applicant_texts(state)
-    ticks = {} if ready is None else {ALL_MATERIALS: bool(ready)}
 
     def build(record: dict, session):
         name = _name(record)
-        if not ticks and not note:
-            return f"{REFUSED}没有给出要改的内容。\n传 ready 勾选或取消，或传 add_note 加一行备注。"
+        if ready is None and not note:
+            return f"{REFUSED}没有给出要改的内容。\n传 material 和 ready 勾选或取消一项材料，或传 add_note 加一行备注。"
         fields, changes, parts = {}, [], []
-        for _material, wanted in ticks.items():
-            if record["materialsReady"] != wanted:
-                fields["materials_ready"] = wanted
-                changes.append(change("材料", _ready(record["materialsReady"]), _ready(wanted)))
-                parts.append("材料标为已就绪（自查）" if wanted else "材料改回准备中")
+        if ready is not None:
+            wanted = bool(ready)
+            lines = _lines(record)
+            if not lines:
+                why = NOT_EXTRACTED if record["programId"] and not record["materialsExtracted"] else "这条申请的材料清单是空的"
+                return (f"{REFUSED}{why}，没有可以勾的材料。\n不要自己列材料要求。申请者可以在「材料」页自己加清单；"
+                        "他说过的话可以用 add_note 记进备注。")
+            if not wanted_line:
+                return (f"{REFUSED}没有说明勾哪一项材料。\nmaterial 传这条申请 materials 里的 key 或 customMaterials 里的 id；"
+                        f"全部都备好了才传 \"{ALL_MATERIALS}\"。")
+            if wanted_line != ALL_MATERIALS and wanted_line not in lines:
+                listed = "、".join(f"{key}（{words}）" for key, (words, _held) in lines.items())
+                return f"{REFUSED}这条申请的清单里没有「{wanted_line[:48]}」这一项。\n清单里有：{listed}。"
+            chosen = list(lines) if wanted_line == ALL_MATERIALS else [wanted_line]
+            catalogue_keys = {m["key"]: m["digest"] for m in record["materials"]}
+            ticks, basis, custom = {}, {}, [dict(item) for item in record["customMaterials"]]
+            for key in chosen:
+                words, held = lines[key]
+                if held == wanted:
+                    continue
+                changes.append(change(f"材料 · {words}", _ready(held), _ready(wanted)))
+                if key in catalogue_keys:
+                    ticks[key] = wanted
+                    if wanted:
+                        basis[key] = catalogue_keys[key]
+                else:
+                    next(item for item in custom if item["id"] == key)["done"] = wanted
+            if ticks:
+                fields["material_ticks"] = ticks
+            if basis:
+                fields["material_basis"] = basis
+            if custom != record["customMaterials"]:
+                fields["custom_materials"] = custom
+            if changes:
+                what = "清单里的全部材料" if wanted_line == ALL_MATERIALS else f"「{lines[chosen[0]][0]}」"
+                parts.append(f"{what}标为已备好（自查）" if wanted else f"{what}改回还没备好")
         if note:
             if len(note) > NOTE_LIMIT:
                 return f"{REFUSED}一次加的备注最长 {NOTE_LIMIT} 字。"
@@ -417,7 +505,7 @@ def propose_material_tick(
                 changes.append(change("材料备注", None, f"加一行：{note}"))
                 parts.append("材料备注加一行")
         if not changes:
-            return f"{SAME}「{name}」的材料已经是这样（{_ready(record['materialsReady'])}），没有要写入的改动。"
+            return f"{SAME}「{name}」的材料已经是这样（备好 {_progress(record)}），没有要写入的改动。"
         return f"把「{name}」的" + "，".join(parts), changes, fields
 
     return _propose_update("propose_material_tick", config, application_id, build)

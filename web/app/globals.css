@@ -489,6 +489,21 @@ tbody tr:hover { background: var(--hover); }
 .application-form > label:not(.check-label) { display: grid; gap: 5px; font-weight: 500; }
 .application-form > label:not(.check-label) > * { font-weight: 400; }
 .application-form > p { margin: 0; }
+.material-fieldset { display: grid; gap: 8px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.material-fieldset legend { padding: 0; font-weight: 500; }
+.material-checklist { display: grid; gap: 10px; }
+.material-checklist > p { margin: 0; }
+.material-lines { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.material-lines > li { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 12px; flex-wrap: wrap; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.material-lines .check-label { align-items: baseline; min-width: 0; }
+.material-lines .check-label input { position: relative; top: 2px; accent-color: var(--ink); }
+.material-name { overflow-wrap: anywhere; }
+.material-detail { display: flex; align-items: baseline; gap: 4px 10px; flex-wrap: wrap; font-size: var(--fs-12); color: var(--ink-3); }
+.material-detail a { color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+.material-changed { padding: 0 5px; border-radius: 4px; background: var(--mark); color: var(--mark-ink); }
+.material-own { align-items: center; }
+.material-add { display: flex; gap: 8px; }
+.material-add .input { flex: 1; min-width: 0; }
 .application-dialog { width: min(560px, calc(100vw - 28px)); }
 
 /* ---------- dialogs ---------- */

@@ -43,7 +43,9 @@ USER_AGENT = "LeapAshoreBot/0.1 (+https://github.com/MortyYJT/leapashore; admiss
 MIN_INTERVAL = 2.0
 TIMEOUT = 30
 API_DIR = Path(__file__).resolve().parents[2]
-SNAPSHOT_ROOT = API_DIR / "var" / "snapshots"
+# `LEAPASHORE_SNAPSHOT_ROOT` points every collection tool at a snapshot store kept elsewhere (another
+# checkout of this repository, a mounted volume); unset, it is this checkout's own.
+SNAPSHOT_ROOT = Path(os.environ.get("LEAPASHORE_SNAPSHOT_ROOT") or API_DIR / "var" / "snapshots")
 RENDER_SCRIPT = API_DIR.parent / "scripts" / "render-page.cjs"
 
 

@@ -16,7 +16,8 @@ def test_manual_application_round_date_and_ownership(require_db):
         == 404
     )
     assert delete_record(stranger, key).status_code == 404
-    response = patch_record(owner, key, {"deadline": "2027-01-15", "round": "Round 1", "materialsReady": True})
+    response = patch_record(owner, key, {"deadline": "2027-01-15", "round": "Round 1",
+                                         "customMaterials": [{"id": "c-cv", "label": "CV", "done": True}]})
     assert response.status_code == 200
     assert response.json()["checkedAt"] is None
     assert (

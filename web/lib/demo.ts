@@ -175,6 +175,12 @@ export function demoRecords(programs: readonly DemoProgram[], today: string): Ap
     deadlineOrigin: fields.deadline ? "collected" : null,
     materialNotes: "",
     version: "demo",
+    // The demo ticks nothing: its overview line is drawn from `materialsReady` alone, labelled as an example.
+    materials: [],
+    materialsExtracted: false,
+    customMaterials: [],
+    materialsDone: 0,
+    materialsTotal: 0,
     ...fields,
   });
   return [

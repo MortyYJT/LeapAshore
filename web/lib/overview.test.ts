@@ -28,6 +28,11 @@ function record(id: string, fields: Partial<ApplicationRecord> = {}): Applicatio
     deadlineOrigin: null,
     materialsReady: false,
     materialNotes: "",
+    materials: [],
+    materialsExtracted: false,
+    customMaterials: [],
+    materialsDone: 0,
+    materialsTotal: 0,
     version: "v1",
     ...fields,
   };
