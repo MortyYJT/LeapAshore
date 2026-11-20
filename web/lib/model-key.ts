@@ -2,14 +2,15 @@
  * The applicant's own model key (docs/product/PRD-multi-device.md, 3.5).
  *
  * The key is kept in this browser's localStorage and nowhere else on this side. Each advisor request
- * carries it in a header (never in the URL or the body); the server uses it for that request and
- * stores nothing (`api/app/agent/model_key.py`). Signing out removes it.
+ * carries it in the `Authorization` header (never in the URL or the body), the one header proxies and
+ * log tools already treat as a secret; the server uses it for that request and stores nothing
+ * (`api/app/agent/model_key.py`). Signing out removes it.
  */
 
 export const MODEL_KEY_STORAGE = "leapashore:model-key";
 /** Fired on `window` when the stored key is saved or removed. */
 export const MODEL_KEY_CHANGED = "leapashore:model-key-changed";
-export const KEY_HEADER = "X-Model-Key";
+export const KEY_HEADER = "Authorization";
 export const PROVIDER_HEADER = "X-Model-Provider";
 
 /** The providers the server accepts, by the ids it knows. The server holds each one's address. */
@@ -31,15 +32,15 @@ export function providerOf(id: string) {
   return PROVIDERS.find((provider) => provider.id === id) ?? null;
 }
 
-// The same shape the server accepts: 8 to 256 letters, digits and . _ ~ + / = -
-const KEY_SHAPE = /^[A-Za-z0-9._~+/=-]{8,256}$/;
+// The same shape the server accepts: 20 to 256 letters, digits and . _ ~ + / = -
+const KEY_SHAPE = /^[A-Za-z0-9._~+/=-]{20,256}$/;
 
 /** Why `raw` cannot be a key, or null when it can. Says nothing about whether the provider accepts it. */
 export function keyProblem(raw: string): string | null {
   const key = raw.trim();
   if (!key) return "先粘贴密钥。";
   if (/\s/.test(key)) return "密钥中间不应该有空格或换行，请重新粘贴。";
-  if (key.length < 8) return "这串字符太短，不像一把密钥。";
+  if (key.length < 20) return "这串字符太短，不像一把密钥。";
   if (!KEY_SHAPE.test(key)) return "密钥里有不认识的字符，请从服务商页面重新复制。";
   return null;
 }
@@ -67,7 +68,7 @@ export function removeModelKey(store: Store): void {
 
 /** The headers that carry a key to the advisor; none when there is no key. */
 export function modelKeyHeaders(stored: StoredModelKey | null): Record<string, string> {
-  return stored ? { [KEY_HEADER]: stored.key, [PROVIDER_HEADER]: stored.provider } : {};
+  return stored ? { [KEY_HEADER]: `Bearer ${stored.key}`, [PROVIDER_HEADER]: stored.provider } : {};
 }
 
 /** A key as the page shows it once saved: its first three and last four characters. */

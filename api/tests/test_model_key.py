@@ -8,6 +8,7 @@ the stream sent back. The stub echoes the key in its error bodies, the worst a p
 """
 
 import asyncio
+import contextvars
 import copy
 import json
 import logging
@@ -23,6 +24,7 @@ from pathlib import Path
 import pytest
 import redis
 from fastapi.testclient import TestClient
+from langchain_core.messages import HumanMessage
 from sqlalchemy import select, text
 
 from app import limits
@@ -40,8 +42,8 @@ from app.seed_catalog import seed_catalog
 pytestmark = pytest.mark.usefixtures("require_db")
 
 CHAT, CONFIRM, CHECK = "/api/advisor/chat", "/api/advisor/confirm", "/api/advisor/key/check"
-KEY = "sk-applicant-RECOGNISABLE-0123456789abcdef"
-OTHER_KEY = "sk-applicant-SECOND-fedcba9876543210"
+KEY = "sk-applicant-RECOGNISABLE-0123456789-TAILZQ9X"
+OTHER_KEY = "sk-applicant-SECOND-fedcba9876543210-ENDWJ7KV"
 OWNER_KEY = "owner-chat-key"
 OWNER_EMBED_KEY = "owner-embed-key"
 # A phrase in the applicant's message. It is stored with the conversation, so finding it proves the
@@ -50,7 +52,12 @@ CANARY = "金丝雀暗号ZXQ"
 
 
 def own(key: str = KEY, provider: str = "deepseek") -> dict[str, str]:
-    return {model_key.KEY_HEADER: key, model_key.PROVIDER_HEADER: provider}
+    return {"Authorization": f"Bearer {key}", "X-Model-Provider": provider}
+
+
+def tail(key: str) -> str:
+    """The end of a key, which a provider may print in an error after masking the rest."""
+    return key[-8:]
 
 
 # ---------- a stub of the provider ----------
@@ -86,9 +93,10 @@ class Upstream:
                     time.sleep(1.5)
                     return False
                 if isinstance(upstream.fail, int):
-                    # Echo the whole key, as a careless provider might.
+                    # Repeat the whole key, as a careless provider might, and its end, as a careful one does.
                     self._json(upstream.fail, {"error": {
-                        "message": f"request refused for api key {self._key()} (Authorization: Bearer {self._key()})",
+                        "message": f"request refused for api key {self._key()} (Authorization: Bearer {self._key()}), "
+                                   f"your key ****{self._key()[-8:]} is invalid",
                         "type": "stub_error", "code": "stub"}})
                     return True
                 return False
@@ -177,6 +185,12 @@ def upstream(monkeypatch):
     monkeypatch.setattr(settings, "advisor_ip_limits", "1000/60")
     for provider in list(model_key.PROVIDERS.values()):
         monkeypatch.setitem(model_key.PROVIDERS, provider.id, replace(provider, base_url=stub.url))
+
+    # Every checkpoint of a turn stays for the searches below; pruning would remove all but the last.
+    async def keep_everything() -> None:
+        return None
+
+    monkeypatch.setattr(advisor, "_tidy", lambda config: keep_everything)
     yield stub
     stub.close()
     saver.close()
@@ -277,11 +291,13 @@ def everything_logged(caplog):
 
 
 def assert_key_left_nowhere(key: str, response, caplog, since: int) -> None:
-    assert key not in response.text, "the stream"
-    assert key not in json.dumps(dict(response.headers)), "the response headers"
-    assert key not in logged(caplog), "the log"
-    assert tables_holding(key, since) == [], "the database"
-    assert redis_holding(key) == [], "redis"
+    """Neither the key nor its last eight characters, anywhere a turn writes."""
+    for needle in (key, tail(key)):
+        assert needle not in response.text, "the stream"
+        assert needle not in json.dumps(dict(response.headers)), "the response headers"
+        assert needle not in logged(caplog), "the log"
+        assert tables_holding(needle, since) == [], "the database"
+        assert redis_holding(needle) == [], "redis"
 
 
 # ---------- the provider list and the header ----------
@@ -300,21 +316,28 @@ def test_the_provider_list_is_fixed_and_names_each_endpoint_and_model():
 def test_no_header_means_the_owners_key():
     assert model_key.from_headers({}) is None
     assert model_key.from_headers({"x-model-provider": "deepseek"}) is None
+    # Another scheme, or the key in a header of its own, is not a key.
+    assert model_key.from_headers({"authorization": "Basic dXNlcjpwYXNz", "x-model-provider": "deepseek"}) is None
+    assert model_key.from_headers({"x-model-key": KEY, "x-model-provider": "deepseek"}) is None
+    assert model_key.from_headers({"authorization": "Bearer ", "x-model-provider": "deepseek"}) is None
 
 
 @pytest.mark.parametrize("headers, code", [
-    ({"x-model-key": KEY}, "model_provider_unknown"),
-    ({"x-model-key": KEY, "x-model-provider": "openai"}, "model_provider_unknown"),
-    ({"x-model-key": KEY, "x-model-provider": "https://evil.example/v1"}, "model_provider_unknown"),
-    ({"x-model-key": "short", "x-model-provider": "deepseek"}, "model_key_malformed"),
-    ({"x-model-key": KEY + " with spaces", "x-model-provider": "deepseek"}, "model_key_malformed"),
-    ({"x-model-key": "k" * 300, "x-model-provider": "deepseek"}, "model_key_malformed"),
+    ({"authorization": f"Bearer {KEY}"}, "model_provider_unknown"),
+    ({"authorization": f"Bearer {KEY}", "x-model-provider": "openai"}, "model_provider_unknown"),
+    ({"authorization": f"Bearer {KEY}", "x-model-provider": "https://evil.example/v1"}, "model_provider_unknown"),
+    ({"authorization": "Bearer short", "x-model-provider": "deepseek"}, "model_key_malformed"),
+    # Long enough to pass for a key, short enough to be a word of somebody's conversation.
+    ({"authorization": "Bearer tool_calls", "x-model-provider": "deepseek"}, "model_key_malformed"),
+    ({"authorization": f"Bearer {KEY} with spaces", "x-model-provider": "deepseek"}, "model_key_malformed"),
+    ({"authorization": "Bearer " + "k" * 300, "x-model-provider": "deepseek"}, "model_key_malformed"),
 ])
 def test_a_bad_header_is_refused_without_repeating_it(headers, code):
     with pytest.raises(model_key.Refused) as refused:
         model_key.from_headers(headers)
     assert refused.value.code == code
     for value in headers.values():
+        value = value.removeprefix("Bearer ")
         assert value not in refused.value.message and value not in repr(refused.value)
 
 
@@ -362,6 +385,36 @@ def test_text_is_scrubbed_of_a_key_only_while_it_is_in_use():
     assert model_key.scrub(line) == line
 
 
+def test_one_turns_key_is_never_cut_out_of_another_turns_data():
+    """A key is whatever string a caller sends. Sent as a word that other conversations hold, it must
+    change nothing outside the turn it came with."""
+    word = "langchain_core.messages"  # in every saved conversation, and shaped like a key
+    key = model_key.from_headers({"authorization": f"Bearer {word}", "x-model-provider": "deepseek"})
+    elsewhere = contextvars.Context()  # another request's turn
+    serde = checkpoint._ScrubbingSerde()
+    message = HumanMessage(content=f"about {word}")
+    log = logging.getLogger("another.turn")
+    with model_key.in_use(key):
+        assert elsewhere.run(model_key.scrub, f"import {word}") == f"import {word}"
+        assert elsewhere.run(model_key.scrub_bytes, word.encode()) == word.encode()
+        assert elsewhere.run(serde.dumps_typed, message) == serde.__class__.__mro__[1]().dumps_typed(message)
+        assert elsewhere.run(serde.loads_typed, elsewhere.run(serde.dumps_typed, message)) == message
+        record = elsewhere.run(log.makeRecord, "another.turn", logging.INFO, __file__, 1, "GET %s", (f"/{word}",), None)
+        assert record.args == (f"/{word}",) and record.getMessage() == f"GET /{word}"
+
+
+def test_a_failed_step_is_saved_without_the_providers_words():
+    serde = checkpoint._ScrubbingSerde()
+    error = ValueError(f"your key ****{tail(KEY)} is invalid ({KEY})")
+    with model_key.in_use(model_key.from_headers(own())):
+        kind, data = serde.dumps_typed(error)
+        state = serde.dumps_typed({"evidence": f"Bearer {KEY}"})[1]
+    assert KEY.encode() not in data and tail(KEY).encode() not in data and b"ValueError" in data
+    assert KEY.encode() not in state
+    # Without a key in use an error is saved as before.
+    assert tail(KEY).encode() in serde.dumps_typed(error)[1]
+
+
 def test_a_log_record_made_while_a_key_is_in_use_never_holds_it(caplog):
     caplog.set_level(logging.DEBUG)
     log = logging.getLogger("some.library")
@@ -369,11 +422,11 @@ def test_a_log_record_made_while_a_key_is_in_use_never_holds_it(caplog):
         log.warning("refused: %s", f"Bearer {KEY}")
         log.info("headers %r", {"authorization": KEY})
         try:
-            raise RuntimeError(f"<Request POST headers={{'authorization': 'Bearer {KEY}'}}>")
+            raise RuntimeError(f"<Request POST headers={{'authorization': 'Bearer {KEY}'}}> key ****{tail(KEY)}")
         except RuntimeError:
             log.exception("call failed")
     assert len(caplog.records) == 3
-    assert KEY not in logged(caplog)
+    assert KEY not in logged(caplog) and tail(KEY) not in logged(caplog)
     for record in caplog.records:
         assert KEY not in repr(record.__dict__)
     assert "call failed" in logged(caplog) and "RuntimeError" in logged(caplog)
@@ -385,7 +438,7 @@ def test_a_judge_error_kept_with_the_turn_is_scrubbed():
             return self
 
         async def ainvoke(self, *args, **kwargs):
-            raise ValueError(f"bad request for key {KEY}")
+            raise ValueError(f"bad request for key {KEY}, ending {tail(KEY)}")
 
     page = "Tuition fees: A$53,000 per year for international students."
     reply = answer.PassageAnswer(sentences=[answer.CitedSentence(
@@ -399,8 +452,7 @@ def test_a_judge_error_kept_with_the_turn_is_scrubbed():
             return await answer.support_check("学费多少", checked, passages, Echoing())
 
     judgement = asyncio.run(judged())
-    assert judgement.error and "ValueError" in judgement.error
-    assert KEY not in judgement.error
+    assert judgement.error == "ValueError"
 
 
 # ---------- a turn on the applicant's key ----------
@@ -428,8 +480,9 @@ def test_a_turn_without_the_header_runs_on_the_owners_key(upstream):
     with browser() as client:
         response = client.post(CHAT, json={"conversationId": "k2", "message": "你好"})
         # A key in the URL or the body is not a key: only the header is read.
-        client.post(f"{CHAT}?x-model-key={KEY}&modelKey={KEY}",
-                    json={"conversationId": "k3", "message": "你好", "modelKey": KEY, "x-model-key": KEY})
+        client.post(f"{CHAT}?authorization=Bearer%20{KEY}&modelKey={KEY}&x-model-provider=deepseek",
+                    json={"conversationId": "k3", "message": "你好", "modelKey": KEY, "authorization": f"Bearer {KEY}"},
+                    headers={"X-Model-Key": KEY, "X-Model-Provider": "deepseek"})
     evts = events(response)
     assert codes(evts) == [] and not any(e["type"] == "model" for e in evts)
     assert upstream.keys() == {OWNER_KEY}
@@ -581,9 +634,9 @@ def test_a_ticket_without_quotas_reserves_nothing(monkeypatch):
 
 
 @pytest.mark.parametrize("headers, code", [
-    ({"X-Model-Key": KEY, "X-Model-Provider": "openai"}, "model_provider_unknown"),
-    ({"X-Model-Key": KEY}, "model_provider_unknown"),
-    ({"X-Model-Key": "has space " + KEY, "X-Model-Provider": "deepseek"}, "model_key_malformed"),
+    ({"Authorization": f"Bearer {KEY}", "X-Model-Provider": "openai"}, "model_provider_unknown"),
+    ({"Authorization": f"Bearer {KEY}"}, "model_provider_unknown"),
+    ({"Authorization": f"Bearer has space {KEY}", "X-Model-Provider": "deepseek"}, "model_key_malformed"),
 ])
 def test_a_bad_key_header_is_a_400_that_does_not_echo_it(upstream, everything_logged, headers, code):
     since = transaction_mark()
@@ -668,9 +721,10 @@ def test_signed_out_a_request_with_a_key_is_refused_and_the_key_is_not_logged(up
 # ---------- what sits in front of the API ----------
 
 
-def test_the_reverse_proxy_keeps_no_access_log():
-    """Caddy's access log would write request headers, this one included. It is off; if it is ever
-    turned on, the key header has to be deleted from it first."""
+def test_the_key_travels_in_the_header_the_reverse_proxy_redacts():
+    """Caddy writes the headers of a request it could not hand to the API (a 502 during a restart) to
+    its error log. It redacts Authorization unless `log_credentials` is set; a header of our own it
+    writes in full (measured, docs/measurements.md)."""
+    assert (model_key.KEY_HEADER, model_key.KEY_SCHEME) == ("Authorization", "Bearer ")
     caddyfile = (Path(__file__).resolve().parents[2] / "deploy" / "Caddyfile").read_text()
-    lines = [line.split("#")[0].strip() for line in caddyfile.splitlines()]
-    assert not any(line == "log" or line.startswith("log ") or line.startswith("log{") for line in lines)
+    assert "log_credentials" not in caddyfile

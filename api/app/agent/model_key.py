@@ -8,11 +8,18 @@ in a request header, never in a URL or a body, and it is used in memory for that
 - `in_use` holds it in a context variable for the length of the turn. `llm.get_chat_model` reads it
   from there. It is not put in the graph's config or state, because LangGraph saves both with the
   checkpoint; a turn resumed later (a confirm) gets its key from the request that resumes it.
-- While a key is in use, every log record, every error string kept with a turn and everything the
-  checkpointer writes is scrubbed of it (`scrub`, `scrub_bytes`; `app.agent.checkpoint`). A provider
-  can repeat the key in an error body, and an exception can print the request it came from. LangGraph
+- While a turn runs on a key, what that turn logs and what it saves with its checkpoint is scrubbed
+  of the key (`scrub`, `scrub_bytes`, `install_log_scrubbing`; `app.agent.checkpoint`), and the text
+  of an exception is not kept at all, only its class and HTTP status. A provider can repeat the key,
+  or the end of it, in an error body, and an exception can print the request it came from. LangGraph
   saves the exception of a failed step with the checkpoint, so without this a provider's 401 that
   repeats the key would put it in the database.
+- Scrubbing follows the turn's own context, never a list shared by the process: a key is whatever
+  string a caller sends, and one caller's string must not be cut out of another's conversation.
+
+The key travels in `Authorization: Bearer`, the header that proxies and log tools already treat as a
+secret. Caddy writes the headers of a request it could not proxy to its error log and redacts that
+one; a custom header would be written in full (measured on Caddy 2.11.4, docs/measurements.md).
 
 What this does not do: hide the key from this server. It passes through the process in memory, and
 whoever operates the server could read it there. The privacy page says so.
@@ -26,7 +33,6 @@ from __future__ import annotations
 import logging
 import re
 import traceback
-from collections import Counter
 from collections.abc import Iterator, Mapping
 from contextlib import contextmanager
 from contextvars import ContextVar
@@ -35,13 +41,14 @@ from dataclasses import dataclass, field
 import httpx
 import openai
 
-KEY_HEADER = "X-Model-Key"
+KEY_HEADER = "Authorization"
+KEY_SCHEME = "Bearer "
 PROVIDER_HEADER = "X-Model-Provider"
 
 # Letters, digits and the few marks keys are made of. None of them is escaped in JSON, in a Python
 # repr or in a URL, so a key that turns up in any text turns up exactly as it was sent, and `scrub`
 # finds it.
-_KEY = re.compile(r"^[A-Za-z0-9._~+/=-]{8,256}$")
+_KEY = re.compile(r"^[A-Za-z0-9._~+/=-]{20,256}$")
 _REMOVED = "[key removed]"
 
 
@@ -109,7 +116,10 @@ class ApplicantKey:
 def from_headers(headers: Mapping[str, str]) -> ApplicantKey | None:
     """The key a request brought, or None when it brought none. Raises `Refused` for a key that names
     no listed provider or is not shaped like a key."""
-    value = headers.get(KEY_HEADER) or headers.get(KEY_HEADER.lower())
+    carried = headers.get(KEY_HEADER) or headers.get(KEY_HEADER.lower()) or ""
+    if carried[: len(KEY_SCHEME)].lower() != KEY_SCHEME.lower():
+        return None
+    value = carried[len(KEY_SCHEME):].strip()
     if not value:
         return None
     provider = PROVIDERS.get((headers.get(PROVIDER_HEADER) or headers.get(PROVIDER_HEADER.lower()) or "").strip())
@@ -117,24 +127,20 @@ def from_headers(headers: Mapping[str, str]) -> ApplicantKey | None:
         listed = "、".join(p.label for p in PROVIDERS.values())
         raise Refused("model_provider_unknown", f"不支持这个模型服务商。可以用的有：{listed}。")
     if not _KEY.match(value):
-        raise Refused("model_key_malformed", "这把密钥的格式不对：应该是一串不带空格的英文字符。请重新粘贴。")
+        raise Refused("model_key_malformed", "这把密钥的格式不对：应该是一串 20 位以上、不带空格的英文字符。请重新粘贴。")
     return ApplicantKey(provider, value)
 
 
 _current: ContextVar[ApplicantKey | None] = ContextVar("applicant_model_key", default=None)
-# The keys being used right now, by value, for `scrub`. In memory only; empty when no turn is running
-# on an applicant's key.
-_in_flight: Counter[str] = Counter()
 
 
 @contextmanager
 def in_use(key: ApplicantKey | None) -> Iterator[None]:
-    """Run the enclosed turn on `key`. Tasks started inside inherit it; nothing outside sees it."""
+    """Run the enclosed turn on `key`. Tasks and threads started inside inherit it (asyncio and
+    LangGraph copy the context); nothing outside sees it."""
     if key is None:
         yield
         return
-    value = key.reveal()
-    _in_flight[value] += 1
     token = _current.set(key)
     try:
         yield
@@ -143,9 +149,6 @@ def in_use(key: ApplicantKey | None) -> Iterator[None]:
             _current.reset(token)
         except ValueError:  # closed from another context: this one ends with the task anyway
             _current.set(None)
-        _in_flight[value] -= 1
-        if _in_flight[value] <= 0:
-            del _in_flight[value]
 
 
 def current() -> ApplicantKey | None:
@@ -153,22 +156,19 @@ def current() -> ApplicantKey | None:
 
 
 def scrub(text: str) -> str:
-    """`text` without any key that is in use right now."""
-    for value in list(_in_flight):
-        if value in text:
-            text = text.replace(value, _REMOVED)
+    """`text` without the key this turn runs on."""
+    key = _current.get()
+    if key is not None and key.reveal() in text:
+        text = text.replace(key.reveal(), _REMOVED)
     return text
 
 
-def any_in_use() -> bool:
-    return bool(_in_flight)
-
-
 def scrub_bytes(data: bytes) -> bytes:
-    """`data` with any key in use overwritten by filler of the same length, so a serialised value
-    that states its own length (msgpack, pickle) stays readable."""
-    for value in list(_in_flight):
-        raw = value.encode()
+    """`data` with this turn's key overwritten by filler of the same length, so a serialised value
+    that states its own length (msgpack) stays readable."""
+    key = _current.get()
+    if key is not None:
+        raw = key.reveal().encode()
         if raw in data:
             data = data.replace(raw, b"*" * len(raw))
     return data
@@ -185,6 +185,14 @@ def scrub_json(value):
     return value
 
 
+def error_text(error: BaseException, limit: int = 200) -> str:
+    """An error as it may be kept with a turn: class and message, or on an applicant's key the
+    classes and HTTP status only, because a provider's message can repeat the key or part of it."""
+    if _current.get() is not None:
+        return kinds(error)
+    return f"{type(error).__name__}: {str(error)}"[:limit]
+
+
 def _scrub_record(record: logging.LogRecord) -> None:
     try:
         message = record.getMessage()
@@ -193,24 +201,25 @@ def _scrub_record(record: logging.LogRecord) -> None:
     cleaned = scrub(message)
     if cleaned != message:
         record.msg, record.args = cleaned, None
-    if isinstance(record.exc_info, tuple) and record.exc_info[0] is not None:
-        trace = "".join(traceback.format_exception(*record.exc_info))
-        cleaned = scrub(trace)
-        if cleaned != trace:
-            # The exception object holds the key in its message; keep the text, drop the object.
-            record.exc_text, record.exc_info = cleaned.rstrip("\n"), None
+    if isinstance(record.exc_info, tuple) and record.exc_info[1] is not None:
+        # Where it was raised and what kind of error it was, without its message: the exception
+        # object carries the provider's words, so the record keeps the text and drops the object.
+        error = record.exc_info[1]
+        record.exc_text = f"Traceback (most recent call last):\n{frames(error)}\n{kinds(error)}"
+        record.exc_info = None
 
 
 def install_log_scrubbing() -> None:
-    """Make every log record created in this process pass through `scrub`, whichever logger made it
-    (ours, the HTTP client's, the SDK's). Costs one dictionary check per record when no key is in use."""
+    """Make every log record created while a turn runs on an applicant's key pass through `scrub`,
+    whichever logger made it (ours, the HTTP client's, the SDK's). A record made anywhere else is
+    left alone, at the cost of reading one context variable."""
     previous = logging.getLogRecordFactory()
     if getattr(previous, "scrubs_model_keys", False):
         return
 
     def factory(*args, **kwargs) -> logging.LogRecord:
         record = previous(*args, **kwargs)
-        if _in_flight:
+        if _current.get() is not None:
             _scrub_record(record)
         return record
 

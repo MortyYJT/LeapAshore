@@ -53,12 +53,13 @@ test("removing the key leaves nothing behind", () => {
 test("a stored entry that is damaged, or names a provider the server does not list, is no key", () => {
   assert.equal(readModelKey(store({ [MODEL_KEY_STORAGE]: "{not json" })), null);
   assert.equal(readModelKey(store({ [MODEL_KEY_STORAGE]: JSON.stringify({ provider: "openai", key: KEY }) })), null);
-  assert.equal(readModelKey(store({ [MODEL_KEY_STORAGE]: JSON.stringify({ provider: "deepseek", key: "a b" }) })), null);
+  assert.equal(readModelKey(store({ [MODEL_KEY_STORAGE]: JSON.stringify({ provider: "deepseek", key: "sk-0123456789 abcdefFEDCBA" }) })), null);
   assert.equal(readModelKey(store({ [MODEL_KEY_STORAGE]: JSON.stringify({ provider: "deepseek" }) })), null);
 });
 
 test("the key travels in two headers, and no key means no header", () => {
-  assert.deepEqual(modelKeyHeaders({ provider: "deepseek", key: KEY }), { [KEY_HEADER]: KEY, [PROVIDER_HEADER]: "deepseek" });
+  assert.deepEqual(modelKeyHeaders({ provider: "deepseek", key: KEY }), { Authorization: `Bearer ${KEY}`, "X-Model-Provider": "deepseek" });
+  assert.deepEqual([KEY_HEADER, PROVIDER_HEADER], ["Authorization", "X-Model-Provider"]);
   assert.deepEqual(modelKeyHeaders(null), {});
 });
 
@@ -74,7 +75,8 @@ test("a key that the server would refuse is caught before it is saved", () => {
   assert.match(keyProblem("") ?? "", /粘贴/);
   assert.match(keyProblem("sk-abc def-0123456789") ?? "", /空格/);
   assert.match(keyProblem("short") ?? "", /太短/);
-  assert.match(keyProblem("sk-密钥密钥密钥密钥") ?? "", /不认识的字符/);
+  assert.match(keyProblem("sk-0123456789abcdef") ?? "", /太短/);
+  assert.match(keyProblem("sk-密钥密钥密钥密钥密钥密钥密钥密钥密钥密钥") ?? "", /不认识的字符/);
 });
 
 test("the result of trying a key is the server's sentence, or says why nothing was tried", () => {

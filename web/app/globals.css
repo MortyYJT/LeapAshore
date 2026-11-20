@@ -567,6 +567,8 @@ tbody tr:hover { background: var(--hover); }
 .uc-key-entry { display: flex; align-items: stretch; gap: 8px; margin-top: 8px; }
 .uc-key-entry .input { flex: 1 1 0; min-width: 0; height: auto; min-height: var(--control-height); font-family: var(--font-code); }
 .uc-key-entry .input::placeholder { font-family: var(--font-ui); }
+/* Drawn as dots without being a password field, which a browser would offer to save and sync. */
+.uc-key-input:not(:placeholder-shown) { -webkit-text-security: disc; }
 .uc-key-saved .uc-hint { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
 .uc-key-saved .toolbar { flex: none; flex-wrap: nowrap; }
 .uc-key-mask { font-family: var(--font-code); color: var(--ink); }

@@ -239,7 +239,7 @@ async def support_check(question: str, checked: Verification, passages: list[dic
             # rather than refusing as if the pages could not back it.
             raise
         # Kept with the turn's trace, so it must not carry an applicant's key the provider repeated.
-        judgement = Judgement(verdicts={}, error=model_key.scrub(f"{type(error).__name__}: {str(error)}")[:200])
+        judgement = Judgement(verdicts={}, error=model_key.error_text(error))
     apply_support(checked, judgement)
     return judgement
 

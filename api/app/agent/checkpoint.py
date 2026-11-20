@@ -23,6 +23,7 @@ import psycopg
 from langchain_core.runnables import RunnableConfig
 from langgraph.checkpoint.base import ChannelVersions, Checkpoint, CheckpointMetadata, CheckpointTuple
 from langgraph.checkpoint.postgres import PostgresSaver
+from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
 from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 from sqlalchemy.engine import make_url
@@ -44,25 +45,23 @@ def conninfo(url: str | None = None) -> str:
     )
 
 
-class _ScrubbingSerde:
-    """The saver's serializer, with an applicant's model key removed from what it produces.
+class _ScrubbingSerde(JsonPlusSerializer):
+    """The saver's serializer, with an applicant's model key kept out of what it produces.
 
     While a turn runs on an applicant's own key (`app.agent.model_key`), nothing that reaches the
     checkpoint tables may hold it. The state never does, but LangGraph also saves the exception of a
-    step that failed, and a provider's error can repeat the key it was sent.
+    step that failed, and a provider's error can repeat the key it was sent or the end of it. So on
+    such a turn an exception is saved as its class and HTTP status, and every value's bytes are
+    scrubbed of the key. Only the turn's own context decides this: other turns are not touched.
     """
 
-    def __init__(self, inner) -> None:
-        self._inner = inner
-
     def dumps_typed(self, obj: Any) -> tuple[str, bytes]:
-        kind, data = self._inner.dumps_typed(obj)
-        if data and model_key.any_in_use():
-            data = model_key.scrub_bytes(data)
-        return kind, data
-
-    def __getattr__(self, name: str) -> Any:
-        return getattr(self._inner, name)
+        if model_key.current() is None:
+            return super().dumps_typed(obj)
+        if isinstance(obj, BaseException):
+            obj = RuntimeError(model_key.kinds(obj))
+        kind, data = super().dumps_typed(obj)
+        return kind, model_key.scrub_bytes(data) if data else data
 
 
 class Checkpointer(PostgresSaver):
@@ -80,8 +79,7 @@ class Checkpointer(PostgresSaver):
             open=False,
             name="advisor-checkpoints",
         )
-        super().__init__(pool)
-        self.serde = _ScrubbingSerde(self.serde)
+        super().__init__(pool, serde=_ScrubbingSerde())
         self._opening = threading.Lock()
 
     @property
@@ -113,7 +111,7 @@ class Checkpointer(PostgresSaver):
         new_versions: ChannelVersions,
     ) -> RunnableConfig:
         # Plain strings of the state and the metadata are stored as JSON, not through the serializer.
-        if model_key.any_in_use():
+        if model_key.current() is not None:
             values = {k: model_key.scrub(v) if isinstance(v, str) else v for k, v in checkpoint["channel_values"].items()}
             checkpoint = {**checkpoint, "channel_values": values}  # type: ignore[assignment]
             metadata = model_key.scrub_json(metadata)

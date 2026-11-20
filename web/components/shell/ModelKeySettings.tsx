@@ -133,8 +133,11 @@ export function ModelKeySettingsPanel({ report, close }: { report: (message: str
           <div className="uc-key-entry">
             <input
               id={field}
-              className="input"
-              type="password"
+              className="input uc-key-input"
+              // Not a password field: a browser would offer to save it and sync it to other devices.
+              type="text"
+              data-1p-ignore
+              data-lpignore="true"
               value={draft}
               placeholder="粘贴在服务商后台创建的 API 密钥"
               autoComplete="off"

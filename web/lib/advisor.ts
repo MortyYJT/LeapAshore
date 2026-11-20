@@ -138,7 +138,8 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
     method: "POST",
     signal,
     credentials: "same-origin",
-    // A key the applicant stored in this browser rides in headers, never in the URL or the body.
+    // A key the applicant stored in this browser rides in the Authorization header, never in the URL
+    // or the body.
     headers: { "Content-Type": "application/json", ...modelKeyHeaders(storedModelKey()) },
     body: JSON.stringify(body),
   });
