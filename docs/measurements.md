@@ -279,7 +279,7 @@ The first step of porting the prototype the owner approved on 2026-11-20 ("è¿™ä¸
 - Seen while testing, not changed: `api/tests/test_seed.py` deletes programs from the development database and fails with a foreign-key error when a local account has edited a catalogue application (`application_plans.catalog_program_id`). Delete local demo accounts before `make test`.
 
 
-### Advisor dock: step events and the run interface (PR #PRNUM)
+### Advisor dock: step events and the run interface (PR #96)
 
 The second step of the line-map interface: the advisor sits in a dock beside the workspace and shows a turn as it happens. No OpenSpec change, by the same instruction as PRs #94 and #95. No new write tool was added; the two existing ones (the profile update and the portfolio change) are unchanged in what they can write.
 

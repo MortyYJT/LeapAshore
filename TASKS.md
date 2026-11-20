@@ -8,7 +8,7 @@
 - [x] **以截止日期驱动总览** — PR #95；每个申请在同一条从今天开始的时间轴上画成一条线，未知日期、已过日期和未核对的日期各有画法。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
 - [ ] **申请提醒** — 核心流程实际使用并确认可靠后再实施。
 - [x] **线路图界面第一步：设计系统、外壳、总览** — PR #95；换成已确认原型的设计变量和深色侧栏，手机改为顶栏加底部标签，其余页面只做变量适配。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
-- [x] **线路图界面第二步：顾问停靠栏** — PR #PRNUM；顾问停在工作区右侧，一轮画成一条线上的各个站，来源卡片、写入前确认、停止；接口新增步骤事件和停止。[详情](docs/measurements.md#advisor-dock-step-events-and-the-run-interface-pr-PRNUM)
+- [x] **线路图界面第二步：顾问停靠栏** — PR #96；顾问停在工作区右侧，一轮画成一条线上的各个站，来源卡片、写入前确认、停止；接口新增步骤事件和停止。[详情](docs/measurements.md#advisor-dock-step-events-and-the-run-interface-pr-96)
 - [ ] **线路图界面后续** — 顾问的更多写入工具（改截止日期、材料等）；材料线路图（后端还没有逐项材料要求的数据）；其余页面的完整重做。
 - [x] **多设备：同步冲突处理**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.3）— PR #94；两台设备同时改同一条记录只接受一个，另一个收到 409 和服务器上的内容；重试的创建不产生第二条。[详情](docs/measurements.md#sync-conflict-handling-pr-94)
 
