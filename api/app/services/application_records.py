@@ -35,6 +35,7 @@ from app.deps import load_or_create_profile
 from app.models.application import Application, ApplicationStatus
 from app.models.application_plan import ApplicationPlan
 from app.models.program import Program, ProgramMaterial
+from app.models.source import Source, SourceVersion
 from app.routers.applications import read_applications
 from app.schemas.common import _camel
 from app.services.accounts import lock_client
@@ -160,20 +161,34 @@ def _is_the_catalogue_s(program, deadline, source) -> bool:
     return any(d.date == deadline and d.source_url == source for d in program.deadlines)
 
 
-def catalogue_materials(session: Session, program_ids) -> dict[str, tuple[bool, list[ProgramMaterial]]]:
-    """For each program: whether its page has been read for materials, and the entries collected."""
+def catalogue_materials(session: Session, program_ids) -> dict[str, tuple[bool, list[ProgramMaterial], str | None]]:
+    """For each program: whether its page has been read for materials, the entries collected, and the
+    page the materials were read from.
+
+    The page is served with the record because a program read and found to list no documents has no
+    entry to carry a source, and the applicant is then sent to the page itself. It is given only when
+    the catalogue holds the very snapshot the materials were read from as a version of the program's
+    source: a program's source can also be a register that lists it (the CRICOS dataset), which is not
+    a page to check for documents, and such a source has no version with that snapshot.
+    """
     ids = [pid for pid in dict.fromkeys(program_ids) if pid]
     if not ids:
         return {}
-    read = set(session.scalars(
-        select(Program.id).where(Program.id.in_(ids), Program.materials_snapshot_sha256.is_not(None))
-    ))
+    page_read = (
+        select(Source.url).join(SourceVersion, SourceVersion.source_id == Source.id)
+        .where(Source.id == Program.source_id, SourceVersion.content_sha256 == Program.materials_snapshot_sha256)
+        .limit(1).correlate(Program).scalar_subquery()
+    )
+    known = {pid: (sha, url) for pid, sha, url in session.execute(
+        select(Program.id, Program.materials_snapshot_sha256, page_read).where(Program.id.in_(ids))
+    )}
+    read = {pid for pid, (sha, _url) in known.items() if sha is not None}
     rows: dict[str, list[ProgramMaterial]] = {}
     query = (select(ProgramMaterial).where(ProgramMaterial.program_id.in_(read))
              .order_by(ProgramMaterial.program_id, ProgramMaterial.sort_order)) if read else None
     for row in session.scalars(query) if query is not None else []:
         rows.setdefault(row.program_id, []).append(row)
-    return {pid: (pid in read, rows.get(pid, [])) for pid in ids}
+    return {pid: (pid in read, rows.get(pid, []), known[pid][1] if pid in known else None) for pid in ids}
 
 
 def _digest(row: ProgramMaterial) -> str:
@@ -182,7 +197,7 @@ def _digest(row: ProgramMaterial) -> str:
 
 def materials_view(plan, catalogue=None) -> dict:
     """The record's two material lists and the counts drawn from them."""
-    extracted, rows = catalogue or (False, [])
+    extracted, rows, page = catalogue or (False, [], None)
     ticks = (plan.material_ticks if plan else None) or {}
     items = []
     for row in rows:
@@ -205,6 +220,8 @@ def materials_view(plan, catalogue=None) -> dict:
     return dict(
         materials=items,
         materialsExtracted=extracted,
+        # The page the materials were read from, when the catalogue holds that snapshot; else None.
+        materialsPageUrl=page,
         customMaterials=custom,
         materialsDone=done,
         materialsTotal=total,
@@ -294,7 +311,7 @@ def _apply_materials(plan, payload, catalogue) -> None:
     if "material_ticks" in fields and payload.material_ticks:
         if catalogue is None:
             raise InvalidRecord("手动添加的申请没有学校库的材料清单，请在自己的清单里勾选")
-        _extracted, rows = catalogue
+        _extracted, rows, _page = catalogue
         by_key = {row.key: row for row in rows}
         # Ticks on entries the catalogue no longer lists are dropped with the first edit after.
         ticks = {key: held for key, held in (plan.material_ticks or {}).items() if key in by_key}

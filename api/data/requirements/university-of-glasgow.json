@@ -973,7 +973,52 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "d742a5ca91e19eba163a829eeca8e3faf92eb4a51793e035994d455802227132",
+    "extractor": "claude-opus-5.5-subagent; translation entry retyped other->transcript by claude-fable-5.2 after review (README convention)",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "transcript",
+      "note": "degree certificate, if degree already completed",
+      "quote": "A copy (or copies) of your official degree certificate(s) (if you have already completed your degree)",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "academic transcript with subjects and grades",
+      "quote": "A copy (or copies) of your official academic transcript(s), showing full details of subjects studied and grades/marks obtained",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "official English translations of certificates and transcripts",
+      "quote": "Official English translations of the certificate(s) and transcript(s)",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 1,
+      "note": "on headed paper",
+      "quote": "One reference letter on headed paper",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "if first language is not English",
+      "quote": "Evidence of your English language ability (if your first language is not English)",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "copy of passport photo page",
+      "quote": "A copy of the photo page of your passport",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Corporate Finance & Banking [MSc]",

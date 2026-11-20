@@ -1,0 +1,487 @@
+{
+ "set": "materials_gold.json",
+ "labeller": "Claude Fable 5.2 subagent, a model and not a person; labelled from the full stored page without seeing any extractor's output",
+ "labelled_at": "2026-11-21",
+ "scored_at": "2026-11-21",
+ "metrics": {
+  "programs": {
+   "scored": 11,
+   "not_extracted": 0,
+   "snapshot_differs": 0,
+   "not_on_file": 0
+  },
+  "pairs": {
+   "gold": 32,
+   "predicted": 32,
+   "both": 32
+  },
+  "precision": 1.0,
+  "recall": 1.0,
+  "count_agreement": {
+   "pairs": 4,
+   "agree": 4,
+   "rate": 1.0
+  },
+  "empty_pages": {
+   "labelled_empty": 4,
+   "extracted_empty_too": 4
+  },
+  "by_type": {
+   "cv": {
+    "gold": 4,
+    "predicted": 4,
+    "both": 4,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "personal_statement": {
+    "gold": 4,
+    "predicted": 4,
+    "both": 4,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "recommendation": {
+    "gold": 5,
+    "predicted": 5,
+    "both": 5,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "transcript": {
+    "gold": 5,
+    "predicted": 5,
+    "both": 5,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "language_score": {
+    "gold": 6,
+    "predicted": 6,
+    "both": 6,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "test_score": {
+    "gold": 2,
+    "predicted": 2,
+    "both": 2,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "other": {
+    "gold": 6,
+    "predicted": 6,
+    "both": 6,
+    "precision": 1.0,
+    "recall": 1.0
+   }
+  }
+ },
+ "rows": [
+  {
+   "program_id": "university-of-hong-kong-master-of-data-science-e60565",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "imperial-college-london-msc-computing-f38aa7",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "national-university-of-s-master-of-computing-computer-sci-96b220",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "test_score",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "test_score",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "ucl-computer-science-msc-9d29ee",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     2
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     2
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-edinburgh-computer-science-msc-b52f8b",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "hong-kong-university-of-master-of-science-program-in-inf-529f49",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-glasgow-computing-science-msc-03844f",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "chinese-university-of-ho-msc-in-computer-science-402b13",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "carnegie-mellon-universi-master-of-computational-data-sci-d9f649",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     3
+    ],
+    [
+     "test_score",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     3
+    ],
+    [
+     "test_score",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-manchester-artificial-intelligence-msc-404945",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "king-s-college-london-artificial-intelligence-msc-f8d855",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  }
+ ]
+}

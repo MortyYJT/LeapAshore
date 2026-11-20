@@ -513,7 +513,39 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "ebff926ea97bc507e84462cac71b9ee7a3f695852f3890639837e86cf8bac303",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "recommendation",
+      "count": 2,
+      "quote": "This course requires 2 references.",
+      "check": "ok"
+     },
+     {
+      "type": "personal_statement",
+      "note": "max one A4 page; answers set questions on background, maths, programming, motivation",
+      "quote": "Your personal statement should answer the following questions and should not be longer than one A4 size page:",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "evidence of A-level mathematics or equivalent",
+      "quote": "Applications missing evidence such as A level in mathematics or equivalent, will not be processed unless the evidence is submitted before the closing deadline for admissions.",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "note": "should show maths content of degree if no A-level mathematics",
+      "quote": "If no A level in mathematics has been obtained, the applicant’s CV should highlight that the university degree includes modules covering the content of an A level in mathematics.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Data Science MSc",

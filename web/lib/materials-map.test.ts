@@ -110,12 +110,32 @@ test("one program alone shares nothing and differs from nothing", () => {
   ]);
 });
 
-test("a page that was read and lists nothing is a line with no stops, not an unread program", () => {
-  const model = materialsModel([record("a", [material("cv")]), record("b", [])]);
+test("a page that was read and lists nothing is kept apart too: it is not a program that asks for nothing", () => {
+  const model = materialsModel([record("a", [material("cv")]), record("b", [material("cv")]), record("c", [])]);
   assert.deepEqual(model.lines.map((line) => line.record.programId), ["a", "b"]);
-  assert.deepEqual(model.unread, []);
-  assert.deepEqual(model.shared, [], "one of two does not ask: not shared");
-  assert.deepEqual(model.differing[0].absent.map((line) => line.record.programId), ["b"]);
+  assert.deepEqual(model.silent.map((line) => line.record.programId), ["c"]);
+  assert.deepEqual(model.unread, [], "it was read: it is not waiting for an extraction");
+  // The page that lists nothing says nothing about a CV either way: the two that list one still share it.
+  assert.deepEqual(model.shared.map((column) => column.type), ["cv"]);
+  assert.ok(model.shared.every((column) => column.absent.length === 0));
+  assert.equal(model.total, 2);
+
+  // Alone, it draws no line with stops and no column.
+  const alone = materialsModel([record("c", [])]);
+  assert.deepEqual([alone.lines.length, alone.silent.length, alone.shared.length, alone.differing.length], [0, 1, 0, 0]);
+});
+
+test("a program whose page lists nothing is drawn as a dotted run, like one that was not read", () => {
+  // A CV at both listed programs (shared) and letters at one of them (a column with one station).
+  const model = materialsModel([record("a", [material("cv"), two()]), record("b", [material("cv")]), record("c", []), record("f", null)]);
+  for (const width of [1000, 358]) {
+    const map = layoutMap(model, width);
+    assert.equal(map.paths.length, 2);
+    assert.deepEqual(map.dotted.map(({ line }) => line.record.programId), ["f", "c"]);
+    assert.deepEqual(map.stations.map((station) => station.requirement.line.record.programId), ["a"], "no stop on a dotted run");
+    assert.equal(map.hubs.length, 1);
+    assert.equal(map.labels.filter((label) => label.kind === "end").length, 4, "every program keeps its line end");
+  }
 });
 
 test("other documents are never merged, and two entries of one type are counted together", () => {

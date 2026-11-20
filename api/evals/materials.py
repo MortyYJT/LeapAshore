@@ -9,7 +9,8 @@ No model is called by any of these. The extraction itself is done by whoever rea
 (`python -m app.collect.material_extract`); this module only compares what the requirement files then
 hold with what a labeller says each page asks for.
 
-The labelled set (``materials_gold.json`` beside this file, absent until someone labels one):
+The labelled set (``materials_gold.json`` beside this file; the first one covers 11 programs and was
+labelled by a model, not a person):
 
     {"version": 1,
      "labeller": "<who labelled, and that they did not see any extractor's output>",

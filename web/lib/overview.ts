@@ -6,6 +6,7 @@
 // carries.
 
 import { activeRecord, type ApplicationRecord } from "./application-records.ts";
+import { ownLinesOnly, progressLabel } from "./materials.ts";
 
 /** A deadline this many days away or nearer is drawn in the urgent colour. */
 export const SOON_DAYS = 14;
@@ -264,5 +265,8 @@ export function nextSentence({ row, kind }: NextAction): string {
   if (kind === "confirm") return "截止日期还没确认。";
   if (kind === "passed") return `${sentenceDate(row.record.deadline!, row.days!)}的截止日期已过。`;
   const left = row.days === 0 ? "今天截止" : `还有 ${row.days} 天`;
-  return kind === "materials" ? `${left}，材料还没备齐。` : `${left}，材料已就绪，还没提交。`;
+  if (kind === "materials") return `${left}，材料还没备齐。`;
+  // Every line ticked on a program whose requirements the catalogue does not hold: the applicant's own lines.
+  const own = progressLabel(row.record) !== null && ownLinesOnly(row.record);
+  return `${left}，${own ? "自列材料已勾完" : "材料已就绪"}，还没提交。`;
 }

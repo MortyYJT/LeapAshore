@@ -93,6 +93,20 @@ test("own lines all ticked on a program nobody read is not said to be complete",
   assert.equal(overviewMaterials({ ...unread, materialsDone: 0, materialsTotal: 0 }), "材料已就绪");
 });
 
+test("a program whose page lists no documents is not said to need none", () => {
+  // Read, and the page lists nothing: the count below is of the applicant's own lines only.
+  const silent = { programId: "p1", materialsExtracted: true, materials: [], materialsDone: 0, materialsTotal: 0, materialsReady: false };
+  assert.equal(materialsSummary(silent), "项目页没列材料");
+  assert.equal(materialsSummary({ ...silent, materialsDone: 1, materialsTotal: 2 }), "材料 1/2（自己列的，项目页没列材料）");
+  const ticked = { ...silent, materialsDone: 2, materialsTotal: 2, materialsReady: true };
+  assert.equal(materialsSummary(ticked), "材料 2/2，都勾了（自己列的，项目页没列材料）");
+  assert.equal(overviewMaterials(ticked), "自列材料已勾完");
+  // A program whose page does list documents keeps the plain words.
+  const listed = { ...ticked, materials: [{}] };
+  assert.equal(materialsSummary(listed), "材料 2/2，都勾了");
+  assert.equal(overviewMaterials(listed), "材料已就绪");
+});
+
 test("only the ticks that changed are sent, each new tick with the wording it was given for", () => {
   assert.equal(tickChanges(record.materials, {}), null);
   assert.equal(tickChanges(record.materials, { recommendation: true, cv: false }), null);

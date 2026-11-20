@@ -425,6 +425,7 @@ function ApplicationForm({
             materials={record?.materials ?? []}
             extracted={record?.materialsExtracted ?? false}
             catalog={Boolean(record?.programId)}
+            pageUrl={record?.materialsPageUrl}
             ticked={ticked}
             onTick={(key, ready) => setTicked((previous) => ({ ...previous, [key]: ready }))}
             custom={custom}

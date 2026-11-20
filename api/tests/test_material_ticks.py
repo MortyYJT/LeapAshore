@@ -7,11 +7,12 @@ import uuid
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select
 
 from app.db import SessionLocal
 from app.main import app
 from app.models.program import Program, ProgramMaterial
+from app.models.source import Source, SourceVersion
 from app.seed import seed_programs
 from tests.test_seed import PROGRAM_IDS
 from tests.versioned import create_record, patch_record, put_portfolio
@@ -79,6 +80,46 @@ def test_a_record_lists_the_collected_materials_unticked_with_their_source(progr
     # Not read yet: no list, and the flag says so. It is not an empty list of requirements.
     assert unread["materialsExtracted"] is False and unread["materials"] == []
     assert (unread["materialsDone"], unread["materialsTotal"], unread["materialsReady"]) == (0, 0, False)
+
+
+def test_a_record_names_the_page_its_materials_were_read_from_only_when_the_catalogue_holds_it(programs):
+    """A page that was read and lists no documents has no entry to carry a source, so the record says
+    which page was read. It says so only for a snapshot the catalogue holds as a version of the
+    program's source: a source can be a register that merely lists the program, and that is not a
+    page to send an applicant to."""
+    silent_sha = "8" * 64
+    with SessionLocal() as s:
+        program = s.get(Program, programs["unread"])
+        page, source_id = s.get(Source, program.source_id).url, program.source_id
+        # Read, lists none: the snapshot is recorded and there are no entries.
+        program.materials_snapshot_sha256 = silent_sha
+        s.commit()
+    try:
+        client, rows = applicant(programs["read"], programs["unread"])
+        silent = rows[programs["unread"]]
+        assert silent["materialsExtracted"] is True and silent["materials"] == []
+        # No version of the source is that snapshot: nothing says this source is the page that was read.
+        assert silent["materialsPageUrl"] is None
+        assert rows[programs["read"]]["materialsPageUrl"] is None
+
+        with SessionLocal() as s:
+            number = (s.scalar(select(func.max(SourceVersion.version_no)).where(SourceVersion.source_id == source_id)) or 0) + 1
+            s.add(SourceVersion(id="fixture-materials-page", source_id=source_id, version_no=number, content_sha256=silent_sha))
+            s.commit()
+        served = {row["programId"]: row for row in client.get("/api/application-records").json()}
+        assert served[programs["unread"]]["materialsPageUrl"] == page and page.startswith("http")
+        # A sibling program of the same source that was read from another snapshot gets no page from it.
+        assert served[programs["read"]]["materialsPageUrl"] is None
+        # The page comes with every way a record is served: the answer to an edit too.
+        edited = patch_record(client, silent["id"], {"customMaterials": [{"id": "c-1", "label": "成绩单"}]})
+        assert edited.status_code == 200 and edited.json()["materialsPageUrl"] == page
+
+        manual = create_record(client, {"school": "Example University", "name": "Example MSc"}).json()
+        assert manual["materialsPageUrl"] is None
+    finally:
+        with SessionLocal() as s:
+            s.execute(delete(SourceVersion).where(SourceVersion.id == "fixture-materials-page"))
+            s.commit()
 
 
 def test_ticks_are_set_and_cleared_one_material_at_a_time(programs):

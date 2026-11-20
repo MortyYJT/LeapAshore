@@ -49,7 +49,8 @@ checked by `verify` like every other value:
   "read, lists none" apart (`programs.materials_snapshot_sha256` is NULL until a page was read).
 - The quote check is a substring check. It cannot tell "references are required" from the same words
   in "no references are required", nor whose count a number is; only a labelled set can measure
-  that, and none exists yet.
+  that. The first one covers 11 programs and was labelled by a model, not a person
+  (`api/evals/materials_gold.json`; what it does and does not show is in `docs/measurements.md`).
 - `note` is the extractor's summary and is not judged by a model yet: the summary check below does
   not cover materials.
 - The block cites the snapshot it was read from. When the queue later collects the page again, the
@@ -328,6 +329,48 @@ proof of enrolment), `language_score` (an English or other language test report)
 applicant to send: a research proposal, a passport copy, course descriptions; name it in `note`).
 One entry per requirement: two different essays are two `personal_statement` entries.
 
+### Conventions
+
+The first extraction and its labels (11 programs, 2026-11-21) were made by two agents that did not see
+each other's work. Calls 1 to 10 are ones both made, with the one departure noted under 8; 11 to 13
+were settled afterwards, where the two differed or the brief was silent. Follow them, so that a later
+run and a later label agree.
+
+1. **What counts as asking.** Only a sentence that asks the applicant to provide, submit, present,
+   upload or include a document. A score threshold ("IELTS 6.5 overall"), "must demonstrate
+   proficiency", an exemption ("not required to present TOEFL if…") and a negation ("references are
+   not required") are not entries.
+2. **A pointer is not a requirement.** "See the Supporting Documents PDF" or "find out more about
+   references and personal statements" names a place, not a document: no entry. A page that only
+   points elsewhere is `"materials": []`.
+3. **Optional** materials are recorded, with "optional" in the note.
+4. **Required of some applicants only**: recorded, with the condition in the note ("if first
+   language is not English"), also when the page states the condition in another sentence than the
+   one quoted.
+5. **"May request"** ("we may request an additional reference") is not recorded and not counted.
+6. **One statement answering several set questions** is one `personal_statement` entry; the
+   questions go in the note.
+7. **A sentence that says what a document must contain** ("the CV should highlight…") asks for the
+   document.
+8. **A sentence that asks for two kinds of material** ("may wish to include a CV or evidence of
+   professional registration") is two entries with the same quote. When another sentence asks for
+   one of the two more exactly (a footnote saying who must send the language scores), that entry
+   quotes that sentence instead; the first extraction did, its label did not.
+9. **`count` is a number of documents**, never years, pages, words, minutes or questions.
+10. **Placeholders** ("any additional documents required for this programme") are not recorded.
+11. **In a bulleted list** the quote is the item's own line. When that line is under 10 characters
+    or does not name the material by itself ("references"), quote the sentence that introduces the
+    list and the lines down to the item, as one unbroken stretch of the page.
+12. **Translations** of academic documents are `transcript`, with "translation" and any condition in
+    the note; so are translations of "your documents" where the page does not say which. When the
+    sentence that asks for a document also asks for its translation, that is one entry with the
+    translation in the note. A translation of another named document takes that document's type.
+13. **Degree certificates, transcripts and proof of enrolment** are `transcript`. A certificate the
+    page lists as its own item or sentence is its own entry with "degree certificate" in the note;
+    "certificates and transcripts" in one item is one entry naming both. An academic proof the page
+    names apart from these (a statement of the average mark, a list of current modules, evidence of
+    a prerequisite such as A-level mathematics, course descriptions) is `other`, named in the note.
+
 ### Commands
 
 ```bash
@@ -385,5 +428,9 @@ format and the metrics). The labeller must not see any extractor's output: start
 `python -m evals.materials --template --program <id>… --out api/evals/materials_gold.json`, read each
 page with the `text` command above (it prints no extraction state), fill in `materials` for every
 program by the rules of the brief, set `labeller` and `labelled_at`, and run
-`python -m evals.materials --check`. Do not open the requirement files while labelling. No labelled
-set and no score exist yet.
+`python -m evals.materials --check`. Do not open the requirement files while labelling.
+
+The first set is `api/evals/materials_gold.json`: 11 programs, labelled on 2026-11-21 by a model (a
+Claude subagent), not by a person; its score is `api/evals/results/materials-2026-11-21.json`. It is a
+check that the pipeline works end to end, on programs that were chosen and not sampled, so it says
+nothing about the rest of the catalogue (`docs/measurements.md`, "First material extraction").
