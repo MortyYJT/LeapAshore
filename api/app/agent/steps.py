@@ -21,7 +21,9 @@ from dataclasses import dataclass, field
 
 from langchain_core.messages import ToolMessage
 
-from app.agent.tools import PORTFOLIO_CHANGED, PROFILE_UPDATED, STATUS_LABELS as _STATUS_LABELS, wrote
+from app.agent import confirm
+from app.agent.confirm import STATUS_LABELS as _STATUS_LABELS
+from app.agent.tools import PROFILE_UPDATED, wrote
 
 # Step kinds.
 INTENT, RETRIEVAL, TOOL = "intent", "retrieval", "tool"
@@ -42,7 +44,11 @@ TITLES = {
     "update_my_profile": "更新背景",
     "get_my_portfolio": "读取选校组合",
     "get_my_applications": "读取申请",
-    "propose_portfolio_change": "提议修改",
+    "propose_portfolio_change": "提议改组合",
+    "propose_manual_application": "提议加申请",
+    "propose_application_deadline": "提议改日期",
+    "propose_application_status": "提议改状态",
+    "propose_material_tick": "提议改材料",
 }
 # The step a confirmed change is written in.
 WRITE_TITLE = "写入"
@@ -79,12 +85,14 @@ PROFILE_LABELS = {
     "annual_budget_cny": "年预算（元）",
 }
 ACTION_LABELS = {"add": "加入组合", "remove": "移出组合", "set_primary": "设为首选", "set_status": "改申请状态"}
+TICK_LABELS = {True: "勾上（全部就绪）", False: "取消勾选"}
 STATUS_LABELS = {status.value: label for status, label in _STATUS_LABELS.items()}
 
 WAITING_FOR_ANSWER = "等你确认"
 CONFIRMED = "你已确认"
 SAVED = "已保存"
 DECLINED_NOTE = "已取消，没有改动"
+ALREADY_SAVED = "之前已经写入，这次没有重复写"
 TOOL_BROKE = "这一步出错了，没有结果"
 HALTED = "已停止，没有执行"
 OUT_OF_STEPS = "这一轮的步骤数到了上限，没有执行"
@@ -115,9 +123,21 @@ def intent_result(intent: str, route: str | None) -> str:
     return f"归为「{label}」，{note}" if note else f"归为「{label}」"
 
 
-def call_args(name: str, args: dict | None, *, program_name: Callable[[str], str | None] | None = None) -> list[dict]:
-    """A tool call's arguments as labelled values. `program_name` turns a program id into its name."""
+def call_args(
+    name: str,
+    args: dict | None,
+    *,
+    program_name: Callable[[str], str | None] | None = None,
+    named: dict[str, str] | None = None,
+) -> list[dict]:
+    """A tool call's arguments as labelled values.
+
+    The model names a program, an application or a collected deadline by its id; the applicant reads
+    what it is. `named` gives the words for the id arguments the caller could resolve (by argument
+    name), and `program_name` turns a program id into its name; an id nobody resolved is shown as it is.
+    """
     args = args or {}
+    named = named or {}
     if name == "search_programs":
         return [_row("关键词", args.get("keyword", ""))]
     if name == "update_my_profile":
@@ -130,12 +150,31 @@ def call_args(name: str, args: dict | None, *, program_name: Callable[[str], str
         return [_row(PROFILE_LABELS.get(key, key), value) for key, value in list(fields.items())[:_ARGUMENT_LIMIT * 2]]
     if name == "propose_portfolio_change":
         program_id = str(args.get("program_id", ""))
-        named = program_name(program_id) if program_name and program_id else None
-        rows = [_row("项目", named or program_id), _row("操作", ACTION_LABELS.get(args.get("action"), args.get("action", "")))]
+        resolved = named.get("program_id") or (program_name(program_id) if program_name and program_id else None)
+        rows = [_row("项目", resolved or program_id), _row("操作", ACTION_LABELS.get(args.get("action"), args.get("action", "")))]
         if args.get("action") == "add" and args.get("tier"):
             rows.append(_row("档位", args["tier"]))
         if args.get("action") == "set_status" and args.get("status"):
             rows.append(_row("状态", STATUS_LABELS.get(args["status"], args["status"])))
+        return rows
+    if name == "propose_manual_application":
+        return [_row("学校", args.get("school", "")), _row("项目", args.get("name", ""))]
+    if name in ("propose_application_status", "propose_application_deadline", "propose_material_tick"):
+        rows = [_row("申请", named.get("application_id") or args.get("application_id", ""))]
+        if name == "propose_application_status":
+            rows.append(_row("状态", STATUS_LABELS.get(args.get("status"), args.get("status", ""))))
+        elif name == "propose_application_deadline":
+            if args.get("catalog_deadline_id"):
+                rows.append(_row("学校库的日期", named.get("catalog_deadline_id") or args["catalog_deadline_id"]))
+            if args.get("stated_deadline"):
+                rows.append(_row("日期", args["stated_deadline"]))
+            if args.get("stated_round"):
+                rows.append(_row("轮次", args["stated_round"]))
+        else:
+            if isinstance(args.get("ready"), bool):
+                rows.append(_row("材料", TICK_LABELS[args["ready"]]))
+            if args.get("add_note"):
+                rows.append(_row("备注", args["add_note"]))
         return rows
     if name in TITLES:
         return []
@@ -170,9 +209,11 @@ def _parsed(content: str):
 
 def _refused(content: str) -> Outcome | None:
     """The tools' own wording for a call that did nothing: `未执行：…`, `未更新：…`."""
-    for prefix in ("未执行：", "未更新："):
+    for prefix in (confirm.REFUSED, "未更新："):
         if content.startswith(prefix):
-            return Outcome(FAILED, _short("没有执行：" + content[len(prefix):], 120))
+            # The first line is the reason, in the applicant's words; lines after it tell the model
+            # how to call the tool, and stay out of the event.
+            return Outcome(FAILED, _short("没有执行：" + content[len(prefix):].split("\n", 1)[0], 120))
     return None
 
 
@@ -215,9 +256,12 @@ def _applications(content: str) -> Outcome:
 
 
 def _change(content: str) -> Outcome:
-    if content.startswith(PORTFOLIO_CHANGED):
+    """A change that asked first: written, written by an earlier run of the same call, declined or refused."""
+    if content.startswith(confirm.CHANGED):
         return Outcome(DONE, SAVED, write=True)
-    if content.startswith("用户取消了操作"):
+    if content.startswith(confirm.ALREADY):
+        return Outcome(DONE, ALREADY_SAVED)
+    if content.startswith(confirm.DECLINED):
         return Outcome(DECLINED, DECLINED_NOTE)
     return _refused(content) or Outcome(FAILED, "没有执行")
 
@@ -241,6 +285,10 @@ _RESULTS: dict[str, Callable[[str], Outcome]] = {
     "get_my_portfolio": _portfolio,
     "get_my_applications": _applications,
     "propose_portfolio_change": _change,
+    "propose_manual_application": _change,
+    "propose_application_deadline": _change,
+    "propose_application_status": _change,
+    "propose_material_tick": _change,
 }
 
 

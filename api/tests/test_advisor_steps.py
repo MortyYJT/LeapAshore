@@ -31,6 +31,7 @@ from app.models.program import Program
 from app.routers import advisor
 from app.seed import seed_programs
 from app.seed_catalog import seed_catalog
+from app.services.applications import replace_applications
 
 pytestmark = pytest.mark.usefixtures("require_db")
 
@@ -631,7 +632,7 @@ def test_a_confirm_writes_only_what_the_card_listed(advisor_with, program):
     subject = client.cookies.get(COOKIE_NAME)
     with SessionLocal() as s:
         load_or_create_profile(s, subject)
-        tools.replace_applications(s, subject, [{"program_id": program.id, "tier": "冲", "status": "submitted", "is_primary": False}])
+        replace_applications(s, subject, [{"program_id": program.id, "tier": "冲", "status": "submitted", "is_primary": False}])
 
     evts = answer(client, confirm, approved=True)
     write = last(evts, f"{confirm['stepId']}:write")

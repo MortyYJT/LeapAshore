@@ -1,5 +1,6 @@
 import { beijingToday } from "./deadlines.ts";
 import { StaleVersionError, changedFields, staleOf } from "./sync-conflict.ts";
+import { APPLICATION_STATUSES } from "./taxonomy.ts";
 export interface ApplicationRecord {
   id: string;
   programId: string | null;
@@ -16,14 +17,10 @@ export interface ApplicationRecord {
   /** Opaque; changes whenever the record does. Sent back as `baseVersion` with an update or removal. */
   version: string;
 }
-export const RECORD_STATUSES = [
-  ["considering", "考虑中"],
-  ["applying", "准备中"],
-  ["submitted", "已提交"],
-  ["offered", "收到录取"],
-  ["rejected", "未录取"],
-  ["excluded", "已放弃"],
-] as const;
+/** The statuses as `[value, label]` pairs; the words are `APPLICATION_STATUSES`', so no screen has its own. */
+export const RECORD_STATUSES: readonly (readonly [string, string])[] = APPLICATION_STATUSES.map(
+  ({ value, label }) => [value, label] as const,
+);
 export function activeRecord(record: ApplicationRecord) {
   return ["considering", "applying"].includes(record.status);
 }

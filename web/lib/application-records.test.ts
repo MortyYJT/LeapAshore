@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  RECORD_STATUSES,
   attentionRecords,
   deadlineLabel,
   writeApplicationRecord,
@@ -138,4 +139,15 @@ test("a removal states the version it saw", async () => {
   );
   assert.equal(calls[0].method, "DELETE");
   assert.equal(calls[0].url, "/api/application-records/catalog%3Ap%201?baseVersion=v1");
+});
+
+test("every screen names a status with the overview's words", () => {
+  assert.deepEqual(RECORD_STATUSES, [
+    ["considering", "考虑中"],
+    ["applying", "准备中"],
+    ["submitted", "已提交"],
+    ["offered", "收到录取"],
+    ["rejected", "未录取"],
+    ["excluded", "已放弃"],
+  ]);
 });

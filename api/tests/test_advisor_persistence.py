@@ -47,6 +47,7 @@ from app.routers import advisor
 from app.seed import seed_programs
 from app.seed_catalog import seed_catalog
 from app.services.accounts import delete_subject, merge_subject
+from app.services.applications import replace_applications
 from app.services.conversations import threads_of
 
 pytestmark = pytest.mark.usefixtures("require_db")
@@ -128,13 +129,13 @@ def model(monkeypatch, program_id) -> Scripted:
 def writes(monkeypatch) -> list[str]:
     """Every portfolio write the confirm tool makes, by subject."""
     made: list[str] = []
-    real = tools.replace_applications
+    real = tools.replace_applications_based_on
 
-    def counted(session, client_id, rows):
+    def counted(session, client_id, rows, base):
         made.append(client_id)
-        return real(session, client_id, rows)
+        return real(session, client_id, rows, base)
 
-    monkeypatch.setattr(tools, "replace_applications", counted)
+    monkeypatch.setattr(tools, "replace_applications_based_on", counted)
     return made
 
 
@@ -285,7 +286,7 @@ def test_a_confirm_whose_reply_hits_an_outage_keeps_the_change_written_once(serv
     # adding it a second time would change nothing, and such a change is not put to the applicant.
     monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: model)
     with SessionLocal() as s:
-        tools.replace_applications(s, subject, [])
+        replace_applications(s, subject, [])
     again = pause(client)
     replied = answer(client, again)
     assert errors(replied) == [] and "已执行" in said(replied)
@@ -351,8 +352,8 @@ CHILD = textwrap.dedent(
 
     intent.classify = operation
     made = []
-    real = tools.replace_applications
-    tools.replace_applications = lambda s, c, rows: made.append(c) or real(s, c, rows)
+    real = tools.replace_applications_based_on
+    tools.replace_applications_based_on = lambda s, c, rows, base: made.append(c) or real(s, c, rows, base)
     config = {"configurable": {"thread_id": subject + ":c1", "client_id": subject}}
     graph = graph_module.build_graph(checkpointer=Checkpointer())
 

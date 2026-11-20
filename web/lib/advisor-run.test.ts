@@ -40,7 +40,7 @@ const SEARCH: AdvisorEvent[] = [
 ];
 
 const PROPOSAL: AdvisorEvent[] = [
-  { type: "step", id: "call-2", status: "running", kind: "tool", name: "propose_portfolio_change", title: "提议修改" },
+  { type: "step", id: "call-2", status: "running", kind: "tool", name: "propose_portfolio_change", title: "提议改组合" },
   { type: "step", id: "call-2", status: "waiting", ms: 30, result: "等你确认" },
   {
     type: "confirm", id: "int-1", stepId: "call-2", summary: "把「甲大学 数据科学硕士」加入选校组合，档位：稳",
@@ -135,6 +135,22 @@ test("confirming continues the same turn: the proposal is confirmed, then writte
   assert.equal(steps(turn)[0].ms, 30);
   assert.equal(steps(turn)[0].result, "你已确认");
   assert.equal(steps(turn)[1].title, "写入");
+});
+
+test("a confirmed change the server then refused is drawn as confirmed and not written", () => {
+  const held = beginAnswer(finishTurn(play(newTurn("t1", "标成已提交"), PROPOSAL)), "int-1", true);
+  const turn = finishTurn(
+    play(held, [
+      { type: "step", id: "call-2:write", status: "running", kind: "tool", name: "propose_portfolio_change", title: "写入", write: true },
+      { type: "step", id: "call-2", status: "done", result: "你已确认" },
+      { type: "step", id: "call-2:write", status: "failed", ms: 12, result: "没有执行：别处改过了（轮次：未填 → Round 3），这次没有写入，也没有覆盖别处的改动。" },
+      { type: "token", text: "这次没有写入。" },
+    ]),
+  );
+  assert.equal(confirms(turn)[0].state, "unwritten");
+  assert.equal(steps(turn)[1].status, "failed");
+  assert.equal(turn.state, "done");
+  assert.equal(hasPending(turn), false);
 });
 
 test("declining closes the proposal and nothing is written", () => {

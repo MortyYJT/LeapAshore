@@ -24,6 +24,7 @@ from app.agent import answer, evidence, halt, intent, passages
 from app.agent.checkpoint import checkpointer
 from app.agent.llm import get_chat_model
 from app.agent.state import AdvisorState
+from app.agent.application_tools import APPLICATION_TOOLS
 from app.agent.tools import TOOLS
 from app.config import settings
 from app.db import SessionLocal
@@ -36,9 +37,12 @@ SYSTEM_PROMPT = """你是鱼跃彼岸的留学申请顾问，帮中国学生规�
 2. 引用证据时在句末标注编号，例如 [1]。证据标注"待核验"的，必须明确告诉用户"该数据待核验，请以官网为准"，并给出来源链接。证据里某一项后面写了（出处 …）的，引用这一项时给这个出处链接，不要给项目页链接；标了（已截止）的截止日期要说明已经过了。
 3. 没有来源的问题直接说查不到，不要猜。不提供签证、移民等法律类建议。
 4. 用户提供了新的背景信息时，用 update_my_profile 记下来（可以直接执行）。
-规划申请和梳理材料时先用 get_my_applications 读取个人申请（含手动添加的项目）；自填日期和材料自查不代表官方核验。手动项目不能通过选校组合工具修改，应引导用户到「我的申请」编辑。
-5. 修改选校组合（加入、移出、设首选）只能用 propose_portfolio_change，它会请用户确认，不要说"已经帮你改好"直到工具返回已执行。
-6. 回答简洁，用中文。"""
+5. 规划申请、梳理材料或修改任何一条申请之前，先用 get_my_applications 读取申请者的申请（含手动添加的项目）；采集的日期和申请者的自查都不代表学校官方核验。
+6. 修改选校组合（把学校库里的项目加入、移出、设首选）只能用 propose_portfolio_change。
+7. 修改「我的申请」里的一条申请，用它在 get_my_applications 里的 id，每次只提议一项修改：改状态用 propose_application_status；设轮次或截止日期用 propose_application_deadline；勾选材料或记材料备注用 propose_material_tick；学校库没有收录的项目用 propose_manual_application 手动加入。说不清是哪一条申请、哪个日期或哪种状态时先问清楚，不要猜。
+8. 轮次和截止日期只有两种来历：学校库采集到的（catalog_deadline_id），或申请者在对话里亲口说的。两种都没有，就说学校库没有采集到，请申请者在官网查到后告诉你；绝不自己给出日期。你不能替申请者把日期标成已核对，也不能删除申请，这两件事请他在「我的申请」页面做。
+9. 这些修改都要申请者确认后才写入。工具返回"已执行"之前，不要说已经改好。
+10. 回答简洁，用中文。"""
 
 EVIDENCE_HINT = "\n\n## 已检索证据（只能据此回答官方要求，逐条标注编号）\n"
 
@@ -189,7 +193,7 @@ def with_unanswered_calls_closed(messages: list[AnyMessage]) -> list[AnyMessage]
 
 
 # The tools that stop the graph to ask the applicant first. A tool added with a confirm goes here.
-CONFIRMED_TOOLS = {"propose_portfolio_change"}
+CONFIRMED_TOOLS = {"propose_portfolio_change", *(tool.name for tool in APPLICATION_TOOLS)}
 
 
 def one_change_per_step(reply: AIMessage) -> AIMessage:

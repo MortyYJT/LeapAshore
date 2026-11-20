@@ -3,15 +3,15 @@
 Write rules follow the product's two risk levels:
 
 - automatic: updating a profile field is idempotent and the applicant can undo it, so it runs at once;
-- confirmed: a portfolio change can overwrite choices the applicant made, so the tool stops the graph
-  with ``interrupt`` and writes only after the applicant says yes.
+- confirmed: a change to the portfolio or to an application can overwrite choices the applicant made,
+  so the tool stops the graph with ``interrupt`` and writes only after the applicant says yes. The
+  portfolio's tool is here; the tools for one application are in ``app.agent.application_tools``.
 
 Every tool takes the applicant's id from the run config, never from the model, so a prompt cannot
 make the agent read or write someone else's rows.
 """
 
 import json
-from decimal import Decimal
 
 from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool
@@ -21,23 +21,19 @@ from sqlalchemy import case, or_, select
 from sqlalchemy.orm import selectinload
 
 from app.agent import catalog_match
+from app.agent.application_tools import APPLICATION_TOOLS, applications_json
+from app.agent.confirm import CHANGED, DECLINED, REFUSED, STATUS_LABELS, answer_of
+from app.agent.confirm import change as _change
+from app.agent.confirm import client_id as _client_id
+from app.agent.confirm import status_label as _status_label
+from app.agent.confirm import to_json as _json
 from app.db import SessionLocal
 from app.deps import load_or_create_profile
 from app.models.application import Application, ApplicationStatus, ApplicationTier
 from app.models.program import Program, University
 from app.schemas.profile import ProfilePatch
-from app.services.applications import InvalidApplicationPayload, replace_applications
-
-
-def _client_id(config: RunnableConfig) -> str:
-    return config["configurable"]["client_id"]
-
-
-def _json(value) -> str:
-    def default(o):
-        return float(o) if isinstance(o, Decimal) else str(o)
-
-    return json.dumps(value, ensure_ascii=False, default=default)
+from app.services.applications import InvalidApplicationPayload, replace_applications_based_on
+from app.services.versions import StaleVersion
 
 
 @tool
@@ -125,17 +121,17 @@ def get_my_profile(config: RunnableConfig) -> str:
         return _json({f: getattr(profile, f, None) for f in fields})
 
 
-# How a tool's answer starts when it wrote something (the profile, the portfolio). The advisor tells the
-# applicant those writes stand when the turn then fails (`routers.advisor`); read-only tools, a declined
-# change and a refused one start otherwise.
+# How a tool's answer starts when it wrote something (the profile, the portfolio, an application). The
+# advisor tells the applicant those writes stand when the turn then fails (`routers.advisor`); read-only
+# tools, a declined change and a refused one start otherwise.
 PROFILE_UPDATED = "已更新档案："
-PORTFOLIO_CHANGED = "已执行："
+PORTFOLIO_CHANGED = CHANGED
 
 
 def wrote(message) -> bool:
     """Whether this tool reply is the answer of a tool that wrote something."""
     content = getattr(message, "content", None)
-    return isinstance(content, str) and content.startswith((PROFILE_UPDATED, PORTFOLIO_CHANGED))
+    return isinstance(content, str) and content.startswith((PROFILE_UPDATED, CHANGED))
 
 
 @tool
@@ -178,47 +174,25 @@ def get_my_portfolio(config: RunnableConfig) -> str:
         )
 
 
-# The applicant's words for each stored status, so a confirm question never shows a raw value.
-STATUS_LABELS = {
-    ApplicationStatus.CONSIDERING: "考虑中",
-    ApplicationStatus.APPLYING: "申请中",
-    ApplicationStatus.SUBMITTED: "已提交",
-    ApplicationStatus.OFFERED: "已获 offer",
-    ApplicationStatus.REJECTED: "被拒",
-    ApplicationStatus.EXCLUDED: "不考虑",
-}
-
-
-def _status_label(value: str) -> str:
-    try:
-        return STATUS_LABELS[ApplicationStatus(value)]
-    except ValueError:
-        return value
-
-
-def _change(label: str, before: str | None, after: str) -> dict:
-    """One line of a confirm question: the value a change replaces and the value it becomes."""
-    return {"label": label, "before": before, "after": after}
-
-
 @tool
 def get_my_applications(config: RunnableConfig) -> str:
-    """读取当前申请者的全部个人申请（含手动项目）、选定轮次、截止日期、来源核查、状态和材料自查备注。
-    规划申请或梳理材料时先读取；用户自查和学校库采集不等于学校官方已核验。此工具只读。
-    """
-    from app.routers.application_records import read_records
-    with SessionLocal() as session:
-        return _json(read_records(_client_id(config), session))
+    """读取当前申请者的全部申请（学校库项目和手动添加的项目）。每条有：id（修改这条申请时要用）、学校、项目、轮次、
+    截止日期、日期来历（deadlineOrigin：collected 学校库采集 / entered 申请者自己填的）、申请者是否对照官网核对过
+    （deadlineCheckedByApplicant）、来源链接、申请状态、材料是否就绪（自查）和材料备注。学校库项目还带
+    catalogDeadlines：学校库采集到的各轮截止日期和它们的 id。规划申请、梳理材料或修改任何一条申请之前先读取。
+    采集的日期和申请者的自查都不等于学校官方已核验。此工具只读。"""
+    return applications_json(config)
 
 
 @tool
 def propose_portfolio_change(
     program_id: str, action: str, config: RunnableConfig, tier: str = "稳", status: str = ""
 ) -> str:
-    """修改选校组合（高风险，必须经用户确认后才执行）。action 取值：add（加入，需给 tier：冲/稳/保）、
-    remove（移出）、set_primary（设为首选）、set_status（改申请状态，需给 status：considering 考虑中 /
-    applying 申请中 / submitted 已提交 / offered 已获 offer / rejected 被拒 / excluded 不考虑）。
-    program_id 先用 search_programs 查到。"""
+    """修改选校组合（必须经申请者确认后才写入）。action 取值：add（把学校库里的项目加入组合，也就是加入「我的申请」，
+    需给 tier：冲/稳/保）、remove（移出）、set_primary（设为首选）。program_id 先用 search_programs 查到。
+    改申请状态不用这个工具，用 propose_application_status；学校库没有收录的项目用 propose_manual_application。"""
+    # `set_status` is still accepted, for a turn that was paused on one before the status moved to
+    # `propose_application_status`; the description no longer offers it.
     if action not in ("add", "remove", "set_primary", "set_status"):
         return "未执行：action 只能是 add、remove、set_primary 或 set_status。"
     if action == "add" and tier not in {t.value for t in ApplicationTier}:
@@ -230,6 +204,10 @@ def propose_portfolio_change(
         program = s.get(Program, program_id)
         if program is None:
             return f"未执行：没有 id 为 {program_id} 的项目。"
+        stored = _portfolio(s, client_id)
+        # The rows this run reads are the rows its replacement is built from, and it says so when it
+        # writes: a row another device saves in between is then a refusal, not something replaced.
+        base = {(r.id, r.version) for r in stored}
         current = {
             r.program_id: {
                 "program_id": r.program_id,
@@ -237,7 +215,7 @@ def propose_portfolio_change(
                 "status": r.status,
                 "is_primary": r.is_primary,
             }
-            for r in _portfolio(s, client_id)
+            for r in stored
         }
         label = f"{program.university.name} {program.name}"
         target = {"programId": program_id, "school": program.university.name, "program": program.name}
@@ -303,24 +281,27 @@ def propose_portfolio_change(
         "type": "confirm_portfolio", "tool": "propose_portfolio_change", "summary": summary,
         "target": target, "changes": changes,
     })
-    # The answer comes back with the changes the applicant was shown (`routers.advisor`); a bare
-    # yes or no is an answer from before they were sent.
-    approved, shown = (answer.get("approved"), answer.get("changes")) if isinstance(answer, dict) else (answer, None)
+    approved, shown, _base = answer_of(answer)
     if not approved:
-        return f"用户取消了操作：{summary}。组合未改动。"
+        return f"{DECLINED}{summary}。组合未改动。"
     if shown is not None and shown != changes:
         # The portfolio was edited between the question and the answer: what would be written now is
         # not what the applicant agreed to.
-        return f"未执行：「{label}」在确认之前已经被改过，和刚才列出的改动对不上。请重新提出这次修改。"
+        return f"{REFUSED}「{label}」在确认之前已经被改过，和刚才列出的改动对不上。请重新提出这次修改。"
     with SessionLocal() as s:
         # A visitor who opened the advisor first has a cookie but no subject row yet, and the
         # portfolio's foreign key would refuse the write.
         load_or_create_profile(s, client_id)
         try:
-            counts = replace_applications(s, client_id, list(rows.values()))
+            counts = replace_applications_based_on(s, client_id, list(rows.values()), base)
+        except StaleVersion:
+            return f"{REFUSED}别处改过了选校组合，这次没有写入，也没有覆盖别处的改动。请读取现在的组合后重新提出。"
         except InvalidApplicationPayload as exc:
-            return f"未执行：{exc}"
+            return f"{REFUSED}{exc}"
     return f"{PORTFOLIO_CHANGED}{summary}。变化：{_json(counts)}"
 
 
-TOOLS = [search_programs, get_my_profile, update_my_profile, get_my_portfolio, get_my_applications, propose_portfolio_change]
+TOOLS = [
+    search_programs, get_my_profile, update_my_profile, get_my_portfolio, get_my_applications,
+    propose_portfolio_change, *APPLICATION_TOOLS,
+]
