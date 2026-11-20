@@ -243,9 +243,10 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
 
   if (drawsHorizontally(model, width)) {
     const pitch = 46;
-    const head = 30;
-    const rows = n + model.unread.length;
-    const height = head + Math.max(rows, 1) * pitch + 4;
+    // A run nobody has read carries no caption, so it needs less room than a line with stops.
+    const unreadPitch = 30;
+    const head = n ? 30 : 8;
+    const height = head + n * pitch + model.unread.length * unreadPitch + (n || model.unread.length ? 4 : pitch);
     const left = 3;
     const endRoom = 54;
     const fan = hasTrunk ? (pitch - TRUNK_PITCH) * mid : 0;
@@ -286,7 +287,7 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
       });
     });
     model.unread.forEach((line, k) => {
-      const y = runY(n + k);
+      const y = head + n * pitch + unreadPitch * (k + 0.5);
       dotted.push({ line, d: `M${left} ${y}H${end}` });
       labels.push({ kind: "end", text: line.code, x: end + 8, y, line, align: "middle" });
     });

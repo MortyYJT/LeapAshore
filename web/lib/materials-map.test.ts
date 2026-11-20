@@ -182,7 +182,8 @@ test("a wide frame draws left to right, and everything stays inside it", () => {
   }
   // Each line has its own run after the fan, 46px apart, and an unread program runs below them all.
   const ends = map.labels.filter((label) => label.kind === "end").map((label) => label.y);
-  assert.deepEqual(ends.map((y, i) => (i ? y - ends[i - 1] : 0)), [0, 46, 46, 46, 46, 46]);
+  assert.deepEqual(ends.map((y, i) => (i ? y - ends[i - 1] : 0)), [0, 46, 46, 46, 46, 38], "the unread run sits closer: it has no caption");
+  assert.ok(ends.at(-1)! < map.height);
   // A station sits on its own program's run.
   const run = new Map(map.labels.filter((label) => label.kind === "end").map((label) => [label.line!.record.id, label.y]));
   for (const station of map.stations) assert.equal(station.y, run.get(station.requirement.line.record.id));

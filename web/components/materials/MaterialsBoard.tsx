@@ -82,6 +82,9 @@ export function MaterialsBoard({
         {model.lines.length > 0 && (
           <p className="map-note">要求提取自各项目的官网页面，可能不全，提交前以官网为准。勾选是你自己的核对，系统不审核材料。</p>
         )}
+        {actions && model.unread.length > 0 && (
+          <p className="map-note">虚线是官网要求还没提取的项目，它要什么材料现在不知道。先在下面列自己的清单，以官网为准。</p>
+        )}
       </section>
 
       {model.shared.length > 0 && (
@@ -151,7 +154,7 @@ function SharedItem({ column, disabled, onTick }: { column: MaterialColumn; disa
   const all = column.requirements.length;
   const count = countLabel(column.type, column.requirements[0].entries[0].count);
   return (
-    <li>
+    <li className={open ? "is-open" : undefined}>
       <label className="check">
         <input
           type="checkbox"
@@ -335,9 +338,6 @@ function OwnList({ line, dim, disabled, onCustom }: { line: MapLine; dim: string
         </div>
       </div>
       <div className="own-list">
-        {record.programId && !record.materialsExtracted && (
-          <p className="own-note">这个项目的官网要求还没提取，图上是一条虚线。先在这里列自己的清单，以官网为准。</p>
-        )}
         {quiet ? (
           <button type="button" className="btn btn-text btn-small own-add" disabled={disabled} onClick={() => setAdding(true)}>
             <Icon name="plus" />

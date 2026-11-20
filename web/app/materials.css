@@ -48,6 +48,7 @@
 /* One application picked in the rail: the others step back. */
 .map .is-dim { opacity: 0.25; }
 .map .lbl-caption.is-dim { opacity: 0.45; }
+.map-note + .map-note { margin-top: 4px; }
 .map-note { margin: 12px 0 0; max-width: 46em; font-size: var(--fs-13); color: var(--ink-3); text-wrap: pretty; }
 
 /* ---------- nothing to draw yet ---------- */
@@ -64,6 +65,8 @@
 .shared .text b { font-weight: 600; }
 .shared .text span { font-size: var(--fs-12); color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .shared .mat-cites { flex-basis: 100%; }
+/* Opened, an item takes the whole row, so its programs' sentences sit side by side under it. */
+.shared > li.is-open { grid-column: 1 / -1; }
 
 /* ---------- materials that differ ---------- */
 .diffs { border-top: 1px solid var(--line); }
@@ -103,7 +106,7 @@
   text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px;
 }
 .srcbtn:hover, .srcbtn[aria-expanded="true"] { color: var(--ink); text-decoration-color: currentColor; }
-.mat-cites { display: grid; gap: 8px; margin-top: 2px; }
+.mat-cites { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 8px; margin-top: 2px; }
 .mat-cite { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line); border-radius: var(--r-box); background: var(--raised); }
 .mat-cite blockquote { margin: 0; font-size: var(--fs-14); line-height: 1.6; overflow-wrap: anywhere; }
 .mat-cite figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 8px; font-size: var(--fs-12); color: var(--ink-3); }
@@ -121,7 +124,6 @@
 .own-id .school a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .own-id .program { font-size: var(--fs-12); color: var(--ink-3); overflow-wrap: anywhere; }
 .own-list { display: grid; gap: 8px; min-width: 0; }
-.own-note { margin: 0; font-size: var(--fs-13); color: var(--ink-2); text-wrap: pretty; }
 .own-list .material-lines { border-top: 0; }
 .own-list .material-lines > li:first-child { padding-top: 0; }
 .own-list .material-add { max-width: 420px; }

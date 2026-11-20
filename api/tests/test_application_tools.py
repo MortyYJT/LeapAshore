@@ -544,14 +544,14 @@ def test_one_collected_material_is_ticked_and_unticked(asked, applicant):
     assert [(m["key"], m["ready"]) for m in stored["materials"]] == [("recommendation", True), ("cv", False)]
     assert (stored["materialsDone"], stored["materialsTotal"], stored["materialsReady"]) == (1, 2, False)
     assert asked[0]["tool"] == "propose_material_tick"
-    assert asked[0]["changes"] == [{"label": "材料 · 推荐信 2 封", "before": "还没备好", "after": "已备好（自查）"}]
+    assert asked[0]["changes"] == [{"label": "材料", "before": "推荐信 2 封：还没备好", "after": "推荐信 2 封：已备好（自查）"}]
 
     assert tick(applicant, key, material="recommendation", ready=True).startswith("已是如此：")  # already ticked
     assert len(asked) == 1
 
     assert tick(applicant, key, material="recommendation", ready=False).startswith("已执行：")
     assert record(applicant["id"], key)["materials"][0]["ready"] is False
-    assert asked[1]["changes"] == [{"label": "材料 · 推荐信 2 封", "before": "已备好（自查）", "after": "还没备好"}]
+    assert asked[1]["changes"] == [{"label": "材料", "before": "推荐信 2 封：已备好（自查）", "after": "推荐信 2 封：还没备好"}]
 
 
 def test_a_line_of_the_applicant_s_own_checklist_is_ticked(asked, applicant):
@@ -565,7 +565,7 @@ def test_a_line_of_the_applicant_s_own_checklist_is_ticked(asked, applicant):
 
     assert record(client_id, key)["customMaterials"] == [
         {"id": "c-a", "label": "在读证明", "done": False}, {"id": "c-b", "label": "作品集", "done": True}]
-    assert asked[0]["changes"] == [{"label": "材料 · 作品集", "before": "还没备好", "after": "已备好（自查）"}]
+    assert asked[0]["changes"] == [{"label": "材料", "before": "作品集：还没备好", "after": "作品集：已备好（自查）"}]
 
 
 def test_all_ticks_every_line_the_record_lists_and_only_those(asked, applicant):
@@ -581,7 +581,7 @@ def test_all_ticks_every_line_the_record_lists_and_only_those(asked, applicant):
     stored = record(client_id, key)
     assert (stored["materialsDone"], stored["materialsTotal"], stored["materialsReady"]) == (3, 3, True)
     # The card lists each line that changes; the one already ticked is not on it.
-    assert [c["label"] for c in asked[0]["changes"]] == ["材料 · 推荐信 2 封", "材料 · 在读证明"]
+    assert [c["after"] for c in asked[0]["changes"]] == ["推荐信 2 封：已备好（自查）", "在读证明：已备好（自查）"]
 
 
 def test_a_material_the_record_does_not_list_cannot_be_ticked(asked, applicant):
