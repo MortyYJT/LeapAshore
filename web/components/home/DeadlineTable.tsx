@@ -18,6 +18,14 @@ export function editHref(row: OverviewRow): string {
   return `/applications?edit=${encodeURIComponent(row.record.id)}`;
 }
 
+/** Where a row's name leads, and what the link says it is. */
+export interface RowLink {
+  href: (row: OverviewRow) => string;
+  title: string;
+}
+
+const OWN_RECORD: RowLink = { href: editHref, title: "在「我的申请」里查看和修改" };
+
 /**
  * The deadline table: one line per application on a shared linear axis that starts at today's bar.
  *
@@ -26,6 +34,9 @@ export function editHref(row: OverviewRow): string {
  * no stop. No date is a dotted line to a dashed stop. A date that has passed has no line at all. A
  * submitted application's line is retired grey. `empty` replaces the rows when
  * there are none, so the axis is still drawn.
+ *
+ * A row's name leads to its form on 我的申请. The signed-out demo has no forms, so it passes `link`
+ * to send each row to the program's public page instead.
  */
 export function DeadlineTable({
   model,
@@ -34,6 +45,7 @@ export function DeadlineTable({
   selected = null,
   flash = null,
   empty,
+  link = OWN_RECORD,
 }: {
   model: Overview;
   today: string;
@@ -41,6 +53,7 @@ export function DeadlineTable({
   selected?: string | null;
   flash?: string | null;
   empty?: ReactNode;
+  link?: RowLink;
 }) {
   const picked = selected && model.rows.some((row) => row.record.id === selected) ? selected : null;
   return (
@@ -76,7 +89,7 @@ export function DeadlineTable({
           <div className="origin" />
         </div>
         {model.rows.map((row) => (
-          <Row row={row} today={today} picked={picked === row.record.id} flash={flash === row.record.id} key={row.record.id} />
+          <Row row={row} today={today} picked={picked === row.record.id} flash={flash === row.record.id} link={link} key={row.record.id} />
         ))}
         {!model.rows.length && empty && (
           <div role="row">
@@ -88,7 +101,7 @@ export function DeadlineTable({
   );
 }
 
-function Row({ row, today, picked, flash }: { row: OverviewRow; today: string; picked: boolean; flash: boolean }) {
+function Row({ row, today, picked, flash, link }: { row: OverviewRow; today: string; picked: boolean; flash: boolean; link: RowLink }) {
   const { record } = row;
   const status = RECORD_STATUSES.find(([value]) => value === record.status)?.[1] ?? record.status;
   return (
@@ -97,7 +110,7 @@ function Row({ row, today, picked, flash }: { row: OverviewRow; today: string; p
         <span className="bullet">{row.code}</span>
         <div className="txt">
           <div className="school">
-            <Link href={editHref(row)} title="在「我的申请」里查看和修改">
+            <Link href={link.href(row)} title={link.title}>
               {record.school}
             </Link>
             {record.round && <span className="round">{record.round}</span>}

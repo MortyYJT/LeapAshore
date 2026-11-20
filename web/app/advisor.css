@@ -232,6 +232,13 @@ button.call:hover .chev { color: var(--ink); }
 .send .icon { stroke-width: 2; }
 .composer-hint { display: flex; justify-content: space-between; gap: 12px; margin: 6px 0 0; font-size: var(--fs-12); color: var(--ink-3); }
 .composer-hint kbd { flex: none; font: inherit; }
+/* Signed out: the line under the field says asking needs an account, and its end is the way in. */
+.composer-hint.is-gated { align-items: center; color: var(--ink-2); }
+.composer-hint.is-gated button {
+  flex: none; margin: -4px -6px -4px 0; padding: 4px 6px; border: 0; border-radius: var(--r-tag); background: none;
+  color: var(--ink); font: inherit; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); cursor: pointer;
+}
+.composer-hint.is-gated button:hover { text-decoration-color: currentColor; }
 
 /* ---------- the rail's entry for the dock ---------- */
 .nav-dock .nav-dock-state { width: 14px; height: 14px; margin-left: auto; }
