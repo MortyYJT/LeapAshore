@@ -480,14 +480,15 @@ def preview(session: Session, now: datetime, accounts: Iterable[Account] | None 
                     "heldByCap": 0, "items": []}
     refusal = _refusal()
     if refusal:
-        report["skipped"] = refusal
+        # The job would stop here too, so there is nothing it would send.
+        return {**report, "skipped": refusal}
     try:
         pairs = [
             (account.id, account.client_id)
             for account in (accounts if accounts is not None else session.scalars(select(Account)))
         ]
         report["accounts"] = len(pairs)
-        for number, (account_id, client_id) in enumerate(pairs, 1):
+        for account_id, client_id in pairs:
             row = session.get(ReminderSettings, account_id)
             if row is not None and not row.enabled:
                 continue
@@ -502,7 +503,7 @@ def preview(session: Session, now: datetime, accounts: Iterable[Account] | None 
             report["emails"] += 1
             report["reminders"] += len(fresh)
             report["items"] += [
-                {"email": number, "application": item.record_key, "leadDays": item.lead_days,
+                {"email": report["emails"], "application": item.record_key, "leadDays": item.lead_days,
                  "daysLeft": days_left(item.deadline, today)}
                 for item in fresh
             ]

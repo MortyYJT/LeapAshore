@@ -2,7 +2,9 @@
 
 Red line: the email states nothing that is not in the applicant's own record. Every fact below is a
 field of the record as 「我的申请」 serves it (school, name, round, deadline date, source link, whether
-and when the applicant checked the date, whether the date came from the catalogue). The record has a
+and when the applicant checked the date, whether the date came from the catalogue). "Checked" is the
+applicant's own tick in 「我的申请」 (我已自行核对本轮截止日期与来源), and the email calls it that; it does
+not say against what. The record has a
 date and no time of day or zone, so the email gives none and sends the applicant to the official
 page for them. The number of days is arithmetic on the stored date, counted between Beijing dates.
 
@@ -49,8 +51,8 @@ def _checked(entry: Entry) -> str:
     if entry.checked_at is not None:
         day = entry.checked_at.astimezone(BEIJING).date().isoformat()
         if collected:
-            return f"这个日期来自学校库的采集，你在 {day} 对照官网核对过。"
-        return f"你在 {day} 对照官网核对过这个日期。"
+            return f"这个日期来自学校库的采集，你在 {day} 自行核对过。"
+        return f"你在 {day} 自行核对过这个日期和来源。"
     if collected:
         return "这个日期来自学校库的采集，你还没有核对。"
     return "这个日期你还没有核对。"
@@ -58,7 +60,8 @@ def _checked(entry: Entry) -> str:
 
 NO_SOURCE = "这条记录没有填来源链接。"
 ZONE_NOTE = "天数按北京时间的日期计算。记录里只有日期，没有具体时间和时区。几点截止、按哪个时区算，请到学校官网确认。"
-SETTINGS_NOTE = "提前几天提醒，可以登录后在「设置」里改。"
+SETTINGS_NOTE = "提前几天提醒，可以登录后在「设置」的「提醒」里改。"
+SENDER_NOTE = "这封邮件由鱼跃彼岸（LeapAshore）按你账号的提醒设置发出。"
 UNSUBSCRIBE_NOTE = "打开这个链接就会退订，不用登录。"
 
 
@@ -92,6 +95,7 @@ def text(entries: list[Entry], applications_url: str, unsubscribe_page: str) -> 
         f"查看或修改这些申请：{applications_url}",
         SETTINGS_NOTE,
         "",
+        SENDER_NOTE,
         f"不想再收到提醒：{unsubscribe_page}",
         UNSUBSCRIBE_NOTE,
         "",
@@ -138,7 +142,6 @@ def html(entries: list[Entry], applications_url: str, unsubscribe_page: str, tit
         f"<title>{escape(title)}</title></head>"
         '<body style="margin:0;padding:0;background:#ffffff;">'
         f'<div style="max-width:560px;margin:0 auto;padding:24px 20px 32px;font-family:{_FONT};color:{_INK};">'
-        f'<p style="margin:0 0 16px;font-size:12px;line-height:1.5;color:{_INK_2};">鱼跃彼岸 · 申请截止提醒</p>'
         f'<p style="margin:0 0 16px;font-size:16px;line-height:1.5;font-weight:600;color:{_INK};">'
         f"{escape(_intro(entries))}</p>"
         f"{items}"
@@ -147,7 +150,7 @@ def html(entries: list[Entry], applications_url: str, unsubscribe_page: str, tit
         f'<p style="margin:14px 0 6px;font-size:14px;line-height:1.6;">'
         f'<a href="{applications}" style="{_LINK}font-weight:600;">查看或修改这些申请</a></p>'
         f'<p style="{_P}">{SETTINGS_NOTE}</p>'
-        f'<p style="margin:14px 0 0;font-size:12px;line-height:1.6;color:{_INK_2};">不想再收到提醒：'
+        f'<p style="margin:14px 0 0;font-size:12px;line-height:1.6;color:{_INK_2};">{SENDER_NOTE}不想再收到提醒：'
         f'<a href="{unsubscribe}" style="color:{_INK_2};text-decoration:underline;">退订</a>。{UNSUBSCRIBE_NOTE}</p>'
         "</div></div></body></html>"
     )
