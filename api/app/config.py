@@ -121,6 +121,13 @@ class Settings(BaseSettings):
     auth_session_days: int = 30
     anonymous_retention_days: int = 90
 
+    # --- Deadline reminders (docs/product/PRD-multi-device.md, 3.4) ---
+    # Where the links in a reminder email point: the site's public origin, no trailing slash.
+    # Production sets it in deploy/compose.prod.yaml; the job refuses to plan there unless it is HTTPS.
+    public_base_url: str = "http://localhost:3000"
+    # Reminder emails one account may be sent in one Beijing day.
+    reminder_daily_cap: int = 1
+
     # --- Knowledge gaps (openspec/changes/archive/2026-10-30-knowledge-gaps) ---
     # The key of the HMAC that stands for the asker of a refused question (D4). A random secret kept only
     # in the server's `.env`; empty means reports are stored with no asker at all.

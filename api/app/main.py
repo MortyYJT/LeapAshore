@@ -2,6 +2,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
+from app import logs
 from app.config import check_settings, settings
 from app.middleware import BodySizeLimitMiddleware
 from app.routers import (
@@ -13,6 +14,7 @@ from app.routers import (
     documents,
     profile,
     programs,
+    reminders,
     review_criteria,
     roadmap,
     universities,
@@ -21,6 +23,8 @@ from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 
 # Refuse to start with login mode on in production and no real mail backend (account-login D2).
 check_settings(settings)
+# The unsubscribe token travels in a URL; keep it out of the access log.
+logs.install()
 
 
 @asynccontextmanager
@@ -51,6 +55,7 @@ app.include_router(auth.router)
 app.include_router(documents.router)
 app.include_router(profile.router)
 app.include_router(programs.router)
+app.include_router(reminders.router)
 app.include_router(review_criteria.router)
 app.include_router(roadmap.router)
 app.include_router(universities.router)

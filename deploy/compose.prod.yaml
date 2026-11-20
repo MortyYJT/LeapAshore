@@ -29,6 +29,8 @@ services:
       DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       # Arms the startup guard: login mode here refuses the log-only mail backend.
       APP_ENV: production
+      # The origin the links in reminder emails point at (same host as deploy/Caddyfile).
+      PUBLIC_BASE_URL: https://leapashore.mortyyjt.site
       # X-Forwarded-For is read only from the caddy container, which sets it to the address it
       # accepted the connection from (Caddyfile); any other peer is counted as itself.
       TRUSTED_PROXIES: caddy
@@ -72,6 +74,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       APP_ENV: production
+      # The origin the links in reminder emails point at (same host as deploy/Caddyfile).
+      PUBLIC_BASE_URL: https://leapashore.mortyyjt.site
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
       COLLECT_CAN_RENDER: "false"
@@ -96,6 +100,8 @@ services:
     environment:
       DATABASE_URL: postgresql+psycopg://leapashore:${POSTGRES_PASSWORD}@db:5432/leapashore
       APP_ENV: production
+      # The origin the links in reminder emails point at (same host as deploy/Caddyfile).
+      PUBLIC_BASE_URL: https://leapashore.mortyyjt.site
       REDIS_URL: redis://redis:6379/0
       CELERY_BROKER_URL: redis://redis:6379/1
     volumes:

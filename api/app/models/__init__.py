@@ -17,6 +17,7 @@ from app.models.document import (
 )
 from app.models.knowledge_gap import KnowledgeGap, KnowledgeGapReport
 from app.models.program import Program, ProgramDeadline, ProgramEmbedding, ProgramPrerequisite, University
+from app.models.reminder import ReminderDelivery, ReminderEmail, ReminderSettings
 from app.models.review import (
     CheckType,
     CriterionScope,
@@ -39,6 +40,9 @@ from app.models.task import (
 )
 
 __all__ = [
+    "ReminderDelivery",
+    "ReminderEmail",
+    "ReminderSettings",
     "Account",
     "AuthSession",
     "LoginCode",

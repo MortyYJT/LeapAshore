@@ -55,6 +55,13 @@ def at_once(*calls):
         return [future.result(timeout=30) for future in futures]
 
 
+def second_device(first):
+    """Another client of the same account: its own connection, the same session cookie."""
+    other = new_client()
+    other.cookies.set("leapashore_session", first.cookies["leapashore_session"])
+    return other
+
+
 def make_account(session) -> Account:
     client = Client(id=str(uuid.uuid4()))
     session.add(client)
@@ -299,7 +306,8 @@ def test_a_catalogue_application_is_reminded_by_its_record_key(sent, session):
 # --- re-arm, catch-up, cap, digest ---------------------------------------------------------------
 
 
-def test_a_changed_deadline_is_a_new_reminder(sent, session):
+def test_a_changed_deadline_is_a_new_reminder(sent, session, monkeypatch):
+    monkeypatch.setattr(settings, "reminder_daily_cap", 5)
     account = make_account(session)
     record = add_record(session, account, 7)
     assert run_day(session, [account]) == ["sent"]
@@ -313,10 +321,14 @@ def test_a_changed_deadline_is_a_new_reminder(sent, session):
     assert claims(session, account) == [(record.id, first, 7), (record.id, first + timedelta(days=7), 7)]
     assert len(sent.to(account)) == 2
 
-    # Moving it back to a date already reminded at this lead time sends nothing.
-    record.deadline = first + timedelta(days=7)
+    # Moved away and back to a date already reminded at this lead time: nothing more is sent.
+    record.deadline = first + timedelta(days=30)
     session.commit()
     assert run_day(session, [account], later + timedelta(hours=1)) == []
+    record.deadline = first + timedelta(days=7)
+    session.commit()
+    assert run_day(session, [account], later + timedelta(hours=2)) == []
+    assert len(sent.to(account)) == 2
 
 
 def test_a_missed_day_is_caught_up_once_and_states_the_days_actually_left(sent, session):
@@ -398,9 +410,11 @@ def test_workers_planning_the_same_account_together_claim_each_reminder_once(sen
         for days in (1, 3, 7):
             add_record(session, account, days)
 
+        account_id = account.id
+
         def plan_once():
             with SessionLocal() as own:
-                return reminders.plan(own, NOW, accounts=[own.get(Account, account.id)])["emails"]
+                return reminders.plan(own, NOW, accounts=[own.get(Account, account_id)])["emails"]
 
         planned = [ids for ids in at_once(*[plan_once] * WORKERS) if ids]
         assert len(planned) == 1, f"expected one worker to claim, got {len(planned)}"
@@ -415,15 +429,16 @@ def test_the_unique_claim_alone_stops_a_second_worker_that_skipped_the_lock(sent
         account = make_account(session)
         record = add_record(session, account, 7)
         item = reminders.Due(record_key=record.id, deadline=record.deadline, lead_days=7)
+        account_id = account.id
 
         def claim_once():
             with SessionLocal() as own:
                 email = ReminderEmail(
-                    id=str(uuid.uuid4()), account_id=account.id, send_date=TODAY, status="pending", items=[]
+                    id=str(uuid.uuid4()), account_id=account_id, send_date=TODAY, status="pending", items=[]
                 )
                 own.add(email)
                 own.flush()
-                won = reminders.claim(own, account.id, email.id, [item])
+                won = reminders.claim(own, account_id, email.id, [item])
                 if won:
                     own.commit()
                 else:
@@ -675,8 +690,10 @@ def test_the_email_states_the_record_and_nothing_else(sent, session):
 
     # No time of day and no zone is stated anywhere: the record has neither.
     for part in (text, message.html):
-        assert not re.search(r"\d{1,2}[:：]\d{2}", re.sub(r"https?://\S+", "", part))
-        assert not re.search(r"UTC|GMT|EST|PST|23[:：]59|午夜|零点", part)
+        # Links aside: the token is random text and the source is the applicant's own.
+        prose = re.sub(r"https?://\S+", "", part)
+        assert not re.search(r"\d{1,2}[:：]\d{2}", prose)
+        assert not re.search(r"UTC|GMT|EST|PST|午夜|零点|凌晨|上午|下午|晚上", prose)
     # The only links are the stored source, the application list, settings and the unsubscribe page.
     links = set(re.findall(r"https?://[^\s\"<>）)]+", text))
     assert links == {
@@ -705,28 +722,27 @@ def test_the_html_part_is_escaped_and_loads_nothing_remote(sent, session):
 def test_a_collected_date_is_called_collected_and_unchecked(sent, session):
     from app.models.application import Application
     from app.models.program import ProgramDeadline
-    from app.seed import seed_programs
-    from tests.test_seed import PROGRAM_IDS
+    from app.services import application_records
 
-    seed_programs(session)
-    session.commit()
+    # Any program the catalogue holds a collected date for; the record then reads that date.
+    program_id = session.scalar(select(ProgramDeadline.program_id).limit(1))
+    if program_id is None:
+        pytest.skip("the catalogue has no collected deadline")
     account = make_account(session)
-    row = session.scalars(
-        select(ProgramDeadline).where(ProgramDeadline.program_id.in_(PROGRAM_IDS)).limit(1)
-    ).first()
-    if row is None:
-        pytest.skip("the seeded catalogue has no collected deadline")
     session.add(
-        Application(id=str(uuid.uuid4()), client_id=account.client_id, program_id=row.program_id, tier="稳",
+        Application(id=str(uuid.uuid4()), client_id=account.client_id, program_id=program_id, tier="稳",
                     status="applying")
     )
     session.commit()
+    record = application_records.read_record(session, account.client_id, f"catalog:{program_id}")
+    assert record["deadlineOrigin"] == "collected" and record["checkedAt"] is None
+    day = record["deadline"]
     # Run on the day that makes the catalogue's own date seven days away.
-    now = datetime(row.date.year, row.date.month, row.date.day, 1, 7, tzinfo=UTC) - timedelta(days=7)
+    now = datetime(day.year, day.month, day.day, 1, 7, tzinfo=UTC) - timedelta(days=7)
     assert run_day(session, [account], now) == ["sent"]
     text = sent.to(account)[0].text
-    assert row.date.isoformat() in text and "学校库" in text and "没有核对" in text
-    assert row.source_url in text
+    assert day.isoformat() in text and "学校库" in text and "没有核对" in text
+    assert record["sourceUrl"] in text
 
 
 def test_the_smtp_message_carries_both_parts_and_the_unsubscribe_headers(session, require_db, monkeypatch):
@@ -804,6 +820,9 @@ def test_the_token_the_address_and_the_smtp_password_never_reach_the_logs(
     session, require_db, monkeypatch, caplog, fail_at, status
 ):
     caplog.set_level(logging.DEBUG)
+    # The test client's own request log is not the server's.
+    for name in ("httpx", "httpx2"):
+        monkeypatch.setattr(logging.getLogger(name), "disabled", True)
     account, _ = _through_fake_smtp(session, monkeypatch, fail_at)
     [email] = emails(session, account)
     assert email.status == status
@@ -934,13 +953,15 @@ def test_a_tampered_token_is_refused_and_changes_nothing(sent, session):
 
 def test_a_token_of_a_deleted_account_is_refused(sent, session):
     account = make_account(session)
-    token = reminders.unsubscribe_token(reminders.settings_for(session, account.id))
+    account_id = account.id
+    token = reminders.unsubscribe_token(reminders.settings_for(session, account_id))
     session.commit()
     session.delete(session.get(Client, account.client_id))
     session.commit()
+    session.expunge_all()
     assert reminders.unsubscribe(session, token) is False
     assert session.scalar(select(func.count()).select_from(ReminderSettings).where(
-        ReminderSettings.account_id == account.id)) == 0
+        ReminderSettings.account_id == account_id)) == 0
 
 
 def test_opening_the_headers_url_in_a_browser_changes_nothing(login_mode, session):
@@ -977,9 +998,9 @@ def test_reminders_are_on_by_default_at_14_7_3_and_1_days(login_mode):
 
 
 def test_an_update_states_its_base_version_and_a_stale_one_is_refused(login_mode):
-    phone, laptop = new_client(), new_client()
-    address = login(phone, login_mode)["account"]["email"]
-    login(laptop, login_mode, email=address)
+    phone = new_client()
+    login(phone, login_mode)
+    laptop = second_device(phone)
     seen = phone.get("/api/reminders/settings").json()
 
     missing = phone.put("/api/reminders/settings", json={"leadDays": [7]})
@@ -1003,14 +1024,19 @@ def test_an_update_states_its_base_version_and_a_stale_one_is_refused(login_mode
 
 
 def test_two_devices_saving_together_get_one_accepted_and_one_refused(login_mode):
-    phone, laptop = new_client(), new_client()
-    address = login(phone, login_mode)["account"]["email"]
-    login(laptop, login_mode, email=address)
+    phone = new_client()
+    login(phone, login_mode)
+    laptop = second_device(phone)
     for round_number in range(ROUNDS):
         seen = phone.get("/api/reminders/settings").json()
         responses = at_once(
-            lambda: phone.put("/api/reminders/settings", json={"leadDays": [10], "baseVersion": seen["version"]}),
-            lambda: laptop.put("/api/reminders/settings", json={"leadDays": [5], "baseVersion": seen["version"]}),
+            # Each round writes values the row does not hold: restating a row does not move its version.
+            lambda: phone.put(
+                "/api/reminders/settings", json={"leadDays": [10 + round_number], "baseVersion": seen["version"]}
+            ),
+            lambda: laptop.put(
+                "/api/reminders/settings", json={"leadDays": [50 + round_number], "baseVersion": seen["version"]}
+            ),
         )
         codes = sorted(r.status_code for r in responses)
         assert codes == [200, 409], f"round {round_number}: {codes}"

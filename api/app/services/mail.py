@@ -8,12 +8,22 @@ Two backends, chosen by `MAIL_BACKEND`:
   runs and the browser walkthrough read a code. It refuses to run in production, independently of the
   startup check in `app.config.check_settings`, so a misconfigured server fails a login instead of
   writing working codes into a log file.
+
+Deadline reminders (`docs/product/PRD-multi-device.md`, 3.4) go out through the same two backends by
+`send_reminder`. Its failures come in two kinds, because a reminder must not be mailed twice:
+`MailError` when the message certainly did not go out (no connection, login refused, recipient or
+content refused), which the caller may retry, and `MailUncertain` when the connection broke after the
+message was handed over, which it must not. Nothing about a reminder is logged except its reference:
+no address, and never the body, which carries the unsubscribe link.
 """
 
 import logging
 import smtplib
+from dataclasses import dataclass
 from datetime import UTC, datetime
+from email import policy
 from email.message import EmailMessage
+from email.utils import formatdate, make_msgid
 
 from app.config import settings
 
@@ -23,7 +33,24 @@ SUBJECT = "鱼跃彼岸登录验证码"
 
 
 class MailError(Exception):
-    """The code could not be delivered."""
+    """The message was not delivered."""
+
+
+class MailUncertain(MailError):
+    """The server stopped answering after the message was handed over: it may have gone out."""
+
+
+@dataclass(frozen=True)
+class ReminderMessage:
+    to: str
+    subject: str
+    text: str
+    html: str
+    # The one-click target of the `List-Unsubscribe` header (RFC 8058), and the page the body links.
+    unsubscribe_url: str
+    unsubscribe_page: str
+    # The `reminder_emails` id: what the logs and the local outbox call this message.
+    reference: str
 
 
 def _body(code: str) -> str:
@@ -68,5 +95,80 @@ def send_login_code(email: str, code: str) -> None:
         _send_smtp(email, code)
     elif settings.mail_backend == "log":
         _send_log(email, code)
+    else:
+        raise MailError(f"unknown MAIL_BACKEND {settings.mail_backend!r}")
+
+
+# Replies that say the server took nothing: the sender, every recipient or the content was refused.
+_REFUSED = (
+    smtplib.SMTPRecipientsRefused,
+    smtplib.SMTPSenderRefused,
+    smtplib.SMTPDataError,
+    smtplib.SMTPHeloError,
+    smtplib.SMTPNotSupportedError,
+)
+
+
+def reminder_mime(message: ReminderMessage) -> EmailMessage:
+    """The reminder as a MIME message: a text part, an HTML alternative, the unsubscribe headers."""
+    # Headers are not folded: a folded `List-Unsubscribe` URL is one some receivers fail to read.
+    mime = EmailMessage(policy=policy.SMTP.clone(max_line_length=998))
+    mime["From"] = settings.mail_from or "reminders@localhost"
+    mime["To"] = message.to
+    mime["Subject"] = message.subject
+    mime["List-Unsubscribe"] = f"<{message.unsubscribe_url}>"
+    mime["List-Unsubscribe-Post"] = "List-Unsubscribe=One-Click"
+    mime["Auto-Submitted"] = "auto-generated"
+    mime["Date"] = formatdate()
+    mime["Message-ID"] = make_msgid(domain=str(mime["From"]).rpartition("@")[2].strip("> ") or "localhost")
+    mime.set_content(message.text, cte="base64")
+    mime.add_alternative(message.html, subtype="html", cte="base64")
+    return mime
+
+
+def _send_reminder_smtp(message: ReminderMessage) -> None:
+    mime = reminder_mime(message)
+    try:
+        server = smtplib.SMTP_SSL(settings.smtp_host, settings.smtp_port, timeout=settings.smtp_timeout_seconds)
+    except (smtplib.SMTPException, OSError) as exc:
+        logger.error("reminder mail %s not sent, connect: %s", message.reference, type(exc).__name__)
+        raise MailError("connect failed") from exc
+    try:
+        try:
+            server.login(settings.smtp_user, settings.smtp_password)
+        except (smtplib.SMTPException, OSError) as exc:
+            logger.error("reminder mail %s not sent, login: %s", message.reference, type(exc).__name__)
+            raise MailError("login failed") from exc
+        try:
+            server.send_message(mime)
+        except _REFUSED as exc:
+            logger.error("reminder mail %s refused: %s", message.reference, type(exc).__name__)
+            raise MailError("refused") from exc
+        except (smtplib.SMTPException, OSError) as exc:
+            logger.error("reminder mail %s may or may not have gone out: %s", message.reference, type(exc).__name__)
+            raise MailUncertain("no answer after the message was handed over") from exc
+    finally:
+        try:
+            server.quit()
+        except (smtplib.SMTPException, OSError):
+            server.close()
+
+
+def _write_reminder(message: ReminderMessage) -> None:
+    """The `log` backend: the whole message goes to a file under `var/`, and only its name to the log."""
+    if settings.is_production:
+        raise MailError("the log mail backend is disabled in production")
+    folder = settings.mail_log_path.parent / "reminders"
+    folder.mkdir(parents=True, exist_ok=True)
+    (folder / f"{message.reference}.eml").write_bytes(reminder_mime(message).as_bytes())
+    logger.warning("reminder mail %s written to var/reminders (MAIL_BACKEND=log, not mailed)", message.reference)
+
+
+def send_reminder(message: ReminderMessage) -> None:
+    """Deliver one reminder email, or raise `MailError` (not sent) or `MailUncertain` (may be sent)."""
+    if settings.mail_backend == "smtp":
+        _send_reminder_smtp(message)
+    elif settings.mail_backend == "log":
+        _write_reminder(message)
     else:
         raise MailError(f"unknown MAIL_BACKEND {settings.mail_backend!r}")
