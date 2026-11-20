@@ -1,4 +1,5 @@
 "use client";
+import { beijingToday } from "@/lib/deadlines";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { RequireAccount } from "@/components/auth/AuthProvider";
@@ -147,7 +148,7 @@ function Applications() {
                     <div>{deadlineLabel(record)}</div>
                     <div className="small muted">
                       {record.checkedAt
-                        ? `已自行核对 · ${record.checkedAt.slice(0, 10)}`
+                        ? `已自行核对 · ${beijingToday(new Date(record.checkedAt))}`
                         : record.deadlineOrigin === "collected"
                           ? "学校库采集 · 请复核"
                           : "待自行核对"}

@@ -5,8 +5,17 @@ import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent } from "
 import { useAuth } from "@/components/auth/AuthProvider";
 
 import { Icon } from "./Icon";
+import { ReminderSettingsPanel } from "./ReminderSettings";
 
 const COLORS = [{ id: "graphite", name: "默认" }] as const;
+const TABS = [
+  { id: "profile", label: "个人资料" },
+  { id: "appearance", label: "外观" },
+  { id: "reminders", label: "提醒" },
+  { id: "account", label: "账号" },
+] as const;
+/** Another part of the page asks for the settings dialog on one tab: `detail` is the tab's id. */
+export const SETTINGS_EVENT = "leapashore-settings";
 /** The mode last applied, under a key that does not depend on the account: app/layout.tsx reads it before first paint. */
 export const APPEARANCE_KEY = "leapashore:appearance";
 type Preferences = {
@@ -30,6 +39,7 @@ export function UserCenter() {
   const [tab, setTab] = useState("profile");
   const [message, setMessage] = useState("");
   const [uploading, setUploading] = useState(false);
+  const [shown, setShown] = useState(false);
   const menu = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -138,8 +148,19 @@ export function UserCenter() {
     setOpen(false);
     setTab(next);
     setMessage("");
-    dialog.current?.showModal();
+    if (!dialog.current?.open) dialog.current?.showModal();
+    setShown(true);
   }
+  const openSettings = useRef(settings);
+  openSettings.current = settings;
+  useEffect(() => {
+    const show = (event: Event) => {
+      const wanted = (event as CustomEvent<string>).detail;
+      openSettings.current(TABS.some((item) => item.id === wanted) ? wanted : "profile");
+    };
+    window.addEventListener(SETTINGS_EVENT, show);
+    return () => window.removeEventListener(SETTINGS_EVENT, show);
+  }, []);
   async function upload(e: ChangeEvent<HTMLInputElement>) {
     const selected = e.target.files?.[0];
     e.target.value = "";
@@ -266,6 +287,7 @@ export function UserCenter() {
         className="uc-dialog"
         ref={dialog}
         aria-labelledby="uc-title"
+        onClose={() => setShown(false)}
         onClick={(e) => {
           if (e.target === dialog.current) {
             const r = dialog.current.getBoundingClientRect();
@@ -284,11 +306,7 @@ export function UserCenter() {
             <h2 id="uc-title">设置</h2>
             <div role="tablist" aria-label="设置分类" ref={tabs}>
               <span className="uc-tab-indicator" aria-hidden="true" ref={indicator} />
-              {[
-                { id: "profile", label: "个人资料" },
-                { id: "appearance", label: "外观" },
-                { id: "account", label: "账号" },
-              ].map((item) => (
+              {TABS.map((item) => (
                 <button
                   key={item.id}
                   role="tab"
@@ -301,7 +319,7 @@ export function UserCenter() {
                     setMessage("");
                   }}
                   onKeyDown={(e) => {
-                    const ids = ["profile", "appearance", "account"];
+                    const ids = TABS.map((each) => each.id);
                     if (
                       [
                         "ArrowDown",
@@ -317,12 +335,12 @@ export function UserCenter() {
                         e.key === "Home"
                           ? 0
                           : e.key === "End"
-                            ? 2
-                            : (ids.indexOf(tab) +
+                            ? ids.length - 1
+                            : (ids.indexOf(tab as (typeof ids)[number]) +
                                 (["ArrowDown", "ArrowRight"].includes(e.key)
                                   ? 1
-                                  : 2)) %
-                              3;
+                                  : ids.length - 1)) %
+                              ids.length;
                       setTab(ids[i]);
                       document.getElementById(`uc-tab-${ids[i]}`)?.focus();
                     }
@@ -435,6 +453,15 @@ export function UserCenter() {
               >
                 恢复默认外观
               </button>
+            </section>
+            <section
+              id="uc-panel-reminders"
+              role="tabpanel"
+              aria-labelledby="uc-tab-reminders"
+              hidden={tab !== "reminders"}
+            >
+              <h2>截止提醒</h2>
+              <ReminderSettingsPanel active={shown && tab === "reminders"} report={setMessage} />
             </section>
             <section
               id="uc-panel-account"

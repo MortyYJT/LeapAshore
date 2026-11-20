@@ -6,7 +6,7 @@
 - [x] **Neutral 工作台上线** — PR #88；完整验证通过，只替换前端。
 - [ ] **我的申请 + 截止日期管理** — 先核实现有申请数据模型并写 OpenSpec，保留选校与申请管理之间的衔接；支持项目/轮次、手动添加、日期和来源核查、状态及材料管理。
 - [x] **以截止日期驱动总览** — PR #95；每个申请在同一条从今天开始的时间轴上画成一条线，未知日期、已过日期和未核对的日期各有画法。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
-- [ ] **申请提醒** — 核心流程实际使用并确认可靠后再实施。
+- [x] **申请提醒**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.4）— PR #99；登录账号在截止前 14、7、3、1 天收到邮件（可改可关），每条提醒由数据库保证只发一次，一天一封，带免登录退订链接。[详情](docs/measurements.md)。
 - [x] **线路图界面第一步：设计系统、外壳、总览** — PR #95；换成已确认原型的设计变量和深色侧栏，手机改为顶栏加底部标签，其余页面只做变量适配。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
 - [x] **线路图界面第二步：顾问停靠栏** — PR #96；顾问停在工作区右侧，一轮画成一条线上的各个站，来源卡片、写入前确认、停止；接口新增步骤事件和停止。[详情](docs/measurements.md#advisor-dock-step-events-and-the-run-interface-pr-96)
 - [x] **未登录的总览画演示** — PR #97；用学校库里的真实项目和日期画一份只读演示并标明，会写入的操作引到登录；顾问输入区写明提问需要登录。只改前端。[决定](note/decisions.md)

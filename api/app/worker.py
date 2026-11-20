@@ -40,6 +40,8 @@ app.conf.update(
         "cleanup-anonymous-data": {"task": "maintenance.cleanup", "schedule": crontab(hour=3, minute=17)},
         # New or renamed programs get their vectors within the hour (openspec hybrid-retrieval D5).
         "embed-programs": {"task": "maintenance.embed_programs", "schedule": crontab(minute=37)},
+        # 09:07 Beijing time (the `timezone` above): lead times are counted between Beijing dates.
+        "send-deadline-reminders": {"task": "reminders.send_due", "schedule": crontab(hour=9, minute=7)},
     },
 )
 
@@ -176,4 +178,29 @@ def embed_programs() -> dict:
     return {**report, "chunks": chunk_report}
 
 
-__all__ = ["app", "page_task", "discover_task", "recollect_due", "cleanup", "embed_programs", "SNAPSHOT_ROOT"]
+@app.task(name="reminders.send_due")
+def send_due_reminders() -> dict:
+    """Claim today's deadline reminders, then queue one delivery per email (`app.services.reminders`)."""
+    from app.services import reminders
+
+    with SessionLocal() as session:
+        report = reminders.plan(session, datetime.now(UTC))
+    for email_id in report["emails"] + report["waiting"]:
+        deliver_reminder.delay(email_id)
+    return {**report, "emails": len(report["emails"]), "waiting": len(report["waiting"])}
+
+
+@app.task(name="reminders.deliver")
+def deliver_reminder(email_id: str) -> str:
+    """Mail one claimed reminder email once; a send that certainly failed comes back after a backoff."""
+    from app.services import reminders
+
+    with SessionLocal() as session:
+        status = reminders.deliver(session, email_id, datetime.now(UTC))
+        if status == "retry":
+            deliver_reminder.apply_async((email_id,), countdown=reminders.backoff_delay(reminders.attempts_of(session, email_id)))
+    return status
+
+
+__all__ = ["app", "page_task", "discover_task", "recollect_due", "cleanup", "embed_programs",
+           "send_due_reminders", "deliver_reminder", "SNAPSHOT_ROOT"]

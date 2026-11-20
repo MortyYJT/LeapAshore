@@ -97,6 +97,15 @@ The owner chose (2026-10-31) a personal mailbox's SMTP instead of Tencent Cloud 
 
 Tencent Cloud SES instead of a personal mailbox (the earlier plan): enable SES (the server is in Hong Kong, so `smtp.qcloudmail.com:465`; `gz-smtp.qcloudmail.com` if opened in Guangzhou), add a sender domain such as `mail.mortyyjt.site` and its SPF, DKIM and DMARC records in DNSPod (values from the SES console's verification page), create `noreply@mail.mortyyjt.site` with an SMTP password, then use those values in step 2.
 
+## Deadline reminders
+
+The beat runs `reminders.send_due` every day at 09:07 Beijing time; the worker then mails one email per account with reminders due (rules in `api/app/services/reminders.py`). It needs sign-in mode and the SMTP settings above, plus `PUBLIC_BASE_URL`, which `deploy/compose.prod.yaml` sets for api, worker and beat. Nothing was added to `deploy/.env`.
+
+- Preview what the next run would send, without writing or mailing: `... exec -T worker python -m app.reminders_cli --dry-run`. It prints counts and application ids, no addresses. The command cannot send.
+- What was sent: `select send_date, status, attempts, last_error, json_array_length(items) from reminder_emails order by created_at desc limit 20;`. `failed` and `expired` emails release their reminders for the next run; `uncertain` ones never go out again.
+- Turn the job off: remove the `send-deadline-reminders` entry from `api/app/worker.py` and redeploy beat, or stop the `beat` service (that also stops re-collection and the embedding backfill).
+- Rolling back to an image from before the reminders needs no database change: the migration only adds three tables.
+
 ## Pitfalls on the server
 
 - In a `while read` loop, `docker compose exec -T` needs `< /dev/null`, otherwise exec swallows the loop's input (on 10-30 the school merge first ran only the first group).

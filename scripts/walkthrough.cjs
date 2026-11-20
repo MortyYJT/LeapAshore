@@ -73,6 +73,8 @@ const EXPECTED = [/status of 404/, /status of 401/];
 // The sync-conflict steps make the server refuse a stale save on purpose; the browser logs that 409.
 // Only those steps set this, so a 409 anywhere else still fails the run.
 const conflictSteps = { running: false };
+// The unsubscribe step opens a link the server refuses on purpose; the browser logs that 400.
+const refusedLinkStep = { running: false };
 
 /** Watch a page: console errors and page errors fail the run. */
 function watch(page, label, errors, expected = EXPECTED) {
@@ -81,6 +83,7 @@ function watch(page, label, errors, expected = EXPECTED) {
     const text = msg.text();
     if (expected.some((pattern) => pattern.test(text))) return;
     if (conflictSteps.running && /status of 409/.test(text)) return;
+    if (refusedLinkStep.running && /status of 400/.test(text)) return;
     errors.push(`${label} console: ${text} (${new URL(page.url()).pathname})`);
   });
   page.on("pageerror", (error) => errors.push(`${label} pageerror: ${error.message}`));
@@ -473,6 +476,37 @@ async function adminPass(browser, email, errors) {
     await page.getByRole("tab", { name: "外观", exact: true }).click();
     await page.getByRole("button", { name: "恢复默认外观" }).click();
     await page.getByRole("button", { name: "关闭设置" }).click();
+
+    // ---------- deadline reminders: settings and the unsubscribe page ----------
+    await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
+    await page.getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "提醒", exact: true }).click();
+    const reminderPanel = page.locator("#uc-panel-reminders");
+    const reminderSwitch = reminderPanel.getByRole("group", { name: "邮件提醒" });
+    await reminderSwitch.waitFor();
+    check("提醒设置：默认开启，提前 14、7、3、1 天", await reminderSwitch.getByRole("button", { name: "开启", exact: true }).getAttribute("aria-pressed") === "true" && (await reminderPanel.locator(".uc-leads li .num").allTextContents()).join(",") === "14,7,3,1");
+    await reminderPanel.getByLabel("要加的提前天数").fill("7");
+    await reminderPanel.getByRole("button", { name: "添加", exact: true }).click();
+    check("提醒设置：重复的天数不保存，原因写在输入框下", await reminderPanel.getByText("已经有提前 7 天的提醒了。").isVisible());
+    await reminderPanel.getByLabel("要加的提前天数").fill("10");
+    await reminderPanel.getByRole("button", { name: "添加", exact: true }).click();
+    await page.getByText("提醒设置已保存。").waitFor();
+    await reminderSwitch.getByRole("button", { name: "关闭", exact: true }).click();
+    await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).enabled === false);
+    const remindersOff = await apiAs(context, "/api/reminders/settings");
+    check("提醒设置：改动存到服务器（关闭，天数 14、10、7、3、1）", remindersOff.body && remindersOff.body.enabled === false && remindersOff.body.leadDays.join(",") === "14,10,7,3,1", remindersOff.body);
+    await reminderPanel.getByRole("button", { name: "删掉提前 10 天的提醒" }).click();
+    await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).leadDays.length === 4);
+    await reminderSwitch.getByRole("button", { name: "开启", exact: true }).click();
+    await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).enabled === true);
+    await page.getByRole("button", { name: "关闭设置" }).click();
+    refusedLinkStep.running = true;
+    await page.goto(`${BASE}/reminders/unsubscribe?token=bad.token`);
+    await page.getByRole("heading", { level: 1, name: "这个退订链接无效" }).waitFor();
+    refusedLinkStep.running = false;
+    const remindersKept = await apiAs(context, "/api/reminders/settings");
+    check("退订页：无效链接说明原因，提醒设置没有被改动", remindersKept.body && remindersKept.body.enabled === true && remindersKept.body.leadDays.join(",") === "14,7,3,1", remindersKept.body);
+    await layout(page, "退订页");
 
     // ---------- tiers -> portfolio ----------
     await page.goto(`${BASE}/tiers`);
