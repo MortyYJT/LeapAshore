@@ -649,3 +649,31 @@
   - `apple-icon.png`：iOS 主屏幕图标的透明像素会被填成黑色。这一条没有找到 Apple 的正式文档，依据是 Apple 开发者论坛的帖子和多篇一致的说明，没有在真机上试。
 - **清单**没有改字段，`theme_color` / `background_color` 仍是 `#121a28`（maskable 图标的底色）。
 - **待 MortyYJT 复核**：位图的中间调比原来的深底浅字淡，装成应用后在任务栏和程序坞里不如原来醒目；不想要的话把 `any` 两张换回有底的版本，只留标签页图标透明。
+
+## 2026-11-20 自己的模型密钥（Claude 自主（待 MortyYJT 复核））
+
+- **背景**：`docs/product/PRD-multi-device.md` 3.5。顾问默认用站长的密钥和原有的限流、每日额度；申请者可以填自己的密钥。测到的数字见 `docs/measurements.md`「Own model key」。
+- **密钥怎么走**：只存在浏览器的 localStorage（`leapashore:model-key`），每次 `/api/advisor/chat`、`/confirm`、`/key/check` 请求放在 `Authorization: Bearer` 头里，另一个头 `X-Model-Provider` 写服务商的 id。服务器读成一个 `ApplicantKey` 对象，放进一个上下文变量，这一轮结束就没有了（`api/app/agent/model_key.py`）。
+  - 没有放进 LangGraph 的 state 或 config：这两样都会随 checkpoint 存库。等待确认后继续的那一轮，密钥从新的请求里取。
+  - `ApplicantKey` 打印出来是占位符，pickle、copy、JSON 序列化都会报错。
+  - 用 `Authorization` 而不是自定义头：Caddy 转发失败时（比如 api 重启的几秒里返回 502）会把请求头写进错误日志，默认只遮 `Authorization` 这几个。第一版用的 `X-Model-Key` 会被原样写进去，是审查发现、本机用 Caddy 2.11.4 实测确认后改的。
+- **哪里会漏，怎么堵的**：
+  - 第一次跑测试就抓到一条：LangGraph 会把失败步骤的异常存进 `checkpoint_writes`，服务商的 401 报错里带着密钥时，密钥就进了数据库。现在用自己密钥的那一轮，异常只存类名和 HTTP 状态码，存库的每个值再按字节抹一遍（`app/agent/checkpoint.py` 的 `_ScrubbingSerde`）。
+  - 日志：这一轮里产生的每条日志记录都过一遍，带密钥的换成 `[key removed]`，异常只留调用栈的文件行号和类名，不留报错原文（服务商可能回显密钥的后几位）。`_stream` 里自己密钥的分支只记错误种类。
+  - 判官出错时留在 trace 里的那句话（`answer.py`）同样只留类名。
+  - 抹除只看这一轮自己的上下文，不用进程级的名单：密钥是调用方随便发的一个字符串，如果按全局名单抹，有人把「密钥」写成 `tool_calls`，别人对话的存档就被改坏了（审查发现）。密钥至少 20 位，只允许字母、数字和 `._~+/=-`，这些字符在 JSON、repr 和网址里都不会被转义，出现时一定是原样。
+- **限流**：带自己密钥的请求不查、不预留、不计站长的每日 token 额度，频率窗口照旧（同一组窗口，和默认请求共用）。带自己密钥的确认请求两样都不查，所以不需要 Redis。
+- **服务商**：服务器上一张固定的表，页面只发 id，发不了地址。
+  - DeepSeek：`https://api.deepseek.com`，模型 `deepseek-flash`，请求体加 `thinking: {type: disabled}`。官方文档写明不传时默认开启思考，而思考模式下指定函数的 `tool_choice` 会返回 400，意图分类和判官都用指定函数。
+  - 硅基流动：`https://api.siliconflow.cn/v1`，模型 `deepseek-ai/DeepSeek-V4-Flash`，和 `app/config.py` 里 `CHAT_*` 的默认值一样，不加别的参数。**这一条没有用真实密钥试过**（本机没有硅基流动的聊天密钥可用，只读了文档）。
+  - 问题向量仍然用站长的 `EMBED_API_KEY`。
+- **出错怎么说**：用自己密钥时单独一组错误码，都不带密钥：`own_key_rejected`（401/403）、`own_key_no_balance`（402 或 `insufficient_quota`）、`own_key_rate_limited`（429）、`own_key_provider_down`（5xx、超时、连不上）、`own_key_request_refused`（其他 4xx，写出状态码）。站长密钥出错还是原来的 `model_unavailable`。
+- **测试密钥**：`POST /api/advisor/key/check` 用密钥请求服务商的 `GET /models`，不花 token；占一次频率窗口。它只能说明密钥被接受，查不出余额不足。
+- **界面**：设置里新增第五个分类「模型密钥」；保存后只显示头 3 位和尾 4 位；顾问每一轮开头由服务器发一个 `model` 事件，页面在提问下面标「本轮用你自己的密钥 · 服务商」。输入框不是 password 类型（浏览器会提示保存并同步到别的设备），用 `-webkit-text-security` 画成圆点。登录模式下只要处于未登录状态，浏览器里存的密钥就会被删。
+- **隐私页**新增「自己的模型密钥」一节，写明：密钥经过本站服务器，运营者在技术上读得到；公开的代码不保存不记录，但访问者无法验证服务器上运行的就是这份代码；建议用设了消费上限或只留少量余额的单独密钥。
+- **待 MortyYJT 复核**：
+  - 生产的 `CHAT_MODEL` 是 `deepseek-chat`（11-20 只读了 `CHAT_BASE_URL`、`CHAT_MODEL` 两项）。DeepSeek 文档现在只列 `deepseek-flash` 和 `deepseek-v4-pro`，没有提 `deepseek-chat`。站长这条路径没有动。
+  - 两家服务商是否支持给单把密钥设消费上限，没有查；页面的建议写成「设好消费上限，或者只在账户里留少量余额」。
+  - 隐私页写了「公开的代码不保存也不记录它」，依据是仓库是公开的。仓库改成私有的话这句要改。
+  - 设置的分类从四个变成五个，手机上一行还放得下（390px 截图看过）。
+

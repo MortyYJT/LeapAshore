@@ -114,6 +114,14 @@ The site installs as an app (`web/app/manifest.ts`, icons under `web/public/icon
 - After a deploy: `curl -sI https://leapashore.mortyyjt.site/sw.js` shows the no-cache header; `/manifest.webmanifest` answers `application/manifest+json`; each `/icons/*.png` answers `image/png`.
 - To retire the worker, ship a `sw.js` whose `activate` handler calls `self.registration.unregister()` and has no `fetch` handler, and remove the registration from `web/components/shell/Install.tsx`. Deleting the file is not a dependable way to remove it from browsers that already registered it.
 
+## An applicant's own model key
+
+From PR #102 (`api/app/agent/model_key.py`). Nothing is configured on the server: the providers and their addresses are a list in the code, and the key comes with each advisor request.
+
+- The key arrives in `Authorization: Bearer`. Caddy writes the headers of a request it could not hand to the API (a 502 while the api restarts) to its error log, and redacts that header by default. Do not add `log_credentials` to the Caddyfile, and do not move the key to a header of its own: Caddy 2.11.4 wrote a custom header in full (docs/measurements.md). A test fails if `log_credentials` appears.
+- Do not turn on anything that records request headers or model calls in the api (an access log with headers, `LANGSMITH_TRACING`, `OPENAI_LOG=debug`) without checking it against `api/tests/test_model_key.py` first.
+- After a deploy: a signed-out `POST /api/advisor/chat` with `Authorization: Bearer <made-up key>` and `X-Model-Provider: deepseek` answers 401, and `... logs api` and `... logs caddy` do not contain the made-up key.
+
 ## Pitfalls on the server
 
 - In a `while read` loop, `docker compose exec -T` needs `< /dev/null`, otherwise exec swallows the loop's input (on 10-30 the school merge first ran only the first group).
