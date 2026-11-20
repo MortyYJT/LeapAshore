@@ -27,6 +27,7 @@ from psycopg.rows import dict_row
 from psycopg_pool import ConnectionPool
 from sqlalchemy.engine import make_url
 
+from app.agent import model_key
 from app.config import settings
 
 # How many of the library's own migrations revision c4e8a1d2f6b9 applies (v0..v9), and a digest of
@@ -41,6 +42,27 @@ def conninfo(url: str | None = None) -> str:
     return make_url(url or settings.database_url).set(drivername="postgresql").render_as_string(
         hide_password=False
     )
+
+
+class _ScrubbingSerde:
+    """The saver's serializer, with an applicant's model key removed from what it produces.
+
+    While a turn runs on an applicant's own key (`app.agent.model_key`), nothing that reaches the
+    checkpoint tables may hold it. The state never does, but LangGraph also saves the exception of a
+    step that failed, and a provider's error can repeat the key it was sent.
+    """
+
+    def __init__(self, inner) -> None:
+        self._inner = inner
+
+    def dumps_typed(self, obj: Any) -> tuple[str, bytes]:
+        kind, data = self._inner.dumps_typed(obj)
+        if data and model_key.any_in_use():
+            data = model_key.scrub_bytes(data)
+        return kind, data
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self._inner, name)
 
 
 class Checkpointer(PostgresSaver):
@@ -59,6 +81,7 @@ class Checkpointer(PostgresSaver):
             name="advisor-checkpoints",
         )
         super().__init__(pool)
+        self.serde = _ScrubbingSerde(self.serde)
         self._opening = threading.Lock()
 
     @property
@@ -81,6 +104,20 @@ class Checkpointer(PostgresSaver):
     def close(self) -> None:
         if not self.pool.closed:
             self.pool.close()
+
+    def put(
+        self,
+        config: RunnableConfig,
+        checkpoint: Checkpoint,
+        metadata: CheckpointMetadata,
+        new_versions: ChannelVersions,
+    ) -> RunnableConfig:
+        # Plain strings of the state and the metadata are stored as JSON, not through the serializer.
+        if model_key.any_in_use():
+            values = {k: model_key.scrub(v) if isinstance(v, str) else v for k, v in checkpoint["channel_values"].items()}
+            checkpoint = {**checkpoint, "channel_values": values}  # type: ignore[assignment]
+            metadata = model_key.scrub_json(metadata)
+        return super().put(config, checkpoint, metadata, new_versions)
 
     # --- async API: the same work in a worker thread (the saver's own lock serialises it) ---
 

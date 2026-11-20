@@ -26,6 +26,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
+from app.agent import model_key
 from app.agent.llm import get_chat_model, outage
 from app.agent.passages import Passage
 from app.collect.faithful import OK, Claim, Judgement, ajudge
@@ -237,7 +238,8 @@ async def support_check(question: str, checked: Verification, passages: list[dic
             # The provider is down, not the answer wrong: the turn says the advisor is unavailable
             # rather than refusing as if the pages could not back it.
             raise
-        judgement = Judgement(verdicts={}, error=f"{type(error).__name__}: {str(error)[:200]}")
+        # Kept with the turn's trace, so it must not carry an applicant's key the provider repeated.
+        judgement = Judgement(verdicts={}, error=model_key.scrub(f"{type(error).__name__}: {str(error)}")[:200])
     apply_support(checked, judgement)
     return judgement
 
@@ -361,7 +363,7 @@ async def generate(question: str, passages: list[dict], model=None) -> Generated
     out = await structured.ainvoke(prompt_for(question, passages))
     raw = out["raw"]
     parsed = out.get("parsed")
-    error = str(out["parsing_error"])[:300] if out.get("parsing_error") else None
+    error = model_key.scrub(str(out["parsing_error"]))[:300] if out.get("parsing_error") else None
     if parsed is None and error is None:
         error = "no function call"
     return Generated(answer=parsed or PassageAnswer(), usage=_usage(raw),

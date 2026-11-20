@@ -5,6 +5,8 @@ Event types: ``step`` (one thing the agent does, see below), ``intent`` (the rou
 the passages its checked sentences cite), ``tool`` (a tool the agent called), ``token`` (a piece of the
 reply), ``confirm`` (a change to the portfolio or to an application waiting for the applicant, with
 the ``id`` a confirm sends back), ``error``, ``stopped`` (the turn ended because the applicant stopped it) and a final ``done``.
+A turn that runs on the applicant's own model key (`app.agent.model_key`) starts with a ``model`` event
+naming the provider; a turn on the owner's key has none.
 
 A ``step`` event describes the turn as the interface draws it, a line of stops:
 
@@ -37,7 +39,7 @@ from langgraph.types import Command
 from pydantic import BaseModel, Field
 
 from app import limits
-from app.agent import halt, stated, steps
+from app.agent import halt, model_key, stated, steps
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
@@ -73,14 +75,33 @@ class ConfirmIn(BaseModel):
     interrupt_id: str | None = Field(default=None, alias="interruptId", max_length=64)
 
 
-async def _admit(request: Request, response: Response, subject: str, *, windows: bool) -> limits.Ticket:
+def _own_key(request: Request, response: Response) -> model_key.ApplicantKey | None:
+    """The model key this request brought in its headers, or None: the turn then runs on the owner's.
+
+    Read from the headers by hand, not declared as a parameter: FastAPI repeats a parameter that fails
+    validation in its 422 body. A header that cannot be used is a 400 with a fixed message.
+    """
+    try:
+        return model_key.from_headers(request.headers)
+    except model_key.Refused as refused:
+        raise HTTPException(
+            400, {"code": refused.code, "message": refused.message}, headers=subject_cookie_header(response)
+        ) from None
+
+
+async def _admit(
+    request: Request, response: Response, subject: str, *, windows: bool, quotas: bool = True
+) -> limits.Ticket:
     """Refuse with 429 over a limit, 503 when the limit store is down (openspec advisor-limits).
+
+    `quotas=False` for a turn on the applicant's own key: the owner's daily token caps do not apply
+    to it, the rate windows do.
 
     Called from the endpoint bodies, after FastAPI has validated the request: a dependency would run
     before validation and take a window slot and a reservation for a request that is then a 422.
     """
     try:
-        outcome = await limits.check(subject, client_ip(request), windows=windows)
+        outcome = await limits.check(subject, client_ip(request), windows=windows, quotas=quotas)
     except limits.LimitsUnavailable:
         logger.exception("advisor limits unavailable; refusing the turn")
         raise HTTPException(
@@ -104,6 +125,16 @@ def _config(client_id: str, conversation_id: str, ticket: limits.Ticket | None =
         # Every model call in the turn is charged to the ticket's subject, IP and the site.
         config["callbacks"] = [limits.UsageRecorder(ticket.subject, ticket.ip)]
     return config
+
+
+async def _on_own_key(key: model_key.ApplicantKey, events: AsyncIterator[str]) -> AsyncIterator[str]:
+    """Run a turn on the applicant's key. The key is held in a context variable while the turn's
+    events are produced, and is in neither the graph's input nor its config, both of which are saved
+    with the checkpoint. The first event tells the page whose key the turn runs on."""
+    with model_key.in_use(key):
+        yield _event({"type": "model", "ownKey": True, "provider": key.provider.id, "label": key.provider.label})
+        async for event in events:
+            yield event
 
 
 # Turns that are still running, so a turn whose client went away is not garbage-collected mid-run.
@@ -292,7 +323,7 @@ class _Steps:
 
 
 async def _stream(graph_input, config: dict, resumed: Resumed | None = None) -> AsyncIterator[str]:
-    if not model_configured():
+    if not model_configured() and model_key.current() is None:
         yield _event({"type": "error", "code": "not_configured", "message": "顾问模型尚未配置（缺少 CHAT_API_KEY）。"})
         yield _event({"type": "done"})
         return
@@ -415,7 +446,20 @@ async def _stream(graph_input, config: dict, resumed: Resumed | None = None) -> 
     except Exception as error:  # noqa: BLE001 - the stream must close with an error event, not hang
         for event in run.close_all(steps.FAILED, steps.INTERRUPTED):
             yield event
-        if outage(error):
+        own = model_key.current()
+        if own is not None:
+            # On the applicant's key the fault is told apart from ours, and the log gets the kind of
+            # error only: a provider's error body may repeat the key it was sent.
+            failed = model_key.failure(error, own.provider)
+            saved = SAVED_BEFORE_OUTAGE if wrote_something else ""
+            if failed is not None:
+                logger.warning("advisor turn on an applicant's key failed: %s (%s)", failed.code, model_key.kinds(error))
+                yield _event({"type": "error", "code": failed.code, "message": failed.message + saved})
+            else:
+                logger.error("advisor stream failed on an applicant's key: %s\n%s",
+                             model_key.kinds(error), model_key.frames(error))
+                yield _event({"type": "error", "code": "advisor_failed", "message": FAILED})
+        elif outage(error):
             # Expected while the provider is down (an account out of money answers every call with 402):
             # one line, no traceback per turn.
             logger.warning("advisor model unavailable: %s: %s", type(error).__name__, str(error)[:300])
@@ -528,6 +572,7 @@ async def chat(
     body: ChatIn, request: Request, response: Response, client_id: Annotated[str, Depends(get_subject)]
 ) -> StreamingResponse:
     thread = _config(client_id, body.conversation_id)["configurable"]["thread_id"]
+    key = _own_key(request, response)
     ended = await _take_over(thread)
     if ended is None:
         return _sse(_busy(), client_id)
@@ -537,11 +582,12 @@ async def chat(
         _release(thread, ended)
         return _sse(_busy(), client_id)
     try:
-        ticket = await _admit(request, response, client_id, windows=True)
+        ticket = await _admit(request, response, client_id, windows=True, quotas=key is None)
     except BaseException:
         _release(thread, ended)
         raise
-    config = _config(client_id, body.conversation_id, ticket)
+    # A turn on the applicant's key is not charged to the owner's counters.
+    config = _config(client_id, body.conversation_id, ticket if key is None else None)
     tidy = _tidy(config)
 
     async def after() -> None:
@@ -552,6 +598,8 @@ async def chat(
 
     # The day it was sent stays with the message: a date written without a year is read from it later.
     turn = _stream({"messages": [HumanMessage(content=body.message, additional_kwargs=stated.stamp())], "trace": None}, config)
+    if key is not None:
+        turn = _on_own_key(key, turn)
     return _sse(_detached(turn, ticket, after=after), client_id)
 
 
@@ -583,6 +631,8 @@ async def confirm(
     """
     config = _config(client_id, body.conversation_id)
     thread = config["configurable"]["thread_id"]
+    # The key for the rest of the turn comes with this request; the paused turn kept none.
+    key = _own_key(request, response)
     # Resuming a thread that is not paused would start a fresh turn with no message in it.
     if not _pending(await graph.aget_state(config), body.interrupt_id):
         return _sse(_nothing_to_confirm(), client_id)
@@ -606,13 +656,13 @@ async def confirm(
         # (D7).
         calls, asked = _paused_calls(snapshot, body.interrupt_id)
         answer = _resume_value(snapshot, body.interrupt_id, body.approved)
-        ticket = await _admit(request, response, client_id, windows=False)
+        ticket = await _admit(request, response, client_id, windows=False, quotas=key is None)
     except BaseException:
         if ended is not None:
             _release(thread, ended)
         await lock.release()
         raise
-    config = _config(client_id, body.conversation_id, ticket)
+    config = _config(client_id, body.conversation_id, ticket if key is None else None)
     tidy = _tidy(config)
 
     async def after() -> None:
@@ -627,7 +677,30 @@ async def confirm(
     # Named, the answer resumes exactly that change; unnamed (an older page), the only one pending.
     resume = {body.interrupt_id: answer} if body.interrupt_id else answer
     turn = _stream(Command(resume=resume), config, Resumed(approved=body.approved, calls=calls, asked=asked))
+    if key is not None:
+        turn = _on_own_key(key, turn)
     return _sse(_detached(turn, ticket, after=after), client_id)
+
+
+@router.post("/key/check")
+async def check_key(request: Request, response: Response, client_id: Annotated[str, Depends(get_subject)]) -> dict:
+    """Try the applicant's key without spending anything: ask its provider for the model list.
+
+    Takes a slot in the rate windows like a message does, so it cannot be used to hammer a provider.
+    The answer says whether the provider accepted the key and, if not, what to do; it never repeats it.
+    """
+    key = _own_key(request, response)
+    if key is None:
+        raise HTTPException(
+            400, {"code": "model_key_missing", "message": "没有收到密钥。"}, headers=subject_cookie_header(response)
+        )
+    await _admit(request, response, client_id, windows=True, quotas=False)
+    failed = await model_key.check(key, timeout=min(settings.chat_timeout_seconds, 10))
+    result: dict = {"ok": failed is None, "provider": key.provider.id, "label": key.provider.label}
+    if failed is not None:
+        logger.info("an applicant's key did not pass its check: %s", failed.code)
+        result.update(code=failed.code, message=failed.message)
+    return result
 
 
 @router.get("/status")
