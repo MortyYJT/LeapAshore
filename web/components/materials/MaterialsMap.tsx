@@ -92,7 +92,11 @@ function Label({ label, dim }: { label: MapLabel; dim: string }) {
 function describe(model: MaterialsModel): string {
   const parts: string[] = [];
   if (model.shared.length) parts.push(`${model.shared.map((column) => column.name).join("、")}，${model.lines.length} 个项目都要，要求一样`);
-  if (model.differing.length) parts.push(`${model.differing.map((column) => column.name).join("、")}各项目要求不同`);
+  if (model.differing.length) {
+    const names = model.differing.map((column) => column.name).join("、");
+    // With one program read there is nothing to differ from: the columns are simply what it asks for.
+    parts.push(model.lines.length > 1 ? `${names}各项目要求不同` : `${model.lines[0].record.school}要交${names}`);
+  }
   if (model.unread.length) parts.push(`${model.unread.map((line) => line.record.school).join("、")}的要求还没提取`);
-  return `线路图：${parts.join("；")}。详见下方清单。`;
+  return parts.length ? `线路图：${parts.join("；")}。详见下方清单。` : "线路图：还没有可画的要求。";
 }

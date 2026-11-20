@@ -104,6 +104,10 @@ function Workspace() {
             重试
           </button>
         </p>
+        {/* The uploaded files have their own read, and do not wait for the applications. */}
+        <section className="block block-files" aria-label="上传的文件">
+          <MaterialFiles />
+        </section>
       </Frame>
     ) : (
       <Frame finding="正在读取你的申请…">
@@ -130,10 +134,20 @@ function Workspace() {
       } catch (error) {
         if (error instanceof StaleVersionError) {
           // Changed on another device, or the catalogue's requirement was imported again: nothing was
-          // written, and the page shows the stored record before the applicant ticks again.
+          // written. The refusal carries the record as it is stored, so the page shows that at once and
+          // the next save in the queue is based on it; a reload could be overtaken by that save.
+          const stored = error.current as ApplicationRecord | null;
+          if (stored && latest.current) {
+            latest.current = latest.current.map((other) => (other.id === stored.id ? stored : other));
+            records.set(latest.current);
+          } else records.reload();
+          setProblem("这条申请在别处改过，或者官网的要求更新了，这次的改动没有保存。页面已经换成最新的内容，请再做一次。");
+        } else {
+          // Refused for another reason (the catalogue dropped the entry, the network): read again, so
+          // the page does not keep showing what the server would refuse.
           records.reload();
-          setProblem("这条申请在别处改过，或者官网的要求更新了，这次没有保存。页面已经换成最新的内容，请再勾一次。");
-        } else setProblem(error instanceof Error ? error.message : "没有保存，请稍后再试。");
+          setProblem(error instanceof Error ? error.message : "没有保存，请稍后再试。");
+        }
       } finally {
         pending.current -= 1;
         if (!pending.current) setBusy(false);
@@ -150,8 +164,11 @@ function Workspace() {
       }),
     custom: (record, next) => save(record, { customMaterials: next }),
   };
-  const open = model.lines.length + model.unread.length + model.manual.length;
-  const selected = records.selected && open ? records.selected : null;
+  const drawn = [...model.lines, ...model.unread, ...model.manual];
+  const open = drawn.length;
+  // The rail also lists submitted applications, which this screen leaves out: one of those picked
+  // must not dim every line here.
+  const selected = records.selected && drawn.some((line) => line.record.id === records.selected) ? records.selected : null;
 
   return (
     <Frame finding={<Finding model={model} />}>
@@ -192,9 +209,9 @@ function Workspace() {
 function SignedOut() {
   const { requireLogin } = useAuth();
   const { demo, demoMaterials, demoPending, selected } = useApplicationRecords();
-  // Coloured from the rail's demo list plus the map's own programs, so a program in both is one colour.
+  // A program the rail's demo list also shows takes the rail's colour.
   const model = useMemo(
-    () => (demoMaterials ? materialsModel(demoMaterials, [...new Set([...(demo ?? []), ...demoMaterials].map((record) => record.id))]) : null),
+    () => (demoMaterials ? materialsModel(demoMaterials, (demo ?? []).map((record) => record.id)) : null),
     [demo, demoMaterials],
   );
   if (demoPending) {

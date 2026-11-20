@@ -76,18 +76,16 @@ function byDeadline(a: ApplicationRecord, b: ApplicationRecord): number {
   return left < right ? -1 : left > right ? 1 : a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 }
 
-/** The most frequent value among `values` when at least two share it; null otherwise. Ties go to the first seen. */
+/**
+ * The most frequent value among `values` when at least two share it and no other value is as frequent;
+ * null otherwise. Two programs asking for 2 and two asking for 3 have no common form to depart from.
+ */
 function mode<T>(values: readonly T[]): T | null {
-  let best: T | null = null;
-  let bestCount = 1;
-  for (const value of values) {
-    const count = values.filter((other) => other === value).length;
-    if (count > bestCount) {
-      best = value;
-      bestCount = count;
-    }
-  }
-  return best;
+  const counts = new Map<T, number>();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  const top = Math.max(1, ...counts.values());
+  const leaders = [...counts].filter(([, count]) => count === top);
+  return top > 1 && leaders.length === 1 ? leaders[0][0] : null;
 }
 
 /** The words for a requirement the page states no number for: asked plainly, or asked with something noted. */
@@ -102,11 +100,14 @@ function captionOf(type: string, entries: readonly RecordMaterial[]): string {
 
 /**
  * The model for the applications that are still being prepared. Colours and codes are the overview's,
- * so an application is the same line on every screen: `palette` is the ids the rail's list is drawn
- * from when that is not `records` itself (the signed-out demo draws a subset of the rail's programs).
+ * so an application is the same line on every screen. `rail` is the ids the rail's list is drawn from
+ * when that is not `records` itself (the signed-out demo): a record in it takes the rail's colour, and
+ * the others are coloured among themselves.
  */
-export function materialsModel(records: readonly ApplicationRecord[], palette?: readonly string[]): MaterialsModel {
-  const colours = assignLines(palette ?? records.map((record) => record.id));
+export function materialsModel(records: readonly ApplicationRecord[], rail?: readonly string[]): MaterialsModel {
+  const railColours = rail ? assignLines(rail) : new Map<string, LineColour>();
+  const ownColours = assignLines(records.map((record) => record.id).filter((id) => !railColours.has(id)));
+  const colours = new Map([...ownColours, ...railColours]);
   const open = records.filter(activeRecord).sort(byDeadline);
   const asLine = (record: ApplicationRecord): MapLine => ({
     record,
@@ -210,11 +211,14 @@ export const DENSE_PITCH = 44;
 
 const TRUNK_PITCH = 7;
 
-/** Whether a frame this wide draws the map left to right, given how many hubs and columns it must fit. */
+/**
+ * Whether a frame this wide draws the map left to right: wide enough, and every capsule and column gets
+ * at least `MIN_COLUMN`. `layoutMap` shares the width evenly between them, so the two agree.
+ */
 export function drawsHorizontally(model: MaterialsModel, width: number): boolean {
   if (width < VERTICAL_BELOW) return false;
   const slots = model.shared.length + model.differing.length;
-  const fan = (46 - TRUNK_PITCH) * ((model.lines.length - 1) / 2);
+  const fan = model.shared.length ? (46 - TRUNK_PITCH) * ((model.lines.length - 1) / 2) : 0;
   return slots === 0 || (width - 3 - 54 - fan) / slots >= MIN_COLUMN;
 }
 
@@ -251,9 +255,10 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
     const endRoom = 54;
     const fan = hasTrunk ? (pitch - TRUNK_PITCH) * mid : 0;
     const usable = width - left - endRoom - fan;
-    // The trunk and the branches share the width by how many stops each has to hold.
+    // The trunk and the branches share the width by how many stops each has to hold: every capsule
+    // and every column gets the same room.
     const slots = model.shared.length + columns.length;
-    const trunk = hasTrunk ? (columns.length ? usable * Math.min(0.6, Math.max(0.3, model.shared.length / slots)) : usable - 24) : 0;
+    const trunk = hasTrunk ? (columns.length ? (usable * model.shared.length) / slots : usable - 24) : 0;
     const branch = usable - trunk;
     const trunkEnd = left + trunk;
     const branchStart = trunkEnd + fan;

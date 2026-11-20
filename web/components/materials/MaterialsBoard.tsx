@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import { MaterialChecklist } from "@/components/materials/MaterialChecklist";
 import { MaterialsMap } from "@/components/materials/MaterialsMap";
@@ -41,12 +41,25 @@ export function MaterialsBoard({
 }) {
   const own = [...model.unread, ...model.manual, ...model.lines];
   const picked = (line: MapLine) => (selected ? (line.record.id === selected ? " is-sel" : " is-dim") : "");
-  const tick = (record: ApplicationRecord, entries: readonly RecordMaterial[], ready: boolean) =>
-    actions ? void actions.tick(record, entries, ready) : onBlocked?.();
+  // A tick shows at once and is saved behind it; the controls stay enabled, so the keyboard's focus
+  // stays where it was. Once nothing is being saved the page shows what the server holds again, which
+  // is the same unless a save was refused.
+  const [sent, setSent] = useState<Record<string, boolean>>({});
+  useEffect(() => {
+    if (!busy) setSent({});
+  }, [busy]);
+  const isReady: IsReady = (record, entry) => sent[`${record.id}\n${entry.key}`] ?? entry.ready;
+  const tick: Tick = (record, entries, ready) => {
+    if (!actions) return onBlocked?.();
+    setSent((previous) => ({ ...previous, ...Object.fromEntries(entries.map((entry) => [`${record.id}\n${entry.key}`, ready])) }));
+    void actions.tick(record, entries, ready);
+  };
   const readyShared = model.shared.filter((column) => column.requirements.every((requirement) => requirement.ready)).length;
 
   return (
     <>
+      {/* Only manual applications: nothing the catalogue knows could be drawn, so no empty frame is. */}
+      {model.lines.length + model.unread.length > 0 && (
       <section className="block block-map" aria-labelledby="h-map">
         <div className="block-head">
           <h2 id="h-map">各项目要什么</h2>
@@ -86,6 +99,7 @@ export function MaterialsBoard({
           <p className="map-note">虚线是官网要求还没提取的项目，它要什么材料现在不知道。先在下面列自己的清单，以官网为准。</p>
         )}
       </section>
+      )}
 
       {model.shared.length > 0 && (
         <section className="block" aria-labelledby="h-shared">
@@ -97,7 +111,7 @@ export function MaterialsBoard({
           </div>
           <ul className="shared">
             {model.shared.map((column) => (
-              <SharedItem key={column.type} column={column} disabled={busy} onTick={tick} />
+              <SharedItem key={column.type} column={column} isReady={isReady} onTick={tick} />
             ))}
           </ul>
         </section>
@@ -115,7 +129,7 @@ export function MaterialsBoard({
               <span>要交的项目，勾选表示已备好</span>
             </div>
             {model.differing.map((column) => (
-              <DifferingRow key={column.type} column={column} picked={picked} disabled={busy} onTick={tick} />
+              <DifferingRow key={column.type} column={column} picked={picked} isReady={isReady} onTick={tick} />
             ))}
           </div>
         </section>
@@ -134,7 +148,7 @@ export function MaterialsBoard({
                 key={line.record.id}
                 line={line}
                 dim={picked(line)}
-                disabled={busy || !actions}
+                busy={busy}
                 onCustom={(next) => (actions ? void actions.custom(line.record, next) : onBlocked?.())}
               />
             ))}
@@ -146,13 +160,20 @@ export function MaterialsBoard({
 }
 
 type Tick = (record: ApplicationRecord, entries: readonly RecordMaterial[], ready: boolean) => void;
+/** Whether an entry reads as ticked: the tick just made on this page, else the record's. */
+type IsReady = (record: ApplicationRecord, entry: RecordMaterial) => boolean;
+/** Ticked for an earlier wording of the requirement, and not ticked again since. */
+const moved = (entry: RecordMaterial) => entry.changed && !entry.ready;
+const CHANGED = "官网的要求改过，请重新核对";
 
 /** A shared material: one checkbox that ticks it for every program, and each program's own sentence. */
-function SharedItem({ column, disabled, onTick }: { column: MaterialColumn; disabled: boolean; onTick: Tick }) {
+function SharedItem({ column, isReady, onTick }: { column: MaterialColumn; isReady: IsReady; onTick: Tick }) {
   const [open, setOpen] = useState(false);
-  const done = column.requirements.filter((requirement) => requirement.ready).length;
+  const ready = (requirement: Requirement) => requirement.entries.every((entry) => isReady(requirement.line.record, entry));
+  const done = column.requirements.filter(ready).length;
   const all = column.requirements.length;
   const count = countLabel(column.type, column.requirements[0].entries[0].count);
+  const changed = column.requirements.some((requirement) => requirement.entries.some(moved) && !ready(requirement));
   return (
     <li className={open ? "is-open" : undefined}>
       <label className="check">
@@ -162,10 +183,9 @@ function SharedItem({ column, disabled, onTick }: { column: MaterialColumn; disa
           ref={(node) => {
             if (node) node.indeterminate = done > 0 && done < all;
           }}
-          disabled={disabled}
           onChange={(event) => {
             for (const requirement of column.requirements) {
-              if (requirement.ready !== event.target.checked) onTick(requirement.line.record, requirement.entries, event.target.checked);
+              if (ready(requirement) !== event.target.checked) onTick(requirement.line.record, requirement.entries, event.target.checked);
             }
           }}
         />
@@ -175,6 +195,7 @@ function SharedItem({ column, disabled, onTick }: { column: MaterialColumn; disa
             {all} 个项目都要{count && `，各 ${count}`}
             {done > 0 && done < all && `，备好 ${done} 个`}
           </span>
+          {changed && <span className="changed">{CHANGED}</span>}
         </span>
       </label>
       <SourceButton open={open} onToggle={() => setOpen(!open)} />
@@ -187,12 +208,12 @@ function SharedItem({ column, disabled, onTick }: { column: MaterialColumn; disa
 function DifferingRow({
   column,
   picked,
-  disabled,
+  isReady,
   onTick,
 }: {
   column: MaterialColumn;
   picked: (line: MapLine) => string;
-  disabled: boolean;
+  isReady: IsReady;
   onTick: Tick;
 }) {
   const [open, setOpen] = useState<string | null>(null);
@@ -202,6 +223,9 @@ function DifferingRow({
   const grouped = column.common !== null && usual.length > 1;
   const separate = grouped ? marked : column.requirements;
   const toggle = (id: string) => setOpen(open === id ? null : id);
+  const changedLines = column.requirements.filter(
+    (requirement) => requirement.entries.some(moved) && !requirement.entries.every((entry) => isReady(requirement.line.record, entry)),
+  );
   return (
     <div className="diff">
       <h3>{typeLabel(column.type)}</h3>
@@ -247,8 +271,13 @@ function DifferingRow({
       <div className="toggles">
         <span className="toggles-label">勾选已备好的项目</span>
         {column.requirements.map((requirement) => (
-          <Toggle key={requirement.line.record.id} requirement={requirement} name={typeLabel(column.type)} dim={picked(requirement.line)} disabled={disabled} onTick={onTick} />
+          <Toggle key={requirement.line.record.id} requirement={requirement} name={typeLabel(column.type)} dim={picked(requirement.line)} isReady={isReady} onTick={onTick} />
         ))}
+        {changedLines.length > 0 && (
+          <span className="changed">
+            {changedLines.map((requirement) => requirement.line.record.school).join("、")}：{CHANGED}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -261,16 +290,16 @@ function entryCount(entry: RecordMaterial): string {
 }
 
 /** A line bullet as a checkbox: hollow until the applicant says this program's material is ready. */
-function Toggle({ requirement, name, dim, disabled, onTick }: { requirement: Requirement; name: string; dim: string; disabled: boolean; onTick: Tick }) {
-  const { line, entries, ready } = requirement;
-  const changed = entries.some((entry) => entry.changed && !entry.ready);
+function Toggle({ requirement, name, dim, isReady, onTick }: { requirement: Requirement; name: string; dim: string; isReady: IsReady; onTick: Tick }) {
+  const { line, entries } = requirement;
+  const ready = entries.every((entry) => isReady(line.record, entry));
+  const changed = entries.some(moved) && !ready;
   return (
-    <label className={`bt line-${line.line}${dim}${changed ? " is-changed" : ""}`} title={changed ? `${line.record.school}：官网的要求改过，请重新核对` : line.record.school}>
+    <label className={`bt line-${line.line}${dim}${changed ? " is-changed" : ""}`} title={changed ? `${line.record.school}：${CHANGED}` : line.record.school}>
       <input
         type="checkbox"
         checked={ready}
-        disabled={disabled}
-        aria-label={`${line.record.school}的${name}已备好${changed ? "（官网的要求改过，请重新核对）" : ""}`}
+        aria-label={`${line.record.school}的${name}已备好${changed ? `（${CHANGED}）` : ""}`}
         onChange={(event) => onTick(line.record, entries, event.target.checked)}
       />
       <span className="bullet">
@@ -312,12 +341,24 @@ function Quotes({ requirements }: { requirements: readonly Requirement[] }) {
 }
 
 /** One application's own checklist, with what the map knows about the program beside its name. */
-function OwnList({ line, dim, disabled, onCustom }: { line: MapLine; dim: string; disabled: boolean; onCustom: (next: CustomMaterial[]) => void }) {
+function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; busy: boolean; onCustom: (next: CustomMaterial[]) => void }) {
   const { record } = line;
+  // The list as the applicant last left it on this page, shown while it is being saved; afterwards the
+  // record's own list again. Each save sends the whole list, so a second change made before the first
+  // has been answered still carries the first.
+  const [edited, setEdited] = useState<CustomMaterial[] | null>(null);
+  useEffect(() => {
+    if (!busy) setEdited(null);
+  }, [busy, record.version]);
+  const lines = edited ?? record.customMaterials;
   // A program with its official list and no line of the applicant's own shows one quiet action, not an
   // empty field: most applicants add nothing here.
   const [adding, setAdding] = useState(false);
-  const quiet = record.materialsExtracted && record.customMaterials.length === 0 && !adding;
+  const quiet = record.materialsExtracted && lines.length === 0 && !adding;
+  const list = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (adding) list.current?.querySelector<HTMLInputElement>(".material-add input")?.focus();
+  }, [adding]);
   const state: ReactNode = !record.programId ? (
     <span className="st">手动添加</span>
   ) : record.materialsExtracted ? (
@@ -337,24 +378,26 @@ function OwnList({ line, dim, disabled, onCustom }: { line: MapLine; dim: string
           <div className="program">{record.name}</div>
         </div>
       </div>
-      <div className="own-list">
+      <div className="own-list" ref={list}>
         {quiet ? (
-          <button type="button" className="btn btn-text btn-small own-add" disabled={disabled} onClick={() => setAdding(true)}>
+          <button type="button" className="btn btn-text btn-small own-add" onClick={() => setAdding(true)}>
             <Icon name="plus" />
             加一项自己的材料
           </button>
         ) : (
-        <MaterialChecklist
-          compact
-          materials={[]}
-          extracted={record.materialsExtracted}
-          catalog={Boolean(record.programId)}
-          ticked={{}}
-          onTick={() => undefined}
-          custom={record.customMaterials}
-          onCustom={onCustom}
-          disabled={disabled}
-        />
+          <MaterialChecklist
+            compact
+            materials={[]}
+            extracted={record.materialsExtracted}
+            catalog={Boolean(record.programId)}
+            ticked={{}}
+            onTick={() => undefined}
+            custom={lines}
+            onCustom={(next) => {
+              setEdited(next);
+              onCustom(next);
+            }}
+          />
         )}
       </div>
     </li>

@@ -159,12 +159,41 @@ test("an application keeps the overview's colour and code", () => {
   assert.equal(new Set(first.lines.map((line) => line.line)).size, 5, "five applications, five colours");
 });
 
-test("a subset of the rail's applications keeps the rail's colours", () => {
+test("a program that is also in the rail keeps the rail's colour, whatever else is drawn", () => {
   const records = five();
+  const railIds = records.map((r) => r.id);
   const rail = materialsModel(records);
-  const subset = materialsModel(records.slice(1, 4), records.map((r) => r.id));
-  for (const line of subset.lines) {
-    assert.equal(line.line, rail.lines.find((other) => other.record.id === line.record.id)!.line);
+  const colourOf = (id: string) => rail.lines.find((line) => line.record.id === id)!.line;
+  // A subset of the rail's programs.
+  for (const line of materialsModel(records.slice(1, 4), railIds).lines) assert.equal(line.line, colourOf(line.record.id));
+  // One of the rail's programs drawn with two that the rail does not list.
+  const extra = [record("x", [material("cv")]), record("y", [material("cv")])];
+  const mixed = materialsModel([records[2], ...extra], railIds);
+  assert.equal(mixed.lines.find((line) => line.record.id === records[2].id)!.line, colourOf(records[2].id));
+});
+
+test("with no majority nothing is marked as different", () => {
+  const counts = [2, 2, 3, 3];
+  const model = materialsModel(counts.map((count, i) => record("abcd"[i], [material("recommendation", { count })])));
+  const [letters] = model.differing;
+  assert.equal(letters.common, null);
+  assert.deepEqual(letters.requirements.map((r) => [r.caption, r.differs]), [["2 封", false], ["2 封", false], ["3 封", false], ["3 封", false]]);
+});
+
+test("every capsule and column gets at least 64px, or the map is drawn top to bottom", () => {
+  for (const [sharedCount, differingCount] of [[7, 1], [1, 7], [4, 4], [2, 6]]) {
+    const types = ["transcript", "language_score", "cv", "recommendation", "personal_statement", "test_score", "writing_sample", "portfolio"];
+    const records = ["a", "b"].map((id, i) => record(id, types.map((type, t) => material(type, t < sharedCount ? {} : { note: `note ${i}` }))));
+    const model = materialsModel(records);
+    assert.equal(model.shared.length, sharedCount);
+    assert.equal(model.differing.length, differingCount);
+    for (const width of [640, 700, 820, 1000]) {
+      const map = layoutMap(model, width);
+      if (map.vertical) continue;
+      const hubs = map.hubs.map((hub) => hub.x).sort((a, b) => a - b);
+      const cols = [...new Set(map.stations.map((station) => station.x))].sort((a, b) => a - b);
+      for (const xs of [hubs, cols]) for (let i = 1; i < xs.length; i++) assert.ok(xs[i] - xs[i - 1] >= 64 - 0.001, `${sharedCount}+${differingCount} at ${width}: ${xs[i] - xs[i - 1]}`);
+    }
   }
 });
 
@@ -201,9 +230,11 @@ test("a narrow frame draws top to bottom, inside 390px", () => {
 
 test("a map with more columns than a wide frame can hold falls back to top to bottom", () => {
   const types = ["transcript", "language_score", "cv", "recommendation", "personal_statement", "test_score", "writing_sample", "portfolio", "other"];
-  const records = ["a", "b", "c"].map((id, i) => record(id, types.map((type) => material(type, { note: `note ${i}` }))));
+  // Five programs: transcripts shared, the other eight types each with something noted.
+  const records = ["a", "b", "c", "d", "e"].map((id, i) => record(id, types.map((type) => material(type, type === "transcript" ? {} : { note: `note ${i}` }))));
   const model = materialsModel(records);
-  assert.equal(model.differing.length, 9);
+  assert.equal(model.shared.length, 1);
+  assert.equal(model.differing.length, 8);
   assert.equal(drawsHorizontally(model, VERTICAL_BELOW + 20), false);
   assert.equal(drawsHorizontally(model, 1000), true);
 });
