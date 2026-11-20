@@ -315,7 +315,64 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "989bc37a50aee3afde59357f3310b15c5e2a90d25caab0cb04f478ce2e6d96d5",
+    "extractor": "claude-opus-5.5-subagent; translation entry retyped other->transcript by claude-fable-5.2 after review (README convention)",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "personal_statement",
+      "note": "answers three set questions on the application form, each with a word limit",
+      "quote": "A personal statement is required. You must answer the following three questions on the application form:",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "official transcripts showing subjects and marks",
+      "quote": "A copy (or copies) of your official academic transcript(s), showing the subjects studied and marks obtained.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "degree certificate, if degree already completed",
+      "quote": "If you have already completed your degree, copies of your official degree certificate will also be required.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "originals and official translations of documents not in English",
+      "quote": "Applicants with academic documents issued in a language other than English, will need to submit both the original and official translation of their documents.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 1,
+      "note": "academic",
+      "quote": "One academic reference is required.",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "note": "optional",
+      "quote": "Applicants may wish to include a CV (Resume) or evidence of professional registration as part of their application",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "evidence of professional registration, optional",
+      "quote": "Applicants may wish to include a CV (Resume) or evidence of professional registration as part of their application",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "certification of English competence, usually required",
+      "quote": "You are usually required to provide certification of your competence in English before starting your studies.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Artificial Intelligence for Science MSc",

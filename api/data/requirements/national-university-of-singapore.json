@@ -74,7 +74,27 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "0f2d1c9db16e47f50b0f151c98443631130e236a4a19bb271c405c43786a77c4",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "test_score",
+      "note": "GRE or GMAT",
+      "quote": "Applicants* are to submit GRE/GMAT and TOEFL/IELTS test scores as evidence which demonstrates their readiness for graduate study.",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "TOEFL or IELTS; international applicants from non-English-medium universities",
+      "quote": "*International applicants who graduated from universities where English is not the main medium of instruction must submit TOEFL (Test of English as a Foreign Language) or IELTS (International English Language Testing System) scores.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Computing (Information Systems Specialisation)",

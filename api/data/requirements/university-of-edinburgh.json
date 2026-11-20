@@ -244,7 +244,50 @@
      "summary_sha": "e398ff7491603cc4"
     }
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "71d30cc168ff503fd2f3b324e3952b033c498ba874d9667e1524b65c0b6cb0a6",
+    "extractor": "claude-opus-5.5-subagent; translation entry retyped other->transcript by claude-fable-5.2 after review (README convention)",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "personal_statement",
+      "quote": "As part of your online application, you will need to provide: a personal statement",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "details of relevant knowledge/training skills",
+      "quote": "As part of your online application, you will need to provide: a personal statement details of relevant knowledge/training skills",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "degree certificates and transcripts; listed as some or all of the supporting documents",
+      "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "note": "listed as some or all of the supporting documents",
+      "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks references",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "evidence of meeting the English language requirements",
+      "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks references evidence you meet the English language requirements",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "certified translations of documents not in English",
+      "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks references evidence you meet the English language requirements certified translations if your original documents are not in English",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Artificial Intelligence MSc",

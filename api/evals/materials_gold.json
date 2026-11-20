@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "labeller": "Claude Fable 5.2 subagent, a model and not a person; labelled from the full stored page without seeing any extractor's output",
+ "labelled_at": "2026-11-21",
+ "programs": [
+  {
+   "program_id": "university-of-hong-kong-master-of-data-science-e60565",
+   "school_key": "university-of-hong-kong",
+   "url": "https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-data-science-cds&mode=0",
+   "snapshot_sha256": "22ad69e8d9f2940b6a434dddd508d9750dd347b0a9208842ef6ffdbb7cd132e5",
+   "materials": []
+  },
+  {
+   "program_id": "imperial-college-london-msc-computing-f38aa7",
+   "school_key": "imperial-college-london",
+   "url": "https://www.imperial.ac.uk/study/courses/postgraduate-taught/2027/computing/",
+   "snapshot_sha256": "421d47b1c97fcf6057df7e6cc8db6668c693a54a4e55fa96df2abd420aa77de3",
+   "materials": []
+  },
+  {
+   "program_id": "national-university-of-s-master-of-computing-computer-sci-96b220",
+   "school_key": "national-university-of-singapore",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mcs/admissions/",
+   "snapshot_sha256": "0f2d1c9db16e47f50b0f151c98443631130e236a4a19bb271c405c43786a77c4",
+   "materials": [
+    {
+     "type": "test_score",
+     "note": "GRE or GMAT; GATE instead for graduates of Indian universities",
+     "quote": "Applicants* are to submit GRE/GMAT and TOEFL/IELTS test scores as evidence which demonstrates their readiness for graduate study."
+    },
+    {
+     "type": "language_score",
+     "note": "TOEFL or IELTS",
+     "quote": "Applicants* are to submit GRE/GMAT and TOEFL/IELTS test scores as evidence which demonstrates their readiness for graduate study."
+    }
+   ]
+  },
+  {
+   "program_id": "ucl-computer-science-msc-9d29ee",
+   "school_key": "ucl",
+   "url": "https://www.ucl.ac.uk/study/prospective-students/graduate/courses/computer-science-msc",
+   "snapshot_sha256": "ebff926ea97bc507e84462cac71b9ee7a3f695852f3890639837e86cf8bac303",
+   "materials": [
+    {
+     "type": "personal_statement",
+     "note": "answers the set questions; at most one A4 page",
+     "quote": "Your personal statement should answer the following questions and should not be longer than one A4 size page:"
+    },
+    {
+     "type": "recommendation",
+     "count": 2,
+     "quote": "This course requires 2 references."
+    },
+    {
+     "type": "cv",
+     "note": "stated for applicants without an A level in mathematics: the CV must show the degree modules that cover it",
+     "quote": "If no A level in mathematics has been obtained, the applicant’s CV should highlight that the university degree includes modules covering the content of an A level in mathematics."
+    },
+    {
+     "type": "other",
+     "note": "evidence of mathematical and analytical skills (A level in mathematics or equivalent)",
+     "quote": "Evidence should be included within the application to demonstrate suitable mathematical skills (to at least Mathematics A-level standard), and analytical skills."
+    }
+   ]
+  },
+  {
+   "program_id": "university-of-edinburgh-computer-science-msc-b52f8b",
+   "school_key": "university-of-edinburgh",
+   "url": "https://study.ed.ac.uk/programmes/postgraduate-taught/110-computer-science",
+   "snapshot_sha256": "71d30cc168ff503fd2f3b324e3952b033c498ba874d9667e1524b65c0b6cb0a6",
+   "materials": [
+    {
+     "type": "personal_statement",
+     "quote": "As part of your online application, you will need to provide: a personal statement"
+    },
+    {
+     "type": "other",
+     "note": "details of relevant knowledge/training skills, given in the online application",
+     "quote": "As part of your online application, you will need to provide: a personal statement details of relevant knowledge/training skills"
+    },
+    {
+     "type": "transcript",
+     "note": "degree certificates and academic transcripts",
+     "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks"
+    },
+    {
+     "type": "recommendation",
+     "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks references"
+    },
+    {
+     "type": "language_score",
+     "quote": "You will also need to submit some or all of the following supporting documents: copies of your degree certificates and academic transcripts that confirm your current or final marks references evidence you meet the English language requirements"
+    },
+    {
+     "type": "transcript",
+     "note": "certified translations, only if the original documents are not in English",
+     "quote": "certified translations if your original documents are not in English"
+    }
+   ]
+  },
+  {
+   "program_id": "hong-kong-university-of-master-of-science-program-in-inf-529f49",
+   "school_key": "hong-kong-university-of-science-and-technology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-it",
+   "snapshot_sha256": "2c52b42fb9a8145f00ac6ee300aecc66f99ed7a3cbb7ca8c9d9d638a7fb6e698",
+   "materials": []
+  },
+  {
+   "program_id": "university-of-glasgow-computing-science-msc-03844f",
+   "school_key": "university-of-glasgow",
+   "url": "https://www.gla.ac.uk/postgraduate/taught/computingscience/",
+   "snapshot_sha256": "d742a5ca91e19eba163a829eeca8e3faf92eb4a51793e035994d455802227132",
+   "materials": [
+    {
+     "type": "transcript",
+     "note": "degree certificate, if the degree is completed",
+     "quote": "As part of your online application, you also need to submit the following supporting documents: A copy (or copies) of your official degree certificate(s) (if you have already completed your degree)"
+    },
+    {
+     "type": "transcript",
+     "quote": "A copy (or copies) of your official academic transcript(s), showing full details of subjects studied and grades/marks obtained"
+    },
+    {
+     "type": "transcript",
+     "note": "official English translations of the certificates and transcripts",
+     "quote": "Official English translations of the certificate(s) and transcript(s)"
+    },
+    {
+     "type": "recommendation",
+     "count": 1,
+     "note": "on headed paper",
+     "quote": "One reference letter on headed paper"
+    },
+    {
+     "type": "language_score",
+     "note": "only if the first language is not English",
+     "quote": "Evidence of your English language ability (if your first language is not English)"
+    },
+    {
+     "type": "other",
+     "note": "copy of the passport photo page",
+     "quote": "A copy of the photo page of your passport"
+    }
+   ]
+  },
+  {
+   "program_id": "chinese-university-of-ho-msc-in-computer-science-402b13",
+   "school_key": "chinese-university-of-hong-kong",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-computer-science",
+   "snapshot_sha256": "79106b587052910a66bde585506bac52ab8d3efb32194357fb05eac40844a091",
+   "materials": []
+  },
+  {
+   "program_id": "carnegie-mellon-universi-master-of-computational-data-sci-d9f649",
+   "school_key": "carnegie-mellon-university",
+   "url": "https://lti.cmu.edu/academics/masters-programs/mcds.html",
+   "snapshot_sha256": "5eda8f834ed89a03ccf010f3cb7868d0caaa17b3a816e5041fb45ded724286f8",
+   "materials": [
+    {
+     "type": "test_score",
+     "note": "GRE; waived for CMU undergrads",
+     "quote": "GRE scores: These must be less than five years old."
+    },
+    {
+     "type": "transcript",
+     "note": "unofficial, from each university attended",
+     "quote": "Unofficial transcripts from each university you have attended, regardless of whether you received your degree there."
+    },
+    {
+     "type": "cv",
+     "quote": "Current resume."
+    },
+    {
+     "type": "personal_statement",
+     "quote": "Statement of Purpose."
+    },
+    {
+     "type": "recommendation",
+     "count": 3,
+     "quote": "Three letters of recommendation"
+    },
+    {
+     "type": "other",
+     "note": "short video of yourself; optional but strongly suggested",
+     "quote": "A short (1-3 minutes) video of yourself. Tell us about you and why you are interested in the MCDS program. This is not a required part of the application process, but it is STRONGLY suggested."
+    },
+    {
+     "type": "language_score",
+     "note": "TOEFL, IELTS or Duolingo",
+     "quote": "Applicants applying to MCDS are required to submit scores from an English proficiency exam taken within the last two years."
+    },
+    {
+     "type": "other",
+     "note": "official award letter, only if receiving outside funding",
+     "quote": "Any outside funding you are receiving must be accompanied by an official award letter."
+    }
+   ]
+  },
+  {
+   "program_id": "university-of-manchester-artificial-intelligence-msc-404945",
+   "school_key": "university-of-manchester",
+   "url": "https://www.manchester.ac.uk/study/masters/courses/list/21574/msc-artificial-intelligence/",
+   "snapshot_sha256": "fc7ae16c3a48dbdbfd27332f7d44484ac2280fa6b2e06d349d24562c090fc764",
+   "materials": [
+    {
+     "type": "transcript",
+     "note": "official; with official translations and original language copies if not in English",
+     "quote": "We require the following documents before we can consider your application: Official Bachelor degree transcripts, including official translations and original language copies if study not undertaken in English."
+    },
+    {
+     "type": "other",
+     "note": "official university document verifying the current weighted average mark, if not on the transcript",
+     "quote": "An official document from your university verifying your current weighted average mark (not arithmetic average) if this information is not included in your transcript of study"
+    },
+    {
+     "type": "transcript",
+     "note": "degree certificate, if already graduated",
+     "quote": "Degree certificate if you have already graduated"
+    },
+    {
+     "type": "other",
+     "note": "official list of final-year modules, if still studying",
+     "quote": "If still studying, please provide an official list of all the modules you are taking in your final year"
+    },
+    {
+     "type": "cv",
+     "note": "only if graduated more than three years ago",
+     "quote": "A CV if you graduated more than three years ago"
+    },
+    {
+     "type": "language_score",
+     "quote": "In order to be accepted onto an MSc programme in the Department of Computer Science, applicants need to provide evidence of having achieved the required level in a recognised English language qualification."
+    }
+   ]
+  },
+  {
+   "program_id": "king-s-college-london-artificial-intelligence-msc-f8d855",
+   "school_key": "king-s-college-london",
+   "url": "https://www.kcl.ac.uk/study/postgraduate-taught/courses/artificial-intelligence-msc",
+   "snapshot_sha256": "989bc37a50aee3afde59357f3310b15c5e2a90d25caab0cb04f478ce2e6d96d5",
+   "materials": [
+    {
+     "type": "personal_statement",
+     "note": "answers three set questions on the application form",
+     "quote": "A personal statement is required. You must answer the following three questions on the application form:"
+    },
+    {
+     "type": "transcript",
+     "quote": "A copy (or copies) of your official academic transcript(s), showing the subjects studied and marks obtained."
+    },
+    {
+     "type": "transcript",
+     "note": "degree certificate, if the degree is completed",
+     "quote": "If you have already completed your degree, copies of your official degree certificate will also be required."
+    },
+    {
+     "type": "transcript",
+     "note": "original and official translation, only if the documents are not in English",
+     "quote": "Applicants with academic documents issued in a language other than English, will need to submit both the original and official translation of their documents."
+    },
+    {
+     "type": "recommendation",
+     "count": 1,
+     "note": "academic",
+     "quote": "One academic reference is required."
+    },
+    {
+     "type": "cv",
+     "note": "optional",
+     "quote": "Applicants may wish to include a CV (Resume) or evidence of professional registration as part of their application"
+    },
+    {
+     "type": "other",
+     "note": "evidence of professional registration (optional)",
+     "quote": "Applicants may wish to include a CV (Resume) or evidence of professional registration as part of their application"
+    },
+    {
+     "type": "language_score",
+     "note": "usually required; before starting studies",
+     "quote": "You are usually required to provide certification of your competence in English before starting your studies."
+    }
+   ]
+  }
+ ]
+}

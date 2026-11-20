@@ -367,7 +367,51 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "fc7ae16c3a48dbdbfd27332f7d44484ac2280fa6b2e06d349d24562c090fc764",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "transcript",
+      "note": "official bachelor transcripts; translations and originals if not in English",
+      "quote": "Official Bachelor degree transcripts, including official translations and original language copies if study not undertaken in English.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "official document verifying weighted average mark, if not on transcript",
+      "quote": "An official document from your university verifying your current weighted average mark (not arithmetic average) if this information is not included in your transcript of study",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "degree certificate, if already graduated",
+      "quote": "Degree certificate if you have already graduated",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "official list of final-year modules, if still studying",
+      "quote": "If still studying, please provide an official list of all the modules you are taking in your final year",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "note": "only if graduated more than three years ago",
+      "quote": "A CV if you graduated more than three years ago",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "evidence of a recognised English language qualification",
+      "quote": "In order to be accepted onto an MSc programme in the Department of Computer Science, applicants need to provide evidence of having achieved the required level in a recognised English language qualification.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Machine Learning MSc",

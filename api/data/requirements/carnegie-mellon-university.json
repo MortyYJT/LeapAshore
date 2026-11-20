@@ -117,7 +117,61 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "5eda8f834ed89a03ccf010f3cb7868d0caaa17b3a816e5041fb45ded724286f8",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "test_score",
+      "note": "GRE, less than five years old; waived for CMU undergrads",
+      "quote": "GRE scores: These must be less than five years old.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "unofficial, from each university attended",
+      "quote": "Unofficial transcripts from each university you have attended, regardless of whether you received your degree there.",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "quote": "Current resume.",
+      "check": "ok"
+     },
+     {
+      "type": "personal_statement",
+      "quote": "Statement of Purpose.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 3,
+      "quote": "Three letters of recommendation",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "short video of yourself, 1-3 minutes; not required but strongly suggested",
+      "quote": "A short (1-3 minutes) video of yourself.",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "English proficiency exam taken within the last two years",
+      "quote": "Applicants applying to MCDS are required to submit scores from an English proficiency exam taken within the last two years.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "official award letter for any outside funding",
+      "quote": "Any outside funding you are receiving must be accompanied by an official award letter.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Science in Intelligent Information Systems (MIIS)",
