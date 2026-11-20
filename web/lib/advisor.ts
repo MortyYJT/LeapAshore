@@ -52,10 +52,18 @@ export interface StepEvent {
   write?: boolean;
 }
 
+/** What a proposed change is about. A catalogue program has `programId`; an application the applicant
+ * already has carries its record id, which is null for one that is about to be added. */
 export interface ChangeTarget {
-  programId?: string;
+  applicationId?: string | null;
+  programId?: string | null;
   school?: string;
   program?: string;
+}
+
+/** The key a target's application goes by in the records: its record id, or its catalogue program. */
+export function targetKey(target: ChangeTarget | undefined): string | undefined {
+  return target?.applicationId ?? target?.programId ?? undefined;
 }
 
 /** One line of a confirm question: the stored value and the value it becomes. `before` is null when there is none yet. */

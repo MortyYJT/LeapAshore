@@ -20,7 +20,7 @@ test("every stored application status has its interface label, in the spec's ord
   assert.deepEqual(APPLICATION_STATUSES.map((s) => s.value), STORED_APPLICATION_STATUSES);
   assert.deepEqual(
     APPLICATION_STATUSES.map((s) => s.label),
-    ["考虑中", "申请中", "已提交", "已获 offer", "被拒", "不考虑"],
+    ["考虑中", "准备中", "已提交", "收到录取", "未录取", "已放弃"],
   );
 });
 

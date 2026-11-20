@@ -133,6 +133,10 @@ jobs:
           python -m app.collect.importer
       - name: Score the advisor retrieval (tune split)
         run: python -m evals.run_advisor --split tune --check
+      # The tool-choice set (api/evals/run_tools.py) names catalogue programs and their collected
+      # deadlines; a catalogue change that drops one fails here. No model is called.
+      - name: Check the tool-choice set against the catalogue
+        run: python -m evals.run_tools --check --fixture
 
 # Not covered by this workflow, and deliberately so:
 #

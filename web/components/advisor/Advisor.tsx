@@ -14,10 +14,10 @@ import { useAdvisorChat, useAdvisorDock } from "./AdvisorProvider";
 import { TurnView, type Line } from "./Run";
 
 const HOW: [string, string][] = [
-  ["读你的申请", "项目、轮次、截止日期和状态"],
+  ["读你的申请", "项目、轮次、截止日期、状态和材料"],
   ["查官方要求", "回答附上来源页面，查不到就直说"],
-  ["提议修改", "改选校组合之前，先把改动列给你看"],
-  ["写入", "选校组合等你确认才改；你说的成绩和学校会直接记进背景"],
+  ["提议修改", "加申请、改轮次和截止日期、改状态、勾材料，先把改动列给你看"],
+  ["写入", "申请和选校组合等你确认才改；你说的成绩和学校会直接记进背景"],
 ];
 
 /**
@@ -42,6 +42,8 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
   const lines = useMemo(() => {
     const map = new Map<string, Line>();
     for (const row of overview?.rows ?? []) {
+      // By record id, and by catalogue program for a change that names the program only.
+      map.set(row.record.id, { colour: row.line, code: row.code });
       if (row.record.programId) map.set(row.record.programId, { colour: row.line, code: row.code });
     }
     return map;
@@ -186,7 +188,7 @@ export function Advisor({ variant }: { variant: "dock" | "page" }) {
             rows={1}
             maxLength={2000}
             value={chat.draft}
-            placeholder={gated ? "先写下问题，登录后发送" : "问问题，或者让顾问改选校组合"}
+            placeholder={gated ? "先写下问题，登录后发送" : "问问题，或者让顾问改一条申请"}
             aria-label="给顾问的消息"
             onChange={(event) => chat.setDraft(event.target.value)}
             onKeyDown={(event) => {

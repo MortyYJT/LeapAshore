@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { advisorRefusal, confirmBody } from "./advisor.ts";
+import { advisorRefusal, confirmBody, targetKey } from "./advisor.ts";
 
 test("a rate or quota refusal shows the server's Chinese message and counts as limited", () => {
   const refusal = advisorRefusal(429, { detail: { code: "rate_limited", message: "发送太频繁了，请 12 秒后再试。", retryAfter: 12 } });
@@ -28,4 +28,13 @@ test("a confirm names the change it answers, so a late repeat cannot answer a ne
   assert.deepEqual(confirmBody("c1", true, "a1b2"), { conversationId: "c1", approved: true, interruptId: "a1b2" });
   // A change shown before the id existed is answered without one, as before.
   assert.deepEqual(confirmBody("c1", false), { conversationId: "c1", approved: false });
+});
+
+test("a change is keyed by its application record, or by its catalogue program when it names only that", () => {
+  assert.equal(targetKey({ applicationId: "catalog:hku-cs", programId: "hku-cs" }), "catalog:hku-cs");
+  assert.equal(targetKey({ applicationId: "7f0c", programId: null }), "7f0c");
+  // A portfolio change names the program; an application about to be added has no record yet.
+  assert.equal(targetKey({ programId: "hku-cs" }), "hku-cs");
+  assert.equal(targetKey({ applicationId: null, programId: null, school: "MIT", program: "EECS" }), undefined);
+  assert.equal(targetKey(undefined), undefined);
 });

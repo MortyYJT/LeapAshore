@@ -5,7 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 
 import { useAuth } from "@/components/auth/AuthProvider";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
-import { confirmAdvisorAction, sendAdvisorMessage, stopAdvisorTurn, type AdvisorEvent } from "@/lib/advisor";
+import { confirmAdvisorAction, sendAdvisorMessage, stopAdvisorTurn, targetKey, type AdvisorEvent } from "@/lib/advisor";
 import {
   applyEvent,
   beginAnswer,
@@ -239,22 +239,26 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
     async (
       turnId: string,
       start: (onEvent: (event: AdvisorEvent) => void, signal: AbortSignal) => Promise<string>,
-      /** The program each waiting step would change, by step id, for a stream that answers one. */
+      /** The application each waiting step would change, by step id, for a stream that answers one. */
       targets = new Map<string, string | undefined>(),
     ) => {
       const current = { turnId, controller: new AbortController(), stopped: false };
       run.current = current;
       setRunningTurn(turnId);
-      // Undefined until a step of this stream has written; then the program it wrote to, if it named one.
+      // Undefined until a step of this stream has written; then the application it wrote to, if it named one.
       let wrote: string | null | undefined;
+      let answered = false;
       try {
         const outcome = await start((event) => {
           if (current.stopped || event.type === "done") return;
           // A step that wrote: the records the rail and the overview show are stale now.
-          if (event.type === "confirm" && event.stepId) targets.set(event.stepId, event.target?.programId);
+          if (event.type === "confirm" && event.stepId) targets.set(event.stepId, targetKey(event.target));
           if (event.type === "step" && event.write && event.status === "done") {
             wrote = targets.get(event.id.replace(/:write$/, "")) ?? wrote ?? null;
           }
+          // A confirmed write that ended any other way (refused because the record moved elsewhere,
+          // or found already stored): what is on screen may be old either way.
+          if (event.type === "step" && event.status !== "running" && event.id.endsWith(":write")) answered = true;
           patch(turnId, (turn) => applyEvent(turn, event));
         }, current.controller.signal);
         if (outcome === "unauthorized") void refresh();
@@ -265,10 +269,8 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
         if (run.current === current) run.current = null;
         busy.current = false;
         setRunningTurn((id) => (id === turnId ? null : id));
-        if (wrote !== undefined) {
-          reloadRecords();
-          if (wrote) markChanged(wrote);
-        }
+        if (wrote !== undefined || answered) reloadRecords();
+        if (wrote) markChanged(wrote);
       }
     },
     [patch, refresh, reloadRecords, markChanged],
@@ -311,7 +313,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
       const id = conversation.current;
       // The write of this stream belongs to the card that was just answered.
       const targets = new Map<string, string | undefined>();
-      if (card?.type === "confirm" && card.stepId) targets.set(card.stepId, card.target?.programId);
+      if (card?.type === "confirm" && card.stepId) targets.set(card.stepId, targetKey(card.target));
       await follow(turnId, (onEvent, signal) => confirmAdvisorAction(id, approved, onEvent, confirmId, signal), targets);
     },
     [follow, patch, requireLogin],

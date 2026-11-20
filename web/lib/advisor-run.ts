@@ -31,10 +31,12 @@ export interface CitationsBlock {
 }
 
 /**
- * `pending` waits for the applicant. `void` was never answered and was not made. `gone` is one the
- * server no longer holds: it was answered somewhere else or has expired, and this page cannot tell which.
+ * `pending` waits for the applicant. `unwritten` was confirmed and then refused by the server (the
+ * record had changed elsewhere), so nothing was written. `void` was never answered and was not made.
+ * `gone` is one the server no longer holds: it was answered somewhere else or has expired, and this
+ * page cannot tell which.
  */
-export type ConfirmState = "pending" | "approved" | "declined" | "void" | "gone";
+export type ConfirmState = "pending" | "approved" | "unwritten" | "declined" | "void" | "gone";
 
 export interface ConfirmBlock {
   type: "confirm";
@@ -96,7 +98,11 @@ const STEP_TITLES: Record<string, string> = {
   update_my_profile: "更新背景",
   get_my_portfolio: "读取选校组合",
   get_my_applications: "读取申请",
-  propose_portfolio_change: "提议修改",
+  propose_portfolio_change: "提议改组合",
+  propose_manual_application: "提议加申请",
+  propose_application_deadline: "提议改日期",
+  propose_application_status: "提议改状态",
+  propose_material_tick: "提议改材料",
 };
 
 /** What a step is called: the server's title, a name this page knows, or the raw name of a new tool. */
@@ -114,6 +120,14 @@ export function formatDuration(ms: number): string {
 }
 
 function settleConfirm(blocks: Block[], stepId: string, status: StepStatus): Block[] {
+  // The write of a confirmed change is a step of its own; when it fails, the card must not read as done.
+  if (stepId.endsWith(":write")) {
+    if (status !== "failed") return blocks;
+    const asked = stepId.slice(0, -":write".length);
+    return blocks.map((block) =>
+      isConfirm(block) && block.stepId === asked && block.state === "approved" ? { ...block, state: "unwritten" } : block,
+    );
+  }
   if (status !== "done" && status !== "declined") return blocks;
   return blocks.map((block) =>
     isConfirm(block) && block.stepId === stepId && block.state === "pending"

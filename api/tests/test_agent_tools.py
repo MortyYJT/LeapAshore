@@ -72,7 +72,7 @@ def test_recording_an_offer_changes_only_that_rows_status(asked, applicant):
     reply = _call(applicant, program_id=applicant["second"], action="set_status", status="offered")
 
     assert reply.startswith("已执行")
-    assert "已获 offer" in asked[0]["summary"]
+    assert "收到录取" in asked[0]["summary"]
     client_id = applicant["config"]["configurable"]["client_id"]
     assert _stored(client_id) == {
         applicant["first"]: ("稳", "applying", True),

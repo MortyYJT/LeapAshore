@@ -31,6 +31,7 @@ from app.models.program import Program
 from app.routers import advisor
 from app.seed import seed_programs
 from app.seed_catalog import seed_catalog
+from app.services.applications import replace_applications
 
 pytestmark = pytest.mark.usefixtures("require_db")
 
@@ -631,7 +632,7 @@ def test_a_confirm_writes_only_what_the_card_listed(advisor_with, program):
     subject = client.cookies.get(COOKIE_NAME)
     with SessionLocal() as s:
         load_or_create_profile(s, subject)
-        tools.replace_applications(s, subject, [{"program_id": program.id, "tier": "冲", "status": "submitted", "is_primary": False}])
+        replace_applications(s, subject, [{"program_id": program.id, "tier": "冲", "status": "submitted", "is_primary": False}])
 
     evts = answer(client, confirm, approved=True)
     write = last(evts, f"{confirm['stepId']}:write")
@@ -651,7 +652,8 @@ def test_a_change_that_would_change_nothing_is_not_put_to_the_applicant(advisor_
         advisor_with(propose(program.id, **args))
         evts = ask(client, "再来一次")
         end = last(evts, opened(evts, "propose_portfolio_change")["id"])
-        assert end["status"] == "failed" and reason in end["result"], end
+        # What was asked for is what is stored: a hollow stop, not a failure.
+        assert end["status"] == "empty" and reason in end["result"], end
         assert not [e for e in evts if e["type"] == "confirm"]
 
     advisor_with(propose(program.id, action="set_primary"))

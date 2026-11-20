@@ -69,14 +69,18 @@ export function labelOf<T extends string | number>(
 // Stored values and interface words are kept apart (PRD §7.7 rule 5): the API and the database keep the
 // left-hand value, and every screen shows the right-hand words through the maps below.
 
-/** The six application statuses, in the order a row moves through them. */
+/**
+ * The six application statuses, in the order a row moves through them. One set of words for every
+ * screen: the overview, 「我的申请」, the portfolio and the advisor's confirm card, whose copy of these
+ * labels is `STATUS_LABELS` in `api/app/agent/confirm.py`.
+ */
 export const APPLICATION_STATUSES: { value: ApplicationStatus; label: string }[] = [
   { value: "considering", label: "考虑中" },
-  { value: "applying", label: "申请中" },
+  { value: "applying", label: "准备中" },
   { value: "submitted", label: "已提交" },
-  { value: "offered", label: "已获 offer" },
-  { value: "rejected", label: "被拒" },
-  { value: "excluded", label: "不考虑" },
+  { value: "offered", label: "收到录取" },
+  { value: "rejected", label: "未录取" },
+  { value: "excluded", label: "已放弃" },
 ];
 
 /** A status this build does not know reads as the column's default, never as a later stage. */

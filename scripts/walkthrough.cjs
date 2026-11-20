@@ -496,6 +496,8 @@ async function adminPass(browser, email, errors) {
     await settle(page);
     check("组合：列出草稿里的全部项目", (await page.locator("tbody tr").count()) === added, { added });
     check("组合：自选档位的项目标“未经系统分档”", (await page.locator(".pill", { hasText: "未经系统分档" }).count()) === 1);
+    // One set of names for a status on every screen: the overview's.
+    check("组合：申请状态用总览那一套叫法", (await page.locator("tbody tr").first().locator("select option").allInnerTexts()).join("|") === "考虑中|准备中|已提交|收到录取|未录取|已放弃");
     await page.locator("tbody tr").first().locator("select").selectOption("offered");
     await page.locator("tbody tr").nth(1).getByText("设为首选").click();
     const before = await page.evaluate(async () => (await (await fetch("/api/applications")).json()).length);
@@ -504,7 +506,7 @@ async function adminPass(browser, email, errors) {
     await screenshot(page, "portfolio");
     await page.getByRole("button", { name: `确认 ${added} 个项目` }).click();
     await page.getByText(`已保存 ${added} 个项目`).waitFor({ timeout: 15000 });
-    // The rail lists the applications that are being prepared or are submitted (one row here is 已获 offer).
+    // The rail lists the applications that are being prepared or are submitted (one row here is 收到录取).
     const listed = await page.evaluate(async () => (await (await fetch("/api/application-records")).json()).filter((r) => ["considering", "applying", "submitted"].includes(r.status)).length);
     const inRail = await page.waitForFunction((n) => document.querySelectorAll(".rail-legend li").length === n, listed, { timeout: 15000 }).then(() => true, () => false);
     check("组合：确认后侧栏不用刷新就列出这些申请", inRail && listed > 0, { listed, shown: await page.locator(".rail-legend li").count() });
@@ -622,11 +624,22 @@ async function adminPass(browser, email, errors) {
       { type: "step", id: "t-intent", status: "done", ms: 420, result },
     ];
     const SOURCE = "https://example.edu/walkthrough-source";
+    // One of this account's own applications, for a card that changes it.
+    const ownRecord = (await page.evaluate(() => fetch("/api/application-records").then((r) => r.json())))[0];
     await page.route("**/api/advisor/**", (route) => {
       const pathname = new URL(route.request().url()).pathname;
       const body = JSON.parse(route.request().postData() || "{}");
       advisorCalls.push({ pathname, body });
       if (pathname.endsWith("/stop")) return route.fulfill({ status: 200, contentType: "application/json", body: '{"stopping":true}' });
+      if (pathname.endsWith("/confirm") && body.interruptId === "int-2") {
+        // The record changed on another device while the card waited: the write is refused.
+        return stream(route, [
+          { type: "step", id: "call-3:write", status: "running", kind: "tool", name: "propose_application_status", title: "写入", write: true },
+          { type: "step", id: "call-3", status: "done", result: "你已确认" },
+          { type: "step", id: "call-3:write", status: "failed", ms: 20, result: "没有执行：别处改过了（轮次：未填 → 第三批），这次没有写入，也没有覆盖别处的改动。" },
+          { type: "token", text: "这次没有写入：这条申请刚在别处改过轮次。" },
+        ]);
+      }
       if (pathname.endsWith("/confirm")) {
         return stream(route, [
           { type: "step", id: "call-1:write", status: "running", kind: "tool", name: "propose_portfolio_change", title: "写入", write: true },
@@ -641,11 +654,31 @@ async function adminPass(browser, email, errors) {
       if (message.includes("加入")) {
         return stream(route, [
           ...intentStep("归为「修改申请」，交给顾问处理"),
-          { type: "step", id: "call-1", status: "running", kind: "tool", name: "propose_portfolio_change", title: "提议修改", args: [{ label: "项目", value: "走查大学 走查项目" }, { label: "操作", value: "加入组合" }] },
+          { type: "step", id: "call-1", status: "running", kind: "tool", name: "propose_portfolio_change", title: "提议改组合", args: [{ label: "项目", value: "走查大学 走查项目" }, { label: "操作", value: "加入组合" }] },
           { type: "step", id: "call-1", status: "waiting", ms: 12, result: "等你确认" },
           { type: "confirm", id: "int-1", stepId: "call-1", kind: "confirm_portfolio", summary: "把「走查大学 走查项目」加入选校组合，档位：稳",
             target: { programId: "walkthrough-none", school: "走查大学", program: "走查项目" },
             changes: [{ label: "选校组合", before: "不在组合里", after: "加入" }, { label: "档位", before: null, after: "稳" }] },
+        ]);
+      }
+      if (message.includes("标成已提交")) {
+        return stream(route, [
+          ...intentStep("归为「修改申请」，交给顾问处理"),
+          { type: "step", id: "call-2", status: "running", kind: "tool", name: "get_my_applications", title: "读取申请" },
+          { type: "step", id: "call-2", status: "done", ms: 30, result: "读到 1 个申请" },
+          { type: "step", id: "call-3", status: "running", kind: "tool", name: "propose_application_status", title: "提议改状态", args: [{ label: "申请", value: `${ownRecord.school} ${ownRecord.name}` }, { label: "状态", value: "已提交" }] },
+          { type: "step", id: "call-3", status: "waiting", ms: 12, result: "等你确认" },
+          { type: "confirm", id: "int-2", stepId: "call-3", kind: "confirm_application", tool: "propose_application_status", summary: "把这条申请的申请状态改为已提交",
+            target: { applicationId: ownRecord.id, programId: ownRecord.programId, school: ownRecord.school, program: ownRecord.name },
+            changes: [{ label: "申请状态", before: "准备中", after: "已提交" }] },
+        ]);
+      }
+      if (message.includes("填一个")) {
+        return stream(route, [
+          ...intentStep("归为「修改申请」，交给顾问处理"),
+          { type: "step", id: "call-4", status: "running", kind: "tool", name: "propose_application_deadline", title: "提议改日期", args: [{ label: "申请", value: `${ownRecord.school} ${ownRecord.name}` }, { label: "日期", value: "2099-01-15" }] },
+          { type: "step", id: "call-4", status: "failed", ms: 9, result: "没有执行：对话里没有写出 2099-01-15 这个日期，顾问不能自己定日期。" },
+          { type: "token", text: "学校库里没有这条申请的截止日期，我不能自己定一个。请在官网查到后把日期写给我。" },
         ]);
       }
       if (message.includes("麻省")) {
@@ -780,6 +813,26 @@ async function adminPass(browser, email, errors) {
     await input.press("Enter");
     await ended();
     check("顾问：新对话用新的对话 id", advisorCalls.at(-1).body.conversationId !== sent.body.conversationId);
+
+    // A change to one application (the tools of api/app/agent/application_tools.py), in the event
+    // shapes api/tests/test_advisor_application_tools.py asserts.
+    await input.fill("把这条申请标成已提交");
+    await input.press("Enter");
+    await ended();
+    const statusCard = lastTurn.locator(".confirm");
+    check("顾问：改一条申请的卡片带这条申请的线路代号，列出旧状态和新状态", (await statusCard.locator(".confirm-what .bullet").count()) === 1
+      && (await statusCard.locator(".changes del").innerText()) === "准备中" && (await statusCard.locator(".changes ins").innerText()) === "已提交"
+      && (await lastTurn.locator(".step.is-waiting .label").innerText()) === "提议改状态");
+    await screenshot(page, "advisor-application-confirm");
+    await statusCard.getByRole("button", { name: "确认写入" }).click();
+    await ended();
+    check("顾问：确认时记录已在别处改过，卡片写明没有写入，写入那一步说出改了什么", (await statusCard.locator(".confirm-head").innerText()) === "你已确认，但没有写入"
+      && (await lastTurn.locator(".step.is-failed .out").innerText()).includes("别处改过了（轮次：未填 → 第三批）") && advisorCalls.at(-1).body.interruptId === "int-2");
+    await input.fill("截止日期你帮我填一个");
+    await input.press("Enter");
+    await ended();
+    check("顾问：没人说过的日期不出确认卡片，那一步写明原因", (await lastTurn.locator(".confirm").count()) === 0
+      && (await lastTurn.locator(".step.is-failed .out").innerText()) === "没有执行：对话里没有写出 2099-01-15 这个日期，顾问不能自己定日期。");
     await page.getByRole("button", { name: "新对话" }).click();
     await page.unroute("**/api/advisor/**");
 

@@ -80,7 +80,7 @@ entry: an entry whose two sides are equal would say something happened at a mome
 
 import uuid
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Iterable, Sequence
 from typing import Any
 
 from sqlalchemy import select
@@ -91,6 +91,8 @@ from app.models.application import Application, ApplicationOrigin, ApplicationSt
 from app.models.client import Client
 from app.models.program import Program
 from app.models.task import TaskOrigin
+from app.services.accounts import lock_client
+from app.services.versions import StaleVersion
 from app.services.writes import carries, row_value, write_history
 
 
@@ -471,11 +473,10 @@ def replace_applications(session: Session, client_id: str, rows: Sequence[Any]) 
     _reject_a_second_primary(rows, program_ids)
     _reject_unknown_programs(session, program_ids)
 
-    # One portfolio writer per subject at a time. The route takes the subject's row, compares the
-    # caller's base rows with the stored ones and then calls this, so nothing is written between its
-    # comparison and its commit. The advisor's confirmed change (`app/agent/tools.py`) calls this
-    # directly with rows it read a moment earlier in another session: its write waits its turn here,
-    # but it states no base, so a change committed between its read and this lock is replaced.
+    # One portfolio writer per subject at a time. Both callers, the route and the advisor's confirmed
+    # change (`app/agent/tools.py`), come through `replace_applications_based_on`, which takes the
+    # subject's row, compares the caller's base rows with the stored ones and then calls this, so
+    # nothing is written between the comparison and the commit.
     # `FOR NO KEY UPDATE`, not `FOR UPDATE`: it excludes the other writers that take this lock, but
     # not an insert that only needs the foreign key to `clients`, so a writer that does not go
     # through here is still met by the constraint and the retry below rather than left waiting.
@@ -499,3 +500,30 @@ def replace_applications(session: Session, client_id: str, rows: Sequence[Any]) 
         # is deferrable, so this commit only ends the transaction.
         session.commit()
         return counts
+
+
+def stored_base(session: Session, client_id: str) -> set[tuple[str, int]]:
+    """The subject's portfolio as a base: the id and version of every stored row."""
+    return {
+        (row_id, version)
+        for row_id, version in session.execute(
+            select(Application.id, Application.version).where(Application.client_id == client_id)
+        )
+    }
+
+
+def replace_applications_based_on(
+    session: Session, client_id: str, rows: Sequence[Any], base: Iterable[tuple[str, int]]
+) -> dict:
+    """Replace the portfolio only when it is still the one the caller built its list from.
+
+    `base` is the id and version of every row the caller read. Every write to this subject's
+    portfolio takes the subject's row first (the application records do the same), so the comparison
+    and the replacement are one step: if a row was added, changed or removed since the caller read,
+    `StaleVersion` is raised with the stored base and nothing is written.
+    """
+    lock_client(session, client_id)
+    stored = stored_base(session, client_id)
+    if stored != set(base):
+        raise StaleVersion(stored)
+    return replace_applications(session, client_id, rows)

@@ -3,7 +3,7 @@
 import { Fragment, memo, useId, useMemo, useState, type ReactNode } from "react";
 
 import { Icon } from "@/components/shell/Icon";
-import type { Citation } from "@/lib/advisor";
+import type { ChangeTarget, Citation } from "@/lib/advisor";
 import {
   answerText,
   formatDuration,
@@ -33,7 +33,7 @@ interface TurnProps {
   /** Something is running somewhere, so nothing else may start. */
   busy: boolean;
   last: boolean;
-  /** The applicant's applications by catalogue program, for the line colour. */
+  /** The applicant's applications by record id and by catalogue program, for the line colour. */
   lines: ReadonlyMap<string, Line>;
   onAnswer: (turnId: string, confirmId: string | undefined, approved: boolean) => void;
   onRetry: () => void;
@@ -52,7 +52,7 @@ export const TurnView = memo(function TurnView({ turn, running, busy, last, line
   const lineOf = (step: StepBlock): Line | undefined => {
     const base = step.id.replace(/:write$/, "");
     const card = turn.blocks.find((block): block is ConfirmBlock => block.type === "confirm" && block.stepId === base);
-    return card?.target?.programId ? lines.get(card.target.programId) : undefined;
+    return lineFor(lines, card?.target);
   };
   const segments = segment(turn.blocks);
   const lastBlock = turn.blocks.at(-1);
@@ -77,7 +77,7 @@ export const TurnView = memo(function TurnView({ turn, running, busy, last, line
                 <li className="run-item" key={block.id ?? `k${at}`}>
                   <Confirm
                     card={block}
-                    line={block.target?.programId ? lines.get(block.target.programId) : undefined}
+                    line={lineFor(lines, block.target)}
                     busy={busy}
                     onAnswer={(approved) => onAnswer(turn.id, block.id, approved)}
                   />
@@ -124,6 +124,11 @@ export const TurnView = memo(function TurnView({ turn, running, busy, last, line
     </article>
   );
 });
+
+/** The line of the application a change is about: by its record, else by its catalogue program. */
+function lineFor(lines: ReadonlyMap<string, Line>, target: ChangeTarget | undefined): Line | undefined {
+  return (target?.applicationId ? lines.get(target.applicationId) : undefined) ?? (target?.programId ? lines.get(target.programId) : undefined);
+}
 
 type Segment =
   | { kind: "rail"; blocks: Block[] }
@@ -294,6 +299,7 @@ function Source({ citation: c, id, alone }: { citation: Citation; id: string; al
 
 const SETTLED: Record<Exclude<ConfirmBlock["state"], "pending">, string> = {
   approved: "你已确认",
+  unwritten: "你已确认，但没有写入",
   declined: "已取消，没有改动",
   void: "没有等到确认，这个改动没有执行",
   gone: "这个改动已经不在等待确认",

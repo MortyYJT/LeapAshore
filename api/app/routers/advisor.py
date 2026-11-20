@@ -3,8 +3,8 @@
 Event types: ``step`` (one thing the agent does, see below), ``intent`` (the router's decision),
 ``citations`` (the evidence the gate let through, or for a question answered from the official pages,
 the passages its checked sentences cite), ``tool`` (a tool the agent called), ``token`` (a piece of the
-reply), ``confirm`` (a portfolio change waiting for the applicant, with the ``id`` a confirm sends
-back), ``error``, ``stopped`` (the turn ended because the applicant stopped it) and a final ``done``.
+reply), ``confirm`` (a change to the portfolio or to an application waiting for the applicant, with
+the ``id`` a confirm sends back), ``error``, ``stopped`` (the turn ended because the applicant stopped it) and a final ``done``.
 
 A ``step`` event describes the turn as the interface draws it, a line of stops:
 
@@ -37,7 +37,7 @@ from langgraph.types import Command
 from pydantic import BaseModel, Field
 
 from app import limits
-from app.agent import halt, steps
+from app.agent import halt, stated, steps
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
@@ -45,8 +45,9 @@ from app.agent.tools import wrote
 from app.config import settings
 from app.db import SessionLocal
 from app.deps import get_subject, set_client_cookie, subject_cookie_header
-from app.models.program import Program
+from app.models.program import Program, ProgramDeadline
 from app.net import client_ip
+from app.services import application_records
 
 router = APIRouter(prefix="/api/advisor", tags=["advisor"])
 logger = logging.getLogger(__name__)
@@ -162,15 +163,33 @@ def _event(payload: dict) -> str:
     return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
 
 
-def _program_name(program_id: str) -> str | None:
-    """A program's name for a step's arguments; the model only knows its id. Never raises."""
+def _named(client_id: str, args: dict) -> dict[str, str]:
+    """The words for the ids in a tool call's arguments, by argument name: the model names a program, an
+    application or a collected deadline by its id, and the applicant reads what it is.
+
+    An application is looked up as the signed-in applicant's own, so an id that is somebody else's
+    resolves to nothing and is shown as the model wrote it. Never raises.
+    """
+    named: dict[str, str] = {}
     try:
         with SessionLocal() as session:
-            program = session.get(Program, program_id)
-            return f"{program.university.name} {program.name}" if program else None
+            if args.get("program_id"):
+                program = session.get(Program, str(args["program_id"]))
+                if program:
+                    named["program_id"] = f"{program.university.name} {program.name}"
+            if args.get("application_id"):
+                try:
+                    record = application_records.read_record(session, client_id, str(args["application_id"]))
+                    named["application_id"] = f"{record['school']} {record['name']}"
+                except application_records.RecordNotFound:
+                    pass
+            if args.get("catalog_deadline_id"):
+                row = session.get(ProgramDeadline, str(args["catalog_deadline_id"]))
+                if row:
+                    named["catalog_deadline_id"] = " · ".join(filter(None, [row.label, row.deadline.isoformat()]))
     except Exception:  # noqa: BLE001 - a step shows the id rather than break the turn
-        logger.warning("could not name program %s for a step", program_id, exc_info=True)
-        return None
+        logger.warning("could not name the ids of a step", exc_info=True)
+    return named
 
 
 @dataclass
@@ -195,12 +214,19 @@ def _paused_calls(snapshot, interrupt_id: str | None) -> tuple[list[dict], str |
 
 
 def _resume_value(snapshot, interrupt_id: str | None, approved: bool):
-    """The applicant's answer as the paused tool receives it: yes or no, with the changes the
-    question listed, so the tool can refuse to write anything else. A question without a list (a turn
-    paused before the list existed) gets the bare answer."""
+    """The applicant's answer as the paused tool receives it: yes or no, with the changes the question
+    listed and the base it was drawn from (the version of the record the card showed), so the tool can
+    refuse to write anything else, or onto anything newer. Both are read from the paused turn on the
+    server, never from the request. A question without a list (a turn paused before the list existed)
+    gets the bare answer."""
     questions = _questions(snapshot, interrupt_id)
-    shown = questions[0].get("changes") if questions and isinstance(questions[0], dict) else None
-    return approved if shown is None else {"approved": approved, "changes": shown}
+    question = questions[0] if questions and isinstance(questions[0], dict) else {}
+    if question.get("changes") is None:
+        return approved
+    answer = {"approved": approved, "changes": question["changes"]}
+    if question.get("base") is not None:
+        answer["base"] = question["base"]
+    return answer
 
 
 def _questions(snapshot, interrupt_id: str | None) -> list:
@@ -312,9 +338,11 @@ async def _stream(graph_input, config: dict, resumed: Resumed | None = None) -> 
                         if asked:
                             yield run.finish(asked, steps.WAITING, steps.WAITING_FOR_ANSWER)
                         # `type` last: the interrupt payload carries its own `type`, which must not
-                        # replace the event type the client switches on.
+                        # replace the event type the client switches on. `base` stays on the server:
+                        # the answer reads it back from the paused turn (`_resume_value`).
                         tied = {"stepId": asked} if asked else {}
-                        yield _event({**question, "kind": question.get("type"), "id": item.id, **tied, "type": "confirm"})
+                        shown = {k: v for k, v in question.items() if k != "base"}
+                        yield _event({**shown, "kind": question.get("type"), "id": item.id, **tied, "type": "confirm"})
                     # A call made beside the one that asked has not answered either: the step is
                     # run again, whole, once the applicant has.
                     for step_id, _ in run.open_tools():
@@ -376,11 +404,11 @@ async def _stream(graph_input, config: dict, resumed: Resumed | None = None) -> 
                     if isinstance(msg, AIMessage) and msg.tool_calls:
                         for call in msg.tool_calls:
                             args = call.get("args") or {}
-                            # The model names a program by its id; the applicant reads its name.
-                            named = await asyncio.to_thread(_program_name, str(args["program_id"])) if args.get("program_id") else None
+                            # The model names things by their ids; the applicant reads what they are.
+                            named = await asyncio.to_thread(_named, config["configurable"]["client_id"], args) if args else {}
                             yield run.start(
                                 call["id"], steps.TOOL, call["name"],
-                                args=steps.call_args(call["name"], args, program_name=lambda _id, named=named: named),
+                                args=steps.call_args(call["name"], args, named=named),
                                 write=call["name"] in steps.WRITES_DIRECTLY,
                             )
                             yield _event({"type": "tool", "name": call["name"]})
@@ -522,7 +550,8 @@ async def chat(
         finally:
             _release(thread, ended)
 
-    turn = _stream({"messages": [HumanMessage(content=body.message)], "trace": None}, config)
+    # The day it was sent stays with the message: a date written without a year is read from it later.
+    turn = _stream({"messages": [HumanMessage(content=body.message, additional_kwargs=stated.stamp())], "trace": None}, config)
     return _sse(_detached(turn, ticket, after=after), client_id)
 
 
@@ -545,7 +574,7 @@ async def stop(body: StopIn, client_id: Annotated[str, Depends(get_subject)]) ->
 async def confirm(
     body: ConfirmIn, request: Request, response: Response, client_id: Annotated[str, Depends(get_subject)]
 ) -> StreamingResponse:
-    """Resume a turn the agent paused on a portfolio change, with the applicant's answer.
+    """Resume a turn the agent paused on a proposed change, with the applicant's answer.
 
     The change is written at most once however often, and from however many tabs, it is answered
     (openspec advisor-persistence D5): one confirm per thread holds the thread's lock while its turn

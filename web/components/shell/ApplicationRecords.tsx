@@ -43,9 +43,9 @@ export interface ApplicationRecordsState {
   /** The application picked in the rail; the other lines step back while one is picked. */
   selected: string | null;
   select: (id: string | null) => void;
-  /** The catalogue program the advisor just wrote to; the overview flashes its row once. */
+  /** The application the advisor just wrote to, by record id or catalogue program; the overview flashes its row once. */
   changedProgram: string | null;
-  markChanged: (programId: string | null) => void;
+  markChanged: (key: string | null) => void;
 }
 
 const Ctx = createContext<ApplicationRecordsState | null>(null);

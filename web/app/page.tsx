@@ -215,7 +215,7 @@ function Workspace() {
   const { changedProgram, markChanged } = records;
   useEffect(() => {
     if (!changedProgram || records.loading) return;
-    const row = records.data?.find((record) => record.programId === changedProgram);
+    const row = records.data?.find((record) => record.id === changedProgram || record.programId === changedProgram);
     if (row) setFlash(row.id);
     markChanged(null);
   }, [changedProgram, records.loading, records.data, markChanged]);
