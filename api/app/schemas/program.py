@@ -66,6 +66,44 @@ def deadlines_of(program) -> list[DeadlineOut]:
             for row in sorted(program.deadlines, key=lambda row: row.sort_order)]
 
 
+class MaterialOut(BaseModel):
+    """One application material the program's page asks for: a type from the fixed list, the count when
+    the page states one, the collector's note, the sentence it was read from and the page that is on.
+
+    `key` is the name an applicant's tick is stored under.
+    """
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
+
+    key: str
+    type: str
+    count: int | None = None
+    note: str | None = None
+    quote: str
+    source_url: str
+
+
+class MaterialsOut(BaseModel):
+    """What the program's page asks an applicant to send, as collected.
+
+    Served only for a program whose page has been read for materials; `ProgramOut.materials` is `null`
+    otherwise. `items: []` is a page that was read and lists none, which is a different statement.
+    Every quote passed the verbatim check against the page's snapshot; nobody verified it by hand.
+    """
+
+    items: list[MaterialOut] = Field(default_factory=list)
+
+
+def materials_of(program) -> MaterialsOut | None:
+    if program.materials_snapshot_sha256 is None:
+        return None
+    return MaterialsOut(items=[
+        MaterialOut(key=row.key, type=row.type, count=row.count, note=row.note, quote=row.quote,
+                    source_url=row.source_url)
+        for row in sorted(program.materials, key=lambda row: row.sort_order)
+    ])
+
+
 class ProgramOut(BaseModel):
     """One admission program as the catalogue serves it.
 
@@ -107,5 +145,7 @@ class ProgramOut(BaseModel):
     # The page the academic requirement was read from, which can be a shared admissions page.
     academic_source_url: str | None = None
     deadlines: list[DeadlineOut] = Field(default_factory=list)
+    # `null`: the page has not been read for materials. An object: it has, and `items` is what it asks for.
+    materials: MaterialsOut | None = None
     data_status: str
     source: SourceOut

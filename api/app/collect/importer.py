@@ -1,9 +1,14 @@
 """Import the checked requirement files into the catalogue.
 
     python -m app.collect.importer [--prune] [api/data/requirements/<school>.json ...]
+    python -m app.collect.importer --materials-only [api/data/requirements/<school>.json ...]
 
 --prune also removes the programs an earlier import wrote that a file no longer lists (CRICOS rows
 and rows a portfolio names are kept).
+
+--materials-only writes nothing but the application materials (`app.collect.materials`) of programs
+the catalogue already holds: no program, source, version, requirement value or deadline is touched,
+so it can follow a material extraction without re-importing a school.
 
 Only fields whose quote passed `verify` (`check == "ok"`) and whose summary the faithfulness check did
 not find unfaithful (`verify.usable`) are written. A program with no verified quote at all is skipped, so an empty collection never blanks a row another source describes. When a program has
@@ -17,6 +22,12 @@ import leaves the catalogue. Nothing here sets `verified_at`: the page source st
 a person confirms it (openspec source-verification), and its snapshot version stays `pending_review`.
 A confirmation is withdrawn (the date cleared) when what the page serves changes: a different snapshot,
 or a different value read from the same one.
+
+A program's `materials` block is written the same way: the entries whose quote passed, compared
+with what is stored and rewritten only when they differ. A program without a block, or whose block
+holds only refusals, keeps `materials_snapshot_sha256` NULL: not extracted, which is not "asks for
+nothing". Materials are machine-checked quotes like everything else here; writing them neither sets
+nor clears a page's `verified_at`, which is about the values a person reviewed.
 
 Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
 `<school_key>-<program slug>`, under a university row named from `_schools.json`. Each program page
@@ -37,10 +48,11 @@ from urllib.parse import urlsplit
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
+from app.collect import materials
 from app.collect.fields import study_area_from_name
 from app.collect.snapshot import SNAPSHOT_ROOT
 from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED, program_status, usable
-from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
+from app.models.program import Program, ProgramDeadline, ProgramMaterial, ProgramPrerequisite, University
 from app.models.source import Source, SourceStatus, SourceVersion
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "requirements"
@@ -197,6 +209,77 @@ def _sync_deadlines(session: Session, pid: str, wanted: list[dict]) -> bool:
     return True
 
 
+def material_rows(pid: str, program_url: str, program: dict) -> list[dict]:
+    """The material entries that passed, in the file's order, as `program_materials` rows.
+
+    The id is the program and the position, like a deadline's. `source_url` is the page the quote is on.
+    """
+    items = materials.accepted_items(program)
+    return [{
+        "id": str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#material#{index}")),
+        "program_id": pid,
+        "key": key,
+        "type": item["type"],
+        "count": item.get("count"),
+        "note": (item.get("note") or "").strip() or None,
+        "quote": item["quote"],
+        "source_url": item.get("source_url") or program_url,
+        "sort_order": index,
+    } for index, (item, key) in enumerate(zip(items, materials.keys_for(items)))]
+
+
+def materials_snapshot(program: dict) -> str | None:
+    """The snapshot the program's materials were read from; None when they are not extracted."""
+    if not materials.extracted(program):
+        return None
+    return materials.block_of(program).get("snapshot_sha256") or program["snapshot_sha256"]
+
+
+def _sync_materials(session: Session, row: Program, program: dict) -> bool:
+    """Make the catalogue's materials for this program what the file says, writing only when they
+    differ. True when it wrote.
+
+    A file without a usable block leaves what is stored alone: materials are extracted in their own
+    pass, and a file from before that pass, or a page the queue collected again, must not blank them.
+    """
+    if not materials.extracted(program):
+        return False
+    wanted = material_rows(row.id, program["url"], program)
+    columns = ("id", "key", "type", "count", "note", "quote", "source_url", "sort_order")
+    stored = session.scalars(select(ProgramMaterial).where(ProgramMaterial.program_id == row.id)
+                             .order_by(ProgramMaterial.sort_order)).all()
+    sha = materials_snapshot(program)
+    same_rows = [tuple(getattr(r, c) for c in columns) for r in stored] == [tuple(r[c] for c in columns) for r in wanted]
+    if same_rows and row.materials_snapshot_sha256 == sha:
+        return False
+    if not same_rows:
+        session.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id == row.id))
+        session.flush()
+        for values in wanted:
+            session.add(ProgramMaterial(**values))
+    if row.materials_snapshot_sha256 != sha:
+        row.materials_snapshot_sha256 = sha
+    return True
+
+
+def import_materials(session: Session, data: dict, schools: dict[str, dict]) -> dict:
+    """Write only the materials of this file's programs, for the programs the catalogue already holds."""
+    key = data["school_key"]
+    programs, _skipped = _importable(data, schools.get(key))
+    report = {"school": key, "materials_written": 0, "materials_unchanged": 0, "not_extracted": 0, "not_in_catalogue": 0}
+    for program in programs:
+        if not materials.extracted(program):
+            report["not_extracted"] += 1
+            continue
+        row = session.get(Program, program_id_for(key, program))
+        if row is None:
+            report["not_in_catalogue"] += 1
+            continue
+        report["materials_written" if _sync_materials(session, row, program) else "materials_unchanged"] += 1
+    session.commit()
+    return report
+
+
 def _same(stored, new) -> bool:
     """Whether a column already holds `new`. A mark read from JSON (80.3) is compared as the decimal the
     column stores (80.30), so an unchanged re-import does not count as a change."""
@@ -278,6 +361,9 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
         if not has_verified_value(fields):
             # Nothing usable was collected (a blocked site, an empty page): the row keeps whatever
             # another source says about it, rather than being blanked by an empty collection.
+            existing = session.get(Program, pid)
+            if existing is not None:
+                _sync_materials(session, existing, program)  # materials are read in their own pass
             continue
         meta = _snapshot_meta(key, program["snapshot_sha256"], root)
 
@@ -366,6 +452,8 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
                 session.add(ProgramPrerequisite(id=prerequisite_id, program_id=pid, label=label,
                                                 category="collected", sort_order=index))
         changed = _sync_deadlines(session, pid, deadline_rows(pid, program["url"], fields)) or changed
+        # Not part of `changed`: a material is not among the values a person's confirmation covered.
+        _sync_materials(session, row, program)
         if changed and source.verified_at is not None:
             # A person confirmed what this page served; a value read again from the same snapshot (a
             # better extraction) is not covered by that confirmation either.
@@ -406,6 +494,7 @@ def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict
     if removable:
         session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id.in_(removable)))
         session.execute(delete(ProgramDeadline).where(ProgramDeadline.program_id.in_(removable)))
+        session.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id.in_(removable)))
         session.execute(delete(Program).where(Program.id.in_(removable)))
     session.commit()
     return {"school": key, "pruned": len(removable), "kept_in_portfolios": sorted(held)}
@@ -415,14 +504,21 @@ def main(argv: list[str]) -> int:
     from app.db import SessionLocal
 
     prune = "--prune" in argv
-    paths = [Path(a) for a in argv if a != "--prune"] or requirement_files()
+    materials_only = "--materials-only" in argv
+    if prune and materials_only:
+        print(json.dumps({"error": "--prune and --materials-only do not go together"}))
+        return 2
+    paths = [Path(a) for a in argv if a not in ("--prune", "--materials-only")] or requirement_files()
     schools = load_schools()
     failed = 0
     with SessionLocal() as session:
         for path in paths:
             try:
                 data = json.loads(path.read_text(encoding="utf-8"))
-                result = import_school(session, data, schools)
+                if materials_only:
+                    result = import_materials(session, data, schools)
+                else:
+                    result = import_school(session, data, schools)
                 if prune:
                     result.update(prune_school(session, data, schools))
             except Exception as error:  # noqa: BLE001 - one bad file must not stop the others

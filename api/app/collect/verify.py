@@ -8,6 +8,10 @@ inside that quote. A program is `机器核对` when it reports at least one fiel
 field passes; otherwise it is `待人工` and goes to the human queue. With `--write` the result is
 stored back into the file; without it the file is only checked.
 
+A program's `materials` block (`app.collect.materials`) is checked the same way, entry by entry: the
+quote verbatim in its snapshot, a stated count inside the quote. A failing entry keeps its values and
+gets its reason in `check`; it does not change the program's `status`, which is about `fields`.
+
 A third check, whether the field's summary (`text`, `label`, `recommended`, which number is which)
 says only what its quote says, needs a model and is run by `app.collect.faithful`. Its verdict is kept
 on the item as `summary_check` ("ok" or the reason) with `summary_sha`, a digest of the values it
@@ -24,6 +28,7 @@ import sys
 from datetime import date
 from pathlib import Path
 
+from app.collect import materials
 from app.collect.snapshot import SNAPSHOT_ROOT
 from app.collect.text import normalize
 
@@ -198,6 +203,19 @@ def validate(data: dict) -> None:
                 for key in NUMERIC_KEYS.get(name, ()):
                     if item.get(key) is not None and not isinstance(item[key], (int, float)):
                         raise SchemaError(f"{where}.{name}.{key} must be a number")
+        if "materials" in program:
+            block = program["materials"]
+            if not isinstance(block, dict) or not isinstance(block.get("items"), list):
+                raise SchemaError(f"{where}.materials must be an object with an items list")
+            if block.get("snapshot_sha256") is not None and not SHA.match(str(block["snapshot_sha256"])):
+                raise SchemaError(f"{where}.materials.snapshot_sha256 is not a sha256")
+            rejected = block.get("rejected", 0)
+            if isinstance(rejected, bool) or not isinstance(rejected, int) or rejected < 0:
+                raise SchemaError(f"{where}.materials.rejected must be a count")
+            for item in block["items"]:
+                # The shape only: whether the entry is true to its page is `check`, not a schema error.
+                if not isinstance(item, dict):
+                    raise SchemaError(f"{where}.materials.items holds something that is not an object")
 
 
 def check_item(name: str, item: dict, text: str, month_first: bool = False, either_order: bool = False) -> list[str]:
@@ -271,6 +289,16 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
                         item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
                 problems = ["snapshot missing"] if text is None else check_item(name, item, text, month_first, either_order)
                 item["check"] = "ok" if not problems else "; ".join(problems)
+        block = materials.block_of(program)
+        if block is not None:
+            for item in block["items"]:
+                sha = item.get("source_sha256") or block.get("snapshot_sha256") or program["snapshot_sha256"]
+                if item.get("source_sha256"):
+                    meta = root / school / f"{item['source_sha256']}.json"
+                    if meta.exists():
+                        item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
+                problems = materials.check_material(item, snapshot_text(sha) if SHA.match(str(sha)) else None)
+                item["check"] = "ok" if not problems else "; ".join(problems)
         program["status"] = program_status(program)
         summary["programs"] += 1
         summary[program["status"]] += 1
@@ -279,8 +307,18 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
 
 
 def drop_failing(data: dict) -> dict:
-    """Remove the values that failed their check, keeping the ones that passed."""
+    """Remove the values that failed their check, keeping the ones that passed.
+
+    A dropped material entry is counted in its block's `rejected`, so a page whose every entry failed is
+    not later read as a page that asks for nothing."""
     for program in data["programs"]:
+        block = materials.block_of(program)
+        if block is not None:
+            kept_items = [item for item in block["items"] if materials.passed(item)]
+            dropped = len(block["items"]) - len(kept_items)
+            if dropped:
+                block["rejected"] = int(block.get("rejected") or 0) + dropped
+                block["items"] = kept_items
         kept = {}
         for name, field in program["fields"].items():
             if name in LIST_FIELDS:
@@ -316,7 +354,16 @@ def main(argv: list[str] | None = None) -> int:
                                             for i in (f if n in LIST_FIELDS else [f]) if not usable(i)]}
         for p in result["programs"] if p["status"] != MACHINE_CHECKED
     ]
-    print(json.dumps({"summary": result["verification"], "failing": failing[:20]}, ensure_ascii=False, indent=1))
+    report = {"summary": result["verification"], "failing": failing[:20]}
+    entries = [(p["name"], item) for p in result["programs"] for item in (materials.block_of(p) or {}).get("items", [])]
+    if entries:
+        report["materials"] = {
+            "entries": len(entries),
+            "ok": sum(1 for _, item in entries if materials.passed(item)),
+            "failing": [{"program": name, "type": item.get("type"), "problem": item["check"]}
+                        for name, item in entries if not materials.passed(item)][:20],
+        }
+    print(json.dumps(report, ensure_ascii=False, indent=1))
     return 0
 
 

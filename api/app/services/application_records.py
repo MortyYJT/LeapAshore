@@ -6,6 +6,14 @@ HTTP routes (`app.routers.application_records`) and the advisor's confirmed chan
 (`app.agent.application_tools`), and both come through here, so a rule is stated once: what a payload
 may carry, which version an edit must be based on, when a date stops counting as checked.
 
+A record's materials (`docs/product/PRD-multi-device.md`, 3.7) are two lists. `materials` is what the
+catalogue collected from the program's official page, each entry with the applicant's own tick;
+`customMaterials` is the applicant's own checklist, which every record has and which is all a record
+has when it was added by hand or its program's page has not been read yet (`materialsExtracted` false).
+A tick is the applicant saying "I have this ready"; nothing here reviews a document. It is stored with
+a digest of the requirement it was given for, so when the page's requirement changes the tick stops
+counting and the entry reads `changed`.
+
 A refusal is an exception the caller words for its own reader: `RecordNotFound`, `InvalidRecord`
 (the message is the reason) and `StaleVersion` with the record as it is stored.
 """
@@ -19,9 +27,11 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.collect import materials as material_rules
 from app.deps import load_or_create_profile
 from app.models.application import Application, ApplicationStatus
 from app.models.application_plan import ApplicationPlan
+from app.models.program import Program, ProgramMaterial
 from app.routers.applications import read_applications
 from app.schemas.common import _camel
 from app.services.accounts import lock_client
@@ -44,6 +54,30 @@ class InvalidRecord(ValueError):
     """An edit the record cannot take, with the reason in the message."""
 
 
+# How many lines of their own an applicant's checklist holds, and how many ticks one edit carries.
+CUSTOM_LIMIT = 40
+TICK_LIMIT = 60
+# The applicant's earlier whole-application tick, carried over by the migration as a line of their own.
+LEGACY_ITEM_ID = "legacy-all"
+
+
+class CustomMaterial(BaseModel):
+    """One line of the applicant's own checklist. The id is made by whoever adds the line; the `c-`
+    prefix keeps it apart from the catalogue's material keys, so one name never means two things."""
+
+    model_config = ConfigDict(extra="forbid")
+    id: str = Field(pattern=r"^(c-[A-Za-z0-9_-]{1,36}|legacy-all)$")
+    label: str = Field(min_length=1, max_length=200)
+    done: bool = False
+
+    @field_validator("label")
+    @classmethod
+    def named(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("材料名称不能为空")
+        return value.strip()
+
+
 class RecordFields(BaseModel):
     model_config = ConfigDict(
         alias_generator=_camel, populate_by_name=True, extra="forbid"
@@ -55,8 +89,18 @@ class RecordFields(BaseModel):
     deadline: date | None = None
     source_url: str | None = Field(None, max_length=2000)
     confirm_deadline: bool = False
-    materials_ready: bool = False
+    # Ticks to set (true) or clear (false) on the catalogue's materials, by key; keys left out keep
+    # their state. The checklist of the applicant's own lines is replaced as a whole when sent.
+    material_ticks: dict[str, bool] = Field(default_factory=dict, max_length=TICK_LIMIT)
+    custom_materials: list[CustomMaterial] | None = Field(None, max_length=CUSTOM_LIMIT)
     material_notes: str = Field("", max_length=10000)
+
+    @field_validator("custom_materials")
+    @classmethod
+    def distinct_lines(cls, value):
+        if value is not None and len({item.id for item in value}) != len(value):
+            raise ValueError("清单里有重复的条目")
+        return value
 
     @model_validator(mode="after")
     def non_null_status(self):
@@ -111,7 +155,58 @@ def _is_the_catalogue_s(program, deadline, source) -> bool:
     return any(d.date == deadline and d.source_url == source for d in program.deadlines)
 
 
-def view(plan, selection=None):
+def catalogue_materials(session: Session, program_ids) -> dict[str, tuple[bool, list[ProgramMaterial]]]:
+    """For each program: whether its page has been read for materials, and the entries collected."""
+    ids = [pid for pid in dict.fromkeys(program_ids) if pid]
+    if not ids:
+        return {}
+    read = set(session.scalars(
+        select(Program.id).where(Program.id.in_(ids), Program.materials_snapshot_sha256.is_not(None))
+    ))
+    rows: dict[str, list[ProgramMaterial]] = {}
+    query = (select(ProgramMaterial).where(ProgramMaterial.program_id.in_(read))
+             .order_by(ProgramMaterial.program_id, ProgramMaterial.sort_order)) if read else None
+    for row in session.scalars(query) if query is not None else []:
+        rows.setdefault(row.program_id, []).append(row)
+    return {pid: (pid in read, rows.get(pid, [])) for pid in ids}
+
+
+def _digest(row: ProgramMaterial) -> str:
+    return material_rules.digest(row.type, row.count, row.note, row.quote)
+
+
+def materials_view(plan, catalogue=None) -> dict:
+    """The record's two material lists and the counts drawn from them."""
+    extracted, rows = catalogue or (False, [])
+    ticks = (plan.material_ticks if plan else None) or {}
+    items = []
+    for row in rows:
+        held = ticks.get(row.key)
+        items.append(dict(
+            key=row.key, type=row.type, count=row.count, note=row.note, quote=row.quote, sourceUrl=row.source_url,
+            ready=held == _digest(row),
+            # Ticked for an earlier wording of this requirement: not ready, and worth a second look.
+            changed=held is not None and held != _digest(row),
+        ))
+    custom = [
+        dict(id=str(item.get("id")), label=str(item.get("label") or ""), done=bool(item.get("done")))
+        for item in ((plan.custom_materials if plan else None) or [])
+        if isinstance(item, dict)
+    ]
+    done = sum(item["ready"] for item in items) + sum(item["done"] for item in custom)
+    total = len(items) + len(custom)
+    return dict(
+        materials=items,
+        materialsExtracted=extracted,
+        customMaterials=custom,
+        materialsDone=done,
+        materialsTotal=total,
+        # Every listed line ticked. A record with no line at all has nothing ticked, so it is not ready.
+        materialsReady=total > 0 and done == total,
+    )
+
+
+def view(plan, selection=None, catalogue=None):
     catalog = selection is not None
     deadline, source = (None, None)
     origin = None
@@ -156,7 +251,7 @@ def view(plan, selection=None):
         sourceUrl=source,
         deadlineOrigin=origin,
         checkedAt=plan.checked_at if plan else None,
-        materialsReady=plan.materials_ready if plan else False,
+        **materials_view(plan, catalogue),
         materialNotes=plan.material_notes if plan else "",
         # A catalogue record is read from the portfolio row and, once edited, its overlay; a change to
         # either moves the version. A manual record is its plan alone.
@@ -175,13 +270,37 @@ def read_records(client_id: str, session: Session) -> list[dict]:
         )
     )
     overlays = {p.catalog_program_id: p for p in plans if p.catalog_program_id}
+    chosen = selections(session, client_id)
+    collected = catalogue_materials(session, chosen)
     return [
-        view(overlays.get(key), row)
-        for key, row in selections(session, client_id).items()
+        view(overlays.get(key), row, collected.get(key))
+        for key, row in chosen.items()
     ] + [view(p) for p in plans if not p.catalog_program_id]
 
 
-def apply_patch(plan, payload):
+def _apply_materials(plan, payload, catalogue) -> None:
+    fields = payload.model_fields_set
+    if "material_ticks" in fields and payload.material_ticks:
+        if catalogue is None:
+            raise InvalidRecord("手动添加的申请没有学校库的材料清单，请在自己的清单里勾选")
+        _extracted, rows = catalogue
+        by_key = {row.key: row for row in rows}
+        # Ticks on entries the catalogue no longer lists are dropped with the first edit after.
+        ticks = {key: held for key, held in (plan.material_ticks or {}).items() if key in by_key}
+        for key, wanted in payload.material_ticks.items():
+            row = by_key.get(key)
+            if row is None:
+                raise InvalidRecord(f"学校库里这个项目没有「{key[:48]}」这项材料，没有可以勾的")
+            if wanted:
+                ticks[key] = _digest(row)
+            else:
+                ticks.pop(key, None)
+        plan.material_ticks = ticks
+    if "custom_materials" in fields and payload.custom_materials is not None:
+        plan.custom_materials = [item.model_dump() for item in payload.custom_materials]
+
+
+def apply_patch(plan, payload, catalogue=None):
     fields = payload.model_fields_set
     changed = any(
         getattr(plan, key) != getattr(payload, key)
@@ -196,11 +315,11 @@ def apply_patch(plan, payload):
         "round",
         "deadline",
         "source_url",
-        "materials_ready",
         "material_notes",
     ):
         if key in fields:
             setattr(plan, key, getattr(payload, key))
+    _apply_materials(plan, payload, catalogue)
     if "status" in fields:
         if payload.status is None:
             raise InvalidRecord("申请状态不能为空")
@@ -268,6 +387,8 @@ def create_record(
         deadline_override=False,
         materials_ready=False,
         material_notes="",
+        material_ticks={},
+        custom_materials=[],
         create_key=create_key,
     )
     apply_patch(plan, payload)
@@ -281,7 +402,8 @@ def current_view(plan, selection, client_id, session):
     """The record as the read serves it, for a row pair `resolve` returned."""
     if selection is None:
         return view(plan)
-    return view(plan, selections(session, client_id).get(selection.program_id))
+    collected = catalogue_materials(session, [selection.program_id])
+    return view(plan, selections(session, client_id).get(selection.program_id), collected.get(selection.program_id))
 
 
 def resolve(key, client_id, session):
@@ -348,9 +470,12 @@ def update_record(session: Session, client_id: str, key: str, payload: RecordPat
             source_url=initial["sourceUrl"],
             materials_ready=False,
             material_notes="",
+            material_ticks={},
+            custom_materials=[],
         )
         session.add(plan)
-    apply_patch(plan, payload)
+    collected = catalogue_materials(session, [selection.program_id]) if selection else {}
+    apply_patch(plan, payload, collected.get(selection.program_id) if selection else None)
     if selection:
         if "status" in payload.model_fields_set:
             selection.status = plan.status
