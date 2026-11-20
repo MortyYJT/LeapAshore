@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { APPEARANCE_KEY, applyThemeColor } from "@/lib/pwa";
 
 import { Icon } from "./Icon";
+import { useInstall } from "./Install";
 import { ReminderSettingsPanel } from "./ReminderSettings";
 
 const COLORS = [{ id: "graphite", name: "默认" }] as const;
@@ -16,8 +18,6 @@ const TABS = [
 ] as const;
 /** Another part of the page asks for the settings dialog on one tab: `detail` is the tab's id. */
 export const SETTINGS_EVENT = "leapashore-settings";
-/** The mode last applied, under a key that does not depend on the account: app/layout.tsx reads it before first paint. */
-export const APPEARANCE_KEY = "leapashore:appearance";
 type Preferences = {
   name: string;
   avatar: string;
@@ -33,6 +33,7 @@ const DEFAULTS: Preferences = {
 
 export function UserCenter() {
   const { state, ready, signOut, gated, openLogin } = useAuth();
+  const { mode: installMode, install } = useInstall();
   const [prefs, setPrefs] = useState(DEFAULTS);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -103,13 +104,18 @@ export function UserCenter() {
     }
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const apply = () => {
-      document.documentElement.dataset.appearance =
+      const appearance =
         prefs.mode === "system"
           ? media.matches
             ? "dark"
             : "light"
-          : prefs.mode;
+          : prefs.mode === "dark"
+            ? "dark"
+            : "light";
+      document.documentElement.dataset.appearance = appearance;
       document.documentElement.dataset.accent = prefs.color;
+      // The browser's own bars (and an installed window's title bar) follow the switch too.
+      applyThemeColor(appearance);
     };
     apply();
     media.addEventListener("change", apply);
@@ -161,6 +167,9 @@ export function UserCenter() {
     window.addEventListener(SETTINGS_EVENT, show);
     return () => window.removeEventListener(SETTINGS_EVENT, show);
   }, []);
+  async function installApp() {
+    if ((await install()) === "accepted") setMessage("已安装，可以从桌面或主屏幕打开。");
+  }
   async function upload(e: ChangeEvent<HTMLInputElement>) {
     const selected = e.target.files?.[0];
     e.target.value = "";
@@ -255,6 +264,18 @@ export function UserCenter() {
         </div>
         <div className="uc-menu-group">
           <button onClick={() => settings()}>设置</button>
+          {installMode !== "none" && (
+            <button
+              onClick={() => {
+                // Where the browser has a dialog, open it; on iOS the steps are in the settings.
+                if (installMode === "ios") return settings("appearance");
+                setOpen(false);
+                void installApp();
+              }}
+            >
+              安装应用
+            </button>
+          )}
         </div>
         {gated && (
           <div className="uc-menu-group">
@@ -453,6 +474,29 @@ export function UserCenter() {
               >
                 恢复默认外观
               </button>
+              {installMode !== "none" && (
+                <div className="uc-row uc-row-install">
+                  <div>
+                    <h3>{installMode === "ios" ? "添加到主屏幕" : "安装到这台设备"}</h3>
+                    {installMode === "ios" ? (
+                      <p className="uc-hint">
+                        在 Safari 里打开这个页面，点
+                        <Icon name="share" className="uc-inline-icon" />
+                        「分享」，再选「添加到主屏幕」。之后从主屏幕打开，没有地址栏。需要联网，不存离线副本。
+                      </p>
+                    ) : (
+                      <p className="uc-hint">
+                        之后从桌面或主屏幕打开，单独一个窗口，没有地址栏。需要联网，不存离线副本。
+                      </p>
+                    )}
+                  </div>
+                  {installMode === "prompt" && (
+                    <button className="btn btn-secondary" onClick={() => void installApp()}>
+                      安装
+                    </button>
+                  )}
+                </div>
+              )}
             </section>
             <section
               id="uc-panel-reminders"

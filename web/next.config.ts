@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       { source: "/assess/result", destination: "/tiers", permanent: false },
     ];
   },
+  // The service worker must never be served from a cache: a release has to replace it on the next
+  // visit (public/sw.js). `Service-Worker-Allowed` is not needed, since it sits at the root.
+  async headers() {
+    return [{ source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] }];
+  },
   // Next gzips what it proxies and holds a streamed body back until it has a full block, so the
   // advisor's events reached the browser all at once in development. Compression is the proxy's job
   // in production anyway (deploy/Caddyfile: `encode gzip`), where /api never passes through Next.
