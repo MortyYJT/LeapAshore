@@ -10,6 +10,7 @@ import { ThemeScript } from "@/components/shell/ThemeScript";
 import "./globals.css";
 import "./shell.css";
 import "./overview.css";
+import "./materials.css";
 import "./advisor.css";
 import "./motion.css";
 

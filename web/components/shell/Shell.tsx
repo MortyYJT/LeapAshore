@@ -15,11 +15,15 @@ import { Icon, type IconName } from "./Icon";
 import { Mark } from "./Mark";
 import { UserCenter } from "./UserCenter";
 
-/** `short` is the label under the icon in the phone's tab bar. */
-const links: { label: string; short: string; href: string; icon: IconName }[] = [
+/**
+ * `short` is the label under the icon in the phone's tab bar. A `railOnly` entry is in the rail and
+ * not among the phone's five tabs; on a phone it is reached from the overview, 我的申请 and the menu.
+ */
+const links: { label: string; short: string; href: string; icon: IconName; railOnly?: boolean }[] = [
   { label: "总览", short: "总览", href: "/", icon: "overview" },
   { label: "申请路线图", short: "路线图", href: "/roadmap", icon: "roadmap" },
   { label: "我的申请", short: "申请", href: "/applications", icon: "applications" },
+  { label: "材料", short: "材料", href: "/materials", icon: "materials", railOnly: true },
   { label: "学校库", short: "学校库", href: "/schools", icon: "schools" },
   { label: "AI 顾问", short: "顾问", href: "/advisor", icon: "advisor" },
 ];
@@ -27,7 +31,6 @@ const links: { label: string; short: string; href: string; icon: IconName }[] = 
 const searchable: { label: string; href: string; icon: IconName }[] = [
   ...links,
   { label: "申请背景与资料", href: "/me", icon: "profile" },
-  { label: "我的材料", href: "/materials", icon: "materials" },
 ];
 
 /** Three panes need this much room; below it an open dock folds the rail to its icons. */
@@ -140,7 +143,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </div>
         <div className="rail-scroll">
           <nav className="rail-nav" aria-label="主导航">
-            {links.map(({ label, short, href, icon }) => {
+            {links.map(({ label, short, href, icon, railOnly }) => {
               const current =
                 href === "/"
                   ? pathname === "/"
@@ -174,7 +177,7 @@ export function Shell({ children }: { children: ReactNode }) {
                 )}
                 <Link
                   href={href}
-                  className={asDock ? "nav-tab-only" : undefined}
+                  className={asDock ? "nav-tab-only" : railOnly ? "nav-rail-only" : undefined}
                   title={label}
                   aria-label={label}
                   aria-current={current ? "page" : undefined}
@@ -316,7 +319,8 @@ function RailLegend() {
                 aria-pressed={picked}
                 onClick={() => {
                   records.select(picked ? null : row.record.id);
-                  if (!picked && pathname !== "/") router.push("/");
+                  // The overview and the materials map both draw the lines; from anywhere else a pick goes to the overview.
+                  if (!picked && pathname !== "/" && pathname !== "/materials") router.push("/");
                 }}
               >
                 <span className="bullet">{row.code}</span>

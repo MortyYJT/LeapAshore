@@ -262,7 +262,7 @@ export function UserCenter() {
             申请背景
           </Link>
           <Link href="/materials" onClick={() => setOpen(false)}>
-            我的材料
+            材料
           </Link>
         </div>
         <div className="uc-menu-group">

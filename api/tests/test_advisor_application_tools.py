@@ -234,7 +234,7 @@ def kinds(applicant: dict) -> dict:
             "args": [{"label": "申请", "value": record(applicant["id"], applicant["catalog"])["school"] + " "
                       + record(applicant["id"], applicant["catalog"])["name"]},
                      {"label": "材料", "value": "推荐信 2 封：勾上"}, {"label": "备注", "value": "成绩单已寄出"}],
-            "changes": [{"label": "材料 · 推荐信 2 封", "before": "还没备好", "after": "已备好（自查）"},
+            "changes": [{"label": "材料", "before": "推荐信 2 封：还没备好", "after": "推荐信 2 封：已备好（自查）"},
                         {"label": "材料备注", "before": None, "after": "加一行：成绩单已寄出"}],
             "key": applicant["catalog"],
             "written": lambda r: r["materials"][0]["ready"] and not r["materials"][1]["ready"] and r["materialNotes"] == "成绩单已寄出",

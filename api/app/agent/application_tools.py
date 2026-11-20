@@ -478,7 +478,9 @@ def propose_material_tick(
                 words, held = lines[key]
                 if held == wanted:
                     continue
-                changes.append(change(f"材料 · {words}", _ready(held), _ready(wanted)))
+                # The label column of a card is a few characters wide, so the material's name goes with
+                # the values: 推荐信 2 封：还没备好 → 推荐信 2 封：已备好（自查）.
+                changes.append(change("材料", f"{words}：{_ready(held)}", f"{words}：{_ready(wanted)}"))
                 if key in catalogue_keys:
                     ticks[key] = wanted
                     if wanted:

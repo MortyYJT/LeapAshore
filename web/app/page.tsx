@@ -405,7 +405,7 @@ function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (re
                 {busy === record.id ? "正在保存…" : "标记为已提交"}
               </button>
             ) : (
-              <Link className="btn btn-secondary" href={editHref(row)}>
+              <Link className="btn btn-secondary" href={kind === "passed" ? editHref(row) : "/materials"}>
                 {kind === "passed" ? "更新日期" : "更新材料"}
               </Link>
             )}

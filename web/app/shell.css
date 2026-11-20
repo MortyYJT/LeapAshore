@@ -159,6 +159,8 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .rail-nav .icon { width: 20px; height: 20px; }
   .nav-long { display: none; }
   .nav-short { display: inline; }
+  /* The tab bar keeps its five destinations; 材料 is one tap from the overview and 我的申请. */
+  .rail-nav .nav-rail-only { display: none; }
   .sidebar-navigation-pending { top: 8px; right: calc(50% - 16px); }
 
   /* Anything that sticks to the bottom of the page sticks above the tab bar. */

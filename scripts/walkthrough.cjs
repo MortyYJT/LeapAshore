@@ -277,7 +277,8 @@ async function adminPass(browser, email, errors) {
       if (query.limit !== undefined) params.set("limit", String(query.limit));
       return (await context.request.get(`${BASE}/api/programs?${params}`)).json();
     };
-    const expectedDemo = demoRule.demoRecords(await demoRule.loadDemoPrograms(demoToday, readCatalogue), demoToday);
+    const demoPrograms = await demoRule.loadDemoPrograms(demoToday, readCatalogue);
+    const expectedDemo = demoRule.demoRecords(demoPrograms, demoToday);
     await page.locator(".lt-row, .lt-empty").first().waitFor({ timeout: 25000 });
     check("首页（未登录）：学校库给得出演示时画演示，给不出时不画", ((await page.locator(".lt-row").count()) > 0) === (expectedDemo !== null), { expected: expectedDemo && expectedDemo.length });
     if (!expectedDemo) {
@@ -357,7 +358,50 @@ async function adminPass(browser, email, errors) {
     await page.goto(`${BASE}/`);
     await page.locator(".lt-row, .lt-empty").first().waitFor({ timeout: 25000 });
     check("字体：不从其他主机加载", await page.evaluate(() => performance.getEntriesByType("resource").every((entry) => new URL(entry.name).origin === location.origin)));
-    check("导航：保留五个业务入口", await page.locator('nav[aria-label="主导航"] a').count() === 5);
+    check("导航：侧栏有六个入口，材料在其中", await page.locator('nav[aria-label="主导航"] a').count() === 6
+      && await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "材料", exact: true }).isVisible());
+    // ---------- 材料, signed out: the catalogue's collected materials as a demo, or the plain block ----------
+    // The same programs, in the same order, as the page works from (`ApplicationRecords.tsx`).
+    const mapRule = await import(path.join(ROOT, "web/lib/materials-map.ts"));
+    const demoDrawn = new Set((expectedDemo || []).map((record) => record.programId));
+    const expectedMap = mapRule.demoMaterialRecords(demoPrograms.filter((program) => demoDrawn.has(program.slug))) || mapRule.demoMaterialRecords(demoPrograms);
+    const mapWrites = [];
+    const noteMapWrite = (request) => {
+      if (request.method() !== "GET") mapWrites.push(`${request.method()} ${new URL(request.url()).pathname}`);
+    };
+    page.on("request", noteMapWrite);
+    await page.goto(`${BASE}/materials`);
+    await page.locator(".map svg, .map-empty").first().waitFor({ timeout: 25000 });
+    await settle(page);
+    await layout(page, "材料（未登录）");
+    check("材料（未登录）：学校库提取过足够的项目才画演示，否则只给登录入口", ((await page.locator(".map svg").count()) > 0) === (expectedMap !== null), { expected: expectedMap && expectedMap.length });
+    if (!expectedMap) {
+      check("材料（未登录）：没有可画的要求时不画线路图，不标演示，给出登录入口", (await page.locator(".map .stn, .map .hub, .map .ln").count()) === 0
+        && (await page.locator(".page-head .pill-sample").count()) === 0 && await page.locator(".map-empty").getByRole("button", { name: "登录", exact: true }).isVisible());
+    } else {
+      const stops = expectedMap.reduce((sum, record) => sum + record.materials.length, 0);
+      const demoModel = mapRule.materialsModel(expectedMap);
+      const sharedStops = demoModel.shared.reduce((sum, column) => sum + column.requirements.length, 0);
+      // Every station is a collected requirement that is not on the shared trunk; none is drawn that the catalogue did not serve.
+      check("材料（未登录）：演示里的每一站都是学校库给的要求，并标明是演示", (await page.locator(".map .stn").count()) === demoModel.differing.reduce((sum, column) => sum + column.requirements.length, 0)
+        && (await page.locator(".map .hub").count()) === demoModel.shared.length && stops >= sharedStops
+        && (await page.locator(".page-head .pill-sample", { hasText: "演示" }).count()) === 1
+        && (await page.locator(".demo-note").innerText()).includes("项目和材料要求来自学校库"));
+      check("材料（未登录）：演示里没有一项是勾上的", (await page.locator(".map .stn.is-ready, .map .hub.is-ready").count()) === 0 && (await page.locator(".bt input:checked").count()) === 0);
+      const toggle = page.locator(".bt input").first();
+      if (await toggle.count()) {
+        await toggle.click({ force: true });
+        const gate = page.locator("dialog.dialog:not(.workspace-search-dialog)");
+        await gate.waitFor({ timeout: 10000 });
+        check("材料（未登录）：勾选只打开登录", await gate.isVisible());
+        await page.keyboard.press("Escape");
+        await gate.waitFor({ state: "hidden" });
+      }
+    }
+    check("材料（未登录）：没有发出任何写入请求", mapWrites.length === 0, mapWrites);
+    page.off("request", noteMapWrite);
+    await page.goto(`${BASE}/`);
+    await page.locator(".lt-row, .lt-empty").first().waitFor({ timeout: 25000 });
     check("首页：不显示全局声明或隐私政策页脚", await page.locator("footer.site-foot, footer.foot, .source-note").count() === 0);
     check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
     check("布局：没有顶栏", await page.locator(".workspace-header").count() === 0);
@@ -1048,12 +1092,61 @@ async function adminPass(browser, email, errors) {
     check("我的：显示登录邮箱", (await page.getByText(emails[0]).count()) > 0);
     await layout(page, "我的");
     await page.getByRole("button", { name: "我的，打开用户菜单" }).click();
-    await page.getByRole("link", { name: "我的材料", exact: true }).click();
+    await page.locator("#user-menu").getByRole("link", { name: "材料", exact: true }).click();
     await page.waitForURL("**/materials");
-    await page.getByRole("heading", { name: "我的材料", exact: true }).waitFor();
+    await page.getByRole("heading", { level: 1, name: "材料", exact: true }).waitFor();
     await page.getByText("walkthrough-transcript.pdf").first().waitFor({ timeout: 15000 });
-    check("用户菜单：材料独立页面保留上传文件", (await page.getByText("transcript.pdf", { exact: false }).count()) > 0);
+    check("用户菜单：材料页保留上传的文件", (await page.getByText("transcript.pdf", { exact: false }).count()) > 0);
     check("材料页：不重复显示申请背景", await page.getByRole("heading", { name: "申请背景", exact: true }).count() === 0);
+    // ---------- 材料, signed in: the map follows what the records say, and nothing else ----------
+    await page.locator(".map svg").waitFor({ timeout: 15000 });
+    await settle(page);
+    await layout(page, "材料");
+    const myRecords = await page.evaluate(async () => (await fetch("/api/application-records")).json());
+    const preparing = myRecords.filter((r) => ["considering", "applying"].includes(r.status));
+    const readPrograms = preparing.filter((r) => r.programId && r.materialsExtracted);
+    const unreadPrograms = preparing.filter((r) => r.programId && !r.materialsExtracted);
+    check("材料：侧栏的材料是当前页", (await page.locator('nav[aria-label="主导航"] a[aria-current="page"]').innerText()).trim() === "材料");
+    check("材料：没提取的项目各画一条虚线，提取过的各画一条实线", (await page.locator(".map .ln.is-unread").count()) === unreadPrograms.length
+      && (await page.locator(".map .ln:not(.is-unread)").count()) === readPrograms.length, { unread: unreadPrograms.length, read: readPrograms.length });
+    // A station or a capsule is a collected requirement. With none collected, none may be drawn.
+    const collected = readPrograms.reduce((sum, r) => sum + r.materials.length, 0);
+    check("材料：图上的站不多于学校库采集到的要求，没采集就一站也不画", (await page.locator(".map .stn").count()) <= collected
+      && (collected > 0 || (await page.locator(".map .stn, .map .hub").count()) === 0), { collected });
+    check("材料：没提取的项目写明还没提取，图例和标题下的说明也跟着", (await page.locator(".own-row .st", { hasText: "还没提取" }).count()) === unreadPrograms.length
+      && (await page.locator(".keys li", { hasText: "还没提取" }).count()) === (unreadPrograms.length ? 1 : 0)
+      && (await page.locator(".finding").innerText()).includes("还没提取") === (unreadPrograms.length > 0), { unread: unreadPrograms.length });
+    // The own checklist is tried on any application that is being prepared; which one does not matter.
+    const ownTarget = unreadPrograms[0] || preparing.find((r) => r.programId);
+    check("材料：这个账号有一个在准备的学校库申请可走查", Boolean(ownTarget), preparing.length);
+    if (ownTarget) {
+      const ownRow = page.locator(".own-row", { has: page.locator(`a[href="/programs/${encodeURIComponent(ownTarget.programId)}"]`) });
+      const reveal = ownRow.getByRole("button", { name: "加一项自己的材料", exact: true });
+      if (await reveal.count()) await reveal.click();
+      await ownRow.getByLabel("加一项自己的材料").fill("成绩单（走查）");
+      await ownRow.getByRole("button", { name: "添加", exact: true }).click();
+      const line = ownRow.getByRole("checkbox", { name: "成绩单（走查）", exact: true });
+      await line.waitFor({ timeout: 10000 });
+      // A click, not `check()`: the box is saved behind the click, and its state is the server's to confirm.
+      await line.click();
+      await page.waitForFunction(async (id) => {
+        const record = (await (await fetch("/api/application-records")).json()).find((r) => r.id === id);
+        return record.customMaterials.some((item) => item.label === "成绩单（走查）" && item.done);
+      }, ownTarget.id, { timeout: 10000 });
+      check("材料：勾选之后焦点还在那个勾选框上", await line.evaluate((node) => document.activeElement === node));
+      await page.reload();
+      await page.locator(".map svg").waitFor({ timeout: 15000 });
+      check("材料：自己的清单加一项、勾上，刷新后还在", await page.locator(".own-row").getByRole("checkbox", { name: "成绩单（走查）", exact: true }).isChecked());
+    }
+    const manualRecord = preparing.find((r) => !r.programId && r.school === "示例大学（演示账号）");
+    check("材料：手动添加的申请还在准备中，可走查", Boolean(manualRecord), preparing.map((r) => r.school));
+    if (manualRecord) {
+      const manualRow = page.locator(".own-row", { hasText: "示例大学（演示账号）" });
+      check("材料：手动添加的申请列在自己的清单里，勾选和「我的申请」里一致", (await manualRow.locator("input:checked").count()) === manualRecord.customMaterials.filter((line) => line.done).length
+        && (await manualRow.locator('input[type="checkbox"]').count()) === manualRecord.customMaterials.length
+        && (await manualRow.locator(".st", { hasText: "手动添加" }).count()) === 1, manualRecord.customMaterials);
+    }
+    await screenshot(page, "materials");
     await page.goto(`${BASE}/me`);
     await settle(page);
     await screenshot(page, "me");
@@ -1275,7 +1368,7 @@ async function adminPass(browser, email, errors) {
     });
     // Both bars span the page. With classic scrollbars that is the window less the scrollbar's gutter.
     check("390：顶栏在上，五个入口在底部标签栏", bars.top[0] === 0 && bars.top[1] === 48 && bars.top[2] === bars.tabs[1] && bars.top[2] > bars.width - 20 && bars.tabs[0] === bars.height
-      && (await intro.locator('nav[aria-label="主导航"] a').count()) === 5, bars);
+      && (await intro.locator('nav[aria-label="主导航"] a').evaluateAll((links) => links.filter((link) => getComputedStyle(link).display !== "none").length)) === 5, bars);
     const mobileSchools = intro.locator("#workspace-nav").getByRole("link", { name: "学校库" });
     check("390：标签栏的链接可见，当前页是总览", await mobileSchools.isVisible() && (await intro.locator('nav[aria-label="主导航"] a[aria-current="page"]').innerText()).trim() === "总览");
     await intro.getByRole("button", {name:"我的，打开用户菜单"}).click();
@@ -1302,6 +1395,7 @@ async function adminPass(browser, email, errors) {
     for (const [route, name] of [
       ["/", "dashboard-390"],
       ["/applications", "applications-390"],
+      ["/materials", "materials-390"],
       ["/tiers", "tiers-390"],
       ["/portfolio", "portfolio-390"],
       ["/roadmap", "roadmap-390"],
@@ -1316,6 +1410,11 @@ async function adminPass(browser, email, errors) {
       await settle(intro);
       if (route === "/tiers") await intro.locator("#not-collected").waitFor({ timeout: 30000 }).catch(() => {});
       if (route === "/roadmap") await intro.locator("svg.timeline-svg").waitFor({ timeout: 20000 }).catch(() => {});
+      if (route === "/materials") {
+        await intro.locator(".map svg").waitFor({ timeout: 20000 }).catch(() => {});
+        const box = await intro.locator(".map").boundingBox();
+        check("390：材料线路图竖着画，整张图在屏幕宽度内", (await intro.locator(".map.is-vertical").count()) === 1 && box && box.x >= 0 && box.x + box.width <= 390, box);
+      }
       await layout(intro, `${route} 390`);
       await screenshot(intro, name);
     }
