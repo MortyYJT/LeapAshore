@@ -211,6 +211,25 @@ test("nextSentence says when the materials are ready and when the date is today"
   assert.equal(nextSentence(model.next[1]), "还有 56 天，材料已就绪，还没提交。");
 });
 
+test("nextSentence does not call a program ready when only the applicant's own lines are ticked", () => {
+  const own = { materialsReady: true, materialsDone: 2, materialsTotal: 2, deadline: "2027-01-15" };
+  const model = overviewOf(
+    [
+      // Not read for materials, and read with a page that lists no documents: the catalogue holds no requirement.
+      record("unread", { ...own, programId: "p1", materialsExtracted: false }),
+      record("silent", { ...own, programId: "p2", materialsExtracted: true, materials: [] }),
+      // Added by hand: the applicant's list is the only list there is.
+      record("manual", { ...own }),
+    ],
+    TODAY,
+  );
+  assert.deepEqual(model.next.map((action) => [action.row.record.id, nextSentence(action)]), [
+    ["manual", "还有 56 天，材料已就绪，还没提交。"],
+    ["silent", "还有 56 天，自列材料已勾完，还没提交。"],
+    ["unread", "还有 56 天，自列材料已勾完，还没提交。"],
+  ]);
+});
+
 test("overviewOf names the nearest open deadline and the applications without one", () => {
   const model = overviewOf(
     [

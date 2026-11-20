@@ -120,7 +120,7 @@
    "status": "机器核对",
    "materials": {
     "snapshot_sha256": "5eda8f834ed89a03ccf010f3cb7868d0caaa17b3a816e5041fb45ded724286f8",
-    "extractor": "claude-opus-5.5-subagent",
+    "extractor": "claude-opus-5.5-subagent; condition added to the language score note by claude-fable-5.2 after review (README convention 4)",
     "extracted_at": "2026-11-21",
     "rejected": 0,
     "items": [
@@ -160,7 +160,7 @@
      },
      {
       "type": "language_score",
-      "note": "English proficiency exam taken within the last two years",
+      "note": "English proficiency exam taken within the last two years; per the paragraph before, required of applicants on an F or J visa whose native language is not English",
       "quote": "Applicants applying to MCDS are required to submit scores from an English proficiency exam taken within the last two years.",
       "check": "ok"
      },

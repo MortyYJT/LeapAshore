@@ -370,7 +370,7 @@
    "status": "机器核对",
    "materials": {
     "snapshot_sha256": "fc7ae16c3a48dbdbfd27332f7d44484ac2280fa6b2e06d349d24562c090fc764",
-    "extractor": "claude-opus-5.5-subagent",
+    "extractor": "claude-opus-5.5-subagent; one entry (2+2 and 3+1 applicants) added by claude-fable-5.2 after review: both readers had left out the second sentence of the transcripts item",
     "extracted_at": "2026-11-21",
     "rejected": 0,
     "items": [
@@ -378,6 +378,12 @@
       "type": "transcript",
       "note": "official bachelor transcripts; translations and originals if not in English",
       "quote": "Official Bachelor degree transcripts, including official translations and original language copies if study not undertaken in English.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "2+2 and 3+1 applicants: transcripts and certificates from both institutions",
+      "quote": "2+2 and 3+1 applicants must provide official transcripts and certificates from both institutions",
       "check": "ok"
      },
      {

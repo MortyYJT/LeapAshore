@@ -108,8 +108,8 @@ export function MaterialsBoard({
             {model.silent.map((line, index) => (
               <span key={line.record.id}>
                 {index > 0 && "、"}
-                {line.record.programUrl ? (
-                  <a className="link" href={line.record.programUrl} target="_blank" rel="noreferrer">
+                {line.record.materialsPageUrl ? (
+                  <a className="link" href={line.record.materialsPageUrl} target="_blank" rel="noreferrer">
                     {line.record.school}
                   </a>
                 ) : (
@@ -390,8 +390,8 @@ function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; bu
     // Read with nothing listed is said as that: "0 项" would read as "nothing is asked".
     <span className="st is-idea">{record.materialsExtracted ? "页面没列材料" : "还没提取"}</span>
   );
-  // Nothing collected to cite: the program's own page is where the applicant checks.
-  const page = record.materials.length === 0 ? record.programUrl : null;
+  // Read with nothing to cite: the page that was read is where the applicant checks.
+  const page = record.materials.length === 0 ? record.materialsPageUrl : null;
   return (
     <li className={`own-row line-${line.line}${dim}`}>
       <div className="own-id">
@@ -421,7 +421,7 @@ function OwnList({ line, dim, busy, onCustom }: { line: MapLine; dim: string; bu
             materials={[]}
             extracted={record.materialsExtracted}
             catalog={Boolean(record.programId)}
-            pageUrl={record.programUrl}
+            pageUrl={record.materialsPageUrl}
             ticked={{}}
             onTick={() => undefined}
             custom={lines}

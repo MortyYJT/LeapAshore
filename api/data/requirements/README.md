@@ -332,8 +332,9 @@ One entry per requirement: two different essays are two `personal_statement` ent
 ### Conventions
 
 The first extraction and its labels (11 programs, 2026-11-21) were made by two agents that did not see
-each other's work. They made the calls below the same way, except the last two, which are decided
-here. Follow them, so that a later run and a later label agree.
+each other's work. Calls 1 to 10 are ones both made, with the one departure noted under 8; 11 to 13
+were settled afterwards, where the two differed or the brief was silent. Follow them, so that a later
+run and a later label agree.
 
 1. **What counts as asking.** Only a sentence that asks the applicant to provide, submit, present,
    upload or include a document. A score threshold ("IELTS 6.5 overall"), "must demonstrate
@@ -344,14 +345,17 @@ here. Follow them, so that a later run and a later label agree.
    points elsewhere is `"materials": []`.
 3. **Optional** materials are recorded, with "optional" in the note.
 4. **Required of some applicants only**: recorded, with the condition in the note ("if first
-   language is not English").
+   language is not English"), also when the page states the condition in another sentence than the
+   one quoted.
 5. **"May request"** ("we may request an additional reference") is not recorded and not counted.
 6. **One statement answering several set questions** is one `personal_statement` entry; the
    questions go in the note.
 7. **A sentence that says what a document must contain** ("the CV should highlight…") asks for the
    document.
-8. **A sentence that asks for two kinds of material** ("submit GRE/GMAT and TOEFL/IELTS scores") is
-   two entries with the same quote.
+8. **A sentence that asks for two kinds of material** ("may wish to include a CV or evidence of
+   professional registration") is two entries with the same quote. When another sentence asks for
+   one of the two more exactly (a footnote saying who must send the language scores), that entry
+   quotes that sentence instead; the first extraction did, its label did not.
 9. **`count` is a number of documents**, never years, pages, words, minutes or questions.
 10. **Placeholders** ("any additional documents required for this programme") are not recorded.
 11. **In a bulleted list** the quote is the item's own line. When that line is under 10 characters

@@ -167,8 +167,13 @@ def test_the_first_recorded_score_replays_and_is_the_score_of_the_committed_file
     assert again["pairs"] == {"gold": 32, "predicted": 32, "both": 32}
     assert again["count_agreement"] == {"pairs": 4, "agree": 4, "rate": 1.0}
     assert again["empty_pages"] == {"labelled_empty": 4, "extracted_empty_too": 4}
-    # Entries, which the pair unit hides: 40 on each side, in the same types program by program.
-    assert sum(len(row["gold"]) for row in recorded["rows"]) == sum(len(row["predicted"]) for row in recorded["rows"]) == 40
+    # Entries, which the pair unit hides: 40 labels against 41 entries. The one without a label is a
+    # sentence both readers left out and a later review added to the extraction; the labels were not
+    # changed, so the set is known to lack it.
+    assert sum(len(row["gold"]) for row in recorded["rows"]) == 40
+    assert sum(len(row["predicted"]) for row in recorded["rows"]) == 41
+    extra = [row["program_id"] for row in recorded["rows"] if len(row["gold"]) != len(row["predicted"])]
+    assert extra == ["university-of-manchester-artificial-intelligence-msc-404945"]
 
 
 def test_only_the_scores_this_file_replays_are_recorded():

@@ -126,12 +126,14 @@ test("a page that was read and lists nothing is kept apart too: it is not a prog
 });
 
 test("a program whose page lists nothing is drawn as a dotted run, like one that was not read", () => {
-  const model = materialsModel([record("a", [material("cv")]), record("b", [material("cv")]), record("c", []), record("f", null)]);
+  // A CV at both listed programs (shared) and letters at one of them (a column with one station).
+  const model = materialsModel([record("a", [material("cv"), two()]), record("b", [material("cv")]), record("c", []), record("f", null)]);
   for (const width of [1000, 358]) {
     const map = layoutMap(model, width);
     assert.equal(map.paths.length, 2);
     assert.deepEqual(map.dotted.map(({ line }) => line.record.programId), ["f", "c"]);
-    assert.ok(map.stations.every((station) => station.requirement.line.record.programId !== "c"));
+    assert.deepEqual(map.stations.map((station) => station.requirement.line.record.programId), ["a"], "no stop on a dotted run");
+    assert.equal(map.hubs.length, 1);
     assert.equal(map.labels.filter((label) => label.kind === "end").length, 4, "every program keeps its line end");
   }
 });

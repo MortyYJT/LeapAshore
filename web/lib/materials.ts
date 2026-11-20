@@ -103,6 +103,14 @@ export function listsNone(record: { programId: string | null; materialsExtracted
 }
 
 /**
+ * Whether the catalogue holds no requirement for this catalogue program (its page was not read, or
+ * lists no documents), so that any count shown for it is of the applicant's own lines only.
+ */
+export function ownLinesOnly(record: { programId: string | null; materialsExtracted: boolean; materials?: readonly unknown[] }): boolean {
+  return Boolean(record.programId) && (!record.materialsExtracted || listsNone(record));
+}
+
+/**
  * The words for a record's materials in one short phrase: how many lines are ticked, or why there is
  * no count. `programId` tells a catalogue program whose page has not been read from a manual record.
  */
@@ -138,7 +146,7 @@ export function overviewMaterials(record: {
   const progress = progressLabel(record);
   if (record.materialsReady) {
     // A record with nothing listed (the signed-out demo's examples) has no count to qualify.
-    return progress && record.programId && (!record.materialsExtracted || listsNone(record)) ? "自列材料已勾完" : "材料已就绪";
+    return progress && ownLinesOnly(record) ? "自列材料已勾完" : "材料已就绪";
   }
   return progress ? `材料 ${progress}` : "材料准备中";
 }

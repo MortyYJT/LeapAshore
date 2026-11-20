@@ -1104,11 +1104,16 @@ async function adminPass(browser, email, errors) {
     await layout(page, "材料");
     const myRecords = await page.evaluate(async () => (await fetch("/api/application-records")).json());
     const preparing = myRecords.filter((r) => ["considering", "applying"].includes(r.status));
-    const readPrograms = preparing.filter((r) => r.programId && r.materialsExtracted);
+    // A program whose page was read and lists no documents is drawn like one that was not read.
+    const readPrograms = preparing.filter((r) => r.programId && r.materialsExtracted && r.materials.length > 0);
+    const silentPrograms = preparing.filter((r) => r.programId && r.materialsExtracted && r.materials.length === 0);
     const unreadPrograms = preparing.filter((r) => r.programId && !r.materialsExtracted);
     check("材料：侧栏的材料是当前页", (await page.locator('nav[aria-label="主导航"] a[aria-current="page"]').innerText()).trim() === "材料");
-    check("材料：没提取的项目各画一条虚线，提取过的各画一条实线", (await page.locator(".map .ln.is-unread").count()) === unreadPrograms.length
-      && (await page.locator(".map .ln:not(.is-unread)").count()) === readPrograms.length, { unread: unreadPrograms.length, read: readPrograms.length });
+    check("材料：没提取和页面没列材料的项目各画一条虚线，列了材料的各画一条实线", (await page.locator(".map .ln.is-unread").count()) === unreadPrograms.length + silentPrograms.length
+      && (await page.locator(".map .ln:not(.is-unread)").count()) === readPrograms.length, { unread: unreadPrograms.length, silent: silentPrograms.length, read: readPrograms.length });
+    check("材料：页面没列材料的项目写明页面没列材料，不写成 0 项", (await page.locator(".own-row .st", { hasText: "页面没列材料" }).count()) === silentPrograms.length
+      && (await page.locator(".own-row .st", { hasText: "官网要求 0 项" }).count()) === 0
+      && (await page.locator(".keys li", { hasText: "页面没列材料" }).count()) === (silentPrograms.length ? 1 : 0), { silent: silentPrograms.length });
     // A station or a capsule is a collected requirement. With none collected, none may be drawn.
     const collected = readPrograms.reduce((sum, r) => sum + r.materials.length, 0);
     check("材料：图上的站不多于学校库采集到的要求，没采集就一站也不画", (await page.locator(".map .stn").count()) <= collected

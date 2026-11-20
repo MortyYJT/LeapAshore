@@ -17,8 +17,8 @@ export interface ApplicationRecord {
   materials: RecordMaterial[];
   /** False for a manual record, and for a program whose page has not been read for materials yet. */
   materialsExtracted: boolean;
-  /** The program's official page as the catalogue holds it; null or absent for a manual record. */
-  programUrl?: string | null;
+  /** The page the materials were read from, when the catalogue holds that snapshot; null or absent otherwise. */
+  materialsPageUrl?: string | null;
   /** The applicant's own checklist lines. */
   customMaterials: CustomMaterial[];
   materialsDone: number;

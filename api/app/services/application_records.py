@@ -35,7 +35,7 @@ from app.deps import load_or_create_profile
 from app.models.application import Application, ApplicationStatus
 from app.models.application_plan import ApplicationPlan
 from app.models.program import Program, ProgramMaterial
-from app.models.source import Source
+from app.models.source import Source, SourceVersion
 from app.routers.applications import read_applications
 from app.schemas.common import _camel
 from app.services.accounts import lock_client
@@ -163,17 +163,24 @@ def _is_the_catalogue_s(program, deadline, source) -> bool:
 
 def catalogue_materials(session: Session, program_ids) -> dict[str, tuple[bool, list[ProgramMaterial], str | None]]:
     """For each program: whether its page has been read for materials, the entries collected, and the
-    program's official page as the catalogue holds it.
+    page the materials were read from.
 
     The page is served with the record because a program read and found to list no documents has no
-    entry to carry a source, and the applicant is then sent to the page itself.
+    entry to carry a source, and the applicant is then sent to the page itself. It is given only when
+    the catalogue holds the very snapshot the materials were read from as a version of the program's
+    source: a program's source can also be a register that lists it (the CRICOS dataset), which is not
+    a page to check for documents, and such a source has no version with that snapshot.
     """
     ids = [pid for pid in dict.fromkeys(program_ids) if pid]
     if not ids:
         return {}
+    page_read = (
+        select(Source.url).join(SourceVersion, SourceVersion.source_id == Source.id)
+        .where(Source.id == Program.source_id, SourceVersion.content_sha256 == Program.materials_snapshot_sha256)
+        .limit(1).correlate(Program).scalar_subquery()
+    )
     known = {pid: (sha, url) for pid, sha, url in session.execute(
-        select(Program.id, Program.materials_snapshot_sha256, Source.url)
-        .join(Source, Source.id == Program.source_id).where(Program.id.in_(ids))
+        select(Program.id, Program.materials_snapshot_sha256, page_read).where(Program.id.in_(ids))
     )}
     read = {pid for pid, (sha, _url) in known.items() if sha is not None}
     rows: dict[str, list[ProgramMaterial]] = {}
@@ -213,8 +220,8 @@ def materials_view(plan, catalogue=None) -> dict:
     return dict(
         materials=items,
         materialsExtracted=extracted,
-        # The catalogue's page for the program; None for a manual record.
-        programUrl=page,
+        # The page the materials were read from, when the catalogue holds that snapshot; else None.
+        materialsPageUrl=page,
         customMaterials=custom,
         materialsDone=done,
         materialsTotal=total,

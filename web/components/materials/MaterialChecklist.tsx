@@ -37,7 +37,7 @@ export function MaterialChecklist({
   extracted: boolean;
   /** Whether the record is a catalogue program (a manual one has no page in the catalogue to read). */
   catalog: boolean;
-  /** The program's official page, linked where the catalogue has no entry to cite. */
+  /** The page the materials were read from, linked where it lists nothing the catalogue could cite. */
   pageUrl?: string | null;
   ticked: Readonly<Record<string, boolean>>;
   onTick: (key: string, ready: boolean) => void;
