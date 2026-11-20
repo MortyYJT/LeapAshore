@@ -88,7 +88,8 @@ async def unsubscribe(request: Request) -> dict:
     """Turn reminders off for the account the token was signed for.
 
     Two callers: a mail client acting on `List-Unsubscribe-Post` posts a form body to the header's
-    URL, token in the query (RFC 8058); the page the email links posts `{"token": ...}`. The answer
+    URL, token in the query (RFC 8058); the page the email links posts `{"token": ...}` once the
+    applicant presses its confirm button (opening the page sends nothing). The answer
     says nothing about the account, and no cookie is read or set.
     """
     token = request.query_params.get("token")

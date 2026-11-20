@@ -80,6 +80,11 @@ export function resolveStaleSettings(
   return resolveStaleField(text(base.leadDays), text(change.leadDays), text(theirs.leadDays));
 }
 
+/** The token an unsubscribe link carries; empty when the address has none. */
+export function unsubscribeToken(search: string): string {
+  return new URLSearchParams(search).get("token") ?? "";
+}
+
 /** Use the link from an email. `invalid`: the server does not accept this token. `failed`: try again. */
 export async function unsubscribe(token: string, fetcher: Fetch = fetch): Promise<"done" | "invalid" | "failed"> {
   if (!token) return "invalid";

@@ -10,6 +10,7 @@ import {
   resolveStaleSettings,
   saveReminderSettings,
   unsubscribe,
+  unsubscribeToken,
   unsubscribedDay,
 } from "./reminders.ts";
 import { StaleVersionError } from "./sync-conflict.ts";
@@ -88,6 +89,13 @@ test("unsubscribing posts the token in the body and reports what the server said
     }),
     "failed",
   );
+});
+
+test("the token is read from the link's query, and a link without one has none", () => {
+  assert.equal(unsubscribeToken("?token=a.b"), "a.b");
+  assert.equal(unsubscribeToken("?utm=x&token=a.b%2Bc"), "a.b+c");
+  assert.equal(unsubscribeToken(""), "");
+  assert.equal(unsubscribeToken("?other=1"), "");
 });
 
 test("the day of an unsubscribe is shown as a Beijing date", () => {

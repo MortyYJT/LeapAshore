@@ -67,7 +67,7 @@ NO_SOURCE = "这条记录没有填来源链接。"
 ZONE_NOTE = "天数按北京时间的日期计算。记录里只有日期，没有具体时间和时区。几点截止、按哪个时区算，请到学校官网确认。"
 SETTINGS_NOTE = "提前几天提醒，可以登录后在「设置」的「提醒」里改。"
 SENDER_NOTE = "这封邮件由鱼跃彼岸（LeapAshore）按你账号的提醒设置发出。"
-UNSUBSCRIBE_NOTE = "打开这个链接就会退订，不用登录。"
+UNSUBSCRIBE_NOTE = "打开链接后点「确认退订」，不用登录。"
 
 
 def subject(entries: list[Entry]) -> str:

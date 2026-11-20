@@ -745,6 +745,10 @@ def test_the_email_states_the_record_and_nothing_else(sent, session):
         "https://app.example.test/applications",
         message.unsubscribe_page,
     }
+    # That link lands on a page that asks first, and the copy says so: a mail gateway that opens
+    # every link must not be able to unsubscribe anyone.
+    for part in (text, message.html):
+        assert "确认退订" in part and "就会退订" not in part
     assert message.subject.startswith("申请截止提醒")
 
 

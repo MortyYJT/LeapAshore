@@ -500,10 +500,24 @@ async function adminPass(browser, email, errors) {
     await reminderSwitch.getByRole("button", { name: "开启", exact: true }).click();
     await page.waitForFunction(async () => (await (await fetch("/api/reminders/settings")).json()).enabled === true);
     await page.getByRole("button", { name: "关闭设置" }).click();
+    // Opening the link sends nothing (a mail gateway opens every link); the button does.
+    let unsubscribePosts = 0;
+    const countUnsubscribe = (request) => {
+      if (request.method() === "POST" && request.url().includes("/api/reminders/unsubscribe")) unsubscribePosts += 1;
+    };
+    page.on("request", countUnsubscribe);
     refusedLinkStep.running = true;
     await page.goto(`${BASE}/reminders/unsubscribe?token=bad.token`);
+    await page.getByRole("heading", { level: 1, name: "退订截止提醒", exact: true }).waitFor();
+    const confirmUnsubscribe = page.getByRole("button", { name: "确认退订", exact: true });
+    await confirmUnsubscribe.waitFor();
+    await page.waitForTimeout(800);
+    check("退订页：打开链接不发请求，页面上有「确认退订」", unsubscribePosts === 0, unsubscribePosts);
+    await confirmUnsubscribe.click();
     await page.getByRole("heading", { level: 1, name: "这个退订链接无效" }).waitFor();
     refusedLinkStep.running = false;
+    page.off("request", countUnsubscribe);
+    check("退订页：点确认后才发出一次请求", unsubscribePosts === 1, unsubscribePosts);
     const remindersKept = await apiAs(context, "/api/reminders/settings");
     check("退订页：无效链接说明原因，提醒设置没有被改动", remindersKept.body && remindersKept.body.enabled === true && remindersKept.body.leadDays.join(",") === "14,7,3,1", remindersKept.body);
     await layout(page, "退订页");
