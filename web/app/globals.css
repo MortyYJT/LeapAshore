@@ -557,7 +557,7 @@ tbody tr:hover { background: var(--hover); }
 /* The install entry closes the appearance tab, under the text button that resets it. */
 .uc-row-install { margin-top: 20px; border-top: 1px solid var(--line); border-bottom: 0; padding-bottom: 0; }
 .uc-row-install > div { min-width: 0; }
-.uc-row-install .uc-hint { max-width: 34em; margin-top: 4px; }
+.uc-row-install .uc-hint { margin-top: 4px; text-wrap: pretty; }
 .uc-row-install .btn { flex: none; }
 .uc-inline-icon { display: inline-block; width: 14px; height: 14px; margin: 0 1px 0 3px; vertical-align: -2px; color: var(--ink-2); }
 .uc-content .notice { margin: 0 0 16px; }
