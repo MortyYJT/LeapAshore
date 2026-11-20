@@ -98,11 +98,53 @@ def test_a_count_the_quote_does_not_state_is_refused(root):
 
 
 def test_a_count_is_read_as_digits_or_as_a_word_and_never_inside_a_longer_number(root):
-    text = materials.normalize("we need 2 references. two essays. 12 pages. 2.5 gpa.")
+    text = materials.normalize("we need 2 references. two essays are set. a sample of 12 pages. a 2.5 gpa is expected.")
     assert materials.check_material({"type": "recommendation", "count": 2, "quote": "We need 2 references."}, text) == []
-    assert materials.check_material({"type": "personal_statement", "count": 2, "quote": "Two essays."}, text) == []
-    assert materials.check_material({"type": "other", "note": "pages", "count": 2, "quote": "12 pages."}, text) == ["count=2 not in quote"]
-    assert materials.check_material({"type": "other", "note": "gpa", "count": 2, "quote": "2.5 GPA."}, text) == ["count=2 not in quote"]
+    assert materials.check_material({"type": "personal_statement", "count": 2, "quote": "Two essays are set."}, text) == []
+    assert materials.check_material({"type": "other", "note": "pages", "count": 2, "quote": "A sample of 12 pages."}, text) == ["count=2 not in quote"]
+    assert materials.check_material({"type": "other", "note": "gpa", "count": 2, "quote": "A 2.5 GPA is expected."}, text) == ["count=2 not in quote"]
+
+
+@pytest.mark.parametrize("count, quote", [
+    (1, "A statement of no more than 1,000 words."),      # the 1 of 1,000
+    (2, "A 2,000-word writing sample is required."),      # the 2 of 2,000
+    (4, "A CV of one A4 page is required."),              # the 4 of A4
+    (2, "Transcripts for the 2nd year are required."),    # the 2 of 2nd
+    (2, "A GPA of 2.5 or above is expected here."),       # the 2 of 2.5
+    (3, "Deadline: 3/1/2027 for all applicants."),        # the 3 of a date
+])
+def test_a_count_is_a_number_standing_on_its_own(count, quote):
+    item = {"type": "other", "note": "fixture", "count": count, "quote": quote}
+    assert materials.check_material(item, materials.normalize(quote)) == [f"count={count} not in quote"]
+
+
+@pytest.mark.parametrize("count, quote", [
+    (2, "Provide 2 references. Thank you."),
+    (2, "References (2): academic ones."),
+    (2, "Upload a 2-page writing sample."),
+    (12, "Twelve copies of the form are needed."),
+])
+def test_a_count_written_on_its_own_is_found(count, quote):
+    item = {"type": "other", "note": "fixture", "count": count, "quote": quote}
+    assert materials.check_material(item, materials.normalize(quote)) == []
+
+
+def test_a_number_word_in_the_note_must_be_in_the_quote_too():
+    quote = "Two references are required here."
+    said = {"type": "recommendation", "count": 2, "note": "three academic referees", "quote": quote}
+    assert materials.check_material(said, materials.normalize(quote)) == ["note states 3, which is not in the quote"]
+    assert materials.check_material({**said, "note": "two academic referees"}, materials.normalize(quote)) == []
+
+
+@pytest.mark.parametrize("quote, reason", [
+    ("\u200b", "no quote"),                     # invisible: folds to nothing, and nothing is on every page
+    ("   ", "no quote"),
+    ("2", "quote is shorter than 10 characters"),
+    ("a CV", "quote is shorter than 10 characters"),
+])
+def test_a_quote_with_no_words_in_it_proves_nothing(quote, reason):
+    item = {"type": "recommendation", "quote": quote}
+    assert materials.check_material(item, materials.normalize("a page with 2 things and a CV"))[0].startswith(reason)
 
 
 def test_a_figure_in_the_note_must_be_in_the_quote(root):
@@ -153,8 +195,35 @@ def test_a_block_that_is_not_a_list_of_entries_is_a_schema_error(root):
 
 
 def test_a_file_without_a_materials_block_verifies_to_the_same_bytes(root):
+    """Adding the material checks must not move a byte of the 282 files that have no block."""
+    import copy
+
+    from app.collect import verify as verify_module
+
     data = school_file(block=False)
-    assert "materials" not in verify(data, root)["programs"][0]
+    after = verify(copy.deepcopy(data), root)
+
+    def without_materials_code(payload):
+        # The same run with the material step taken out: what `verify` wrote before this change.
+        original = verify_module.materials.block_of
+        verify_module.materials.block_of = lambda program: None
+        try:
+            return verify(copy.deepcopy(payload), root)
+        finally:
+            verify_module.materials.block_of = original
+
+    dump = lambda value: json.dumps(value, ensure_ascii=False, indent=1).encode()  # noqa: E731
+    assert dump(after) == dump(without_materials_code(data))
+    assert "materials" not in after["programs"][0] and "materials" not in after["verification"]
+
+
+def test_a_source_that_is_not_a_sha256_never_names_a_file(root, tmp_path):
+    """`source_sha256` is joined into a path; a value that is not a sha256 is refused before that."""
+    secret = tmp_path / "outside.json"
+    secret.write_text(json.dumps({"final_url": "https://example.test/should-not-be-read"}), encoding="utf-8")
+    climbing = {"type": "cv", "quote": "Upload a current CV.", "source_sha256": f"../{secret.stem}"}
+    stored = checked([climbing], root)["materials"]["items"][0]
+    assert stored["check"] == "source_sha256 is not a sha256" and "source_url" not in stored
 
 
 def test_dropping_failing_entries_counts_them_so_the_page_is_not_read_as_empty(root):
@@ -175,10 +244,29 @@ def test_not_extracted_is_not_the_same_as_nothing_asked():
     read_and_empty = {"materials": {"items": [], "rejected": 0}}
     only_refusals = {"materials": {"items": [], "rejected": 2}}
     failed = {"materials": {"items": [{**CV, "check": "quote not found in snapshot"}]}}
+    withdrawn = {"materials": {"items": [], "rejected": 0, "withdrawn": "the page was a cookie wall"}}
     assert materials.extracted(no_block) is False
     assert materials.extracted(read_and_empty) is True and materials.accepted_items(read_and_empty) == []
     assert materials.extracted(only_refusals) is False
     assert materials.extracted(failed) is False
+    assert materials.extracted(withdrawn) is False
+    assert materials.extracted({"materials": {}}) is False, "a block without an items list was never a reading"
+    # Only a block takes a position; a file without one says nothing about materials.
+    assert [materials.says_not_extracted(p) for p in (no_block, read_and_empty, only_refusals, withdrawn)] == [
+        False, False, True, True]
+
+
+def test_entries_that_would_read_alike_are_told_apart():
+    names = materials.display_names([
+        ("recommendation", 2, None, "Two references."),
+        ("other", None, "passport copy", "A copy of your passport."),
+        ("other", None, "course descriptions", "Describe each core course."),
+        ("personal_statement", None, None, "Describe your goals in 500 words."),
+        ("personal_statement", None, "why this school", "Tell us why you chose us."),
+    ])
+    assert names == ["推荐信 2 封", "passport copy", "course descriptions",
+                     "个人陈述（Describe your goals in 500 words.）", "个人陈述（why this school）"]
+    assert len(set(names)) == len(names)
 
 
 def test_keys_number_further_entries_of_one_type():
@@ -326,6 +414,30 @@ def test_the_materials_only_import_touches_nothing_else(db_session, require_db, 
     assert (program.academic_requirement, program.data_status, program.source_id,
             db_session.scalars(select(SourceVersion.id).where(SourceVersion.source_id == source_id_for(URL))).all()) == before
     assert [row[0] for row in stored(db_session)] == ["cv"]
+
+
+def test_a_withdrawn_reading_leaves_the_catalogue(db_session, require_db, cleanup, root):
+    """A page handed in as "lists none" turned out to be a cookie wall: taken back in the file, it must
+    not stay in the catalogue as a statement about the program."""
+    import_school(db_session, verify(school_file([]), root), SCHOOLS, root=root)
+    assert served()["materials"] == {"items": []}
+
+    withdrawn = school_file([])
+    withdrawn["programs"][0]["materials"]["withdrawn"] = "the snapshot is a cookie wall"
+    report = import_materials(db_session, verify(withdrawn, root), SCHOOLS)
+
+    assert report["materials_withdrawn"] == 1
+    db_session.expire_all()
+    assert db_session.get(Program, PID).materials_snapshot_sha256 is None and served()["materials"] is None
+    # Again: nothing left to take back, nothing written.
+    assert _writes_of(lambda: import_materials(db_session, verify(withdrawn, root), SCHOOLS)) == []
+
+
+def test_a_reading_replaced_by_refusals_only_leaves_the_catalogue_too(db_session, require_db, cleanup, root):
+    import_school(db_session, verify(school_file([RECOMMENDATION, CV]), root), SCHOOLS, root=root)
+    bad = {"type": "cv", "quote": "not on the page at all"}
+    import_school(db_session, verify(school_file([bad]), root), SCHOOLS, root=root)
+    assert stored(db_session) == [] and served()["materials"] is None
 
 
 def test_the_materials_only_import_reports_programs_the_catalogue_does_not_hold(db_session, require_db, cleanup, root):

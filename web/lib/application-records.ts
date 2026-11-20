@@ -112,7 +112,7 @@ export async function writeApplicationRecord(
 
 /** Whether a stored record says something else than the form that was submitted for it. */
 export function differsFromForm(record: ApplicationRecord, form: Record<string, unknown>): boolean {
-  const { confirmDeadline, materialTicks, customMaterials, ...fields } = form;
+  const { confirmDeadline, materialTicks, materialBasis: _basis, customMaterials, ...fields } = form;
   // Ticks are sent as changes by key and the checklist as a whole list, so each is compared as such.
   const ticks = (materialTicks ?? {}) as Record<string, boolean>;
   const ticksDiffer = Object.entries(ticks).some(

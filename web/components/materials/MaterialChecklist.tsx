@@ -122,7 +122,8 @@ export function MaterialChecklist({
           disabled={disabled || full}
           onChange={(event) => setDraft(event.target.value)}
           onKeyDown={(event) => {
-            if (event.key === "Enter") {
+            // Enter that commits an input method's composition (拼音 → 汉字) is not "add this line".
+            if (event.key === "Enter" && !event.nativeEvent.isComposing && event.keyCode !== 229) {
               event.preventDefault();
               add();
             }

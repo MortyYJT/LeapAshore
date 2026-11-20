@@ -573,7 +573,8 @@ def test_all_ticks_every_line_the_record_lists_and_only_those(asked, applicant):
     with SessionLocal() as s:
         base = records.read_record(s, client_id, key)["version"]
         records.update_record(s, client_id, key, RecordPatch(
-            custom_materials=[{"id": "c-a", "label": "在读证明"}], material_ticks={"cv": True}, base_version=base))
+            custom_materials=[{"id": "c-a", "label": "在读证明"}], material_ticks={"cv": True},
+            material_basis={"cv": records.read_record(s, client_id, key)["materials"][1]["digest"]}, base_version=base))
 
     assert tick(applicant, key, material=tools.ALL_MATERIALS, ready=True).startswith("已执行：")
 

@@ -299,9 +299,11 @@ function ApplicationForm({
       sourceUrl: data.get("sourceUrl") || null,
       confirmDeadline: data.has("confirmDeadline"),
       materialNotes: data.get("materialNotes"),
-      // Only what this form changed: ticks by key, and the own checklist when it differs.
-      ...(Object.keys(ticks).length ? { materialTicks: ticks } : {}),
-      ...(sameCustom(custom, record?.customMaterials ?? []) ? {} : { customMaterials: custom }),
+      // Only what this form changed: ticks by key (with the wording each was ticked for), and the own
+      // checklist when it differs. A new application always states its checklist, so a retried create
+      // whose first attempt landed is compared with what this form says now, an emptied list included.
+      ...(ticks ?? {}),
+      ...(record && sameCustom(custom, record.customMaterials ?? []) ? {} : { customMaterials: custom }),
     };
     // After a refused save, saving the form again is the applicant's answer to the server's record.
     const target = conflict?.current ?? record;
@@ -314,10 +316,10 @@ function ApplicationForm({
     const confirmed = payload.confirmDeadline
       ? { round: payload.round, deadline: payload.deadline, sourceUrl: payload.sourceUrl }
       : {};
-    const { materialTicks, customMaterials, ...fields } = payload;
+    const { materialTicks, materialBasis, customMaterials, ...fields } = payload;
     return {
       ...changedFields(fields, record),
-      ...(materialTicks ? { materialTicks } : {}),
+      ...(materialTicks ? { materialTicks, materialBasis } : {}),
       ...(customMaterials ? { customMaterials } : {}),
       ...confirmed,
     };

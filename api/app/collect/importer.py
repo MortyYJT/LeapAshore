@@ -25,8 +25,8 @@ or a different value read from the same one.
 
 A program's `materials` block is written the same way: the entries whose quote passed, compared
 with what is stored and rewritten only when they differ. A program without a block, or whose block
-holds only refusals, keeps `materials_snapshot_sha256` NULL: not extracted, which is not "asks for
-nothing". Materials are machine-checked quotes like everything else here; writing them neither sets
+holds only refusals, has `materials_snapshot_sha256` NULL: not extracted, which is not "asks for
+nothing". A block that is withdrawn or holds only refusals also removes what an earlier import wrote. Materials are machine-checked quotes like everything else here; writing them neither sets
 nor clears a page's `verified_at`, which is about the values a person reviewed.
 
 Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
@@ -239,9 +239,20 @@ def _sync_materials(session: Session, row: Program, program: dict) -> bool:
     """Make the catalogue's materials for this program what the file says, writing only when they
     differ. True when it wrote.
 
-    A file without a usable block leaves what is stored alone: materials are extracted in their own
-    pass, and a file from before that pass, or a page the queue collected again, must not blank them.
+    A file with no block says nothing about materials, and leaves what is stored alone: materials are
+    extracted in their own pass, and a file from before that pass must not blank them. A file whose
+    block is withdrawn, or holds refusals only, does say something: the program is not extracted. What
+    an earlier import wrote for it is removed, so the catalogue never keeps a reading the file took back.
     """
+    if materials.says_not_extracted(program):
+        had_rows = session.scalar(select(func.count()).select_from(ProgramMaterial)
+                                  .where(ProgramMaterial.program_id == row.id))
+        if row.materials_snapshot_sha256 is None and not had_rows:
+            return False
+        if had_rows:
+            session.execute(delete(ProgramMaterial).where(ProgramMaterial.program_id == row.id))
+        row.materials_snapshot_sha256 = None
+        return True
     if not materials.extracted(program):
         return False
     wanted = material_rows(row.id, program["url"], program)
@@ -267,16 +278,22 @@ def import_materials(session: Session, data: dict, schools: dict[str, dict]) -> 
     """Write only the materials of this file's programs, for the programs the catalogue already holds."""
     key = data["school_key"]
     programs, _skipped = _importable(data, schools.get(key))
-    report = {"school": key, "materials_written": 0, "materials_unchanged": 0, "not_extracted": 0, "not_in_catalogue": 0}
+    report = {"school": key, "materials_written": 0, "materials_unchanged": 0, "materials_withdrawn": 0,
+              "not_extracted": 0, "not_in_catalogue": 0}
     for program in programs:
-        if not materials.extracted(program):
+        if materials.block_of(program) is None:
             report["not_extracted"] += 1
             continue
         row = session.get(Program, program_id_for(key, program))
         if row is None:
             report["not_in_catalogue"] += 1
             continue
-        report["materials_written" if _sync_materials(session, row, program) else "materials_unchanged"] += 1
+        wrote = _sync_materials(session, row, program)
+        if not materials.extracted(program):
+            # Withdrawn or refused whole: counted as withdrawn when the catalogue held something for it.
+            report["materials_withdrawn" if wrote else "not_extracted"] += 1
+        else:
+            report["materials_written" if wrote else "materials_unchanged"] += 1
     session.commit()
     return report
 

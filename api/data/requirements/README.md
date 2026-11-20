@@ -37,13 +37,19 @@ checked by `verify` like every other value:
 - `type` is one of `cv`, `personal_statement`, `recommendation`, `transcript`, `language_score`,
   `test_score`, `portfolio`, `writing_sample`, `other`.
 - An entry passes when its `quote` is verbatim in the snapshot it cites (`source_sha256`, else the
-  block's), a `count` is written inside the quote (digits or an English number word), and every
-  figure written in `note` is in the quote too. An `other` entry needs a `note` that names it. A
-  failing entry is refused whole, with the reason; nothing is ever edited to make it pass.
+  block's) and is a sentence (10 characters or more), a `count` is written in the quote as a number
+  standing on its own (not the 1 of `1,000`, the 2 of `2nd`, the 4 of `A4`) or as an English number
+  word, and every number written in `note`, digits or words, is in the quote too. An `other` entry
+  needs a `note` that names it. A failing entry is refused whole, with the reason; nothing is ever
+  edited to make it pass.
 - **No block** means nobody has read the page for materials. **A block with no items and
-  `rejected` 0** means the page was read and lists none. A block left with refusals only says
-  neither, and the importer treats it as not extracted. The catalogue keeps the three apart
-  (`programs.materials_snapshot_sha256` is NULL until a page was read).
+  `rejected` 0** means the page was read and lists none. A block left with refusals only, or
+  withdrawn (`"withdrawn": "<why>"`, written by the `withdraw` command), says "not extracted": the
+  importer removes what an earlier import wrote for the program. The catalogue keeps "not read" and
+  "read, lists none" apart (`programs.materials_snapshot_sha256` is NULL until a page was read).
+- The quote check is a substring check. It cannot tell "references are required" from the same words
+  in "no references are required", nor whose count a number is; only a labelled set can measure
+  that, and none exists yet.
 - `note` is the extractor's summary and is not judged by a model yet: the summary check below does
   not cover materials.
 - The block cites the snapshot it was read from. When the queue later collects the page again, the
@@ -284,7 +290,9 @@ anything and you do not call a model: you are the reader. Work from `api/`, with
 ### Rules (not negotiable)
 
 1. **Only what the page says.** Every entry needs a `quote` copied character for character from the
-   text the `text` command prints. Nothing from memory, from another school's page, or from what
+   text the `text` command prints: the whole sentence that asks for the material, so that it reads
+   the same out of context ("No portfolio is required" must not be cut down to "portfolio is
+   required"). Nothing from memory, from another school's page, or from what
    programs of this kind usually ask for.
 2. **Unknown stays unknown.** If the page does not ask for a material, there is no entry for it. If
    the page lists no material at all, hand in `"materials": []`: that records "read, lists none".
@@ -296,7 +304,8 @@ anything and you do not call a model: you are the reader. Work from `api/`, with
    are already in `fields`; leave them out. "IELTS 6.5 overall" is an eligibility rule; "upload your
    English test certificate" is a `language_score` material.
 4. **`count` only when the page states a number** for this program ("two references", "3 letters").
-   "A CV" has no count. A number for another track or another degree is not this program's.
+   "A CV" has no count. A number for another track or another degree is not this program's, and a
+   number that measures something else (a word limit, a page size) is not a count.
 5. **`note` says what is particular** about the requirement, in English, in a few words (a word
    limit, who may write the letter, a set question, "optional"). No figure in it that is not in the
    quote. Leave it out when there is nothing particular. An `other` entry must have one: it is the
@@ -335,7 +344,12 @@ One entry per requirement: two different essays are two `personal_statement` ent
 .venv/bin/python -m app.collect.material_extract accept <program_id> --school <school_key> \
     --extractor "<who you are>" --json api/var/work/materials/<program_id>.json
 
-# 4. Where the extraction stands.
+# 4. Take back a program you handed in by mistake (the text was a cookie wall, an error page,
+#    another program). It is listed as pending again.
+.venv/bin/python -m app.collect.material_extract withdraw <program_id> --school <school_key> \
+    --reason "<what was wrong>"
+
+# 5. Where the extraction stands.
 .venv/bin/python -m app.collect.material_extract status --school <school_key>
 ```
 

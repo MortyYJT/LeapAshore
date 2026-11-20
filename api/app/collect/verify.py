@@ -292,12 +292,17 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
         block = materials.block_of(program)
         if block is not None:
             for item in block["items"]:
-                sha = item.get("source_sha256") or block.get("snapshot_sha256") or program["snapshot_sha256"]
-                if item.get("source_sha256"):
-                    meta = root / school / f"{item['source_sha256']}.json"
+                sha = str(item.get("source_sha256") or block.get("snapshot_sha256") or program["snapshot_sha256"])
+                # Only a sha256 names a file: anything else in the field is refused by the entry's own
+                # check below, before it is ever joined into a path.
+                known = bool(SHA.match(sha))
+                if known and item.get("source_sha256"):
+                    meta = root / school / f"{sha}.json"
                     if meta.exists():
-                        item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
-                problems = materials.check_material(item, snapshot_text(sha) if SHA.match(str(sha)) else None)
+                        recorded = json.loads(meta.read_text(encoding="utf-8"))
+                        if isinstance(recorded, dict):
+                            item["source_url"] = recorded.get("final_url") or item.get("source_url")
+                problems = materials.check_material(item, snapshot_text(sha) if known else None)
                 item["check"] = "ok" if not problems else "; ".join(problems)
         program["status"] = program_status(program)
         summary["programs"] += 1

@@ -40,11 +40,11 @@ from pydantic import BaseModel, Field
 
 from app import limits
 from app.agent import halt, model_key, stated, steps
+from app.agent.application_tools import material_names
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
 from app.agent.tools import wrote
-from app.collect import materials as material_rules
 from app.config import settings
 from app.db import SessionLocal
 from app.deps import get_subject, set_client_cookie, subject_cookie_header
@@ -215,9 +215,9 @@ def _named(client_id: str, args: dict) -> dict[str, str]:
                     named["application_id"] = f"{record['school']} {record['name']}"
                     # The line a material tick names, in the words the record lists it under.
                     wanted = str(args.get("material") or "")
-                    for item in record["materials"]:
+                    for item, name in zip(record["materials"], material_names(record)):
                         if item["key"] == wanted:
-                            named["material"] = material_rules.label(item["type"], item["count"])
+                            named["material"] = name
                     for item in record["customMaterials"]:
                         if item["id"] == wanted:
                             named["material"] = item["label"]

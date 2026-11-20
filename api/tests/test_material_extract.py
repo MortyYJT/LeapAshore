@@ -163,18 +163,62 @@ def test_a_dry_run_reports_and_writes_nothing(store):
 
 
 def test_writing_keeps_the_rest_of_the_file_byte_for_byte(store):
-    original = json.loads(store["path"].read_text(encoding="utf-8"))
+    original = store["path"].read_bytes()
     hand_in(store, [GOOD])
     after = json.loads(store["path"].read_text(encoding="utf-8"))
     del after["programs"][0]["materials"]
-    assert after == original
-    assert not list(store["data_dir"].glob("*.lock"))
+    # Same keys in the same order, same indentation, same final newline.
+    assert (json.dumps(after, ensure_ascii=False, indent=1) + "\n").encode() == original
+    assert [path.name for path in store["data_dir"].iterdir()] == [store["path"].name], "no lock or temporary file is left"
+
+
+def test_extractors_working_on_one_school_do_not_overwrite_each_other(store):
+    """Twelve programs of one file handed in at once: every block is there afterwards."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    data = json.loads(store["path"].read_text(encoding="utf-8"))
+    extra = [{"name": f"MSc Invented {n}", "url": f"{URL}-{n}", "snapshot_sha256": SHA, "fields": {}} for n in range(12)]
+    data["programs"] += extra
+    store["path"].write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    ids = [program_id_for(KEY, program) for program in extra]
+
+    def one(pid):
+        return tool.accept(store["data_dir"], store["root"], pid, {"snapshot_sha256": SHA, "materials": [GOOD]}, school=KEY)
+
+    with ThreadPoolExecutor(max_workers=12) as pool:
+        reports = list(pool.map(one, ids))
+
+    assert all(report["written"] for report in reports)
+    after = {program_id_for(KEY, p): p for p in json.loads(store["path"].read_text(encoding="utf-8"))["programs"]}
+    assert all(materials.extracted(after[pid]) for pid in ids)
+    assert tool.status(store["data_dir"])["extracted"] == 12
+
+
+def test_a_withdrawn_reading_is_not_an_extraction(store):
+    hand_in(store, [])
+    assert tool.targets(store["data_dir"], store["root"], [KEY])[0]["extracted"] is True
+
+    report = tool.withdraw(store["data_dir"], PID, "the snapshot is a cookie wall")
+
+    assert report["extracted"] is False
+    assert block(store)["withdrawn"] == "the snapshot is a cookie wall" and block(store)["items"] == []
+    assert tool.targets(store["data_dir"], store["root"], [KEY], pending=True)[0]["program_id"] == PID, "it is to be read again"
+    assert tool.status(store["data_dir"])["withdrawn"] == 1 and tool.status(store["data_dir"])["extracted"] == 0
+    # Handing it in again replaces the withdrawal.
+    assert hand_in(store, [GOOD])["extracted"] is True and "withdrawn" not in block(store)
+
+
+def test_there_is_nothing_to_withdraw_from_a_program_nobody_read(store):
+    with pytest.raises(tool.Refused, match="nothing to withdraw"):
+        tool.withdraw(store["data_dir"], PID, "no reason")
+    with pytest.raises(tool.Refused, match="needs a reason"):
+        tool.withdraw(store["data_dir"], PID, "  ")
 
 
 def test_status_counts_what_the_files_hold(store):
     hand_in(store, [GOOD, CV])
     assert tool.status(store["data_dir"]) == {
-        "programs": 2, "extracted": 1, "with_entries": 1, "page_lists_none": 0, "refused_only": 0,
+        "programs": 2, "extracted": 1, "with_entries": 1, "page_lists_none": 0, "refused_only": 0, "withdrawn": 0,
         "entries": 2, "by_type": {"cv": 1, "recommendation": 1}}
 
 

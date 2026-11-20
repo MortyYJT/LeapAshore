@@ -6,6 +6,7 @@ import {
   materialName,
   materialsSummary,
   newCustomId,
+  overviewMaterials,
   progressLabel,
   sameCustom,
   tickChanges,
@@ -23,6 +24,7 @@ function material(fields: Partial<RecordMaterial> = {}): RecordMaterial {
     note: null,
     quote: "FIXTURE: Two letters of recommendation.",
     sourceUrl: "https://example.test/apply",
+    digest: "d-" + (fields.key ?? "recommendation"),
     ready: false,
     changed: false,
     ...fields,
@@ -78,12 +80,29 @@ test("the summary says how far along the list is, or why there is no count", () 
   assert.equal(progressLabel({ materialsDone: 0, materialsTotal: 0 }), null);
 });
 
-test("only the ticks that changed are sent", () => {
-  assert.deepEqual(tickChanges(record.materials, {}), {});
-  assert.deepEqual(tickChanges(record.materials, { recommendation: true, cv: false }), {});
-  assert.deepEqual(tickChanges(record.materials, { recommendation: false, cv: true }), { recommendation: false, cv: true });
+test("own lines all ticked on a program nobody read is not said to be complete", () => {
+  const unread = { programId: "p1", materialsExtracted: false, materialsDone: 1, materialsTotal: 1, materialsReady: true };
+  assert.equal(materialsSummary(unread), "材料 1/1，都勾了（自己列的，官网要求还没提取）");
+  assert.equal(overviewMaterials(unread), "自列材料已勾完");
+  // A manual application has no page in the catalogue to wait for; an extracted program has its list.
+  assert.equal(overviewMaterials({ ...unread, programId: null }), "材料已就绪");
+  assert.equal(overviewMaterials({ ...unread, materialsExtracted: true }), "材料已就绪");
+  assert.equal(overviewMaterials({ ...unread, materialsReady: false, materialsDone: 0 }), "材料 0/1");
+  assert.equal(overviewMaterials({ ...unread, materialsReady: false, materialsDone: 0, materialsTotal: 0 }), "材料准备中");
+  // The signed-out demo's example rows carry the flag and no list.
+  assert.equal(overviewMaterials({ ...unread, materialsDone: 0, materialsTotal: 0 }), "材料已就绪");
+});
+
+test("only the ticks that changed are sent, each new tick with the wording it was given for", () => {
+  assert.equal(tickChanges(record.materials, {}), null);
+  assert.equal(tickChanges(record.materials, { recommendation: true, cv: false }), null);
+  assert.deepEqual(tickChanges(record.materials, { recommendation: false, cv: true }), {
+    materialTicks: { recommendation: false, cv: true },
+    // Clearing a tick needs no basis; setting one says which requirement the applicant read.
+    materialBasis: { cv: "d-cv" },
+  });
   // A key the record does not list is never sent: the server would refuse the whole save.
-  assert.deepEqual(tickChanges(record.materials, { portfolio: true }), {});
+  assert.equal(tickChanges(record.materials, { portfolio: true }), null);
 });
 
 test("a new line of the own checklist gets an id the server accepts", () => {
@@ -102,7 +121,7 @@ test("two checklists are the same only line for line", () => {
 
 test("a stored record that already holds the form's ticks and lines does not differ from it", () => {
   // What the conflict handling asks after a refused save: is there still anything to choose?
-  assert.ok(!differsFromForm(record, { materialTicks: { recommendation: true } }));
+  assert.ok(!differsFromForm(record, { materialTicks: { recommendation: true }, materialBasis: { recommendation: "d-recommendation" } }));
   assert.ok(differsFromForm(record, { materialTicks: { cv: true } }));
   assert.ok(!differsFromForm(record, { customMaterials: [{ id: "c-1", label: "在读证明", done: false }] }));
   assert.ok(differsFromForm(record, { customMaterials: [{ id: "c-1", label: "在读证明", done: true }] }));

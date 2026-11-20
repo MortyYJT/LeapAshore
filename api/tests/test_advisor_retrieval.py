@@ -277,8 +277,11 @@ def test_an_evidence_line_says_what_the_page_asks_for_or_that_nobody_has_read_it
 
     assert "｜申请材料：未提取｜" in line(program(None))
     assert "｜申请材料：官网这一页没有列出｜" in line(program("a" * 64))
+    # No person reviewed a material entry, whatever the line's 数据状态 says about the page's other values.
     assert ("｜申请材料：推荐信 2 封（at least one academic referee）；"
-            "个人陈述（出处 https://example.edu/apply）｜") in line(program("a" * 64, [letters, essay]))
+            "个人陈述（出处 https://example.edu/apply）（机器核对原文，未经人工核验）｜") in line(program("a" * 64, [letters, essay]))
+    reviewed = SimpleNamespace(title="MSc Data Science", url="https://example.edu/msc", verified_at=date(2026, 11, 1))
+    assert "未经人工核验）｜数据状态：已核验" in evidence_line(1, Hit(program("a" * 64, [letters]), reviewed), today=date(2026, 11, 20))
 
     # The applicant sees each entry with the sentence it was read from; nothing is shown for a page nobody read.
     assert citation_fields(Hit(program(None), source)) == []

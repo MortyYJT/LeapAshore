@@ -290,6 +290,9 @@ def _academic(p: Program, source: Source | None) -> str:
 
 NOT_EXTRACTED = "未提取"
 NONE_LISTED = "官网这一页没有列出"
+# Said with the materials themselves: the line's 数据状态 is about the values a person reviewed, and
+# no person has reviewed a material entry.
+MATERIALS_UNREVIEWED = "机器核对原文，未经人工核验"
 
 
 def _materials(p: Program, source: Source | None) -> str:
@@ -300,11 +303,11 @@ def _materials(p: Program, source: Source | None) -> str:
         return NOT_EXTRACTED
     parts = []
     for row in sorted(p.materials, key=lambda x: x.sort_order):
-        text = material_rules.label(row.type, row.count)
-        if row.note:
+        text = material_rules.label(row.type, row.count, row.note)
+        if row.note and row.type != material_rules.OTHER:
             text += f"（{row.note}）"
         parts.append(text + _page(row.source_url, source))
-    return "；".join(parts) or NONE_LISTED
+    return f"{'；'.join(parts)}（{MATERIALS_UNREVIEWED}）" if parts else NONE_LISTED
 
 
 def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
@@ -360,7 +363,9 @@ def citation_fields(hit: Hit, today: date | None = None) -> list[dict]:
         rows.append({"label": "先修要求", "value": "；".join(prereqs)})
     if getattr(p, "materials_snapshot_sha256", None) is not None:
         for m in sorted(p.materials, key=lambda x: x.sort_order):
-            value = material_rules.label(m.type, m.count) + (f"（{m.note}）" if m.note else "")
+            value = material_rules.label(m.type, m.count, m.note)
+            if m.note and m.type != material_rules.OTHER:
+                value += f"（{m.note}）"
             row = {"label": "申请材料", "value": value, "quote": m.quote}
             if m.source_url and (s is None or m.source_url != s.url):
                 row["url"] = m.source_url

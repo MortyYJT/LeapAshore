@@ -12,7 +12,10 @@ catalogue collected from the program's official page, each entry with the applic
 has when it was added by hand or its program's page has not been read yet (`materialsExtracted` false).
 A tick is the applicant saying "I have this ready"; nothing here reviews a document. It is stored with
 a digest of the requirement it was given for, so when the page's requirement changes the tick stops
-counting and the entry reads `changed`.
+counting and the entry reads `changed`. For the same reason a tick must say which wording it is for
+(`materialBasis`, the entry's `digest` as the caller read it): the record's version does not move when
+the catalogue is imported again, so without it a page opened before the import could tick a
+requirement its reader never saw. A tick for another wording is refused like any stale edit.
 
 A refusal is an exception the caller words for its own reader: `RecordNotFound`, `InvalidRecord`
 (the message is the reason) and `StaleVersion` with the record as it is stored.
@@ -92,6 +95,8 @@ class RecordFields(BaseModel):
     # Ticks to set (true) or clear (false) on the catalogue's materials, by key; keys left out keep
     # their state. The checklist of the applicant's own lines is replaced as a whole when sent.
     material_ticks: dict[str, bool] = Field(default_factory=dict, max_length=TICK_LIMIT)
+    # For every tick being set: the digest of the requirement as the caller read it (`materials[].digest`).
+    material_basis: dict[str, str] = Field(default_factory=dict, max_length=TICK_LIMIT)
     custom_materials: list[CustomMaterial] | None = Field(None, max_length=CUSTOM_LIMIT)
     material_notes: str = Field("", max_length=10000)
 
@@ -184,6 +189,8 @@ def materials_view(plan, catalogue=None) -> dict:
         held = ticks.get(row.key)
         items.append(dict(
             key=row.key, type=row.type, count=row.count, note=row.note, quote=row.quote, sourceUrl=row.source_url,
+            # The requirement as it reads now; a tick is sent back with it (`materialBasis`).
+            digest=_digest(row),
             ready=held == _digest(row),
             # Ticked for an earlier wording of this requirement: not ready, and worth a second look.
             changed=held is not None and held != _digest(row),
@@ -278,6 +285,10 @@ def read_records(client_id: str, session: Session) -> list[dict]:
     ] + [view(p) for p in plans if not p.catalog_program_id]
 
 
+class RequirementMoved(Exception):
+    """A tick was sent for a wording of a requirement that the catalogue no longer holds."""
+
+
 def _apply_materials(plan, payload, catalogue) -> None:
     fields = payload.model_fields_set
     if "material_ticks" in fields and payload.material_ticks:
@@ -291,10 +302,17 @@ def _apply_materials(plan, payload, catalogue) -> None:
             row = by_key.get(key)
             if row is None:
                 raise InvalidRecord(f"学校库里这个项目没有「{key[:48]}」这项材料，没有可以勾的")
-            if wanted:
-                ticks[key] = _digest(row)
-            else:
+            if not wanted:
                 ticks.pop(key, None)
+                continue
+            seen = payload.material_basis.get(key)
+            if not seen:
+                raise InvalidRecord("勾选一项材料时要带上所看到的那条要求（materialBasis）")
+            if seen != _digest(row):
+                # The catalogue was imported again after the caller read the record: the applicant
+                # ticked a requirement that now reads differently.
+                raise RequirementMoved
+            ticks[key] = seen
         plan.material_ticks = ticks
     if "custom_materials" in fields and payload.custom_materials is not None:
         plan.custom_materials = [item.model_dump() for item in payload.custom_materials]
@@ -475,7 +493,13 @@ def update_record(session: Session, client_id: str, key: str, payload: RecordPat
         )
         session.add(plan)
     collected = catalogue_materials(session, [selection.program_id]) if selection else {}
-    apply_patch(plan, payload, collected.get(selection.program_id) if selection else None)
+    try:
+        apply_patch(plan, payload, collected.get(selection.program_id) if selection else None)
+    except RequirementMoved:
+        # Answered as a stale edit, with the record as it reads now: nothing is written, and the
+        # caller shows the applicant the requirement as it is before they tick it.
+        session.rollback()
+        raise StaleVersion(read_record(session, client_id, key)) from None
     if selection:
         if "status" in payload.model_fields_set:
             selection.status = plan.status

@@ -21,11 +21,20 @@ An entry is kept or refused whole; nothing here edits a value. The rules:
 
 1. `type` is one of `MATERIAL_TYPES`.
 2. `quote` is verbatim in the snapshot it cites (`source_sha256`, else the block's snapshot).
-3. A `count` is stated in the quote, as digits or as an English number word.
-4. A number written in `note` is in the quote too, so a note cannot carry a figure the page does not.
+3. A `count` is stated in the quote, as a number standing on its own (not part of `1,000`, `2.5`,
+   `2nd` or `A4`) or as an English number word.
+4. A number written in `note`, in digits or as an English number word, is in the quote too, so a
+   note cannot carry a figure the page does not.
 5. An `other` entry has a `note`, because the type alone does not say what the page asks for.
+6. The quote has words in it: at least `MIN_QUOTE` characters once spacing and invisible characters
+   are folded away. A one-character quote is "found" on any page and proves nothing.
 
-`note` is the extractor's own summary and is not otherwise checked: no model judges it yet.
+`note` is the extractor's own summary and is not otherwise checked: no model judges it yet. The
+quote check is a substring check, so it cannot tell "references are required" from the same words
+inside "no references are required"; that is what the labelled set measures.
+
+A block can also be withdrawn (`"withdrawn": "<why>"`): the reading is taken back, and the program is
+not extracted again.
 
 This module has no database and no model in it. `app.collect.verify` runs these checks on a file,
 `app.collect.importer` writes the entries that passed, and `app.collect.material_extract` is the
@@ -66,6 +75,7 @@ COUNT_UNITS = {"recommendation": "封", "personal_statement": "篇", "writing_sa
 DEFAULT_UNIT = "份"
 
 MAX_COUNT = 20
+MIN_QUOTE = 10
 MAX_QUOTE = 1000
 MAX_NOTE = 300
 ITEM_KEYS = ("type", "count", "note", "quote", "source_sha256")
@@ -76,28 +86,28 @@ NUMBER_WORDS = (
     "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
     "nineteen", "twenty",
 )
-_DIGITS = re.compile(r"(?<![\d.,])\d+(?:[.,]\d+)*(?![\d])")
+_WORD = "|".join(sorted(NUMBER_WORDS, key=len, reverse=True))
+# A figure written in digits: `500`, `1,000`, `2.5`. Not the digits inside a word (`A4`, `2nd`).
+_FIGURE = re.compile(r"(?<![\w.,])\d+(?:[.,]\d+)*(?![\w]|[.,]\d)")
+_NUMBER_WORD = re.compile(rf"\b({_WORD})\b", re.IGNORECASE)
+# A date written in digits (`3/1/2027`, `2027-01-15`): its parts are not counts of anything.
+_NUMERIC_DATE = re.compile(r"(?<!\d)\d{1,4}[-/.]\d{1,2}[-/.]\d{1,4}(?!\d)")
+
+
+def _figures(text: str) -> set[str]:
+    """Every number a text states, as plain digits: `1,000` is `1000`, `two` is `2`, `2.5` is `2.5`.
+
+    A number that is part of something else is not stated on its own: the `1` of `1,000`, the `2` of
+    `2nd`, the `4` of `A4`, the day of `3/1/2027`. Hyphenated forms count (`2-page`, `two-page`)."""
+    text = _NUMERIC_DATE.sub(" ", text)
+    found = {match.group(0).replace(",", "") for match in _FIGURE.finditer(text)}
+    found |= {str(NUMBER_WORDS.index(match.group(1).lower())) for match in _NUMBER_WORD.finditer(text)}
+    return found
 
 
 def _states_number(quote: str, value: int) -> bool:
-    """Whether the quote writes this whole number, in digits (not inside a longer number) or as a word."""
-    if re.search(rf"(?<![\d.]){value}(?![\d]|\.\d)", quote):
-        return True
-    return value < len(NUMBER_WORDS) and bool(re.search(rf"\b{NUMBER_WORDS[value]}\b", quote, re.IGNORECASE))
-
-
-def _note_numbers(note: str) -> list[str]:
-    """The figures a note writes in digits, each without its thousands separators."""
-    return [match.group(0).replace(",", "") for match in _DIGITS.finditer(note)]
-
-
-def _quote_has_figure(quote: str, figure: str) -> bool:
-    plain = quote.replace(",", "")
-    if re.search(rf"(?<![\d.]){re.escape(figure)}(?![\d]|\.\d)", plain):
-        return True
-    return figure.isdigit() and int(figure) < len(NUMBER_WORDS) and bool(
-        re.search(rf"\b{NUMBER_WORDS[int(figure)]}\b", quote, re.IGNORECASE)
-    )
+    """Whether the quote writes this whole number on its own, in digits or as an English word."""
+    return str(value) in _figures(quote)
 
 
 def shape_problem(item) -> str | None:
@@ -111,8 +121,10 @@ def shape_problem(item) -> str | None:
     if item.get("type") not in MATERIAL_TYPES:
         return f"type {item.get('type')!r} is not one of {', '.join(MATERIAL_TYPES)}"
     quote = item.get("quote")
-    if not isinstance(quote, str) or not quote.strip():
+    if not isinstance(quote, str) or not normalize(quote):
         return "no quote"
+    if len(normalize(quote)) < MIN_QUOTE:
+        return f"quote is shorter than {MIN_QUOTE} characters: quote the sentence that asks for the material"
     if len(quote) > MAX_QUOTE:
         return f"quote is longer than {MAX_QUOTE} characters: quote the sentence that asks for the material"
     count = item.get("count")
@@ -149,9 +161,9 @@ def check_material(item: dict, text: str | None) -> list[str]:
     count = item.get("count")
     if count is not None and not _states_number(quote, count):
         problems.append(f"count={count} not in quote")
-    for figure in _note_numbers(item.get("note") or ""):
-        if not _quote_has_figure(quote, figure):
-            problems.append(f"note states {figure}, which is not in the quote")
+    stated = _figures(quote)
+    for figure in sorted(_figures(item.get("note") or "") - stated, key=lambda number: (len(number), number)):
+        problems.append(f"note states {figure}, which is not in the quote")
     return problems
 
 
@@ -182,12 +194,19 @@ def extracted(program: dict) -> bool:
     """Whether the file says what this program's page asks for: entries that passed, or a page that was
     read and lists none. A block left with nothing but refusals does not."""
     block = block_of(program)
-    if block is None:
+    if block is None or block.get("withdrawn") or not isinstance(block.get("items"), list):
         return False
-    items = block.get("items") or []
+    items = block["items"]
     if any(passed(item) for item in items):
         return True
     return not items and not block.get("rejected")
+
+
+def says_not_extracted(program: dict) -> bool:
+    """Whether the file takes a position and it is "not extracted": a block that was withdrawn, or one
+    left with refusals only. Different from a file with no block, which says nothing about materials
+    (it may simply be older than the material pass)."""
+    return block_of(program) is not None and not extracted(program)
 
 
 def accepted_items(program: dict) -> list[dict]:
@@ -216,7 +235,23 @@ def digest(kind: str, count: int | None, note: str | None, quote: str) -> str:
     return hashlib.sha256(stated.encode()).hexdigest()[:12]
 
 
-def label(kind: str, count: int | None = None) -> str:
-    """`推荐信 2 封`, `简历`: the words for a requirement, with its count when the page states one."""
-    name = TYPE_LABELS.get(kind, kind)
+def label(kind: str, count: int | None = None, note: str | None = None) -> str:
+    """`推荐信 2 封`, `简历`: the words for a requirement, with its count when the page states one. An
+    `other` entry is named by its note, which is the only thing that says what it is."""
+    name = (note or "").strip() if kind == OTHER and (note or "").strip() else TYPE_LABELS.get(kind, kind)
     return name if count is None else f"{name} {count} {COUNT_UNITS.get(kind, DEFAULT_UNIT)}"
+
+
+def display_names(entries: list[tuple[str, int | None, str | None, str]]) -> list[str]:
+    """A name for each `(type, count, note, quote)` that tells it from the others in the same list.
+
+    Two entries that would read alike (two statements, two `other` documents with one note) get their
+    note, or else the start of their quote, in brackets: a confirm card must say which one it is about."""
+    names = [label(kind, count, note) for kind, count, note, _quote in entries]
+    out = []
+    for name, (kind, _count, note, quote) in zip(names, entries):
+        if names.count(name) > 1:
+            more = (note or "").strip() if kind != OTHER else ""
+            name = f"{name}（{more or quote.strip()[:40]}）"
+        out.append(name)
+    return out

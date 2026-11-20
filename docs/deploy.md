@@ -43,6 +43,19 @@ The way used since PR #52:
 
 The older way (PR #48), for reference: the local snapshot metadata JSON was copied into the api container temporarily and deleted right after the import (its `text_path` contains local paths; the importer does not read it): locally `cd api/var && tar czf <tmp>/snapmeta.tgz --exclude='_*' $(cd snapshots && find . -name '*.json' -not -name '_*' | sed 's#^#snapshots/#')`, `scp` to the server, `sudo docker cp` into `deploy-api-1:/app/var/`, `... exec -T api sh -c 'cd /app/var && tar xzf snapmeta.tgz && cd /app && python -m app.collect.importer'`, then `rm -rf /app/var/snapshots /app/var/snapmeta.tgz` in the container and delete the tgz on the server.
 
+## Import extracted materials
+
+From PR #103. Application materials are read from stored snapshots in their own pass (`python -m app.collect.material_extract`, brief in `api/data/requirements/README.md`) and land in the requirement files as a `materials` block per program. To bring them to production:
+
+1. Review and commit the changed `api/data/requirements/<school>.json` files, and deploy as usual so the api image holds them (`/app/data/requirements/`).
+2. `... exec -T api python -m app.collect.importer --materials-only data/requirements/<school>.json …` (several files at once, or none for every file). It writes `program_materials` and `programs.materials_snapshot_sha256` for programs the catalogue already holds and nothing else: no program, source, snapshot version, requirement value or deadline. It needs no snapshot files. It prints one JSON line per file (`materials_written`, `materials_unchanged`, `materials_withdrawn`, `not_extracted`, `not_in_catalogue`); a second run reports only `materials_unchanged`.
+3. Read-only check: `curl -s 'https://leapashore.mortyyjt.site/api/programs?ids=<program id>'` shows `materials` as an object for an extracted program and `null` for one that is not.
+4. Rollback of the data: withdraw the programs (`material_extract withdraw`), commit, deploy and import again, or `DELETE FROM program_materials` and `UPDATE programs SET materials_snapshot_sha256 = NULL` for the programs concerned. Applicants' ticks are stored by material key with the requirement's digest; ticks on removed entries stop counting and are dropped with the applicant's next edit.
+
+Rolling back the code to an image from before PR #103 needs no database change: the migration only adds a table and three columns, and the old `application_plans.materials_ready` column is still there. Ticks made after the upgrade are not shown by the old code.
+
+`LEAPASHORE_SNAPSHOT_ROOT` points the collection tools at a snapshot store that is not this checkout's `api/var/snapshots` (a worktree without snapshots, for example). Production does not set it.
+
 ## Ingest snapshots
 
 From P1 #5 (snapshot RAG); redo after large changes to collection files or snapshots. Production's `snapshots` volume started empty.

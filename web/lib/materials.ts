@@ -48,6 +48,8 @@ export interface RecordMaterial {
   /** The sentence the entry was read from, verbatim. */
   quote: string;
   sourceUrl: string;
+  /** The requirement as it reads now. A tick is sent back with it, so the server knows which wording was ticked. */
+  digest: string;
   ready: boolean;
   /** Ticked for an earlier wording of this requirement: it no longer counts, and is worth a second look. */
   changed: boolean;
@@ -101,16 +103,47 @@ export function materialsSummary(record: {
   materialsTotal: number;
 }): string {
   const progress = progressLabel(record);
-  if (progress) return record.materialsDone === record.materialsTotal ? `材料 ${progress}，都勾了` : `材料 ${progress}`;
-  if (record.programId && !record.materialsExtracted) return "材料要求还没提取";
-  return "还没列材料清单";
+  const unread = Boolean(record.programId) && !record.materialsExtracted;
+  if (!progress) return unread ? "材料要求还没提取" : "还没列材料清单";
+  const counted = record.materialsDone === record.materialsTotal ? `材料 ${progress}，都勾了` : `材料 ${progress}`;
+  // The count is of the applicant's own lines only: say so, or "all ticked" reads as "nothing else is asked".
+  return unread ? `${counted}（自己列的，官网要求还没提取）` : counted;
 }
 
-/** The ticks to send: only the materials whose state differs from the record's. */
-export function tickChanges(materials: readonly RecordMaterial[], ticked: Readonly<Record<string, boolean>>): Record<string, boolean> {
-  return Object.fromEntries(
-    materials.filter((material) => (ticked[material.key] ?? material.ready) !== material.ready).map((material) => [material.key, !material.ready]),
-  );
+/**
+ * The overview's few words for a record's materials. "就绪" is only said of a list that could be
+ * complete: for a program whose page has not been read, every line ticked means the applicant's own
+ * lines are ticked, and that is what it says.
+ */
+export function overviewMaterials(record: {
+  programId: string | null;
+  materialsExtracted: boolean;
+  materialsReady: boolean;
+  materialsDone: number;
+  materialsTotal: number;
+}): string {
+  const progress = progressLabel(record);
+  if (record.materialsReady) {
+    // A record with nothing listed (the signed-out demo's examples) has no count to qualify.
+    return progress && record.programId && !record.materialsExtracted ? "自列材料已勾完" : "材料已就绪";
+  }
+  return progress ? `材料 ${progress}` : "材料准备中";
+}
+
+/**
+ * The ticks to send: only the materials whose state differs from the record's, and for each one being
+ * ticked the requirement's digest as this page showed it (`materialBasis`).
+ */
+export function tickChanges(
+  materials: readonly RecordMaterial[],
+  ticked: Readonly<Record<string, boolean>>,
+): { materialTicks: Record<string, boolean>; materialBasis: Record<string, string> } | null {
+  const changed = materials.filter((material) => (ticked[material.key] ?? material.ready) !== material.ready);
+  if (!changed.length) return null;
+  return {
+    materialTicks: Object.fromEntries(changed.map((material) => [material.key, !material.ready])),
+    materialBasis: Object.fromEntries(changed.filter((material) => !material.ready).map((material) => [material.key, material.digest])),
+  };
 }
 
 export function sameCustom(a: readonly CustomMaterial[], b: readonly CustomMaterial[]): boolean {

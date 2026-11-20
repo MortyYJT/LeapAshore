@@ -119,10 +119,10 @@ def read_for_advisor(client: str) -> list[dict]:
                 # nobody has read the page for materials yet, which is not "nothing is asked".
                 "materialsExtracted": row["materialsExtracted"],
                 "materials": [
-                    {"key": m["key"], "name": material_rules.label(m["type"], m["count"]), "type": m["type"],
+                    {"key": m["key"], "name": name, "type": m["type"],
                      "count": m["count"], "note": m["note"], "quote": m["quote"], "sourceUrl": m["sourceUrl"],
                      "ready": m["ready"], "requirementChangedSinceTick": m["changed"]}
-                    for m in row["materials"]
+                    for m, name in zip(row["materials"], material_names(row))
                 ],
                 # The applicant's own checklist lines.
                 "customMaterials": row["customMaterials"],
@@ -162,9 +162,14 @@ def _ready(value: bool) -> str:
     return READY if value else NOT_READY
 
 
+def material_names(record: dict) -> list[str]:
+    """A name for each collected material of the record that tells it from the others on the list."""
+    return material_rules.display_names([(m["type"], m["count"], m["note"], m["quote"]) for m in record["materials"]])
+
+
 def _lines(record: dict) -> dict[str, tuple[str, bool]]:
     """Every line a tick may name on this record: key or id -> (the words for it, whether it is ticked)."""
-    lines = {m["key"]: (material_rules.label(m["type"], m["count"]), m["ready"]) for m in record["materials"]}
+    lines = {m["key"]: (name, m["ready"]) for m, name in zip(record["materials"], material_names(record))}
     lines.update({c["id"]: (c["label"], c["done"]) for c in record["customMaterials"]})
     return lines
 
@@ -467,8 +472,8 @@ def propose_material_tick(
                 listed = "、".join(f"{key}（{words}）" for key, (words, _held) in lines.items())
                 return f"{REFUSED}这条申请的清单里没有「{wanted_line[:48]}」这一项。\n清单里有：{listed}。"
             chosen = list(lines) if wanted_line == ALL_MATERIALS else [wanted_line]
-            catalogue_keys = {m["key"] for m in record["materials"]}
-            ticks, custom = {}, [dict(item) for item in record["customMaterials"]]
+            catalogue_keys = {m["key"]: m["digest"] for m in record["materials"]}
+            ticks, basis, custom = {}, {}, [dict(item) for item in record["customMaterials"]]
             for key in chosen:
                 words, held = lines[key]
                 if held == wanted:
@@ -476,14 +481,18 @@ def propose_material_tick(
                 changes.append(change(f"材料 · {words}", _ready(held), _ready(wanted)))
                 if key in catalogue_keys:
                     ticks[key] = wanted
+                    if wanted:
+                        basis[key] = catalogue_keys[key]
                 else:
                     next(item for item in custom if item["id"] == key)["done"] = wanted
             if ticks:
                 fields["material_ticks"] = ticks
+            if basis:
+                fields["material_basis"] = basis
             if custom != record["customMaterials"]:
                 fields["custom_materials"] = custom
             if changes:
-                what = "全部材料" if wanted_line == ALL_MATERIALS else f"「{lines[chosen[0]][0]}」"
+                what = "清单里的全部材料" if wanted_line == ALL_MATERIALS else f"「{lines[chosen[0]][0]}」"
                 parts.append(f"{what}标为已备好（自查）" if wanted else f"{what}改回还没备好")
         if note:
             if len(note) > NOTE_LIMIT:

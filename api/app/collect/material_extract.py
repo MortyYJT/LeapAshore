@@ -5,6 +5,7 @@
     python -m app.collect.material_extract text <program_id> [--school <school_key>] [--full | --lines A:B]
     python -m app.collect.material_extract accept <program_id> --json <file|-> [--school <school_key>]
                                                   [--extractor NAME] [--dry-run]
+    python -m app.collect.material_extract withdraw <program_id> --reason "…" [--school <school_key>]
     python -m app.collect.material_extract status [--school <school_key>...]
 
 No model is called here and no site is fetched. Whoever reads the page (an agent, a person) uses
@@ -24,13 +25,21 @@ names.
      "materials": [{"type": "recommendation", "count": 2, "note": "…", "quote": "…"}]}
 
 `materials: []` says the page was read and lists no material. Handing a program in again replaces
-what was written for it.
+what was written for it. `withdraw` takes a reading back (a page that turned out to be a cookie wall,
+a wrong `[]`): the program is not extracted again, and the next import removes it from the catalogue.
+
+Writers of one requirement file take turns on a lock kept outside the data directory, and the file is
+replaced in one step, so a reader never sees half a file and two extractors working on one school do
+not overwrite each other.
 """
 
 import argparse
 import fcntl
+import hashlib
 import json
+import os
 import sys
+import tempfile
 from contextlib import contextmanager
 from datetime import date
 from pathlib import Path
@@ -159,17 +168,31 @@ def page_text(data_dir: Path, root: Path, program_id: str, school: str | None = 
     return header, text
 
 
+LOCK_DIR = Path(tempfile.gettempdir()) / "leapashore-material-locks"
+
+
 @contextmanager
 def _locked(path: Path):
-    """One writer at a time per requirement file: several extractors may work on one school."""
-    lock = path.with_suffix(path.suffix + ".lock")
-    with lock.open("w") as handle:
+    """One writer at a time per requirement file: several extractors may work on one school.
+
+    The lock file is named after the requirement file's path and is never removed. Removing it on
+    release would let one waiter lock the removed file while another locks a new one of the same name.
+    """
+    LOCK_DIR.mkdir(parents=True, exist_ok=True)
+    lock = LOCK_DIR / (hashlib.sha256(str(path.resolve()).encode()).hexdigest()[:32] + ".lock")
+    with lock.open("a") as handle:
         fcntl.flock(handle, fcntl.LOCK_EX)
         try:
             yield
         finally:
             fcntl.flock(handle, fcntl.LOCK_UN)
-            lock.unlink(missing_ok=True)
+
+
+def _write(path: Path, data: dict) -> None:
+    """Replace the requirement file in one step, in the files' own format, so nobody reads half of it."""
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    temporary.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    os.replace(temporary, path)
 
 
 def judge(submission, program: dict, school_key: str, root: Path) -> tuple[list[dict], list[dict]]:
@@ -252,20 +275,46 @@ def accept(data_dir: Path, root: Path, program_id: str, submission, *, school: s
             report["note"] = "the file already holds exactly this"
         elif not dry_run:
             program["materials"] = block
-            path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+            _write(path, data)
             report["written"] = True
         return report
 
 
+def withdraw(data_dir: Path, program_id: str, reason: str, *, school: str | None = None, today: date | None = None) -> dict:
+    """Take a program's reading back: its block says why, lists nothing, and no longer counts as an
+    extraction. The next import removes the program's materials from the catalogue."""
+    if not reason.strip():
+        raise Refused("a withdrawal needs a reason")
+    path, _data, _index = locate(data_dir, program_id, school)
+    with _locked(path):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        program = next((p for p in data.get("programs", []) if program_id_for(data["school_key"], p) == program_id), None)
+        if program is None:
+            raise Refused(f"program {program_id!r} is no longer in {path.name}")
+        previous = materials.block_of(program)
+        if previous is None:
+            raise Refused(f"program {program_id!r} has nothing to withdraw")
+        program["materials"] = {
+            "snapshot_sha256": previous.get("snapshot_sha256") or program["snapshot_sha256"],
+            "withdrawn": reason.strip(), "withdrawn_at": (today or date.today()).isoformat(),
+            "rejected": 0, "items": [],
+        }
+        _write(path, data)
+    return {"program_id": program_id, "school_key": data["school_key"], "withdrawn": reason.strip(), "extracted": False}
+
+
 def status(data_dir: Path, schools: list[str] | None = None) -> dict:
     """How far the extraction has got, counted from the files."""
-    programs = extracted = with_entries = entries = refused_only = 0
+    programs = extracted = with_entries = entries = refused_only = withdrawn = 0
     by_type: dict[str, int] = {}
     for path in requirement_files(data_dir, schools):
         for program in json.loads(path.read_text(encoding="utf-8")).get("programs", []):
             programs += 1
             block = materials.block_of(program)
             if block is None:
+                continue
+            if block.get("withdrawn"):
+                withdrawn += 1
                 continue
             if not materials.extracted(program):
                 refused_only += 1
@@ -277,7 +326,7 @@ def status(data_dir: Path, schools: list[str] | None = None) -> dict:
             for item in items:
                 by_type[item["type"]] = by_type.get(item["type"], 0) + 1
     return {"programs": programs, "extracted": extracted, "with_entries": with_entries,
-            "page_lists_none": extracted - with_entries, "refused_only": refused_only,
+            "page_lists_none": extracted - with_entries, "refused_only": refused_only, "withdrawn": withdrawn,
             "entries": entries, "by_type": dict(sorted(by_type.items()))}
 
 
@@ -316,6 +365,11 @@ def main(argv: list[str] | None = None) -> int:
     handing.add_argument("--extractor", default=DEFAULT_EXTRACTOR)
     handing.add_argument("--dry-run", action="store_true", help="check and report, write nothing")
 
+    taking_back = commands.add_parser("withdraw", help="take a program's reading back")
+    taking_back.add_argument("program_id")
+    taking_back.add_argument("--reason", required=True)
+    taking_back.add_argument("--school")
+
     counting = commands.add_parser("status", help="count what the files hold")
     counting.add_argument("--school", action="append", default=[])
 
@@ -340,6 +394,8 @@ def main(argv: list[str] | None = None) -> int:
             report = accept(args.data_dir, args.root, args.program_id, submission, school=args.school,
                             extractor=args.extractor, dry_run=args.dry_run)
             print(json.dumps(report, ensure_ascii=False, indent=1))
+        elif args.command == "withdraw":
+            print(json.dumps(withdraw(args.data_dir, args.program_id, args.reason, school=args.school), ensure_ascii=False, indent=1))
         else:
             print(json.dumps(status(args.data_dir, args.school or None), ensure_ascii=False, indent=1))
     except Refused as error:
