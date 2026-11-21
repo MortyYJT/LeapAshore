@@ -12,6 +12,7 @@
 - [x] **线路图界面第一步：设计系统、外壳、总览** — PR #95；换成已确认原型的设计变量和深色侧栏，手机改为顶栏加底部标签，其余页面只做变量适配。[详情](docs/measurements.md#line-map-interface-tokens-shell-and-overview-pr-95)
 - [x] **线路图界面第二步：顾问停靠栏** — PR #96；顾问停在工作区右侧，一轮画成一条线上的各个站，来源卡片、写入前确认、停止；接口新增步骤事件和停止。[详情](docs/measurements.md#advisor-dock-step-events-and-the-run-interface-pr-96)
 - [x] **未登录的总览画演示** — PR #97；用学校库里的真实项目和日期画一份只读演示并标明，会写入的操作引到登录；顾问输入区写明提问需要登录。只改前端。[决定](note/decisions.md)
+- [x] **顾问管理申请的工具**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.6）— PR #98；先提议、确认后才写入，日期只能来自学校库或申请者原话。PR #106 实跑了工具选择评估（103 题，模型编写、没有人工复核）：第一次工具选对 61/103，写入类的题模型先用文字问「确认吗」而不出确认卡片；改了提示词和工具说明后在同一批题上 102/103，**这不是留出集上的数字**，各跑一次。[详情](docs/measurements.md#tool-choice-evaluation-two-live-runs-and-the-prompt-change-between-them-pr-106)
 - [ ] **材料归并**（[PRD-multi-device](docs/product/PRD-multi-device.md) 3.7）— PR #103 做了数据、逐项勾选、顾问勾选和提取工具：学校库能存每个项目官网要求的材料（类型、份数、原文、出处），「材料就绪」一个勾改成逐项勾选加自己的清单，顾问只能勾清单里已有的项。材料线路图在 PR #104。PR #105 提取了演示名单的 11 个项目（41 条，其中 4 个项目的页面没有列材料），和另一个模型的标注逐条对过；**这只是一次流程试跑，不是学校库的提取质量数字，其余项目还没提取**。提取由 Claude 子代理读快照完成，标注也是模型做的、没有人工复核，忠实度判官没有覆盖新字段。[详情](docs/measurements.md#first-material-extraction-the-11-demo-programs-pr-105)
 - [x] **材料线路图** — PR #104；`/materials` 按原型画成线路图：通用材料是换乘站，各项目不同的材料各自停站，每条要求带官网原句和出处，没提取的项目是虚线加自己的清单。PR #105 提取了 11 个项目的材料（导入生产是合并后的一步，结果见 `note/handoff.md`），其余仍是「还没提取」；读过但页面没列材料的项目画成虚线并写明「页面没列材料」。[详情](docs/measurements.md#materials-line-map-pr-104)
 - [ ] **线路图界面后续** — 其余页面的完整重做。

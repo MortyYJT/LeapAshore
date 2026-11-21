@@ -192,7 +192,7 @@ def get_my_applications(config: RunnableConfig) -> str:
 def propose_portfolio_change(
     program_id: str, action: str, config: RunnableConfig, tier: str = "稳", status: str = ""
 ) -> str:
-    """修改选校组合（必须经申请者确认后才写入）。action 取值：add（把学校库里的项目加入组合，也就是加入「我的申请」，
+    """修改选校组合（调用后界面出现确认卡片，申请者点确认才写入；信息齐全就直接调用，不要先用文字问是否确认）。action 取值：add（把学校库里的项目加入组合，也就是加入「我的申请」，
     需给 tier：冲/稳/保）、remove（移出）、set_primary（设为首选）。program_id 先用 search_programs 查到。
     改申请状态不用这个工具，用 propose_application_status；学校库没有收录的项目用 propose_manual_application。"""
     # `set_status` is still accepted, for a turn that was paused on one before the status moved to

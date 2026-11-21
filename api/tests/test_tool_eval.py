@@ -2,15 +2,20 @@
 
 No model is called here. The scoring is checked on hand-written recorded turns; the runner is driven
 end to end with a scripted model against the real graph, tools and database, so the recording, the
-budget and the replay are the code a live run uses. No live run has been made yet (no model key on the
-development machine, and the spend is not approved), so there is no recorded result to replay and no
-accuracy figure anywhere in this repository.
+budget and the replay are the code a live run uses.
+
+The last tests replay the two live runs of 2026-11-21 (`evals/results/tools-2026-11-21*.json`): one
+before and one after the wording of the `propose_*` tools was changed because of the first. The cases
+were written by a model and not reviewed by a person, and the second run is on the same cases the
+wording was changed for, so neither count is a held-out figure (`docs/measurements.md`).
 """
 
 import asyncio
 import io
 import json
 import re
+
+from pathlib import Path
 
 import pytest
 from langchain_core.messages import AIMessage, ToolMessage
@@ -30,6 +35,10 @@ from tests.test_application_tools import catalogue, future  # noqa: F401
 
 DOC = load_set()
 CASES = DOC["cases"]
+
+RESULTS = Path(run_tools.__file__).resolve().parent / "results"
+FIRST_RUN = RESULTS / "tools-2026-11-21.json"
+AFTER_PROMPT_CHANGE = RESULTS / "tools-2026-11-21-after-prompt-fix.json"
 
 
 # ---------------------------------------------------------------------------------------------------
@@ -449,3 +458,104 @@ def test_the_estimate_is_arithmetic_on_counted_tokens_and_calls_no_model(monkeyp
     assert measured["system_prompt"] > 0 and measured["tool_schemas"] > 0
     assert measured["tool_results_for_the_fixture"]["get_my_applications"] > 0
     assert out["ceiling_before_the_budget"]["model_calls"] == 6 * (1 + settings.max_agent_steps)
+
+
+# ---------------------------------------------------------------------------------------------------
+# The two recorded live runs (2026-11-21)
+# ---------------------------------------------------------------------------------------------------
+
+
+def run_of(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def same_label(label, resolved) -> bool:
+    """A case's label against the one a run recorded, where each `@name` became this run's id."""
+    if isinstance(label, str) and label.startswith("@"):
+        return isinstance(resolved, str) and bool(resolved)
+    if isinstance(label, dict):
+        return isinstance(resolved, dict) and label.keys() == resolved.keys() and all(same_label(v, resolved[k]) for k, v in label.items())
+    if isinstance(label, list):
+        return isinstance(resolved, list) and len(label) == len(resolved) and all(same_label(a, b) for a, b in zip(label, resolved))
+    return label == resolved
+
+
+@pytest.mark.parametrize("path", [FIRST_RUN, AFTER_PROMPT_CHANGE], ids=["first", "after-prompt-change"])
+def test_a_recorded_live_run_replays_and_is_a_run_of_the_committed_cases(path):
+    """The counts in `docs/measurements.md` follow from the recorded turns, and the turns are those of
+    the set as committed: same cases, same messages, same labels."""
+    again, same = run_tools.replay(path)
+    assert same, "the recorded metrics are not the metrics of the recorded turns"
+    run = run_of(path)
+    assert [(item["id"], item["kind"], item["message"]) for item in run["items"]] == [(c["id"], c["kind"], c["message"]) for c in CASES]
+    assert all(same_label(case["expect"], item["expected"]) for case, item in zip(CASES, run["items"]))
+    assert (again["cases"], again["ran"], again["errors"], again["not_run"]) == (103, 103, 0, 0)
+    # No card was answered, so nothing was written; every call reported its usage; the cap held.
+    assert not any(item["applications_changed"] for item in run["items"])
+    assert run["stopped"] is None and run["calls_without_usage"] == 0
+    assert run["cost_cny_upper_bound"] <= run["budget_cny"]
+    assert (run["set"], run["chat_model_setting"]) == ("tool_choice_cases.json", "deepseek-chat")
+
+
+def test_the_first_live_run_asked_in_prose_instead_of_raising_the_card():
+    run = run_of(FIRST_RUN)
+    m = run["metrics"]
+    assert m["tool_choice"] == {"ok": 61, "of": 103} and m["exact"] == {"ok": 61, "of": 103}
+    assert m["arguments"] == {"ok": 18, "of": 18}
+    assert m["no_card"] == {"cases": 10, "cards_raised": 0, "deadline_cards_raised": 0, "write_attempts": 0}
+    # Reads, refusals, questions back and made-up dates all passed; the write kinds did not.
+    assert {kind: (n["tool_choice_ok"], n["cases"]) for kind, n in m["by_kind"].items() if n["tool_choice_ok"] != n["cases"]} == {
+        "portfolio_change": (1, 6), "manual_add": (1, 6), "deadline_catalog": (1, 6), "deadline_stated": (1, 6),
+        "status": (1, 8), "material": (4, 12), "multi_step": (1, 8)}
+    # Each of the 42 misses is the same thing: no `propose_*` call, and a reply that asks to confirm.
+    missed = [item for item in run["items"] if not m["per_case"][item["id"]]["tool_ok"]]
+    assert len(missed) == 42
+    assert not any(call["tool"].startswith("propose_") for item in missed for call in item["calls"])
+    assert all("确认" in item["reply"] for item in missed)
+
+
+def test_the_run_after_the_prompt_change_and_what_it_still_missed():
+    run = run_of(AFTER_PROMPT_CHANGE)
+    m = run["metrics"]
+    assert m["tool_choice"] == {"ok": 102, "of": 103} and m["exact"] == {"ok": 101, "of": 103}
+    assert m["arguments"] == {"ok": 58, "of": 59} and m["arguments_any"] == {"ok": 58, "of": 59}
+    assert m["asked_back"] == {"cases": 7, "question_mark": 5}
+    items = {item["id"]: item for item in run["items"]}
+    assert sorted(name for name, verdict in m["per_case"].items() if not verdict["exact"]) == ["manual-add-05", "material-03"]
+    # One asked which tier before proposing; the other ticked the item as well as adding the note.
+    assert not any(call["tool"].startswith("propose_") for call in items["manual-add-05"]["calls"])
+    assert items["material-03"]["calls"][-1]["args"]["ready"] is True
+    # Nothing that passed in the first run failed in this one.
+    first = run_of(FIRST_RUN)["metrics"]["per_case"]
+    assert not [name for name, verdict in first.items() if verdict["exact"] and not m["per_case"][name]["exact"]]
+
+
+def test_the_one_write_attempt_in_a_no_card_case_was_refused_by_the_server():
+    """`refuse-07` names an application id that is not the account's. The case allows the call: the
+    point is that the server answers it with a refusal and no card."""
+    run = run_of(AFTER_PROMPT_CHANGE)
+    assert run["metrics"]["no_card"] == {"cases": 10, "cards_raised": 0, "deadline_cards_raised": 0, "write_attempts": 1}
+    attempted = [item for item in run["items"] if run["metrics"]["per_case"][item["id"]].get("write_attempted")]
+    assert [item["id"] for item in attempted] == ["refuse-07"]
+    first = attempted[0]["calls"][0]
+    assert (first["tool"], first["outcome"], first["refusal"]) == ("propose_application_status", "refused", "未执行：没有这个申请。")
+    assert attempted[0]["cards"] == [] and attempted[0]["applications_changed"] is False
+
+
+def test_both_live_runs_together_stayed_inside_the_approved_two_yuan():
+    spent = run_of(FIRST_RUN)["cost_cny_upper_bound"] + run_of(AFTER_PROMPT_CHANGE)["cost_cny_upper_bound"]
+    assert spent == pytest.approx(1.2546) and spent <= 2.0
+
+
+def test_the_wording_the_second_run_was_measured_on_is_still_in_place():
+    """The second run's counts belong to this wording. If it changes, they describe another prompt:
+    say so beside them in `docs/measurements.md` (a new run needs the owner's approval of its cost)."""
+    assert "propose_ 开头的工具自己不写入" in graph_module.SYSTEM_PROMPT and "不要先用文字问" in graph_module.SYSTEM_PROMPT
+    for tool in TOOLS:
+        if tool.name in graph_module.CONFIRMED_TOOLS:
+            assert "调用后界面出现确认卡片" in tool.description and "直接调用" in tool.description, tool.name
+
+
+def test_only_the_live_runs_this_file_replays_are_recorded():
+    """A result file nobody replays could be quoted without being checked."""
+    assert sorted(path.name for path in RESULTS.glob("tools-*.json")) == [AFTER_PROMPT_CHANGE.name, FIRST_RUN.name]
