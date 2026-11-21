@@ -1,12 +1,15 @@
 // The materials line map's model (docs/product/PRD-multi-device.md, 3.7): for one applicant, which
-// materials every program asks for in the same form and which differ, built from the records alone.
+// materials every program asks for and which only some do, built from the records alone.
 //
-// Each application is a line. A material that every extracted program asks for, once, with the same
-// count and nothing particular noted, is shared: an interchange all the lines pass through. Any other
-// material is a column where a line stops only if its program's page asks for it. A program whose page
-// has not been read for materials has no stops at all and is drawn apart from the others, because
-// nothing is known about it; it is never treated as asking for nothing. The same goes for a program
-// whose page was read and lists no documents: its list is on some other page, which nobody read.
+// Each application is a line. A material that every extracted program asks for is an interchange all
+// the lines pass through. Where one program's requirement there is particular (something noted,
+// several entries, or a count that departs from the one most programs state), that program's line is
+// marked at the interchange and its own wording stays in the list under the map; only an interchange
+// where every program asks once, with one count and nothing noted, is called "prepared once". Any
+// other material is a column where a line stops only if its program's page asks for it. A program
+// whose page has not been read for materials has no stops at all and is drawn apart from the others,
+// because nothing is known about it; it is never treated as asking for nothing. The same goes for a
+// program whose page was read and lists no documents: its list is on some other page, which nobody read.
 //
 // Pure functions, so the rules are tested without a browser. Nothing here fills a gap: a count the
 // page does not state stays unstated, and a note is the collector's own summary, shown as such.
@@ -29,7 +32,11 @@ export interface Requirement {
   entries: RecordMaterial[];
   /** The few characters under the station: the count where the page states one. */
   caption: string;
-  /** Departs from what most programs ask: another count, something particular noted, or several entries. */
+  /**
+   * Particular to this program. In a column: departs from the form most programs share (another count,
+   * something noted, several entries), which needs such a form to exist. At an interchange: something
+   * noted or several entries, always; another count only when one count has a majority of its own.
+   */
   differs: boolean;
   /** Every entry is ticked. */
   ready: boolean;
@@ -38,9 +45,15 @@ export interface Requirement {
 export interface MaterialColumn {
   type: string;
   name: string;
-  /** In the same form for every extracted program: prepared once. */
+  /** Every extracted program asks for it: an interchange. Says nothing about the form each asks it in. */
   shared: boolean;
-  /** What most of the programs that ask for it ask, as a count label; "" when they state no count; null when no two agree. */
+  /** Shared, and every program asks once, with one count and nothing noted: prepared once for all of them. */
+  uniform: boolean;
+  /**
+   * The count most programs state, as a label; "" when most state none; null when no count has a
+   * majority of its own. In a column it is taken over the plain entries (one entry, nothing noted); at
+   * an interchange over every program that asks once, noted or not, since a note does not change a count.
+   */
   common: string | null;
   requirements: Requirement[];
   /** Extracted programs whose page lists no such material. */
@@ -56,7 +69,9 @@ export interface MaterialsModel {
   silent: MapLine[];
   /** Applications added by hand: no page in the catalogue to read. */
   manual: MapLine[];
+  /** Materials every program on the map asks for, uniform or not: the interchanges. */
   shared: MaterialColumn[];
+  /** Materials only some programs ask for, and `other`: columns of separate stops. */
   differing: MaterialColumn[];
   /** Collected requirements across the lines, counted per program, and how many are ticked. */
   total: number;
@@ -136,26 +151,27 @@ export function materialsModel(records: readonly ApplicationRecord[], rail?: rea
       .map((line) => ({ line, entries: line.record.materials.filter((material) => material.type === type) }))
       .filter(({ entries }) => entries.length > 0);
     if (!asking.length) continue;
-    const plain = asking.filter(({ entries }) => entries.length === 1 && !entries[0].note);
-    // "Shared" is a claim about every program the map knows: it needs at least two of them, each
-    // asking once, with one count between them and nothing particular noted. `other` entries are
-    // different documents under one heading, so they are never merged.
-    const isShared =
-      type !== "other" &&
-      lines.length >= 2 &&
-      asking.length === lines.length &&
-      plain.length === asking.length &&
-      new Set(plain.map(({ entries }) => entries[0].count)).size === 1;
-    const commonCount = type === "other" ? null : mode(plain.map(({ entries }) => (entries[0].count === null ? "" : countLabel(type, entries[0].count))));
+    const label = (entry: RecordMaterial) => (entry.count === null ? "" : countLabel(type, entry.count));
+    const single = asking.filter(({ entries }) => entries.length === 1);
+    const plain = single.filter(({ entries }) => !entries[0].note);
+    // An interchange is a claim about every program the map knows: at least two of them, and all of
+    // them ask. `other` entries are different documents under one heading, so they are never merged.
+    const isShared = type !== "other" && lines.length >= 2 && asking.length === lines.length;
+    // "Prepared once" is the stronger claim: each asks once, with one count and nothing noted.
+    const uniform = isShared && plain.length === asking.length && new Set(plain.map(({ entries }) => entries[0].count)).size === 1;
+    const commonCount = type === "other" ? null : mode((isShared ? single : plain).map(({ entries }) => label(entries[0])));
     const requirements: Requirement[] = asking.map(({ line, entries }) => {
-      const single = entries.length === 1 && !entries[0].note;
-      const own = single ? (entries[0].count === null ? "" : countLabel(type, entries[0].count)) : null;
+      const isPlain = entries.length === 1 && !entries[0].note;
+      const own = entries.length === 1 ? label(entries[0]) : null;
       return {
         line,
         entries,
         caption: captionOf(type, entries),
-        // With no common form to depart from (one program, or no two alike), nothing "differs".
-        differs: !isShared && commonCount !== null && own !== commonCount,
+        differs: isShared
+          ? // A note or a second entry is particular whatever the others ask; a count only against a majority.
+            !isPlain || (commonCount !== null && own !== commonCount)
+          : // With no common form to depart from (one program, or no two alike), nothing "differs".
+            commonCount !== null && (isPlain ? own : null) !== commonCount,
         ready: entries.every((entry) => entry.ready),
       };
     });
@@ -163,6 +179,7 @@ export function materialsModel(records: readonly ApplicationRecord[], rail?: rea
       type,
       name: columnName(type),
       shared: isShared,
+      uniform,
       common: commonCount,
       requirements,
       absent: lines.filter((line) => !asking.some((asked) => asked.line === line)),
@@ -209,6 +226,8 @@ export interface MapGeometry {
   /** One dotted run per program whose requirements are not known (not read, or a page that lists none): it joins nothing. */
   dotted: { line: MapLine; d: string }[];
   hubs: { column: MaterialColumn; x: number; y: number; width: number; height: number; ready: boolean }[];
+  /** One mark per particular requirement at an interchange: on that program's line, inside the capsule. */
+  hubMarks: { requirement: Requirement; x: number; y: number; width: number; height: number }[];
   stations: { requirement: Requirement; x: number; y: number }[];
   guides: { x1: number; y1: number; x2: number; y2: number }[];
   labels: MapLabel[];
@@ -222,6 +241,17 @@ const MIN_COLUMN = 64;
 export const DENSE_PITCH = 44;
 
 const TRUNK_PITCH = 7;
+/** A mark is as thick as a line and short enough for a capsule's rounded end; with its 1px outline, neighbours 7px apart do not touch. */
+const MARK_LENGTH = 12;
+const MARK_THICKNESS = 5;
+
+/** The trunk's heading: "prepared once" is said only when every interchange is uniform. */
+export const GROUP_SAME = "通用，准备一份";
+export const GROUP_ALL_ASK = "各项目都要";
+
+function groupLabel(model: MaterialsModel): string {
+  return model.shared.every((column) => column.uniform) ? GROUP_SAME : GROUP_ALL_ASK;
+}
 
 /**
  * Whether a frame this wide draws the map left to right: wide enough, and every capsule and column gets
@@ -249,6 +279,7 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
   const n = model.lines.length;
   const mid = (n - 1) / 2;
   const hubs: MapGeometry["hubs"] = [];
+  const hubMarks: MapGeometry["hubMarks"] = [];
   const stations: MapGeometry["stations"] = [];
   const guides: MapGeometry["guides"] = [];
   const labels: MapLabel[] = [];
@@ -295,6 +326,10 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
       hubs.push({ column, x: x - 8, y: trunkY(0) - 10, width: 16, height: (n - 1) * TRUNK_PITCH + 20, ready: state.ready });
       labels.push({ kind: "hub-name", text: column.name, x, y: trunkY(0) - 34, align: "centre" });
       labels.push({ kind: "hub-state", text: state.text, x, y: trunkY(n - 1) + 15, align: "centre" });
+      for (const requirement of column.requirements.filter((each) => each.differs)) {
+        const y = trunkY(model.lines.indexOf(requirement.line));
+        hubMarks.push({ requirement, x: x - MARK_LENGTH / 2, y: y - MARK_THICKNESS / 2, width: MARK_LENGTH, height: MARK_THICKNESS });
+      }
     });
     columns.forEach((column, j) => {
       labels.push({ kind: "column", text: column.name, x: columnX(j), y: 0, align: "centre" });
@@ -309,8 +344,8 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
       dotted.push({ line, d: `M${left} ${y}H${end}` });
       labels.push({ kind: "end", text: line.code, x: end + 8, y, line, align: "middle" });
     });
-    if (hasTrunk) labels.push({ kind: "group", text: "通用，准备一份", x: 0, y: 0, align: "left" });
-    return { vertical: false, width, height, paths, dotted, hubs, stations, guides, labels };
+    if (hasTrunk) labels.push({ kind: "group", text: groupLabel(model), x: 0, y: 0, align: "left" });
+    return { vertical: false, width, height, paths, dotted, hubs, hubMarks, stations, guides, labels };
   }
 
   // Top to bottom: the hubs stack on the trunk, the lines fan out to one column each, and every
@@ -347,6 +382,10 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
     hubs.push({ column, x: trunkX(0) - 10, y: y - 8, width: (n - 1) * TRUNK_PITCH + 20, height: 16, ready: state.ready });
     labels.push({ kind: "hub-name", text: column.name, x: trunkX(0) - 18, y: y - 9, align: "right" });
     labels.push({ kind: "hub-state", text: state.text, x: trunkX(n - 1) + 18, y: y - 9, align: "left" });
+    for (const requirement of column.requirements.filter((each) => each.differs)) {
+      const x = trunkX(model.lines.indexOf(requirement.line));
+      hubMarks.push({ requirement, x: x - MARK_THICKNESS / 2, y: y - MARK_LENGTH / 2, width: MARK_THICKNESS, height: MARK_LENGTH });
+    }
   });
   columns.forEach((column, j) => {
     labels.push({ kind: "column", text: column.name, x: 0, y: rowY(j) - 9, align: "left" });
@@ -363,8 +402,8 @@ export function layoutMap(model: MaterialsModel, width: number): MapGeometry {
     dotted.push({ line, d: `M${x} ${rowsStart - 4}V${end}` });
     labels.push({ kind: "end", text: line.code, x, y: end + 8, line, align: "centre" });
   });
-  if (hasTrunk) labels.push({ kind: "group", text: "通用，准备一份", x: 0, y: 0, align: "left" });
-  return { vertical: true, width: frame, height, paths, dotted, hubs, stations, guides, labels };
+  if (hasTrunk) labels.push({ kind: "group", text: groupLabel(model), x: 0, y: 0, align: "left" });
+  return { vertical: true, width: frame, height, paths, dotted, hubs, hubMarks, stations, guides, labels };
 }
 
 // ---------------------------------------------------------------------------------------------------

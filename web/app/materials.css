@@ -14,6 +14,7 @@
 .k-stn { fill: var(--bg); stroke: var(--ink-2); stroke-width: 2.5; }
 .k-stn.is-ready { fill: var(--ink-2); }
 .k-unread { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 0.1 6; }
+.k-hub { fill: var(--bg); stroke: var(--ink-2); stroke-width: 2; }
 .k-diff, .map .lbl-caption.is-diff, .diff .what mark {
   padding: 0 5px; border-radius: var(--r-tag);
   background: var(--mark); color: var(--mark-ink); font-weight: 600;
@@ -33,6 +34,10 @@
 .map .stn.is-ready { fill: var(--lc); }
 .map .hub { fill: var(--bg); stroke: var(--ink); stroke-width: 2; transition: fill var(--t-base); }
 .map .hub.is-ready { fill: var(--ink); }
+/* A program that asks for this material in a form of its own: the highlighter on its line, inside the
+   capsule. The outline keeps the mark legible on an empty capsule and on a filled one, in both themes. */
+.map .hub-mark, .k-mark { fill: var(--mark); stroke: var(--mark-ink); stroke-width: 1; }
+.map .hub-mark { transition: opacity var(--t-base); }
 .map .lbl { position: absolute; white-space: nowrap; font-size: var(--fs-13); line-height: 18px; transition: opacity var(--t-base); }
 .map .a-centre { transform: translateX(-50%); }
 .map .a-right { transform: translateX(-100%); }
@@ -73,6 +78,9 @@
 .shared .mat-cites { flex-basis: 100%; }
 /* Opened, an item takes the whole row, so its programs' sentences sit side by side under it. */
 .shared > li.is-open { grid-column: 1 / -1; }
+/* Asked by every program, in forms that are not all the same: each program keeps its own tick and text. */
+.shared-note { margin: 0 0 10px; max-width: 46em; font-size: var(--fs-13); color: var(--ink-3); text-wrap: pretty; }
+.shared + .shared-note { margin-top: 20px; }
 
 /* ---------- materials that differ ---------- */
 .diffs { border-top: 1px solid var(--line); }
@@ -151,5 +159,5 @@
   .shared { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .map .ln, .map .stn, .map .hub, .map .lbl, .bt, .bt .bullet, .diff .exc, .own-row { transition: none; }
+  .map .ln, .map .stn, .map .hub, .map .hub-mark, .map .lbl, .bt, .bt .bullet, .diff .exc, .own-row { transition: none; }
 }

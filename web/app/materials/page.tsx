@@ -64,9 +64,22 @@ function named(lines: readonly MapLine[]): string {
   return lines.length > 2 ? `${lines.length} 个项目` : lines.map((line) => line.record.school).join("、");
 }
 
-/** The sentence under the title: how much is known, what is shared, what differs, how far along. */
+/**
+ * The sentence under the title: how much is known, what every program asks for, what only some do,
+ * how far along. "准备一份就够" is said only of materials every program asks for in the same form.
+ */
 function Finding({ model }: { model: MaterialsModel }) {
   const { lines, unread, silent, manual, shared, differing, total, done, closed } = model;
+  const same = shared.filter((column) => column.uniform).length;
+  // Not uniform: some program's requirement is particular, or the counts vary with no majority among them.
+  const particular = shared.filter((column) => column.requirements.some((requirement) => requirement.differs)).length;
+  const varied = shared.length - same - particular;
+  const mixed = particular + varied;
+  const forms = [
+    same > 0 && `${same} 项要求一样，准备一份就够`,
+    particular > 0 && `${particular} 项有项目另有要求`,
+    varied > 0 && `${varied} 项份数不一`,
+  ].filter(Boolean);
   const open = lines.length + unread.length + silent.length + manual.length;
   if (!open) return <>{closed ? `${closed} 个申请都已提交或已有结果，没有要备的材料。` : "还没有申请。"}</>;
   const waiting = named(unread);
@@ -88,10 +101,20 @@ function Finding({ model }: { model: MaterialsModel }) {
         <>
           {lines[0].record.school}的官网要求有 <b>{total} 项</b>，已备好 {done} 项。
         </>
-      ) : (
+      ) : mixed === 0 ? (
         <>
           {lines.length} 个项目都要、要求也一样的材料有 <b>{shared.length} 项</b>
           {shared.length > 0 && "，准备一份就够"}；要求不一样的有 <b>{differing.length} 项</b>。按项目累计 {total} 项，已备好 {done} 项。
+        </>
+      ) : (
+        <>
+          {lines.length} 个项目都要的材料有 <b>{shared.length} 项</b>：{forms.join("；")}。
+          {differing.length > 0 && (
+            <>
+              各项目不同的另有 <b>{differing.length} 项</b>。
+            </>
+          )}
+          按项目累计 {total} 项，已备好 {done} 项。
         </>
       )}
       {unread.length > 0 && `${waiting}的官网要求还没提取。`}

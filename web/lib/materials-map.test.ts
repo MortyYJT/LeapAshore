@@ -4,6 +4,8 @@ import type { ApplicationRecord } from "./application-records.ts";
 import type { RecordMaterial } from "./materials.ts";
 import {
   DEMO_MAX_PROGRAMS,
+  GROUP_ALL_ASK,
+  GROUP_SAME,
   VERTICAL_BELOW,
   demoMaterialRecords,
   drawsHorizontally,
@@ -64,16 +66,18 @@ function five(): ApplicationRecord[] {
   ];
 }
 
-test("a material every program asks for in the same form is shared, and the rest are columns", () => {
+test("a material every program asks for is an interchange, and the rest are columns", () => {
   const model = materialsModel(five());
-  assert.deepEqual(model.shared.map((column) => column.type), ["transcript", "cv"]);
-  assert.deepEqual(model.differing.map((column) => column.type), ["recommendation", "personal_statement", "test_score"]);
+  assert.deepEqual(model.shared.map((column) => [column.type, column.uniform]), [["transcript", true], ["cv", true], ["recommendation", false]]);
+  assert.deepEqual(model.differing.map((column) => column.type), ["personal_statement", "test_score"]);
   assert.equal(model.lines.length, 5);
   assert.deepEqual(model.lines.map((line) => line.record.programId), ["a", "b", "c", "d", "e"], "nearest deadline first, as on the overview");
 });
 
-test("a count that departs from most programs is marked, and the others are not", () => {
-  const letters = materialsModel(five()).differing[0];
+test("a count that departs from most programs is marked at the interchange, and the others are not", () => {
+  const letters = materialsModel(five()).shared[2];
+  assert.equal(letters.shared, true, "all five ask for letters");
+  assert.equal(letters.uniform, false, "one asks for three: not prepared once for all");
   assert.equal(letters.common, "2 封");
   assert.deepEqual(letters.requirements.map((r) => [r.line.record.programId, r.caption, r.differs]), [
     ["a", "2 封", false], ["b", "2 封", false], ["c", "2 封", false], ["d", "2 封", false], ["e", "3 封", true],
@@ -82,7 +86,7 @@ test("a count that departs from most programs is marked, and the others are not"
 });
 
 test("something particular noted on one program marks that program only, and a program that does not ask is absent", () => {
-  const [, essay, test_score] = materialsModel(five()).differing;
+  const [essay, test_score] = materialsModel(five()).differing;
   assert.equal(essay.common, "", "most state no count: the common form is 'asked, no number'");
   assert.deepEqual(essay.requirements.map((r) => [r.line.record.programId, r.caption, r.differs]), [
     ["a", "要交", false], ["b", "另有说明", true], ["c", "要交", false],
@@ -98,7 +102,7 @@ test("a program that was not read is kept apart: it has no stops and breaks no s
   assert.deepEqual(model.unread.map((line) => line.record.programId), ["f"]);
   assert.deepEqual(model.manual.map((line) => line.record.id), ["manual-1"]);
   // Still shared among the five that were read: the unread one is not counted as "does not ask".
-  assert.deepEqual(model.shared.map((column) => column.type), ["transcript", "cv"]);
+  assert.deepEqual(model.shared.map((column) => column.type), ["transcript", "cv", "recommendation"]);
   assert.ok(model.differing.every((column) => column.absent.every((line) => line.record.programId !== "f")));
 });
 
@@ -192,18 +196,157 @@ test("a program that is also in the rail keeps the rail's colour, whatever else 
   assert.equal(mixed.lines.find((line) => line.record.id === records[2].id)!.line, colourOf(records[2].id));
 });
 
-test("with no majority nothing is marked as different", () => {
+test("with no majority count nothing is marked as different, and nothing is said to be the same", () => {
   const counts = [2, 2, 3, 3];
   const model = materialsModel(counts.map((count, i) => record("abcd"[i], [material("recommendation", { count })])));
-  const [letters] = model.differing;
-  assert.equal(letters.common, null);
+  assert.deepEqual(model.differing, []);
+  const [letters] = model.shared;
+  assert.deepEqual([letters.shared, letters.uniform, letters.common], [true, false, null], "all four ask; their counts vary");
   assert.deepEqual(letters.requirements.map((r) => [r.caption, r.differs]), [["2 封", false], ["2 封", false], ["3 封", false], ["3 封", false]]);
+  for (const width of [1000, 358]) {
+    const map = layoutMap(model, width);
+    assert.equal(map.hubs.length, 1);
+    assert.deepEqual(map.hubMarks, []);
+    assert.equal(map.labels.find((label) => label.kind === "group")!.text, GROUP_ALL_ASK);
+  }
+
+  // Two programs with two counts have no majority either.
+  const pair = materialsModel([record("a", [two()]), record("b", [material("recommendation", { count: 3 })])]).shared[0];
+  assert.deepEqual([pair.uniform, pair.common, pair.requirements.map((r) => r.differs)], [false, null, [false, false]]);
+});
+
+test("every program asking in the same plain form is prepared once, as before", () => {
+  const model = materialsModel([record("a", [material("cv"), two()]), record("b", [material("cv"), two()]), record("c", [material("cv"), two()])]);
+  assert.deepEqual(model.shared.map((column) => [column.type, column.uniform, column.common]), [["cv", true, ""], ["recommendation", true, "2 封"]]);
+  assert.ok(model.shared.every((column) => column.requirements.every((r) => !r.differs)));
+  for (const width of [1000, 358]) {
+    const map = layoutMap(model, width);
+    assert.deepEqual(map.hubMarks, []);
+    assert.equal(map.labels.find((label) => label.kind === "group")!.text, GROUP_SAME);
+  }
+});
+
+test("something noted on one program marks its line at the interchange, majority or not", () => {
+  // Two programs: no two plain forms agree, and the note still makes its program particular.
+  const pair = materialsModel([record("a", [material("cv")]), record("b", [material("cv", { note: "two pages at most" })])]);
+  assert.deepEqual(pair.differing, []);
+  assert.deepEqual(pair.shared.map((column) => [column.type, column.uniform]), [["cv", false]]);
+  assert.deepEqual(pair.shared[0].requirements.map((r) => [r.line.record.programId, r.caption, r.differs]), [["a", "要交", false], ["b", "另有说明", true]]);
+
+  // Every program notes something: every line is marked, and the material is still one all of them ask for.
+  const noted = materialsModel(["a", "b", "c"].map((id) => record(id, [material("transcript", { note: `note of ${id}` })])));
+  assert.deepEqual(noted.shared[0].requirements.map((r) => r.differs), [true, true, true]);
+  assert.equal(noted.shared[0].uniform, false);
+});
+
+test("at an interchange the majority count is taken across noted entries too", () => {
+  // Two ask for two letters with something noted, one plainly asks for three: the three is the odd count.
+  const model = materialsModel([
+    record("a", [two({ note: "one academic" })]),
+    record("b", [two({ note: "on letterhead" })]),
+    record("c", [material("recommendation", { count: 3 })]),
+  ]);
+  const [letters] = model.shared;
+  assert.equal(letters.common, "2 封");
+  assert.deepEqual(letters.requirements.map((r) => r.differs), [true, true, true], "two by their notes, one by its count");
+
+  // A plain entry with the majority's count is the one line left unmarked.
+  const mostly = materialsModel([record("a", [two()]), record("b", [two({ note: "on letterhead" })]), record("c", [two()]), record("d", [material("recommendation", { count: 3 })])]);
+  assert.deepEqual(mostly.shared[0].requirements.map((r) => r.differs), [false, true, false, true]);
+});
+
+test("several entries of one type on a program mark its line at the interchange", () => {
+  const model = materialsModel([
+    record("a", [material("personal_statement")]),
+    record("b", [material("personal_statement"), material("personal_statement", { key: "personal_statement-2" })]),
+    record("c", [material("personal_statement")]),
+  ]);
+  const [essay] = model.shared;
+  assert.deepEqual([essay.shared, essay.uniform, essay.common], [true, false, ""]);
+  assert.deepEqual(essay.requirements.map((r) => [r.caption, r.differs]), [["要交", false], ["2 项", true], ["要交", false]]);
+});
+
+/** Three programs shaped like the first real extraction: most entries carry a note. Made up, like the rest. */
+function noted3(): ApplicationRecord[] {
+  return [
+    record("a", [
+      material("transcript", { note: "certified copies" }),
+      material("language_score", { note: "sent by the test centre" }),
+      material("cv"),
+      two({ note: "at least one academic" }),
+      material("personal_statement", { count: 1, note: "up to 500 words" }),
+    ], { deadline: "2027-01-10" }),
+    record("b", [
+      material("transcript", { note: "with a translation" }),
+      material("transcript", { key: "transcript-2", note: "degree certificate" }),
+      material("language_score"),
+      material("cv", { note: "two pages at most" }),
+      two(),
+    ], { deadline: "2027-02-10" }),
+    record("c", [
+      material("transcript"),
+      material("language_score", { note: "taken in the last two years" }),
+      material("cv"),
+      material("recommendation", { count: 3 }),
+      material("other", { note: "passport copy" }),
+    ], { deadline: "2027-03-10" }),
+  ];
+}
+
+test("real extractions, where most entries carry a note, still meet at interchanges", () => {
+  const model = materialsModel(noted3());
+  // Under the earlier rule (no entry may carry a note) these three programs shared nothing.
+  assert.deepEqual(model.shared.map((column) => [column.type, column.uniform]), [
+    ["transcript", false], ["language_score", false], ["cv", false], ["recommendation", false],
+  ]);
+  assert.deepEqual(model.differing.map((column) => column.type), ["personal_statement", "other"]);
+  const marked = Object.fromEntries(model.shared.map((column) => [column.type, column.requirements.filter((r) => r.differs).map((r) => r.line.record.programId)]));
+  assert.deepEqual(marked, {
+    transcript: ["a", "b"],
+    language_score: ["a", "c"],
+    cv: ["b"],
+    recommendation: ["a", "c"],
+  });
+  // Every particular entry is still in the model with its own note, for the list under the map.
+  assert.equal(model.shared[2].requirements[1].entries[0].note, "two pages at most");
+  assert.equal(model.total, 15);
+});
+
+test("a marked line's mark sits on that line inside its capsule, left to right and top to bottom", () => {
+  for (const [records, width] of [[noted3(), 1000], [noted3(), 358], [five(), 1000], [five(), 358]] as const) {
+    const model = materialsModel(records);
+    const map = layoutMap(model, width);
+    const expected = model.shared.flatMap((column) => column.requirements.filter((r) => r.differs));
+    assert.equal(map.hubMarks.length, expected.length);
+    assert.deepEqual(map.hubMarks.map((mark) => mark.requirement), expected);
+    for (const mark of map.hubMarks) {
+      const hub = map.hubs.find((h) => h.column.requirements.includes(mark.requirement))!;
+      assert.ok(mark.x >= hub.x && mark.x + mark.width <= hub.x + hub.width, "inside the capsule, across");
+      assert.ok(mark.y >= hub.y && mark.y + mark.height <= hub.y + hub.height, "inside the capsule, along");
+      // The mark is centred on its own line's position in the trunk, 7px from its neighbours.
+      const index = model.lines.indexOf(mark.requirement.line);
+      const first = map.vertical ? hub.x + 10 : hub.y + 10;
+      const centre = map.vertical ? mark.x + mark.width / 2 : mark.y + mark.height / 2;
+      assert.equal(centre, first + index * 7);
+    }
+    assert.equal(map.labels.find((label) => label.kind === "group")!.text, GROUP_ALL_ASK);
+  }
+});
+
+test("crowded lanes keep the marks at an interchange", () => {
+  const records = "abcdefgh".split("").map((id, i) => record(id, [two(i === 7 ? { count: 3 } : {})]));
+  const map = layoutMap(materialsModel(records), 358);
+  assert.equal(map.vertical, true);
+  assert.equal(map.hubs.length, 1);
+  assert.deepEqual(map.hubMarks.map((mark) => mark.requirement.line.record.programId), ["h"]);
+  assert.ok(map.hubMarks[0].x + map.hubMarks[0].width <= map.width);
 });
 
 test("every capsule and column gets at least 64px, or the map is drawn top to bottom", () => {
   for (const [sharedCount, differingCount] of [[7, 1], [1, 7], [4, 4], [2, 6]]) {
     const types = ["transcript", "language_score", "cv", "recommendation", "personal_statement", "test_score", "writing_sample", "portfolio"];
-    const records = ["a", "b"].map((id, i) => record(id, types.map((type, t) => material(type, t < sharedCount ? {} : { note: `note ${i}` }))));
+    // The second program asks only for the first few: the rest are columns with one stop each.
+    const records = ["a", "b"].map((id, i) => record(id, types.filter((_, t) => i === 0 || t < sharedCount).map((type) => material(type))));
     const model = materialsModel(records);
     assert.equal(model.shared.length, sharedCount);
     assert.equal(model.differing.length, differingCount);
@@ -223,8 +366,8 @@ test("a wide frame draws left to right, and everything stays inside it", () => {
   assert.equal(map.vertical, false);
   assert.equal(map.paths.length, 5);
   assert.equal(map.dotted.length, 1);
-  assert.equal(map.hubs.length, 2);
-  assert.equal(map.stations.length, 5 + 3 + 1);
+  assert.equal(map.hubs.length, 3);
+  assert.equal(map.stations.length, 3 + 1);
   for (const station of map.stations) {
     assert.ok(station.x > 0 && station.x < map.width - 54, `station at ${station.x} is on its run`);
     assert.ok(station.y > 0 && station.y < map.height);
@@ -250,8 +393,8 @@ test("a narrow frame draws top to bottom, inside 390px", () => {
 
 test("a map with more columns than a wide frame can hold falls back to top to bottom", () => {
   const types = ["transcript", "language_score", "cv", "recommendation", "personal_statement", "test_score", "writing_sample", "portfolio", "other"];
-  // Five programs: transcripts shared, the other eight types each with something noted.
-  const records = ["a", "b", "c", "d", "e"].map((id, i) => record(id, types.map((type) => material(type, type === "transcript" ? {} : { note: `note ${i}` }))));
+  // Five programs: transcripts everywhere, the other eight types at four of them.
+  const records = ["a", "b", "c", "d", "e"].map((id) => record(id, types.filter((type) => id !== "e" || type === "transcript").map((type) => material(type))));
   const model = materialsModel(records);
   assert.equal(model.shared.length, 1);
   assert.equal(model.differing.length, 8);
@@ -260,9 +403,10 @@ test("a map with more columns than a wide frame can hold falls back to top to bo
 });
 
 test("crowded lanes keep only the marked captions", () => {
-  const records = "abcdefgh".split("").map((id, i) => record(id, [two(i === 7 ? { count: 3 } : {})]));
+  // A ninth program does not ask for letters, so they are a column of stops and not an interchange.
+  const records = [..."abcdefgh".split("").map((id, i) => record(id, [two(i === 7 ? { count: 3 } : {})])), record("i", [material("cv")])];
   const map = layoutMap(materialsModel(records), 358);
-  assert.equal(map.stations.length, 8);
+  assert.equal(map.stations.length, 8 + 1);
   assert.deepEqual(map.labels.filter((label) => label.kind === "caption").map((label) => [label.text, label.differs]), [["3 封", true]]);
 });
 
