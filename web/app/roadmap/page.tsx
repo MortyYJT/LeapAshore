@@ -76,11 +76,19 @@ function intakeWords(anchor: Date): string {
   return `${anchor.getUTCFullYear()} 年 ${anchor.getUTCMonth() + 1} 月入学`;
 }
 
-/** The chosen stretch, defaulting to the current one; a choice that no longer exists falls back. */
+/**
+ * The chosen stretch. It starts as the current one and is then pinned: ticking the last open step of
+ * the stretch on screen moves "current" on, and the list must not leave under the applicant's hands.
+ * A choice that no longer exists falls back to the current stretch.
+ */
 function useStretch(timeline: Timeline | null): [TimelinePhase | null, (id: string) => void] {
   const [choice, setChoice] = useState<string | null>(null);
   const fallback = timeline?.current ?? timeline?.phases[0] ?? null;
   const chosen = timeline?.phases.find((phase) => phase.id === choice) ?? fallback;
+  const chosenId = chosen?.id ?? null;
+  useEffect(() => {
+    if (chosenId !== null && chosenId !== choice) setChoice(chosenId);
+  }, [chosenId, choice]);
   return [chosen, setChoice];
 }
 
@@ -227,9 +235,9 @@ function Stations({
   /** In the sample nothing is saved: a tick asks the visitor to sign in instead. */
   onDemoTick?: () => void;
 }) {
+  // Keyed by task and kept across stretches: an upload started in one stretch still reports its
+  // result, and stays guarded against a second send, after the applicant looks at another.
   const [uploads, setUploads] = useState<Record<string, { busy: boolean; message: string }>>({});
-  // A message about one stretch's upload does not follow the applicant to another stretch.
-  useEffect(() => setUploads({}), [phase.id]);
 
   async function upload(materialKey: string, file: File | undefined) {
     if (!file || !roadmap) return;

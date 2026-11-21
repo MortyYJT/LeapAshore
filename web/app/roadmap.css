@@ -86,7 +86,7 @@
   width: 16px; height: 16px; translate: -50% -50%; border: 3.5px solid var(--ink); border-radius: 50%; background: var(--bg);
 }
 .rm-endlbl {
-  position: absolute; top: calc(var(--mid) + 12px); right: calc(var(--padr) - 8px); padding: 0 4px;
+  position: absolute; top: calc(var(--mid) + 12px); right: calc(100% - var(--x0) - var(--span) * var(--p1) - 8px); padding: 0 4px;
   background: var(--bg); font-size: var(--fs-12); line-height: 20px; color: var(--ink-2); white-space: nowrap;
 }
 
@@ -121,6 +121,8 @@
   width: calc(var(--span) * (var(--soon) - var(--today))); background: var(--urgent-soft);
 }
 .rm-zone span { position: absolute; left: 0; top: 100%; margin-top: 4px; font-size: var(--fs-12); line-height: 1.4; color: var(--urgent); white-space: nowrap; }
+/* Today near the axis's end: the label hangs back from the edge instead of running past it. */
+.rm-lanes.is-late .rm-zone span { left: auto; right: -6px; }
 .rm-origin {
   position: absolute; top: 0; bottom: 0; left: calc(var(--x0) + var(--span) * var(--today) - 6px); z-index: 2;
   width: 12px; border-radius: 6px; background: var(--ink);

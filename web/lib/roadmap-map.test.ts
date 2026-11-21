@@ -267,6 +267,24 @@ test("a label level with its terminus is reached straight across; a lower one do
   near(c.labelY, b.labelY + TALL_LABEL_PITCH);
 });
 
+test("a date written with its year gets a wider label column", () => {
+  const near = layoutTall(mapOf(SEVEN, [record("a", { deadline: "2027-06-30" })]));
+  const far = layoutTall(mapOf(roadmap([phase("a", "2027-06-01", [false])], "2028-02-15"), [record("a", { deadline: "2027-11-30" })]));
+  assert.ok(far.labelRight > near.labelRight);
+  assert.ok(far.lanes[0].x > far.labelRight);
+});
+
+test("when the intake has passed, the line still ends on the intake, above today", () => {
+  const map = mapOf(roadmap([phase("a", "2026-01-01", [false])], "2026-07-15"), [record("a", { deadline: "2026-12-01" })]);
+  const tall = layoutTall(map);
+  near(tall.intakeY, tall.stretches[0].y1);
+  assert.ok(tall.intakeY < tall.todayY!);
+  near(tall.todayY!, tall.endY);
+  // With the intake ahead, the two are the same place.
+  const usual = layoutTall(mapOf(SEVEN));
+  near(usual.intakeY, usual.endY);
+});
+
 test("a deadline today keeps its label clear of today's bar", () => {
   const tall = layoutTall(mapOf(SEVEN, [record("a", { deadline: TODAY })]));
   near(tall.lanes[0].y1, tall.todayY!);

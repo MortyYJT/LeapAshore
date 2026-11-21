@@ -319,8 +319,8 @@ function RailLegend() {
                 aria-pressed={picked}
                 onClick={() => {
                   records.select(picked ? null : row.record.id);
-                  // The overview and the materials map both draw the lines; from anywhere else a pick goes to the overview.
-                  if (!picked && pathname !== "/" && pathname !== "/materials") router.push("/");
+                  // The overview, the materials map and the roadmap draw the lines; from anywhere else a pick goes to the overview.
+                  if (!picked && pathname !== "/" && pathname !== "/materials" && pathname !== "/roadmap") router.push("/");
                 }}
               >
                 <span className="bullet">{row.code}</span>

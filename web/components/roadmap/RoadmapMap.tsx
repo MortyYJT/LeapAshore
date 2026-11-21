@@ -134,7 +134,7 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
           })}
         </div>
         {map.lanes.length > 0 && (
-          <div className={`rm-lanes${hasPicked ? " has-sel" : ""}`}>
+          <div className={`rm-lanes${hasPicked ? " has-sel" : ""}${map.todayLabel === "before" ? " is-late" : ""}`}>
             <div className="rm-lanes-body" role="list" aria-label="各项目的截止日期">
               <div className="rm-zone" aria-hidden="true">
                 <span>两周内</span>
@@ -226,7 +226,7 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
               </g>
             );
           })}
-          {intake && <circle className="je" cx={x} cy={tall.endY} r={6.5} />}
+          {intake && <circle className="je" cx={x} cy={tall.intakeY} r={6.5} />}
           {tall.todayY !== null && (
             <rect className="now" x={tall.todayX[0]} y={tall.todayY - 5} width={tall.todayX[1] - tall.todayX[0]} height={10} rx={5} />
           )}
@@ -248,7 +248,7 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
           </span>
         ))}
         {intake && (
-          <span className="rm-tend" style={{ top: tall.endY, left: x + 16 }}>
+          <span className="rm-tend" style={{ top: tall.intakeY, left: x + 16 }}>
             {intake}
           </span>
         )}

@@ -295,6 +295,8 @@ export interface TallLayout {
   scale: number;
   /** Where the labels of the applications end, right-aligned. */
   labelRight: number;
+  /** Where the line ends: the intake. Above `endY` when the intake has passed and the axis runs on to today. */
+  intakeY: number;
   journeyX: number;
   todayY: number | null;
   /** The x-range today's bar covers: the lanes and the journey. */
@@ -306,6 +308,10 @@ export interface TallLayout {
 
 /** The room a lane's label takes: the code's bullet and a date. */
 export const TALL_LABEL = 88;
+/** The same when a date is far enough away to be written with its year. */
+const TALL_LABEL_YEAR = 116;
+/** `dateLabel` writes the year for a date further away than this. */
+const YEAR_AFTER = 330;
 /** The room today's label takes when there is no lane to label. */
 const TALL_TODAY = 66;
 /** Labels of two applications are at least this far apart. */
@@ -338,7 +344,8 @@ export function layoutTall(map: RoadmapMap): TallLayout {
   const dated = map.lanes.filter((lane) => lane.kind !== "unknown");
   const pitch = dated.length > 8 ? 6 : 7;
   // The left column holds today's label and, under it, the applications' labels.
-  const labelRight = dated.length ? TALL_LABEL : todayY === null ? 0 : TALL_TODAY;
+  const withYear = dated.some((lane) => (lane.row.days ?? 0) > YEAR_AFTER);
+  const labelRight = dated.length ? (withYear ? TALL_LABEL_YEAR : TALL_LABEL) : todayY === null ? 0 : TALL_TODAY;
   const lanesLeft = labelRight ? labelRight + 5 + TALL_LEADER_RUN : 6;
   const journeyX = lanesLeft + dated.length * pitch + (dated.length ? 12 : 4);
 
@@ -372,6 +379,7 @@ export function layoutTall(map: RoadmapMap): TallLayout {
     height: lowest + 30,
     scale,
     labelRight,
+    intakeY: stretches.length ? stretches[stretches.length - 1].y1 : endY,
     journeyX,
     todayY,
     todayX: [dated.length ? lanesLeft - 4 : journeyX - 10, journeyX + 10],

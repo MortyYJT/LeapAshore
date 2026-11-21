@@ -1090,9 +1090,16 @@ async function adminPass(browser, email, errors) {
     check("截止日期：下一轮画成这个项目的线，停在截止那天", (await openLane.count()) === 1 && (await openLane.locator(".rm-term").count()) === 1
       && (await openLane.getAttribute("aria-label")).includes(`${nextRound.date} 截止`), nextRound);
     // The line's colour and code are the rail's for the same application.
-    const railBullet = page.locator(".rail-legend button", { hasText: openProgram.university }).locator(".bullet").first();
-    check("截止日期：线的颜色和代号与侧栏里同一个申请一致", (await openLane.locator(".bullet").innerText()) === (await railBullet.innerText())
-      && (await openLane.locator(".bullet").evaluate((el) => getComputedStyle(el).backgroundColor)) === (await railBullet.evaluate((el) => getComputedStyle(el).backgroundColor)));
+    // The rail's row is found by its title, which names the program: an account can hold two programs of one school.
+    const railBullet = page.locator(`.rail-legend button[title="${openProgram.university} · ${openProgram.nameEn || openProgram.name}"]`).locator(".bullet");
+    const paint = (bullet) => bullet.evaluate((el) => [el.textContent, getComputedStyle(el).backgroundColor]);
+    const [lanePaint, railPaint] = [await paint(openLane.locator(".bullet")), (await railBullet.count()) === 1 ? await paint(railBullet) : null];
+    check("截止日期：线的颜色和代号与侧栏里同一个申请一致", railPaint !== null && lanePaint[0] === railPaint[0] && lanePaint[1] === railPaint[1], { lanePaint, railPaint });
+    // Picking the application in the rail stays on the roadmap and steps the other lines back.
+    if (railPaint) await railBullet.click();
+    check("截止日期：在侧栏选中这个申请，留在路线图上，其余的线退后", new URL(page.url()).pathname === "/roadmap"
+      && (await page.locator(`.rm-wide .rm-lanes.has-sel .rm-lane.is-sel[data-record="catalog:${openId}"]`).count()) === 1);
+    if (railPaint) await railBullet.click();
     await layout(page, "路线图：截止日期");
     // A date entered on the portfolio row wins over the collected ones, and stays as entered.
     const entered = { date: "2027-01-02", url: "https://example.edu/walkthrough-entered-deadline" };
