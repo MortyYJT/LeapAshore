@@ -12,7 +12,7 @@
 
 .btn, .icon-button, .rail-button, .rail-sync, .choice, .seg button, .user-center button,
 .uc-menu a, .rail-nav :is(a, button), .rail-legend button, .nav-label, .rail-sync span, .uc-name, .workspace-search-results a,
-tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
+tbody tr, .rows > .row, .task-row span, .link, .btn-text {
   transition-property: background-color, border-color, color, fill, opacity, text-decoration-color;
   transition-duration: var(--motion-fast);
   transition-timing-function: var(--motion-ease);
@@ -48,58 +48,6 @@ tbody tr, .rows > .row, .tl-bar, .task .t, .task-row span, .link, .btn-text {
 
 .motion-content {
   animation: content-in var(--motion-normal) var(--motion-ease);
-}
-
-.phase-highlight {
-  pointer-events: none;
-  transition: transform var(--motion-normal) var(--motion-ease),
-    opacity var(--motion-fast) var(--motion-ease);
-}
-
-.task input[type="checkbox"] {
-  appearance: none;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line-2);
-  border-radius: 3px;
-  background-color: var(--raised);
-  transition: background-color var(--motion-instant), border-color var(--motion-instant);
-}
-
-.task input[type="checkbox"]:checked {
-  background-color: var(--action);
-  border-color: var(--action);
-}
-
-.task input[type="checkbox"]:disabled { opacity: .5; }
-.task input[type="checkbox"]::after {
-  content: "";
-  width: 5px;
-  height: 9px;
-  border: solid var(--on-action);
-  border-width: 0 2px 2px 0;
-  transform: translateY(-1px) rotate(45deg);
-}
-
-.task input[type="checkbox"]::after {
-  opacity: 0;
-  transition: opacity var(--motion-instant) var(--motion-ease);
-}
-
-.task input[type="checkbox"]:checked::after { opacity: 1; }
-
-.task-progress {
-  height: 4px;
-  border-radius: 2px;
-  background: var(--sunken);
-  overflow: hidden;
-}
-
-.task-progress > div {
-  height: 100%;
-  background: var(--ink);
-  transform-origin: left;
-  transition: transform var(--motion-emphasis) var(--motion-ease);
 }
 
 body:has(dialog:modal) {
@@ -196,15 +144,6 @@ dialog[open]::backdrop { opacity: 1; }
   }
 }
 
-@media (forced-colors: active) {
-  .task input[type="checkbox"] {
-    appearance: auto;
-    display: inline-block;
-  }
-
-  .task input[type="checkbox"]::after { display: none; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
@@ -235,7 +174,7 @@ dialog[open]::backdrop { opacity: 1; }
   display: grid;
   place-items: center;
   border-radius: inherit;
-  background: var(--color-surface);
+  background: var(--raised);
   animation: pending-in var(--motion-fast) var(--motion-normal) both;
 }
 

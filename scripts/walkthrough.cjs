@@ -429,7 +429,13 @@ async function adminPass(browser, email, errors) {
 
     await page.goto(`${BASE}/roadmap`);
     await settle(page);
-    check("未登录：路线图只显示示例并请你登录", (await page.locator("figure .pill-sample").count()) === 1 && (await page.getByText("登录后查看你自己的路线图").count()) === 1);
+    check("未登录：路线图是标了演示的示例，并请你登录", (await page.locator(".roadmap h1 + .pill-sample", { hasText: "演示" }).count()) === 1
+      && (await page.locator(".roadmap .demo-note").getByRole("button", { name: "登录", exact: true }).count()) === 1
+      && (await page.locator(".rm-wide .rm-step").count()) > 0 && (await page.locator(".rm-list .rm-tick").count()) > 0);
+    // A tick in the sample saves nothing: it asks the visitor to sign in.
+    await page.locator(".rm-list .rm-tick").first().click();
+    check("未登录：示例里勾选不保存，弹出登录", (await page.getByRole("dialog").count()) === 1);
+    await page.keyboard.press("Escape");
     await layout(page, "路线图（未登录）");
     // While the session is being read, the page keeps its title and shows loading bars, not a bare line.
     await page.route("**/api/auth/me", async (route) => {
@@ -989,21 +995,35 @@ async function adminPass(browser, email, errors) {
     // ---------- roadmap ----------
     await page.getByRole("link", { name: "路线图" }).first().click();
     await page.waitForURL("**/roadmap");
-    await page.locator("svg.timeline-svg").waitFor({ timeout: 20000 });
-    await page.locator(".task input[type=checkbox]").first().waitFor();
+    await page.locator(".rm-wide .rm-step").first().waitFor({ timeout: 20000 });
+    await page.locator(".rm-list .rm-tick").first().waitFor();
     await settle(page);
-    check("路线图：图例写明系统建议不是官方日期", (await page.getByText("系统建议 · 非官方日期").count()) > 0);
-    check("路线图：没收录的截止显示为未收录", (await page.locator(".legend", { hasText: "未收录" }).count()) === 1);
-    const firstOpen = page.locator(".task:not(.done) input[type=checkbox]").first();
+    check("路线图：写明各段时间是系统建议，不是官方日期", (await page.locator(".map-note", { hasText: "系统建议，不是官方日期" }).count()) === 1);
+    check("路线图：画成一条线，没有旧的时间轴、进度条和卡片", (await page.locator(".rm-wide .rm-join").count()) > 0
+      && (await page.locator("svg.timeline-svg, .task-progress, main.roadmap .panel").count()) === 0);
+    // An application without a date is a dotted run and is listed as 待确认; no date is drawn for it.
+    const undatedRecords = await page.evaluate(async () => (await (await fetch("/api/application-records")).json())
+      .filter((r) => ["considering", "applying"].includes(r.status) && !r.deadline).length);
+    check("路线图：没有日期的申请画成虚线，清单里写待确认", (await page.locator(".rm-wide .rm-lane.is-unknown").count()) === undatedRecords
+      && (await page.locator('.rm-dates li[data-state="unknown"]').count()) === undatedRecords, undatedRecords);
+    // Choosing a stretch on the map shows its stations in the list under it.
+    const lastStep = page.locator(".rm-wide .rm-step").last();
+    await lastStep.click();
+    check("路线图：点一段，下面的清单换成这一段的步骤", (await lastStep.getAttribute("aria-pressed")) === "true"
+      && (await lastStep.locator(".rm-lbl b").innerText()) === (await page.locator("#h-stretch").innerText()).replace(/\s*当前$/, "").trim());
+    await page.locator('.rm-wide .rm-step', { has: page.locator(".rm-stn:not(.on)") }).first().click();
+    const firstOpen = page.locator(".rm-list li:not(.is-done) .rm-tick").first();
     const taskId = await firstOpen.getAttribute("id");
     // A first visit writes the task rows; the box is enabled once its row is back.
-    await page.locator(".task:not(.done) input[type=checkbox]:not([disabled])").first().waitFor({ timeout: 15000 });
+    await page.locator(".rm-list li:not(.is-done) .rm-tick:not([disabled])").first().waitFor({ timeout: 15000 });
+    const filledBefore = await page.locator(".rm-wide .rm-stn.on").count();
     // Listen before ticking: the save can answer before a listener registered afterwards exists.
     const taskSaved = page.waitForResponse((r) => r.url().includes("/api/roadmap/tasks/") && r.request().method() === "PATCH", { timeout: 15000 });
     await page.locator(`[id="${taskId}"]`).check();
     await taskSaved;
+    check("路线图：勾一项，图上多一个实心站", (await page.locator(".rm-wide .rm-stn.on").count()) === filledBefore + 1);
     await page.reload();
-    await page.locator(".task input[type=checkbox]").first().waitFor();
+    await page.locator(".rm-list .rm-tick").first().waitFor();
     await settle(page);
     // The phase may have moved on after the tick, so the box is found by id in whichever phase holds it.
     const stillTicked = await page.evaluate(async (key) => {
@@ -1011,7 +1031,7 @@ async function adminPass(browser, email, errors) {
       return body.tasks.some((t) => `t-${t.materialKey}` === key && t.status === "completed");
     }, taskId);
     check("路线图：勾选在刷新后仍保存着", stillTicked, taskId);
-    const upload = page.locator(".task input[type=file]").first();
+    const upload = page.locator(".rm-list input[type=file]").first();
     // The library sniffs the type from the bytes and takes PDFs and images, so the file is a minimal PDF.
     const pdf = Buffer.from(`%PDF-1.4\n% ${stamp}\n1 0 obj << /Type /Catalog >> endobj\ntrailer << /Root 1 0 R >>\n%%EOF\n`);
     await upload.setInputFiles({ name: "walkthrough-transcript.pdf", mimeType: "application/pdf", buffer: pdf });
@@ -1053,19 +1073,26 @@ async function adminPass(browser, email, errors) {
     const lastRound = closedProgram.deadlines.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
     check("截止日期：加入两个项目", (await putRows([...originalRows, { programId: openId, tier: "稳" }, { programId: closedId, tier: "保" }])) === 200);
     await page.reload();
-    await page.locator("svg.timeline-svg").waitFor({ timeout: 20000 });
-    await page.locator(`.deadline-row[data-state="closed"]`).first().waitFor({ timeout: 15000 });
+    await page.locator(".rm-wide .rm-step").first().waitFor({ timeout: 20000 });
+    await page.locator(`.rm-dates li[data-state="closed"]`).first().waitFor({ timeout: 15000 });
     await settle(page);
-    const openRow = page.locator(".deadline-row", { has: page.locator(`a[href="/programs/${encodeURIComponent(openId)}"]`) });
-    const closedRow = page.locator(".deadline-row", { has: page.locator(`a[href="/programs/${encodeURIComponent(closedId)}"]`) });
-    check("截止日期：有下一轮的项目显示下一轮日期并链接到来源", (await openRow.getAttribute("data-state")) === "upcoming"
-      && (await openRow.locator(`a.num[href="${nextRound.sourceUrl}"]`, { hasText: nextRound.date }).count()) === 1, nextRound);
+    // The roadmap reads the same records as the overview: a catalogue program's record is `catalog:<program id>`.
+    const openRow = page.locator(`.rm-dates li[data-record="catalog:${openId}"]`);
+    const closedRow = page.locator(`.rm-dates li[data-record="catalog:${closedId}"]`);
+    check("截止日期：有下一轮的项目显示下一轮日期，写明是学校库采集、待核对，并链接到来源", (await openRow.getAttribute("data-state")) === "upcoming"
+      && (await openRow.locator(`time[datetime="${nextRound.date}"]`).count()) === 1
+      && (await openRow.locator(`a[href="${nextRound.sourceUrl}"]`, { hasText: "来源" }).count()) === 1
+      && (await openRow.getByText("学校库采集").count()) === 1 && (await openRow.getByText("待核对").count()) === 1, nextRound);
     check("截止日期：全部已过的项目标「已截止」", (await closedRow.getAttribute("data-state")) === "closed"
-      && (await closedRow.getByText("已截止").count()) === 1 && (await closedRow.getByText(lastRound.date).count()) === 1, lastRound);
-    const closedLabel = `${closedProgram.university} ${closedProgram.nameEn}`;
-    check("截止日期：已截止的不画在时间轴上", (await page.locator(`a.deadline-mark[aria-label^="${closedLabel} "]`).count()) === 0);
-    const openLabel = `${openProgram.university} ${openProgram.nameEn}`;
-    check("截止日期：下一轮画在时间轴上（实心、带来源）", (await page.locator(`a.deadline-mark[aria-label="${openLabel} 官方截止 ${nextRound.date}"][href="${nextRound.sourceUrl}"]`).count()) === 1, { openLabel, nextRound });
+      && (await closedRow.getByText("已截止").count()) === 1 && (await closedRow.locator(`time[datetime="${lastRound.date}"]`).count()) === 1, lastRound);
+    check("截止日期：已截止的不画在时间轴上", (await page.locator(`.rm-wide .rm-lane[data-record="catalog:${closedId}"]`).count()) === 0);
+    const openLane = page.locator(`.rm-wide .rm-lane[data-record="catalog:${openId}"]`);
+    check("截止日期：下一轮画成这个项目的线，停在截止那天", (await openLane.count()) === 1 && (await openLane.locator(".rm-term").count()) === 1
+      && (await openLane.getAttribute("aria-label")).includes(`${nextRound.date} 截止`), nextRound);
+    // The line's colour and code are the rail's for the same application.
+    const railBullet = page.locator(".rail-legend button", { hasText: openProgram.university }).locator(".bullet").first();
+    check("截止日期：线的颜色和代号与侧栏里同一个申请一致", (await openLane.locator(".bullet").innerText()) === (await railBullet.innerText())
+      && (await openLane.locator(".bullet").evaluate((el) => getComputedStyle(el).backgroundColor)) === (await railBullet.evaluate((el) => getComputedStyle(el).backgroundColor)));
     await layout(page, "路线图：截止日期");
     // A date entered on the portfolio row wins over the collected ones, and stays as entered.
     const entered = { date: "2027-01-02", url: "https://example.edu/walkthrough-entered-deadline" };
@@ -1073,10 +1100,11 @@ async function adminPass(browser, email, errors) {
       { programId: openId, tier: "稳", officialDeadline: entered.date, deadlineSourceUrl: entered.url },
       { programId: closedId, tier: "保" }])) === 200);
     await page.reload();
-    await page.locator(`.deadline-row[data-state]`).first().waitFor({ timeout: 20000 });
+    await page.locator(`.rm-dates li[data-state]`).first().waitFor({ timeout: 20000 });
     await settle(page);
-    check("截止日期：组合里记录的日期优先于采集的", (await openRow.locator(`a.num[href="${entered.url}"]`, { hasText: entered.date }).count()) === 1
-      && (await openRow.getByText("组合里记录的日期").count()) === 1);
+    check("截止日期：组合里记录的日期优先于采集的", (await openRow.locator(`time[datetime="${entered.date}"]`).count()) === 1
+      && (await openRow.locator(`a[href="${entered.url}"]`, { hasText: "来源" }).count()) === 1
+      && (await openRow.getByText("自己填的").count()) === 1);
     const storedEntered = await page.evaluate(async (id) => (await (await fetch("/api/applications")).json()).find((r) => r.programId === id), openId);
     check("截止日期：采集的截止日期仍在项目上，组合行的日期没被改", storedEntered.officialDeadline === entered.date
       && JSON.stringify(storedEntered.program.deadlines) === JSON.stringify(openProgram.deadlines), storedEntered);
@@ -1324,8 +1352,9 @@ async function adminPass(browser, email, errors) {
     check("总览：侧栏里这条申请显示已提交", (await b.locator(".rail-legend button", { hasText: "走查大学" }).locator(".left").innerText()) === "已提交");
 
     await b.goto(`${BASE}/roadmap`);
-    await b.locator(".roadmap-empty").waitFor({ timeout: 15000 }).catch(() => {});
-    check("路线图：没有入学时间时只有一句话和去填的按钮，不画空时间轴", (await b.locator('.roadmap-empty a[href="/me"]').count()) === 1 && (await b.locator("svg.timeline-svg").count()) === 0);
+    await b.locator(".rm-undated").waitFor({ timeout: 15000 }).catch(() => {});
+    check("路线图：没有入学时间时不画时间轴和日期，只按先后顺序排，并给出去填的按钮", (await b.locator('.rm-undated a[href="/me"]').count()) === 1
+      && (await b.locator(".rm-axis, .rm-lane, .rm-under, .rm-lbl .when").count()) === 0 && (await b.locator(".rm-wide .rm-step").count()) > 0);
     await layout(b, "路线图：没有入学时间");
     await b.goto(`${BASE}/tiers`);
     await settle(b);
@@ -1414,7 +1443,11 @@ async function adminPass(browser, email, errors) {
       await intro.goto(`${BASE}${route}`);
       await settle(intro);
       if (route === "/tiers") await intro.locator("#not-collected").waitFor({ timeout: 30000 }).catch(() => {});
-      if (route === "/roadmap") await intro.locator("svg.timeline-svg").waitFor({ timeout: 20000 }).catch(() => {});
+      if (route === "/roadmap") {
+        await intro.locator(".rm-tall .rm-tstep").first().waitFor({ timeout: 20000 }).catch(() => {});
+        const box = await intro.locator(".rm-tall").boundingBox();
+        check("390：路线图竖着画，整张图在屏幕宽度内", await intro.locator(".rm-wide").isHidden() && box && box.x >= 0 && box.x + box.width <= 390, box);
+      }
       if (route === "/materials") {
         await intro.locator(".map svg").waitFor({ timeout: 20000 }).catch(() => {});
         const box = await intro.locator(".map").boundingBox();

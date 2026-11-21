@@ -297,7 +297,7 @@ function MaterialsLibrary({ materials }: { materials: ReturnType<typeof useMater
         </table>
       )}
       {open && (
-        <div className="panel-pad" style={{ borderTop: "1px solid var(--rule)" }} aria-live="polite">
+        <div className="panel-pad" style={{ borderTop: "1px solid var(--line)" }} aria-live="polite">
           <div className="section-head">
             <h3>{open.title} 的审核意见</h3>
             <Button variant="text" onClick={() => setOpen(null)}>
