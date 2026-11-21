@@ -35,6 +35,8 @@
 .rm-under { position: absolute; inset: -8px 0 0; z-index: 0; pointer-events: none; }
 .rm-under i { position: absolute; top: 0; bottom: 0; left: calc(var(--x0) + var(--span) * var(--p)); width: 1px; background: var(--line); }
 .rm-under .now { left: calc(var(--x0) + var(--span) * var(--p) - 1px); width: 2px; background: var(--ink); border-radius: 1px; }
+/* Today's line ends in the bar the applications start from, above the two-week label. */
+.rm-body.has-lanes .rm-under .now { bottom: 28px; }
 
 .rm-steps { position: relative; z-index: 1; }
 /* Room for the intake's name under the line's end, and for a name set above the first stretch. */

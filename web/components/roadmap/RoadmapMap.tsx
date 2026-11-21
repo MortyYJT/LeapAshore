@@ -77,7 +77,7 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
           </span>
         </div>
       )}
-      <div className="rm-body">
+      <div className={`rm-body${map.lanes.length ? " has-lanes" : ""}`}>
         {map.today !== null && (
           <div className="rm-under" aria-hidden="true">
             {map.ticks.map((tick) => (
