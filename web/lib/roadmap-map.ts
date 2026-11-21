@@ -36,6 +36,13 @@ export interface MapStretch {
    * start once there is not, and sits above it when a long stretch leaves room on neither side.
    */
   label: "after" | "before" | "above";
+  /**
+   * In the wide map: how many of the stretch's first stations sit on the drop that leads into it
+   * rather than on its level run. Zero unless a short window holds so many tasks that the stations
+   * would crowd; a station carries no date of its own, so the drop, which stands on the stretch's
+   * start, is as true a place for it as the run.
+   */
+  onDrop: number;
   stations: MapStation[];
   /** `complete`: every task ticked. `overdue`: its window has passed with a task left. */
   state: "complete" | "overdue" | "open";
@@ -98,6 +105,15 @@ const NAME_ROOM = 0.3;
 
 const iso = (date: string) => date.slice(0, 10);
 
+/** A station needs this share of the axis on a level run; a stretch that gives less is crowded. */
+const CROWDED = 0.0176;
+/** The drop into a stretch holds two stations. */
+const ON_DROP = 2;
+
+function onDrop(index: number, start: number, end: number, count: number): number {
+  return index > 0 && count > ON_DROP && (end - start) / count < CROWDED ? ON_DROP : 0;
+}
+
 function nameSide(start: number, end: number): MapStretch["label"] {
   return 1 - end >= NAME_ROOM ? "after" : start >= NAME_ROOM ? "before" : "above";
 }
@@ -156,7 +172,7 @@ export function roadmapMap(timeline: Timeline, rows: readonly OverviewRow[], tod
       const start = at / span;
       at += slots[index];
       const end = at / span;
-      return { phase, start, end, label: nameSide(start, end), stations: stations(phase, start, end), state: phase.complete ? "complete" : "open" };
+      return { phase, start, end, label: nameSide(start, end), onDrop: 0, stations: stations(phase, start, end), state: phase.complete ? "complete" : "open" };
     });
     return { dated: false, span, today: null, todayLabel: "after", soonEnd: null, ticks: [], stretches, lanes: [], listed: [...rows] };
   }
@@ -170,10 +186,18 @@ export function roadmapMap(timeline: Timeline, rows: readonly OverviewRow[], tod
   const todayAt = at(today);
   const todayLabel = todayAt > 1 - TODAY_LABEL ? "before" : "after";
 
-  const stretches = timeline.phases.map((phase): MapStretch => {
+  const stretches = timeline.phases.map((phase, index): MapStretch => {
     const start = at(phase.start!);
     const end = at(phase.end!);
-    return { phase, start, end, label: nameSide(start, end), stations: stations(phase, start, end), state: stateOf(phase) };
+    return {
+      phase,
+      start,
+      end,
+      label: nameSide(start, end),
+      onDrop: onDrop(index, start, end, phase.total),
+      stations: stations(phase, start, end),
+      state: stateOf(phase),
+    };
   });
 
   const ahead = rows

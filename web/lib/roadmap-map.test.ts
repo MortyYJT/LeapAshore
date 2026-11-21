@@ -82,6 +82,15 @@ test("a stretch's name trails its end while there is room, leads its start after
   assert.deepEqual(long.stretches.map((stretch) => stretch.label), ["after", "above"]);
 });
 
+test("a short window crowded with tasks puts its first two stations on the drop into it", () => {
+  // Six tasks in thirty of 330 days; five in thirty is not crowded, and the first stretch has no drop.
+  assert.deepEqual(mapOf(SEVEN).stretches.map((stretch) => stretch.onDrop), [0, 0, 0, 0, 0, 2, 0]);
+  const first = mapOf(roadmap([phase("a", "2026-08-19", [false, false, false, false, false, false]), phase("b", "2026-08-29", [false])]));
+  assert.equal(first.stretches[0].onDrop, 0);
+  const undated = mapOf(roadmap([phase("a", null, [false]), phase("b", null, [false, false, false, false, false, false])], null));
+  assert.deepEqual(undated.stretches.map((stretch) => stretch.onDrop), [0, 0]);
+});
+
 test("the axis starts today when the first phase is still ahead", () => {
   const map = mapOf(roadmap([phase("a", "2027-01-01", [false]), phase("b", "2027-03-01", [false])]));
   assert.equal(map.today, 0);

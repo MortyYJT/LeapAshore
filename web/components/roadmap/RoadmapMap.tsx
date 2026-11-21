@@ -93,22 +93,27 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
               <button
                 type="button"
                 className={`rm-step is-${stretch.state} name-${stretch.label}`}
-                style={vars({ p0: stretch.start, p1: stretch.end, n: Math.max(1, stretch.stations.length) })}
+                style={vars({ p0: stretch.start, p1: stretch.end, n: Math.max(1, stretch.stations.length - stretch.onDrop) })}
                 aria-pressed={stretch.phase.id === selected}
                 aria-label={stretchLabel(stretch)}
                 onClick={() => onSelect(stretch.phase.id)}
                 key={stretch.phase.id}
               >
                 <span className="rm-ln" />
-                {index < last && (
+                {/* The drop from the stretch before, turning at 45 degrees; it is this stretch's start. */}
+                {index > 0 && (
                   <svg className="rm-join" viewBox="-10 -4 20 48" aria-hidden="true" focusable="false">
                     <path d="M-7 0H-6L0 6V34L6 40H7" />
                   </svg>
                 )}
                 {stretch.stations.map((station, at) => (
                   <span
-                    className={`rm-stn${station.done ? " on" : ""}`}
-                    style={vars({ f: (at + 0.5) / stretch.stations.length })}
+                    className={`rm-stn${at < stretch.onDrop ? " is-drop" : ""}${station.done ? " on" : ""}`}
+                    style={
+                      at < stretch.onDrop
+                        ? vars({ g: (at + 0.5) / stretch.onDrop })
+                        : vars({ f: (at - stretch.onDrop + 0.5) / (stretch.stations.length - stretch.onDrop) })
+                    }
                     title={`${station.label}${station.done ? "（已做完）" : ""}`}
                     key={station.id}
                   />

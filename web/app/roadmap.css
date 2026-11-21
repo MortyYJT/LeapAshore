@@ -56,9 +56,9 @@
 .rm-step:first-child .rm-ln { border-radius: 3px 0 0 3px; }
 .rm-step:last-child .rm-ln { border-radius: 0 3px 3px 0; }
 .rm-step:only-child .rm-ln { border-radius: 3px; }
-/* The turn down to the next stretch, at 45 degrees. */
+/* The drop into a stretch from the one before, turning at 45 degrees. */
 .rm-join {
-  position: absolute; top: calc(var(--mid) - 4px); left: calc(var(--x0) + var(--span) * var(--p1) - 10px);
+  position: absolute; top: calc(var(--mid) - var(--row) - 4px); left: calc(var(--x0) + var(--span) * var(--p0) - 10px);
   width: 20px; height: calc(var(--row) + 8px); overflow: visible; pointer-events: none;
 }
 .rm-join path { fill: none; stroke: var(--jc); stroke-width: 6; stroke-linejoin: round; }
@@ -70,6 +70,11 @@
   position: absolute; top: var(--mid); left: calc(var(--from) + var(--w) * var(--f));
   width: clamp(6px, calc(var(--w) / var(--n) - 2px), 12px); aspect-ratio: 1;
   translate: -50% -50%; border-radius: 50%; background: var(--jc);
+}
+/* Crowded stretch: its first stations stand on the drop into it (lib/roadmap-map.ts, onDrop). */
+.rm-step .rm-stn.is-drop {
+  top: calc(var(--mid) - var(--row) + var(--cut) + (var(--row) - 2 * var(--cut)) * var(--g));
+  left: calc(var(--x0) + var(--span) * var(--p0)); width: 11px;
 }
 /* A finished station is ink whatever its stretch: on a late stretch, red is what is still open. */
 .rm-step .rm-stn.on { background: var(--ink); }
