@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live site](https://img.shields.io/badge/live-leapashore.mortyyjt.site-2f6f4f.svg)](https://leapashore.mortyyjt.site)
 
-![Application workspace: upcoming deadlines, dates to confirm and preparation tasks](docs/images/home.png)
+![Deadline overview: each application is a coloured line from today to its deadline, with a dashed line for a date still to confirm (signed-out demo)](docs/images/home.png)
 
 **Live site:** <https://leapashore.mortyyjt.site> (the interface is in Chinese; it is built for applicants from mainland China).
 
@@ -31,37 +31,33 @@ Start by adding an application or saving a program from the school library. Reco
 
 ## What it does
 
-- **Personal workspace.** An actionable home shows active applications ordered by deadline, a separate group for dates still to confirm, and preparation tasks with a live completion count and progress bar. New users can add an application directly from the workspace.
+- **Deadline overview.** Each application is a coloured line from today to its deadline, with its status and whether its materials are ready; a date still to confirm is a dashed line, and deadlines coming up soon are marked. Below, a short list says what each application is waiting for. New users can add an application directly from the overview.
 - **My applications.** Saved school selections appear automatically. Add projects outside the library manually; edit the chosen round, deadline, source link, application status, self-reported material readiness and preparation notes. Human date confirmation is explicit and becomes stale when the date, source or round changes.
-- **Materials.** Keep versions and review states in the existing document library. A project's “materials ready” flag is an applicant's self-check, not an automated review result.
+- **Materials line map.** For each application whose program page has been read, the materials it asks for are stations on its line; a material every program asks for is an interchange, and a line that asks for it differently is marked there. Each requirement links to the sentence and page it was taken from, and the checklist below is ticked by the applicant: a self-check, not an automated review. A program whose page lists no materials is drawn dashed and labelled so, which the page says is not the same as asking for none. The document library with versions stays at the bottom of the page.
 - **School library.** 287 universities in 29 countries and regions, ordered by QS 2027 rank. Each school page lists its collected taught master's programs, filterable by name and study area; each program page shows only the requirements that were found (mark thresholds, English, academic background, deadlines), each linked to the official page it came from.
 - **Requirement tiers.** An applicant enters four facts (undergraduate school, average mark, English score, target field). Every program with a stated requirement in that field is placed in a tier by how many published requirements the background meets, with the items still to confirm on the official page. Tiers describe requirements met, not admission odds.
 - **Portfolio.** The chosen programs with a tier, an application status, the official deadline and one first choice.
-- **Application roadmap.** A timeline from today to the intake, with phases, material checklists and file uploads. Suggested dates are drawn as system suggestions; official deadlines appear only when collected from an official page, and a past one is labelled as closed instead of being drawn as a future date.
-- **Cited advisor agent.** A LangGraph agent that answers requirement questions from the catalogue, and questions about tuition, references and interviews from saved page snapshots, citing the official page. It refuses when the evidence is weak, can update the applicant's profile, and proposes portfolio changes for the applicant to confirm. Replies stream as they arrive, users can stop generation, and scrolling up preserves their reading position.
+- **Application roadmap.** Preparation is one line stepping through phases toward the intake, with a station per task, filled when done; each application's line runs from today to its deadline. Phase dates are labelled as system suggestions; deadlines come from the application records (collected from an official page or entered by the applicant), and a past one is listed as closed instead of being drawn as a future date.
+- **Cited advisor agent.** A LangGraph agent that answers requirement questions from the catalogue, and questions about tuition, references and interviews from saved page snapshots, citing the official page. It refuses when the evidence is weak, can update the applicant's profile, and proposes changes to applications and the portfolio on a card the applicant confirms before anything is written. It sits in a dock beside every page, shows its steps as it works, and can be stopped.
 
 ### See the workspace
 
-| My applications | Application roadmap |
-| --- | --- |
-| ![Application list with rounds, personal deadline checks and preparation notes](docs/images/applications.png) | ![Application roadmap with phase navigation, task checklist and completion progress](docs/images/roadmap.png) |
+Taken on 2026-11-21 from the live site while signed out. A signed-out visitor sees a labelled demo: the programs, deadlines and material requirements come from the school library as served; the statuses and ticks are examples.
 
-| School library | Application portfolio |
+| Advisor dock | Application roadmap |
 | --- | --- |
-| ![Searchable school library with region and QS rank filters](docs/images/schools.png) | ![Selected programs grouped by tier with application status and deadlines](docs/images/portfolio.png) |
+| ![The advisor dock beside the overview, with a question about a deadline placed in its input; asking needs sign-in](docs/images/advisor.png) | ![Application roadmap: preparation phases as one stepped line with a station per task, and each application's line to its deadline](docs/images/roadmap.png) |
+
+![Materials line map: four programs share the transcript and the language score as interchanges; each line's other materials are its own stations](docs/images/materials.png)
 
 <details>
-<summary>Mobile, program details and requirement tiers</summary>
+<summary>On a phone</summary>
 
-![Dashboard with upcoming deadlines and preparation progress on a phone](docs/images/home-mobile.png)
-
-| School page | Program page | Requirement tiers |
-| --- | --- | --- |
-| ![University page with its collected programs and program filters](docs/images/school.png) | ![Program details with admission requirements and source links](docs/images/program.png) | ![Programs grouped by published requirements met](docs/images/tiers.png) |
+<img src="docs/images/home-mobile.png" width="390" alt="The deadline overview on a phone, one application per row with its line to the deadline">
 
 </details>
 
-Screenshots show the current production build running locally. Personal pages use a demonstration account. Sample application names and dates illustrate the workflow.
+The other pages (my applications, requirement tiers, portfolio, school library, school and program pages, profile) still use the earlier design and have no screenshot here until they are rebuilt ([#109](https://github.com/MortyYJT/LeapAshore/issues/109)).
 
 ### Interaction details
 

@@ -19,25 +19,35 @@ import { SOON_DAYS, daysUntil } from "./overview.ts";
  * Well-known computing programs, most preferred first, by their catalogue id.
  *
  * An id that the catalogue no longer has is skipped; one whose deadlines have all passed is left out
- * until new ones are collected. The first five are what the demo shows while each has a date ahead
- * (the fifth has no collected date and is drawn as unknown); the rest take over as dates pass.
+ * until new ones are collected; the rest take over as dates pass.
+ *
+ * The order is chosen for the materials map, which draws the overview's programs that have collected
+ * materials (lib/materials-map.ts) and makes a material every one of them asks for an interchange.
+ * The first four (CMU, Manchester, King's and Edinburgh; Edinburgh has no collected date and is the
+ * overview's unknown line) all list a transcript and a language score, and so does Glasgow, which
+ * joins once a date passes. The programs after it have no collected materials, so they are never on
+ * the map. Imperial, NUS and UCL were on this list until 2026-11-21 and are left off on purpose: each
+ * lacks at least one of the two, and the overview's due-soon pick reaches anywhere in the list, so any of them
+ * would take the interchanges away for two weeks before its deadline. A new extraction for a program
+ * here can change all this; check the signed-out /materials after one.
  */
 export const DEMO_PROGRAM_IDS: readonly string[] = [
-  "university-of-hong-kong-master-of-data-science-e60565",
-  "imperial-college-london-msc-computing-f38aa7",
-  "national-university-of-s-master-of-computing-computer-sci-96b220",
-  "ucl-computer-science-msc-9d29ee",
-  "university-of-edinburgh-computer-science-msc-b52f8b",
-  "hong-kong-university-of-master-of-science-program-in-inf-529f49",
-  "university-of-glasgow-computing-science-msc-03844f",
-  "chinese-university-of-ho-msc-in-computer-science-402b13",
   "carnegie-mellon-universi-master-of-computational-data-sci-d9f649",
   "university-of-manchester-artificial-intelligence-msc-404945",
   "king-s-college-london-artificial-intelligence-msc-f8d855",
+  "university-of-edinburgh-computer-science-msc-b52f8b",
+  "university-of-glasgow-computing-science-msc-03844f",
+  "university-of-hong-kong-master-of-data-science-e60565",
+  "hong-kong-university-of-master-of-science-program-in-inf-529f49",
+  "chinese-university-of-ho-msc-in-computer-science-402b13",
   "cricos-111671D",
 ];
 
-/** The schools of the list above. Their other computing programs fill in when the list comes up short. */
+/**
+ * The schools whose other computing programs fill in when the list comes up short: those of the list
+ * (not Sydney, whose CRICOS programs are a different source) and Imperial, NUS and UCL, whose programs
+ * the list once led with.
+ */
 export const DEMO_SCHOOL_IDS: readonly string[] = [
   "university-of-hong-kong",
   "imperial-college-london",
