@@ -2,7 +2,6 @@
 
 **A personal workspace for tracking master's applications from shortlist to submission.**
 
-鱼跃彼岸是面向硕士申请者的个人工作台。集中跟踪选校、申请轮次、截止日期和材料进度，也可以向 AI 顾问查询带官方出处的申请要求。
 
 [![CI](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/MortyYJT/LeapAshore/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
