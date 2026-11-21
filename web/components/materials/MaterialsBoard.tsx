@@ -99,7 +99,7 @@ export function MaterialsBoard({
                   <rect className="k-hub" x="2" y="1" width="10" height="12" rx="5" />
                   <rect className="k-mark" x="3.5" y="4.5" width="7" height="5" rx="2.5" />
                 </svg>
-                这条线的要求不一样
+                这条线另有要求
               </li>
             )}
             {apart.length > 0 && (

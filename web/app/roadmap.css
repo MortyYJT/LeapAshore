@@ -19,7 +19,7 @@
 
 /* ---------- left to right ---------- */
 .rm-wide {
-  --x0: 8px; --padr: 10px;
+  --x0: 3px; --padr: 10px;
   --span: calc(100% - var(--x0) - var(--padr));
   --row: 40px; --mid: 20px; --cut: 6px;
   position: relative;
@@ -127,7 +127,6 @@
   position: absolute; top: 50%; left: calc(var(--x0) + var(--span) * var(--p1)); z-index: 3;
   width: 16px; height: 16px; margin: -8px 0 0 -8px; border: 3.5px solid var(--lc); border-radius: 50%; background: var(--bg);
 }
-.rm-lane.is-ready .rm-term { background: var(--lc); }
 /* The code and the date, after the line's end. */
 .rm-tag {
   position: absolute; top: 50%; left: calc(var(--x0) + var(--span) * var(--p1) + 14px); z-index: 3; translate: 0 -50%;
@@ -167,7 +166,6 @@
 .rm-tall .ln.is-thin { stroke-width: 4; }
 .rm-tall .lead { fill: none; stroke: var(--lc); stroke-width: 2; stroke-linejoin: round; transition: opacity var(--t-base); }
 .rm-tall .term { fill: var(--bg); stroke: var(--lc); stroke-width: 2.5; transition: opacity var(--t-base); }
-.rm-tall .term.is-ready { fill: var(--lc); }
 .rm-tall svg .is-sent { --lc: var(--l-retired); }
 .rm-tall .term.is-sent { fill: var(--l-retired); }
 .rm-tall .rm-tag { left: auto; z-index: 2; translate: 0 -50%; gap: 5px; transition: opacity var(--t-base); }

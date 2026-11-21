@@ -75,11 +75,19 @@ function Finding({ model }: { model: MaterialsModel }) {
   const particular = shared.filter((column) => column.requirements.some((requirement) => requirement.differs)).length;
   const varied = shared.length - same - particular;
   const mixed = particular + varied;
-  const forms = [
-    same > 0 && `${same} 项要求一样，准备一份就够`,
-    particular > 0 && `${particular} 项有项目另有要求`,
-    varied > 0 && `${varied} 项份数不一`,
-  ].filter(Boolean);
+  // One form for all of them reads as a plain clause; a mix is counted form by form.
+  const forms =
+    particular === shared.length
+      ? "，有的项目另有要求"
+      : varied === shared.length
+        ? "，各项目要的份数不一样"
+        : `：${[
+            same > 0 && `${same} 项要求一样，准备一份就够`,
+            particular > 0 && `${particular} 项有的项目另有要求`,
+            varied > 0 && `${varied} 项份数不一样`,
+          ]
+            .filter(Boolean)
+            .join("；")}`;
   const open = lines.length + unread.length + silent.length + manual.length;
   if (!open) return <>{closed ? `${closed} 个申请都已提交或已有结果，没有要备的材料。` : "还没有申请。"}</>;
   const waiting = named(unread);
@@ -108,7 +116,8 @@ function Finding({ model }: { model: MaterialsModel }) {
         </>
       ) : (
         <>
-          {lines.length} 个项目都要的材料有 <b>{shared.length} 项</b>：{forms.join("；")}。
+          {lines.length} 个项目都要的材料有 <b>{shared.length} 项</b>
+          {forms}。
           {differing.length > 0 && (
             <>
               各项目不同的另有 <b>{differing.length} 项</b>。

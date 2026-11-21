@@ -39,7 +39,9 @@ function laneWords(lane: MapLane): string {
 /**
  * The roadmap's line map (lib/roadmap-map.ts). The preparation is the ink line: a stretch per phase
  * over its suggested window, a station per task. Each application is a line of its own colour from
- * today's bar to a terminus on its deadline.
+ * today's bar to a terminus on its deadline; the terminus is hollow until the application is
+ * submitted, when the line is retired. (The overview also fills it once the materials are ticked as
+ * ready; here "filled" is kept for one meaning, done.)
  *
  * A stretch is a button: choosing one shows its stations as a list under the map, where they are
  * ticked. The stations on the map are a picture of that list and take no click. Both layouts are
@@ -137,7 +139,7 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
                 const { row } = lane;
                 return (
                   <div
-                    className={`rm-lane line-${row.line} is-${lane.kind} tag-${lane.label}${row.sent ? " is-sent" : row.record.materialsReady ? " is-ready" : ""}${row.soon ? " is-soon" : ""}${row.record.id === picked ? " is-sel" : ""}`}
+                    className={`rm-lane line-${row.line} is-${lane.kind} tag-${lane.label}${row.sent ? " is-sent" : ""}${row.soon ? " is-soon" : ""}${row.record.id === picked ? " is-sel" : ""}`}
                     style={vars({ p1: lane.end })}
                     data-record={row.record.id}
                     role="listitem"
@@ -202,7 +204,7 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
                 <path className={`lead ${state}`} d={leader} />
                 <path className={`ln ${state}${thin ? " is-thin" : ""}`} d={`M${at} ${y0}V${y1}`} />
                 {lane.kind !== "beyond" && (
-                  <circle className={`term ${state}${row.record.materialsReady && !row.sent ? " is-ready" : ""}`} cx={at} cy={y1} r={thin ? 3.5 : 4} />
+                  <circle className={`term ${state}`} cx={at} cy={y1} r={thin ? 3.5 : 4} />
                 )}
               </g>
             );

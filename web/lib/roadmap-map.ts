@@ -288,7 +288,7 @@ const TALL_TODAY = 66;
 export const TALL_LABEL_PITCH = 24;
 /** A label is at least this far below today's bar. */
 export const TALL_CLEAR = 22;
-const TALL_TOP = 30;
+const TALL_TOP = 16;
 const TALL_HEIGHT = 860;
 const TALL_SCALE: [number, number] = [1.5, 2.6];
 const TALL_SLOT = 24;
