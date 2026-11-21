@@ -507,7 +507,9 @@ def test_the_first_live_run_asked_in_prose_instead_of_raising_the_card():
     assert {kind: (n["tool_choice_ok"], n["cases"]) for kind, n in m["by_kind"].items() if n["tool_choice_ok"] != n["cases"]} == {
         "portfolio_change": (1, 6), "manual_add": (1, 6), "deadline_catalog": (1, 6), "deadline_stated": (1, 6),
         "status": (1, 8), "material": (4, 12), "multi_step": (1, 8)}
-    # Each of the 42 misses is the same thing: no `propose_*` call, and a reply that asks to confirm.
+    # None of the 42 misses calls a `propose_*` tool, and every reply has the word 确认 in it. That
+    # is a word check: `docs/measurements.md` gives the reading of the 42 replies (40 ask for a
+    # go-ahead in prose, 2 ask which item or round is meant).
     missed = [item for item in run["items"] if not m["per_case"][item["id"]]["tool_ok"]]
     assert len(missed) == 42
     assert not any(call["tool"].startswith("propose_") for item in missed for call in item["calls"])
@@ -547,13 +549,37 @@ def test_both_live_runs_together_stayed_inside_the_approved_two_yuan():
     assert spent == pytest.approx(1.2546) and spent <= 2.0
 
 
-def test_the_wording_the_second_run_was_measured_on_is_still_in_place():
-    """The second run's counts belong to this wording. If it changes, they describe another prompt:
-    say so beside them in `docs/measurements.md` (a new run needs the owner's approval of its cost)."""
+def test_the_sentences_the_prompt_change_added_are_still_in_place():
+    """The second run's counts belong to the prompt with these sentences. Only they are checked here,
+    not the rest of the prompt. If they go, the counts describe another prompt: say so beside them in
+    `docs/measurements.md` (a new run needs the owner's approval of its cost)."""
     assert "propose_ 开头的工具自己不写入" in graph_module.SYSTEM_PROMPT and "不要先用文字问" in graph_module.SYSTEM_PROMPT
     for tool in TOOLS:
         if tool.name in graph_module.CONFIRMED_TOOLS:
             assert "调用后界面出现确认卡片" in tool.description and "直接调用" in tool.description, tool.name
+
+
+def test_the_evaluation_account_s_catalogue_programs_have_no_extracted_materials():
+    """The cases tick lines of the applicant's own checklist (`customMaterials`), written when no
+    program of the account had catalogue materials, and both recorded runs saw the account that way.
+    Once one of these programs is extracted, its record carries the page's requirements too and the
+    material cases need another look before the set is run or quoted again."""
+    from app.collect import materials
+    from app.collect.importer import program_id_for
+
+    wanted = {row["program_id"] for row in DOC["fixture"]["catalog"]}
+    data_dir = Path(run_tools.__file__).resolve().parents[1] / "data" / "requirements"
+    found = {}
+    for path in sorted(data_dir.glob("*.json")):
+        if path.name.startswith("_"):
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for program in data.get("programs", []):
+            name = program_id_for(data["school_key"], program)
+            if name in wanted:
+                found[name] = materials.block_of(program)
+    assert found.keys() == wanted, "every catalogue program of the account is in a requirement file"
+    assert all(block is None for block in found.values()), found
 
 
 def test_only_the_live_runs_this_file_replays_are_recorded():
