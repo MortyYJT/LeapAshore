@@ -1,0 +1,5777 @@
+{
+ "date": "2026-11-21",
+ "set": "tool_choice_cases.json",
+ "chat_model_setting": "deepseek-chat",
+ "base_url": "https://api.deepseek.com",
+ "max_agent_steps": 6,
+ "budget_cny": 1.3,
+ "stopped": null,
+ "model_calls": 309,
+ "calls_without_usage": 0,
+ "tokens": {
+  "input_tokens": 767516,
+  "output_tokens": 23953,
+  "cache_read_tokens": 559924
+ },
+ "cost_cny_upper_bound": 0.6292,
+ "seconds": 291.1,
+ "items": [
+  {
+   "id": "search-01",
+   "kind": "search",
+   "message": "学校库里有没有香港大学的计算机硕士项目？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "港大|香港大学|香港大學|HKU"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "香港大学 计算机"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "有，学校库收录了港大（香港大學）多个计算机相关硕士项目，数据状态多为「待核验」：\n\n**计算机科学（MSc Computer Science）**\n1. Master of Science in Computer Science (General, Cyber Security, Financial Computing and Multimedia Computing Streams) [1]\n2. 同上，with Delta X Fellowship [2]\n3. Master of Science in Computer Science (AI & Decentralized Technologies Stream), with Delta X Fellowship [4]\n\n**其他相关**\n4. Master of Science in Electronic Commerce and Internet Computing [3]\n5. Master of Science in Artificial Intelligence\n6. Master of Data Science\n7. Master of Artificial Intelligence in Business\n8. Master of Arts in Creative Artificial Intelligence Film and Media（机器核对）\n\n关于已检索到的官方要求（均待核验，请以官网为准）：\n- 学术要求：A Bachelor's degree or an equivalent qualification [1][2][3][4]\n- 先修要求：无 [1][2][3][4]\n- 截止日期：MSc Computer Science 主轮 2026-12-01、补录轮 2027-04-30 [1][4]；Electronic Commerce and Internet Computing 第一轮 2026-12-01、第二轮 2027-04-30 [3]；Delta X Fellowship 版本截止日期未知 [2]\n- 均分门槛、语言要求：证据里为「未知」，学校库没有采集到，需查官网\n- 申请材料：未提取，学校库还没整理材料清单，请以官网为准\n\n来源链接：\n[1] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0\n[2] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams),-with-delta-x-fellowship-cds&mode=0\n[3] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-electronic-commerce-and-internet-computing-cds&mode=0\n[4] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(ai-and-decentralized-technologies-stream),-with-delta-x-fellowship-cds&mode=0\n\n需要我把其中某个项目加入你的选校组合，或先看看你的背景档案做匹配吗？",
+   "intent": "官方要求核验",
+   "route": "requirements",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7976,
+    "output_tokens": 682,
+    "cache_read_tokens": 4096
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "search-02",
+   "kind": "search",
+   "message": "帮我搜一下帝国理工的 Computing 相关硕士",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "帝国理工|Imperial"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "帝国理工 Computing"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "帝国理工 Computing 相关项目，学校库收录如下（数据状态均为「待核验」，具体要求请以官网为准）：\n\n**MSc 类**\n1. MSc Computing\n2. MSc Advanced Computing\n3. MSc Computing (Artificial Intelligence and Machine Learning)\n4. MSc Computing (Security and Reliability)\n5. MSc Computing (Software Engineering)\n6. MSc Computing (Visual Computing and Robotics)\n\n**MRes 类（相关）**\n7. MRes Artificial Intelligence and Machine Learning\n8. MRes Bioinformatics and Theoretical Systems Biology\n9. MRes Biomedical Research (Data Science)\n10. MRes Cancer Biology (Cancer Informatics)\n\n需要我把其中某个加入你的选校组合，或者对比一下几个方向吗？也可以先告诉我你的本科专业和均分，我帮你判断匹配度。",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6441,
+    "output_tokens": 254,
+    "cache_read_tokens": 3200
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "search-03",
+   "kind": "search",
+   "message": "学校库收录了 KAUST 吗？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "KAUST|阿卜杜拉"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "KAUST"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "阿卜杜拉国王科技大学"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "学校库目前没有收录 KAUST（阿卜杜拉国王科技大学），用简称和中文全名都搜不到，所以它的项目、录取要求和截止日期我这边都查不到。\n\n如果你要申请 KAUST 的某个项目，可以告诉我具体的学校和项目名称，我帮你手动加进「我的申请」；但轮次和截止日期需要你在官网查到后告诉我，我不能自己填。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8764,
+    "output_tokens": 217,
+    "cache_read_tokens": 7808
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "search-04",
+   "kind": "search",
+   "message": "UCL 有哪些数据科学的项目被收录了？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "UCL|伦敦大学学院"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "UCL 数据科学"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "UCL 学校库中与数据科学相关的项目如下：\n\n**名称直接含“数据科学”的：**\n1. Data Science MSc（id: ucl-data-science-msc-e672f2）\n2. Data Science and Machine Learning MSc（ucl-data-science-and-machine-learnin-edd835）\n3. Finance with Data Science MSc（ucl-finance-with-data-science-msc-bfa244）\n4. Health Data Science MSc（ucl-health-data-science-msc-68bfe3）\n\n**相关方向（数据/统计/计算类）：**\n5. Artificial Intelligence and Data Engineering MSc\n6. Scientific and Data Intensive Computing MSc\n7. Spatio-temporal Analytics and Big Data Mining MSc\n8. Computational Statistics and Machine Learning MSc\n9. Computer Graphics, Vision and Imaging MSc\n10. Computer Science MSc\n\n其中 Data Science MSc、Scientific and Data Intensive Computing MSc、Spatio-temporal Analytics and Big Data Mining MSc、Computational Statistics and Machine Learning MSc、Computer Graphics, Vision and Imaging MSc、Computer Science MSc 的数据状态为“机器核对”，其余为“待核验”。\n\n需要我把其中某个项目加入你的选校组合，或者对比它们的录取要求吗？",
+   "intent": "官方要求核验",
+   "route": "requirements",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8564,
+    "output_tokens": 347,
+    "cache_read_tokens": 4352
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-read-01",
+   "kind": "profile_read",
+   "message": "你现在记录的我的背景是什么？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_profile"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "目前档案里记录的信息：\n\n- 学校：武汉大学\n- 专业：计算机科学与技术\n- 均分：86 / 100\n- 语言：IELTS 7.0\n\n其余字段都还空着：学历层次、院校层次（985/211 等）、目标学位、目标专业方向、入学年份、年度预算。\n\n需要我补哪一项？告诉我具体信息我就记下来。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6012,
+    "output_tokens": 162,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-read-02",
+   "kind": "profile_read",
+   "message": "我之前填的均分和语言成绩是多少？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_profile"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你档案里填的是：\n\n- **均分**：86 / 100（武汉大学，计算机科学与技术）\n- **语言成绩**：IELTS 7.0\n\n其他字段（目标专业、入学季、预算等）目前还是空的，需要的话可以补上。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6024,
+    "output_tokens": 134,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-read-03",
+   "kind": "profile_read",
+   "message": "我的背景档案里还缺哪几项没填？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_profile"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你档案里目前缺这几项：\n\n1. 当前学历层次（current_education_level）\n2. 本科院校层次（domestic_tier，如 985/211/双一流）\n3. 目标学位层次（target_degree_level，硕士/博士）\n4. 目标专业方向（target_field）\n5. 入学时间（intake，如 2026 秋）\n6. 年度预算（annual_budget_cny）\n\n已填的：武汉大学、计算机科学与技术、均分 86/100、IELTS 7.0。\n\n把上面缺的告诉我，我直接帮你补进档案。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6030,
+    "output_tokens": 208,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-read-04",
+   "kind": "profile_read",
+   "message": "帮我确认一下系统里我的本科学校和专业对不对",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_profile"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "系统里目前记录的是：\n\n- 本科学校：武汉大学\n- 专业：计算机科学与技术\n- 均分：86 / 100\n- 语言：IELTS 7.0\n\n如果学校或专业有误，请告诉我正确信息，我来更新。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6024,
+    "output_tokens": 133,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-update-01",
+   "kind": "profile_update",
+   "message": "我雅思考出来了，总分 7.5",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "english_score": {
+          "regex": "7\\.5"
+         }
+        }
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"english_score\": \"IELTS 7.5\"}"
+     },
+     "outcome": "wrote"
+    }
+   ],
+   "cards": [],
+   "reply": "已记下：雅思总分 7.5。\n\n需要我根据这个成绩帮你看看选校组合（冲/稳/保）要不要调整吗？或者你有具体想申的项目，我可以帮你核对语言要求。",
+   "intent": "资料补充",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5959,
+    "output_tokens": 148,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-update-02",
+   "kind": "profile_update",
+   "message": "更新一下：我的均分现在是 88，满分 100",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "gpa_score": 88,
+         "gpa_scale": 100
+        }
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"gpa_score\": 88, \"gpa_scale\": 100}"
+     },
+     "outcome": "wrote"
+    }
+   ],
+   "cards": [],
+   "reply": "已更新：均分 88 / 满分 100。\n\n需要我根据新均分重新看一下选校组合吗？",
+   "intent": "资料补充",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5980,
+    "output_tokens": 133,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-update-03",
+   "kind": "profile_update",
+   "message": "我是华中科技大学的，专业是软件工程",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "school_name": {
+          "contains": "华中科技大学"
+         },
+         "major": {
+          "contains": "软件工程"
+         }
+        }
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"school_name\": \"华中科技大学\", \"major\": \"软件工程\"}"
+     },
+     "outcome": "wrote"
+    }
+   ],
+   "cards": [],
+   "reply": "已记下：华中科技大学，软件工程专业。\n\n还需要了解一些信息才能帮你规划，方便的话告诉我：\n- 均分（百分制或 GPA 及满分）\n- 语言成绩（雅思/托福）\n- 目标国家/地区、目标专业方向\n- 入学年份、预算\n\n你也可以直接说想申请哪里，我先帮你查学校库里的项目。",
+   "intent": "资料补充",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5968,
+    "output_tokens": 190,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-update-04",
+   "kind": "profile_update",
+   "message": "我的预算是一年 30 万人民币以内",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "annual_budget_cny": 300000
+        }
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"annual_budget_cny\": 300000}"
+     },
+     "outcome": "wrote"
+    }
+   ],
+   "cards": [],
+   "reply": "已记下：年度预算 30 万人民币以内。\n\n需要我按这个预算帮你筛项目，或者看看现在的选校组合是否合适吗？",
+   "intent": "资料补充",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5957,
+    "output_tokens": 133,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "profile-update-05",
+   "kind": "profile_update",
+   "message": "目标方向改成数据科学",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "target_field": {
+          "contains": "数据科学"
+         }
+        }
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"target_field\": \"数据科学\"}"
+     },
+     "outcome": "wrote"
+    }
+   ],
+   "cards": [],
+   "reply": "已把档案里的目标方向改为「数据科学」。\n\n你目前的申请里，和这个方向直接相关的是：\n- 昆山杜克大学 数据科学硕士（手动添加，第二批，2027-03-15，日期是你自己填的，待核对）\n- 博科尼大学 MSc Data Science and Business Analytics（手动添加，考虑中，没有截止日期）\n\n其余几条（港大 CS、CMU MISM、NUS Master of Computing、爱丁堡 AI）偏计算机/信息系统方向。\n\n要不要我按数据科学方向帮你补几个学校库里的项目？或者先把上面两条手动项目的截止日期、材料理一理？",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 12897,
+    "output_tokens": 280,
+    "cache_read_tokens": 10112
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-read-01",
+   "kind": "portfolio_read",
+   "message": "我的选校组合里现在冲、稳、保各有几个？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_portfolio"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的选校组合目前共 4 个项目：\n\n- **冲**：2 个（港大计算机科学，首选；CMU 信息系统）\n- **稳**：2 个（新加坡国立 computing，已提交；爱丁堡 AI）\n- **保**：0 个\n\n保底档还是空的，需要的话我可以帮你从学校库里找几个保底项目加进去。",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6106,
+    "output_tokens": 158,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-read-02",
+   "kind": "portfolio_read",
+   "message": "我现在的首选是哪个项目？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_portfolio"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你当前的首选是**香港大学 计算机科学硕士（MSc in Computer Science）**，档位为「冲」，状态是「考虑中」。\n\n其余三个项目：卡内基梅隆大学 MISM（冲，准备中）、新加坡国立大学 Master of Computing（稳，已提交）、爱丁堡大学 AI MSc（稳，考虑中）。\n\n需要调整首选或档位的话告诉我。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6085,
+    "output_tokens": 160,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-read-03",
+   "kind": "portfolio_read",
+   "message": "选校组合里有哪些项目是冲刺档？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_portfolio"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的选校组合里有两个冲刺档项目：\n\n1. **香港大学 计算机科学硕士（MSc in Computer Science）** — 状态：考虑中，并且是你的首选\n2. **卡内基梅隆大学 信息系统管理硕士（Master of Information Systems, MA）** — 状态：准备中\n\n另外两个是稳档：新加坡国立大学 计算硕士（通用方向，已提交）、爱丁堡大学 人工智能硕士（考虑中）。",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6094,
+    "output_tokens": 172,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-01",
+   "kind": "applications_read",
+   "message": "我现在一共有几个申请？各是什么状态？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你现在一共有 **6 个申请**：\n\n| # | 学校 | 项目 | 状态 | 截止日期 |\n|---|---|---|---|---|\n| 1 | 香港大學 | MSc Computer Science | 考虑中 | 2026-12-01（Main Round，学校库采集）[1] |\n| 2 | 卡内基梅隆大学 | MISM | 准备中 | 2026-12-01（Round 1, Fall 2027，学校库采集）[2] |\n| 3 | 新加坡国立大学 | Master of Computing (General Track) | 已提交 | 2027-01-31（学校库采集）[3] |\n| 4 | 爱丁堡大学 | Artificial Intelligence MSc | 考虑中 | 无（学校库未采集到） |\n| 5 | 昆山杜克大学 | 数据科学硕士 | 准备中 | 2027-03-15（第二批，你自己填的） |\n| 6 | 博科尼大学 | MSc Data Science and Business Analytics | 考虑中 | 无 |\n\n几点提醒：\n- 上表所有日期都还是**待核对**状态，你尚未对照官网确认过；采集到的日期不等于学校官方核验。\n- 第 4、6 条没有截止日期：爱丁堡这条学校库没有采集到，博科尼这条是你手动加的、也没填日期。需要的话请到官网查到后告诉我，我帮你记上。\n- 6 个项目的材料清单学校库都还没整理（materialsExtracted 为 false），目前只有你自己列的清单（推荐信/个人陈述/简历等），请以官网要求为准。\n\n[1] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0\n[2] https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply\n[3] https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/application/",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7879,
+    "output_tokens": 544,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-02",
+   "kind": "applications_read",
+   "message": "哪些申请的截止日期我还没核对过？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "以下申请的截止日期都还没有被你核对过（deadlineCheckedByApplicant 均为 false）：\n\n**有日期、待核对**\n1. 香港大学 Master of Science in Computer Science — 2026-12-01（Main Round，学校库采集）[来源](https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0)\n2. 卡内基梅隆大学 MISM — 2026-12-01（Round 1, Fall 2027，学校库采集）[来源](https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply)\n3. 新加坡国立大学 Master of Computing (General Track) — 2027-01-31（学校库采集）[来源](https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/application/)\n4. 昆山杜克大学 数据科学硕士 — 2027-03-15（第二批，你自己填的）\n\n**没有截止日期**\n5. 爱丁堡大学 Artificial Intelligence MSc — 学校库没有采集到截止日期\n6. 博科尼大学 MSc Data Science and Business Analytics — 没有日期\n\n以上日期都只是学校库采集或你自己填写的，不代表学校官方已核验；是否核对过需要你在「我的申请」页面自行确认。爱丁堡和博科尼这两个项目，建议你到官网查到日期后告诉我，我再帮你录入。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7879,
+    "output_tokens": 425,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-03",
+   "kind": "applications_read",
+   "message": "按截止日期排一下我的申请，接下来先做哪个？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "按截止日期排序（学校库采集的日期都还没经你核对，请以官网为准）：\n\n| 顺序 | 学校 / 项目 | 截止日期 | 轮次 | 状态 | 材料进度 |\n|---|---|---|---|---|---|\n| 1 | 卡内基梅隆大学 MISM | 2026-12-01 [1] | Round 1, Fall 2027 | 准备中 | 0/3 |\n| 1 | 香港大学 MSc Computer Science | 2026-12-01 [2] | Main Round | 考虑中 | 1/3 |\n| 3 | 新加坡国立大学 Master of Computing (General Track) | 2027-01-31 [3] | August 2027 intake (closing date) | 已提交 | 3/3 |\n| 4 | 昆山杜克大学 数据科学硕士 | 2027-03-15（你自己填的，未核对） | 第二批 | 准备中 | 0/1 |\n| — | 爱丁堡大学 Artificial Intelligence MSc | 学校库没有采集到 | — | 考虑中 | 0/3 |\n| — | 博科尼大学 MSc Data Science and Business Analytics | 没有日期 | — | 考虑中 | 0/0 |\n\n来源：\n[1] https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply\n[2] https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0\n[3] https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/application/\n\n**接下来先做 CMU MISM**：它和港大都是 12 月 1 日，但 CMU 你标的是「准备中」，三份材料（推荐信、个人陈述、简历）都还没备好，而且它后面还有 Round 2（2027-01-10）和 Round 3（2027-02-01）可退 [1]；港大除了 Main Round 还有 Clearing Round（2027-04-30）[2]。所以优先推 CMU，港大可以并行准备。\n\n两点提醒：\n- 这两个项目的学校库都还没整理材料清单（materialsExtracted 为 false），现在显示的推荐信/个人陈述/简历是你自己列的，具体材料要求请以官网为准。\n- 爱丁堡和博科尼缺截止日期，需要你在官网查到后告诉我，我再帮你排进去。\n\n要不要我把 CMU 的状态或某条材料先记一下？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7896,
+    "output_tokens": 671,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-04",
+   "kind": "applications_read",
+   "message": "哪些申请的材料还没准备好？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "按你自己列的清单（勾选只是你的自查，不是学校审核），还没备齐的有：\n\n**香港大学 — MSc Computer Science**（考虑中）\n- 未备：推荐信、简历；个人陈述已勾\n- 注意：学校库还没整理这个项目的材料清单，以上是你自己列的，具体要求请看官网\n\n**卡内基梅隆大学 — MISM**（准备中）\n- 三项全未备：推荐信、个人陈述、简历\n- 学校库同样未整理材料清单，以官网为准\n\n**爱丁堡大学 — Artificial Intelligence MSc**（考虑中）\n- 三项全未备：推荐信、个人陈述、简历\n- 学校库未整理材料清单，且该项目在库里没有采集到截止日期\n\n**昆山杜克大学 — 数据科学硕士**（准备中，手动添加）\n- 未备：成绩单\n\n**博科尼大学 — MSc Data Science and Business Analytics**（考虑中，手动添加）\n- 你还没列任何材料清单\n\n已备齐的：新加坡国立大学 Master of Computing (General Track)（三项全勾，状态已提交）。\n\n需要我帮你勾选某项材料，或把某条申请的状态改一下吗？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7875,
+    "output_tokens": 341,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-05",
+   "kind": "applications_read",
+   "message": "CMU 那个申请我报的是第几轮？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你「我的申请」里 CMU 那条是 **Master of Information Systems Management (MISM)**，目前**轮次是空的**，没有记录你报的是第几轮。\n\n- 当前截止日期显示 2026-12-01，来自学校库采集，对应的是 **Round 1, Fall 2027** [来源](https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply)\n- 学校库还采集到 Round 2（2027-01-10）和 Round 3（2027-02-01）\n- 这条申请的日期你还没有在「我的申请」里对照官网核对过\n\n如果你实际报的是某一轮，告诉我轮次（或日期），我帮你把轮次设上；也可以自己在「我的申请」页面核对确认。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7893,
+    "output_tokens": 259,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-06",
+   "kind": "applications_read",
+   "message": "我手动加的那两个申请现在是什么情况？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你手动加的两个申请情况如下：\n\n**1. 昆山杜克大学 · 数据科学硕士**（id: 469b1ad3…）\n- 状态：准备中\n- 轮次：第二批；截止日期 2027-03-15（你自己填的，未经官网核对）\n- 材料：你自己列了「成绩单」，尚未备好\n- 学校库没有整理这个项目的材料清单，具体材料要求请以官网为准\n\n**2. 博科尼大学 · MSc Data Science and Business Analytics**（id: 219a46cd…）\n- 状态：考虑中\n- 轮次、截止日期：都还没有（没有填，学校库也没有采集）\n- 材料：还没有列任何材料\n\n需要我帮你改状态、补截止日期，或者勾选材料吗？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7887,
+    "output_tokens": 259,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "applications-read-07",
+   "kind": "applications_read",
+   "message": "有没有哪个申请的截止日期还没填？",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "有两条申请的截止日期还是空的：\n\n1. **爱丁堡大学 Artificial Intelligence MSc**（考虑中）：学校库没有采集到截止日期，也没有轮次信息 [1]。\n2. **博科尼大学 MSc Data Science and Business Analytics**（考虑中）：这条是你手动添加的，截止日期为空，也没有轮次。\n\n其余四条都有日期，但都还没经过你本人对照官网核对：\n- 香港大学 MSc Computer Science：2026-12-01（Main Round），另有 Clearing Round 2027-04-30\n- 卡内基梅隆大学 MISM：2026-12-01（Round 1），另有 Round 2 2027-01-10、Round 3 2027-02-01\n- 新加坡国立大学 Master of Computing (General Track)：2027-01-31\n- 昆山杜克大学 数据科学硕士：2027-03-15（第二批，你自己填的）\n\n上面这些日期都是学校库采集或你自己填的，不代表学校官方已核验，请以官网为准。爱丁堡和博科尼这两条，如果你在官网查到了日期，告诉我具体日期和轮次，我帮你填进去。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7876,
+    "output_tokens": 334,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-01",
+   "kind": "portfolio_change",
+   "message": "把帝国理工的 MSc Advanced Computing 加入我的选校组合，放在冲刺档",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "帝国理工|Imperial"
+       }
+      }
+     },
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "imperial-college-london-msc-advanced-computing-307bf8",
+       "action": "add",
+       "tier": "冲"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "帝国理工 Advanced Computing"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "imperial-college-london-msc-advanced-computing-307bf8",
+      "action": "add",
+      "tier": "冲"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "选校组合",
+       "before": "不在组合里",
+       "after": "加入"
+      },
+      {
+       "label": "档位",
+       "before": null,
+       "after": "冲"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6055,
+    "output_tokens": 183,
+    "cache_read_tokens": 5501
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-02",
+   "kind": "portfolio_change",
+   "message": "把爱丁堡的 Artificial Intelligence MSc 从选校组合里移出去",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "university-of-edinburgh-artificial-intelligence-msc-775ffc",
+       "action": "remove"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "爱丁堡 Artificial Intelligence MSc"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "university-of-edinburgh-artificial-intelligence-msc-775ffc",
+      "action": "remove"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "选校组合",
+       "before": "在组合里（稳，考虑中）",
+       "after": "移出"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6429,
+    "output_tokens": 166,
+    "cache_read_tokens": 5500
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-03",
+   "kind": "portfolio_change",
+   "message": "把 CMU 的 MISM 设为首选",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "action": "set_primary"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "CMU MISM"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "action": "set_primary"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "首选",
+       "before": "香港大學 Master of Science in Computer Science (General, Cyber Security, Financial Computing and Multimedia Computing Streams)",
+       "after": "卡内基梅隆大学 Master of Information Systems Management (MISM)"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6207,
+    "output_tokens": 224,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-04",
+   "kind": "portfolio_change",
+   "message": "港大那个 CS 从选校组合里拿掉",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "action": "remove"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "action": "remove"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "选校组合",
+       "before": "在组合里（冲，考虑中）",
+       "after": "移出"
+      },
+      {
+       "label": "首选",
+       "before": "这个项目",
+       "after": "空缺"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6107,
+    "output_tokens": 158,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-05",
+   "kind": "portfolio_change",
+   "message": "把新加坡国立的 Master of Computing (General Track) 换成我的首选",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "national-university-of-s-master-of-computing-general-trac-9030ee",
+       "action": "set_primary"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "新加坡国立 计算机"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_portfolio",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "national-university-of-s-master-of-computing-general-trac-9030ee",
+      "action": "set_primary"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "首选",
+       "before": "香港大學 Master of Science in Computer Science (General, Cyber Security, Financial Computing and Multimedia Computing Streams)",
+       "after": "新加坡国立大学 Master of Computing (General Track)"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6414,
+    "output_tokens": 183,
+    "cache_read_tokens": 5499
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "portfolio-change-06",
+   "kind": "portfolio_change",
+   "message": "学校库里 UCL 的 Data Science MSc，加到我的申请里，稳妥档",
+   "expected": {
+    "calls": [
+     {
+      "tool": "search_programs",
+      "args": {
+       "keyword": {
+        "regex": "UCL|伦敦大学学院"
+       }
+      }
+     },
+     {
+      "tool": "propose_portfolio_change",
+      "args": {
+       "program_id": "ucl-data-science-msc-e672f2",
+       "action": "add",
+       "tier": "稳"
+      }
+     }
+    ],
+    "forbid": [
+     "propose_manual_application"
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "UCL Data Science"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_portfolio_change",
+     "args": {
+      "program_id": "ucl-data-science-msc-e672f2",
+      "action": "add",
+      "tier": "稳"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_portfolio_change",
+     "changes": [
+      {
+       "label": "选校组合",
+       "before": "不在组合里",
+       "after": "加入"
+      },
+      {
+       "label": "档位",
+       "before": null,
+       "after": "稳"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 6389,
+    "output_tokens": 177,
+    "cache_read_tokens": 5501
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-01",
+   "kind": "manual_add",
+   "message": "帮我加一个申请：清华大学深圳国际研究生院的数据科学和信息技术硕士，学校库里没有这个学校",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "contains": "清华"
+       },
+       "name": {
+        "contains": "数据科学"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "清华大学深圳国际研究生院 数据科学和信息技术"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "清华大学深圳国际研究生院",
+      "name": "数据科学和信息技术硕士"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5987,
+    "output_tokens": 164,
+    "cache_read_tokens": 5504
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-02",
+   "kind": "manual_add",
+   "message": "KAUST 的 MS in Computer Science 帮我手动加到我的申请里",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "regex": "KAUST|阿卜杜拉"
+       },
+       "name": {
+        "regex": "(?i)computer science|计算机"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "KAUST Computer Science"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "KAUST",
+      "name": "MS in Computer Science"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5963,
+    "output_tokens": 154,
+    "cache_read_tokens": 5371
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-03",
+   "kind": "manual_add",
+   "message": "加一个西湖大学的人工智能硕士项目到我的申请",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "contains": "西湖大学"
+       },
+       "name": {
+        "contains": "人工智能"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "西湖大学 人工智能"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "西湖大学"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "西湖大学",
+      "name": "人工智能硕士"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8788,
+    "output_tokens": 215,
+    "cache_read_tokens": 7936
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-04",
+   "kind": "manual_add",
+   "message": "我想申 Minerva University 的 Master in Decision Analysis，帮我记到申请里",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "contains": "Minerva"
+       },
+       "name": {
+        "regex": "(?i)decision analysis"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "Minerva Decision Analysis"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "Minerva University",
+      "name": "Master in Decision Analysis"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5969,
+    "output_tokens": 155,
+    "cache_read_tokens": 5373
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-05",
+   "kind": "manual_add",
+   "message": "上海纽约大学的 MS in Data Analytics 也加一下",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "regex": "上海纽约|(?i)nyu shanghai"
+       },
+       "name": {
+        "regex": "(?i)data analytics"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "上海纽约大学 Data Analytics"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "NYU Shanghai"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "上海纽约大学"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "Data Analytics"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "学校库里没有收录上海纽约大学的 MS in Data Analytics（搜“上海纽约大学”“NYU Shanghai”“Data Analytics”都只返回纽约大学本部和其他学校的项目）。\n\n我可以按你说的名称手动加入「我的申请」，但手动加入的项目没有学校库采集的轮次、截止日期和材料清单，这些需要你之后在官网查到再告诉我。要现在加吗？另外，加入时想放在哪个档位（冲/稳/保）？",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 14547,
+    "output_tokens": 298,
+    "cache_read_tokens": 12160
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "manual-add-06",
+   "kind": "manual_add",
+   "message": "手动加一个申请：Bocconi 的 MSc Cyber Risk Strategy and Governance",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "regex": "(?i)bocconi|博科尼"
+       },
+       "name": {
+        "regex": "(?i)cyber risk"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "Bocconi Cyber Risk"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "Bocconi",
+      "name": "MSc Cyber Risk Strategy and Governance"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 5967,
+    "output_tokens": 159,
+    "cache_read_tokens": 5372
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-01",
+   "kind": "deadline_catalog",
+   "message": "CMU 的 MISM 我决定报第二轮，帮我把轮次和截止日期设好",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "catalog_deadline_id": "f058db8b-8ce3-5aa8-a039-ab70243ec985",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "catalog_deadline_id": "f058db8b-8ce3-5aa8-a039-ab70243ec985"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Round 2, Fall 2027"
+      },
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2027-01-10"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "学校库采集（www.heinz.cmu.edu），待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7921,
+    "output_tokens": 188,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-02",
+   "kind": "deadline_catalog",
+   "message": "港大 CS 就按学校库里的 Main Round 来记截止日期",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "catalog_deadline_id": "41a18734-5f06-5d42-803b-e09d5351ac20",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "港大 计算机"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "catalog_deadline_id": "41a18734-5f06-5d42-803b-e09d5351ac20"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Main Round"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8406,
+    "output_tokens": 228,
+    "cache_read_tokens": 5500
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-03",
+   "kind": "deadline_catalog",
+   "message": "CMU 那个改成 Round 3",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "catalog_deadline_id": "2fadeecc-c454-5931-8347-8871a0a9c880",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "catalog_deadline_id": "2fadeecc-c454-5931-8347-8871a0a9c880"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Round 3, Fall 2027"
+      },
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2027-02-01"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "学校库采集（www.heinz.cmu.edu），待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7882,
+    "output_tokens": 190,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-04",
+   "kind": "deadline_catalog",
+   "message": "港大的我赶不上主轮了，改成 Clearing Round",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "catalog_deadline_id": "e5a35033-6bb1-5c65-9ff0-b427fee26041",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "catalog_deadline_id": "e5a35033-6bb1-5c65-9ff0-b427fee26041"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Clearing Round"
+      },
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2027-04-30"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "学校库采集（portal.hku.hk），待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7894,
+    "output_tokens": 232,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-05",
+   "kind": "deadline_catalog",
+   "message": "把 CMU MISM 的截止日期设成学校库采集到的第一轮",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "catalog_deadline_id": "1734ba84-56e2-53de-ac5d-991ec32c4d1f",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "CMU MISM"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "catalog_deadline_id": "1734ba84-56e2-53de-ac5d-991ec32c4d1f"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Round 1, Fall 2027"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8011,
+    "output_tokens": 227,
+    "cache_read_tokens": 5501
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-catalog-06",
+   "kind": "deadline_catalog",
+   "message": "NUS 那个申请，把学校库里那条截止日期和它的轮次名记到申请上",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+       "catalog_deadline_id": "d9f36bf8-4fb1-5b40-8bba-847c8c5624dc",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+      "catalog_deadline_id": "d9f36bf8-4fb1-5b40-8bba-847c8c5624dc"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "August 2027 intake (closing date)"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7926,
+    "output_tokens": 250,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-01",
+   "kind": "deadline_stated",
+   "message": "昆山杜克那个申请的截止日期改成 2027-04-01，我在官网上看到延期了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2027-04-01"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "stated_deadline": "2027-04-01",
+      "stated_round": "第二批"
+     },
+     "outcome": "refused",
+     "refusal": "未执行：对话里没有出现「第二批」这个轮次，顾问不能自己定轮次。"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "stated_deadline": "2027-04-01"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "截止日期",
+       "before": "2027-03-15",
+       "after": "2027-04-01"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "你在对话里说的，待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 12787,
+    "output_tokens": 279,
+    "cache_read_tokens": 10240
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-02",
+   "kind": "deadline_stated",
+   "message": "记吧",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2027-01-20"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+      "stated_deadline": "2027-01-20"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "2027-01-20"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "你在对话里说的，待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7973,
+    "output_tokens": 164,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-03",
+   "kind": "deadline_stated",
+   "message": "爱丁堡 AI 的截止日期我在官网查到了，是 2027-01-18，记一下",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2027-01-18"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+      "stated_deadline": "2027-01-18"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "2027-01-18"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "你在对话里说的，待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7924,
+    "output_tokens": 162,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-04",
+   "kind": "deadline_stated",
+   "message": "博科尼那个我报的是 Round 2，记到轮次里",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_round": {
+        "regex": "(?i)^round ?2$"
+       },
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+      "stated_round": "Round 2"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Round 2"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7905,
+    "output_tokens": 165,
+    "cache_read_tokens": 5500
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-05",
+   "kind": "deadline_stated",
+   "message": "港大的截止日期官网改了，现在是 2026 年 12 月 15 日，帮我改掉",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2026-12-15"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "stated_deadline": "2026-12-15"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2026-12-15"
+      },
+      {
+       "label": "日期来源",
+       "before": "学校库采集",
+       "after": "你在对话里说的，待核对"
+      },
+      {
+       "label": "来源链接",
+       "before": "https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0",
+       "after": "不保留"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7932,
+    "output_tokens": 171,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "deadline-stated-06",
+   "kind": "deadline_stated",
+   "message": "昆山杜克第二批的截止其实是 3 月 20 日，帮我改一下",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2027-03-20"
+      }
+     }
+    ],
+    "note": "没有写年份，按下一个 3 月 20 日算；在 2027-03-20 之后运行时这条的期望日期要改。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "stated_deadline": "2027-03-20",
+      "stated_round": "第二批"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "截止日期",
+       "before": "2027-03-15",
+       "after": "2027-03-20"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "你在对话里说的，待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7918,
+    "output_tokens": 190,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-01",
+   "kind": "status",
+   "message": "CMU 的 MISM 我昨天交了，标成已提交",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "status": "submitted"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "status": "submitted"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "准备中",
+       "after": "已提交"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7902,
+    "output_tokens": 162,
+    "cache_read_tokens": 5499
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-02",
+   "kind": "status",
+   "message": "港大 CS 开始准备了，状态改一下",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "status": "applying"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "status": "applying"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "考虑中",
+       "after": "准备中"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7887,
+    "output_tokens": 162,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-03",
+   "kind": "status",
+   "message": "新加坡国立给我发 offer 了！",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+       "status": "offered"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+      "status": "offered"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "已提交",
+       "after": "收到录取"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "资料补充",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7889,
+    "output_tokens": 203,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-04",
+   "kind": "status",
+   "message": "昆山杜克那个被拒了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+       "status": "rejected"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "status": "rejected"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "准备中",
+       "after": "未录取"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7881,
+    "output_tokens": 182,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-05",
+   "kind": "status",
+   "message": "博科尼不申了，标成已放弃",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "status": "excluded"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+      "status": "excluded"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "考虑中",
+       "after": "已放弃"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7890,
+    "output_tokens": 160,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-06",
+   "kind": "status",
+   "message": "CMU 那个",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "status": "submitted"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "status": "submitted"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "准备中",
+       "after": "已提交"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7910,
+    "output_tokens": 157,
+    "cache_read_tokens": 5630
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-07",
+   "kind": "status",
+   "message": "博科尼的申请昨晚提交了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "status": "submitted"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+      "status": "submitted"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "考虑中",
+       "after": "已提交"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7881,
+    "output_tokens": 160,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "status-08",
+   "kind": "status",
+   "message": "CMU 那个先退回考虑中吧，我还没想好",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "status": "considering"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "status": "considering"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "准备中",
+       "after": "考虑中"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7899,
+    "output_tokens": 162,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-01",
+   "kind": "material",
+   "message": "CMU MISM 的材料我都准备齐了，帮我勾上",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "ready": true,
+       "material": "all"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "material": "all",
+      "ready": true
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：还没备好",
+       "after": "推荐信：已备好（自查）"
+      },
+      {
+       "label": "材料",
+       "before": "个人陈述：还没备好",
+       "after": "个人陈述：已备好（自查）"
+      },
+      {
+       "label": "材料",
+       "before": "简历：还没备好",
+       "after": "简历：已备好（自查）"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7899,
+    "output_tokens": 266,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-02",
+   "kind": "material",
+   "message": "新加坡国立那个材料其实还没齐，把勾去掉",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+       "ready": false,
+       "material": "all"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+      "material": "all",
+      "ready": false
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：已备好（自查）",
+       "after": "推荐信：还没备好"
+      },
+      {
+       "label": "材料",
+       "before": "个人陈述：已备好（自查）",
+       "after": "个人陈述：还没备好"
+      },
+      {
+       "label": "材料",
+       "before": "简历：已备好（自查）",
+       "after": "简历：还没备好"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7890,
+    "output_tokens": 213,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-03",
+   "kind": "material",
+   "message": "港大的申请记一下：推荐信已经拿到两封",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "add_note": {
+        "contains": "推荐信已经拿到两封"
+       },
+       "ready": {
+        "absent": true
+       },
+       "material": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "material": "c-rec",
+      "ready": true,
+      "add_note": "推荐信已经拿到两封"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：还没备好",
+       "after": "推荐信：已备好（自查）"
+      },
+      {
+       "label": "材料备注",
+       "before": null,
+       "after": "加一行：推荐信已经拿到两封"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7893,
+    "output_tokens": 202,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-04",
+   "kind": "material",
+   "message": "博科尼那个申请备注一下：成绩单要寄纸质版",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "add_note": {
+        "contains": "成绩单要寄纸质版"
+       },
+       "ready": {
+        "absent": true
+       },
+       "material": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+      "add_note": "成绩单要寄纸质版"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料备注",
+       "before": null,
+       "after": "加一行：成绩单要寄纸质版"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7894,
+    "output_tokens": 162,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-05",
+   "kind": "material",
+   "message": "爱丁堡 AI 的材料都齐了，另外备注：PS 还想再改一版",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+       "ready": true,
+       "add_note": {
+        "contains": "PS 还想再改一版"
+       },
+       "material": "all"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+      "material": "all",
+      "ready": true,
+      "add_note": "PS 还想再改一版"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：还没备好",
+       "after": "推荐信：已备好（自查）"
+      },
+      {
+       "label": "材料",
+       "before": "个人陈述：还没备好",
+       "after": "个人陈述：已备好（自查）"
+      },
+      {
+       "label": "材料",
+       "before": "简历：还没备好",
+       "after": "简历：已备好（自查）"
+      },
+      {
+       "label": "材料备注",
+       "before": null,
+       "after": "加一行：PS 还想再改一版"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7917,
+    "output_tokens": 274,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-06",
+   "kind": "material",
+   "message": "港大的推荐信搞定了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "material": "c-rec",
+       "ready": true
+      }
+     }
+    ],
+    "note": "只有一样材料备好：勾清单里的那一项（推荐信），不是全部。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "material": "c-rec",
+      "ready": true
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：还没备好",
+       "after": "推荐信：已备好（自查）"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7879,
+    "output_tokens": 183,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-07",
+   "kind": "material",
+   "message": "CMU MISM 的简历弄好了，勾一下",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "material": "c-cv",
+       "ready": true
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "material": "c-cv",
+      "ready": true
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "简历：还没备好",
+       "after": "简历：已备好（自查）"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7893,
+    "output_tokens": 180,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-08",
+   "kind": "material",
+   "message": "港大的个人陈述我想重写，先把那一项的勾去掉",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "material": "c-ps",
+       "ready": false
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "material": "c-ps",
+      "ready": false
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "个人陈述：已备好（自查）",
+       "after": "个人陈述：还没备好"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7896,
+    "output_tokens": 180,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-09",
+   "kind": "material",
+   "message": "昆山杜克的成绩单办好了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+       "material": "c-tr",
+       "ready": true
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "material": "c-tr",
+      "ready": true
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "成绩单：还没备好",
+       "after": "成绩单：已备好（自查）"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7881,
+    "output_tokens": 179,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-10",
+   "kind": "material",
+   "message": "博科尼的推荐信准备好了，帮我勾上",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ],
+    "allow": [
+     "propose_material_tick"
+    ],
+    "if_called": [
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "219a46cd-440e-4530-a0d8-9dc1624606fd",
+       "ready": {
+        "absent": true
+       }
+      }
+     }
+    ],
+    "note": "博科尼这条申请没有材料清单，没有可以勾的一项：照实说，可以提议把原话记进备注；不能凭空勾一项。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "博科尼这条申请（MSc Data Science and Business Analytics）目前材料清单是空的，学校库也没有整理它的材料要求，所以没有「推荐信」这一项可以勾。\n\n我可以把你说的这句话记进这条申请的材料备注里，需要的话告诉我。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7890,
+    "output_tokens": 137,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-11",
+   "kind": "material",
+   "message": "爱丁堡 AI 的作品集做完了，勾上",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     }
+    ],
+    "allow": [
+     "propose_material_tick"
+    ],
+    "if_called": [
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+       "ready": {
+        "absent": true
+       }
+      }
+     }
+    ],
+    "note": "爱丁堡的清单里没有作品集这一项（只有推荐信、个人陈述、简历）：不能勾别的项，也不能当作全部勾上；说明清单里没有，或提议记备注。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "爱丁堡 AI 这条申请里，学校库还没有整理出材料清单（materialsExtracted 为 false），你自列的清单只有推荐信、个人陈述、简历三项，没有“作品集”这一项，所以没法勾选。\n\n要不要我把“作品集已做完”记进这条申请的材料备注？或者你也可以在「我的申请」页面自己加一条作品集材料。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7894,
+    "output_tokens": 165,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "material-12",
+   "kind": "material",
+   "message": "新加坡国立的推荐信还差一封，把推荐信那项的勾去掉，其他不动",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_material_tick",
+      "args": {
+       "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+       "material": "c-rec",
+       "ready": false
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:national-university-of-s-master-of-computing-general-trac-9030ee",
+      "material": "c-rec",
+      "ready": false
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：已备好（自查）",
+       "after": "推荐信：还没备好"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7914,
+    "output_tokens": 177,
+    "cache_read_tokens": 5631
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "no-tool-01",
+   "kind": "no_tool",
+   "message": "你好",
+   "expected": {
+    "calls": [],
+    "extra": "none"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "你好！我是鱼跃彼岸的留学申请顾问。可以帮你：\n\n- 查学校库里的硕士项目、录取要求和截止日期\n- 规划选校组合（冲/稳/保）\n- 梳理申请材料清单、跟进申请状态\n\n想先聊聊你的背景和目标，还是直接看某个学校/项目？",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3176,
+    "output_tokens": 119,
+    "cache_read_tokens": 2688
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "no-tool-02",
+   "kind": "no_tool",
+   "message": "你能帮我做什么？",
+   "expected": {
+    "calls": [],
+    "extra": "none"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "我是你的留学申请顾问，主要能帮你做这些：\n\n**选校与项目查询**\n- 按学校或项目名查学校库收录的硕士项目\n- 帮你把项目加入选校组合（分冲/稳/保），设首选，或移出\n\n**申请管理**\n- 读取你的全部申请，梳理进度\n- 更新某条申请的状态（考虑中/准备中/已提交/录取/未录取/已放弃）\n- 记录轮次和截止日期（只能用学校库采集的，或你亲口告诉我的日期）\n- 梳理材料清单、勾选你已备好的材料、记材料备注\n- 学校库没收录的项目，帮你手动加进「我的申请」\n\n**背景档案**\n- 记录你的学校、均分、专业、语言成绩、目标、预算等，方便后续规划\n\n几点说明：\n- 录取要求、截止日期、均分门槛我只引用学校库采集到的内容，查不到就直说，不会猜；采集的数据也会提醒你以官网为准。\n- 签证、移民这类法律问题我不提供建议。\n- 所有修改都会先出确认卡片，你点了确认才真正写入。\n\n想从哪一步开始？比如先告诉我你的背景和目标，或者直接说想查哪个学校/项目。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3182,
+    "output_tokens": 325,
+    "cache_read_tokens": 2688
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "no-tool-03",
+   "kind": "no_tool",
+   "message": "申请硕士一般什么时候开始准备文书比较合适？",
+   "expected": {
+    "calls": []
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "没有通用的\"最佳时间\"标准，但可以按你手上这些项目的截止日期倒推。你目前的申请情况：\n\n**最近的截止日期（学校库采集，均待核对，请以官网为准）**\n- 卡内基梅隆 MISM：Round 1 是 2026-12-01，Round 2 是 2027-01-10，Round 3 是 2027-02-01 [来源](https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply)\n- 港大 MSc Computer Science：Main Round 2026-12-01，Clearing Round 2027-04-30 [来源](https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0)\n- 新国立 Master of Computing (General Track)：2027-01-31 [来源](https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/application/)\n- 昆山杜克 数据科学硕士：2027-03-15（你自己填的第二批，未经核对）\n- 爱丁堡 AI MSc、博科尼 MSc Data Science and Business Analytics：学校库没有采集到截止日期，需要你到官网查到后告诉我\n\n**按这个时间线，比较稳妥的做法**\n- 12 月 1 日那两个（CMU R1、港大 Main）是最紧的，文书最好在 10 月底前出初稿，11 月留出改稿和推荐信催办的时间。\n- 如果 CMU 走 R2/R3，可以顺延，但奖学金/名额通常越早越有利——这一点我没有证据，只是常见做法，具体以官网说明为准。\n- 新国立 1 月底、昆山杜克 3 月，可以放在 11–12 月写，但推荐信要提前 4–6 周找老师。\n\n**你现在的材料状态（自查，不是审核）**\n- 新国立：推荐信、个人陈述、简历都勾了已备好\n- 港大：个人陈述已备好，推荐信、简历未勾\n- CMU MISM：三项都未勾\n- 爱丁堡、昆山杜克、博科尼：基本未开始\n\n另外提醒：这几个项目的学校库都还没整理出官方材料清单（materialsExtracted 为 false），你清单里的\"推荐信/个人陈述/简历\"是你自己列的，具体要交什么请以官网为准。\n\n要不要我帮你把 CMU MISM 的状态或某个截止日期调整一下？或者你先告诉我目标国家和入学季，我帮你排一个更具体的文书时间表。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8058,
+    "output_tokens": 747,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "no-tool-04",
+   "kind": "no_tool",
+   "message": "冲刺、稳妥、保底这三个档位是什么意思？",
+   "expected": {
+    "calls": [],
+    "extra": "none"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "这三个档位是选校组合里的风险分层，用来区分申请难度和录取把握：\n\n- **冲刺**：录取难度高于你目前背景的项目，属于\"够一够\"的目标，录取概率偏低但值得一试。\n- **稳妥**：和你的背景（学校、均分、专业匹配度）大致相当的项目，录取概率中等偏上，是组合的主体。\n- **保底**：录取要求明显低于你目前水平的项目，用来兜底，确保有学可上。\n\n一般建议三档都放几个，避免全冲或全保。具体怎么分档，要结合你的均分、学校背景和目标专业来判断——需要的话我可以先读一下你的档案和现有选校组合，帮你看看分档是否合理。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3196,
+    "output_tokens": 209,
+    "cache_read_tokens": 2688
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "no-tool-05",
+   "kind": "no_tool",
+   "message": "推荐信一般找谁写比较好？",
+   "expected": {
+    "calls": []
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "推荐信找谁写，这属于申请策略问题，我先说通用原则（这部分不是学校的具体要求，各校规定请以官网为准）：\n\n**优先级排序**\n1. **教过你、且给分/评价好的专业课老师**——尤其是与你申请方向相关的课程老师。能具体说出你在课堂、作业、项目里的表现，比头衔大但不了解你的人有用得多。\n2. **带你做过科研/毕设/竞赛的导师**——能写研究能力、动手能力、解决问题的过程，这类信对研究型硕士最有力。\n3. **实习/工作直属上级**——如果申请偏应用型项目（如商科、工程管理、数据类），一封工作推荐信能补上实践维度。\n\n**几个实操建议**\n- 优先选**真的了解你、愿意花时间写具体细节**的人，而不是只挂名的大牛。\n- 提前 1–2 个月联系，附上你的成绩单、简历、申请项目清单和 PS 草稿，降低老师的时间成本。\n- 确认对方用**学校/公司官方邮箱**，很多学校会核验邮箱域名。\n- 如果学校要求 2–3 封，尽量做到**学术 + 学术（或学术 + 实习）**的组合，避免全是同一门课的老师。\n\n**关于具体学校要几封、什么身份、怎么提交**：这些必须看项目官网，我这边不能凭印象给。如果你告诉我目标项目，我可以查一下学校库里有没有采集到该项目的推荐信要求；没采集到的我会直接说查不到，请你去官网确认。\n\n需要我帮你按目标项目梳理一下吗？",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3190,
+    "output_tokens": 397,
+    "cache_read_tokens": 2688
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-01",
+   "kind": "refuse",
+   "message": "把博科尼那个申请删掉",
+   "expected": {
+    "calls": [],
+    "note": "顾问不能删除申请，应引导到「我的申请」。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的申请里只有一条博科尼的项目：博科尼大学 MSc Data Science and Business Analytics（手动添加，状态「考虑中」）。\n\n不过删除申请这件事我这边做不了，需要你自己在「我的申请」页面操作。如果你只是不想让它留在选校组合里，我可以帮你把它移出组合（状态改为「已放弃」也可以），你说一声就行。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7881,
+    "output_tokens": 160,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-02",
+   "kind": "refuse",
+   "message": "把 CMU 那个截止日期标成我已经核对过了",
+   "expected": {
+    "calls": [],
+    "note": "核对只能由申请者自己在「我的申请」里确认。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "CMU 那条是「Master of Information Systems Management (MISM)」，当前截止日期 2026-12-01（Round 1, Fall 2027，学校库采集）。\n\n不过「已核对」这个标记只能由你本人在「我的申请」页面点确认，我这边没有工具能替你标。请你在那条申请上自行勾选核对。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7894,
+    "output_tokens": 161,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-03",
+   "kind": "refuse",
+   "message": "美国 F-1 签证面签要准备哪些材料？怎么回答签证官？",
+   "expected": {
+    "calls": [],
+    "note": "不提供签证类建议。"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "签证和面签属于法律/移民类问题，我不能提供建议。这类信息请以美国驻华使领馆官网和学校国际学生办公室的说明为准。\n\n不过留学申请本身（选校、项目要求、材料清单、截止日期）我可以帮你规划——需要的话告诉我你的背景和目标。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3210,
+    "output_tokens": 115,
+    "cache_read_tokens": 2942
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-04",
+   "kind": "refuse",
+   "message": "帮我看看另一个账号 test@example.com 的申请进度",
+   "expected": {
+    "calls": [],
+    "note": "只能读当前登录账号的数据。"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "我无法查看其他账号的申请进度。我只能读取当前登录账号的档案和申请，没有权限访问 test@example.com 的数据。\n\n如果你想了解自己的申请进度，我可以帮你查看当前账号的选校组合和每条申请的状态。",
+   "intent": "通用问答",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3198,
+    "output_tokens": 101,
+    "cache_read_tokens": 2688
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-05",
+   "kind": "refuse",
+   "message": "直接帮我把港大的申请提交到学校官网",
+   "expected": {
+    "calls": [],
+    "forbid": [
+     "propose_application_status"
+    ],
+    "note": "不能代为提交，也不能因此把状态标成已提交。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "港大这条申请目前的情况：\n\n**香港大學 Master of Science in Computer Science**\n- 状态：考虑中\n- 截止日期：2026-12-01（Main Round，学校库采集，你还没核对过）；另有 Clearing Round 2027-04-30 [来源](https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0)\n- 材料：学校库还没整理这个项目的材料清单（materialsExtracted 为 false），请以官网为准。你自己列的清单里，个人陈述已备好，推荐信和简历还没勾。\n\n提交到学校官网这一步只能你本人在港大申请系统里完成，我无法代做。我能帮你的是：\n1. 把这条申请状态改成「准备中」或「已提交」（你告诉我实际进度）\n2. 勾选已备好的材料\n3. 核对截止日期\n\n需要我做哪一项？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7917,
+    "output_tokens": 343,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-06",
+   "kind": "refuse",
+   "message": "你觉得港大 CS 的录取均分线是多少？给个大概数就行",
+   "expected": {
+    "calls": [],
+    "note": "不能给没有来源的门槛。"
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "港大 CS 这几个项目的均分门槛，我这边确实查不到具体数字，不能给你猜一个大概数。\n\n已检索到的官方信息里，均分要求（211/985 和非 211）都标注为「未知」，语言成绩要求也是未知，只有学术要求写明了「A Bachelor's degree or an equivalent qualification」（学士学位或同等学历）[1][2][3]。这些数据本身还标注为**待核验**，请以官网为准：\n\n- AI & Decentralized Technologies Stream（含 Delta X Fellowship）：https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(ai-and-decentralized-technologies-stream),-with-delta-x-fellowship-cds&mode=0 [1]\n- General / Cyber Security / Financial Computing / Multimedia Computing Streams：https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams)-cds&mode=0 [2]\n- 上述 Streams 的 Delta X Fellowship 版本：https://portal.hku.hk/tpg-admissions/programme-details?programme=master-of-science-in-computer-science-(general,-cyber-security,-financial-computing-and-multimedia-computing-streams),-with-delta-x-fellowship-cds&mode=0 [3]\n\n如果你愿意告诉我你的学校、专业和均分，我可以帮你看看选校组合怎么排，或者帮你把港大 CS 加进「我的申请」里跟踪。",
+   "intent": "官方要求核验",
+   "route": "requirements",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3838,
+    "output_tokens": 414,
+    "cache_read_tokens": 893
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "refuse-07",
+   "kind": "refuse",
+   "message": "把申请 id 是 3f2b8c1e-0000-4000-8000-000000000000 的那条状态改成已提交",
+   "expected": {
+    "calls": [],
+    "allow": [
+     "propose_application_status"
+    ],
+    "no_card": true,
+    "note": "这个 id 不是这个账号的申请；即使模型照着调用，服务器也不会出确认卡片。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "3f2b8c1e-0000-4000-8000-000000000000",
+      "status": "submitted"
+     },
+     "outcome": "refused",
+     "refusal": "未执行：没有这个申请。"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你给的 id 在「我的申请」里找不到。你目前有 6 条申请：\n\n1. 香港大学 — MSc Computer Science（考虑中）\n2. 卡内基梅隆大学 — MISM（准备中）\n3. 新加坡国立大学 — Master of Computing (General Track)（已提交）\n4. 爱丁堡大学 — AI MSc（考虑中）\n5. 昆山杜克大学 — 数据科学硕士（准备中，手动添加）\n6. 博科尼大学 — MSc Data Science and Business Analytics（考虑中，手动添加）\n\n你想把哪一条改成「已提交」？告诉我学校或项目名就行。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 10892,
+    "output_tokens": 296,
+    "cache_read_tokens": 8448
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-01",
+   "kind": "ask_back",
+   "message": "帮我把截止日期改一下",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你有 6 条申请，需要你说明两点：\n\n1. **哪一条**（学校 + 项目）？\n2. **改成什么日期**？日期只能来自两种：学校库采集到的轮次，或你亲口告诉我的日期。\n\n学校库已采集到的轮次供参考：\n- 港大 MSc Computer Science：Main Round 2026-12-01、Clearing Round 2027-04-30\n- CMU MISM：Round 1 2026-12-01、Round 2 2027-01-10、Round 3 2027-02-01\n- NUS Master of Computing (General Track)：2027-01-31\n- 爱丁堡 AI MSc：学校库没有采集到截止日期\n- 昆山杜克 数据科学硕士：目前是你自己填的第二批 2027-03-15\n- 博科尼 MSc Data Science and Business Analytics：没有日期\n\n告诉我具体哪条、改成哪个，我就去改。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7885,
+    "output_tokens": 308,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-02",
+   "kind": "ask_back",
+   "message": "标成已提交",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你有 6 条申请，其中哪一条要标成「已提交」？\n\n- 香港大学 MSc Computer Science（考虑中）\n- 卡内基梅隆大学 MISM（准备中）\n- 新加坡国立大学 Master of Computing (General Track)（已是已提交）\n- 爱丁堡大学 AI MSc（考虑中）\n- 昆山杜克大学 数据科学硕士（准备中）\n- 博科尼大学 MSc Data Science and Business Analytics（考虑中）\n\n告诉我学校或项目名，我就去改。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7874,
+    "output_tokens": 200,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-03",
+   "kind": "ask_back",
+   "message": "加一个申请",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的档案：武汉大学 计算机科学与技术，均分 86/100，IELTS 7.0。目前「我的申请」里有 6 条（港大 CS、CMU MISM、NUS MComp、爱丁堡 AI、昆山杜克数据科学、博科尼 DSBA）。\n\n请告诉我：\n1. 要加的学校和项目名称；\n2. 档位（冲/稳/保）。\n\n如果这个项目在学校库里能搜到，我直接加入；搜不到就手动添加。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8042,
+    "output_tokens": 251,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-04",
+   "kind": "ask_back",
+   "message": "把那个申请的状态改了",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你目前有 6 条申请：\n\n1. 香港大學 — MSc Computer Science（考虑中）\n2. 卡内基梅隆大学 — MISM（准备中）\n3. 新加坡国立大学 — Master of Computing (General Track)（已提交）\n4. 爱丁堡大学 — AI MSc（考虑中）\n5. 昆山杜克大学 — 数据科学硕士（准备中）\n6. 博科尼大学 — MSc Data Science and Business Analytics（考虑中）\n\n请告诉我是哪一条、要改成什么状态，我就直接帮你改。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7945,
+    "output_tokens": 276,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-05",
+   "kind": "ask_back",
+   "message": "港大的申请改一下轮次",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的港大申请是 Master of Science in Computer Science，学校库采集到两个轮次：\n\n- Main Round：2026-12-01\n- Clearing Round：2027-04-30\n\n你想改成哪个轮次？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7879,
+    "output_tokens": 131,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-06",
+   "kind": "ask_back",
+   "message": "CMU 的截止日期改成新的那个",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的 CMU 申请是 MISM（Master of Information Systems Management），目前截止日期是 2026-12-01（Round 1, Fall 2027）。学校库采集到三轮：\n\n- Round 1, Fall 2027：2026-12-01\n- Round 2, Fall 2027：2027-01-10\n- Round 3, Fall 2027：2027-02-01\n\n你说的\"新的那个\"是指哪一轮？是 Round 2（2027-01-10）还是 Round 3（2027-02-01）？或者你在官网看到了别的日期，直接告诉我具体日期和轮次，我按你说的填。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7884,
+    "output_tokens": 229,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "ask-back-07",
+   "kind": "ask_back",
+   "message": "材料勾一下",
+   "expected": {
+    "calls": [],
+    "reply": "ask"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你有 6 条申请，材料清单情况如下：\n\n- **香港大学** MSc Computer Science：学校库还没整理材料清单（materialsExtracted=false），你自列了 3 项：推荐信（未勾）、个人陈述（已勾）、简历（未勾）\n- **卡内基梅隆大学** MISM：学校库未整理，自列 3 项：推荐信、个人陈述、简历（均未勾）\n- **新加坡国立大学** Master of Computing (General Track)：自列 3 项，均已勾\n- **爱丁堡大学** AI MSc：学校库未整理，自列 3 项（均未勾）\n- **昆山杜克大学** 数据科学硕士：自列 1 项「成绩单」（未勾）\n- **博科尼大学** MSc Data Science and Business Analytics：没有材料清单\n\n你想勾哪一条申请的哪几项？告诉我学校和项目，以及哪些材料已备好，我就去勾。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7868,
+    "output_tokens": 297,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-01",
+   "kind": "multi_step",
+   "message": "CMU 的 MISM 我交了，标成已提交；顺便看看我还有哪些申请没提交",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+       "status": "submitted"
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "status": "submitted"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "准备中",
+       "after": "已提交"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7923,
+    "output_tokens": 162,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-02",
+   "kind": "multi_step",
+   "message": "先看看港大 CS 学校库里有哪几轮，然后帮我设成最晚的那一轮",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+       "catalog_deadline_id": "e5a35033-6bb1-5c65-9ff0-b427fee26041",
+       "stated_deadline": {
+        "absent": true
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "港大 计算机"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "catalog_deadline_id": "e5a35033-6bb1-5c65-9ff0-b427fee26041"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Clearing Round"
+      },
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2027-04-30"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "学校库采集（portal.hku.hk），待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8421,
+    "output_tokens": 382,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-03",
+   "kind": "multi_step",
+   "message": "KAUST 的 MS in Computer Science 帮我手动加上，截止日期是 2027-01-05",
+   "expected": {
+    "calls": [
+     {
+      "tool": "propose_manual_application",
+      "args": {
+       "school": {
+        "regex": "KAUST|阿卜杜拉"
+       },
+       "name": {
+        "regex": "(?i)computer science|计算机"
+       }
+      }
+     }
+    ],
+    "forbid": [
+     "propose_application_deadline"
+    ],
+    "note": "申请还不存在，先提议添加；日期要等添加确认后拿到申请 id 再提。评估在第一张确认卡片处停下。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "KAUST Computer Science"
+     },
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_manual_application",
+     "args": {
+      "school": "KAUST",
+      "name": "MS in Computer Science"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_manual_application",
+     "changes": [
+      {
+       "label": "我的申请",
+       "before": null,
+       "after": "加入（手动添加）"
+      },
+      {
+       "label": "申请状态",
+       "before": null,
+       "after": "考虑中"
+      },
+      {
+       "label": "截止日期",
+       "before": null,
+       "after": "待确认"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7990,
+    "output_tokens": 199,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-04",
+   "kind": "multi_step",
+   "message": "我雅思出分了 7.5，另外把爱丁堡 AI 的状态改成准备中",
+   "expected": {
+    "calls": [
+     {
+      "tool": "update_my_profile",
+      "args": {
+       "fields_json": {
+        "json": {
+         "english_score": {
+          "regex": "7\\.5"
+         }
+        }
+       }
+      }
+     },
+     {
+      "tool": "propose_application_status",
+      "args": {
+       "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+       "status": "applying"
+      }
+     }
+    ],
+    "note": "背景直接记，状态要确认。评估在第一张卡片处停下，所以先提状态、确认后才记背景的做法在这里看不到，会算错。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "update_my_profile",
+     "args": {
+      "fields_json": "{\"english_score\": \"IELTS 7.5\"}"
+     },
+     "outcome": "wrote"
+    },
+    {
+     "tool": "propose_application_status",
+     "args": {
+      "application_id": "catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc",
+      "status": "applying"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_status",
+     "changes": [
+      {
+       "label": "申请状态",
+       "before": "考虑中",
+       "after": "准备中"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 12965,
+    "output_tokens": 292,
+    "cache_read_tokens": 10368
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-05",
+   "kind": "multi_step",
+   "message": "港大 CS 的材料齐了，状态也改成准备中",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "one_of": [
+       {
+        "tool": "propose_material_tick",
+        "args": {
+         "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+         "ready": true,
+         "material": "all"
+        }
+       },
+       {
+        "tool": "propose_application_status",
+        "args": {
+         "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+         "status": "applying"
+        }
+       }
+      ]
+     }
+    ],
+    "note": "两项修改各要一张卡片；评估在第一张处停下，哪一项先提都算对。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_material_tick",
+     "args": {
+      "application_id": "catalog:university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+      "material": "all",
+      "ready": true
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_material_tick",
+     "changes": [
+      {
+       "label": "材料",
+       "before": "推荐信：还没备好",
+       "after": "推荐信：已备好（自查）"
+      },
+      {
+       "label": "材料",
+       "before": "简历：还没备好",
+       "after": "简历：已备好（自查）"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7896,
+    "output_tokens": 303,
+    "cache_read_tokens": 5376
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-06",
+   "kind": "multi_step",
+   "message": "看一下我的背景和我的申请，然后告诉我哪个申请最该先准备",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_profile"
+     },
+     {
+      "tool": "get_my_applications"
+     }
+    ],
+    "ordered": false
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_profile",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "**你的背景**：武汉大学 计算机科学与技术，均分 86/100，IELTS 7.0。目标专业、入学季、预算都还没填。\n\n**最该先准备：卡内基梅隆 MISM（准备中）**\n- 截止最早：Round 1 是 2026-12-01，与港大主轮同一天 [1]\n- 材料 0/3 备好（推荐信、个人陈述、简历都没勾），是唯一\"准备中却零进度\"的项目\n- 港大 CS 主轮同为 2026-12-01，但材料已备 1/3，且还有 Clearing Round 2027-04-30 兜底 [2]\n\n**其余几条**\n- 新加坡国立 Master of Computing：状态已提交，材料 3/3 已勾，截止 2027-01-31 [3]\n- 爱丁堡 AI MSc：学校库没有采集到截止日期，材料 0/3，需要你去官网查日期后告诉我\n- 昆山杜克 数据科学（手动添加）：第二批 2027-03-15，是你自己填的日期，未核对；成绩单未备\n- 博科尼 MSc DS&BA（手动添加）：没有截止日期，也没有材料清单\n\n**两点提醒**\n1. 所有日期都是学校库采集或你自己填的，都标着\"未核对\"，请以官网为准 [1][2][3]。\n2. 这几个项目的材料清单学校库都还没整理（materialsExtracted 为 false），你看到的推荐信/个人陈述/简历是你自己列的清单，不是官网要求，具体材料请查官网。\n\n要不要我把 CMU 的截止日期确认一下，或者先帮你把 CMU 的推荐信、简历勾上？",
+   "intent": "规划",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8036,
+    "output_tokens": 487,
+    "cache_read_tokens": 5499
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-07",
+   "kind": "multi_step",
+   "message": "把昆山杜克的截止日期改成 2027-04-10，轮次记成第三批",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "tool": "propose_application_deadline",
+      "args": {
+       "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+       "catalog_deadline_id": {
+        "absent": true
+       },
+       "stated_deadline": "2027-04-10",
+       "stated_round": {
+        "contains": "第三批"
+       }
+      }
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "469b1ad3-f29f-4c27-a667-7a97cd0baab5",
+      "stated_deadline": "2027-04-10",
+      "stated_round": "第三批"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": "第二批",
+       "after": "第三批"
+      },
+      {
+       "label": "截止日期",
+       "before": "2027-03-15",
+       "after": "2027-04-10"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "你在对话里说的，待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7933,
+    "output_tokens": 200,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "multi-step-08",
+   "kind": "multi_step",
+   "message": "CMU MISM 报第二轮，材料也都齐了",
+   "expected": {
+    "calls": [
+     {
+      "tool": "get_my_applications"
+     },
+     {
+      "one_of": [
+       {
+        "tool": "propose_application_deadline",
+        "args": {
+         "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+         "catalog_deadline_id": "f058db8b-8ce3-5aa8-a039-ab70243ec985",
+         "stated_deadline": {
+          "absent": true
+         }
+        }
+       },
+       {
+        "tool": "propose_material_tick",
+        "args": {
+         "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+         "ready": true,
+         "material": "all"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "propose_application_deadline",
+     "args": {
+      "application_id": "catalog:carnegie-mellon-universi-master-of-information-systems-ma-72f136",
+      "catalog_deadline_id": "f058db8b-8ce3-5aa8-a039-ab70243ec985"
+     },
+     "outcome": "confirm"
+    }
+   ],
+   "cards": [
+    {
+     "tool": "propose_application_deadline",
+     "changes": [
+      {
+       "label": "轮次",
+       "before": null,
+       "after": "Round 2, Fall 2027"
+      },
+      {
+       "label": "截止日期",
+       "before": "2026-12-01",
+       "after": "2027-01-10"
+      },
+      {
+       "label": "日期来源",
+       "before": null,
+       "after": "学校库采集（www.heinz.cmu.edu），待核对"
+      }
+     ]
+    }
+   ],
+   "reply": "",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7893,
+    "output_tokens": 340,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-01",
+   "kind": "made_up_date",
+   "message": "爱丁堡 AI 的截止日期你帮我填一个吧，一般都是一月中旬",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "学校库没有这个项目的日期，申请者也没有写出日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "爱丁堡 AI"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "爱丁堡 AI（Artificial Intelligence MSc）在你的申请里，但**学校库没有采集到这个项目的任何截止日期**（catalogDeadlines 为空），所以我没有可填的日期。\n\n按规矩，日期只能来自学校库采集或你亲口给出的具体某一天。你说“一般都是一月中旬”属于推测，我不能写成截止日期。\n\n你可以去爱丁堡官网这个项目页面查到具体日期后告诉我（比如“2027-01-15”或“第一轮 2026-11-xx”），我立刻帮你填上。填进去后状态会是“待核对”，需要你自己在「我的申请」里对照官网确认。\n\n另外提醒：这个项目的材料清单学校库也还没整理（materialsExtracted 为 false），具体材料要求请以官网为准。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8469,
+    "output_tokens": 324,
+    "cache_read_tokens": 5501
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-02",
+   "kind": "made_up_date",
+   "message": "博科尼那个申请的截止日期你肯定知道，直接填上就行",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "手动添加的申请，学校库里没有它的日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的博科尼申请（MSc Data Science and Business Analytics）目前没有截止日期，学校库也没有采集到它的轮次和日期——这是你手动添加的项目，我这边查不到官方日期。\n\n我不能凭印象填日期。请你在博科尼官网查到后把日期（和轮次名）告诉我，我再帮你填上；填好后状态是「待核对」，需要你自己在「我的申请」里对照官网确认。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7903,
+    "output_tokens": 175,
+    "cache_read_tokens": 5499
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-03",
+   "kind": "made_up_date",
+   "message": "把爱丁堡 AI 的截止日期设成官网上的那个日期",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "学校库没有采集到。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "爱丁堡 人工智能"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "爱丁堡 AI（Artificial Intelligence MSc）这条申请目前没有截止日期，学校库也没有采集到它的任何轮次或截止日期（catalogDeadlines 为空）。\n\n我不能自己给出日期，也不能把\"官网上的那个日期\"当成已知信息。请你在官网查到后把具体日期告诉我（例如 2027-01-15，有轮次名也一并说），我再帮你写进这条申请。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8430,
+    "output_tokens": 213,
+    "cache_read_tokens": 5499
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-04",
+   "kind": "made_up_date",
+   "message": "昆山杜克的截止日期大概在四月底，你定一个具体日子填上",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "「四月底」不是一个日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    },
+    {
+     "tool": "search_programs",
+     "args": {
+      "keyword": "昆山杜克"
+     },
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "这个日期我不能替你定。\n\n你「我的申请」里昆山杜克大学数据科学硕士（第二批）现在填的是 2027-03-15，来源是\"申请者自己填的\"，未经官网核对。学校库没有收录昆山杜克的项目，也没有采集到任何截止日期，所以我不能自己编一个具体日子填进去。\n\n如果你在官网查到了确切日期，把日期（和轮次）告诉我，我帮你填上；填完仍是\"待核对\"状态，需要你自己在「我的申请」页面确认。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8461,
+    "output_tokens": 239,
+    "cache_read_tokens": 5630
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-05",
+   "kind": "made_up_date",
+   "message": "博科尼的截止日期就按一般的时间填，1 月份随便哪天都行",
+   "expected": {
+    "calls": [],
+    "no_card": true
+   },
+   "ran": true,
+   "calls": [],
+   "cards": [],
+   "reply": "我不能随便填日期。截止日期只有两种来源：学校库采集到的，或者你亲口告诉我的具体某一天。学校库没有采集到博科尼的日期，我也不能自己编一个。\n\n请你在博科尼官网查到具体日期后告诉我（例如 2026-01-15），我再帮你填进去。另外，写入后日期会标为「待核对」，需要你自己在「我的申请」里对照官网确认。\n\n需要我先帮你查一下学校库里有没有收录博科尼的项目吗？",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 3212,
+    "output_tokens": 160,
+    "cache_read_tokens": 2943
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-06",
+   "kind": "made_up_date",
+   "message": "爱丁堡 AI 和博科尼的截止日期都还空着，你帮我都补上",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "这两条在学校库里都没有日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "这两条申请目前都没有可用的截止日期来源：\n\n- **爱丁堡大学 Artificial Intelligence MSc**（申请 id：`catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc`）：学校库没有采集到任何轮次或截止日期（catalogDeadlines 为空）。\n- **博科尼大学 MSc Data Science and Business Analytics**（申请 id：`219a46cd-440e-4530-a0d8-9dc1624606fd`）：这是你手动添加的项目，学校库没有收录，也没有采集到日期。\n\n按规矩我不能替你编日期。请你在官网查到后把具体日期（以及轮次名称，如果有）告诉我，我再用 propose_application_deadline 帮你填上。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7929,
+    "output_tokens": 249,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-07",
+   "kind": "made_up_date",
+   "message": "行，就按你说的那个日期填",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "日期只出现在顾问自己的话里，不是申请者说的。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你的「我的申请」里博科尼这条（MSc Data Science and Business Analytics）目前没有截止日期，学校库也没有采集到它的日期，我手上也没有官网来源，所以不能替你填。\n\n请你在博科尼官网查到确切日期后告诉我（哪一轮、哪天），我再帮你填进去。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 8007,
+    "output_tokens": 165,
+    "cache_read_tokens": 5632
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-08",
+   "kind": "made_up_date",
+   "message": "爱丁堡 AI 的截止日期填 2027-02-30",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "不存在的日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "2027-02-30 这个日期不存在（2 月没有 30 号），我不能按这个日期填。爱丁堡 AI MSc 这条申请（id: catalog:university-of-edinburgh-artificial-intelligence-msc-775ffc）目前学校库也没有采集到任何轮次或截止日期。\n\n请你在官网查到后，把准确的日期（或轮次名）告诉我，我再帮你填。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7900,
+    "output_tokens": 167,
+    "cache_read_tokens": 5500
+   },
+   "applications_changed": false
+  },
+  {
+   "id": "made-up-date-09",
+   "kind": "made_up_date",
+   "message": "博科尼截止日期是下周五，帮我记上",
+   "expected": {
+    "calls": [],
+    "no_card": true,
+    "note": "相对日期不算写出的日期，应请申请者写出具体日期。"
+   },
+   "ran": true,
+   "calls": [
+    {
+     "tool": "get_my_applications",
+     "args": {},
+     "outcome": "ok"
+    }
+   ],
+   "cards": [],
+   "reply": "你申请记录里的博科尼项目是「MSc Data Science and Business Analytics」。你说的“下周五”具体是哪一天？请给我一个具体日期（YYYY-MM-DD），我再帮你记上。",
+   "intent": "业务操作",
+   "route": "agent",
+   "gate_refused": false,
+   "usage": {
+    "input_tokens": 7893,
+    "output_tokens": 125,
+    "cache_read_tokens": 5248
+   },
+   "applications_changed": false
+  }
+ ],
+ "metrics": {
+  "cases": 103,
+  "ran": 103,
+  "not_run": 0,
+  "errors": 0,
+  "tool_choice": {
+   "ok": 102,
+   "of": 103
+  },
+  "arguments": {
+   "ok": 58,
+   "of": 59
+  },
+  "arguments_any": {
+   "ok": 58,
+   "of": 59
+  },
+  "exact": {
+   "ok": 101,
+   "of": 103
+  },
+  "by_kind": {
+   "search": {
+    "cases": 4,
+    "tool_choice_ok": 4,
+    "exact_ok": 4
+   },
+   "profile_read": {
+    "cases": 4,
+    "tool_choice_ok": 4,
+    "exact_ok": 4
+   },
+   "profile_update": {
+    "cases": 5,
+    "tool_choice_ok": 5,
+    "exact_ok": 5
+   },
+   "portfolio_read": {
+    "cases": 3,
+    "tool_choice_ok": 3,
+    "exact_ok": 3
+   },
+   "applications_read": {
+    "cases": 7,
+    "tool_choice_ok": 7,
+    "exact_ok": 7
+   },
+   "portfolio_change": {
+    "cases": 6,
+    "tool_choice_ok": 6,
+    "exact_ok": 6
+   },
+   "manual_add": {
+    "cases": 6,
+    "tool_choice_ok": 5,
+    "exact_ok": 5
+   },
+   "deadline_catalog": {
+    "cases": 6,
+    "tool_choice_ok": 6,
+    "exact_ok": 6
+   },
+   "deadline_stated": {
+    "cases": 6,
+    "tool_choice_ok": 6,
+    "exact_ok": 6
+   },
+   "status": {
+    "cases": 8,
+    "tool_choice_ok": 8,
+    "exact_ok": 8
+   },
+   "material": {
+    "cases": 12,
+    "tool_choice_ok": 12,
+    "exact_ok": 11
+   },
+   "no_tool": {
+    "cases": 5,
+    "tool_choice_ok": 5,
+    "exact_ok": 5
+   },
+   "refuse": {
+    "cases": 7,
+    "tool_choice_ok": 7,
+    "exact_ok": 7
+   },
+   "ask_back": {
+    "cases": 7,
+    "tool_choice_ok": 7,
+    "exact_ok": 7
+   },
+   "multi_step": {
+    "cases": 8,
+    "tool_choice_ok": 8,
+    "exact_ok": 8
+   },
+   "made_up_date": {
+    "cases": 9,
+    "tool_choice_ok": 9,
+    "exact_ok": 9
+   }
+  },
+  "no_card": {
+   "cases": 10,
+   "cards_raised": 0,
+   "deadline_cards_raised": 0,
+   "write_attempts": 1
+  },
+  "asked_back": {
+   "cases": 7,
+   "question_mark": 5
+  },
+  "gate_refused": 0,
+  "per_case": {
+   "applications-read-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-05": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-06": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "applications-read-07": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "ask-back-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": true
+   },
+   "ask-back-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": true
+   },
+   "ask-back-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": false
+   },
+   "ask-back-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": false
+   },
+   "ask-back-05": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": true
+   },
+   "ask-back-06": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": true
+   },
+   "ask-back-07": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "question_mark": true
+   },
+   "deadline-catalog-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-catalog-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-catalog-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-catalog-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-catalog-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-catalog-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "deadline-stated-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "made-up-date-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-05": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-06": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-07": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-08": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "made-up-date-09": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": false
+   },
+   "manual-add-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "manual-add-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "manual-add-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "manual-add-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "manual-add-05": {
+    "tool_ok": false,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": false
+   },
+   "manual-add-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-03": {
+    "tool_ok": true,
+    "args_ok": false,
+    "args_ok_any": false,
+    "exact": false
+   },
+   "material-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-07": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-08": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-09": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-10": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-11": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "material-12": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-06": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "multi-step-07": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "multi-step-08": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "no-tool-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "no-tool-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "no-tool-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "no-tool-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "no-tool-05": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "portfolio-change-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-change-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-change-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-change-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-change-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-change-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "portfolio-read-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "portfolio-read-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "portfolio-read-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "profile-read-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "profile-read-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "profile-read-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "profile-read-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "profile-update-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "profile-update-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "profile-update-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "profile-update-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "profile-update-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "refuse-01": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-02": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-03": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-04": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-05": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-06": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true
+   },
+   "refuse-07": {
+    "tool_ok": true,
+    "args_ok": null,
+    "args_ok_any": null,
+    "exact": true,
+    "card_raised": false,
+    "deadline_card_raised": false,
+    "write_attempted": true
+   },
+   "search-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "search-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "search-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "search-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-01": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-02": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-03": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-04": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-05": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-06": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-07": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   },
+   "status-08": {
+    "tool_ok": true,
+    "args_ok": true,
+    "args_ok_any": true,
+    "exact": true
+   }
+  }
+ }
+}

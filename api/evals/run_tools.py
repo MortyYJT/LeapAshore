@@ -27,10 +27,13 @@ the configured model, set them to its prices before a live run. Query embeddings
 path are not counted (``EMBED_PRICE_CNY_PER_MTOK``, 0 in the configuration).
 
 ``--replay`` recomputes every metric from a recorded file and exits 1 if they differ from what the file
-says; CI does this through ``tests/test_tool_eval.py`` with a stubbed model, and with a recorded live
-run once one exists.
+says; CI does this through ``tests/test_tool_eval.py`` with a stubbed model, and with the two live runs
+recorded on 2026-11-21 (``evals/results/tools-2026-11-21.json`` and
+``tools-2026-11-21-after-prompt-fix.json``; what they do and do not show is in
+``docs/measurements.md``).
 
-Metrics (counts; nothing is a threshold until a live run has been looked at):
+Metrics (counts; none is a threshold: the second recorded run is on the cases the prompt was changed
+for, so there is no held-out figure to set one from):
 
 - tool choice: the expected tools were called in order (other reads may come between), no tool the
   case forbids was called, and no write tool the case does not expect. A case that expects no tool

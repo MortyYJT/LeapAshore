@@ -313,7 +313,7 @@ def _propose_update(tool_name: str, config: RunnableConfig, application_id: str,
 
 @tool
 def propose_application_status(application_id: str, status: str, config: RunnableConfig) -> str:
-    """提议修改一条申请的状态（必须经申请者确认后才写入）。application_id 取自 get_my_applications。
+    """提议修改一条申请的状态（调用后界面出现确认卡片，申请者点确认才写入；信息齐全就直接调用，不要先用文字问是否确认）。application_id 取自 get_my_applications。
     status 取值：considering 考虑中 / applying 准备中 / submitted 已提交 / offered 收到录取 / rejected 未录取 /
     excluded 已放弃。"""
     try:
@@ -368,7 +368,7 @@ def propose_application_deadline(
     stated_deadline: str = "",
     stated_round: str = "",
 ) -> str:
-    """提议设置或修改一条申请的轮次、截止日期（必须经申请者确认后才写入）。application_id 取自 get_my_applications。
+    """提议设置或修改一条申请的轮次、截止日期（调用后界面出现确认卡片，申请者点确认才写入；信息齐全就直接调用，不要先用文字问是否确认）。application_id 取自 get_my_applications。
     日期只有两种来历，二选一：
     1. 学校库采集的：传 catalog_deadline_id，即这条申请 catalogDeadlines 里某一项的 id。日期、轮次名和来源链接
        由系统从学校库取，你不要自己写日期。
@@ -443,7 +443,7 @@ def propose_material_tick(
     ready: bool | None = None,
     add_note: str = "",
 ) -> str:
-    """提议勾选或取消一条申请里的一项材料，或往材料备注里加一行（必须经申请者确认后才写入）。application_id 取自
+    """提议勾选或取消一条申请里的一项材料，或往材料备注里加一行（调用后界面出现确认卡片，申请者点确认才写入；信息齐全就直接调用，不要先用文字问是否确认）。application_id 取自
     get_my_applications。material 是要勾的那一项：这条申请 materials 里某一项的 key（学校库从官网采集的材料），
     或 customMaterials 里某一项的 id（申请者自己列的）；申请者说这条申请的材料全都备好了，传 "all"。ready=true
     勾上，ready=false 取消。勾选只表示申请者自己说备好了，不是审核。清单里没有的材料不能勾，也不要自己编材料要求：
@@ -533,7 +533,7 @@ def propose_manual_application(
     state: Annotated[dict, InjectedState],
     tool_call_id: Annotated[str, InjectedToolCallId],
 ) -> str:
-    """提议往「我的申请」里手动加一个学校库没有收录的项目（必须经申请者确认后才写入）。先用 search_programs 搜；
+    """提议往「我的申请」里手动加一个学校库没有收录的项目（调用后界面出现确认卡片，申请者点确认才写入；信息齐全就直接调用，不要先用文字问是否确认）。先用 search_programs 搜；
     学校库里搜得到的项目不要用这个工具，用 propose_portfolio_change 的 add。school 和 name 要照抄申请者在对话里
     写的学校和项目名称，不要翻译、补全或加别的内容。轮次和截止日期不在这里填：加好以后拿返回的申请 id，另用
     propose_application_deadline。"""
