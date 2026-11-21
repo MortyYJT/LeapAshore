@@ -343,10 +343,12 @@ later label agree.
 1. **What counts as asking.** Only a sentence that asks the applicant to provide, submit, present,
    upload or include a document. A score threshold ("IELTS 6.5 overall"), "must demonstrate
    proficiency", an exemption ("not required to present TOEFL if…") and a negation ("references are
-   not required") are not entries.
+   not required") are not entries. Call 14 adds one case without such a verb: a test or document
+   that the page names as required.
 2. **A pointer is not a requirement.** "See the Supporting Documents PDF" or "find out more about
    references and personal statements" names a place, not a document: no entry. A page that only
-   points elsewhere is `"materials": []`.
+   points elsewhere is `"materials": []`. Whether the page it points to may then be read is rule 6;
+   an entry read there cites that page (`source_sha256`) and is judged by these calls like any other.
 3. **Optional** materials are recorded, with "optional" in the note.
 4. **Required of some applicants only**: recorded, with the condition in the note ("if first
    language is not English"), also when the page states the condition in another sentence than the
@@ -374,28 +376,37 @@ later label agree.
     "certificates and transcripts" in one item is one entry naming both. An academic proof the page
     names apart from these (a statement of the average mark, a list of current modules, evidence of
     a prerequisite such as A-level mathematics, course descriptions) is `other`, named in the note.
-14. **A test or document named as required, without a verb.** A requirement field or a sentence
-    that says the application needs it ("GRE Requirements" over "Yes, general test", "Supplementary
-    Application" over "Required", "the GMAT is required") is an entry, typed by what it names; the
-    quote is the field's name and its value as one unbroken stretch. What it names has to be
-    something an applicant sends (a test score, a document, a form): "Interview: required" and
-    "Supervisor required" are not entries. A threshold by itself ("IELTS 6.5 overall") is still not
+14. **A test or document named as required, without a verb.** This is the one exception to call 1.
+    A requirement field or a sentence that says the application needs it ("GRE Requirements" over
+    "Yes, general test", "the GMAT is required", "TOEFL/IELTS is required for applicants whose…")
+    is an entry, typed by what it names; for a field the quote is its name and its value as one
+    unbroken stretch. What it names has to be something an applicant sends (a test score, a
+    document, a form): "Interview: required" and "Supervisor required" are not entries. A field
+    that names a form without saying what it consists of ("Supplementary Application" over
+    "Required") is recorded as `other` under the page's own name, and the note adds nothing the
+    page does not say; if the page shows that the name stands for something that is not sent (an
+    interview, a fee), it is not an entry. A threshold by itself ("IELTS 6.5 overall") is still not
     one (call 1). "Preferred but not required" and "recommended" make an optional entry (call 3);
     "not required" makes none.
-15. **"You may need to provide" against "you may be asked to provide".** A document that depends on
-    the applicant's own situation is recorded with the condition in the note (call 4): "you may need
-    to provide a portfolio if your degree is in another subject"; so is a document the page accepts
-    in place of something the main one lacks ("if your transcripts do not state this, a letter from
-    the university … will be accepted"). When the page says "may need" and gives no condition, the
-    note says "may be needed; the page does not say when". A document the school may ask for later,
-    at its own choice ("you may be asked to provide", "we may request", "further documents may be
-    required"), is not recorded (call 5).
+15. **"You may need to provide" against "you may be asked to provide".** What decides is who the
+    "may" depends on, not the verb. A document that depends on the applicant's own situation, which
+    the page states, is recorded with the condition in the note (call 4): "you may need to provide a
+    portfolio if your degree is in another subject", and equally "you may be asked to provide
+    evidence of English depending on whether you are from an English-speaking background"; so is a
+    document the page accepts in place of something the main one lacks ("if your transcripts do not
+    state this, a letter from the university … will be accepted"). When the page says "may need"
+    and gives no condition, the note says "may be needed; the page does not say when". A document
+    the school may ask for later at its own choice, with no condition on the applicant ("you may be
+    asked to provide further documents", "we may request an additional reference"), is not recorded
+    (call 5).
 16. **"Provide evidence of" an eligibility condition.** Evidence the page asks the applicant to
     provide for a condition whose proof is a document of its own (work experience, professional
-    registration, funding) is `other`, with what it is evidence of in the note. Evidence of the
-    degree or of grades is the transcript: `transcript`, and no second entry when the page already
-    asks for transcripts. "Applicants must have two years of experience", with no "evidence",
-    "proof" or verb of sending, is an eligibility rule and no entry (rule 3).
+    registration, funding) is `other`, with what it is evidence of in the note. "Evidence of" the
+    degree itself, where the page names no document, is the transcript or certificate: `transcript`,
+    and no second entry when the page already asks for transcripts; an academic proof the page
+    names apart from these stays `other` (call 13). "Applicants must have two years of
+    experience", with no "evidence", "proof" or verb of sending, is an eligibility rule and no
+    entry (rule 3).
 17. **Documents needed only after an offer, to enrol or for a visa** (official or paper transcripts
     once admitted, an ATAS certificate, bank statements for the visa, a deposit, health or police
     checks) are not recorded: the list is what the application itself needs. When the page asks for
@@ -406,7 +417,8 @@ later label agree.
     for a writing sample", "depending on the programme you may need…", "have your qualifications
     and resume ready to upload") do not say that this program asks: no entry. A sentence the page
     states for every applicant it covers ("all applicants must submit…", "you will need to provide
-    the details of two referees") is recorded.
+    the details of two referees") is recorded, on a program's own page and on a general application
+    page that the program's page sends its applicants to (rule 6).
 19. **"One or more of the following", "at least one of".** A choice among alternatives is not a
     count: no `count`; the note says "one or more of" and names the alternatives in a few words.
     `count` is for a number of documents of one kind: "at least two letters" is `count` 2 with

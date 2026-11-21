@@ -43,13 +43,13 @@ or ``snapshot_differs`` and left out of every rate. The unit is the pair (progra
 - count agreement, over the pairs in both where either side states a count = the share whose counts
   are the same (as a sorted list, so two entries of one type are compared together);
 - ``empty_pages``: of the programs labelled as asking for nothing, how many the extraction also has
-  as empty.
+  nothing for from the labelled page.
 
 Only entries that passed `verify` are in the extraction: a refused entry was never shown to anybody.
 An entry read from another page than the labelled one (it cites a ``source_sha256`` of its own, rule 6
 of the extraction brief) is left out of the comparison: the label says what the labelled page asks
-for and nothing about a page the labeller did not read. ``--score`` lists such entries per program
-under ``entries_from_other_pages``; nothing scores them.
+for and nothing about a page the labeller did not read. ``--score`` gives the number of such entries
+per program under ``entries_from_other_pages``; nothing scores them.
 ``--replay`` recomputes all of this from the rows a recorded score kept and exits 1 if it differs.
 """
 

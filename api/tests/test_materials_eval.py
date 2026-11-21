@@ -236,7 +236,7 @@ def test_the_random_sample_score_replays_and_is_the_score_of_the_committed_files
     assert "random.Random(seed).sample(frame, 30)" in drawn["rule"]
     assert [program["program_id"] for program in labelled["programs"]] == [program["program_id"] for program in drawn["programs"]]
     chosen = {program["program_id"] for program in json.loads(REAL_GOLD.read_text(encoding="utf-8"))["programs"]}
-    assert not chosen & {program["program_id"] for program in drawn["programs"]}, "the frame left out what was already extracted"
+    assert not chosen & {program["program_id"] for program in drawn["programs"]}, "a sampled program is also one of the chosen 11"
 
     problems, counts = check_set(labelled, None)
     assert problems == []
