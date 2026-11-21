@@ -104,6 +104,26 @@ def test_two_entries_of_one_type_are_compared_together():
     assert fewer["count_agreement"] == {"pairs": 1, "agree": 0, "rate": 0.0}
 
 
+def test_an_entry_read_from_another_page_is_not_compared_with_the_labels_of_this_one(tmp_path):
+    """A label says what one page asks for. An entry that cites a linked page (`source_sha256`, rule 6
+    of the brief) is beyond what the labeller read: it is left out of the comparison and counted."""
+    data = json.loads((DATA / "fixture-school.json").read_text(encoding="utf-8"))
+    gamma = next(program for program in data["programs"] if program["name"] == "MSc Fixture Gamma")
+    gamma["materials"]["items"] = [
+        {"type": "recommendation", "count": 2, "quote": "Two letters of recommendation are required.",
+         "source_sha256": "a" * 64, "source_url": "https://fixture.example/how-to-apply", "check": "ok"},
+        # Citing the block's own snapshot is the same as citing nothing: it is this page's entry.
+        {"type": "cv", "quote": "Upload a current CV.", "source_sha256": gamma["snapshot_sha256"], "check": "ok"},
+    ]
+    (tmp_path / "fixture-school.json").write_text(json.dumps(data), encoding="utf-8")
+
+    row = by_name(rows_of(gold(), tmp_path))["gamma"]
+    assert row["state"] == "scored" and row["gold"] == [] and row["predicted"] == [["cv", None]]
+    result = score(gold(), tmp_path, today=date(2026, 11, 21), set_name="gold.json")
+    assert result["entries_from_other_pages"] == {row["program_id"]: 1}
+    assert score(gold(), DATA, today=date(2026, 11, 21))["entries_from_other_pages"] == {}
+
+
 def test_a_recorded_score_replays_to_the_same_metrics_and_a_changed_one_does_not(tmp_path):
     recorded = tmp_path / "score.json"
     recorded.write_text(json.dumps(score(gold(), DATA, today=date(2026, 11, 20), set_name="gold.json")), encoding="utf-8")
@@ -167,7 +187,13 @@ def test_the_first_recorded_score_replays_and_is_the_score_of_the_committed_file
     # The set says what labelled it: a model, not a person.
     assert "not a person" in labelled["labeller"] and recorded["labeller"] == labelled["labeller"]
 
-    assert rows_of(labelled, REAL_DATA) == recorded["rows"], "the files or the labels changed since the score was recorded"
+    elsewhere: dict[str, int] = {}
+    assert rows_of(labelled, REAL_DATA, elsewhere) == recorded["rows"], "the files or the labels changed since the score was recorded"
+    # After the score was recorded, one block gained an entry read from a page its program page links
+    # to (Imperial's application-process page: two referees). The label for that program is `[]` and
+    # was written from the program page alone, so the entry is not compared with it and the recorded
+    # row stands: the page that was labelled still lists no document.
+    assert elsewhere == {"imperial-college-london-msc-computing-f38aa7": 1}
     assert again["programs"] == {"scored": 11, "not_extracted": 0, "snapshot_differs": 0, "not_on_file": 0}
     assert again["pairs"] == {"gold": 32, "predicted": 32, "both": 32}
     assert again["count_agreement"] == {"pairs": 4, "agree": 4, "rate": 1.0}
@@ -217,7 +243,9 @@ def test_the_random_sample_score_replays_and_is_the_score_of_the_committed_files
     assert (counts["programs"], counts["labels"], counts["quotes_checked"]) == (30, 37, 0)
     assert "not a person" in labelled["labeller"] and recorded["labeller"] == labelled["labeller"]
 
-    assert rows_of(labelled, REAL_DATA) == recorded["rows"], "the files or the labels changed since the score was recorded"
+    elsewhere: dict[str, int] = {}
+    assert rows_of(labelled, REAL_DATA, elsewhere) == recorded["rows"], "the files or the labels changed since the score was recorded"
+    assert elsewhere == {}
     assert again["programs"] == {"scored": 30, "not_extracted": 0, "snapshot_differs": 0, "not_on_file": 0}
     assert again["pairs"] == {"gold": 33, "predicted": 31, "both": 30}
     assert (again["precision"], again["recall"]) == (0.9677, 0.9091)

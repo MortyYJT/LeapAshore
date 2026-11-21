@@ -46,6 +46,10 @@ or ``snapshot_differs`` and left out of every rate. The unit is the pair (progra
   as empty.
 
 Only entries that passed `verify` are in the extraction: a refused entry was never shown to anybody.
+An entry read from another page than the labelled one (it cites a ``source_sha256`` of its own, rule 6
+of the extraction brief) is left out of the comparison: the label says what the labelled page asks
+for and nothing about a page the labeller did not read. ``--score`` lists such entries per program
+under ``entries_from_other_pages``; nothing scores them.
 ``--replay`` recomputes all of this from the rows a recorded score kept and exits 1 if it differs.
 """
 
@@ -147,8 +151,18 @@ def _pairs(items: list[dict]) -> list[list]:
     return sorted(([item["type"], item.get("count")] for item in items), key=lambda pair: (pair[0], pair[1] or 0))
 
 
-def rows_of(gold: dict, data_dir: Path) -> list[dict]:
-    """One row per labelled program: its state, what the labels say and what the extraction holds."""
+def _on_labelled_page(program: dict, snapshot: str) -> tuple[list[dict], int]:
+    """The accepted entries read from the labelled snapshot, and how many were read from another page
+    (an entry that cites a `source_sha256` other than the snapshot the label was written from)."""
+    items = materials.accepted_items(program)
+    here = [item for item in items if (item.get("source_sha256") or snapshot) == snapshot]
+    return here, len(items) - len(here)
+
+
+def rows_of(gold: dict, data_dir: Path, elsewhere: dict[str, int] | None = None) -> list[dict]:
+    """One row per labelled program: its state, what the labels say and what the extraction holds for
+    the labelled page. `elsewhere`, when given, receives the number of entries each scored program has
+    from other pages, which no row holds."""
     schools = sorted({str(program.get("school_key")) for program in gold["programs"]})
     on_file = _programs_on_file(data_dir, schools)
     rows = []
@@ -164,7 +178,10 @@ def rows_of(gold: dict, data_dir: Path) -> list[dict]:
             row["state"] = SNAPSHOT_DIFFERS
         else:
             row["state"] = SCORED
-            row["predicted"] = _pairs(materials.accepted_items(entry[1]))
+            here, other = _on_labelled_page(entry[1], labelled["snapshot_sha256"])
+            row["predicted"] = _pairs(here)
+            if other and elsewhere is not None:
+                elsewhere[pid] = other
         rows.append(row)
     return rows
 
@@ -214,9 +231,11 @@ def metrics(rows: list[dict]) -> dict:
 
 
 def score(gold: dict, data_dir: Path = DATA_DIR, today: date | None = None, set_name: str | None = None) -> dict:
-    rows = rows_of(gold, data_dir)
+    elsewhere: dict[str, int] = {}
+    rows = rows_of(gold, data_dir, elsewhere)
     return {"set": set_name, "labeller": gold.get("labeller"), "labelled_at": gold.get("labelled_at"),
-            "scored_at": (today or date.today()).isoformat(), "metrics": metrics(rows), "rows": rows}
+            "scored_at": (today or date.today()).isoformat(), "metrics": metrics(rows),
+            "entries_from_other_pages": elsewhere, "rows": rows}
 
 
 def replay(path: Path) -> tuple[dict, bool]:

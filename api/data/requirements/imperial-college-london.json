@@ -3409,10 +3409,20 @@
    "status": "待人工",
    "materials": {
     "snapshot_sha256": "421d47b1c97fcf6057df7e6cc8db6668c693a54a4e55fa96df2abd420aa77de3",
-    "extractor": "claude-opus-5.5-subagent",
+    "extractor": "claude-opus-5.5-subagent (linked documents page)",
     "extracted_at": "2026-11-21",
     "rejected": 0,
-    "items": []
+    "items": [
+     {
+      "type": "recommendation",
+      "count": 2,
+      "note": "details of two referees given on the application",
+      "quote": "You will need to provide the details of two referees on your application.",
+      "source_sha256": "0529be7baf18fdf333f760f858694082ae5a7c560e4c3e07f229b8e65deec8e3",
+      "source_url": "https://www.imperial.ac.uk/study/apply/postgraduate-taught/application-process/",
+      "check": "ok"
+     }
+    ]
    }
   },
   {
