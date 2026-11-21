@@ -1,0 +1,568 @@
+{
+ "set": "materials_gold_sample.json",
+ "labeller": "Claude Fable 5.2 subagent, a model and not a person; labelled from the full stored page without seeing any extractor's output",
+ "labelled_at": "2026-11-21",
+ "scored_at": "2026-11-21",
+ "metrics": {
+  "programs": {
+   "scored": 30,
+   "not_extracted": 0,
+   "snapshot_differs": 0,
+   "not_on_file": 0
+  },
+  "pairs": {
+   "gold": 33,
+   "predicted": 31,
+   "both": 30
+  },
+  "precision": 0.9677,
+  "recall": 0.9091,
+  "count_agreement": {
+   "pairs": 4,
+   "agree": 3,
+   "rate": 0.75
+  },
+  "empty_pages": {
+   "labelled_empty": 17,
+   "extracted_empty_too": 17
+  },
+  "by_type": {
+   "cv": {
+    "gold": 3,
+    "predicted": 3,
+    "both": 3,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "personal_statement": {
+    "gold": 2,
+    "predicted": 3,
+    "both": 2,
+    "precision": 0.6667,
+    "recall": 1.0
+   },
+   "recommendation": {
+    "gold": 5,
+    "predicted": 5,
+    "both": 5,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "transcript": {
+    "gold": 5,
+    "predicted": 5,
+    "both": 5,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "language_score": {
+    "gold": 8,
+    "predicted": 8,
+    "both": 8,
+    "precision": 1.0,
+    "recall": 1.0
+   },
+   "test_score": {
+    "gold": 2,
+    "predicted": 1,
+    "both": 1,
+    "precision": 1.0,
+    "recall": 0.5
+   },
+   "other": {
+    "gold": 8,
+    "predicted": 6,
+    "both": 6,
+    "precision": 1.0,
+    "recall": 0.75
+   }
+  }
+ },
+ "rows": [
+  {
+   "program_id": "universiti-malaya-master-of-software-engineering-s-325d34",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "epfl-ecole-polytechnique-msc-in-physics-a5ab7c",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "korea-university-master-s-program-in-humanities-a-a00e9e",
+   "gold": [
+    [
+     "language_score",
+     1
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "nanyang-technological-un-master-of-science-in-blockchain-9329ec",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-pittsburgh-nuclear-engineering-b5bf5c",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-california-master-of-development-practice-m-817ec2",
+   "gold": [
+    [
+     "test_score",
+     null
+    ]
+   ],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "cricos-061294J",
+   "gold": [
+    [
+     "language_score",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "mcgill-university-chemistry-cf24da",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "cricos-023985G",
+   "gold": [
+    [
+     "cv",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "aarhus-university-operations-and-supply-chain-anal-53acb1",
+   "gold": [
+    [
+     "other",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "other",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "eth-zurich-master-of-science-in-physics-eth-dd9d16",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "duke-university-master-of-engineering-in-medical-694a0f",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "newcastle-university-electrical-power-msc-6c5c7a",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "nanyang-technological-un-master-of-science-in-financial-t-25a8a2",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "emory-university-ms-in-computer-science-laney-gra-2a7b11",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "test_score",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     1
+    ],
+    [
+     "test_score",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "ecole-normale-superieure-ancient-history-major-ancient-wo-f4371a",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-british-co-master-of-education-in-education-11d522",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     3
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     3
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "newcastle-university-naval-architecture-marine-and-oc-43fc95",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "queen-mary-university-of-artificial-intelligence-conversi-831c38",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "nanyang-technological-un-master-of-science-in-internation-9f7c29",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "mcmaster-university-manufacturing-engineering-meng-50cfdf",
+   "gold": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     2
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "cv",
+     null
+    ],
+    [
+     "language_score",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     2
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "university-of-california-comparative-literature-m-a-1a0b09",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "victoria-university-of-w-master-of-construction-762d26",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "cricos-092814M",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "imperial-college-london-msc-optics-and-photonics-c947b9",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "queen-s-university-at-ki-master-of-education-on-campus-967b3d",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "personal_statement",
+     null
+    ],
+    [
+     "recommendation",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "yale-university-master-s-in-asset-management-yal-7deca7",
+   "gold": [],
+   "predicted": [],
+   "state": "scored"
+  },
+  {
+   "program_id": "cricos-050921M",
+   "gold": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ],
+    [
+     "other",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "the-education-university-master-of-arts-in-womens-studies-609406",
+   "gold": [
+    [
+     "other",
+     null
+    ],
+    [
+     "other",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ],
+    [
+     "transcript",
+     null
+    ]
+   ],
+   "state": "scored"
+  },
+  {
+   "program_id": "cricos-053963K",
+   "gold": [
+    [
+     "language_score",
+     null
+    ]
+   ],
+   "predicted": [
+    [
+     "language_score",
+     null
+    ]
+   ],
+   "state": "scored"
+  }
+ ]
+}

@@ -421,7 +421,27 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "fd7d3f030b643bbb5860993ba8bc3c75fa2a010af5ba520f14910c6a13a4086d",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "other",
+      "note": "evidence of two years of relevant professional experience, for the route without a credit average",
+      "quote": "a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "evidence of English proficiency, for applicants it applies to",
+      "quote": "You may need to provide evidence of your English proficiency to study with us.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Speech Language Pathology",
@@ -510,7 +530,21 @@
      "summary_sha": "36d7c80a73e5d325"
     }
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "f6f3b68f6e34e4c206d88f7902ad294884df0c5b7674eefcd16a30ca09274d6e",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "language_score",
+      "note": "evidence of English proficiency, for applicants it applies to",
+      "quote": "You may need to provide evidence of your English proficiency to study with us.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Public Health",

@@ -1298,7 +1298,45 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "05656a492716375d551576003bf426a87ff53991ffe3084ce90296208f598497",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "personal_statement",
+      "note": "one-page statement of reasons for attending the program",
+      "quote": "A one-page statement explaining the reasons you are interested in attending the CS MS program at Emory.",
+      "check": "ok"
+     },
+     {
+      "type": "cv",
+      "quote": "Curriculum Vitae/Resume\nA document listing relevant experiences and accomplishments, such as internships, awards, and research experiences, that you believe will strengthen your application.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "unofficial copies from each post-secondary institution, in English; official only after accepting an offer",
+      "quote": "Unofficial copies of transcripts from each post-secondary institution you have attended, including your current one.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 1,
+      "note": "from an instructor or professional with a computer science orientation; additional letters optional",
+      "quote": "One letter of recommendation from an instructor or professional with a computer science orientation who can speak to your potential for success in advanced studies of computer science.",
+      "check": "ok"
+     },
+     {
+      "type": "test_score",
+      "note": "GRE, optional (self-reported)",
+      "quote": "While the GRE is not required, you are encouraged to self-report your GRE score in your application.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "MS in Artificial Intelligence and Economics (Laney Graduate School; pending Board approval, first class Fall 2027)",
