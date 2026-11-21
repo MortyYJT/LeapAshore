@@ -839,7 +839,33 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "language_score",
+      "note": "one or more Korean (TOPIK) or English test documents; exemptions apply",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "official documents proving loss of Korean citizenship, for applicants or parents who renounced it",
+      "quote": "A. Both the applicant and applicant’s parent(s) should submit official documents to prove their loss of Korean citizenship.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "note": "language-proficiency recommendation letter from the department, only for applicants admitted on department recommendation instead of a test",
+      "quote": "6) Applicants who are recommended by the department that the applicants have a proper language ability to study in Korea. (※A recommendation letter for the language proficiency from the Department is required.)",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master's, Department of Creative Writing, Graduate School (international track)",

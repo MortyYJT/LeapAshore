@@ -347,7 +347,43 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "034eb5b187e0c249e71c5289d5182c91ca30fc195b422bd1fcb1ada2527aa18e",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "transcript",
+      "quote": "Completed applications (including submission of transcripts and references) are due by January 15 to be considered for September admission.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "quote": "Completed applications (including submission of transcripts and references) are due by January 15 to be considered for September admission.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "evidence of full-time professional experience in education, international applicants",
+      "quote": "If you are an international applicant, you must provide evidence of the following to be considered for our program:\nA four-year undergraduate degree in a field related to education, with a minimum average of 85%.\nTwo or more years of full-time professional experience in the field of education.",
+      "check": "ok"
+     },
+     {
+      "type": "personal_statement",
+      "note": "thesis and project track: name potential supervisor(s) and explain fit for proposed research, in the online application",
+      "quote": "Applicants should clearly indicate in their online application which faculty member(s) they believe may be a suitable supervisor and explain why the Faculty is a good fit for their proposed research.",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "if native language is not English and no full year of English-medium post-secondary study within 12 months of applying",
+      "quote": "If your native language is not English, and you have not completed at least one full year of study at a post-secondary institution where English is the official language of instruction within 12 months of applying, you must submit results from an accepted English language proficiency test.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Biomedical Informatics (MBI)",

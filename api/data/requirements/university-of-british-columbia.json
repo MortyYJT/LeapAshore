@@ -661,7 +661,39 @@
      "summary_sha": "63a9cec0471b47f3"
     }
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "ee3bdade7df887a2d6385e1a2d83fd30e01961b790b16a901e571c5df626cf5d",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "language_score",
+      "note": "if prior university is outside Canada and not English-medium",
+      "quote": "Applicants from a university outside Canada in which English is not the primary language of instruction must provide results of an English language proficiency examination as part of their application.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "all past post-secondary study",
+      "quote": "All applicants have to submit transcripts from all past post-secondary study.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 3,
+      "quote": "Applicants have to submit 3 references to apply to this graduate program.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "photocopy of both sides of the Permanent Resident card, Permanent Residents of Canada only",
+      "quote": "Permanent Residents of Canada must provide a clear photocopy of both sides of the Permanent Resident card.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Education in Higher Education (MEd)",

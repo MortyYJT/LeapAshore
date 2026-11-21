@@ -190,7 +190,27 @@
      "summary_sha": "fae1c92e6412825d"
     }
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "b1ed5207a67f020971c7c1bae7142670a47502de29bf3a2b62638f3237f8ea5e",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "language_score",
+      "note": "TOEFL/IELTS, if the Bachelor programme was not taught in English",
+      "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English.",
+      "check": "ok"
+     },
+     {
+      "type": "other",
+      "note": "proof that the programme was conducted in English, for applicants studying overseas",
+      "quote": "For applicants studying overseas, please ensure that you submit a relevant proof of documentation that your programme was conducted in English.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Science in Knowledge Management (KM)",
@@ -968,7 +988,14 @@
      "summary_sha": "4a1f148f124b2006"
     }
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "21c65a5fb1a03a45d4529a710e47d855a789f7cb458b9449fa1f51c57d786da7",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": []
+   }
   },
   {
    "name": "Master of Science in Green Energy Technologies",
@@ -1042,7 +1069,14 @@
      "summary_sha": "a166c4008497e2cd"
     }
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "6316f586ba62568b844e21087d99140dca0ddd0ad5af2772b7be33eea2485078",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": []
+   }
   },
   {
    "name": "Master of Science in Business Analytics",

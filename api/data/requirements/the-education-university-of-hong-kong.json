@@ -258,7 +258,33 @@
      }
     ]
    },
-   "status": "机器核对"
+   "status": "机器核对",
+   "materials": {
+    "snapshot_sha256": "bf1dc9bbc219a4bb6569ad6299a25739461d6c87a00ebd124d512bc0d1acaef6",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "transcript",
+      "note": "degree certificate: Ministry of Education degree certificate (scan of Chinese original) plus CHSI online degree verification report, for mainland China Bachelor's holders",
+      "quote": "教育部學位證書（中文原件掃描）及由學信網（CHSI）發出的六個月內有效的學位在線驗證報告；",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "graduation certificate: Ministry of Education graduation certificate (scan of Chinese original) plus CHSI online registration record, for mainland China Bachelor's holders",
+      "quote": "教育部畢業證書（中文原件掃描）及由學信網（CHSI）發出的六個月內有效的學歷證書電子註冊備案表；以及",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "final transcript (scan of Chinese original), for mainland China Bachelor's holders",
+      "quote": "最終成績單（中文原件掃描）。",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Master of Science in Digital Economy [MSc(DE)] # 數字經濟理學碩士 #",

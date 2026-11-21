@@ -240,7 +240,46 @@
      }
     ]
    },
-   "status": "待人工"
+   "status": "待人工",
+   "materials": {
+    "snapshot_sha256": "5237c0ae13a01af8cf19108ab70a3c29f65bb0c298fd06a8b35dc4ff0375bad4",
+    "extractor": "claude-opus-5.5-subagent",
+    "extracted_at": "2026-11-21",
+    "rejected": 0,
+    "items": [
+     {
+      "type": "cv",
+      "note": "including academic and professional experience",
+      "quote": "Your current resume or CV, including academic and professional experience",
+      "check": "ok"
+     },
+     {
+      "type": "personal_statement",
+      "note": "Statement of Interest, maximum 2 pages",
+      "quote": "Your clearly written Statement of Interest (This is a letter explaining your interest in the program, at a maximum of 2 pages).",
+      "check": "ok"
+     },
+     {
+      "type": "language_score",
+      "note": "IELTS or TOEFL within the last 2 years, international students; not needed if English-medium instruction is documented on transcripts",
+      "quote": "Recent IELTS or TOEFL scores (within the last 2 years) required for international students.",
+      "check": "ok"
+     },
+     {
+      "type": "transcript",
+      "note": "from all post-secondary institutions; official transcripts only after an offer",
+      "quote": "Transcripts from all post secondary institutions that you have attended, regardless of whether a degree was completed.",
+      "check": "ok"
+     },
+     {
+      "type": "recommendation",
+      "count": 2,
+      "note": "academic referees entered in the online application; professional references allowed for applicants long out of school",
+      "quote": "Contact information for 2 Academic References must be entered in the online application.",
+      "check": "ok"
+     }
+    ]
+   }
   },
   {
    "name": "Engineering and Public Policy (MEng)",
