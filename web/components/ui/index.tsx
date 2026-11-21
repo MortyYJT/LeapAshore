@@ -185,20 +185,3 @@ export function LoadingPanel({ what }: { what?: string }) {
     </section>
   );
 }
-
-export function TaskProgress({ done, total, label }: { done: number; total: number; label: string }) {
-  if (!total) return null;
-  return (
-    <div
-      className="task-progress"
-      role="progressbar"
-      aria-label={label}
-      aria-valuemin={0}
-      aria-valuemax={total}
-      aria-valuenow={done}
-      aria-valuetext={`${done}/${total} 项完成`}
-    >
-      <div style={{ transform: `scaleX(${done / total})` }} />
-    </div>
-  );
-}

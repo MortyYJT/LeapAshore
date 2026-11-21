@@ -19,9 +19,13 @@ export interface MaterialsActions {
 }
 
 /**
- * The materials screen under its title: the line map, the shared materials (ticked once for every
- * program), the materials that differ (each program's requirement with the sentence it was read from)
- * and every application's own checklist, which is all a program has until its page has been read.
+ * The materials screen under its title: the line map, the materials every program asks for, the
+ * materials only some ask for (each program's requirement with the sentence it was read from) and
+ * every application's own checklist, which is all a program has until its page has been read.
+ *
+ * A material every program asks for in one plain form is ticked once for all of them. One that some
+ * program asks for in a form of its own is listed like the materials that differ: that program's
+ * wording and source stay on the page, and each program has its own tick.
  *
  * A program whose page was read and lists no documents is drawn like one that was not read: a dotted
  * run with no stops, a note that names it and links its page, and its own checklist. It is never
@@ -60,6 +64,9 @@ export function MaterialsBoard({
     void actions.tick(record, entries, ready);
   };
   const readyShared = model.shared.filter((column) => column.requirements.every((requirement) => requirement.ready)).length;
+  const same = model.shared.filter((column) => column.uniform);
+  const mixed = model.shared.filter((column) => !column.uniform);
+  const markedAtHub = model.shared.some((column) => column.requirements.some((requirement) => requirement.differs));
 
   return (
     <>
@@ -84,6 +91,15 @@ export function MaterialsBoard({
             {model.differing.some((column) => column.requirements.some((requirement) => requirement.differs)) && (
               <li>
                 <span className="k-diff">3 封</span>和多数项目不一样
+              </li>
+            )}
+            {markedAtHub && (
+              <li>
+                <svg viewBox="0 0 14 14" aria-hidden="true">
+                  <rect className="k-hub" x="2" y="1" width="10" height="12" rx="5" />
+                  <rect className="k-mark" x="3.5" y="4.5" width="7" height="5" rx="2.5" />
+                </svg>
+                这条线另有要求
               </li>
             )}
             {apart.length > 0 && (
@@ -127,16 +143,35 @@ export function MaterialsBoard({
       {model.shared.length > 0 && (
         <section className="block" aria-labelledby="h-shared">
           <div className="block-head">
-            <h2 id="h-shared">通用材料</h2>
+            <h2 id="h-shared">{mixed.length > 0 ? "各项目都要的材料" : "通用材料"}</h2>
             <p className="block-note">
               {model.shared.length} 项里已备好 {readyShared} 项
             </p>
           </div>
-          <ul className="shared">
-            {model.shared.map((column) => (
-              <SharedItem key={column.type} column={column} isReady={isReady} onTick={tick} />
-            ))}
-          </ul>
+          {same.length > 0 && (
+            <ul className="shared">
+              {same.map((column) => (
+                <SharedItem key={column.type} column={column} isReady={isReady} onTick={tick} />
+              ))}
+            </ul>
+          )}
+          {mixed.length > 0 && (
+            <>
+              <p className="shared-note">
+                {same.length > 0 ? `另外 ${mixed.length} 项` : `这 ${mixed.length} 项`}每个项目都要，要求不完全一样，按项目分别准备和勾选。
+              </p>
+              <div className="diffs">
+                <div className="diff-head" aria-hidden="true">
+                  <span>材料</span>
+                  <span>要求</span>
+                  <span>勾选表示已备好</span>
+                </div>
+                {mixed.map((column) => (
+                  <DifferingRow key={column.type} column={column} picked={picked} isReady={isReady} onTick={tick} />
+                ))}
+              </div>
+            </>
+          )}
         </section>
       )}
 
@@ -189,7 +224,7 @@ type IsReady = (record: ApplicationRecord, entry: RecordMaterial) => boolean;
 const moved = (entry: RecordMaterial) => entry.changed && !entry.ready;
 const CHANGED = "官网的要求改过，请重新核对";
 
-/** A shared material: one checkbox that ticks it for every program, and each program's own sentence. */
+/** A material every program asks for in one plain form: one checkbox that ticks it for all of them, and each program's own sentence. */
 function SharedItem({ column, isReady, onTick }: { column: MaterialColumn; isReady: IsReady; onTick: Tick }) {
   const [open, setOpen] = useState(false);
   const ready = (requirement: Requirement) => requirement.entries.every((entry) => isReady(requirement.line.record, entry));
@@ -227,7 +262,10 @@ function SharedItem({ column, isReady, onTick }: { column: MaterialColumn; isRea
   );
 }
 
-/** A material whose requirement is not the same everywhere: what most ask, who departs from it, who does not ask. */
+/**
+ * A material whose requirement is not the same everywhere: what most ask, who departs from it, who
+ * does not ask. Also the row of an interchange that is not uniform, where nobody is absent.
+ */
 function DifferingRow({
   column,
   picked,

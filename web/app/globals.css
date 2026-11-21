@@ -13,8 +13,8 @@
   - No web font is loaded, so the page asks no other host for type.
 
   This file holds the tokens, the base rules and the components the pages share. The shell is in
-  shell.css, the overview in overview.css, the materials map in materials.css, the advisor in
-  advisor.css, motion in motion.css.
+  shell.css, the overview in overview.css, the materials map in materials.css, the roadmap in
+  roadmap.css, the advisor in advisor.css, motion in motion.css.
 */
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "HarmonyOS Sans SC", "MiSans",
@@ -110,6 +110,9 @@
   --r-control: 6px;
   --r-box: 8px;
 
+  /* A button and a control beside one are this tall */
+  --control-height: 32px;
+
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --t-fast: 150ms;
@@ -187,37 +190,6 @@ html[data-appearance="dark"] {
   --l-retired: #4a5565;
 
   --shadow-float: 0 12px 28px -10px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.5);
-}
-
-/*
-  The names the pages written before this system still read. Each one points at a token above, so
-  those pages follow the theme without being rewritten; a page that is restyled drops them.
-*/
-:root {
-  --color-canvas: var(--bg);
-  --color-surface: var(--raised);
-  --color-raised: var(--panel);
-  --color-active: var(--selected);
-  --color-control: var(--line-2);
-  --color-ink: var(--ink);
-  --color-muted: var(--ink-3);
-  --color-accent: var(--ink);
-  --color-accent-text: var(--ink);
-  --color-primary: var(--action);
-  --color-primary-hover: var(--action-hover);
-  --color-on-primary: var(--on-action);
-  --color-negative: var(--urgent);
-  --color-track: var(--sunken);
-  --color-lane: var(--panel);
-  --color-done: var(--line-2);
-  --color-sample-bg: var(--sunken);
-  --color-sample-ink: var(--ink-2);
-  --color-neutral-bg: var(--sunken);
-  --color-neutral-ink: var(--ink-2);
-  --rule: var(--line);
-  --radius-card: var(--r-box);
-  --radius-control: var(--r-control);
-  --control-height: 32px;
 }
 
 /* Program identity: the line colour travels with the code, never alone. */
@@ -408,27 +380,6 @@ tbody tr:hover { background: var(--hover); }
 .kv dt { color: var(--ink-3); }
 .kv dd { margin: 0; min-width: 0; text-align: right; overflow-wrap: anywhere; }
 .hollow { display: inline-block; flex: none; width: 10px; height: 10px; margin-right: 6px; border: 2px solid var(--ink-3); border-radius: 50%; vertical-align: -1px; }
-
-/* ---------- roadmap ---------- */
-.timeline-svg { display: block; width: 100%; height: auto; overflow: visible; }
-/* Before the timeline has measured its box (and in the server's HTML) both layouts are drawn; the
-   screen width picks one, by the same 640px rule the component uses once it has measured. */
-@media (max-width: 639px) { .tl-wide { display: none; } }
-@media (min-width: 640px) { .tl-narrow { display: none; } }
-.roadmap-empty { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.legend { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; font-size: var(--fs-12); color: var(--ink-3); }
-.legend span { display: inline-flex; align-items: center; gap: 6px; }
-.phase-hit { cursor: pointer; }
-.phase-hit:focus { outline: none; }
-.phase-hit:focus-visible rect.hit-bg { stroke: var(--focus); stroke-width: 2; }
-.phase-hit:hover .tl-bar { opacity: 0.85; }
-.task { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 14px 20px; border-bottom: 1px solid var(--line); }
-.task:last-child { border-bottom: 0; }
-.task input[type="checkbox"] { width: 18px; height: 18px; margin: 1px 0 0; }
-.task input[type="checkbox"]:disabled { cursor: progress; }
-.task .t { font-weight: 600; }
-.task.done .t { color: var(--ink-3); font-weight: 400; text-decoration: line-through; text-decoration-color: var(--line-2); }
-.task .d { margin-top: 2px; font-size: var(--fs-13); color: var(--ink-3); overflow-wrap: anywhere; }
 
 /* ---------- introduction ---------- */
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 40px; }
@@ -632,8 +583,8 @@ tbody tr:hover { background: var(--hover); }
   .strip > div:nth-child(even) { border-left: 1px solid var(--line); }
   .strip > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .panel-pad, .panel-head { padding-left: 16px; padding-right: 16px; }
-  th:first-child, td:first-child, .task, .rows > .row, .pager { padding-left: 16px; }
-  th:last-child, td:last-child, .task, .rows > .row, .pager { padding-right: 16px; }
+  th:first-child, td:first-child, .rows > .row, .pager { padding-left: 16px; }
+  th:last-child, td:last-child, .rows > .row, .pager { padding-right: 16px; }
   .hide-phone { display: none !important; }
   /* Tables fold into stacked rows instead of scrolling sideways. */
   table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; }
