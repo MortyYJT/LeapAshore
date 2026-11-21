@@ -238,7 +238,7 @@ function Stations({
     setUploads((u) => ({ ...u, [materialKey]: { busy: true, message: `正在上传 ${file.name}…` } }));
     try {
       await uploadMaterial(file, { title: file.name, taskId });
-      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `已上传 ${file.name}，在「材料」页的文件库里可以下载、归档和送审。` } }));
+      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `已上传 ${file.name}，在「材料」页的材料库里可以下载、归档和送审。` } }));
     } catch (error: unknown) {
       setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `上传失败：${error instanceof Error ? error.message : "未知错误"}` } }));
     }
