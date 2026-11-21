@@ -49,8 +49,9 @@ checked by `verify` like every other value:
   "read, lists none" apart (`programs.materials_snapshot_sha256` is NULL until a page was read).
 - The quote check is a substring check. It cannot tell "references are required" from the same words
   in "no references are required", nor whose count a number is; only a labelled set can measure
-  that. The first one covers 11 programs and was labelled by a model, not a person
-  (`api/evals/materials_gold.json`; what it does and does not show is in `docs/measurements.md`).
+  that. There are two, both labelled by a model and not by a person: 11 chosen programs
+  (`api/evals/materials_gold.json`) and 30 drawn at random (`api/evals/materials_gold_sample.json`);
+  what they do and do not show is in `docs/measurements.md`.
 - `note` is the extractor's summary and is not judged by a model yet: the summary check below does
   not cover materials.
 - The block cites the snapshot it was read from. When the queue later collects the page again, the
@@ -333,8 +334,11 @@ One entry per requirement: two different essays are two `personal_statement` ent
 
 The first extraction and its labels (11 programs, 2026-11-21) were made by two agents that did not see
 each other's work. Calls 1 to 10 are ones both made, with the one departure noted under 8; 11 to 13
-were settled afterwards, where the two differed or the brief was silent. Follow them, so that a later
-run and a later label agree.
+were settled afterwards, where the two differed or the brief was silent. Calls 14 to 22 were written
+after the random sample of 30 programs (2026-11-21), from the gaps its extractor and its labeller
+reported and from the five programs on which they differed; that sample was read and labelled before
+these calls existed and was not changed to fit them. Follow all of them, so that a later run and a
+later label agree.
 
 1. **What counts as asking.** Only a sentence that asks the applicant to provide, submit, present,
    upload or include a document. A score threshold ("IELTS 6.5 overall"), "must demonstrate
@@ -370,6 +374,54 @@ run and a later label agree.
     "certificates and transcripts" in one item is one entry naming both. An academic proof the page
     names apart from these (a statement of the average mark, a list of current modules, evidence of
     a prerequisite such as A-level mathematics, course descriptions) is `other`, named in the note.
+14. **A test or document named as required, without a verb.** A requirement field or a sentence
+    that says the application needs it ("GRE Requirements" over "Yes, general test", "Supplementary
+    Application" over "Required", "the GMAT is required") is an entry, typed by what it names; the
+    quote is the field's name and its value as one unbroken stretch. What it names has to be
+    something an applicant sends (a test score, a document, a form): "Interview: required" and
+    "Supervisor required" are not entries. A threshold by itself ("IELTS 6.5 overall") is still not
+    one (call 1). "Preferred but not required" and "recommended" make an optional entry (call 3);
+    "not required" makes none.
+15. **"You may need to provide" against "you may be asked to provide".** A document that depends on
+    the applicant's own situation is recorded with the condition in the note (call 4): "you may need
+    to provide a portfolio if your degree is in another subject"; so is a document the page accepts
+    in place of something the main one lacks ("if your transcripts do not state this, a letter from
+    the university … will be accepted"). When the page says "may need" and gives no condition, the
+    note says "may be needed; the page does not say when". A document the school may ask for later,
+    at its own choice ("you may be asked to provide", "we may request", "further documents may be
+    required"), is not recorded (call 5).
+16. **"Provide evidence of" an eligibility condition.** Evidence the page asks the applicant to
+    provide for a condition whose proof is a document of its own (work experience, professional
+    registration, funding) is `other`, with what it is evidence of in the note. Evidence of the
+    degree or of grades is the transcript: `transcript`, and no second entry when the page already
+    asks for transcripts. "Applicants must have two years of experience", with no "evidence",
+    "proof" or verb of sending, is an eligibility rule and no entry (rule 3).
+17. **Documents needed only after an offer, to enrol or for a visa** (official or paper transcripts
+    once admitted, an ATAS certificate, bank statements for the visa, a deposit, health or police
+    checks) are not recorded: the list is what the application itself needs. When the page asks for
+    a document with the application and again in another form after an offer (uploaded copies now,
+    official copies later), the entry is the application's, and "official copies after an offer"
+    may go in its note.
+18. **Sentences about programs in general** ("many programs require a portfolio", "some courses ask
+    for a writing sample", "depending on the programme you may need…", "have your qualifications
+    and resume ready to upload") do not say that this program asks: no entry. A sentence the page
+    states for every applicant it covers ("all applicants must submit…", "you will need to provide
+    the details of two referees") is recorded.
+19. **"One or more of the following", "at least one of".** A choice among alternatives is not a
+    count: no `count`; the note says "one or more of" and names the alternatives in a few words.
+    `count` is for a number of documents of one kind: "at least two letters" is `count` 2 with
+    "at least" in the note.
+20. **A document and its verification by another body, asked for in one sentence** (a degree
+    certificate and its CHSI verification report, a transcript and a credential evaluation) are two
+    entries with the same quote (call 8): the certificate or transcript as `transcript`, the report
+    as `other`, named in the note.
+21. **What to write in the application form is not a document.** "Indicate in your online
+    application which faculty member may supervise you and explain why" asks for no document unless
+    the page names one (a statement, a letter, a research proposal): no entry.
+22. **Notes on labels.** A label carries a `note` where rule 5 would give an entry one, and always
+    on an `other` entry (its name), an optional one ("optional") and a conditional one (the
+    condition). Notes are not scored (the unit is program and type), so a missing note is not an
+    error of the set; like an entry's, a label's note holds no figure that is not in its quote.
 
 ### Commands
 
@@ -434,3 +486,14 @@ The first set is `api/evals/materials_gold.json`: 11 programs, labelled on 2026-
 Claude subagent), not by a person; its score is `api/evals/results/materials-2026-11-21.json`. It is a
 check that the pipeline works end to end, on programs that were chosen and not sampled, so it says
 nothing about the rest of the catalogue (`docs/measurements.md`, "First material extraction").
+
+The second is `api/evals/materials_gold_sample.json` (`--set` names it): 30 programs drawn at random
+from the 7,540 that were on file, in the catalogue, had a stored page and were not yet extracted
+(`api/evals/materials_sample_2026-11-21.json` holds the seed and the rule), labelled the same way on
+the same day; its score is `api/evals/results/materials-sample-2026-11-21.json`. Its labels are a
+model's too, it has 33 labelled (program, type) pairs, and 17 of its 30 pages list no document, so
+read its figures with the caveats in `docs/measurements.md`, "Random-sample extraction".
+
+A label covers the page it was written from. An entry that an extractor later reads from a linked
+page (rule 6, `source_sha256`) is left out of the comparison and listed under
+`entries_from_other_pages`.
