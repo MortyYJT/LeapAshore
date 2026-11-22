@@ -62,7 +62,7 @@ The other pages (my applications, requirement tiers, portfolio, school library, 
 
 ### Interaction details
 
-- Sidebar navigation keeps the current page visible while the next route loads, then cross-fades the content in browsers that support view transitions. Reduced Motion disables the cross-fade.
+- A click on any in-app link answers in the same frame: the sidebar marks the destination and the content area shows that page's title (a bar in its place on a school's or a program's page, whose title is its name). The page's shape (its labels, panels and grey bars at the size of the values) follows 60 ms later unless the page itself is already there, and the page replaces it when its data arrives. Reduced Motion shows the shape at once.
 - Task checkboxes update progress and counts immediately. Changes to the same task save in order, and a failed save restores the last confirmed state.
 - School filters keep existing results visible while the search runs. The portfolio stays visible while a save is reconciled with the server.
 

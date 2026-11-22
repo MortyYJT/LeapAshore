@@ -3,9 +3,10 @@ import { beijingToday } from "@/lib/deadlines";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { RequireAccount } from "@/components/auth/AuthProvider";
+import { ApplicationCards, ApplicationsBody } from "@/components/shell/RouteSkeleton";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { Icon } from "@/components/shell/Icon";
-import { ConflictNotice, LoadingPanel, Notice } from "@/components/ui";
+import { ConflictNotice, Notice } from "@/components/ui";
 import {
   differsFromForm,
   writeApplicationRecord,
@@ -21,7 +22,7 @@ export default function ApplicationsPage() {
     <main className="page personal-applications">
       <h1>我的申请</h1>
       <p className="lede">集中管理每个项目的截止日期、材料和申请进度。</p>
-      <RequireAccount what="你的申请">
+      <RequireAccount what="你的申请" pending={<ApplicationsBody />}>
         <Applications />
       </RequireAccount>
     </main>
@@ -114,7 +115,7 @@ function Applications() {
       {error && <Notice error>{error}</Notice>}
       {records.error && <Notice error>{records.error}</Notice>}
       {records.loading && !records.data ? (
-        <LoadingPanel what="我的申请" />
+        <ApplicationCards />
       ) : (
         <div className="application-list section">
           {rows.length === 0 ? (

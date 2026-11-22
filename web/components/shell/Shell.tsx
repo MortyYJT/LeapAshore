@@ -1,18 +1,19 @@
 "use client";
-import Link, { useLinkStatus } from "next/link";
-import type {} from "react/canary";
-import { usePathname, useRouter } from "next/navigation";
-import { Fragment, useEffect, useMemo, useRef, useState, ViewTransition, type ReactNode } from "react";
+import Link from "next/link";
+import { Fragment, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 
 import { useAdvisorDock } from "@/components/advisor/AdvisorProvider";
 import { Dock } from "@/components/advisor/Dock";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { beijingToday } from "@/lib/deadlines";
+import { isNavCurrent, routeShape } from "@/lib/navigation";
 import { overviewOf, type OverviewRow } from "@/lib/overview";
 
 import { useApplicationRecords } from "./ApplicationRecords";
 import { Icon, type IconName } from "./Icon";
 import { Mark } from "./Mark";
+import { useNavigation } from "./Navigation";
+import { RouteSkeleton } from "./RouteSkeleton";
 import { UserCenter } from "./UserCenter";
 
 /**
@@ -45,9 +46,14 @@ const THREE_PANES = "(min-width: 901px) and (max-width: 1439px)";
  * the three panes do not fit, so an open dock folds the rail; the rail's own button still opens it.
  */
 export function Shell({ children }: { children: ReactNode }) {
-  const pathname = usePathname() ?? "/";
+  // `pathname` runs ahead of the router while a navigation is pending (Navigation.tsx): the rail and
+  // the content area answer the click, and the route's own content replaces the placeholder when it
+  // is ready. The dock follows the committed route: the advisor's page and the dock hold the same
+  // conversation under the same ids, and must not be mounted together.
+  const { pathname, committed, scrollY, onLinkClick, push } = useNavigation();
+  const pendingShape = pathname !== committed ? routeShape(pathname) : null;
   const dock = useAdvisorDock();
-  const hasDock = pathname !== "/advisor";
+  const hasDock = committed !== "/advisor";
   const [collapsed, setCollapsed] = useState(false);
   const [sidebarInteracted, setSidebarInteracted] = useState(false);
   const [tight, setTight] = useState(false);
@@ -98,11 +104,19 @@ export function Shell({ children }: { children: ReactNode }) {
   function closeSearch() {
     search.current?.close();
   }
+  function searchSchools(event: FormEvent<HTMLFormElement>) {
+    // Without script the form still loads /schools?q=…; with it the switch is the same as a link's.
+    event.preventDefault();
+    const q = query.trim();
+    closeSearch();
+    push(q ? `/schools?q=${encodeURIComponent(q)}` : "/schools");
+  }
 
   return (
     <div
       className={`shell${folded ? " sidebar-collapsed" : ""}${hasDock ? " has-dock" : ""}`}
       data-sidebar-interacted={sidebarInteracted || undefined}
+      onClick={onLinkClick}
     >
       <a className="skip" href="#main">
         跳到主要内容
@@ -144,12 +158,7 @@ export function Shell({ children }: { children: ReactNode }) {
         <div className="rail-scroll">
           <nav className="rail-nav" aria-label="主导航">
             {links.map(({ label, short, href, icon, railOnly }) => {
-              const current =
-                href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(href) ||
-                    (href === "/applications" && ["/portfolio", "/tiers"].includes(pathname)) ||
-                    (href === "/schools" && pathname.startsWith("/programs"));
+              const current = isNavCurrent(href, pathname);
               // From 901px the advisor's entry opens the dock; on a phone it is the tab that leads to its page.
               const asDock = href === "/advisor" && hasDock;
               return (
@@ -181,19 +190,10 @@ export function Shell({ children }: { children: ReactNode }) {
                   title={label}
                   aria-label={label}
                   aria-current={current ? "page" : undefined}
-                  onNavigate={() => {
-                    // Release an in-flight fade when the user chooses another route.
-                    for (const animation of document.getAnimations()) {
-                      if (animation instanceof CSSAnimation && ["route-in", "route-out"].includes(animation.animationName)) {
-                        animation.finish();
-                      }
-                    }
-                  }}
                 >
                   <Icon name={icon} />
                   <span className="nav-label nav-long">{label}</span>
                   <span className="nav-label nav-short">{short}</span>
-                  <NavigationStatus />
                 </Link>
                 </Fragment>
               );
@@ -209,11 +209,16 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </aside>
-      <ViewTransition default="none" update="workspace-route">
-        <div className="workspace-content" id="main" tabIndex={-1}>
+      <div className="workspace-content" id="main" tabIndex={-1} aria-busy={pendingShape ? true : undefined}>
+        {/* While a navigation is pending the destination's placeholder is drawn over the route being
+            left, which stays mounted, invisible and in place. The window is not scrolled and the
+            document keeps its height, so the browser stores the right scroll position for the entry
+            being left, and an abandoned navigation finds the page as it was. */}
+        {pendingShape && <RouteSkeleton shape={pendingShape} offset={scrollY} />}
+        <div className="workspace-route" data-leaving={pendingShape ? "" : undefined} aria-hidden={pendingShape ? true : undefined}>
           {children}
         </div>
-      </ViewTransition>
+      </div>
       {hasDock && <Dock />}
       <dialog
         className="dialog workspace-search-dialog"
@@ -229,7 +234,7 @@ export function Shell({ children }: { children: ReactNode }) {
             <Icon name="close" />
           </button>
         </div>
-        <form action="/schools" onSubmit={closeSearch} className="workspace-search-form">
+        <form action="/schools" onSubmit={searchSchools} className="workspace-search-form">
           <label className="sr-only" htmlFor="workspace-search">
             搜索页面或学校
           </label>
@@ -262,11 +267,6 @@ export function Shell({ children }: { children: ReactNode }) {
   );
 }
 
-function NavigationStatus() {
-  const { pending } = useLinkStatus();
-  return <span className="sidebar-navigation-pending" data-pending={pending || undefined} aria-hidden="true" />;
-}
-
 /** What the rail prints at the right of an application: the days left, or why there is no count. */
 function Remaining({ row }: { row: OverviewRow }) {
   if (row.sent) return <span className="left">已提交</span>;
@@ -289,8 +289,7 @@ function Remaining({ row }: { row: OverviewRow }) {
  */
 function RailLegend() {
   const records = useApplicationRecords();
-  const pathname = usePathname() ?? "/";
-  const router = useRouter();
+  const { committed: pathname, push } = useNavigation();
   const isDemo = !records.data && records.demo !== null;
   const source = records.data ?? records.demo;
   const rows = useMemo(() => (source ? overviewOf(source, beijingToday()).rows : []), [source]);
@@ -320,7 +319,7 @@ function RailLegend() {
                 onClick={() => {
                   records.select(picked ? null : row.record.id);
                   // The overview, the materials map and the roadmap draw the lines; from anywhere else a pick goes to the overview.
-                  if (!picked && pathname !== "/" && pathname !== "/materials" && pathname !== "/roadmap") router.push("/");
+                  if (!picked && pathname !== "/" && pathname !== "/materials" && pathname !== "/roadmap") push("/");
                 }}
               >
                 <span className="bullet">{row.code}</span>

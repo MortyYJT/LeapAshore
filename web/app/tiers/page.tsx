@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
+import { TiersBody } from "@/components/shell/RouteSkeleton";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { Button, LoadingPanel, Notice } from "@/components/ui";
 import { fetchAllPrograms, fetchProgramPage } from "@/lib/api";
@@ -42,7 +43,7 @@ const sign = (n: number) => `${n > 0 ? "+" : n < 0 ? "−" : "±"}${Math.abs(Mat
  */
 export default function TiersPage() {
   return (
-    <RequireAccount what="分档结果" fallback={<Page><LoginPrompt what="你的分档结果" /></Page>} pending={<Page><LoadingPanel what="分档结果" /></Page>}>
+    <RequireAccount what="分档结果" fallback={<Page><LoginPrompt what="你的分档结果" /></Page>} pending={<Page><TiersBody /></Page>}>
       <Tiers />
     </RequireAccount>
   );
@@ -101,7 +102,7 @@ function Tiers() {
     [programs],
   );
 
-  if (profile.loading && !profile.data) return <Page><LoadingPanel what="你的背景" /></Page>;
+  if (profile.loading && !profile.data) return <Page><TiersBody /></Page>;
   if (profile.error && !profile.data) return <Page><Notice error>没有读到你的背景（{profile.error}）。<button className="btn btn-text" onClick={profile.reload}>重试</button></Notice></Page>;
   if (!profile.data || !complete) {
     const missing = profile.data ? missingBasics(profile.data).map((m) => m.label) : [];

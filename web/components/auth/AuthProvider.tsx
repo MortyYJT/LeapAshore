@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { LoadingPanel } from "@/components/ui";
@@ -10,6 +9,7 @@ import { forgetModelKey } from "@/lib/model-key";
 import { clearDraft } from "@/lib/portfolio-draft";
 
 import { LoginDialog } from "./LoginDialog";
+import { useNavigation } from "@/components/shell/Navigation";
 
 interface AuthContext {
   /** Null until `/api/auth/me` has answered (or when it could not be read). */
@@ -44,7 +44,7 @@ function announce() {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const router = useRouter();
+  const { push } = useNavigation();
   const [state, setState] = useState<AuthState | null>(null);
   const [ready, setReady] = useState(false);
   const [dialog, setDialog] = useState<{ landing: string | null } | null>(null);
@@ -98,9 +98,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const resolve = waiting.current;
       waiting.current = null;
       resolve?.(ok);
-      if (ok && landing) router.push(landing);
+      if (ok && landing) push(landing);
     },
-    [dialog, refresh, router],
+    [dialog, refresh, push],
   );
 
   const signOut = useCallback(async () => {

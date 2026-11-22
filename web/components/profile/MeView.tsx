@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
+import { MeBody } from "@/components/shell/RouteSkeleton";
 import { ProfileForm } from "@/components/profile/ProfileForm";
 import { Button, Loading, Notice } from "@/components/ui";
 import { deleteAccount, normalizeEmail } from "@/lib/auth";
@@ -42,7 +43,7 @@ export default function MeView() {
           <p className="lede">分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。</p>
         </div>
       </div>
-      <RequireAccount what="你的背景和材料">
+      <RequireAccount what="你的背景和材料" pending={<MeBody />}>
         <Mine />
       </RequireAccount>
     </main>

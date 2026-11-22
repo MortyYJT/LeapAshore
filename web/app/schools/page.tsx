@@ -110,7 +110,7 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
                     <div className="ident">
                       <SchoolMark logo={s.logo} name={name} />
                       <div className="two-line">
-                        <Link className="l1" href={`/schools/${encodeURIComponent(institutionSlug(s))}`}>
+                        <Link className="l1" href={`/schools/${encodeURIComponent(institutionSlug(s))}`} prefetch={false}>
                           {name}
                         </Link>
                         <div className="l2">{s.name_en}</div>

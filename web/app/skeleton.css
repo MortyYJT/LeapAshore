@@ -1,0 +1,68 @@
+/* Page-shaped placeholders (components/shell/RouteSkeleton.tsx).
+   A bar is flat and still: no shimmer. It sits on the line of the text it stands for, so the line
+   keeps its height and the value that replaces it does not move anything. */
+
+/* Drawn over the route being left: no height of its own, so that route keeps its place under it. */
+.route-skeleton { height: 0; }
+
+.sk {
+  display: inline-block; width: var(--sk-w, 100%); max-width: 100%; height: .72em;
+  border-radius: var(--r-tag); background: var(--sunken); vertical-align: middle;
+}
+/* A filled shape of a fixed size: a control, a pill, a logo. */
+.sk-box { height: var(--sk-h, 32px); border-radius: var(--r-control); flex: none; }
+.sk-round { border-radius: 50%; }
+
+/* Rows at the pitch of the list they stand for, divided the way the lists are. */
+.sk-rows { border-top: 1px solid var(--line); }
+.sk-rows + .sk-rows { border-top: 0; }
+.sk-row {
+  display: flex; align-items: center; gap: 16px; box-sizing: content-box;
+  height: var(--sk-h, 48px); border-bottom: 1px solid var(--line);
+}
+.sk-row .sk { height: 12px; }
+.sk-row .sk-box { height: var(--sk-h, 22px); }
+.sk-row .sk-end { margin-left: auto; }
+.panel > .sk-rows { border-top: 0; }
+.panel > .sk-rows .sk-row { padding: 0 20px; }
+.panel > .sk-rows .sk-row:last-child { border-bottom: 0; }
+
+.sk-table tbody tr { height: var(--sk-h, 48px); }
+.sk-table tbody tr:hover { background: none; }
+.sk-table .sk, .sk-text .sk, .sk-card .sk:not(.sk-box) { height: 12px; }
+.sk-table .sk-box { height: var(--sk-h, 28px); }
+
+/* Running text: lines of a paragraph's pitch. */
+.sk-text { display: grid; gap: 12px; justify-items: start; padding: 6px 0; }
+.panel-pad > h2 + .sk-text { margin-top: 8px; }
+
+/* The roadmap's map: seven stretches stepping down to the right, as the line does. */
+.sk-map { display: grid; grid-template-rows: repeat(7, 1fr); align-items: center; height: 324px; padding: 30px 0 14px; }
+.sk-step { width: 24%; height: 6px; margin-left: calc(var(--sk-step) * 12.4%); border-radius: 3px; }
+
+.sk-filters { padding: 12px 24px; }
+.sk-card { display: block; }
+
+.sk-advisor {
+  display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+  width: 100%; max-width: 816px; margin-inline: auto; padding: 84px 28px 40px;
+}
+
+/* The composer's place on the advisor's page: an empty field, not a slab. */
+.sk-field { display: block; height: 52px; border: 1px solid var(--line); border-radius: var(--r-control); background: var(--panel); }
+
+@media (max-width: 900px) {
+  .sk-map { height: 300px; }
+  .sk-table tbody tr { height: auto; min-height: var(--sk-h, 48px); }
+  .sk-filters { padding: 12px 16px; }
+  .sk-advisor { padding: 72px 16px 24px; }
+}
+
+/* Between the click and the route, only the title is drawn at once. The page's shape under it waits
+   60 ms and then fades in: a route that is already in memory replaces the placeholder within a frame
+   or two, and bars or panels that flashed for that long would read as a flicker. A route's own loading
+   state draws the same shape with no wait, so the hand-over from the shell is not visible. */
+.route-skeleton .sk-late,
+.route-skeleton main > :not(h1, .page-head, .title-row, .lede, .crumb, .sr-only) {
+  animation: skeleton-appear var(--motion-instant) var(--motion-crossfade) 60ms both;
+}

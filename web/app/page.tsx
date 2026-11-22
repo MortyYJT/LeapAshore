@@ -6,7 +6,9 @@ import { DOCK_QUERY, useAdvisorDock } from "@/components/advisor/AdvisorProvider
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { DeadlineTable, editHref, type RowLink } from "@/components/home/DeadlineTable";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
-import { ConflictNotice, Loading, Notice } from "@/components/ui";
+import { stayOnPage } from "@/components/shell/Navigation";
+import { Bar, OverviewBody } from "@/components/shell/RouteSkeleton";
+import { ConflictNotice, Notice } from "@/components/ui";
 import { RECORD_STATUSES, writeApplicationRecord, type ApplicationRecord } from "@/lib/application-records";
 import { beijingToday } from "@/lib/deadlines";
 import { demoProgramHref } from "@/lib/demo";
@@ -24,8 +26,8 @@ export default function Home() {
         what="你的申请"
         fallback={<SignedOut />}
         pending={
-          <Frame finding="正在读取登录状态…">
-            <Loading what="你的申请" />
+          <Frame finding={<Bar width="16em" />}>
+            <OverviewBody />
           </Frame>
         }
       >
@@ -70,8 +72,8 @@ function SignedOut() {
   const { demo, demoPending } = useApplicationRecords();
   if (demoPending) {
     return (
-      <Frame finding="正在读取学校库…">
-        <Loading what="学校库" />
+      <Frame finding={<Bar width="16em" />}>
+        <OverviewBody />
       </Frame>
     );
   }
@@ -180,7 +182,8 @@ function DemoNext({ actions, onSignIn }: { actions: NextAction[]; onSignIn: () =
                 href={`/advisor?q=${encodeURIComponent(deadlineQuestion(record))}`}
                 onClick={(event) => {
                   if (event.metaKey || event.ctrlKey || event.shiftKey || !window.matchMedia(DOCK_QUERY).matches) return;
-                  event.preventDefault();
+                  // From 901px the click opens the dock and stays on this page.
+                  stayOnPage(event);
                   advisor.ask(deadlineQuestion(record));
                 }}
               >
@@ -231,8 +234,8 @@ function Workspace() {
         </p>
       </Frame>
     ) : (
-      <Frame finding="正在读取你的申请…">
-        <Loading what="你的申请" />
+      <Frame finding={<Bar width="16em" />}>
+        <OverviewBody />
       </Frame>
     );
   }
@@ -394,7 +397,8 @@ function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (re
                 href={`/advisor?q=${encodeURIComponent(deadlineQuestion(record))}`}
                 onClick={(event) => {
                   if (event.metaKey || event.ctrlKey || event.shiftKey || !window.matchMedia(DOCK_QUERY).matches) return;
-                  event.preventDefault();
+                  // From 901px the click opens the dock and stays on this page.
+                  stayOnPage(event);
                   advisor.ask(deadlineQuestion(record));
                 }}
               >

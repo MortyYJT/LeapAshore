@@ -170,3 +170,8 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .page-head { margin-bottom: 20px; }
   h1 { font-size: 1.375rem; }
 }
+
+/* The route's own content. The wrapper adds no box; it only lets the shell take the route being left
+   out of sight while the next one's placeholder is drawn (components/shell/Shell.tsx). */
+.workspace-route { display: contents; }
+.workspace-route[data-leaving] > * { visibility: hidden; }

@@ -7,6 +7,7 @@ import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { editHref } from "@/components/home/DeadlineTable";
 import { RoadmapMap } from "@/components/roadmap/RoadmapMap";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
+import { Bar, RoadmapBody } from "@/components/shell/RouteSkeleton";
 import { ConflictNotice, Loading, Notice } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
 import { EMPTY_PROFILE } from "@/lib/assess";
@@ -36,8 +37,8 @@ export default function RoadmapPage() {
         what="路线图"
         fallback={<Sample />}
         pending={
-          <Frame finding="正在读取登录状态…">
-            <Loading what="路线图" />
+          <Frame finding={<Bar width="16em" />}>
+            <RoadmapBody />
           </Frame>
         }
       >
@@ -111,7 +112,7 @@ function Roadmap() {
 
   return (
     <Frame
-      finding={timeline ? headline(timeline) : profile.error && !profile.data ? "没能读取你的申请背景。" : "正在读取路线图…"}
+      finding={timeline ? headline(timeline) : profile.error && !profile.data ? "没能读取你的申请背景。" : <Bar width="16em" />}
       aside={
         anchor && (
           <div className="toolbar rm-intake">
@@ -126,7 +127,7 @@ function Roadmap() {
       {profile.error && !profile.data && <Notice error>没有读到你的背景（{profile.error}）。</Notice>}
       {roadmap.notice && <Notice>{roadmap.notice}</Notice>}
       {roadmap.syncError && <Notice error>{roadmap.syncError}</Notice>}
-      {!map && !profile.error && <Loading what="路线图" lines={4} />}
+      {!map && !profile.error && <RoadmapBody />}
       {map && timeline && (
         <>
           {!map.dated && (

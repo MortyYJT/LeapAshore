@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
+import { Bar, PortfolioBody } from "@/components/shell/RouteSkeleton";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { Button, LoadingPanel, Notice, Pill } from "@/components/ui";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
@@ -48,9 +49,14 @@ export default function PortfolioPage() {
       pending={
         <main className="page">
           <div className="title-row">
-            <h1>选校组合</h1>
+            <div>
+              <h1>选校组合</h1>
+              <p className="lede">
+                <Bar width="11em" />
+              </p>
+            </div>
           </div>
-          <LoadingPanel what="选校组合" />
+          <PortfolioBody />
         </main>
       }
     >

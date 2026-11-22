@@ -209,50 +209,6 @@ dialog:not([open])::backdrop { pointer-events: none; }
 
 .uc-sidebar [data-positioned] [aria-selected="true"] { background: transparent; }
 
-/* Route snapshots cross-fade while the sidebar and page background stay still. */
-/* Exclude the root from capture so the persistent navigation stays live. */
-:root { view-transition-name: none; }
-::view-transition { pointer-events: none; }
-::view-transition-group(.workspace-route) { animation: none; }
-::view-transition-image-pair(.workspace-route) { overflow: clip; }
-::view-transition-old(.workspace-route) {
-  animation: route-out var(--motion-normal) var(--motion-crossfade) both;
-}
-::view-transition-new(.workspace-route) {
-  animation: route-in var(--motion-normal) var(--motion-crossfade) both;
-}
-
-@keyframes route-out { to { opacity: 0; } }
-@keyframes route-in { from { opacity: 0; } }
-
-/* On a phone the content runs under the top bar and the tab bar, so its snapshot would be drawn over
-   them for the length of the fade. Routes change without the fade there. */
-@media (max-width: 900px) {
-  ::view-transition-old(.workspace-route),
-  ::view-transition-new(.workspace-route) { animation: none; }
-}
-
-.sidebar-navigation-pending {
-  position: absolute;
-  right: 5px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0;
-}
-
-.sidebar-navigation-pending[data-pending] {
-  opacity: 1;
-  transition: opacity var(--motion-fast) var(--motion-normal);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(.workspace-route),
-  ::view-transition-old(.workspace-route),
-  ::view-transition-new(.workspace-route) { animation: none; }
-}
-
 /* Short loads retain the panel's space without flashing placeholder bars. */
 .skeleton {
   animation: skeleton-appear var(--motion-fast) var(--motion-ease) var(--motion-fast) both;

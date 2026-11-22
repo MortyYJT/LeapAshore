@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
@@ -19,6 +19,7 @@ import {
   voidPending,
   type Turn,
 } from "@/lib/advisor-run";
+import { useNavigation } from "@/components/shell/Navigation";
 
 /**
  * The advisor's conversation and its dock, held above the pages.
@@ -75,7 +76,7 @@ function readDock(): boolean {
 export function AdvisorProvider({ children }: { children: ReactNode }) {
   const { state, ready, gated, requireLogin, refresh } = useAuth();
   const { reload: reloadRecords, markChanged } = useApplicationRecords();
-  const router = useRouter();
+  const { push } = useNavigation();
   const pathname = usePathname() ?? "/";
 
   const [open, setOpenState] = useState(false);
@@ -118,10 +119,10 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
     (question: string) => {
       setDraft(question);
       if (window.matchMedia(DOCK_QUERY).matches && pathname !== "/advisor") setOpen(true);
-      else if (pathname !== "/advisor") router.push("/advisor");
+      else if (pathname !== "/advisor") push("/advisor");
       setFocusRequest((n) => n + 1);
     },
-    [pathname, router, setDraft, setOpen],
+    [pathname, push, setDraft, setOpen],
   );
 
   // ⌘/Ctrl J opens and closes the advisor; Esc stops a turn that is running.
@@ -138,7 +139,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
             document.getElementById("advisor-toggle")?.focus();
           }
           setOpen(!closing);
-        } else router.push("/advisor");
+        } else push("/advisor");
         return;
       }
       // Esc belongs to whatever is open on top first: an input method's candidates, a dialog, the account menu.
@@ -149,7 +150,7 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
     };
     window.addEventListener("keydown", keydown);
     return () => window.removeEventListener("keydown", keydown);
-  }, [pathname, router, setOpen]);
+  }, [pathname, push, setOpen]);
 
   // ---------- keeping the conversation ----------
 

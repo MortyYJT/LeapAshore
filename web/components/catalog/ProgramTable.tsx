@@ -46,7 +46,7 @@ export function ProgramTable({
             <tr key={p.slug}>
               <td className="wide">
                 <div className="two-line">
-                  <Link className="l1" href={`/programs/${encodeURIComponent(p.slug)}`}>
+                  <Link className="l1" href={`/programs/${encodeURIComponent(p.slug)}`} prefetch={false}>
                     {p.name ?? "未知"}
                   </Link>
                 </div>

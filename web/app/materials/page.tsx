@@ -7,7 +7,8 @@ import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { MaterialsBoard, type MaterialsActions } from "@/components/materials/MaterialsBoard";
 import { MaterialFiles } from "@/components/profile/MeView";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
-import { Loading, Notice } from "@/components/ui";
+import { Bar, MaterialsBody } from "@/components/shell/RouteSkeleton";
+import { Notice } from "@/components/ui";
 import { writeApplicationRecord, type ApplicationRecord } from "@/lib/application-records";
 import { materialsModel, type MapLine, type MaterialsModel } from "@/lib/materials-map";
 import { StaleVersionError } from "@/lib/sync-conflict";
@@ -27,8 +28,8 @@ export default function MaterialsPage() {
         what="你的材料"
         fallback={<SignedOut />}
         pending={
-          <Frame finding="正在读取登录状态…">
-            <Loading what="你的材料" />
+          <Frame finding={<Bar width="16em" />}>
+            <MaterialsBody />
           </Frame>
         }
       >
@@ -157,8 +158,8 @@ function Workspace() {
         </section>
       </Frame>
     ) : (
-      <Frame finding="正在读取你的申请…">
-        <Loading what="你的材料" />
+      <Frame finding={<Bar width="16em" />}>
+        <MaterialsBody />
       </Frame>
     );
   }
@@ -263,8 +264,8 @@ function SignedOut() {
   );
   if (demoPending) {
     return (
-      <Frame finding="正在读取学校库…">
-        <Loading what="学校库" />
+      <Frame finding={<Bar width="16em" />}>
+        <MaterialsBody />
       </Frame>
     );
   }

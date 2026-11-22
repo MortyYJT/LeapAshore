@@ -4,7 +4,7 @@
 // upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
 // program, registers, skips the info step, sees 先补信息 on /tiers, is refused /admin and deletes the account.
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
-// /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px. Each step writes docs/screenshots/NN-*.png.
+// /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px, and the instant navigation feedback is timed with route payloads held back. Each step writes docs/screenshots/NN-*.png.
 //
 // The overview is checked in each state an account can be in: signed out (a labelled demo drawn from the
 // catalogue, with the dates the catalogue serves, and the plain sign-in block when it cannot be read), a new
@@ -227,6 +227,148 @@ async function adminPass(browser, email, errors) {
   }
 }
 
+/**
+ * Instant navigation feedback, as a signed-out visitor. Every route payload is held back, so the
+ * route cannot arrive: within NAV_BOUND of the click the rail must already mark the destination and
+ * the content area must already show that page's placeholder under its real title, while the address
+ * is still the old one. Then the payload is released and the route must replace the placeholder under
+ * the same title. Also: a second click made while the first is pending wins, back and forward work,
+ * and a link inside a page and a search result behave like the rail.
+ *
+ * This needs the dev server, which never prefetches: on a production build the static routes are
+ * already in memory and replace the placeholder before it can be observed.
+ */
+const NAV_BOUND = 250;
+async function navigationPass(browser, errors) {
+  for (const [label, viewport, steps] of [
+    ["桌面", DESKTOP, [["/schools", "schools", "学校库"], ["/roadmap", "roadmap", "申请路线图"], ["/", "overview", "总览"]]],
+    ["390", PHONE, [["/schools", "schools", "学校库"], ["/roadmap", "roadmap", "申请路线图"], ["/applications", "applications", "我的申请"], ["/", "overview", "总览"]]],
+  ]) {
+    const context = await browser.newContext({ viewport });
+    const page = await context.newPage();
+    watch(page, `nav-${label}`, errors);
+    let holding = false;
+    const held = [];
+    await page.route("**/*", (route) => (holding && /[?&]_rsc=/.test(route.request().url()) ? held.push(route) : route.continue()));
+    const release = async () => {
+      holding = false;
+      for (const route of held.splice(0)) await route.continue().catch(() => {});
+    };
+    // Click a link and watch, frame by frame, for the rail and the placeholder to answer.
+    const clickAndWatch = (selector, navHref, shape) =>
+      page.evaluate(
+        async ({ selector, navHref, shape, bound }) => {
+          const link = [...document.querySelectorAll(selector)].find((a) => a.getClientRects().length > 0);
+          if (!link) return { missing: selector };
+          const started = performance.now();
+          link.click();
+          const read = () => {
+            const current = [...document.querySelectorAll('nav[aria-label="主导航"] a[aria-current="page"]')].map((a) => a.getAttribute("href"));
+            const shell = document.querySelector(`[data-route-skeleton="${shape}"]`);
+            return {
+              active: navHref === null ? current.length === 0 : current.length > 0 && current.every((href) => href === navHref),
+              shell: Boolean(shell) && shell.querySelector("main").getClientRects().length > 0,
+              title: shell?.querySelector("h1")?.textContent.trim() ?? null,
+              oldHidden: [...document.querySelectorAll(".workspace-route > *")].every((el) => getComputedStyle(el).visibility === "hidden"),
+              top: shell ? Math.round(shell.querySelector("h1").getBoundingClientRect().top) : null,
+            };
+          };
+          let seen = read();
+          while (!(seen.active && seen.shell) && performance.now() - started < bound * 4) {
+            await new Promise((resolve) => requestAnimationFrame(resolve));
+            seen = read();
+          }
+          return { ...seen, ms: Math.round(performance.now() - started), path: location.pathname };
+        },
+        { selector, navHref, shape, bound: NAV_BOUND },
+      );
+    const arrived = async (href) => {
+      await release();
+      await page.waitForURL((url) => url.pathname === href, { timeout: 30000 });
+      await page.locator("[data-route-skeleton]").waitFor({ state: "detached", timeout: 30000 });
+    };
+    const nav = (href) => `nav[aria-label="主导航"] a[href="${href}"]`;
+
+    await page.goto(`${BASE}/advisor`);
+    await settle(page);
+
+    if (label === "桌面") {
+      // A second click while the first route is still on its way: the second one wins.
+      holding = true;
+      const first = await clickAndWatch(nav("/applications"), "/applications", "applications");
+      const second = await clickAndWatch(nav("/materials"), "/materials", "materials");
+      check("导航：连续点两次，侧栏和占位都跟着第二次", first.active && first.shell && second.active && second.shell && second.title === "材料", { first, second });
+      await arrived("/materials");
+      check("导航：连续点两次，最后停在第二个页面", (await page.locator("main h1").first().innerText()).trim() === "材料" && (await page.locator(`${nav("/materials")}[aria-current="page"]`).count()) === 1);
+    }
+
+    for (const [href, shape, title] of steps) {
+      const from = new URL(page.url()).pathname;
+      holding = true;
+      const seen = await clickAndWatch(nav(href), href, shape);
+      check(`导航 ${label} ${href}：点击后 ${NAV_BOUND}ms 内侧栏选中、内容区换成该页占位`, seen.active && seen.shell && seen.oldHidden && seen.ms <= NAV_BOUND, seen);
+      check(`导航 ${label} ${href}：占位带着该页标题，此时页面数据还没到`, seen.title === title && seen.path === from, seen);
+      await arrived(href);
+      const landed = (await page.locator(".workspace-route main h1").first().innerText()).trim();
+      check(`导航 ${label} ${href}：页面到了以后标题不变，侧栏仍选中`, landed === title && (await page.locator(`${nav(href)}[aria-current="page"]`).count()) >= 1, landed);
+    }
+
+    if (label === "桌面") {
+      // Back and forward restore pages the router already holds; nothing is left pending.
+      await page.goBack();
+      await page.waitForURL((url) => url.pathname === "/roadmap", { timeout: 30000 });
+      await page.locator(".workspace-route main h1", { hasText: "申请路线图" }).waitFor({ timeout: 30000 });
+      const back = (await page.locator("[data-route-skeleton]").count()) === 0 && (await page.locator(`${nav("/roadmap")}[aria-current="page"]`).count()) === 1;
+      await page.goForward();
+      await page.waitForURL((url) => url.pathname === "/", { timeout: 30000 });
+      await page.locator(".workspace-route main h1", { hasText: "总览" }).waitFor({ timeout: 30000 });
+      check("导航：后退和前进回到原来的页面，没有卡住的占位", back && (await page.locator("[data-route-skeleton]").count()) === 0 && (await page.locator(`${nav("/")}[aria-current="page"]`).count()) === 1);
+
+      // A link inside a page: a school's row. The rail keeps 学校库; the placeholder is the school page's.
+      await page.locator(nav("/schools")).click();
+      await page.locator(".workspace-route table a.l1").first().waitFor({ timeout: 30000 });
+      // The list is scrolled first: the placeholder must start at the top of the window without the
+      // window being scrolled, so that going back finds the list where it was left.
+      await page.evaluate(() => window.scrollTo(0, 600));
+      holding = true;
+      const row = await clickAndWatch(".workspace-route table a.l1", "/schools", "school");
+      const scrolledTo = await page.evaluate(() => Math.round(window.scrollY));
+      check("导航：页面里的链接也立即换成目标页占位", row.active && row.shell && row.ms <= NAV_BOUND && row.path === "/schools", row);
+      check("导航：滚动过的页面上，占位从窗口顶部开始，窗口本身没有滚动", scrolledTo === 600 && row.top !== null && row.top >= 0 && row.top < 200, { scrolledTo, top: row.top });
+      await release();
+      await page.waitForURL((url) => url.pathname.startsWith("/schools/"), { timeout: 30000 });
+      await page.locator("[data-route-skeleton]").waitFor({ state: "detached", timeout: 30000 });
+      await page.goBack();
+      await page.waitForURL((url) => url.pathname === "/schools", { timeout: 30000 });
+      await page.locator(".workspace-route table a.l1").first().waitFor({ timeout: 30000 });
+      await page.waitForFunction(() => window.scrollY > 0, null, { timeout: 5000 }).catch(() => {});
+      const restored = await page.evaluate(() => Math.round(window.scrollY));
+      check("导航：后退回到列表时滚动位置还在", Math.abs(restored - 600) <= 2, restored);
+      holding = true;
+      const again = await clickAndWatch(".workspace-route table a.l1", "/schools", "school");
+      // Changing one's mind while the school is still on its way: the rail's 学校库 brings the list back at once.
+      const undone = await page.evaluate(async (selector) => {
+        document.querySelector(selector).click();
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        return { shell: document.querySelectorAll("[data-route-skeleton]").length, shown: [...document.querySelectorAll(".workspace-route > *")].every((el) => getComputedStyle(el).visibility === "visible"), path: location.pathname };
+      }, nav("/schools"));
+      check("导航：还没到就点回原来的页面，原页面立即回来", again.shell && undone.shell === 0 && undone.shown && undone.path === "/schools", { again, undone });
+      await release();
+      await page.locator(".workspace-route table a.l1").first().click();
+      await page.waitForURL((url) => url.pathname.startsWith("/schools/"), { timeout: 30000 });
+
+      // A result in the search dialog (⌘/Ctrl K).
+      await page.getByRole("button", { name: "搜索", exact: true }).click();
+      holding = true;
+      const found = await clickAndWatch('.workspace-search-results a[href="/me"]', null, "me");
+      check("导航：搜索结果也立即换成目标页占位", found.active && found.shell && found.title === "我的" && found.ms <= NAV_BOUND, found);
+      await arrived("/me");
+    }
+    await page.unroute("**/*");
+    await context.close();
+  }
+}
+
 (async () => {
   try {
     const response = await fetch(`${BASE}/api/health`);
@@ -444,8 +586,8 @@ async function adminPass(browser, email, errors) {
       await route.continue().catch(() => {});
     });
     await page.goto(`${BASE}/tiers`, { waitUntil: "domcontentloaded" });
-    await page.locator(".skeleton").first().waitFor({ timeout: 5000 }).catch(() => {});
-    check("读取登录状态时：分档页保留标题并显示占位", (await page.locator("main h1", { hasText: "分档结果" }).count()) === 1 && (await page.locator(".skeleton").count()) > 0);
+    await page.locator(".sk").first().waitFor({ timeout: 5000 }).catch(() => {});
+    check("读取登录状态时：分档页保留标题并显示占位", (await page.locator("main h1", { hasText: "分档结果" }).count()) === 1 && (await page.locator(".sk").count()) > 0);
     await page.unroute("**/api/auth/me");
     await page.goto(`${BASE}/me`);
     await settle(page);
@@ -1482,6 +1624,9 @@ async function adminPass(browser, email, errors) {
       await screenshot(intro, name);
     }
     await fresh.close();
+
+    // ---------- instant navigation feedback ----------
+    await navigationPass(browser, errors);
   } catch (error) {
     check("走查顺利跑完", false, String(error && error.stack ? error.stack : error).split("\n").filter((line) => !line.includes("node_modules")).slice(0, 6).join(" | "));
   } finally {

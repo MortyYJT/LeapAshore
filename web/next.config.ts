@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  experimental: { viewTransition: true },
   // The browser reaches the API through this origin, so the httpOnly `leapashore_client` cookie is
   // same-origin and no CORS or credentials plumbing is needed. The cost is that the backend must be
   // running: `make dev` starts both, and `screenshots` refuses to drive the browser without it.

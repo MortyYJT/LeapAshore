@@ -4,6 +4,7 @@ import { AdvisorProvider, DockScript } from "@/components/advisor/AdvisorProvide
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { ApplicationRecordsProvider } from "@/components/shell/ApplicationRecords";
 import { InstallScript } from "@/components/shell/Install";
+import { NavigationProvider } from "@/components/shell/Navigation";
 import { Shell } from "@/components/shell/Shell";
 import { ThemeScript } from "@/components/shell/ThemeScript";
 
@@ -13,6 +14,7 @@ import "./overview.css";
 import "./materials.css";
 import "./roadmap.css";
 import "./advisor.css";
+import "./skeleton.css";
 import "./motion.css";
 
 export const metadata: Metadata = {
@@ -47,13 +49,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <DockScript />
       </head>
       <body>
-        <AuthProvider>
-          <ApplicationRecordsProvider>
-            <AdvisorProvider>
-              <Shell>{children}</Shell>
-            </AdvisorProvider>
-          </ApplicationRecordsProvider>
-        </AuthProvider>
+        <NavigationProvider>
+          <AuthProvider>
+            <ApplicationRecordsProvider>
+              <AdvisorProvider>
+                <Shell>{children}</Shell>
+              </AdvisorProvider>
+            </ApplicationRecordsProvider>
+          </AuthProvider>
+        </NavigationProvider>
       </body>
     </html>
   );
