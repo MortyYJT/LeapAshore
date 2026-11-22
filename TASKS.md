@@ -33,7 +33,7 @@
 
 - [x] **修复个人网站 mortyyjt.site** — PR #28。`mortyyjt.site` 200、`www` 301。[详情](docs/measurements.md#fix-the-personal-site-mortyyjtsite-pr-28)
 - [x] **按新范围收缩学校库** — PR #34。346 → 287 所，生产范围外项目 0。[详情](docs/measurements.md#shrink-the-school-list-to-the-new-scope-pr-34)
-- [x] **账号与登录（邮箱 + 验证码），砍掉背景测评** — PR #36（代码已上线，登录模式未开，等 MortyYJT 在服务器填个人邮箱的 SMTP 授权码）。并发首次登录只建 1 个账号，猜码第 5 次起作废。[详情](docs/measurements.md#accounts-and-sign-in-email--code-background-assessment-removed-pr-36)
+- [x] **账号与登录（邮箱 + 验证码），砍掉背景测评** — PR #36（生产登录模式 2026-11-19 开启，验证码经 QQ 邮箱 SMTP 发出）。并发首次登录只建 1 个账号，猜码第 5 次起作废。[详情](docs/measurements.md#accounts-and-sign-in-email--code-background-assessment-removed-pr-36)
 - [x] **修顾问检索：先测基线，再改** — PR #38。报数组 Recall@4 0.10 → 0.889，误拦 0.60 → 0。[详情](docs/measurements.md#fix-advisor-retrieval-baseline-first-then-change-pr-38)
 - [x] **顾问接口限流与额度** — PR #40、#44。限流检查 p99 5.61 ms（50 并发），伪造转发头无效。[详情](docs/measurements.md#advisor-rate-limits-and-quotas-pr-40-follow-up-pr-44)
 - [x] **抽取写成代码**（`app/collect/extract.py`）— PR #42（离线工具）。10 校 95 页拒收率 10.3%。[详情](docs/measurements.md#extraction-as-code-appcollectextractpy-pr-42-offline-tool)
