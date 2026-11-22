@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { editHref } from "@/components/home/DeadlineTable";
@@ -12,10 +12,13 @@ import { uploadMaterial } from "@/lib/api";
 import { EMPTY_PROFILE } from "@/lib/assess";
 import { beijingToday } from "@/lib/deadlines";
 import { demoProgramHref } from "@/lib/demo";
+import { useMaterials } from "@/lib/hooks/useMaterials";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
+import { toMaterial } from "@/lib/materials-source";
 import { dateLabel, overviewOf, sentenceDate, type Overview, type OverviewRow } from "@/lib/overview";
 import { buildRoadmap, DEFAULT_DEFINITION, intakeAnchor } from "@/lib/roadmap";
+import { stepFiles } from "@/lib/roadmap-files";
 import { headline, roadmapMap, type RoadmapMap as MapModel } from "@/lib/roadmap-map";
 import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf, type Timeline, type TimelinePhase } from "@/lib/roadmap-timeline";
@@ -96,6 +99,7 @@ function Roadmap() {
   const profile = useProfile();
   const roadmap = useRoadmap(profile.data);
   const records = useApplicationRecords();
+  const library = useMaterials();
   // One "today" for the whole page: the Beijing calendar date the deadlines are judged against (D4).
   const today = beijingToday();
 
@@ -136,7 +140,7 @@ function Roadmap() {
             </div>
           )}
           <MapBlock map={map} today={today} intake={anchor ? intakeWords(anchor) : null} selected={stretch?.id ?? null} onSelect={choose} picked={records.selected} />
-          {stretch && <Stations phase={stretch} roadmap={roadmap} />}
+          {stretch && <Stations phase={stretch} roadmap={roadmap} library={library} />}
           <Dates
             overview={overview}
             today={today}
@@ -224,20 +228,30 @@ function MapBlock({
   );
 }
 
-/** One stretch's stations as a list: where they are ticked, and where a file is attached to one. */
+/**
+ * One stretch's stations as a list: where they are ticked. A station that ends in a document also
+ * takes the file (lib/roadmap-files.ts says which); every other station is only ticked. The files
+ * themselves live in the library on 材料, which is where a row sends the applicant to open one.
+ */
 function Stations({
   phase,
   roadmap,
+  library,
   onDemoTick,
 }: {
   phase: TimelinePhase;
   roadmap?: ReturnType<typeof useRoadmap>;
+  /** The applicant's uploaded files; absent in the sample, which has none. */
+  library?: ReturnType<typeof useMaterials>;
   /** In the sample nothing is saved: a tick asks the visitor to sign in instead. */
   onDemoTick?: () => void;
 }) {
   // Keyed by task and kept across stretches: an upload started in one stretch still reports its
   // result, and stays guarded against a second send, after the applicant looks at another.
-  const [uploads, setUploads] = useState<Record<string, { busy: boolean; message: string }>>({});
+  const [uploads, setUploads] = useState<Record<string, { busy: boolean; failed?: boolean; stored?: string; message: string }>>({});
+  // Two rows can upload at once, so the answer is added to the library as it is when it arrives.
+  const libraryRef = useRef(library);
+  libraryRef.current = library;
 
   async function upload(materialKey: string, file: File | undefined) {
     if (!file || !roadmap) return;
@@ -245,10 +259,15 @@ function Stations({
     if (!taskId || uploads[materialKey]?.busy) return;
     setUploads((u) => ({ ...u, [materialKey]: { busy: true, message: `正在上传 ${file.name}…` } }));
     try {
-      await uploadMaterial(file, { title: file.name, taskId });
-      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `已上传 ${file.name}，在「材料」页的材料库里可以下载、归档和送审。` } }));
+      const stored = toMaterial(await uploadMaterial(file, { title: file.name, taskId }));
+      // The row lists the file from the library, so the answer goes straight into it; a library that
+      // was never read is read now instead.
+      const held = libraryRef.current;
+      if (held?.data) held.set([...held.data, stored]);
+      else held?.reload();
+      setUploads((u) => ({ ...u, [materialKey]: { busy: false, stored: stored.id, message: `已上传 ${file.name}，在「材料」页的材料库里。` } }));
     } catch (error: unknown) {
-      setUploads((u) => ({ ...u, [materialKey]: { busy: false, message: `上传失败：${error instanceof Error ? error.message : "未知错误"}` } }));
+      setUploads((u) => ({ ...u, [materialKey]: { busy: false, failed: true, message: `上传失败：${error instanceof Error ? error.message : "未知错误"}` } }));
     }
   }
 
@@ -283,6 +302,10 @@ function Stations({
           // back first, so the box waits rather than taking a click that could not be saved.
           const ready = roadmap ? roadmap.taskIdFor(task.materialId) !== null : true;
           const uploadState = uploads[task.materialId];
+          const files = roadmap ? stepFiles(task.materialId, roadmap.taskIdFor(task.materialId), library?.data ?? []) : null;
+          // Once the file is named on the row, the row is the confirmation and the sentence is left to
+          // a screen reader. A library that could not be read names nothing, so the sentence stays.
+          const quiet = uploadState?.stored !== undefined && (library?.data ?? []).some((material) => material.id === uploadState.stored);
           return (
             <li className={task.done ? "is-done" : undefined} key={task.materialId}>
               <input
@@ -317,13 +340,21 @@ function Stations({
                     这一步已在其他设备上改为「{taskStatusLabel(conflict.theirs)}」，这次勾选没有保存。
                   </ConflictNotice>
                 )}
+                {files && files.attached.length > 0 && (
+                  <p className="d rm-files">
+                    已上传 {files.attached.join("、")}。
+                    <Link className="link" href="/materials#materials">
+                      去材料库
+                    </Link>
+                  </p>
+                )}
                 {uploadState && (
-                  <p className="d" role="status">
+                  <p className={quiet ? "sr-only" : `d${uploadState.failed ? " negative" : ""}`} role="status">
                     {uploadState.message}
                   </p>
                 )}
               </div>
-              {roadmap && (
+              {files?.upload && (
                 <label className="btn btn-text btn-small" aria-disabled={!ready || uploadState?.busy} aria-busy={uploadState?.busy}>
                   上传
                   <input

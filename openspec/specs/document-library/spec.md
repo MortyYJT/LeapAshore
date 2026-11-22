@@ -239,12 +239,17 @@ No route in this change SHALL delete a document, a version, a review, or a store
 
 ### Requirement: The material library is usable from the interface
 
-The web application SHALL let the applicant upload a file from a roadmap task row, with that requirement attached to the document; SHALL list the applicant's materials with their classification, status, and current version; and SHALL let the applicant download a version, archive a material, and submit it for review.
+The web application SHALL let the applicant upload a file from the row of a roadmap task that produces a document (stated per task key, not inferred from its title), with that requirement attached to the document; SHALL offer no upload on any other task row, which can only be ticked; SHALL name on a task row the files already attached to it, whether or not the row offers the upload, with a link to the library; SHALL list the applicant's materials with their classification, status, and current version; and SHALL let the applicant download a version, archive a material, and submit it for review.
 
 #### Scenario: Uploading from a task row attaches the document to that requirement
 
 - **WHEN** the applicant uploads a file from a task row in the roadmap
-- **THEN** the stored document names that task, and the library lists the document under it
+- **THEN** the stored document names that task, the row names the file, and the library lists the document
+
+#### Scenario: A task that is a thing to do takes no file
+
+- **WHEN** the applicant opens a task such as choosing a target country or paying an application fee
+- **THEN** the row has a tick and no upload control, and a file attached to it earlier is still named on the row
 
 #### Scenario: The library reports a material's state from the server
 

@@ -432,6 +432,7 @@ async function adminPass(browser, email, errors) {
     check("未登录：路线图是标了演示的示例，并请你登录", (await page.locator(".roadmap h1 + .pill-sample", { hasText: "演示" }).count()) === 1
       && (await page.locator(".roadmap .demo-note").getByRole("button", { name: "登录", exact: true }).count()) === 1
       && (await page.locator(".rm-wide .rm-step").count()) > 0 && (await page.locator(".rm-list .rm-tick").count()) > 0);
+    check("未登录：示例的步骤只有勾选，没有上传", (await page.locator(".rm-list input[type=file]").count()) === 0);
     // A tick in the sample saves nothing: it asks the visitor to sign in.
     await page.locator(".rm-list .rm-tick").first().click();
     check("未登录：示例里勾选不保存，弹出登录", (await page.getByRole("dialog").count()) === 1);
@@ -1031,12 +1032,29 @@ async function adminPass(browser, email, errors) {
       return body.tasks.some((t) => `t-${t.materialKey}` === key && t.status === "completed");
     }, taskId);
     check("路线图：勾选在刷新后仍保存着", stillTicked, taskId);
-    const upload = page.locator(".rm-list input[type=file]").first();
+    // Only a step that ends in a document takes a file (web/lib/roadmap-files.ts). Choosing a
+    // programme is a thing to do: its steps are ticked and nothing else.
+    const stretchNamed = (name) => page.locator(".rm-wide .rm-step", { has: page.locator(".rm-lbl b", { hasText: name }) });
+    await stretchNamed("锁定申请组合").click();
+    await page.locator("#h-stretch", { hasText: "锁定申请组合" }).waitFor();
+    check("路线图：不产生文件的步骤只能勾选，没有上传", (await page.locator(".rm-list .rm-tick").count()) > 0
+      && (await page.locator(".rm-list input[type=file]").count()) === 0);
+    await stretchNamed("学术与身份材料").click();
+    await page.locator("#h-stretch", { hasText: "学术与身份材料" }).waitFor();
+    const transcriptRow = page.locator(".rm-list > li", { has: page.locator('[id="t-aca-transcript"]') });
+    check("路线图：要交文件的步骤有上传", (await page.locator(".rm-list input[type=file]").count()) === (await page.locator(".rm-list .rm-tick").count())
+      && (await transcriptRow.locator("input[type=file]").count()) === 1);
+    await transcriptRow.locator(".rm-tick:not([disabled])").waitFor({ timeout: 15000 });
     // The library sniffs the type from the bytes and takes PDFs and images, so the file is a minimal PDF.
     const pdf = Buffer.from(`%PDF-1.4\n% ${stamp}\n1 0 obj << /Type /Catalog >> endobj\ntrailer << /Root 1 0 R >>\n%%EOF\n`);
-    await upload.setInputFiles({ name: "walkthrough-transcript.pdf", mimeType: "application/pdf", buffer: pdf });
-    await page.getByText(/已上传 walkthrough-transcript\.pdf/).waitFor({ timeout: 15000 });
-    check("路线图：任务行上传了文件", true);
+    await transcriptRow.locator("input[type=file]").setInputFiles({ name: "walkthrough-transcript.pdf", mimeType: "application/pdf", buffer: pdf });
+    await transcriptRow.locator(".rm-files", { hasText: "已上传 walkthrough-transcript.pdf" }).waitFor({ timeout: 15000 });
+    check("路线图：上传的文件写在这一步下面，并指向材料库", (await transcriptRow.locator('.rm-files a[href="/materials#materials"]').count()) === 1);
+    await page.reload();
+    await page.locator(".rm-list .rm-tick").first().waitFor();
+    await stretchNamed("学术与身份材料").click();
+    await transcriptRow.locator(".rm-files", { hasText: "已上传 walkthrough-transcript.pdf" }).waitFor({ timeout: 15000 });
+    check("路线图：刷新后这一步仍列着上传的文件", true);
     await layout(page, "路线图");
     await screenshot(page, "roadmap");
 

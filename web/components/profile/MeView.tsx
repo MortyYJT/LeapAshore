@@ -219,7 +219,7 @@ function MaterialsLibrary({ materials }: { materials: ReturnType<typeof useMater
               <tr>
                 <td colSpan={5} className="wide">
                   <div className="empty">
-                    还没有上传材料。在<Link href="/roadmap">路线图</Link>的任务上上传，材料会按任务归档在这里，可以下载、送审和上传新版本。
+                    还没有上传材料。<Link href="/roadmap">路线图</Link>里要交文件的步骤（成绩单、简历、推荐信这些）旁边有「上传」，传上来的文件都存在这里，可以下载、送审和上传新版本。
                   </div>
                 </td>
               </tr>
