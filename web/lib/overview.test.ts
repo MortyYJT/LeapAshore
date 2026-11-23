@@ -10,6 +10,7 @@ import {
   lineCode,
   nextSentence,
   overviewOf,
+  whoOf,
 } from "./overview.ts";
 
 const TODAY = "2026-11-20";
@@ -252,4 +253,30 @@ test("overviewOf of no records is empty but still has a scale", () => {
   assert.equal(model.horizon, 95);
   assert.equal(model.nearest, null);
   assert.equal(model.ticks.length, 3);
+});
+
+test("two applications at one school are told apart by the program; a school applied to once is its name alone", () => {
+  const rows = overviewOf(
+    [
+      record("a", { school: "格拉斯哥大学", name: "Data Science MSc", deadline: "2026-12-01" }),
+      record("b", { school: "格拉斯哥大学", name: "Data Analytics [MSc]", deadline: "2026-12-10" }),
+      record("c", { school: "曼彻斯特大学", name: "Artificial Intelligence MSc", deadline: "2027-01-01" }),
+      // A closed application at the same school is not on screen, so it does not make another one ambiguous.
+      record("d", { school: "曼彻斯特大学", name: "Data Science MSc", status: "withdrawn" }),
+      // Spacing and case do not make two schools different.
+      record("e", { school: " 格拉斯哥大学", name: "Computing Science MSc", status: "submitted" }),
+    ],
+    TODAY,
+  ).rows;
+  const by = (id: string) => rows.find((row) => row.record.id === id)!;
+  assert.deepEqual(["a", "b", "e"].map((id) => by(id).shared), [true, true, true]);
+  assert.equal(by("c").shared, false);
+  assert.equal(whoOf(by("a")), "格拉斯哥大学 Data Science MSc");
+  assert.equal(whoOf(by("c")), "曼彻斯特大学");
+  // The same program in two rounds: the round says which.
+  const rounds = overviewOf(
+    [record("r1", { school: "格拉斯哥大学", name: "Data Science MSc", round: "第一轮" }), record("r2", { school: "格拉斯哥大学", name: "Data Science MSc", round: "第二轮" })],
+    TODAY,
+  ).rows;
+  assert.deepEqual(rounds.map(whoOf).sort(), ["格拉斯哥大学 Data Science MSc · 第一轮", "格拉斯哥大学 Data Science MSc · 第二轮"]);
 });

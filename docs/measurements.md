@@ -541,7 +541,7 @@ A click on a navigation link used to change nothing until the next route could b
 - `next dev` does not prefetch: before the change every route, static or not, answered 850 ms after the click at 400 ms latency. After it the rail answered in 16 to 37 ms there too.
 - Production before the change, signed out, from the development laptop, no throttling: 学校库 answered 927 ms after the click; the other four answered in 23 to 39 ms, because the signed-out demo is already in memory. On the server itself the same payload takes 0.07 to 0.08 s, so the wait is the link.
 - The school list no longer prefetches its rows. Before, up to 30 row links were each prefetched twice as they came into view; at 400 ms latency those requests ran for 4 s after the page appeared, and from the laptop against production a batch took up to 17 s.
-- `make verify` (local, 2026-11-23): build compiled; backend 1351 passed, 1 skipped; web 459 passed (448 before; 11 new in `lib/navigation.test.ts`); walkthrough 355/355 (326 before; 29 new checks hold every route payload back and time the rail and the placeholder at 1440 px and 390 px, and cover a second click, Back and Forward with the scroll position, and a click back to the page being left).
+- `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1351 passed, 1 skipped; web 459 passed (448 before; 11 new in `lib/navigation.test.ts`); walkthrough 355/355 (326 before; 29 new checks hold every route payload back and time the rail and the placeholder at 1440 px and 390 px, and cover a second click, Back and Forward with the scroll position, and a click back to the page being left).
 - Not measured: a real phone, browsers other than Chromium, production signed in.
 
 ### Data kept for the visit (PR #118)
@@ -565,7 +565,7 @@ Every page read its data again each time it was opened and kept nothing when it 
 - 总览 already drew its applications at once before; its 准备任务 block used to arrive later (the page stopped changing at 422 ms and 2033 ms). After the change the page did not change again after its first frame.
 - Before, each of the first six pages changed height when its data arrived (for example 申请路线图 981 px to 1397 px). After, each had one height from its first frame.
 - First visits are unchanged in time. Their placeholder is closer in two places: the roadmap's now leaves room for the applications the shell already knows (with three, the steps under the map moved 12 px when the map arrived; 130 px before), and a signed-out visitor's placeholder for 总览 and 申请路线图 carries the demo's mark and note (the first block moved 10 to 25 px when the demo arrived; 64 to 168 px before).
-- `make verify` (local, 2026-11-23): build compiled; backend 1351 passed, 1 skipped; web 493 passed (459 before; 34 new in `lib/resource-cache.test.ts`, `lib/hooks/resource.test.ts`, `lib/roadmap-sync.test.ts` and `lib/portfolio-draft.test.ts`); walkthrough 365/365 (355 before; 10 new checks open six pages, hold every API request and route payload back, and require real content within 250 ms of the click on return, then follow a tick whose save is held from the roadmap to the overview). The last walkthrough run was separate from the `make verify` run, after restarting the dev server for the known "negative time stamp" flake and fixing one task-3 check that assumed a visited school page could not be in the router's memory.
+- `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1351 passed, 1 skipped; web 493 passed (459 before; 34 new in `lib/resource-cache.test.ts`, `lib/hooks/resource.test.ts`, `lib/roadmap-sync.test.ts` and `lib/portfolio-draft.test.ts`); walkthrough 365/365 (355 before; 10 new checks open six pages, hold every API request and route payload back, and require real content within 250 ms of the click on return, then follow a tick whose save is held from the roadmap to the overview). The last walkthrough run was separate from the `make verify` run, after restarting the dev server for the known "negative time stamp" flake and fixing one task-3 check that assumed a visited school page could not be in the router's memory.
 - Not measured: production signed in, a real phone, browsers other than Chromium.
 
 ### Motion on page switch, loading and fill-in (PR #120)
@@ -611,6 +611,23 @@ A school-library program becomes an application in one press, from the school pa
 
 - `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1358 passed, 1 skipped (1351 before; 6 new in `api/tests/test_catalogue_add.py` and the new route in `test_account_scope.py`'s signed-out list); web 536 passed (528 before; 8 new in `web/lib/add-program.test.ts`); walkthrough 385/385 (378 before; the second visitor's 加入选校组合 path, 2 checks, became 9 checks of the one-step add: signed-out add completed after sign-in, one server record, program page and rail updated without reload, 去看看 lands on the marked card, a double click adds one and stays on the page, the toast names the deadline, 撤销 removes it, a revisit shows 已加入 linking to the record, a 44 px hit area at 390 px).
 - Not measured: production signed in, a real phone, browsers other than Chromium, the time from press to the server's answer.
+
+### Applicant walk-through fixes (item 9)
+
+A new local account walked every feature (desktop 1440×900 and 390×844, light and dark) before anything was changed; the fixes below come from that walk.
+
+- Method: presses counted on the local dev build, signed in, from the screen named to the change being saved on the server, following the controls the pages render. Choosing a value in a select counts as one.
+
+| Task | Before | After |
+| --- | --- | --- |
+| Add a program found by subject from the school list (`/schools`, search "Data Science") | the search finds 0 schools; the applicant must know the school, search it, open it (1), search again on the school page, 加入申请 (1) | 1 search, 加入申请 (1) |
+| Change an application's status on 我的申请 | 3 (编辑申请, choose, 保存申请) | 1 (choose on the card) |
+| Set the intake from the roadmap | 5 (填入学时间, 修改背景 on 我的, choose, 保存, back to 申请路线图), two page changes | 1 (choose on the roadmap), no page change |
+| Tell two applications at one school apart in the sidebar and 接下来 | not possible (both rows read the school only) | the program is on a second line |
+
+- Program search reads: "Data Science" matches 262 programs, "Data" 363, "Technology" 968 (school-name matches included, before filtering), "MSc" 1,786 (over the 1,000 read, so the page says the list is partial); one read of 100 took 30 to 45 ms on the local API.
+- `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1358 passed, 1 skipped (unchanged); web 550 passed (543 before; 5 new in `web/lib/roadmap-schedule.test.ts`, 1 in `overview.test.ts`, 1 in `catalog.test.ts`); walkthrough 390/390 (385 before: program search lists programs with school and 加入申请, a school-name search lists no program, the card's status saves only the status, the undated roadmap offers the intake in place (replacing the old link check), and two layout checks on the search page: an h1, no sideways scroll).
+- Not measured: production signed in, a real phone, browsers other than Chromium, the program search's time on the production server.
 
 ### Codex palette (PR #122)
 

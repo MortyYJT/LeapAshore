@@ -125,6 +125,11 @@ export interface OverviewRow {
   sent: boolean;
   /** Still open and due within `SOON_DAYS`. */
   soon: boolean;
+  /**
+   * Another application on screen is at the same school, so the school's name alone does not say which
+   * one this is: places that name a row by its school add the program (`whoOf`).
+   */
+  shared: boolean;
 }
 
 export interface AxisTick {
@@ -211,6 +216,16 @@ function monthTicks(today: string, horizon: number): AxisTick[] {
   }
 }
 
+/** What tells a shared row apart under its school: the program, and its round when it has one. */
+export function programOf(record: Pick<ApplicationRecord, "name" | "round">): string {
+  return record.round ? `${record.name} · ${record.round}` : record.name;
+}
+
+/** The row's name in a sentence: the school, and the program too when another application is at that school. */
+export function whoOf(row: Pick<OverviewRow, "record" | "shared">): string {
+  return row.shared ? `${row.record.school.trim()} ${programOf(row.record)}` : row.record.school.trim();
+}
+
 export function overviewOf(records: readonly ApplicationRecord[], today: string): Overview {
   const lines = assignLines(records.map((record) => record.id));
   const drawn = records.filter((record) => activeRecord(record) || record.status === "submitted");
@@ -223,6 +238,10 @@ export function overviewOf(records: readonly ApplicationRecord[], today: string)
   );
   const furthest = Math.max(MIN_HORIZON, ...[...days.values()].filter((value): value is number => value !== null));
   const horizon = Math.min(furthest, MAX_HORIZON) + HORIZON_MARGIN;
+
+  const schoolKey = (record: ApplicationRecord) => record.school.trim().toLowerCase().replace(/\s+/g, " ");
+  const perSchool = new Map<string, number>();
+  for (const record of drawn) perSchool.set(schoolKey(record), (perSchool.get(schoolKey(record)) ?? 0) + 1);
 
   const rows = drawn.map((record): OverviewRow => {
     const left = days.get(record.id) ?? null;
@@ -237,6 +256,7 @@ export function overviewOf(records: readonly ApplicationRecord[], today: string)
       beyond: ahead && left > horizon,
       sent,
       soon: !sent && ahead && left <= SOON_DAYS,
+      shared: (perSchool.get(schoolKey(record)) ?? 0) > 1,
     };
   });
   const open = rows.filter((row) => !row.sent).sort(byDate);

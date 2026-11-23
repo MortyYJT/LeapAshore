@@ -9,12 +9,12 @@ import { RoadmapMap } from "@/components/roadmap/RoadmapMap";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
 import { Bar, DemoNotePlaceholder, RoadmapBody } from "@/components/shell/RouteSkeleton";
 import { ConflictNotice, Loading, Notice } from "@/components/ui";
-import { uploadMaterial } from "@/lib/api";
+import { patchProfile, uploadMaterial } from "@/lib/api";
 import { EMPTY_PROFILE } from "@/lib/assess";
 import { beijingToday } from "@/lib/deadlines";
 import { demoProgramHref } from "@/lib/demo";
 import { useMaterials } from "@/lib/hooks/useMaterials";
-import { useProfile } from "@/lib/hooks/useProfile";
+import { toProfile, useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { toMaterial } from "@/lib/materials-source";
 import { dateLabel, overviewOf, type Overview, type OverviewRow } from "@/lib/overview";
@@ -24,7 +24,9 @@ import { headline, roadmapMap, tightWords, windowWords, type RoadmapMap as MapMo
 import { scheduleBound } from "@/lib/roadmap-schedule";
 import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf, type Timeline, type TimelinePhase } from "@/lib/roadmap-timeline";
-import { verifiedMark } from "@/lib/taxonomy";
+import { INTAKE_OPTIONS, verifiedMark } from "@/lib/taxonomy";
+import { StaleVersionError, resolveStaleField } from "@/lib/sync-conflict";
+import type { Profile } from "@/lib/types";
 
 /**
  * The roadmap (spec application-roadmap): the preparation drawn as one line from today to the intake,
@@ -81,6 +83,68 @@ function intakeWords(anchor: Date): string {
 }
 
 /**
+ * The intake, chosen here: the roadmap is the page that needs it, so choosing it no longer means a trip
+ * to 我的 and back. Only the intake is sent, on the profile's version; the rest of the background is
+ * untouched. A refusal because the profile changed elsewhere is settled like any single saved field:
+ * the same value is taken, another field's change is sent again, and an intake changed elsewhere is
+ * shown and left for the applicant to choose again.
+ */
+function IntakePicker({ profile, onSaved, report }: { profile: Profile; onSaved: (profile: Profile) => void; report: (message: string) => void }) {
+  const [pending, setPending] = useState<string | null>(null);
+  // The picker moves (from the undated note to beside the title) when an intake arrives, so what went
+  // wrong is said by the page, not here.
+  const setMessage = report;
+  const current = profile.intake ?? "";
+  // An intake saved before the options changed is still listed, so the select can show it.
+  const options = current && !INTAKE_OPTIONS.includes(current) ? [current, ...INTAKE_OPTIONS] : INTAKE_OPTIONS;
+
+  async function choose(intake: string, base: Profile = profile) {
+    setPending(intake);
+    setMessage("");
+    try {
+      onSaved(toProfile(await patchProfile({ intake }, base.version ?? 0)));
+    } catch (error) {
+      if (error instanceof StaleVersionError) {
+        const server = toProfile(error.current as Partial<Profile>);
+        const answer = resolveStaleField(current, intake, server.intake ?? "");
+        if (answer === "adopt") onSaved(server);
+        else if (answer === "retry") return await choose(intake, server);
+        else {
+          onSaved(server);
+          const anchor = intakeAnchor(server.intake);
+          setMessage(`入学时间已在其他设备上改成${anchor ? intakeWords(anchor) : "别的时间"}，这次没有改。`);
+        }
+      } else setMessage("入学时间没有保存，请稍后再试。");
+    } finally {
+      setPending(null);
+    }
+  }
+
+  return (
+    <div className="rm-intake">
+      <label className="sr-only" htmlFor="rm-intake">入学时间</label>
+      <select
+        className="select"
+        id="rm-intake"
+        value={pending ?? current}
+        disabled={pending !== null}
+        onChange={(event) => event.target.value && void choose(event.target.value)}
+      >
+        {!current && <option value="">选择入学时间</option>}
+        {options.map((option) => {
+          const anchor = intakeAnchor(option);
+          return (
+            <option key={option} value={option}>
+              {anchor ? intakeWords(anchor) : option}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+}
+
+/**
  * The chosen stretch. It starts as the current one and is then pinned: ticking the last open step of
  * the stretch on screen moves "current" on, and the list must not leave under the applicant's hands.
  * A choice that no longer exists falls back to the current stretch.
@@ -119,36 +183,27 @@ function Roadmap() {
   const map = useMemo(() => (timeline ? roadmapMap(timeline, overview.rows, today) : null), [timeline, overview, today]);
   const [stretch, choose] = useStretch(timeline);
   const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
+  const [intakeNotice, setIntakeNotice] = useState("");
 
   return (
     <Frame
       finding={timeline ? headline(timeline) : profile.error && !profile.data ? "没能读取你的申请背景。" : <Bar width="16em" />}
       note={timeline && <TightNote timeline={timeline} today={today} />}
-      aside={
-        anchor && (
-          <div className="toolbar rm-intake">
-            <span className="muted">{intakeWords(anchor)}</span>
-            <Link className="btn btn-secondary" href="/me">
-              改入学时间
-            </Link>
-          </div>
-        )
-      }
+      aside={anchor && profile.data && <IntakePicker profile={profile.data} onSaved={profile.set} report={setIntakeNotice} />}
     >
       {profile.error && !profile.data && <Notice error>没有读到你的背景（{profile.error}）。</Notice>}
       {roadmap.notice && <Notice>{roadmap.notice}</Notice>}
       {roadmap.syncError && <Notice error>{roadmap.syncError}</Notice>}
+      {intakeNotice && <Notice error>{intakeNotice}</Notice>}
       {!map && !profile.error && <RoadmapBody lines={recordsKnown ? overview.rows.length : null} />}
       {map && timeline && (
         <>
           {!map.dated && (
             <div className="rm-undated" role="note">
               <p>
-                <b>还没有入学时间。</b>下面只按先后顺序排，没有日期。填上以后，每一段会按入学时间倒推出建议的时间，各项目的截止日期也会画上来。
+                <b>还没有入学时间。</b>下面只按先后顺序排，没有日期。选好以后，每一段会按入学时间倒推出建议的时间，各项目的截止日期也会画上来。
               </p>
-              <Link className="btn btn-primary" href="/me">
-                填入学时间
-              </Link>
+              {profile.data && <IntakePicker profile={profile.data} onSaved={profile.set} report={setIntakeNotice} />}
             </div>
           )}
           <MapBlock map={map} today={today} intake={anchor ? intakeWords(anchor) : null} selected={stretch?.id ?? null} onSelect={choose} picked={records.selected} />
@@ -257,7 +312,7 @@ function MapBlock({
       {map.dated && (
         <p className="map-note">
           每一段的时间是按入学时间倒推的系统建议，不是官方日期。
-          {moved && "过了原来的建议时间还没做完的段，系统从今天起重新排了。"}
+          {moved && "没做完的段过了原来的建议时间，或者排不进最早的截止日期，系统从今天起重新排了。"}
           站只表示先后，没有各自的日期。
         </p>
       )}

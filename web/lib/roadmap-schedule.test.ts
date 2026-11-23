@@ -226,3 +226,68 @@ test("with fewer days to the intake than open steps, the intake cuts even a day 
   assert.equal(schedule.phases[SUBMISSION].end, INTAKE);
   assert.ok(schedule.phases.every((phase) => phase.end <= INTAKE));
 });
+
+test("with nothing late, a deadline before the plan's end of applying still bounds every open phase before applying", () => {
+  // 锁定申请组合 and 学术与身份材料 are done, so no phase is past its window; the deadline is 15 January.
+  // The 180 days the plan gives the 13 open steps do not fit into the 53 days left: tight.
+  const bound: ScheduleBound = { date: "2027-01-15", school: "格拉斯哥大学", checked: false };
+  const schedule = schedulePhases(plan([0, 0]), INTAKE, "2026-11-23", bound, SUBMISSION);
+  assert.equal(schedule.moved, true);
+  assert.equal(schedule.phases[2].start, "2026-11-23");
+  assert.equal(schedule.phases[SUBMISSION].end, "2027-01-15");
+  assertContinuous(schedule, 3);
+  assert.equal(schedule.tight.length, 1);
+  const [tight] = schedule.tight;
+  assert.deepEqual(
+    [tight.group, tight.basis, tight.from, tight.until, tight.days, tight.open, tight.planned, tight.phases],
+    ["apply", "deadline", "2026-11-23", "2027-01-15", 53, 13, 180, [2, 3, 4]],
+  );
+  // The finished phases keep their windows; the follow-up starts at the deadline, not in May.
+  assert.deepEqual(windows(schedule).slice(0, 2), [["2026-08-19", "2026-10-18"], ["2026-10-18", "2026-11-17"]]);
+  assert.equal(schedule.phases[5].start, "2027-01-15");
+});
+
+test("ticking the last late step does not make a deadline that still does not fit stop being tight", () => {
+  const bound: ScheduleBound = { date: "2026-12-17", school: "格拉斯哥大学", checked: false };
+  // One step of 学术与身份材料 open (late), then none.
+  const before = schedulePhases(plan([0, 1]), INTAKE, "2026-11-23", bound, SUBMISSION);
+  const after = schedulePhases(plan([0, 0]), INTAKE, "2026-11-23", bound, SUBMISSION);
+  assert.equal(before.tight.length, 1);
+  assert.equal(after.tight.length, 1);
+  assert.equal(after.tight[0].basis, "deadline");
+  assert.equal(after.phases[SUBMISSION].end, "2026-12-17");
+  assert.ok(after.tight[0].days <= before.tight[0].days);
+});
+
+test("with nothing late, a deadline before the plan's end of applying that leaves enough time bounds without being tight", () => {
+  // 129 days for the 180 planned is more than half.
+  const schedule = schedulePhases(plan([0, 0]), INTAKE, "2026-11-23", { date: "2027-04-01", school: "x", checked: true }, SUBMISSION);
+  assert.equal(schedule.phases[SUBMISSION].end, "2027-04-01");
+  assert.deepEqual(schedule.tight, []);
+  assert.ok(schedule.phases.slice(2, 5).every((phase) => phase.moved));
+});
+
+test("with nothing late, a deadline after every open phase before applying changes nothing", () => {
+  // Only 语言准备 is open and it ends 17 December, before the 1 March deadline; applying is all done.
+  const open = schedulePhases(plan([0, 0, 2, 0, 0]), INTAKE, "2026-11-23", { date: "2027-03-01", school: "x", checked: true }, SUBMISSION);
+  assert.deepEqual(windows(open), WINDOWS.map(([start, end]) => [start, end]));
+  assert.equal(open.moved, false);
+  // And a deadline after the plan's end of applying never moves anything.
+  const later = schedulePhases(plan([0, 0]), INTAKE, "2026-11-23", { date: "2027-06-01", school: "x", checked: true }, SUBMISSION);
+  assert.deepEqual(windows(later), WINDOWS.map(([start, end]) => [start, end]));
+  assert.deepEqual(later.tight, []);
+});
+
+test("a phase finished early whose window runs past today ends today, so the re-laid phases do not overlap it", () => {
+  const bound: ScheduleBound = { date: "2027-01-15", school: "x", checked: true };
+  // 语言准备 (17 November to 17 December) is done on 23 November; the deadline cuts into what follows.
+  const schedule = schedulePhases(plan([0, 0, 0]), INTAKE, "2026-11-23", bound, SUBMISSION);
+  assert.deepEqual(windows(schedule)[2], ["2026-11-17", "2026-11-23"]);
+  assert.equal(schedule.phases[3].start, "2026-11-23");
+  assertContinuous(schedule, 3);
+  // Today 10 November: 学术与身份材料 (18 October to 17 November) is done, the next phase starts today.
+  const early = schedulePhases(plan([0, 0]), INTAKE, "2026-11-10", { date: "2026-12-20", school: "x", checked: true }, SUBMISSION);
+  assert.deepEqual(windows(early)[1], ["2026-10-18", "2026-11-10"]);
+  assert.equal(early.phases[2].start, "2026-11-10");
+  assert.equal(early.phases[SUBMISSION].end, "2026-12-20");
+});

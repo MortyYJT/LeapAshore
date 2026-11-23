@@ -14,7 +14,7 @@ import { beijingToday } from "@/lib/deadlines";
 import { demoProgramHref } from "@/lib/demo";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
-import { nextSentence, overviewOf, sentenceDate, type NextAction, type Overview } from "@/lib/overview";
+import { nextSentence, overviewOf, programOf, sentenceDate, whoOf, type NextAction, type Overview, type OverviewRow } from "@/lib/overview";
 import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf } from "@/lib/roadmap-timeline";
 import { StaleVersionError, resolveStaleField } from "@/lib/sync-conflict";
@@ -173,7 +173,7 @@ function DemoNext({ actions, onSignIn }: { actions: NextAction[]; onSignIn: () =
           <li className={`line-${row.line}`} key={record.id}>
             <div className="who">
               <span className="bullet">{row.code}</span>
-              <span>{record.school}</span>
+              <Who row={row} />
             </div>
             <p>{nextSentence(action)}</p>
             {kind === "confirm" ? (
@@ -312,17 +312,17 @@ function Finding({ model }: { model: Overview }) {
       {nearest &&
         (nearest.days === 0 ? (
           <>
-            最近的是{nearest.record.school}，<b>今天截止</b>。
+            最近的是{whoOf(nearest)}，<b>今天截止</b>。
           </>
         ) : (
           <>
-            最近的是{nearest.record.school}，{sentenceDate(nearest.record.deadline!, nearest.days!)}截止，<b>还有 {nearest.days} 天</b>。
+            最近的是{whoOf(nearest)}，{sentenceDate(nearest.record.deadline!, nearest.days!)}截止，<b>还有 {nearest.days} 天</b>。
           </>
         ))}
       {unknown.length > 0 &&
         (unknown.length > 2
           ? `${unknown.length} 个申请的截止日期还没确认。`
-          : `${unknown.map((row) => row.record.school).join("、")}的截止日期还没确认。`)}
+          : `${unknown.map(whoOf).join("、")}的截止日期还没确认。`)}
       {closed > 0 && `另有 ${closed} 个已有结果或已放弃，没有列出。`}
     </>
   );
@@ -330,6 +330,17 @@ function Finding({ model }: { model: Overview }) {
 
 function deadlineQuestion(record: ApplicationRecord): string {
   return `${record.school} ${record.name} 的申请截止日期是哪天？`;
+}
+
+/** The school, and under it the program when another application on screen is at the same school. */
+function Who({ row }: { row: OverviewRow }) {
+  if (!row.shared) return <span>{row.record.school}</span>;
+  return (
+    <span className="who-shared">
+      <span>{row.record.school}</span>
+      <span className="program">{programOf(row.record)}</span>
+    </span>
+  );
 }
 
 function statusLabel(status: string): string {
@@ -386,7 +397,7 @@ function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (re
           <li className={`line-${row.line}`} key={record.id}>
             <div className="who">
               <span className="bullet">{row.code}</span>
-              <span>{record.school}</span>
+              <Who row={row} />
             </div>
             <p>{nextSentence(action)}</p>
             {kind === "confirm" ? (

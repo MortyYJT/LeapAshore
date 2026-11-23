@@ -7,7 +7,7 @@ import { Dock } from "@/components/advisor/Dock";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { beijingToday } from "@/lib/deadlines";
 import { isNavCurrent, routeShape } from "@/lib/navigation";
-import { overviewOf, type OverviewRow } from "@/lib/overview";
+import { overviewOf, programOf, type OverviewRow } from "@/lib/overview";
 
 import { AddProgramToast } from "./AddProgram";
 import { useApplicationRecords } from "./ApplicationRecords";
@@ -336,7 +336,15 @@ function RailLegend() {
                 }}
               >
                 <span className="bullet">{row.code}</span>
-                <span className="name">{row.record.school}</span>
+                {row.shared ? (
+                  // Two applications at one school: the program on a second line says which this is.
+                  <span className="name is-shared">
+                    <span>{row.record.school}</span>
+                    <span className="program">{programOf(row.record)}</span>
+                  </span>
+                ) : (
+                  <span className="name">{row.record.school}</span>
+                )}
                 <Remaining row={row} />
               </button>
             </li>

@@ -1022,6 +1022,18 @@ async function returnVisitPass(browser, errors, email) {
     await manualCard.getByText(/待自行核对/).waitFor();
     check("我的申请：修改轮次后要求重新核对", await manualCard.getByText(/待自行核对/).count()>0);
     check("材料清单：两项都勾上后显示都勾了", (await manualCard.getByText("材料 2/2，都勾了", {exact:true}).count()) === 1);
+    // The status is changed on the card itself, one choice instead of the form; only the status is sent.
+    const statusPicker = manualCard.getByRole("combobox", {name:/^申请状态：/});
+    const statusBefore = await statusPicker.inputValue();
+    const statusNext = statusBefore === "applying" ? "considering" : "applying";
+    const statusSaved = page.waitForResponse((r) => r.url().includes("/api/application-records/") && r.request().method() === "PATCH");
+    await statusPicker.selectOption(statusNext);
+    const statusBody = (await statusSaved).request().postDataJSON();
+    const statusRecord = await page.evaluate(async () => (await (await fetch("/api/application-records")).json()).find((r) => r.school === "示例大学（演示账号）"));
+    check("我的申请：在卡片上直接改状态，只发状态，其余不变", statusRecord.status === statusNext && Object.keys(statusBody).sort().join() === "baseVersion,status" && statusRecord.round === "第二轮", { statusBody, status: statusRecord.status });
+    const statusBack = page.waitForResponse((r) => r.url().includes("/api/application-records/") && r.request().method() === "PATCH");
+    await statusPicker.selectOption(statusBefore);
+    await statusBack;
     // A catalogue program whose page has not been read for materials says so, and offers the own list.
     // Which program that is comes from the records, not from the order of the cards: once materials
     // are extracted for some programs, the first catalogue card may be one that has them.
@@ -1595,6 +1607,21 @@ async function returnVisitPass(browser, errors, email) {
     check("学校库：没有咨询按钮", (await page.getByText(/在线咨询|联系顾问/).count()) === 0);
     await layout(page, "学校库");
     await screenshot(page, "schools");
+    // A search for a subject lists the programs whose name holds it, each with its school and 加入申请.
+    await page.goto(`${BASE}/schools?q=${encodeURIComponent("Data Science")}`);
+    await settle(page);
+    const hitRows = page.locator(".program-hits tbody tr");
+    const hitCount = await hitRows.count();
+    const hitNames = await page.locator(".program-hits tbody tr a.l1").allInnerTexts();
+    check("学校库：搜项目名列出各校的项目，每行有学校和加入申请", hitCount > 0
+      && hitNames.every((name) => /data science/i.test(name))
+      && (await page.locator(".program-hits tbody tr .l2 a[href^='/schools/']").count()) === hitCount
+      && (await page.locator(".program-hits .program-add-cell").filter({ has: page.locator("button, a") }).count()) === hitCount
+      && (await page.locator("table.stack:not(.program-table)").count()) === 0, { hitCount, first: hitNames.slice(0, 3) });
+    await layout(page, "学校库：项目搜索");
+    await page.goto(`${BASE}/schools?q=Imperial`);
+    await settle(page);
+    check("学校库：搜校名只列学校，不把这所学校的项目当成项目匹配", (await page.locator(".program-hits").count()) === 0 && (await page.getByRole("link", {name:/帝国理工/}).count()) > 0);
     await page.goto(`${BASE}/schools/00008C`);
     await settle(page);
     check("学校详情：学校库链接标为当前页", (await page.locator('nav[aria-label="主导航"] a[aria-current="page"]').allInnerTexts()).join() === "学校库");
@@ -1810,7 +1837,7 @@ async function returnVisitPass(browser, errors, email) {
 
     await b.goto(`${BASE}/roadmap`);
     await b.locator(".rm-undated").waitFor({ timeout: 15000 }).catch(() => {});
-    check("路线图：没有入学时间时不画时间轴和日期，只按先后顺序排，并给出去填的按钮", (await b.locator('.rm-undated a[href="/me"]').count()) === 1
+    check("路线图：没有入学时间时不画时间轴和日期，只按先后顺序排，并在这里就能选入学时间", (await b.locator(".rm-undated select#rm-intake").count()) === 1
       && (await b.locator(".rm-axis, .rm-lane, .rm-under, .rm-lbl .when").count()) === 0 && (await b.locator(".rm-wide .rm-step").count()) > 0);
     await layout(b, "路线图：没有入学时间");
     await b.goto(`${BASE}/tiers`);

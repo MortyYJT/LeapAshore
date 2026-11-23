@@ -9,6 +9,7 @@
 
 import type { CollectedDeadline } from "./deadlines.ts";
 import { institutionSlug, type MasterProgram, type OverseasInstitution } from "./prototype-library.ts";
+import type { Program } from "./types.ts";
 
 /** One school row as `GET /api/universities` serves it. */
 export interface UniversityRow {
@@ -55,6 +56,40 @@ export function universityIdsFor(
   rows: UniversityRow[],
 ): string[] {
   return rows.filter((row) => sameSchool(school, row)).map((row) => row.id);
+}
+
+/**
+ * The school library's own search, widened to programs: `programs` is what `GET /api/programs?q=`
+ * served for `q`, which matches a program's English or Chinese name or its school's name. Only the
+ * program matches are kept (a program served because its school is called that is the school's row
+ * in the list, not a program hit), only at schools in `schools` (the list as filtered by region and
+ * QS band), in the list's order and then by name, each with the school it belongs to.
+ */
+export function programsAcrossSchools<P extends Pick<Program, "name" | "universityId">, S extends Pick<OverseasInstitution, "name_zh" | "name_en">>(
+  programs: P[],
+  q: string,
+  schools: S[],
+  rows: UniversityRow[],
+): { program: P; school: S }[] {
+  const term = q.trim().toLowerCase();
+  if (!term) return [];
+  const owner = new Map<string, { school: S; order: number; named: boolean }>();
+  schools.forEach((school, order) => {
+    for (const row of rows) {
+      if (owner.has(row.id) || !sameSchool(school, row)) continue;
+      const named = [row.name, row.nameEn].some((name) => (name ?? "").toLowerCase().includes(term));
+      owner.set(row.id, { school, order, named });
+    }
+  });
+  const hits: { program: P; school: S; order: number }[] = [];
+  for (const program of programs) {
+    const at = program.universityId ? owner.get(program.universityId) : undefined;
+    if (!at) continue;
+    const byName = (program.name ?? "").toLowerCase().includes(term);
+    if (byName || !at.named) hits.push({ program, school: at.school, order: at.order });
+  }
+  hits.sort((a, b) => a.order - b.order || (a.program.name ?? "").localeCompare(b.program.name ?? ""));
+  return hits.map(({ program, school }) => ({ program, school }));
 }
 
 /** The library slug of the school a catalogue row belongs to, or null when the library does not list it. */

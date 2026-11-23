@@ -395,6 +395,11 @@ tbody tr:hover { background: var(--hover); }
 .rows > .row { display: grid; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
 .rows > .row:last-child { border-bottom: 0; }
 .rows > .row:hover { background: var(--hover); }
+/* The library search's program matches, under the schools when some school is named so too. */
+.program-hits.after-schools, .program-hits-failed { border-top: 1px solid var(--line); }
+.program-hits-failed { margin: 0; }
+.program-hits .l2 a { color: inherit; text-decoration: none; }
+.program-hits .l2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pager { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 20px; border-top: 1px solid var(--line); flex-wrap: wrap; }
 .kv { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px 16px; margin: 0; }
 .kv dt { color: var(--ink-3); }
@@ -453,6 +458,10 @@ tbody tr:hover { background: var(--hover); }
 .application-list { display: grid; gap: 12px; }
 .application-card { padding: 16px 20px; }
 .application-card-heading h2 { margin-top: 2px; }
+/* The status is changed on the card; the select is as wide as its longest label. */
+.status-picker { display: grid; justify-items: end; gap: 8px; max-width: 100%; }
+.status-picker .select { width: auto; height: 32px; padding-left: 10px; font-size: var(--fs-13); }
+.status-picker .notice { justify-self: stretch; }
 .application-card-details { margin-top: 12px; font-size: var(--fs-13); }
 .application-card-details a { text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
 .application-card-actions { justify-content: flex-start; margin-top: 12px; }

@@ -17,10 +17,13 @@ export function ProgramTable({
   programs,
   columns = ALL_COLUMNS,
   empty,
+  schoolOf,
 }: {
   programs: Program[];
   columns?: { duration: boolean; tuition: boolean; requirements: boolean };
   empty: React.ReactNode;
+  /** Programs of several schools (the library's search): each row names its school under the program. */
+  schoolOf?: (program: Program) => { name: string; href: string } | null;
 }) {
   const span = 3 + Number(columns.duration) + Number(columns.tuition) + Number(columns.requirements);
   return (
@@ -47,6 +50,7 @@ export function ProgramTable({
         )}
         {programs.map((p) => {
           const facts = cricosFacts(p.slug, masterPrograms);
+          const school = schoolOf?.(p) ?? null;
           return (
             <tr key={p.slug}>
               <td className="wide">
@@ -54,9 +58,16 @@ export function ProgramTable({
                   <Link className="l1" href={`/programs/${encodeURIComponent(p.slug)}`} prefetch={false}>
                     {p.name ?? "未知"}
                   </Link>
+                  {school && (
+                    <div className="l2">
+                      <Link href={school.href} prefetch={false}>
+                        {school.name}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </td>
-              <td className="muted hide-phone">{p.field ?? "未分类"}</td>
+              <td className="muted hide-phone nowrap">{p.field ?? "未分类"}</td>
               {columns.duration && (
                 <td className="num hide-phone nowrap">
                   {facts?.weeks ? (

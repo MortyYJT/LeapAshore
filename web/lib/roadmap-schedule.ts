@@ -4,9 +4,10 @@
 // before it and ends where the next one starts. That plan is what the task rows store, and it stays
 // as it is. This module only decides what the page shows on a given day:
 //
-// - While no unfinished phase's window has ended, the plan is shown unchanged.
-// - Once one has (its end is on or before today, Beijing date), the unfinished phases are laid out
-//   again from today, in order. A phase asks for the days the plan gave it, times the share of its
+// - While no unfinished phase's window has ended and no open phase before applying is planned to end
+//   after the earliest upcoming deadline, the plan is shown unchanged.
+// - Once one has (its end is on or before today, Beijing date), or a deadline cuts into an open phase
+//   before applying, the unfinished phases are laid out again from today, in order. A phase asks for the days the plan gave it, times the share of its
 //   steps still open; a phase with nothing open asks for none.
 // - Phases before applying (up to and including the submission phase) must end by the earlier of
 //   the earliest upcoming deadline among the applicant's open applications and where the plan ended
@@ -26,7 +27,7 @@
 // No date here is invented: every boundary is computed from today, the intake the applicant chose,
 // the plan derived from it, and a deadline from the applicant's own application records.
 
-import type { OverviewRow } from "./overview.ts";
+import { whoOf, type OverviewRow } from "./overview.ts";
 
 /** One phase of the back-planned plan. */
 export interface PlannedPhase {
@@ -41,6 +42,7 @@ export interface PlannedPhase {
 /** The earliest deadline the pre-application phases must finish by, from an application record. */
 export interface ScheduleBound {
   date: string;
+  /** Who it belongs to, as a sentence names it: the school, with the program when it is not alone there. */
   school: string;
   /** Whether the applicant has checked the date against the official page (otherwise 待核对). */
   checked: boolean;
@@ -106,7 +108,7 @@ export function scheduleBound(rows: readonly OverviewRow[]): ScheduleBound | nul
   const next = rows
     .filter((row) => !row.sent && row.days !== null && row.days >= 0 && row.record.deadline)
     .sort((a, b) => a.days! - b.days! || (a.record.id < b.record.id ? -1 : 1))[0];
-  return next ? { date: next.record.deadline!.slice(0, 10), school: next.record.school, checked: next.record.checkedAt !== null } : null;
+  return next ? { date: next.record.deadline!.slice(0, 10), school: whoOf(next), checked: next.record.checkedAt !== null } : null;
 }
 
 /**
@@ -127,17 +129,33 @@ export function schedulePhases(plan: readonly PlannedPhase[], intake: string, to
 
   const done = plan.map((phase) => phase.open === 0);
   const late = plan.map((phase, index) => !done[index] && dayOf(phase.end) <= now);
-  const first = late.indexOf(true);
-  if (first < 0) return unchanged(false);
-
   const plannedStart = plan.map((phase) => dayOf(phase.start));
   const plannedEnd = plan.map((phase) => dayOf(phase.end));
+  const last = plan.length - 1;
+  const applyEnd = Math.min(applyLast, last);
+  const deadline = bound && dayOf(bound.date) >= now ? dayOf(bound.date) : null;
+  let first = late.indexOf(true);
+  if (first < 0 && deadline !== null) {
+    // Nothing is late, but an open phase before applying is planned to end after the deadline: the
+    // phases before applying are laid out from today all the same, so they are fitted to it.
+    const open = plan.findIndex((_, index) => index <= applyEnd && !done[index]);
+    const cut = plan.some((_, index) => index <= applyEnd && !done[index] && plannedEnd[index] > deadline);
+    if (open >= 0 && cut) first = open;
+  }
+  if (first < 0) return unchanged(false);
+
   const asks = plan.map((phase, index) => (phase.total === 0 ? 0 : ((plannedEnd[index] - plannedStart[index]) * phase.open) / phase.total));
   const starts = [...plannedStart];
   const ends = [...plannedEnd];
+  // A phase before the first re-laid one that was finished early may be planned to run past today
+  // (only when the deadline, not lateness, set this off): it ends today, where the re-laid ones start.
+  for (let i = 0; i < first; i++) {
+    if (ends[i] > now) {
+      ends[i] = now;
+      starts[i] = Math.min(starts[i], now);
+    }
+  }
   const tight: Tight[] = [];
-  const last = plan.length - 1;
-  const applyEnd = Math.min(applyLast, last);
 
   /** Lay `from..to` out from `cursor`; they must end by `limit`. Returns where the group ends. */
   function lay(from: number, to: number, cursor: number, limit: number, group: Tight["group"], basis: Tight["basis"]): number {
@@ -197,7 +215,6 @@ export function schedulePhases(plan: readonly PlannedPhase[], intake: string, to
     // The plan's own end of applying, unless a deadline comes first; once that end has passed, the
     // deadline alone; never past the intake.
     const planned = plannedEnd[applyEnd];
-    const deadline = bound && dayOf(bound.date) >= now ? dayOf(bound.date) : null;
     const limit = Math.min(deadline ?? planned, planned > now ? planned : Infinity, end);
     const basis = deadline !== null && limit === deadline ? "deadline" : limit === planned ? "plan" : "intake";
     cursor = lay(first, applyEnd, now, limit, "apply", basis);

@@ -173,6 +173,9 @@
 }
 .next .who { display: flex; align-items: center; gap: 10px; min-width: 0; font-weight: 600; }
 .next .who span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.next .who-shared { display: grid; min-width: 0; line-height: 1.35; }
+.next .who-shared > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.next .who-shared .program { font-size: var(--fs-12); font-weight: 400; color: var(--ink-2); }
 .next p { margin: 0; color: var(--ink-2); }
 .next .notice { grid-column: 1 / -1; margin-top: 8px; }
 .next > li.is-plain { display: block; padding: 14px 0; color: var(--ink-2); }

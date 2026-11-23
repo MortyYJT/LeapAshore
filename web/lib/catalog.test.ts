@@ -9,6 +9,7 @@ import {
   filterSchoolPrograms,
   missingRequirements,
   programColumns,
+  programsAcrossSchools,
   schoolSlugForUniversity,
   statesARequirement,
   universityIdsFor,
@@ -139,4 +140,38 @@ test("a page number is clamped to the pages there are", () => {
   assert.deepEqual(clampPage("1e400", 100, 30), { page: 1, pages: 4 });
   assert.deepEqual(clampPage(undefined, 0, 30), { page: 1, pages: 1 });
   assert.deepEqual(clampPage("5", 0, 30), { page: 1, pages: 1 });
+});
+
+test("a program search across the library keeps program-name matches, in the list's school order", () => {
+  const rows = [
+    row({ id: "glasgow", name: "格拉斯哥大学", nameEn: "University of Glasgow", country: "英国" }),
+    row({ id: "ucl", name: "伦敦大学学院", nameEn: "UCL", country: "英国" }),
+    row({ id: "unlisted", name: "不在学校库里的学校", nameEn: "Nowhere University", country: "英国" }),
+  ];
+  // The list's order (QS): UCL before Glasgow.
+  const library = [
+    { name_zh: "伦敦大学学院", name_en: "UCL", qs_order: 9 },
+    { name_zh: "格拉斯哥大学", name_en: "University of Glasgow", qs_order: 80 },
+  ];
+  const program = (slug: string, name: string, universityId: string) =>
+    ({ slug, name, universityId });
+  // What the catalogue serves for "data science": names in English or Chinese, or the school's name.
+  const served = [
+    program("g-ds", "Data Science & AI [MSc]", "glasgow"),
+    program("u-ds", "Data Science MSc", "ucl"),
+    // Matched by the catalogue on its Chinese name only (the English one does not say it): kept.
+    program("u-zh", "Urban Analytics MSc", "ucl"),
+    program("x-ds", "Data Science MSc", "unlisted"),
+  ];
+  const hits = programsAcrossSchools(served, "data science", library, rows);
+  assert.deepEqual(hits.map((hit) => [hit.program.slug, hit.school.name_zh]), [
+    ["u-ds", "伦敦大学学院"],
+    ["u-zh", "伦敦大学学院"],
+    ["g-ds", "格拉斯哥大学"],
+  ]);
+  // What it serves for "Glasgow": every program of the school, by the school's name. None is a program match.
+  const glasgow = [program("g-ds", "Data Science & AI [MSc]", "glasgow"), program("g-cs", "Computing Science [MSc]", "glasgow")];
+  assert.deepEqual(programsAcrossSchools(glasgow, "Glasgow", library, rows), []);
+  // A school outside the list (another region chosen) is left out.
+  assert.deepEqual(programsAcrossSchools(served, "data science", library.slice(0, 1), rows).map((hit) => hit.program.slug), ["u-ds", "u-zh"]);
 });

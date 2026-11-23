@@ -9,9 +9,11 @@ import { useNavigation } from "@/components/shell/Navigation";
  * while the list is on screen) keeps the rows on screen until the new ones arrive; meanwhile the
  * button says 筛选中… and the rows step back (app/motion.css), so it is clear they are about to change.
  */
-export function SchoolFilters({ controls, count, children }: {
+export function SchoolFilters({ controls, count, programs = null, children }: {
   controls: ReactNode;
   count: number;
+  /** Programs whose name holds the search, when there was one. */
+  programs?: number | null;
   children: ReactNode;
 }) {
   const { push, refreshing } = useNavigation();
@@ -35,7 +37,9 @@ export function SchoolFilters({ controls, count, children }: {
             {refreshing && <span className="school-filter-pending" role="status">筛选中…</span>}
           </button>
         </div>
-        <span className="muted num" aria-live="polite">{count} 所</span>
+        <span className="muted num" aria-live="polite">
+          {count} 所{programs ? ` · ${programs} 个项目` : ""}
+        </span>
       </form>
       <div className="school-results" aria-busy={refreshing}>{children}</div>
     </section>

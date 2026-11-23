@@ -18,7 +18,7 @@ import {
 } from "@/lib/application-records";
 import { MaterialChecklist } from "@/components/materials/MaterialChecklist";
 import { materialsSummary, sameCustom, tickChanges, type CustomMaterial } from "@/lib/materials";
-import { StaleVersionError, changedFields, newIdempotencyKey } from "@/lib/sync-conflict";
+import { StaleVersionError, changedFields, newIdempotencyKey, resolveStaleField } from "@/lib/sync-conflict";
 export default function ApplicationsPage() {
   return (
     <main className="page personal-applications">
@@ -174,10 +174,7 @@ function Applications() {
                     </div>
                     <h2>{record.name}</h2>
                   </div>
-                  <span className="pill pill-neutral">
-                    {RECORD_STATUSES.find(([v]) => v === record.status)?.[1] ??
-                      record.status}
-                  </span>
+                  <StatusPicker record={record} />
                 </div>
                 <div className="application-card-details">
                   <div>
@@ -279,6 +276,77 @@ function Applications() {
     </>
   );
 }
+function statusLabel(status: string): string {
+  return RECORD_STATUSES.find(([value]) => value === status)?.[1] ?? status;
+}
+
+/**
+ * The card's status, changed in place: the field an applicant changes most (考虑中 → 准备中 → 已提交 →
+ * the result) no longer needs the whole form. Only the status is sent, on the card's version; a refusal
+ * because the record changed elsewhere is settled the way the overview's 标记为已提交 settles it.
+ */
+function StatusPicker({ record }: { record: ApplicationRecord }) {
+  const records = useApplicationRecords();
+  const [pending, setPending] = useState<string | null>(null);
+  const [failed, setFailed] = useState("");
+  const [conflict, setConflict] = useState<{ wanted: string; current: ApplicationRecord } | null>(null);
+
+  function put(saved: ApplicationRecord) {
+    records.change((list) => list.map((r) => (r.id === saved.id ? saved : r)));
+  }
+
+  async function choose(wanted: string, base: ApplicationRecord = record) {
+    setPending(wanted);
+    setFailed("");
+    setConflict(null);
+    try {
+      const saved = await writeApplicationRecord(record.id, { status: wanted, baseVersion: base.version });
+      if (saved) put(saved);
+    } catch (error) {
+      if (error instanceof StaleVersionError) {
+        const current = error.current as ApplicationRecord;
+        const answer = resolveStaleField(record.status, wanted, current.status);
+        if (answer === "adopt") put(current);
+        else if (answer === "retry") return await choose(wanted, current);
+        else setConflict({ wanted, current });
+      } else setFailed(error instanceof Error ? error.message : "保存失败");
+    } finally {
+      setPending(null);
+    }
+  }
+
+  return (
+    <div className="status-picker">
+      <select
+        className="select"
+        aria-label={`申请状态：${record.school} ${record.name}`}
+        value={pending ?? record.status}
+        disabled={pending !== null}
+        onChange={(event) => void choose(event.target.value)}
+      >
+        {RECORD_STATUSES.map(([value, label]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+      {failed && <Notice error>状态没有保存：{failed}</Notice>}
+      {conflict && (
+        <ConflictNotice
+          busy={pending !== null}
+          onKeepMine={() => void choose(conflict.wanted, conflict.current)}
+          onTakeTheirs={() => {
+            setConflict(null);
+            put(conflict.current);
+          }}
+        >
+          这个申请已在其他设备上改为「{statusLabel(conflict.current.status)}」，这次没有改成「{statusLabel(conflict.wanted)}」。
+        </ConflictNotice>
+      )}
+    </div>
+  );
+}
+
 function ApplicationForm({
   record,
   onClose,

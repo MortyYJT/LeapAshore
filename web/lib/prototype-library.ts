@@ -30,12 +30,13 @@ function qsSelections(value?: string) {
 export function schoolQuery(query: Record<string, string | string[] | undefined>): Query {
   const single = singleQuery(query);
   const qs = qsSelections(Array.isArray(query.qs) ? query.qs.join(',') : query.qs);
-  return {q: single.q?.trim() || undefined, region: schoolRegions.includes(single.region || '') ? single.region : undefined, qs: qs.join(',') || undefined, page: single.page};
+  return {q: single.q?.trim() || undefined, region: schoolRegions.includes(single.region || '') ? single.region : undefined, qs: qs.join(',') || undefined, page: single.page, ...(single.pp ? {pp: single.pp} : {})};
 }
 export function schoolListHref(query: Query, changes: Query = {}) {
   const next: Query = {...query, page: undefined, ...changes};
   const params = new URLSearchParams();
-  for (const key of ['q', 'region', 'page']) if (next[key]) params.set(key, next[key]!);
+  // `pp` is the page of the program matches a search lists under the schools.
+  for (const key of ['q', 'region', 'page', 'pp']) if (next[key]) params.set(key, next[key]!);
   for (const qs of qsSelections(next.qs)) params.append('qs', qs);
   return `/schools${params.size ? `?${params}` : ''}`;
 }

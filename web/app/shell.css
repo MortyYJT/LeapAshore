@@ -78,6 +78,12 @@
 .rail-legend button:is(:hover, [aria-pressed="true"]) .left:not(.is-soon) { color: var(--ink-2); }
 .rail-legend button.is-dimmed { opacity: 0.6; }
 .rail-legend .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A school with two applications: the row grows to two lines, the program under the school. */
+.rail-legend button:has(.name.is-shared) { height: auto; min-height: 36px; padding-block: 5px; }
+.rail-legend .name.is-shared { display: grid; line-height: 1.3; }
+.rail-legend .name.is-shared > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rail-legend .name .program { font-size: var(--fs-12); color: var(--ink-3); }
+.rail-legend button:is(:hover, [aria-pressed="true"]) .program { color: var(--ink-2); }
 .rail-legend .left { font-size: var(--fs-12); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rail-legend .left b { margin-right: 2px; font: 700 var(--fs-14)/1 var(--font-num); color: var(--ink); }
 .rail-legend .left.is-soon, .rail-legend .left.is-soon b { color: var(--urgent); }
