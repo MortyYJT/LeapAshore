@@ -1,12 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 
 import { fetchRoadmapDefinition, patchRoadmapTask, replaceRoadmapTasks } from "../api";
 import { buildRoadmap } from "../roadmap";
 import { NO_DEFINITION_READ, readRoadmapDefinition, type DefinitionRead } from "../roadmap-definition";
 import { toTaskRows, type ServedTask } from "../roadmap-source";
-import { alreadyStored, toReplacePayload, type TaskRow } from "../roadmap-sync";
+import { alreadyStored, mergeTaskSnapshot, toReplacePayload, type TaskRow } from "../roadmap-sync";
+import { beginRead, peekResource, putResource, readStillCurrent, sameAccount, subscribeResource, type ReadTicket } from "../resource-cache";
+import { ROADMAP_KEY } from "../resource-keys";
 import { StaleVersionError, resolveStaleField } from "../sync-conflict";
 import type { Profile, Roadmap } from "../types";
 
@@ -21,6 +23,54 @@ export interface TickConflict {
   mine: string;
   /** The status the server holds, which is what the checkbox shows until the applicant chooses. */
   theirs: string;
+}
+
+/** What is kept of the roadmap for the visit: one read's definition, and the rows as they stand now. */
+interface HeldRoadmap {
+  read: DefinitionRead;
+  tasks: TaskRow[];
+}
+
+const NO_TASKS: TaskRow[] = [];
+const peekRoadmap = () => peekResource<HeldRoadmap>(ROADMAP_KEY);
+const subscribeRoadmap = (listener: () => void) => subscribeResource(ROADMAP_KEY, listener);
+const storeRoadmap = (next: HeldRoadmap) => putResource(ROADMAP_KEY, next);
+/** Change the kept rows. Nothing is kept before the first read, and then there is nothing to change. */
+function changeTasks(change: (previous: TaskRow[]) => TaskRow[]) {
+  const shown = peekRoadmap();
+  if (shown) storeRoadmap({ read: shown.read, tasks: change(shown.tasks) });
+}
+
+/**
+ * The saves in flight and the order in which rows were last confirmed. It sits beside the kept rows,
+ * above the pages, because a tick outlives the page it was made on: the overview's tick may still be
+ * saving when the roadmap page mounts and reads, and that read must not undo it.
+ */
+interface Ledger {
+  account: ReadTicket;
+  /** One save per task at a time, by task id. */
+  writes: Map<string, TickWrite>;
+  /** Raised each time a save is confirmed. A read remembers the value it left at. */
+  revision: number;
+  /** The revision at which each task's row was last confirmed. */
+  confirmedAt: Map<string, number>;
+  /** The last recomputed rows sent to `PUT /api/roadmap/tasks`, so the same change is sent once. */
+  lastWritten: string | null;
+}
+
+let book: Ledger | null = null;
+/** The current account's ledger; a new one after the account changed. */
+function ledger(): Ledger {
+  if (!book || !sameAccount(book.account)) {
+    book = { account: beginRead(ROADMAP_KEY), writes: new Map(), revision: 0, confirmedAt: new Map(), lastWritten: null };
+  }
+  return book;
+}
+/** The rows a read that left at `revision` may not replace. */
+function heldRows(of: Ledger, revision: number): Set<string> {
+  const ids = new Set(of.writes.keys());
+  for (const [id, confirmed] of of.confirmedAt) if (confirmed > revision) ids.add(id);
+  return ids;
 }
 
 /** How many times one tick is restated on a newer version before it is reported as not saved. */
@@ -58,34 +108,17 @@ export interface RoadmapState {
  * - after a write the rows are read again, because a tick needs the ids only the server knows.
  */
 export function useRoadmap(profile: Profile | null): RoadmapState {
-  const [read, setRead] = useState<DefinitionRead>(NO_DEFINITION_READ);
-  const [loading, setLoading] = useState(true);
-  const [tasks, setTasks] = useState<TaskRow[]>([]);
+  // The definition and the rows are kept for the visit (lib/resource-cache.ts), so every page that
+  // shows the roadmap draws the same rows and a return visit needs no read before it can draw.
+  const held = useSyncExternalStore(subscribeRoadmap, peekRoadmap, () => undefined);
+  const read = held?.read ?? NO_DEFINITION_READ;
+  const tasks = held?.tasks ?? NO_TASKS;
+  const [loading, setLoading] = useState(() => peekRoadmap() === undefined);
   const [syncError, setSyncError] = useState<string | null>(null);
   const [failedTicks, setFailedTicks] = useState<Set<string>>(new Set());
   const [tickConflicts, setTickConflicts] = useState<Map<string, TickConflict>>(new Map());
-  const lastWritten = useRef<string | null>(null);
   const mounted = useRef(true);
-  const writes = useRef(new Map<string, TickWrite>());
-  const taskRevision = useRef(0);
-  const updatedAt = useRef(new Map<string, number>());
   const latestRead = useRef(0);
-
-  const applySnapshot = useCallback((snapshot: TaskRow[], revision: number) => {
-    const protectedIds = new Set(writes.current.keys());
-    for (const [id, updated] of updatedAt.current) {
-      if (updated > revision) protectedIds.add(id);
-    }
-    setTasks((previous) => {
-      const protectedRows = new Map(previous.filter((row) => protectedIds.has(row.id)).map((row) => [row.id, row]));
-      const next = snapshot.map((row) => {
-        const current = protectedRows.get(row.id);
-        protectedRows.delete(row.id);
-        return current ?? row;
-      });
-      return [...next, ...protectedRows.values()];
-    });
-  }, []);
 
   useEffect(() => {
     mounted.current = true;
@@ -96,17 +129,43 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
 
   const load = useCallback(() => {
     const readId = ++latestRead.current;
-    const revision = taskRevision.current;
-    setLoading(true);
+    const ticket = beginRead(ROADMAP_KEY);
+    const book = ledger();
+    const revision = book.revision;
+    if (peekRoadmap() === undefined) setLoading(true);
     void readRoadmapDefinition(fetchRoadmapDefinition).then((next) => {
-      if (!mounted.current || readId !== latestRead.current) return;
-      setRead(next);
-      if (next.tasks !== null) applySnapshot(next.tasks, revision);
-      setLoading(false);
+      // An answer for an account that has since signed out is nobody's.
+      if (!sameAccount(ticket)) return;
+      const shown = peekRoadmap();
+      // A read that left before something newer was stored (a tick, another page's read, the rows a
+      // write brought back) is dropped: its rows may predate rows the server has since created.
+      // A background read that failed keeps the definition and the rows already on screen; only a
+      // first read that failed falls back to the built-in copy and says so.
+      const outdated = shown !== undefined && !readStillCurrent(ticket);
+      if (!outdated && !(shown && shown.read.definition !== null && next.definition === null)) {
+        storeRoadmap({
+          read: next,
+          tasks: next.tasks !== null ? mergeTaskSnapshot(shown?.tasks ?? NO_TASKS, next.tasks, heldRows(book, revision)) : shown?.tasks ?? NO_TASKS,
+        });
+      }
+      if (mounted.current && readId === latestRead.current) setLoading(false);
     });
-  }, [applySnapshot]);
+  }, []);
 
   useEffect(load, [load]);
+
+  // The account changed: the kept rows are gone, and the page reads for the new one.
+  useEffect(
+    () =>
+      subscribeResource(ROADMAP_KEY, (event) => {
+        if (event !== "cleared") return;
+        setSyncError(null);
+        setFailedTicks(new Set());
+        setTickConflicts(new Map());
+        load();
+      }),
+    [load],
+  );
 
   const roadmap = useMemo(() => {
     if (!profile || read === NO_DEFINITION_READ) return null;
@@ -119,28 +178,33 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
     const payload = toReplacePayload(read.definition, roadmap, tasks);
     if (payload === null || alreadyStored(payload, tasks)) return;
     const key = JSON.stringify(payload);
-    // Claimed before the request: the write re-renders this effect, and a second identical write would
-    // add a second round of audit events for one change.
-    if (lastWritten.current === key) return;
-    lastWritten.current = key;
+    // Claimed before the request, for the account rather than the page: the write re-renders this
+    // effect, and the overview and the roadmap both run it, so a second identical write would add a
+    // second round of audit events for one change.
+    const claims = ledger();
+    if (claims.lastWritten === key) return;
+    claims.lastWritten = key;
     // The answer is applied even if this effect has re-run meanwhile: the rows it brings back are the
     // server's, and without their ids no box can be ticked. Only an unmounted page ignores it.
+    const ticket = beginRead(ROADMAP_KEY);
     replaceRoadmapTasks(payload)
       .then(async () => {
-        const revision = taskRevision.current;
+        const book = ledger();
+        const revision = book.revision;
         const served = await fetchRoadmapDefinition();
-        if (!mounted.current) return;
-        setSyncError(null);
-        applySnapshot(toTaskRows(served.tasks), revision);
+        if (!sameAccount(ticket)) return;
+        const shown = peekRoadmap();
+        if (shown) storeRoadmap({ read: shown.read, tasks: mergeTaskSnapshot(shown.tasks, toTaskRows(served.tasks), heldRows(book, revision)) });
+        if (mounted.current) setSyncError(null);
       })
       .catch((error: unknown) => {
-        lastWritten.current = null;
+        if (claims.lastWritten === key) claims.lastWritten = null;
         if (!mounted.current) return;
         setSyncError(
           `路线图没有保存到服务器，勾选可能不会生效（${error instanceof Error ? error.message : "未知错误"}）。`,
         );
       });
-  }, [profile, roadmap, read.definition, tasks, applySnapshot]);
+  }, [profile, roadmap, read.definition, tasks]);
 
   const taskIdFor = useCallback(
     (materialKey: string) => tasks.find((t) => t.material_key === materialKey && t.program_id === "")?.id ?? null,
@@ -169,9 +233,10 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
         next.delete(materialKey);
         return next;
       });
-      setTasks((prev) => prev.map((t) => (t.id === row.id ? { ...t, status } : t)));
+      const book = ledger();
+      changeTasks((prev) => prev.map((t) => (t.id === row.id ? { ...t, status } : t)));
 
-      const pending = writes.current.get(row.id);
+      const pending = book.writes.get(row.id);
       if (pending) {
         pending.desired = status;
         return;
@@ -179,7 +244,7 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
 
       // One write per task at a time. While it runs, the checkbox keeps the latest user choice.
       const write: TickWrite = { desired: status, confirmed: row };
-      writes.current.set(row.id, write);
+      book.writes.set(row.id, write);
       let attempted: string;
       let failed: boolean;
       let restate: boolean;
@@ -217,10 +282,14 @@ export function useRoadmap(profile: Profile | null): RoadmapState {
         // If another choice arrived, persist it before publishing a response or a rollback.
       } while (write.desired !== attempted || restate);
 
-      updatedAt.current.set(row.id, ++taskRevision.current);
-      writes.current.delete(row.id);
+      book.confirmedAt.set(row.id, ++book.revision);
+      book.writes.delete(row.id);
+      // The account changed while the save was in flight: its rows are not this account's.
+      if (book !== ledger()) return;
+      // The confirmed row goes into the kept rows even when the page that ticked it is gone, so the
+      // page the applicant went to shows what the server holds.
+      changeTasks((prev) => prev.map((t) => (t.id === row.id ? write.confirmed : t)));
       if (!mounted.current) return;
-      setTasks((prev) => prev.map((t) => (t.id === row.id ? write.confirmed : t)));
       if (conflict) {
         const found = conflict;
         setTickConflicts((prev) => new Map(prev).set(materialKey, found));

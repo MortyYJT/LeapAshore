@@ -291,3 +291,50 @@ test("a row the recomputation would remove, or rewrite, is a reason too", () => 
   ];
   assert.equal(alreadyStored(payload, otherProgram), true);
 });
+
+// ---------- a fresh read merged into the rows kept for the visit ----------
+
+import { mergeTaskSnapshot } from "./roadmap-sync.ts";
+
+const taskRow = (id: string, status: string, version: number): TaskRow => ({
+  id,
+  material_key: id,
+  program_id: "",
+  phase: "p",
+  status,
+  suggested_at: null,
+  due_at: null,
+  schedule_origin: "suggested",
+  origin: "system",
+  completed_at: null,
+  version,
+});
+
+test("merge: with nothing held, the read's rows replace the kept ones", () => {
+  const kept = [taskRow("a", "pending", 1), taskRow("b", "pending", 1)];
+  const read = [taskRow("a", "completed", 2), taskRow("b", "pending", 1)];
+  assert.deepEqual(mergeTaskSnapshot(kept, read, new Set()), read);
+});
+
+test("merge: a tick whose save is in flight is not undone by a read that left before it", () => {
+  // The applicant ticked `a` (optimistic, still version 1); the background read answers "pending".
+  const kept = [taskRow("a", "completed", 1), taskRow("b", "pending", 1)];
+  const read = [taskRow("a", "pending", 1), taskRow("b", "completed", 3)];
+  const merged = mergeTaskSnapshot(kept, read, new Set(["a"]));
+  assert.equal(merged.find((row) => row.id === "a")?.status, "completed");
+  // Rows nobody is saving still take the read's value: another device ticked `b`.
+  assert.deepEqual(merged.find((row) => row.id === "b"), taskRow("b", "completed", 3));
+});
+
+test("merge: a row confirmed after the read left keeps its confirmed version", () => {
+  // The save came back as version 2; a read that left earlier still says version 1, pending.
+  const kept = [taskRow("a", "completed", 2)];
+  const merged = mergeTaskSnapshot(kept, [taskRow("a", "pending", 1)], new Set(["a"]));
+  assert.deepEqual(merged, [taskRow("a", "completed", 2)]);
+});
+
+test("merge: a held row the read does not list is kept, and a row the server dropped goes", () => {
+  const kept = [taskRow("a", "completed", 1), taskRow("gone", "pending", 1)];
+  const merged = mergeTaskSnapshot(kept, [taskRow("b", "pending", 1)], new Set(["a"]));
+  assert.deepEqual(merged.map((row) => row.id), ["b", "a"]);
+});

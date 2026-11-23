@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useLayoutEffect, useRef } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { TiersBody } from "@/components/shell/RouteSkeleton";
@@ -10,9 +10,11 @@ import { Button, LoadingPanel, Notice } from "@/components/ui";
 import { fetchAllPrograms, fetchProgramPage } from "@/lib/api";
 import { hasBasics, missingBasics, toApplicant } from "@/lib/assess";
 import { verifiedMark } from "@/lib/taxonomy";
+import { useCachedRead } from "@/lib/hooks/useCachedRead";
 import { useProfile } from "@/lib/hooks/useProfile";
+import { TIER_PROGRAMS_KEY } from "@/lib/resource-keys";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
-import { addToDraft, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
+import { addToDraft, followSaved, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
 import {
   REACH_AVERAGE_SHORTFALL,
   REACH_IELTS_SHORTFALL,
@@ -52,9 +54,6 @@ export default function TiersPage() {
 function Tiers() {
   const profile = useProfile();
   const portfolio = usePortfolio();
-  const [programs, setPrograms] = useState<Program[] | null>(null);
-  const [pending, setPending] = useState<{ programs: Program[]; total: number } | null>(null);
-  const [readError, setReadError] = useState<string | null>(null);
   const [draft, setDraft] = useState<PortfolioItem[] | null>(null);
   const [country, setCountry] = useState("");
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
@@ -62,29 +61,27 @@ function Tiers() {
   const field = profile.data?.targetField ?? null;
   const complete = profile.data ? hasBasics(profile.data) : false;
 
-  useEffect(() => {
-    if (!field || !complete) return;
-    let cancelled = false;
-    Promise.all([
-      fetchAllPrograms({ field, hasRequirements: true }),
-      fetchProgramPage({ field, hasRequirements: false, limit: 6 }),
-    ])
-      .then(([stated, unstated]) => {
-        if (cancelled) return;
-        setPrograms(stated);
-        setPending(unstated);
-      })
-      .catch((error: unknown) => !cancelled && setReadError(error instanceof Error ? error.message : "读取项目失败"));
-    return () => {
-      cancelled = true;
-    };
-  }, [field, complete]);
+  // The catalogue's programs for this field, kept for the visit: coming back to this page compares
+  // against the programs read before and reads them again behind.
+  const catalogue = useCachedRead(field && complete ? TIER_PROGRAMS_KEY(field) : null, async () => {
+    const [stated, unstated] = await Promise.all([
+      fetchAllPrograms({ field: field!, hasRequirements: true }),
+      fetchProgramPage({ field: field!, hasRequirements: false, limit: 6 }),
+    ]);
+    return { stated, unstated };
+  });
+  const programs = catalogue.data?.stated ?? null;
+  const pending = catalogue.data?.unstated ?? null;
+  const readError = catalogue.data ? null : catalogue.error;
 
-  // The draft starts as whatever is being edited in this tab, or else the saved portfolio.
-  useEffect(() => {
-    if (draft !== null || portfolio.loading) return;
-    setDraft(readDraft(sessionStorage) ?? portfolio.data ?? []);
-  }, [draft, portfolio.loading, portfolio.data]);
+  // The draft is whatever is being edited in this tab, or else the saved portfolio (lib/portfolio-draft.ts).
+  // Before paint, so a return visit with the portfolio in memory never shows the loading panel.
+  const lastSaved = useRef<PortfolioItem[] | null>(null);
+  useLayoutEffect(() => {
+    const previous = lastSaved.current;
+    lastSaved.current = portfolio.data;
+    setDraft((current) => followSaved(current, readDraft(sessionStorage), portfolio.data, portfolio.loading, previous));
+  }, [portfolio.loading, portfolio.data]);
 
   const update = (next: PortfolioItem[]) => {
     setDraft(next);

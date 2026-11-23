@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 import { Button, Empty, Loading, Notice, Panel, Pill } from "@/components/ui";
-import { PAGE_SIZE, fetchVerificationPages, type PageListItem, type VerificationStatus } from "@/lib/admin";
+import { PAGE_SIZE, fetchVerificationPages, verificationQuery, type PageListItem, type VerificationStatus } from "@/lib/admin";
+import { useCachedRead } from "@/lib/hooks/useCachedRead";
+import { ADMIN_PAGES_KEY } from "@/lib/resource-keys";
 
 const STATUS_OPTIONS: [VerificationStatus, string][] = [
   ["unverified", "待核验"],
@@ -18,18 +20,15 @@ export function VerificationList() {
   const [draft, setDraft] = useState("");
   const [q, setQ] = useState("");
   const [offset, setOffset] = useState(0);
-  const [data, setData] = useState<{ items: PageListItem[]; total: number } | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let live = true;
-    fetchVerificationPages({ status, q, offset })
-      .then((body) => live && (setData(body), setError(null)))
-      .catch((e: Error) => live && setError(e.message));
-    return () => {
-      live = false;
-    };
-  }, [status, q, offset]);
+  // Each filter's list is kept for the visit: coming back from a page draws the list at once and
+  // reads it again behind. A filter not read before keeps the previous list on screen until its own arrives.
+  const list = useCachedRead<{ items: PageListItem[]; total: number }>(ADMIN_PAGES_KEY(verificationQuery({ status, q, offset })), () =>
+    fetchVerificationPages({ status, q, offset }),
+  );
+  const last = useRef(list.data);
+  if (list.data) last.current = list.data;
+  const data = list.data ?? last.current;
+  const error = list.error;
 
   return (
     <section className="section" aria-labelledby="verify-head">

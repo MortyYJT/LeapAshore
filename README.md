@@ -63,6 +63,7 @@ The other pages (my applications, requirement tiers, portfolio, school library, 
 ### Interaction details
 
 - A click on any in-app link answers in the same frame: the sidebar marks the destination and the content area shows that page's title (a bar in its place on a school's or a program's page, whose title is its name). The page's shape (its labels, panels and grey bars at the size of the values) follows 60 ms later unless the page itself is already there, and the page replaces it when its data arrives. Reduced Motion shows the shape at once.
+- A page opened earlier in the visit draws what it read last time and reads again behind it, so coming back shows content with no placeholder. The kept data is in memory only, is dropped when the account changes, and is marked out of date by every save.
 - Task checkboxes update progress and counts immediately. Changes to the same task save in order, and a failed save restores the last confirmed state.
 - School filters keep existing results visible while the search runs. The portfolio stays visible while a save is reconciled with the server.
 

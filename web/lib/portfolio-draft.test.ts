@@ -142,3 +142,46 @@ test("the differences between a draft and the server's portfolio name every prog
   });
   assert.deepEqual(draftDifferences(mine, mine), { onlyMine: [], onlyTheirs: [], changed: [] });
 });
+
+// ---------- the draft and the saved portfolio kept for the visit ----------
+
+import { followSaved } from "./portfolio-draft.ts";
+
+test("followSaved: nothing read yet, no draft yet", () => {
+  assert.equal(followSaved(null, null, null, true), null);
+});
+
+test("followSaved: a read that failed leaves an empty draft", () => {
+  assert.deepEqual(followSaved(null, null, null, false), []);
+});
+
+test("followSaved: the portfolio kept from earlier in the visit is the draft at once, while it is read again", () => {
+  const kept = [item("a")];
+  assert.equal(followSaved(null, null, kept, true), kept);
+});
+
+test("followSaved: an untouched draft follows the fresh read", () => {
+  const kept = [item("a")];
+  const fresh = [item("a"), item("b")];
+  assert.equal(followSaved(kept, null, fresh, false, kept), fresh);
+});
+
+test("followSaved: after a confirm, a re-read that starts or fails does not bring the old rows back", () => {
+  const before = [item("a")];
+  const confirmed = [item("a"), item("b")];
+  // The page holds what it confirmed; the saved value is still the old one while it is read again.
+  assert.equal(followSaved(confirmed, null, before, true, before), confirmed);
+  assert.equal(followSaved(confirmed, null, before, false, before), confirmed);
+});
+
+test("followSaved: an edit stored for this tab is never replaced by a read", () => {
+  const edit = [item("a"), item("mine")];
+  const fresh = [item("a"), item("b")];
+  assert.equal(followSaved(null, edit, fresh, false), edit);
+  assert.equal(followSaved(edit, edit, fresh, false, [item("a")]), edit);
+});
+
+test("followSaved: a failed re-read keeps the draft", () => {
+  const kept = [item("a")];
+  assert.equal(followSaved(kept, null, null, false), kept);
+});

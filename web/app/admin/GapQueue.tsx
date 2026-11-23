@@ -4,17 +4,16 @@ import { useCallback, useEffect, useState } from "react";
 
 import { Button, Empty, Loading, Notice, Panel } from "@/components/ui";
 import { GAP_REASON_LABEL, fetchGap, fetchGaps, reviewGap, type Gap } from "@/lib/admin";
+import { useCachedRead } from "@/lib/hooks/useCachedRead";
+import { ADMIN_GAPS_KEY } from "@/lib/resource-keys";
 
 /** The knowledge-gap queue (P2 #1): open gaps, their questions, and the two review decisions. */
 export function GapQueue() {
-  const [gaps, setGaps] = useState<Gap[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const load = useCallback(() => {
-    fetchGaps("open")
-      .then((body) => (setGaps(body.gaps), setError(null)))
-      .catch((e: Error) => setError(e.message));
-  }, []);
-  useEffect(load, [load]);
+  // Kept for the visit: coming back to the desk draws the queue at once and reads it again behind.
+  const queue = useCachedRead<Gap[]>(ADMIN_GAPS_KEY, async () => (await fetchGaps("open")).gaps);
+  const gaps = queue.data;
+  const error = queue.error;
+  const load = queue.reload;
 
   return (
     <section className="section" aria-labelledby="gap-head">

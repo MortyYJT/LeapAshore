@@ -543,3 +543,27 @@ A click on a navigation link used to change nothing until the next route could b
 - The school list no longer prefetches its rows. Before, up to 30 row links were each prefetched twice as they came into view; at 400 ms latency those requests ran for 4 s after the page appeared, and from the laptop against production a batch took up to 17 s.
 - `make verify` (local, 2026-11-23): build compiled; backend 1351 passed, 1 skipped; web 459 passed (448 before; 11 new in `lib/navigation.test.ts`); walkthrough 355/355 (326 before; 29 new checks hold every route payload back and time the rail and the placeholder at 1440 px and 390 px, and cover a second click, Back and Forward with the scroll position, and a click back to the page being left).
 - Not measured: a real phone, browsers other than Chromium, production signed in.
+
+### Data kept for the visit (PR #118)
+
+Every page read its data again each time it was opened and kept nothing when it was left, so coming back to a page showed its placeholder until the same reads answered again. Reads are now kept in memory for the visit: a page opened before draws what it read last time and reads again behind it.
+
+- Cause, on `d8ccd2d`: `useResource` and `useRoadmap` started from "no data, loading" on every mount. The four server-rendered routes were re-rendered on every visit, because Next's client router keeps a dynamic route for 0 seconds by default.
+- What is kept (`web/lib/resource-cache.ts`, in memory only): the profile, the uploaded files, the saved portfolio, the roadmap's definition and task rows, the tiers page's programs by field, the portfolio page's programs by slug, and the admin's two lists. The application records were already kept by the shell. The server-rendered routes (`/schools` with its filters, a school, a program, `/admin`) are kept by the router for 300 seconds (`experimental.staleTimes.dynamic`).
+- Method: the same as "Instant navigation feedback" above (local production build, signed in, three applications, Chromium at 1440×900, Chrome's network emulation). Each route is opened once without delay. Then, with the delay on, the visitor goes to 我的申请 and back to the route. "Content" is milliseconds from the click to the first frame with the route's real content and no placeholder bar; one run per cell.
+
+| Return to | Content before, 400 ms | Content after, 400 ms | Content before, 2000 ms | Content after, 2000 ms |
+| --- | --- | --- | --- | --- |
+| 申请路线图 | 429 | 20 | 2032 | 20 |
+| 材料 | 421 | 16 | 2025 | 18 |
+| 我的 | 424 | 20 | 2026 | 18 |
+| 分档结果 | 426 | 13 | 2027 | 13 |
+| 选校组合 | 429 | 16 | 2022 | 16 |
+| 学校库 | 429 | 14 | 2021 | 14 |
+| 总览 | 16 | 11 | 14 | 10 |
+
+- 总览 already drew its applications at once before; its 准备任务 block used to arrive later (the page stopped changing at 422 ms and 2033 ms). After the change the page did not change again after its first frame.
+- Before, each of the first six pages changed height when its data arrived (for example 申请路线图 981 px to 1397 px). After, each had one height from its first frame.
+- First visits are unchanged in time. Their placeholder is closer in two places: the roadmap's now leaves room for the applications the shell already knows (with three, the steps under the map moved 12 px when the map arrived; 130 px before), and a signed-out visitor's placeholder for 总览 and 申请路线图 carries the demo's mark and note (the first block moved 10 to 25 px when the demo arrived; 64 to 168 px before).
+- `make verify` (local, 2026-11-23): build compiled; backend 1351 passed, 1 skipped; web 493 passed (459 before; 34 new in `lib/resource-cache.test.ts`, `lib/hooks/resource.test.ts`, `lib/roadmap-sync.test.ts` and `lib/portfolio-draft.test.ts`); walkthrough 365/365 (355 before; 10 new checks open six pages, hold every API request and route payload back, and require real content within 250 ms of the click on return, then follow a tick whose save is held from the roadmap to the overview). The last walkthrough run was separate from the `make verify` run, after restarting the dev server for the known "negative time stamp" flake and fixing one task-3 check that assumed a visited school page could not be in the router's memory.
+- Not measured: production signed in, a real phone, browsers other than Chromium.

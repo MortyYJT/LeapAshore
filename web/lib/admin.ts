@@ -2,6 +2,16 @@
 // confirming it, and the knowledge-gap queue. Every request goes to `/api/admin/...`, which answers 401
 // without a session and 403 to anyone but an admin; the pages themselves are 404 to them (D6).
 
+import { invalidateResource, invalidateResources } from "./resource-cache.ts";
+import { ADMIN_GAPS_KEY, ADMIN_PAGES_PREFIX, PROGRAMS_BY_SLUG_KEY, TIER_PROGRAMS_PREFIX } from "./resource-keys.ts";
+
+/** A page's verification changed: the lists, and the programs kept for the visit (which carry its mark), are out of date. */
+function verificationChanged(): void {
+  invalidateResources(ADMIN_PAGES_PREFIX);
+  invalidateResources(TIER_PROGRAMS_PREFIX);
+  invalidateResource(PROGRAMS_BY_SLUG_KEY);
+}
+
 export type VerificationStatus = "unverified" | "verified" | "all";
 
 export interface PageListItem {
@@ -128,14 +138,15 @@ export function fetchVerificationPage(sourceId: string) {
 
 /** Confirm what was read: the version and the view's digest, so a change while reading is refused. */
 export function verifyPage(detail: PageDetail) {
+  // Confirmed or refused, the lists kept for the visit may no longer say what the server holds.
   return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(detail.source.id)}/verify`, {
     method: "POST",
     body: JSON.stringify({ contentSha256: detail.version.contentSha256, digest: detail.digest }),
-  });
+  }).finally(verificationChanged);
 }
 
 export function revokePage(sourceId: string) {
-  return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(sourceId)}/revoke`, { method: "POST" });
+  return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(sourceId)}/revoke`, { method: "POST" }).finally(verificationChanged);
 }
 
 export function fetchGaps(status: "open" | "recollect_queued" | "dismissed" | "all" = "open") {
@@ -150,7 +161,7 @@ export function reviewGap(id: string, decision: "recollect" | "dismiss", note: s
   return call<Gap>(`/api/admin/knowledge-gaps/${encodeURIComponent(id)}/review`, {
     method: "POST",
     body: JSON.stringify({ decision, note: note.trim() || null }),
-  });
+  }).finally(() => invalidateResource(ADMIN_GAPS_KEY));
 }
 
 /**

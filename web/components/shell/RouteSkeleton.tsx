@@ -7,7 +7,12 @@
 // - by the route, while its first read is on its way (the `…Body` exports, and `Bar` for one value).
 // Keep a title here in step with the page it stands for; the walkthrough compares them.
 
-import type { CSSProperties, ReactNode } from "react";
+import { useMemo, type CSSProperties, type ReactNode } from "react";
+
+import { beijingToday } from "@/lib/deadlines";
+import { overviewOf } from "@/lib/overview";
+
+import { useApplicationRecords } from "./ApplicationRecords";
 
 import type { RouteShape } from "@/lib/navigation";
 
@@ -84,8 +89,12 @@ export function OverviewBody() {
   );
 }
 
-/** 申请路线图: the map's frame, then the stretch's steps. */
-export function RoadmapBody() {
+/**
+ * 申请路线图: the map's frame, then the stretch's steps. `lines` is how many applications the map
+ * will draw under the preparation line, when the shell already knows: each takes a row of the map,
+ * so the steps below start where they will.
+ */
+export function RoadmapBody({ lines = 0 }: { lines?: number }) {
   return (
     <>
       <Status what="路线图" />
@@ -93,7 +102,7 @@ export function RoadmapBody() {
         <div className="block-head">
           <h2>准备路线</h2>
         </div>
-        <div className="sk-map sk-late">
+        <div className="sk-map sk-late" style={lines ? ({ "--sk-lines": lines } as CSSProperties) : undefined}>
           {Array.from({ length: 7 }, (_, step) => (
             <span key={step} className="sk sk-step" style={{ "--sk-step": step } as CSSProperties} />
           ))}
@@ -419,29 +428,57 @@ function TitleRow({ title, lede, aside }: { title: ReactNode; lede?: ReactNode; 
   );
 }
 
-function PageHead({ title, aside }: { title: string; aside?: ReactNode }) {
+/**
+ * `demo`: the note of the signed-out visitor's page, which marks its title and explains itself under
+ * it. The sentence is the page's own (keep the two in step), so it wraps to the same height.
+ */
+function PageHead({ title, demo }: { title: string; demo?: string | null }) {
   return (
-    <header className="page-head">
-      <div>
-        <h1>{title}</h1>
-        <Finding />
-      </div>
-      {aside}
-    </header>
+    <>
+      <header className={`page-head${demo ? " has-note" : ""}`}>
+        <div>
+          {demo ? (
+            <div className="marked">
+              <h1>{title}</h1>
+              <span className="pill pill-sample">演示</span>
+            </div>
+          ) : (
+            <h1>{title}</h1>
+          )}
+          <Finding />
+        </div>
+      </header>
+      {demo && (
+        <div className="demo-note sk-late" aria-hidden="true">
+          <p>{demo}</p>
+          <Box width={52} height={32} />
+        </div>
+      )}
+    </>
   );
 }
 
-const PAGES: Record<RouteShape, () => ReactNode> = {
-  overview: () => (
+/** What the shell already knows about the page it is about to show. */
+interface Known {
+  /** The visitor is signed out and the demo's programs are in hand: the page will be the demo. */
+  demo: boolean;
+  /** The same for 材料, whose demo needs programs whose materials have been collected. */
+  demoMaterials: boolean;
+  /** How many applications the roadmap will draw. */
+  lines: number;
+}
+
+const PAGES: Record<RouteShape, (known: Known) => ReactNode> = {
+  overview: ({ demo }) => (
     <main className="page overview">
-      <PageHead title="总览" />
+      <PageHead title="总览" demo={demo ? "这是演示：项目和截止日期来自学校库，状态和材料是示例。登录后这里是你自己的申请。" : null} />
       <OverviewBody />
     </main>
   ),
-  roadmap: () => (
+  roadmap: ({ demo, lines }) => (
     <main className="page roadmap">
-      <PageHead title="申请路线图" />
-      <RoadmapBody />
+      <PageHead title="申请路线图" demo={demo ? "这是演示：阶段的时间和勾选是示例，项目和截止日期来自学校库。登录后，这里按你的入学时间和申请排出你自己的。" : null} />
+      <RoadmapBody lines={lines} />
     </main>
   ),
   applications: () => (
@@ -451,9 +488,9 @@ const PAGES: Record<RouteShape, () => ReactNode> = {
       <ApplicationsBody />
     </main>
   ),
-  materials: () => (
+  materials: ({ demoMaterials }) => (
     <main className="page materials">
-      <PageHead title="材料" />
+      <PageHead title="材料" demo={demoMaterials ? "这是演示：项目和材料要求来自学校库，都没有勾选。登录后这里是你自己的申请。" : null} />
       <MaterialsBody />
     </main>
   ),
@@ -573,9 +610,15 @@ const PAGES: Record<RouteShape, () => ReactNode> = {
  * at the top of the window without the window being scrolled.
  */
 export function RouteSkeleton({ shape, offset }: { shape: RouteShape; offset: number }) {
+  const records = useApplicationRecords();
+  const today = beijingToday();
+  const source = records.data ?? records.demo;
+  // The applications the map draws as lines: the overview's rows (lib/overview.ts), which the rail lists too.
+  const lines = useMemo(() => (source ? overviewOf(source, today).rows.length : 0), [source, today]);
+  const known: Known = { demo: !records.data && records.demo !== null, demoMaterials: !records.data && records.demoMaterials !== null, lines };
   return (
     <div className="route-skeleton" data-route-skeleton={shape} style={{ translate: `0 ${offset}px` }}>
-      {PAGES[shape]()}
+      {PAGES[shape](known)}
     </div>
   );
 }

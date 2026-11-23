@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Button, Loading, Notice, Panel, Pill } from "@/components/ui";
@@ -25,6 +26,7 @@ export function SourceReview({ id }: { id: string }) {
   const [error, setError] = useState<string | null>(null);
   const [read, setRead] = useState(false);
   const [busy, setBusy] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     fetchVerificationPage(id).then(setDetail).catch((e: Error) => setError(e.message));
@@ -44,7 +46,12 @@ export function SourceReview({ id }: { id: string }) {
     setBusy(true);
     setError(null);
     run()
-      .then((next) => (setDetail(next), setRead(false)))
+      .then((next) => {
+        setDetail(next);
+        setRead(false);
+        // The school and program pages the router holds for return visits show this page's status.
+        router.refresh();
+      })
       .catch((e: Error) => setError(e.message))
       .finally(() => setBusy(false));
   };

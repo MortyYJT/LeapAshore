@@ -243,3 +243,21 @@ const TASK_STATUS_LABELS: Record<string, string> = {
 export function taskStatusLabel(status: string): string {
   return TASK_STATUS_LABELS[status] ?? status;
 }
+
+/**
+ * A fresh read of the task rows, merged into the rows on screen.
+ *
+ * `held` names the rows the read may not replace: ones with a save in flight, and ones a save
+ * confirmed after the read left. For those the answer may predate the save, so the row on screen
+ * (the applicant's choice, or the server's confirmed row with its version) stays. Every other row is
+ * the read's. A held row the read does not list is kept as well.
+ */
+export function mergeTaskSnapshot(previous: TaskRow[], snapshot: TaskRow[], held: ReadonlySet<string>): TaskRow[] {
+  const kept = new Map(previous.filter((row) => held.has(row.id)).map((row) => [row.id, row]));
+  const next = snapshot.map((row) => {
+    const current = kept.get(row.id);
+    kept.delete(row.id);
+    return current ?? row;
+  });
+  return [...next, ...kept.values()];
+}

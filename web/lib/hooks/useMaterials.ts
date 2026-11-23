@@ -3,6 +3,7 @@
 import { fetchMaterials } from "../api";
 import { toMaterials } from "../materials-source";
 import type { Material } from "../types";
+import { MATERIALS_KEY } from "../resource-keys";
 import { useResource } from "./useResource";
 
 export async function loadMaterials(): Promise<Material[]> {
@@ -10,5 +11,5 @@ export async function loadMaterials(): Promise<Material[]> {
 }
 
 export function useMaterials() {
-  return useResource(loadMaterials);
+  return useResource(loadMaterials, MATERIALS_KEY);
 }

@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 import { LoadingPanel } from "@/components/ui";
 import { AUTH_CHANGED, fetchAuthState, logout, type AuthState } from "@/lib/auth";
 import { forgetModelKey } from "@/lib/model-key";
 import { clearDraft } from "@/lib/portfolio-draft";
+import { SESSION_ENDED } from "@/lib/hooks/resource";
+import { clearResourceCache } from "@/lib/resource-cache";
 
 import { LoginDialog } from "./LoginDialog";
 import { useNavigation } from "@/components/shell/Navigation";
@@ -40,11 +43,14 @@ export function useAuth(): AuthContext {
 }
 
 function announce() {
+  // What was read for whoever was here before is dropped before anything reads for the new session.
+  clearResourceCache();
   window.dispatchEvent(new Event(AUTH_CHANGED));
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { push } = useNavigation();
+  const router = useRouter();
   const [state, setState] = useState<AuthState | null>(null);
   const [ready, setReady] = useState(false);
   const [dialog, setDialog] = useState<{ landing: string | null } | null>(null);
@@ -67,6 +73,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     void refresh();
   }, [refresh]);
+
+  // A read of the account's data was refused as signed out (lib/hooks/useResource.ts): read the
+  // session again. If it is over, the effect below drops what was kept for the account.
+  useEffect(() => {
+    const ended = () => void refresh();
+    window.addEventListener(SESSION_ENDED, ended);
+    return () => window.removeEventListener(SESSION_ENDED, ended);
+  }, [refresh]);
+
+  // The data kept for the visit (lib/resource-cache.ts) belongs to one account. Whenever the session
+  // is read and names a different account than the last time, or none (it expired, or ended in
+  // another tab), everything kept is dropped, so nothing of one account can be drawn for another or
+  // beside the signed-out demo. Signing in through the dialog also clears it (`announce`), and signing
+  // out is a full page load.
+  const account = !ready ? undefined : state?.account ? (state.account.email ?? "signed-in") : null;
+  const lastAccount = useRef<string | null | undefined>(undefined);
+  useEffect(() => {
+    if (account === undefined) return;
+    if (lastAccount.current !== undefined && lastAccount.current !== account) {
+      clearResourceCache();
+      // The server-rendered routes the router keeps for return visits (next.config.ts, staleTimes)
+      // include the admin's, which is a 404 or a page depending on who asks.
+      router.refresh();
+    }
+    lastAccount.current = account;
+  }, [account, router]);
 
   // A browser that is signed out keeps no model key: the session may have expired, or ended in
   // another tab, without `signOut` running here.

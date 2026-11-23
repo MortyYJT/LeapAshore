@@ -52,6 +52,13 @@ export function ProfileForm({
   onCancel?: () => void;
   submitLabel?: string;
 }) {
+  // The profile this form was opened on, pinned. `initial` can change under an open form: the page
+  // draws the profile kept from earlier in the visit and reads it again behind. The fields here were
+  // filled from the pinned one, so its version is the one a save is based on. If another device has
+  // saved since, the server refuses the save and the conflict below is shown; basing the save on the
+  // refreshed version instead would send this form's older values over that device's.
+  const opened = useRef(initial);
+  if (opened.current === null && initial) opened.current = initial;
   const [profile, setProfile] = useState<Profile>(initial ?? EMPTY_PROFILE);
   const [english, setEnglish] = useState(() => parseEnglishScore((initial ?? EMPTY_PROFILE).englishScore));
   const [errors, setErrors] = useState<Partial<Record<BasicField, string>>>({});
@@ -109,7 +116,7 @@ export function ProfileForm({
       mode === "basics"
         ? { schoolOrigin: next.schoolOrigin, schoolName, domesticTier, overseasBand: null, gpaScore: next.gpaScore, gpaScale: next.gpaScale, targetField: next.targetField, englishScore }
         : { ...next, overseasBand: null };
-    await save(patch, initial?.version ?? 1);
+    await save(patch, opened.current?.version ?? 1);
   }
 
   // `baseVersion` is the profile version the edit was made against. A refused save keeps the edit and
@@ -294,7 +301,7 @@ export function ProfileForm({
         busy={saving}
         onKeepMine={() =>
           // Only what this form changed on the profile it was opened with; the rest stays the server's.
-          void save(changedFields(conflict.patch, initial), conflict.current.version ?? 1)
+          void save(changedFields(conflict.patch, opened.current), conflict.current.version ?? 1)
         }
         onTakeTheirs={() => onSaved(toProfile(conflict.current))}
       >

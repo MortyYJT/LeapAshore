@@ -2,6 +2,8 @@ import { beijingToday } from "./deadlines.ts";
 import { sameCustom, type CustomMaterial, type RecordMaterial } from "./materials.ts";
 import { StaleVersionError, changedFields, staleOf } from "./sync-conflict.ts";
 import { APPLICATION_STATUSES } from "./taxonomy.ts";
+import { invalidateResource } from "./resource-cache.ts";
+import { PORTFOLIO_KEY } from "./resource-keys.ts";
 export interface ApplicationRecord {
   id: string;
   programId: string | null;
@@ -94,6 +96,8 @@ export async function writeApplicationRecord(
       body: payload ? JSON.stringify(payload) : undefined,
     },
   );
+  // A record of a catalogue program is a row of the saved portfolio, so that kept value is out of date too.
+  invalidateResource(PORTFOLIO_KEY);
   const stale = await staleOf<ApplicationRecord>(response);
   if (stale) throw stale;
   if (!response.ok) {

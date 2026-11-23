@@ -20,6 +20,8 @@ import {
   type Turn,
 } from "@/lib/advisor-run";
 import { useNavigation } from "@/components/shell/Navigation";
+import { invalidateResource } from "@/lib/resource-cache";
+import { PORTFOLIO_KEY, PROFILE_KEY } from "@/lib/resource-keys";
 
 /**
  * The advisor's conversation and its dock, held above the pages.
@@ -260,6 +262,12 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
           // A confirmed write that ended any other way (refused because the record moved elsewhere,
           // or found already stored): what is on screen may be old either way.
           if (event.type === "step" && event.status !== "running" && event.id.endsWith(":write")) answered = true;
+          // A step that wrote ends before the turn does: what the pages keep of the background and
+          // the portfolio is out of date from here, so a page opened during the rest of the turn reads again.
+          if (event.type === "step" && event.write && event.status !== "running") {
+            invalidateResource(PROFILE_KEY);
+            invalidateResource(PORTFOLIO_KEY);
+          }
           patch(turnId, (turn) => applyEvent(turn, event));
         }, current.controller.signal);
         if (outcome === "unauthorized") void refresh();
@@ -270,7 +278,13 @@ export function AdvisorProvider({ children }: { children: ReactNode }) {
         if (run.current === current) run.current = null;
         busy.current = false;
         setRunningTurn((id) => (id === turnId ? null : id));
-        if (wrote !== undefined || answered) reloadRecords();
+        if (wrote !== undefined || answered) {
+          reloadRecords();
+          // The advisor's writes are to the background and to the portfolio. What the pages keep of
+          // them for the visit is out of date; pages showing them read again.
+          invalidateResource(PROFILE_KEY);
+          invalidateResource(PORTFOLIO_KEY);
+        }
         if (wrote) markChanged(wrote);
       }
     },

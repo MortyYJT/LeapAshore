@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // A server-rendered route (the school list with its filters, a school, a program, the admin's desk)
+  // that was opened in the last five minutes is drawn from the router's memory when the visitor comes
+  // back to the same address, with no request. Next's default for these is 0: every return re-rendered
+  // the page on the server and showed the placeholder meanwhile. What they show is the catalogue, which
+  // changes when an admin imports or confirms a page; a visitor sees such a change within five minutes or
+  // on a reload, and the two things that change it from this browser (an admin's confirm or withdraw,
+  // and signing in or out) call `router.refresh()`, which empties that memory. The applicant's own data
+  // never comes from these routes; it is read in the browser and kept in lib/resource-cache.ts.
+  experimental: { staleTimes: { dynamic: 300 } },
   // The browser reaches the API through this origin, so the httpOnly `leapashore_client` cookie is
   // same-origin and no CORS or credentials plumbing is needed. The cost is that the backend must be
   // running: `make dev` starts both, and `screenshots` refuses to drive the browser without it.

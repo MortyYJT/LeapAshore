@@ -127,7 +127,7 @@ function Roadmap() {
       {profile.error && !profile.data && <Notice error>没有读到你的背景（{profile.error}）。</Notice>}
       {roadmap.notice && <Notice>{roadmap.notice}</Notice>}
       {roadmap.syncError && <Notice error>{roadmap.syncError}</Notice>}
-      {!map && !profile.error && <RoadmapBody />}
+      {!map && !profile.error && <RoadmapBody lines={overview.rows.length} />}
       {map && timeline && (
         <>
           {!map.dated && (

@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect, useRef } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Loading } from "@/components/ui";
 import { hasBasics, toApplicant } from "@/lib/assess";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
-import { addToDraft, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
+import { addToDraft, followSaved, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
 import { tierProgram } from "@/lib/tiers";
 import type { PortfolioItem, PortfolioTier, Program } from "@/lib/types";
 
@@ -48,10 +48,13 @@ function Actions({ program, resumeAdd }: { program: Program; resumeAdd: boolean 
   const [picking, setPicking] = useState(false);
   const [pendingAdd, setPendingAdd] = useState(resumeAdd);
 
-  useEffect(() => {
-    if (draft !== null || portfolio.loading) return;
-    setDraft(readDraft(sessionStorage) ?? portfolio.data ?? []);
-  }, [draft, portfolio.loading, portfolio.data]);
+  // Before paint, so a return visit with the portfolio in memory never shows the loading panel.
+  const lastSaved = useRef<PortfolioItem[] | null>(null);
+  useLayoutEffect(() => {
+    const previous = lastSaved.current;
+    lastSaved.current = portfolio.data;
+    setDraft((current) => followSaved(current, readDraft(sessionStorage), portfolio.data, portfolio.loading, previous));
+  }, [portfolio.loading, portfolio.data]);
 
   const complete = profile.data ? hasBasics(profile.data) : false;
   const result = profile.data && complete ? tierProgram(toApplicant(profile.data), program) : null;

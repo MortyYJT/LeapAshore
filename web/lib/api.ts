@@ -30,6 +30,18 @@ import type {
 import { toProgramView } from "./programs-source.ts";
 import type { UniversityRow } from "./catalog";
 import type { Program } from "./types";
+import { invalidateResource } from "./resource-cache.ts";
+import { MATERIALS_KEY, PORTFOLIO_KEY, PROFILE_KEY } from "./resource-keys.ts";
+
+/**
+ * The server has answered a write to this resource (it saved it, or refused it because another
+ * device had changed it): the value kept for the visit is out of date either way. Pages showing it
+ * read again; a page that mounts later reads before it draws. A caller that holds the new value
+ * stores it through its resource's `set`, which makes the kept value current again.
+ */
+function wrote(key: string): void {
+  invalidateResource(key);
+}
 
 /** Whether the value the wire sent is a string with at least one character in it. */
 function isFilled(value: unknown): value is string {
@@ -282,6 +294,7 @@ export async function patchProfile(patch: Partial<Profile>, baseVersion: number)
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...fields, baseVersion }),
   });
+  wrote(PROFILE_KEY);
   const stale = await staleOf<Partial<Profile>>(response);
   if (stale) throw stale;
   if (!response.ok) throw new Error(`保存档案失败：${response.status}`);
@@ -490,6 +503,7 @@ export async function replaceApplications(
   // `base` is the saved rows the list was built from (`baseOf` in `portfolio-draft.ts`). If another
   // device changed the portfolio since, nothing is written and the refusal is thrown as a
   // `StaleVersionError` carrying the rows the server holds.
+  wrote(PORTFOLIO_KEY);
   const stale = await staleOf<ServedApplication[]>(response);
   if (stale) throw stale;
   if (!response.ok) throw new Error(`保存申请组合失败：${response.status}`);
@@ -578,6 +592,7 @@ export async function uploadMaterial(
     body: form,
   });
   if (!response.ok) throw await refusalOf(response, "上传材料失败");
+  wrote(MATERIALS_KEY);
   return (await response.json()) as ServedDocument;
 }
 
@@ -598,6 +613,7 @@ export async function addMaterialVersion(documentId: string, file: File): Promis
     body: form,
   });
   if (!response.ok) throw await refusalOf(response, "上传新材料版本失败");
+  wrote(MATERIALS_KEY);
   return (await response.json()) as ServedDocument;
 }
 
@@ -619,6 +635,7 @@ export async function archiveMaterial(
     body: JSON.stringify({ kind }),
   });
   if (!response.ok) throw await refusalOf(response, "归档材料失败");
+  wrote(MATERIALS_KEY);
   return (await response.json()) as ServedDocument;
 }
 
@@ -634,6 +651,7 @@ export async function submitMaterial(documentId: string): Promise<ServedDocument
     credentials: "same-origin",
   });
   if (!response.ok) throw await refusalOf(response, "送审失败");
+  wrote(MATERIALS_KEY);
   return (await response.json()) as ServedDocument;
 }
 

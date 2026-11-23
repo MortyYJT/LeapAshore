@@ -170,3 +170,32 @@ export function clearDraft(storage: Storage): void {
   storage.removeItem(DRAFT_KEY);
   storage.removeItem(DRAFT_BASE_KEY);
 }
+
+/**
+ * The draft a page should hold, given the draft it holds, the one stored for this tab, and the
+ * saved portfolio as last read (which may be the value kept from earlier in the visit, with a fresh
+ * read on its way). `previous` is the saved portfolio the page saw the last time it asked.
+ *
+ * - A draft stored for this tab is the applicant's edit: it is taken as it is and never replaced by
+ *   a read.
+ * - Without one, the draft is the saved portfolio, and it follows the saved portfolio only when a
+ *   read brings a different one. So a page opened from the kept value shows the server's rows as
+ *   soon as they arrive, and the first edit is made on, and based on, those. A read that starts, or
+ *   fails and keeps the old value, changes nothing: after a confirm the page holds what it confirmed.
+ * - Before anything has been read there is no draft yet; a read that failed leaves an empty one.
+ */
+export function followSaved(
+  current: PortfolioItem[] | null,
+  stored: PortfolioItem[] | null,
+  saved: PortfolioItem[] | null,
+  loading: boolean,
+  previous: PortfolioItem[] | null = null,
+): PortfolioItem[] | null {
+  if (current === null) {
+    if (stored) return stored;
+    if (saved === null) return loading ? null : [];
+    return saved;
+  }
+  if (stored || saved === null || saved === previous) return current;
+  return saved;
+}

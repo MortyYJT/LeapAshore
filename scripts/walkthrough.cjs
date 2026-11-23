@@ -4,7 +4,7 @@
 // upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
 // program, registers, skips the info step, sees 先补信息 on /tiers, is refused /admin and deletes the account.
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
-// /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px, and the instant navigation feedback is timed with route payloads held back. Each step writes docs/screenshots/NN-*.png.
+// /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px, the instant navigation feedback is timed with route payloads held back, and return visits are checked with the API held back. Each step writes docs/screenshots/NN-*.png.
 //
 // The overview is checked in each state an account can be in: signed out (a labelled demo drawn from the
 // catalogue, with the dates the catalogue serves, and the plain sign-in block when it cannot be read), a new
@@ -344,8 +344,10 @@ async function navigationPass(browser, errors) {
       await page.waitForFunction(() => window.scrollY > 0, null, { timeout: 5000 }).catch(() => {});
       const restored = await page.evaluate(() => Math.round(window.scrollY));
       check("导航：后退回到列表时滚动位置还在", Math.abs(restored - 600) <= 2, restored);
+      // Another school than the one just visited: that one is now in the router's memory (staleTimes)
+      // and would arrive at once, so it could not still be on its way.
       holding = true;
-      const again = await clickAndWatch(".workspace-route table a.l1", "/schools", "school");
+      const again = await clickAndWatch(".workspace-route tbody tr:nth-child(2) a.l1", "/schools", "school");
       // Changing one's mind while the school is still on its way: the rail's 学校库 brings the list back at once.
       const undone = await page.evaluate(async (selector) => {
         document.querySelector(selector).click();
@@ -369,6 +371,140 @@ async function navigationPass(browser, errors) {
   }
 }
 
+/**
+ * Return visits (data kept for the visit, lib/resource-cache.ts). A new account opens each page once.
+ * Then every request to the API and every route payload is held back, so nothing can be read again:
+ * coming back to a page must show its real content within NAV_BOUND of the click, with no placeholder.
+ * Last, a tick made on the roadmap while the API is still held (its save is in flight) must show on
+ * the overview at once, and must be what the server holds after everything is released and reloaded.
+ */
+async function returnVisitPass(browser, errors, email) {
+  const context = await browser.newContext({ viewport: DESKTOP });
+  const page = await context.newPage();
+  watch(page, "return", errors);
+  await page.goto(`${BASE}/roadmap`);
+  await settle(page);
+  await sidebarLogin(page);
+  await loginThroughDialog(page, email);
+  // A new account is offered the four-basics step; it is skipped here.
+  await page.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("button", { name: "跳过，以后再填" }).click({ timeout: 15000 }).catch(() => {});
+  // An intake and one application, written through the API the pages use.
+  const prepared = await page.evaluate(async () => {
+    const profile = await (await fetch("/api/profile")).json();
+    const saved = await fetch("/api/profile", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ intake: "2027 S2", baseVersion: profile.version }),
+    });
+    const added = await fetch("/api/application-records", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Idempotency-Key": crypto.randomUUID() },
+      body: JSON.stringify({ school: "走查大学", name: "Return Visit MSc", round: null, status: "applying", deadline: null, sourceUrl: null, confirmDeadline: false, materialNotes: "", customMaterials: [] }),
+    });
+    return [saved.status, added.status];
+  });
+  check("回访：准备账号（入学时间和一条申请）", prepared[0] === 200 && prepared[1] === 201, prepared);
+  // A full load, so the visit starts with nothing kept.
+  await page.goto(`${BASE}/`);
+  await settle(page);
+
+  const CONTENT = {
+    "/roadmap": ".workspace-route .rm-list li",
+    "/materials": ".workspace-route .block-files h2",
+    "/me": ".workspace-route dl",
+    "/tiers": ".workspace-route form, .workspace-route .strip",
+    "/portfolio": ".workspace-route table",
+    "/schools": ".workspace-route table a.l1",
+  };
+  const go = (href) =>
+    page.evaluate((href) => {
+      // A link the shell and the router both take as a click on an in-app link.
+      const a = document.createElement("a");
+      a.href = href;
+      a.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.next.router.push(href);
+      });
+      document.querySelector(".shell").appendChild(a);
+      a.click();
+      a.remove();
+    }, href);
+  const bars = '.workspace-route .sk, .workspace-route .skeleton, [data-route-skeleton]';
+  for (const [href, selector] of Object.entries(CONTENT)) {
+    await go(href);
+    await page.waitForURL((url) => url.pathname === href, { timeout: 30000 });
+    await page.locator(selector).first().waitFor({ timeout: 30000 });
+    await page.waitForFunction((bars) => document.querySelectorAll(bars).length === 0, bars, { timeout: 30000 });
+  }
+  await go("/");
+  await page.locator(".workspace-route .task-rows").waitFor({ timeout: 30000 });
+  await settle(page);
+
+  let holding = true;
+  let holdingRoutes = true;
+  const held = [];
+  await page.route("**/*", (route) => {
+    const url = route.request().url();
+    return holding && (/\/api\//.test(url) || (holdingRoutes && /[?&]_rsc=/.test(url))) ? held.push(route) : route.continue();
+  });
+  for (const [href, selector] of Object.entries(CONTENT)) {
+    const seen = await page.evaluate(
+      async ({ href, selector, bars, bound }) => {
+        const a = document.createElement("a");
+        a.href = href;
+        a.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.next.router.push(href);
+        });
+        document.querySelector(".shell").appendChild(a);
+        const started = performance.now();
+        a.click();
+        a.remove();
+        let sawBars = false;
+        const ready = () => location.pathname === href && document.querySelector(selector) !== null && document.querySelectorAll(bars).length === 0;
+        while (!ready() && performance.now() - started < bound * 4) {
+          // The shell's placeholder for the frame or two before a route in memory commits does not
+          // count; the page's own bars would mean it is waiting for a read.
+          if (document.querySelector(".workspace-route .sk")) sawBars = true;
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+        }
+        return { ready: ready(), ms: Math.round(performance.now() - started), sawBars };
+      },
+      { href, selector, bars, bound: NAV_BOUND },
+    );
+    check(`回访 ${href}：接口被扣住时，${NAV_BOUND}ms 内就是真实内容，没有占位`, seen.ready && seen.ms <= NAV_BOUND && !seen.sawBars, seen);
+  }
+
+  // A tick whose save cannot land yet, then straight to the overview. Only the API stays held from
+  // here: the dev server reads the overview's route again on every visit, which is not what is tested.
+  holdingRoutes = false;
+  for (const route of held.splice(0).filter((route) => /[?&]_rsc=/.test(route.request().url()))) await route.continue().catch(() => {});
+  await go("/roadmap");
+  await page.locator(".workspace-route .rm-list .rm-tick:not([disabled]):not(:checked)").first().waitFor({ timeout: 30000 });
+  await page.locator(".workspace-route .rm-list .rm-tick:not([disabled]):not(:checked)").first().click();
+  await go("/");
+  await page.locator(".workspace-route .overview .block-count").waitFor({ timeout: 30000 });
+  const countHeld = (await page.locator(".workspace-route .overview .block-count").innerText()).trim();
+  check("回访：路线图上刚勾的任务（保存还没返回），回到总览计数已经是 1", /^1\//.test(countHeld), countHeld);
+  holding = false;
+  for (const route of held.splice(0)) await route.continue().catch(() => {});
+  await page.unroute("**/*");
+  // The page that ticked is gone; its save must still have reached the server and stayed in the kept rows.
+  const completed = () => page.evaluate(async () => (await (await fetch("/api/roadmap")).json()).tasks.filter((task) => task.status === "completed").length);
+  let server = await completed();
+  for (let i = 0; i < 40 && server !== 1; i++) {
+    await page.waitForTimeout(250);
+    server = await completed();
+  }
+  await settle(page);
+  const countAfter = (await page.locator(".workspace-route .overview .block-count").innerText()).trim();
+  check("回访：放开接口后勾选已保存到服务器，总览计数没有退回", /^1\//.test(countAfter) && server === 1, { countAfter, server });
+  await go("/roadmap");
+  await page.locator(".workspace-route .rm-list .rm-tick:checked").first().waitFor({ timeout: 30000 }).catch(() => {});
+  check("回访：再回路线图，这一项仍是勾上的", (await page.locator(".workspace-route .rm-list .rm-tick:checked").count()) === 1);
+  await context.close();
+}
+
 (async () => {
   try {
     const response = await fetch(`${BASE}/api/health`);
@@ -384,7 +520,7 @@ async function navigationPass(browser, errors) {
   for (const file of fs.readdirSync(OUT)) if (/^\d\d-.*\.png$/.test(file)) fs.unlinkSync(path.join(OUT, file));
 
   const stamp = Date.now().toString(36);
-  const emails = [`walkthrough-${stamp}@example.test`, `walkthrough-${stamp}-b@example.test`, `walkthrough-${stamp}-admin@example.test`];
+  const emails = [`walkthrough-${stamp}@example.test`, `walkthrough-${stamp}-b@example.test`, `walkthrough-${stamp}-admin@example.test`, `walkthrough-${stamp}-return@example.test`];
   const errors = [];
   let firstCodeAt = Date.now();
   const browser = await chromium.launch();
@@ -1627,6 +1763,9 @@ async function navigationPass(browser, errors) {
 
     // ---------- instant navigation feedback ----------
     await navigationPass(browser, errors);
+
+    // ---------- return visits ----------
+    await returnVisitPass(browser, errors, emails[3]);
   } catch (error) {
     check("走查顺利跑完", false, String(error && error.stack ? error.stack : error).split("\n").filter((line) => !line.includes("node_modules")).slice(0, 6).join(" | "));
   } finally {

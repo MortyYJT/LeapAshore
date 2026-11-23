@@ -23,7 +23,10 @@ import {
   setStatus,
   writeDraft,
   writeDraftBase,
+  followSaved,
 } from "@/lib/portfolio-draft";
+import { beginRead, peekResource, putResource, sameAccount } from "@/lib/resource-cache";
+import { PROGRAMS_BY_SLUG_KEY } from "@/lib/resource-keys";
 import { toApplicationRows, toPortfolioItems, type ServedApplication } from "@/lib/programs-source";
 import { StaleVersionError } from "@/lib/sync-conflict";
 import { APPLICATION_STATUSES, TIER_OF_BAND } from "@/lib/taxonomy";
@@ -71,7 +74,8 @@ function Portfolio() {
   const { reload: reloadRecords } = useApplicationRecords();
   const [draft, setDraft] = useState<PortfolioItem[] | null>(null);
   const today = useMemo(() => beijingToday(), []);
-  const [programs, setPrograms] = useState<Map<string, Program>>(new Map());
+  // The catalogue's rows for the programs in the draft, kept for the visit so a return draws them at once.
+  const [programs, setPrograms] = useState<Map<string, Program>>(() => peekResource<Map<string, Program>>(PROGRAMS_BY_SLUG_KEY) ?? new Map());
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [savedNote, setSavedNote] = useState<string | null>(null);
@@ -81,25 +85,34 @@ function Portfolio() {
   const beforeRemoval = useRef<Map<string, number> | null>(null);
   const rowMotion = useRef<Animation[]>([]);
 
-  useEffect(() => {
-    if (draft !== null || saved.loading) return;
-    setDraft(readDraft(sessionStorage) ?? saved.data ?? []);
-  }, [draft, saved.loading, saved.data]);
+  // Before paint, so a return visit with the portfolio in memory never shows the loading panel.
+  const lastSaved = useRef<PortfolioItem[] | null>(null);
+  useLayoutEffect(() => {
+    const previous = lastSaved.current;
+    lastSaved.current = saved.data;
+    setDraft((current) => followSaved(current, readDraft(sessionStorage), saved.data, saved.loading, previous));
+  }, [saved.loading, saved.data]);
 
+  // Every program in the draft is read once per visit to this page: the kept rows are drawn at
+  // once and replaced by the fresh ones (deadlines may have changed); a program added later is read then.
+  const readHere = useRef(new Set<string>());
   const ids = useMemo(
-    () =>
-      (draft ?? []).map((r) => r.programSlug).filter((id) => !programs.has(id)),
+    () => (draft ?? []).map((r) => r.programSlug).filter((id) => !readHere.current.has(id)),
+    // `programs` re-runs this after each answer, when the ids just read are in `readHere`.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [draft, programs],
   );
   useEffect(() => {
     if (ids.length === 0) return;
+    for (const id of ids) readHere.current.add(id);
+    const ticket = beginRead(PROGRAMS_BY_SLUG_KEY);
     fetchProgramPage({ ids: ids.slice(0, 100), limit: 100 })
-      .then(({ programs: found }) =>
-        setPrograms(
-          (prev) =>
-            new Map([...prev, ...found.map((p) => [p.slug, p] as const)]),
-        ),
-      )
+      .then(({ programs: found }) => {
+        if (!sameAccount(ticket)) return;
+        const next = new Map([...(peekResource<Map<string, Program>>(PROGRAMS_BY_SLUG_KEY) ?? []), ...found.map((p) => [p.slug, p] as const)]);
+        putResource(PROGRAMS_BY_SLUG_KEY, next);
+        setPrograms(next);
+      })
       .catch(() => undefined); // the rows still render from the portfolio's own program names
   }, [ids]);
 

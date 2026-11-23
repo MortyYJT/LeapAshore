@@ -3,6 +3,7 @@
 import { fetchApplications } from "../api";
 import { toPortfolioItems } from "../programs-source";
 import type { PortfolioItem } from "../types";
+import { PORTFOLIO_KEY } from "../resource-keys";
 import { useResource } from "./useResource";
 
 export async function loadPortfolio(): Promise<PortfolioItem[]> {
@@ -11,5 +12,5 @@ export async function loadPortfolio(): Promise<PortfolioItem[]> {
 
 /** The saved portfolio. The draft the applicant is editing lives in `portfolio-draft.ts`. */
 export function usePortfolio() {
-  return useResource(loadPortfolio);
+  return useResource(loadPortfolio, PORTFOLIO_KEY);
 }
