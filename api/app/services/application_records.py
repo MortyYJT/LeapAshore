@@ -32,14 +32,17 @@ from sqlalchemy.orm import Session
 
 from app.collect import materials as material_rules
 from app.deps import load_or_create_profile
-from app.models.application import Application, ApplicationStatus
+from app.models.application import Application, ApplicationOrigin, ApplicationStatus, ApplicationTier
 from app.models.application_plan import ApplicationPlan
 from app.models.program import Program, ProgramMaterial
 from app.models.source import Source, SourceVersion
 from app.routers.applications import read_applications
 from app.schemas.common import _camel
+from app.models.task import TaskOrigin
 from app.services.accounts import lock_client
+from app.services.applications import _snapshot as portfolio_snapshot
 from app.services.versions import StaleVersion, token_of
+from app.services.writes import write_history
 
 NOT_FOUND = "申请项目不存在"
 
@@ -52,6 +55,13 @@ class RecordNotFound(LookupError):
 
     def __init__(self) -> None:
         super().__init__(NOT_FOUND)
+
+
+class ProgramNotFound(LookupError):
+    """The catalogue holds no program with this id."""
+
+    def __init__(self) -> None:
+        super().__init__("学校库里没有这个项目")
 
 
 class InvalidRecord(ValueError):
@@ -431,6 +441,71 @@ def create_record(
     session.commit()
     session.refresh(plan)
     return view(plan), True
+
+
+class CatalogueAdd(BaseModel):
+    """One catalogue program to add to the applicant's applications, from the school library."""
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, extra="forbid")
+    program_id: str = Field(min_length=1, max_length=64)
+    # The band to store: the one the tiers gave against the applicant's background, or the caller's
+    # stand-in when they gave none, which it then flags with `needs_review` (shown as 未经系统分档,
+    # as the portfolio flags a band the applicant picked). Without a band the row is 稳 and flagged.
+    tier: ApplicationTier | None = None
+    needs_review: bool | None = None
+
+
+# The band a program is stored with when the caller states none.
+UNTIERED_BAND = ApplicationTier.MATCH
+
+
+def add_catalogue_program(
+    session: Session, client_id: str, payload: CatalogueAdd
+) -> tuple[dict, bool]:
+    """Add a catalogue program to the applicant's applications in one step; returns the record and
+    whether this call added it.
+
+    The record is the program's portfolio row (`applications`), the same row the portfolio's confirm
+    and the advisor write, so it shows on the portfolio, 我的申请, the overview and the roadmap at
+    once. Nothing else is stored: the deadline the record shows is read from the catalogue each time
+    (`view`), with its page as the source and marked as collected and unchecked, and a program with
+    no collected date shows none. No date is made up here.
+
+    The call is idempotent by program: a program the applicant already holds is answered with its
+    record as it is stored, and nothing is written, so a double click, a retry after a lost answer or
+    a second tab adds one row. The subject's row is locked first, as every writer of these rows does,
+    and `UNIQUE (client_id, program_id)` states the same rule in the table.
+    """
+    load_or_create_profile(session, client_id)
+    lock_client(session, client_id)
+    if session.get(Program, payload.program_id) is None:
+        raise ProgramNotFound
+    stored = session.scalar(
+        select(Application).where(
+            Application.client_id == client_id, Application.program_id == payload.program_id
+        )
+    )
+    key = f"catalog:{payload.program_id}"
+    if stored is not None:
+        return read_record(session, client_id, key), False
+    row = Application(
+        id=str(uuid4()),
+        client_id=client_id,
+        program_id=payload.program_id,
+        tier=(payload.tier or UNTIERED_BAND).value,
+        status=ApplicationStatus.CONSIDERING.value,
+        is_primary=False,
+        needs_review=payload.tier is None if payload.needs_review is None else payload.needs_review,
+        origin=ApplicationOrigin.USER.value,
+    )
+    session.add(row)
+    session.flush()
+    write_history(
+        session, client_id, "created", None, portfolio_snapshot(row),
+        actor=TaskOrigin.USER, application_id=row.id,
+    )
+    session.commit()
+    return read_record(session, client_id, key), True
 
 
 def current_view(plan, selection, client_id, session):

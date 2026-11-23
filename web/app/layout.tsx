@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { AdvisorProvider, DockScript } from "@/components/advisor/AdvisorProvider";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import { AddProgramProvider } from "@/components/shell/AddProgram";
 import { ApplicationRecordsProvider } from "@/components/shell/ApplicationRecords";
 import { InstallScript } from "@/components/shell/Install";
 import { NavigationProvider } from "@/components/shell/Navigation";
@@ -52,9 +53,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NavigationProvider>
           <AuthProvider>
             <ApplicationRecordsProvider>
-              <AdvisorProvider>
-                <Shell>{children}</Shell>
-              </AdvisorProvider>
+              <AddProgramProvider>
+                <AdvisorProvider>
+                  <Shell>{children}</Shell>
+                </AdvisorProvider>
+              </AddProgramProvider>
             </ApplicationRecordsProvider>
           </AuthProvider>
         </NavigationProvider>

@@ -41,6 +41,7 @@ PRIVATE = [
     ("PATCH", "/api/profile", {"major": "软件工程"}),
     ("GET", "/api/applications", None),
     ("PUT", "/api/applications", {"rows": []}),
+    ("POST", "/api/application-records/catalog", {"programId": "any"}),
     ("GET", "/api/documents", None),
     ("PUT", "/api/roadmap/tasks", {"applicableKeys": [], "rows": []}),
     ("POST", "/api/advisor/chat", {"conversationId": "c1", "message": "你好"}),

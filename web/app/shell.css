@@ -166,6 +166,19 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   /* Anything that sticks to the bottom of the page sticks above the tab bar. */
   .unsaved { bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px); }
 
+  /* The add control and the toast's actions take a thumb: 44px to press, whatever they draw (the
+     hit area is laid out from the padding box, inside the 1px border). */
+  .add-program { height: 36px; }
+  .add-program::after { content: ""; position: absolute; inset: -5px -1px; }
+  .add-toast-region {
+    left: calc(12px + var(--safe-left)); right: calc(12px + var(--safe-right));
+    bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 12px); width: auto; max-width: none;
+  }
+  .add-toast { flex-wrap: wrap; gap: 4px 12px; padding: 12px 8px 8px 16px; }
+  .add-toast-actions { margin-left: auto; }
+  .add-toast-actions .btn { height: 44px; }
+  .add-toast-close { width: 44px; }
+
   .page { padding: 20px 16px 32px; }
   .page-head { margin-bottom: 20px; }
   h1 { font-size: 1.375rem; }

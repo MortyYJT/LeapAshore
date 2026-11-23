@@ -35,6 +35,12 @@ export interface ApplicationRecordsState {
   /** Replace the records with what a write just returned, without a second read. */
   set: (data: ApplicationRecord[]) => void;
   /**
+   * Change the records on screen from what they are now (a record being added, or the server's answer
+   * for it). Does nothing, and returns false, while nothing has been read yet. Like `set`, it drops a
+   * read already on its way, which may have started before the write.
+   */
+  change: (edit: (records: ApplicationRecord[]) => ApplicationRecord[]) => boolean;
+  /**
    * For a signed-out visitor in login mode: catalogue programs as sample records, or null when the
    * catalogue gave too few or could not be read. Always null for anyone else.
    */
@@ -82,6 +88,18 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
     useCallback(async () => (signedInRef.current ? loadApplicationRecords() : null), []),
   );
   const { reload, set } = resource;
+  const latest = useRef(resource.data);
+  latest.current = resource.data;
+  const change = useCallback(
+    (edit: (records: ApplicationRecord[]) => ApplicationRecord[]) => {
+      if (!signedInRef.current || !latest.current) return false;
+      const next = edit(latest.current);
+      latest.current = next;
+      set(next);
+      return true;
+    },
+    [set],
+  );
   const [syncedAt, setSyncedAt] = useState<Date | null>(null);
   const [selected, select] = useState<string | null>(null);
   const [changedProgram, markChanged] = useState<string | null>(null);
@@ -144,6 +162,7 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
       syncedAt: signedIn ? syncedAt : null,
       reload,
       set,
+      change,
       demo,
       demoPending,
       demoMaterials,
@@ -152,7 +171,7 @@ export function ApplicationRecordsProvider({ children }: { children: ReactNode }
       changedProgram,
       markChanged,
     }),
-    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, demo, demoPending, demoMaterials, picked, changedProgram],
+    [signedIn, resource.data, resource.error, resource.loading, syncedAt, reload, set, change, demo, demoPending, demoMaterials, picked, changedProgram],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AddProgramButton } from "@/components/shell/AddProgram";
 import { cricosFacts, statesARequirement } from "@/lib/catalog";
 import { masterPrograms } from "@/lib/catalog-server";
 import { verifiedMark } from "@/lib/taxonomy";
@@ -9,7 +10,8 @@ const ALL_COLUMNS = { duration: true, tuition: true, requirements: true };
 
 /**
  * One page of a school's programs as rows. Australian rows add their CRICOS weeks and tuition (design D3).
- * `columns` drops a column no program of the school fills (see `programColumns`).
+ * `columns` drops a column no program of the school fills (see `programColumns`). The last column adds
+ * the program to 我的申请 in one press (components/shell/AddProgram.tsx).
  */
 export function ProgramTable({
   programs,
@@ -20,7 +22,7 @@ export function ProgramTable({
   columns?: { duration: boolean; tuition: boolean; requirements: boolean };
   empty: React.ReactNode;
 }) {
-  const span = 2 + Number(columns.duration) + Number(columns.tuition) + Number(columns.requirements);
+  const span = 3 + Number(columns.duration) + Number(columns.tuition) + Number(columns.requirements);
   return (
     <table className="stack program-table">
       <thead>
@@ -30,6 +32,9 @@ export function ProgramTable({
           {columns.duration && <th className="num hide-phone">学制</th>}
           {columns.tuition && <th className="num hide-phone">总学费</th>}
           {columns.requirements && <th className="num">录取要求</th>}
+          <th className="program-add-cell">
+            <span className="sr-only">加入我的申请</span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -71,6 +76,9 @@ export function ProgramTable({
                   {statesARequirement(p) ? <span className="pill pill-neutral">{verifiedMark(p.dataStatus) ? `已收录 · ${verifiedMark(p.dataStatus)}` : "已收录"}</span> : <span className="muted">未收录</span>}
                 </td>
               )}
+              <td className="program-add-cell">
+                <AddProgramButton program={p} variant="row" />
+              </td>
             </tr>
           );
         })}

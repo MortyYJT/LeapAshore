@@ -438,6 +438,40 @@ tbody tr:hover { background: var(--hover); }
 .application-card-details a { text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
 .application-card-actions { justify-content: flex-start; margin-top: 12px; }
 .application-notes { margin: 12px 0 0; font-size: var(--fs-13); white-space: pre-wrap; overflow-wrap: anywhere; }
+/* The record 我的申请 was opened for (去看看): the highlighter passes over it once; Reduced Motion keeps it marked. */
+.application-card.is-arrived { animation: card-arrive 2.4s var(--ease-out); }
+.application-card.is-arrived:focus { outline: none; }
+@keyframes card-arrive { from, 35% { background-color: var(--mark-soft); } }
+@media (prefers-reduced-motion: reduce) {
+  .application-card.is-arrived { animation: none; background-color: var(--mark-soft); }
+}
+
+/* ---------- one-step add to 我的申请 (components/shell/AddProgram.tsx) ---------- */
+.program-add-cell { width: 1%; text-align: right; white-space: nowrap; }
+.add-program-slot { display: contents; }
+.add-program { position: relative; min-width: 88px; }
+.add-program .icon { width: 14px; height: 14px; }
+/* While the add is on its way the control already reads as added; it is inert, not dimmed. */
+.add-program.is-added[aria-disabled="true"] { opacity: 1; cursor: default; }
+/* Added, the row's control is a quiet link to the record; the program page keeps its outlined button. */
+.add-program.btn-small.is-added { color: var(--ink-2); }
+.add-program.btn-small.is-added:hover { color: var(--ink); background: var(--hover); }
+.add-toast-region {
+  position: fixed; z-index: 40; left: calc(var(--rail-current) + 24px); bottom: calc(24px + var(--safe-bottom));
+  width: max-content; max-width: min(520px, calc(100vw - var(--rail-current) - var(--dock-current) - 48px)); pointer-events: none;
+}
+.add-toast {
+  display: flex; align-items: center; gap: 16px; padding: 10px 8px 10px 16px; border: 1px solid var(--line-2);
+  border-radius: var(--r-box); background: var(--raised); box-shadow: var(--shadow-float); pointer-events: auto;
+}
+.add-toast-text { display: grid; gap: 2px; min-width: 0; }
+.add-toast-text strong { font-weight: 600; }
+.add-toast-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.add-toast.is-failed .add-toast-text strong { color: var(--urgent); }
+.add-toast-actions { display: flex; flex: none; align-items: center; gap: 4px; }
+.add-toast-actions .icon { width: 14px; height: 14px; }
+.add-toast-close { width: 28px; padding: 0; text-decoration: none; }
+
 .application-form { display: grid; gap: 14px; }
 .application-form > label:not(.check-label) { display: grid; gap: 5px; font-weight: 500; }
 .application-form > label:not(.check-label) > * { font-weight: 400; }
@@ -593,6 +627,9 @@ tbody tr:hover { background: var(--hover); }
   table.stack tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
   table.stack td { min-width: 0; padding: 0 !important; border: 0 !important; }
   table.stack td.wide { grid-column: 1 / -1; }
+  table.stack td.program-add-cell { grid-column: 2; align-self: center; justify-self: end; width: auto; }
+  /* The requirement mark reads under the name; the add control holds the row's right edge. */
+  .program-table td.num { align-self: center; text-align: left; }
   .facts { grid-template-columns: minmax(0, 1fr); margin-top: 32px; }
   .facts > div { padding: 16px 0; border-left: 0; border-top: 1px solid var(--line); }
   .form-section { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 24px 0; }

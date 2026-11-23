@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from app.db import get_session
 from app.deps import get_subject
 from app.services import application_records as records
-from app.services.application_records import RecordCreate, RecordPatch
+from app.services.application_records import CatalogueAdd, RecordCreate, RecordPatch
 from app.services.versions import StaleVersion, stale_response
 
 router = APIRouter(prefix="/api/application-records", tags=["application records"])
@@ -41,6 +41,20 @@ def create_record(
         record, created = records.create_record(session, client_id, payload, idempotency_key)
     except records.InvalidRecord as exc:
         raise HTTPException(422, str(exc)) from exc
+    if not created:
+        response.status_code = 200
+    return record
+
+
+@router.post("/catalog", status_code=201)
+def add_catalogue_program(payload: CatalogueAdd, client_id: Subject, session: Database, response: Response):
+    """Add a school-library program in one step: 201 with the new record, or 200 with the record the
+    applicant already holds for that program, which writes nothing. A program the catalogue does not
+    hold is a 404."""
+    try:
+        record, created = records.add_catalogue_program(session, client_id, payload)
+    except records.ProgramNotFound as exc:
+        raise HTTPException(404, str(exc)) from exc
     if not created:
         response.status_code = 200
     return record

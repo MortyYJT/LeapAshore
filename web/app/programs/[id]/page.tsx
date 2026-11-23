@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
+import { AddProgramButton } from "@/components/shell/AddProgram";
 import { cricosFacts, missingRequirements, schoolSlugForUniversity } from "@/lib/catalog";
 import { beijingToday, isClosed } from "@/lib/deadlines";
 import { masterPrograms, overseasInstitutions } from "@/lib/catalog-server";
@@ -97,6 +98,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
             {facts ? ` · ${facts.institution}` : ""}
           </p>
         </div>
+        <AddProgramButton program={program} variant="primary" />
       </div>
       <div className="stagger">
         <section className="panel section" aria-label="项目事实">

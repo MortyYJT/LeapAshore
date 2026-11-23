@@ -1,10 +1,12 @@
 "use client";
 import { beijingToday } from "@/lib/deadlines";
 import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { RequireAccount } from "@/components/auth/AuthProvider";
 import { ApplicationCards, ApplicationsBody } from "@/components/shell/RouteSkeleton";
+import { useAddProgram } from "@/components/shell/AddProgram";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
+import { arrivalOf } from "@/lib/add-program";
 import { Icon } from "@/components/shell/Icon";
 import { ConflictNotice, Notice } from "@/components/ui";
 import {
@@ -60,6 +62,30 @@ function Applications() {
     if (record) openEditor(record);
   }, [records.data]);
 
+  // The record this visit was opened for (`?record=`, the add's 去看看 and 已加入 links): once it is
+  // listed, the page scrolls to it and marks it. Read once from the address; 去看看 pressed while the
+  // page is already open says it through `arrival` instead.
+  const { arrival, arrive } = useAddProgram();
+  const wanted = useRef<string | null | undefined>(undefined);
+  const [arrived, setArrived] = useState<string | null>(null);
+  useEffect(() => {
+    if (wanted.current === undefined) wanted.current = arrivalOf(location.search);
+    const id = arrival ?? wanted.current;
+    if (!id || !records.data?.some((r) => r.id === id)) return;
+    wanted.current = null;
+    if (arrival) arrive(null);
+    setFilter("all");
+    setArrived(id);
+  }, [records.data, arrival, arrive]);
+  useLayoutEffect(() => {
+    if (!arrived) return;
+    const card = document.querySelector<HTMLElement>(`[data-record="${CSS.escape(arrived)}"]`);
+    if (!card) return;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    card.scrollIntoView({ block: "center", behavior: reduced ? "auto" : "smooth" });
+    card.focus({ preventScroll: true });
+  }, [arrived]);
+
   useEffect(() => {
     if (editor?.open) dialog.current?.showModal();
     else dialog.current?.close();
@@ -85,7 +111,9 @@ function Applications() {
   }
   const rows = (records.data ?? [])
     .filter((r) => filter === "all" || r.status === filter)
-    .sort((a, b) => (a.deadline ?? "9999").localeCompare(b.deadline ?? "9999"));
+    // Records of the same date keep one order whatever order a read served them in, so the card
+    // scrolled to on arrival stays where it is when the list is read again.
+    .sort((a, b) => (a.deadline ?? "9999").localeCompare(b.deadline ?? "9999") || a.id.localeCompare(b.id));
   return (
     <>
       <div className="application-toolbar section">
@@ -126,13 +154,18 @@ function Applications() {
                   : "从第一份申请开始"}
               </h2>
               <p className="muted">
-                手动添加项目，或在学校库选好项目并保存组合。未知的截止日期会保留为待确认。
+                手动添加项目，或在学校页的项目旁点「加入申请」。未知的截止日期会保留为待确认。
               </p>
               <Link href="/schools">浏览学校库 →</Link>
             </section>
           ) : (
             rows.map((record) => (
-              <article className="panel application-card" key={record.id}>
+              <article
+                className={`panel application-card${arrived === record.id ? " is-arrived" : ""}`}
+                key={record.id}
+                data-record={record.id}
+                tabIndex={arrived === record.id ? -1 : undefined}
+              >
                 <div className="application-card-heading">
                   <div>
                     <div className="small muted">

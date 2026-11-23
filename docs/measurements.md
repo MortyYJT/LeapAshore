@@ -593,3 +593,21 @@ The page switch, the placeholder and the hand-over to content now move as one sy
 - The dock still animates the workspace's margin (a layout per frame for 220 ms). At 4× CPU throttling on 学校库, the heaviest page, the longest gap between frames was 10 to 13 ms and there were no long tasks, so it was kept.
 - `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1351 passed, 1 skipped; web 528 passed (517 before; 11 new in `lib/motion.test.ts` and `lib/navigation.test.ts`); walkthrough 378/378 (368 before; 10 new checks: no layout shift and a fade on slow first visits with every API read 400 ms late, no fade on six cached returns, and under Reduced Motion the placeholder still shown and no animation running on a switch, a slow route or its hand-over).
 - Not measured: a real phone, browsers other than Chromium, production signed in.
+
+### One-step add to 我的申请 (PR #121)
+
+A school-library program becomes an application in one press, from the school page's program rows and from the program page.
+
+- Method: presses counted on the local build, signed in, from the screen named to the moment the record exists on the server, following the controls the pages render; checked by the walkthrough (below) for the new path.
+
+| Starting from | Before | After |
+| --- | --- | --- |
+| Program page, background complete | 3 presses (加入选校组合, 去确认组合, 确认 N 个项目), two page changes | 1 press |
+| Program page, background incomplete | 4 presses (加入，自选档位, a band, 去确认组合, 确认) | 1 press |
+| School page | 4 to 5 (open the program first) | 1 press |
+| School list (`/schools`) | 5 to 6 (open the school, then the program) | 2 presses (open the school, 加入申请) |
+| Signed out, program page | 1 press, sign in, then 去确认组合 and 确认 (2 more) | 1 press, sign in; the add finishes by itself |
+| From the add to the record on 我的申请 | no link; 我的申请 in the rail, then find the card | 1 press (去看看), scrolled to and marked |
+
+- `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1358 passed, 1 skipped (1351 before; 6 new in `api/tests/test_catalogue_add.py` and the new route in `test_account_scope.py`'s signed-out list); web 536 passed (528 before; 8 new in `web/lib/add-program.test.ts`); walkthrough 385/385 (378 before; the second visitor's 加入选校组合 path, 2 checks, became 9 checks of the one-step add: signed-out add completed after sign-in, one server record, program page and rail updated without reload, 去看看 lands on the marked card, a double click adds one and stays on the page, the toast names the deadline, 撤销 removes it, a revisit shows 已加入 linking to the record, a 44 px hit area at 390 px).
+- Not measured: production signed in, a real phone, browsers other than Chromium, the time from press to the server's answer.

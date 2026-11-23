@@ -9,6 +9,7 @@ import { beijingToday } from "@/lib/deadlines";
 import { isNavCurrent, routeShape } from "@/lib/navigation";
 import { overviewOf, type OverviewRow } from "@/lib/overview";
 
+import { AddProgramToast } from "./AddProgram";
 import { useApplicationRecords } from "./ApplicationRecords";
 import { Icon, type IconName } from "./Icon";
 import { Mark } from "./Mark";
@@ -231,6 +232,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </div>
       </div>
       {hasDock && <Dock />}
+      <AddProgramToast />
       <dialog
         className="dialog workspace-search-dialog"
         ref={search}

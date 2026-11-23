@@ -1,8 +1,8 @@
 // Browser walkthrough in login mode (openspec account-login). A logged-out visitor types a question in the
 // advisor and presses 发送 -> logs in with a mailed code -> fills the four basics -> the advisor sends the
 // sentence that was typed (answered by a stub in the browser: the walkthrough never calls the paid model). Then /tiers -> /portfolio (confirm) -> 我的 (edit intake) -> /roadmap (tick,
-// upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
-// program, registers, skips the info step, sees 先补信息 on /tiers, is refused /admin and deletes the account.
+// upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入我的申请 on a
+// program, registers, skips the info step, sees the add finish, adds and takes back rows of the school page, sees 先补信息 on /tiers, is refused /admin and deletes the account.
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
 // /admin, confirms it and withdraws it (openspec source-verification). Every page is then opened at 390px, the instant navigation feedback is timed with route payloads held back, and return visits are checked with the API held back. Each step writes docs/screenshots/NN-*.png.
 //
@@ -1708,15 +1708,66 @@ async function returnVisitPass(browser, errors, email) {
     watch(b, "second", errors);
     await b.goto(`${BASE}/programs/0100139`);
     await settle(b);
-    await b.getByRole("button", { name: "加入选校组合" }).click();
+    // ---------- one-step add to 我的申请: signed out on the program page, then rows of the school page ----------
+    const schoolHref = await b.locator("nav.crumb a").nth(1).getAttribute("href");
+    await b.getByRole("button", { name: "加入我的申请" }).click();
     await b.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();
     await loginThroughDialog(b, emails[1]);
     await b.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("heading", { name: "补充四项信息" }).waitFor({ timeout: 15000 });
     await b.locator("dialog.dialog:not(.workspace-search-dialog)").getByRole("button", { name: "跳过，以后再填" }).click();
-    await b.getByRole("group", { name: "选择档位" }).waitFor({ timeout: 15000 });
-    check("加入选校：登录后回到项目页并接着选档位", true);
-    await b.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "稳" }).click();
-    check("加入选校：选了档位后显示“已加入”", (await b.getByRole("button", { name: /已加入/ }).count()) === 1);
+    const addToast = b.locator(".add-toast", { hasText: "已加入我的申请" });
+    await addToast.waitFor({ timeout: 15000 });
+    check("一步加入：未登录点加入，登录后接着加入并提示「已加入我的申请」", true);
+    await addToast.getByRole("button", { name: "撤销" }).and(b.locator(":enabled")).waitFor({ timeout: 15000 });
+    const recordsOf = () => b.evaluate(async () => (await fetch("/api/application-records")).json());
+    const afterSignIn = await recordsOf();
+    const signedOutAdd = afterSignIn.filter((r) => r.programId === "cricos-0100139");
+    check("一步加入：服务器上只有一条这个项目的申请，状态考虑中", signedOutAdd.length === 1 && signedOutAdd[0].status === "considering", afterSignIn.map((r) => r.id));
+    await b.getByRole("link", { name: /^已加入我的申请/ }).waitFor({ timeout: 15000 });
+    check("一步加入：项目页的按钮变成「已加入我的申请」，侧栏不刷新就列出这条申请",
+      (await b.getByRole("link", { name: /^已加入我的申请/ }).count()) === 1
+      && (await b.locator(".rail-legend button", { hasText: signedOutAdd[0]?.school ?? "?" }).count()) === 1);
+    await addToast.getByRole("link", { name: "去看看" }).click();
+    await b.waitForURL(/\/applications\?record=/);
+    const arrivedCard = b.locator(".application-card.is-arrived");
+    await arrivedCard.waitFor({ timeout: 15000 });
+    check("一步加入：「去看看」打开我的申请，标出这条申请并滚到它",
+      (await arrivedCard.getAttribute("data-record")) === signedOutAdd[0]?.id && (await arrivedCard.isVisible()));
+    await b.goto(`${BASE}${schoolHref}`);
+    await settle(b);
+    const firstAddable = b.locator(".program-table tbody tr").filter({ has: b.getByRole("button", { name: /^加入申请：/ }) }).first();
+    const rowHref = await firstAddable.locator("a.l1").getAttribute("href");
+    const rowSlug = decodeURIComponent(rowHref.replace("/programs/", ""));
+    const addRow = b.locator(".program-table tbody tr", { has: b.locator(`a.l1[href="${rowHref}"]`) });
+    await addRow.getByRole("button", { name: /^加入申请：/ }).dblclick();
+    await b.locator(".add-toast", { hasText: "已加入我的申请" }).getByRole("button", { name: "撤销" }).and(b.locator(":enabled")).waitFor({ timeout: 15000 });
+    const rowRecords = (await recordsOf()).filter((r) => r.programId === rowSlug);
+    const rowLink = addRow.getByRole("link", { name: /已加入我的申请/ });
+    await rowLink.waitFor({ timeout: 15000 });
+    check("一步加入：学校页的行双击只加一条，留在学校页，行里变成「已加入」", rowRecords.length === 1 && new URL(b.url()).pathname === schoolHref && (await rowLink.count()) === 1, rowRecords.length);
+    check("一步加入：提示写出截止日期和来源", /截止(日期待确认| \d{4}-\d\d-\d\d)/.test(await b.locator(".add-toast").innerText()), await b.locator(".add-toast").innerText());
+    await b.locator(".add-toast").getByRole("button", { name: "撤销" }).click();
+    await b.locator(".add-toast", { hasText: "已撤销" }).waitFor({ timeout: 15000 });
+    check("一步加入：撤销后服务器上没有这条申请，行回到「加入申请」",
+      (await recordsOf()).every((r) => r.programId !== rowSlug) && (await addRow.getByRole("button", { name: /^加入申请：/ }).count()) === 1);
+    await addRow.getByRole("button", { name: /^加入申请：/ }).click();
+    await b.locator(".add-toast", { hasText: "已加入我的申请" }).getByRole("button", { name: "撤销" }).and(b.locator(":enabled")).waitFor({ timeout: 15000 });
+    await b.reload();
+    await settle(b);
+    check("一步加入：再打开学校页，加过的项目显示「已加入」，链接到这条申请",
+      (await rowLink.count()) === 1 && (await rowLink.getAttribute("href")) === `/applications?record=${encodeURIComponent(`catalog:${rowSlug}`)}`);
+    await b.setViewportSize(PHONE);
+    await settle(b);
+    const reach = await rowLink.evaluate((link) => {
+      link.scrollIntoView({ block: "center" });
+      const box = link.getBoundingClientRect();
+      const probe = (y) => link.contains(document.elementFromPoint(box.left + box.width / 2, y));
+      // The edges of a 44 px target centred on the button, half a pixel inside.
+      const reachOut = Math.max(0, (44 - box.height) / 2) - 0.5;
+      return { height: box.height, top: probe(box.top - reachOut), bottom: probe(box.bottom + reachOut) };
+    });
+    check("一步加入：手机上行里的按钮点得到的高度不小于 44px", reach.top && reach.bottom, reach);
+    await b.setViewportSize(DESKTOP);
     // ---------- overview: a deadline within two weeks, and 标记为已提交 against another device's edit ----------
     const inTenDays = new Date(Date.now() + 8 * 3600e3 + 10 * 86400e3).toISOString().slice(0, 10);
     const near = await b.evaluate(async (deadline) => (await fetch("/api/application-records", {

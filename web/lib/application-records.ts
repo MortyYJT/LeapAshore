@@ -116,6 +116,33 @@ export async function writeApplicationRecord(
   return record;
 }
 
+/**
+ * Add a school-library program to 我的申请 in one step (`POST /api/application-records/catalog`).
+ *
+ * `band` is the band it is stored with and whether that is flagged for review (`bandFor` in
+ * `add-program.ts`). The server adds the program's portfolio row once: a program
+ * already held is answered 200 with its record and nothing is written, so a double click or a retry
+ * after a lost answer never makes two. `created` says which of the two happened.
+ */
+export async function addCatalogueProgram(
+  programId: string,
+  band: { tier: string; needsReview: boolean },
+): Promise<{ record: ApplicationRecord; created: boolean }> {
+  const response = await fetch("/api/application-records/catalog", {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ programId, tier: band.tier, needsReview: band.needsReview }),
+  });
+  // The record is a row of the saved portfolio, so that kept value is out of date whatever the answer.
+  invalidateResource(PORTFOLIO_KEY);
+  if (!response.ok) {
+    const body = await response.json().catch(() => null);
+    throw Error(typeof body?.detail === "string" ? body.detail : `没能加入（${response.status}）`);
+  }
+  return { record: (await response.json()) as ApplicationRecord, created: response.status === 201 };
+}
+
 /** Whether a stored record says something else than the form that was submitted for it. */
 export function differsFromForm(record: ApplicationRecord, form: Record<string, unknown>): boolean {
   const { confirmDeadline, materialTicks, materialBasis: _basis, customMaterials, ...fields } = form;
