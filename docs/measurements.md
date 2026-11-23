@@ -611,3 +611,38 @@ A school-library program becomes an application in one press, from the school pa
 
 - `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1358 passed, 1 skipped (1351 before; 6 new in `api/tests/test_catalogue_add.py` and the new route in `test_account_scope.py`'s signed-out list); web 536 passed (528 before; 8 new in `web/lib/add-program.test.ts`); walkthrough 385/385 (378 before; the second visitor's 加入选校组合 path, 2 checks, became 9 checks of the one-step add: signed-out add completed after sign-in, one server record, program page and rail updated without reload, 去看看 lands on the marked card, a double click adds one and stays on the page, the toast names the deadline, 撤销 removes it, a revisit shows 已加入 linking to the record, a 44 px hit area at 390 px).
 - Not measured: production signed in, a real phone, browsers other than Chromium, the time from press to the server's answer.
+
+### Codex palette (PR #122)
+
+Colours computed, not read off a screenshot: the Codex desktop app (`com.openai.codex` 26.1117.41037, default appearance) was not screenshotted with content, so its own theme code (the `qBrZ` generator from `app.asar`) was run with its electron defaults, and its 1.5 MB stylesheet plus that theme layer were loaded into headless Chromium with the app's root attributes (`data-codex-window-type="electron"`, `data-codex-os="darwin"`, `data-theme`), and every role read with `getComputedStyle` (2026-11-23). The site's tokens and the Codex variable behind each are listed in `web/app/globals.css`.
+
+| Role | Light | Dark |
+| --- | --- | --- |
+| Workspace (`--color-surface`) | `#ffffff` | `#181818` |
+| Sidebar (`--color-token-side-bar-background`) | `#f6f6f6` | `#141414` |
+| Text (`--color-text`) | `#1a1c1f` | `#dfdfdf` |
+| Secondary text on the workspace (`--color-text-secondary`) | `#6a6b6d`, 5.3:1 | `#999999`, 6.2:1 |
+| Tertiary text on the workspace (`--color-text-tertiary`, not used) | `#8e8f90`, 3.2:1 | `#8b8b8b`, 5.2:1 |
+| Focus ring (`--color-token-focus-border`) | `#0169cc` | `#0285ff` |
+
+Application line colours (WCAG contrast; "code" is the code printed on the colour):
+
+| Line | Light | vs workspace / sidebar | code | Dark | vs workspace / sidebar | code |
+| --- | --- | --- | --- | --- | --- | --- |
+| green | `#008635` | 4.71 / 4.36 | 4.71 | `#04b84c` | 6.74 / 6.99 | 7.37 |
+| blue | `#004f99` | 8.14 / 7.54 | 8.14 | `#99ceff` | 10.68 / 11.08 | 11.69 |
+| magenta | `#e04c91` | 3.74 / 3.46 | 4.56 | `#ff66ad` | 6.56 / 6.80 | 7.18 |
+| orange | `#e25507` | 3.79 / 3.51 | 4.50 | `#ff8549` | 7.36 / 7.64 | 8.05 |
+| teal | `#0695c8` | 3.42 / 3.16 | 4.99 | `#42dec2` | 10.53 / 10.93 | 11.53 |
+| violet | `#7e14d0` | 7.25 / 6.71 | 7.25 | `#ad7bf9` | 5.90 / 6.12 | 6.46 |
+| brown | `#7d3f09` | 8.12 / 7.51 | 8.12 | `#ba8e00` | 5.88 / 6.10 | 6.44 |
+| olive | `#586c11` | 5.89 / 5.45 | 5.89 | `#d8f590` | 14.70 / 15.25 | 16.09 |
+
+Smallest CIEDE2000 distance between any two of the eight lines (colour-vision deficiency simulated with Machado et al. 2009 at full severity), the old palette in brackets:
+
+| | Normal | Deuteranopia | Protanopia |
+| --- | --- | --- | --- |
+| Light | 15.4 (12.0) | 5.5 (2.7) | 4.0 (1.1) |
+| Dark | 20.5 (10.6) | 7.0 (2.7) | 5.6 (0.6) |
+
+Below about 10 two lines can look alike to a reader with that deficiency; the code or name printed with every line is what tells them apart.

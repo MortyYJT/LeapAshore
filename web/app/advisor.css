@@ -247,15 +247,15 @@ button.call:hover .chev { color: var(--ink); }
 
 /* ---------- the rail's entry for the dock ---------- */
 .nav-dock .nav-dock-state { width: 14px; height: 14px; margin-left: auto; }
-.nav-dock[aria-expanded="true"] { color: var(--rail-ink); }
-.nav-dock .nav-dock-state.is-running { width: 12px; height: 12px; border: 2px solid var(--rail-line); border-top-color: var(--rail-ink); border-radius: 50%; animation: step-spin 0.8s linear infinite; }
+.nav-dock[aria-expanded="true"] { color: var(--ink); }
+.nav-dock .nav-dock-state.is-running { width: 12px; height: 12px; border: 2px solid var(--line-2); border-top-color: var(--ink); border-radius: 50%; animation: step-spin 0.8s linear infinite; }
 @media (min-width: 901px) {
   .rail-nav .nav-tab-only { display: none; }
   /* The folded rail has room for the entry's own icon only: a filled stop says the dock is open. */
   .sidebar-collapsed .nav-dock .nav-dock-state { position: absolute; top: 7px; right: 6px; width: 6px; height: 6px; border: 0; border-radius: 50%; background: none; stroke: none; animation: none; }
   .sidebar-collapsed .nav-dock .nav-dock-state > * { display: none; }
-  .sidebar-collapsed .nav-dock[aria-expanded="true"] .nav-dock-state { background: var(--rail-ink); }
-  .sidebar-collapsed .nav-dock .nav-dock-state.is-running { background: var(--rail-ink-2); }
+  .sidebar-collapsed .nav-dock[aria-expanded="true"] .nav-dock-state { background: var(--ink); }
+  .sidebar-collapsed .nav-dock .nav-dock-state.is-running { background: var(--ink-3); }
 }
 
 /* ---------- phone and small tablet: the advisor is its own screen ---------- */

@@ -1,14 +1,25 @@
 @import "tailwindcss";
 
 /*
-  LeapAshore visual system: "the line map". A blue-black rail frames a white workspace; an
+  LeapAshore visual system: "the line map", in the colours of the Codex desktop app (OpenAI's
+  ChatGPT/Codex app for macOS, 26.1117, default "codex" appearance, light and dark). A light grey
+  sidebar beside a white workspace (dark: a near-black sidebar beside a dark grey one); an
   application is a line with its own colour, and ink is the only action colour.
 
+  Every colour below is a value the Codex app computes for one of its own variables, read from its
+  stylesheet and theme code in a browser with the app's root attributes. The variable is named
+  beside each token in the light block; the dark block holds the same variable's dark value unless
+  it names another. Where Codex lays a translucent colour over its surface (secondary text), the
+  token holds the colour it comes to on the workspace. Borders, hovers and selections stay
+  translucent as in Codex, so they also read on the sidebar.
+
   - Line colours mean "which application" and nothing else; they are always printed with the
-    application's code or name.
-  - Yellow (--mark) means "differs or just changed", and on the roadmap "time is tight" (a calm
-    attention tag, never a fill). Red (--urgent) means "due within two weeks", and
-    is also what an error is written in.
+    application's code or name. Codex has no such set; the eight are taken from its own colour
+    scales and chat accents (see the block below). lib/line-colours.test.ts holds them to 3:1
+    against both surfaces and to 4.5:1 for the code printed on them.
+  - Three attention colours, Codex's caution, warning and danger: yellow (--mark) means "differs
+    or just changed"; orange (--warn) means "time is tight" on the roadmap; red (--urgent) means
+    "due within two weeks", and is also what an error is written in.
   - The system is flat: depth is a tone step or a 1px rule. Only things that float (menus, dialogs)
     carry a shadow.
   - No web font is loaded, so the page asks no other host for type.
@@ -25,61 +36,67 @@
 :root {
   color-scheme: light;
 
-  /* Rail: the enamel sign that frames the workspace */
-  --rail: #121a28;
-  --rail-raised: #1e2a3f;
-  --rail-line: #2a3750;
-  --rail-ink: #f2f5f9;
-  --rail-ink-2: #aab5c6;
-  --rail-urgent: #ff9b94;
+  /* Sidebar, and the phone's top bar: --color-token-side-bar-background (= surface-under) */
+  --rail: #f6f6f6;
+  /* Behind the iOS status bar in the installed app, whose text is light in both themes: Codex's
+     dark sidebar (shell.css, "installed") */
+  --status-ground: #141414;
 
   /* Workspace surfaces */
-  --bg: #ffffff;
-  --panel: #f3f5f8;
-  --raised: #ffffff;
-  --sunken: #eaeef3;
-  --hover: rgb(17 23 34 / 0.04);
-  --selected: rgb(17 23 34 / 0.08);
-  --bubble: #111722;
-  --on-bubble: #ffffff;
-  --scrim: rgb(9 12 18 / 0.45);
+  --bg: #ffffff; /* --color-surface */
+  --panel: #f6f6f6; /* --color-surface-secondary */
+  --raised: #ffffff; /* --color-token-dropdown-background (control, opaque) */
+  --sunken: rgb(26 28 31 / 0.047); /* --app-color-background-button-secondary */
+  --hover: rgb(26 28 31 / 0.055); /* --color-token-list-hover-background */
+  --selected: rgb(26 28 31 / 0.12); /* --color-background-secondary-ghost-active */
+  --bubble: rgb(26 28 31 / 0.05); /* --color-background-user-message */
+  --on-bubble: #1a1c1f; /* --color-text-user-message */
+  --scrim: rgb(0 0 0 / 0.3); /* --modal-backdrop-background */
+  --logo-ground: #ffffff; /* --white: school logos are drawn for a white page */
 
-  /* Text */
-  --ink: #111722;
-  --ink-2: #485263;
-  --ink-3: #626c7b;
+  /* Text. --ink-2 and --ink-3 are Codex's secondary text laid on the workspace; Codex's tertiary
+     text (#8e8f90 here) is under 4.5:1, so nothing here uses it. */
+  --ink: #1a1c1f; /* --color-text */
+  --ink-2: #606164; /* --app-color-text-foreground-secondary */
+  --ink-3: #6a6b6d; /* --color-text-secondary */
 
   /* Lines and control borders */
-  --line: #e2e6ec;
-  --line-2: #c5ccd7;
+  --line: rgb(26 28 31 / 0.08); /* --color-token-border-default */
+  --line-2: rgb(26 28 31 / 0.118); /* --color-token-border-heavy (= input border) */
 
   /* Action: ink, not a brand hue */
-  --action: #111722;
-  --action-hover: #2a3445;
-  --on-action: #ffffff;
-  --focus: #111722;
+  --action: #1a1c1f; /* --color-background-primary-solid */
+  --action-hover: #303030; /* --color-background-primary-solid-hover */
+  --on-action: #ffffff; /* --color-text-primary-solid */
+  --focus: #0169cc; /* --color-token-focus-border */
+  --selection: #e0f0ff; /* --color-background-text-selection */
 
-  /* Highlighter: "differs from most" and "just changed" */
-  --mark: #ffe680;
-  --mark-soft: #fff6cf;
-  --mark-ink: #4d3a00;
+  /* Caution: "differs from most" and "just changed" (Codex's yellow scale) */
+  --mark: #ffe48c; /* --yellow-100 */
+  --mark-soft: #fff6d9; /* --yellow-50 (--color-background-caution-soft) */
+  --mark-ink: #4d3b00; /* --yellow-900 */
 
-  /* Urgent: a deadline within two weeks; also the colour an error is written in */
-  --urgent: #be222b;
-  --urgent-soft: #fdeceb;
+  /* Warning: "time is tight" on the roadmap */
+  --warn: #923b0f; /* --color-text-warning */
+  --warn-soft: rgb(251 106 34 / 0.07); /* --color-background-warning-surface */
 
-  /* Application lines: identity only. Five original colours, then three for a sixth to eighth line. */
-  --l-green: #15824b;    --on-l-green: #ffffff;
-  --l-blue: #2a62d6;     --on-l-blue: #ffffff;
-  --l-magenta: #bf2b7a;  --on-l-magenta: #ffffff;
-  --l-orange: #e07400;   --on-l-orange: #1c1000;
-  --l-teal: #0a7a8d;     --on-l-teal: #ffffff;
-  --l-violet: #7354d9;   --on-l-violet: #ffffff;
-  --l-brown: #96602c;    --on-l-brown: #ffffff;
-  --l-olive: #62760a;    --on-l-olive: #ffffff;
-  --l-retired: #b4bcc8;
+  /* Danger: a deadline within two weeks; also the colour an error is written in */
+  --urgent: #ba2623; /* --red-600 (--app-color-decoration-deleted) */
+  --urgent-soft: rgb(250 66 62 / 0.08); /* --color-background-danger-surface */
 
-  --shadow-float: 0 8px 24px -8px rgb(17 23 34 / 0.22), 0 2px 6px -2px rgb(17 23 34 / 0.12);
+  /* Application lines: identity only, eight slots in the order they are handed out
+     (lib/overview.ts). Codex scale steps and chat accents; the code on them is white or ink. */
+  --l-green: #008635;    --on-l-green: #ffffff;    /* --green-600 */
+  --l-blue: #004f99;     --on-l-blue: #ffffff;     /* --blue-600 */
+  --l-magenta: #e04c91;  --on-l-magenta: #1a1c1f;  /* --pink-500 */
+  --l-orange: #e25507;   --on-l-orange: #1a1c1f;   /* --orange-500 */
+  --l-teal: #0695c8;     --on-l-teal: #1a1c1f;     /* --brand-cyan-500 */
+  --l-violet: #7e14d0;   --on-l-violet: #ffffff;   /* --color-text-chat-accent-purple */
+  --l-brown: #7d3f09;    --on-l-brown: #ffffff;    /* --color-text-chat-accent-yellow */
+  --l-olive: #586c11;    --on-l-olive: #ffffff;    /* --color-text-chat-accent-lime */
+  --l-retired: #afafaf; /* --app-color-decoration-unchanged */
+
+  --shadow-float: 0 8px 16px -4px rgb(0 0 0 / 0.12), 0 2px 4px -1px rgb(0 0 0 / 0.08); /* --shadow-xl, --shadow-md */
 
   /* Type */
   --font-ui: var(--font-sans);
@@ -145,52 +162,54 @@
 html[data-appearance="dark"] {
   color-scheme: dark;
 
-  --rail: #090c12;
-  --rail-raised: #1a202c;
-  --rail-line: #1f2633;
-  --rail-ink: #eef1f6;
-  --rail-ink-2: #9ea9ba;
+  --rail: #141414;
 
-  --bg: #10141b;
-  --panel: #0c0f15;
-  --raised: #181d27;
-  --sunken: #080a0f;
-  --hover: rgb(255 255 255 / 0.05);
-  --selected: rgb(255 255 255 / 0.1);
-  --bubble: #2a3445;
-  --on-bubble: #eef1f6;
-  --scrim: rgb(0 0 0 / 0.6);
+  --bg: #181818;
+  --panel: #141414;
+  --raised: #2d2d2d;
+  --sunken: rgb(255 255 255 / 0.05);
+  --hover: rgb(255 255 255 / 0.08);
+  --selected: rgb(223 223 223 / 0.16);
+  --bubble: rgb(223 223 223 / 0.05);
+  --on-bubble: #dfdfdf;
+  --scrim: rgb(0 0 0 / 0.5);
 
-  --ink: #eef1f6;
-  --ink-2: #b6bfcd;
-  --ink-3: #8f99a9;
+  --ink: #dfdfdf;
+  --ink-2: #bcbcbc;
+  --ink-3: #999999;
 
-  --line: #232b38;
-  --line-2: #3a4557;
+  --line: rgb(255 255 255 / 0.082);
+  --line-2: rgb(255 255 255 / 0.157);
 
-  --action: #eef1f6;
-  --action-hover: #ffffff;
-  --on-action: #10141b;
-  --focus: #eef1f6;
+  --action: #dfdfdf;
+  --action-hover: #ededed;
+  --on-action: #2d2d2d;
+  --focus: #0285ff;
+  --selection: #0f2e4a;
 
-  --mark: #6b5400;
-  --mark-soft: #2e2600;
-  --mark-ink: #ffe48a;
+  --mark: #6e5400; /* --yellow-800 */
+  --mark-soft: #261d00; /* --yellow-950 */
+  --mark-ink: #ffe48c; /* --yellow-100 */
 
-  --urgent: #ff8078;
-  --urgent-soft: #281519;
+  /* Codex's --color-text-warning (#e25507) is under 4.5:1 on its own warning surface in dark;
+     --app-color-text-warning is not. */
+  --warn: #ff8549; /* --app-color-text-warning */
+  --warn-soft: rgb(251 106 34 / 0.16);
 
-  --l-green: #35c683;    --on-l-green: #06130c;
-  --l-blue: #6c9cff;     --on-l-blue: #060d1c;
-  --l-magenta: #f26bb0;  --on-l-magenta: #1c0611;
-  --l-orange: #ffa03a;   --on-l-orange: #1c1000;
-  --l-teal: #38c5dc;     --on-l-teal: #04161a;
-  --l-violet: #a792ff;   --on-l-violet: #0d0828;
-  --l-brown: #d49b6a;    --on-l-brown: #1c0f04;
-  --l-olive: #b5c84f;    --on-l-olive: #141a00;
-  --l-retired: #4a5565;
+  --urgent: #ff6764; /* --app-color-text-error (--red-300) */
+  --urgent-soft: rgb(250 66 62 / 0.16);
 
-  --shadow-float: 0 12px 28px -10px rgb(0 0 0 / 0.7), 0 2px 8px -2px rgb(0 0 0 / 0.5);
+  --l-green: #04b84c;    --on-l-green: #0d0d0d;    /* --green-400 (--color-chart-green) */
+  --l-blue: #99ceff;     --on-l-blue: #0d0d0d;     /* --blue-100 */
+  --l-magenta: #ff66ad;  --on-l-magenta: #0d0d0d;  /* --pink-400 */
+  --l-orange: #ff8549;   --on-l-orange: #0d0d0d;   /* --orange-300 */
+  --l-teal: #42dec2;     --on-l-teal: #0d0d0d;     /* --color-text-chat-accent-green */
+  --l-violet: #ad7bf9;   --on-l-violet: #0d0d0d;   /* --purple-300 */
+  --l-brown: #ba8e00;    --on-l-brown: #0d0d0d;    /* --yellow-600 */
+  --l-olive: #d8f590;    --on-l-olive: #0d0d0d;    /* --color-text-chat-accent-lime */
+  --l-retired: #414141; /* --app-color-decoration-unchanged */
+
+  --shadow-float: 0 8px 16px -4px rgb(0 0 0 / 0.19), 0 2px 4px -1px rgb(0 0 0 / 0.08); /* --shadow-xl-stronger, --shadow-md */
 }
 
 /* Program identity: the line colour travels with the code, never alone. */
@@ -215,7 +234,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
-::selection { background: var(--mark); color: var(--mark-ink); }
+::selection { background: var(--selection); color: var(--ink); }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
 [hidden] { display: none !important; }
 input, textarea, select { caret-color: var(--ink); }
@@ -371,7 +390,7 @@ tbody tr:hover { background: var(--hover); }
 .two-line .l2 { margin-top: 2px; font-size: var(--fs-13); color: var(--ink-3); }
 .ident { display: flex; align-items: center; gap: 12px; min-width: 0; }
 /* School logos are drawn for a white ground, so they keep one in the dark theme. */
-.logo { width: 28px; height: 28px; flex: none; border-radius: 50%; object-fit: contain; background: #fff; }
+.logo { width: 28px; height: 28px; flex: none; border-radius: 50%; object-fit: contain; background: var(--logo-ground); }
 .mono-mark { display: grid; place-items: center; width: 28px; height: 28px; flex: none; border-radius: 50%; background: var(--sunken); color: var(--ink-3); font-size: var(--fs-13); font-weight: 600; }
 .rows > .row { display: grid; align-items: center; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
 .rows > .row:last-child { border-bottom: 0; }

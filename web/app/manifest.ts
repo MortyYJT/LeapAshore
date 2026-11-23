@@ -13,9 +13,9 @@ const ICON = { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }
  * behind them may be light or dark. The `maskable` ones keep a full-bleed ground: a launcher cuts
  * them to its own shape.
  *
- * A manifest has one colour per role, not one per theme. Both take the rail's light-theme colour: it
- * is the maskable icon's own ground, so the launch screen shows the mark on one flat field, and it is
- * dark in both themes. Once a page is up, its theme-color meta takes over.
+ * A manifest has one colour per role, not one per theme. Both take the rail's light-theme colour (the
+ * sidebar grey): it is the maskable icon's own ground, so the launch screen shows the mark on one flat
+ * field. Once a page is up, its theme-color meta takes over.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {

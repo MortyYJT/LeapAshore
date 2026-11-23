@@ -5,7 +5,7 @@
 export const APPEARANCE_KEY = "leapashore:appearance";
 
 /** The rail's colour in each theme (`--rail` in app/globals.css): the browser's bars and the status bar take it. */
-export const THEME_COLOR = { light: "#121a28", dark: "#090c12" } as const;
+export const THEME_COLOR = { light: "#f6f6f6", dark: "#141414" } as const;
 
 /** The page's one `<meta name="theme-color">`, which the app keeps in step with its theme switch. */
 export const THEME_COLOR_META = "applied-theme-color";

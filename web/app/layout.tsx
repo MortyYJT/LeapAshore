@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   description: "填一次背景，看哪些项目的官方要求你已经满足；选好学校后，从今天到入学，每个阶段要准备什么、依据来自哪个官方页面，都在一张图上。",
   applicationName: "鱼跃彼岸",
   // Added to an iOS home screen, the site opens in its own window (app/manifest.ts does the same for
-  // other systems). The page then runs under the status bar, whose text iOS draws light: the rail's
-  // colour is kept behind it (shell.css, "installed").
+  // other systems). The page then runs under the status bar, whose text iOS draws light: a dark
+  // ground is kept behind it in both themes (--status-ground, shell.css "installed").
   appleWebApp: { capable: true, title: "鱼跃彼岸", statusBarStyle: "black-translucent" },
   // Next writes `mobile-web-app-capable`; iOS before 17.4 reads only its own name for it.
   other: { "apple-mobile-web-app-capable": "yes" },

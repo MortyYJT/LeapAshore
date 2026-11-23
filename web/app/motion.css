@@ -238,7 +238,7 @@ dialog:not([open])::backdrop { pointer-events: none; }
   .rail-nav { position: relative; }
   .rail-nav[data-indicator] .nav-indicator {
     position: absolute; top: 0; left: 0; display: block; width: 100%; height: var(--indicator-h, 34px);
-    border-radius: var(--r-control); background: var(--rail-raised); pointer-events: none;
+    border-radius: var(--r-control); background: var(--selected); pointer-events: none;
     translate: 0 var(--indicator-y, 0);
   }
   .rail-nav[data-indicator] a[aria-current="page"] { background: transparent; }

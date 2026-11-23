@@ -1,5 +1,5 @@
 /*
-  The shell: a blue-black rail beside the workspace from 901px, a top bar and a bottom tab bar at
+  The shell: a grey sidebar (Codex's side-bar background) beside the workspace from 901px, a top bar and a bottom tab bar at
   900px and below. Both layouts are the same elements (components/shell/Shell.tsx), so the navigation
   and the account menu exist once.
 
@@ -19,81 +19,82 @@
 .rail {
   position: fixed; inset: 0 auto 0 0; z-index: 30; display: flex; flex-direction: column;
   width: var(--rail-current); padding: calc(16px + var(--safe-top)) 12px calc(12px + var(--safe-bottom)) calc(12px + var(--safe-left));
-  background: var(--rail); color: var(--rail-ink);
+  background: var(--rail); color: var(--ink);
+  /* Codex separates its sidebar from the page by a tone step and a hairline. */
+  box-shadow: inset -1px 0 0 var(--line);
 }
-/* Installed (--safe-* in globals.css): iOS draws the status bar's text light over the page, so the
-   rail's colour is kept behind it across the whole width, and the workspace starts below. On a
+/* Installed (--safe-* in globals.css): iOS draws the status bar's text light over the page
+   (app/layout.tsx, black-translucent, read once at launch), so a dark ground is kept behind it across
+   the whole width in both themes, and the workspace starts below. On a
    phone the top bar is already there and --topbar-h includes the inset. */
-.shell::before { content: ""; position: fixed; inset: 0 0 auto 0; z-index: 25; height: var(--safe-top); background: var(--rail); }
+.shell::before { content: ""; position: fixed; inset: 0 0 auto 0; z-index: 25; height: var(--safe-top); background: var(--status-ground); }
 @media (min-width: 901px) {
   .workspace-content { padding-top: var(--safe-top); margin-right: max(var(--dock-current), var(--safe-right)); }
 }
-.rail :focus-visible { outline-color: var(--rail-ink); }
-.rail :is(.uc-menu, .uc-dialog) :focus-visible { outline-color: var(--focus); }
 
 .rail-top { display: flex; align-items: center; justify-content: space-between; gap: 4px; min-height: 36px; margin-bottom: 18px; padding-left: 8px; }
 .sidebar-brand { display: flex; min-width: 0; }
-.brand { display: flex; align-items: center; gap: 10px; min-width: 0; border-radius: var(--r-control); color: var(--rail-ink); text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; border-radius: var(--r-control); color: var(--ink); text-decoration: none; }
 .mark { flex: none; }
 .brand-name { display: block; min-width: 0; white-space: nowrap; }
 .brand-name b { display: block; font-size: var(--fs-16); font-weight: 600; line-height: 1.25; letter-spacing: 0.04em; }
-.brand-name > span { display: block; font-size: var(--fs-12); line-height: 1.3; color: var(--rail-ink-2); }
+.brand-name > span { display: block; font-size: var(--fs-12); line-height: 1.3; color: var(--ink-3); }
 .sidebar-tools { display: flex; gap: 2px; }
 .rail-button {
   display: grid; place-items: center; flex: none; width: 32px; height: 32px; padding: 0; border: 0;
-  border-radius: var(--r-control); background: transparent; color: var(--rail-ink-2); cursor: pointer;
+  border-radius: var(--r-control); background: transparent; color: var(--ink-3); cursor: pointer;
 }
-.rail-button:hover { background: var(--rail-raised); color: var(--rail-ink); }
+.rail-button:hover { background: var(--hover); color: var(--ink); }
 .sidebar-brand-expand { display: none; }
 
 /* Navigation and the applications scroll together when the window is short; the foot stays put. */
 .rail-scroll {
   display: flex; flex-direction: column; flex: 1; min-height: 0; margin-inline: -12px; padding-inline: 12px;
-  overflow: hidden auto; scrollbar-color: var(--rail-line) transparent;
+  overflow: hidden auto; scrollbar-color: var(--line-2) transparent;
 }
 .rail-nav { display: flex; flex-direction: column; flex: none; gap: 2px; padding-block: 2px; }
 .rail-nav :is(a, button) {
   position: relative; display: flex; align-items: center; flex: none; gap: 10px; height: 34px; padding: 0 12px; overflow: hidden;
-  border: 0; border-radius: var(--r-control); background: none; color: var(--rail-ink-2);
+  border: 0; border-radius: var(--r-control); background: none; color: var(--ink-2);
   font: inherit; text-align: left; text-decoration: none; white-space: nowrap; cursor: pointer;
 }
-.rail-nav :is(a, button):hover { background: var(--rail-raised); color: var(--rail-ink); }
-.rail-nav a[aria-current="page"] { background: var(--rail-raised); color: var(--rail-ink); font-weight: 600; }
+.rail-nav :is(a, button):hover { background: var(--hover); color: var(--ink); }
+.rail-nav a[aria-current="page"] { background: var(--selected); color: var(--ink); font-weight: 600; }
 .nav-short { display: none; }
 
 .rail-legend { flex: none; margin-top: 28px; padding-bottom: 4px; }
-.rail-legend-title { padding: 0 12px 8px; font-size: var(--fs-12); font-weight: 400; line-height: 1.5; color: var(--rail-ink-2); white-space: nowrap; }
-/* The signed-out demo's list says what it is, in the rail's own greys. */
+.rail-legend-title { padding: 0 12px 8px; font-size: var(--fs-12); font-weight: 400; line-height: 1.5; color: var(--ink-3); white-space: nowrap; }
+/* The signed-out demo's list says what it is. */
 .rail-legend-title.is-demo { display: flex; align-items: center; gap: 8px; }
-.rail-legend-title .pill-sample { border-color: var(--rail-ink-2); color: var(--rail-ink-2); }
 .rail-legend ul { margin: 0; padding: 0; list-style: none; }
 .rail-legend button {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px;
   width: 100%; height: 36px; padding: 0 10px; border: 0; border-radius: var(--r-control);
   background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
 }
-.rail-legend button:hover, .rail-legend button[aria-pressed="true"] { background: var(--rail-raised); }
+.rail-legend button:hover { background: var(--hover); }
+.rail-legend button[aria-pressed="true"] { background: var(--selected); }
+/* On a hovered or picked row the days left step up to --ink-2: --ink-3 is under 4.5:1 on those grounds. */
+.rail-legend button:is(:hover, [aria-pressed="true"]) .left:not(.is-soon) { color: var(--ink-2); }
 .rail-legend button.is-dimmed { opacity: 0.6; }
 .rail-legend .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.rail-legend .left { font-size: var(--fs-12); color: var(--rail-ink-2); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rail-legend .left b { margin-right: 2px; font: 700 var(--fs-14)/1 var(--font-num); color: var(--rail-ink); }
-.rail-legend .left.is-soon, .rail-legend .left.is-soon b { color: var(--rail-urgent); }
+.rail-legend .left { font-size: var(--fs-12); color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rail-legend .left b { margin-right: 2px; font: 700 var(--fs-14)/1 var(--font-num); color: var(--ink); }
+.rail-legend .left.is-soon, .rail-legend .left.is-soon b { color: var(--urgent); }
 
-.rail-foot { display: grid; flex: none; gap: 4px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--rail-line); }
+.rail-foot { display: grid; flex: none; gap: 4px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
 .rail-sync {
   display: flex; align-items: center; gap: 8px; width: 100%; min-height: 28px; margin: 0; padding: 0 12px; overflow: hidden;
-  border: 0; border-radius: var(--r-control); background: none; color: var(--rail-ink-2);
+  border: 0; border-radius: var(--r-control); background: none; color: var(--ink-3);
   font: 400 var(--fs-12)/1.5 var(--font-ui); text-align: left; white-space: nowrap;
 }
 button.rail-sync { cursor: pointer; }
-button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink); }
-.rail-sync.is-failed { color: var(--rail-urgent); }
+button.rail-sync:hover { background: var(--hover); color: var(--ink); }
+.rail-sync.is-failed { color: var(--urgent); }
 .rail-me { display: flex; align-items: center; gap: 4px; }
 .rail-me .user-center { flex: 1; min-width: 0; }
-.rail .uc-trigger { width: 100%; min-height: 36px; padding: 4px 8px; color: var(--rail-ink); text-align: left; }
-.rail .uc-trigger:hover { background: var(--rail-raised); }
-.rail .uc-trigger .uc-avatar { background: var(--rail-raised); color: var(--rail-ink); }
-.rail .uc-trigger:hover .uc-avatar { background: var(--rail-line); }
+.rail .uc-trigger { width: 100%; min-height: 36px; padding: 4px 8px; color: var(--ink); text-align: left; }
+.rail .uc-trigger:hover { background: var(--hover); }
 .rail .uc-trigger .uc-name { flex: 1; max-width: none; }
 .rail .uc-menu { left: 0; bottom: calc(100% + 8px); }
 
@@ -103,7 +104,7 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .sidebar-collapsed .rail-top { flex-direction: column; gap: 6px; padding-left: 0; }
   .sidebar-collapsed .sidebar-brand .brand, .sidebar-collapsed .sidebar-collapse { display: none; }
   /* In the folded rail the product mark is the control that opens it again. */
-  .sidebar-collapsed .sidebar-brand-expand { display: grid; width: 40px; height: 36px; color: var(--rail-ink); }
+  .sidebar-collapsed .sidebar-brand-expand { display: grid; width: 40px; height: 36px; color: var(--ink); }
   .sidebar-brand-expand span { display: grid; place-items: center; }
   .sidebar-brand-expand .rail-expand { display: none; }
   .sidebar-brand-expand:hover .rail-mark, .sidebar-brand-expand:focus-visible .rail-mark { display: none; }
@@ -111,7 +112,7 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .sidebar-collapsed .sidebar-tools { flex-direction: column; }
   .sidebar-collapsed .sidebar-tools .rail-button { width: 40px; }
   .sidebar-collapsed .nav-label, .sidebar-collapsed .rail-sync span, .sidebar-collapsed .uc-trigger .uc-name { opacity: 0; pointer-events: none; }
-  .sidebar-collapsed .rail-legend { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--rail-line); }
+  .sidebar-collapsed .rail-legend { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
   .sidebar-collapsed .rail-legend-title, .sidebar-collapsed .rail-legend .name, .sidebar-collapsed .rail-legend .left { display: none; }
   /* Folded, the demo's bullets keep their mark; only the words beside it go. */
   .sidebar-collapsed .rail-legend-title.is-demo { display: flex; justify-content: center; padding: 0 0 8px; }
@@ -133,6 +134,7 @@ button.rail-sync:hover { background: var(--rail-raised); color: var(--rail-ink);
   .rail {
     inset: 0 0 auto 0; flex-direction: row; align-items: center; gap: 0;
     width: auto; height: var(--topbar-h); padding: var(--safe-top) calc(4px + var(--safe-right)) 0 calc(16px + var(--safe-left));
+    box-shadow: inset 0 -1px 0 var(--line);
   }
   .rail-top { flex: 1; min-height: 0; margin: 0; padding: 0; }
   .brand .mark { width: 24px; height: 24px; }

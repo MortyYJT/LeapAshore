@@ -107,8 +107,8 @@
 .rm-lbl b { font-weight: 600; }
 .rm-lbl .num { font-weight: 700; font-size: var(--fs-12); color: var(--ink-2); }
 .rm-lbl .when { font-size: var(--fs-12); color: var(--ink-3); }
-/* Too little time left: a quiet tag in the attention colour, never a red stretch. */
-.rm-flag { padding: 0 5px; border-radius: var(--r-tag); background: var(--mark); color: var(--mark-ink); font-size: var(--fs-12); font-weight: 600; line-height: 18px; white-space: nowrap; }
+/* Too little time left: a quiet tag in the warning colour (orange), never a red stretch. */
+.rm-flag { padding: 0 5px; border-radius: var(--r-tag); background: var(--warn-soft); color: var(--warn); font-size: var(--fs-12); font-weight: 600; line-height: 18px; white-space: nowrap; }
 /* Late in the axis the room is on the left, before the stretch's start. */
 .rm-step.name-before .rm-lbl { left: auto; right: calc(100% - var(--x0) - var(--span) * var(--p0) + 12px); }
 /* A stretch across most of the axis has room on neither side: its name goes above its start. */
@@ -116,7 +116,8 @@
 /* Further down, above is where the stretch before writes its name: below the start instead. */
 .rm-step.name-below .rm-lbl { top: calc(var(--mid) + 8px); left: calc(var(--x0) + var(--span) * var(--p0) + 10px); }
 .rm-step:hover .rm-lbl { background: var(--panel); }
-.rm-step[aria-pressed="true"] .rm-lbl { background: var(--sunken); }
+/* --sunken is translucent; laid over --bg the plate still hides the lines behind the label. */
+.rm-step[aria-pressed="true"] .rm-lbl { background: linear-gradient(var(--sunken), var(--sunken)) var(--bg); }
 .rm-step:focus-visible { outline: 0; }
 .rm-step:focus-visible .rm-lbl { outline: 2px solid var(--focus); outline-offset: 1px; }
 

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <!-- The rail mark (components/shell/Mark.tsx) redrawn for a browser tab, with nothing behind it.
-       The ink follows the browser's colour scheme: the rail colour on light chrome, the rail's ink on
-       dark. The mark is scaled to leave one unit of margin at the sides, which makes its strokes
+       The ink follows the browser's colour scheme: the text colour of each theme (--ink in
+       app/globals.css), dark on light chrome and light on dark. The mark is scaled to leave one unit of margin at the sides, which makes its strokes
        about 1.8px wide in a 16px tab icon. scripts/make-icons.cjs reads the group below. -->
   <style>
-    g { stroke: #121a28; }
-    @media (prefers-color-scheme: dark) { g { stroke: #f2f5f9; } }
+    g { stroke: #1a1c1f; }
+    @media (prefers-color-scheme: dark) { g { stroke: #dfdfdf; } }
   </style>
   <g transform="translate(-1.45 -3.38) scale(1.224)" stroke-width="3" stroke-linecap="round" fill="none">
     <path d="M3.5 22C4 10.5 13 5 19.5 12.8"/>

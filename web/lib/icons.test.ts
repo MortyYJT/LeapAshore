@@ -6,8 +6,10 @@ import { inflateSync } from "node:zlib";
 // The icon files scripts/make-icons.cjs writes from app/icon.svg. These tests read the committed
 // bitmaps, so they fail when icon.svg or the script changes and the script was not rerun.
 
-const RAIL = [0x12, 0x1a, 0x28] as const;
-const RAIL_INK = [0xf2, 0xf5, 0xf9] as const;
+// The light theme's rail and ink (app/globals.css), and the dark theme's ink.
+const RAIL = [0xf6, 0xf6, 0xf6] as const;
+const RAIL_INK = [0x1a, 0x1c, 0x1f] as const;
+const DARK_INK = [0xdf, 0xdf, 0xdf] as const;
 const WHITE = [255, 255, 255] as const;
 const NEAR_BLACK = [0x0b, 0x0c, 0x0e] as const;
 // The greys of Chrome's light tab strip and dark selected tab, the nearest in tone to a mid ink.
@@ -119,9 +121,10 @@ function assertTransparentMark(bitmap: Bitmap, name: string) {
 test("icon.svg has no plate and switches its ink with the colour scheme", () => {
   const svg = asset("../app/icon.svg").toString("utf8");
   assert.doesNotMatch(svg, /<rect/);
-  assert.match(svg, /stroke:\s*#121a28/);
-  assert.match(svg, /@media\s*\(prefers-color-scheme:\s*dark\)\s*\{[^}]*stroke:\s*#f2f5f9/);
-  assert.ok(contrast(RAIL, WHITE) >= 4.5 && contrast(RAIL_INK, NEAR_BLACK) >= 4.5);
+  assert.match(svg, /stroke:\s*#1a1c1f/);
+  assert.match(svg, /@media\s*\(prefers-color-scheme:\s*dark\)\s*\{[^}]*stroke:\s*#dfdfdf/);
+  assert.ok(contrast(RAIL_INK, WHITE) >= 4.5 && contrast(DARK_INK, NEAR_BLACK) >= 4.5);
+  assert.ok(contrast(RAIL_INK, RAIL) >= 4.5, "the plated icons' mark reads on its ground");
 });
 
 test("favicon.ico holds 16, 32 and 48 px images with a transparent ground", () => {

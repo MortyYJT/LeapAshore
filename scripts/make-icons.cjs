@@ -11,7 +11,7 @@
 // dark ink (or the reverse) reads at 192 px and turns to a smudge at 16 px. A saturated blue reads
 // well and is ruled out because the product keeps saturated colours for program lines.
 //
-// Opaque, rail ink on the rail colour, the mark at its drawn size so it keeps a margin:
+// Opaque, ink on the rail colour (the light sidebar grey), the mark at its drawn size so it keeps a margin:
 //   web/app/apple-icon.png (180 px): iOS does not support transparency in a home-screen icon and
 //     fills it with black, and it cuts the corners itself, so the ground is a full square;
 //   web/public/icons/maskable-192.png and maskable-512.png: a launcher cuts a maskable icon to its
@@ -61,8 +61,9 @@ function ico(images) {
   return Buffer.concat([header, ...entries, ...images.map((i) => i.png)]);
 }
 
-const RAIL = "#121a28";
-const RAIL_INK = "#f2f5f9";
+// The light theme's rail and ink (app/globals.css, --rail and --ink).
+const RAIL = "#f6f6f6";
+const RAIL_INK = "#1a1c1f";
 const MID = "#6c80a1";
 // Where the mark sat on the 32-unit plate before the tab icon lost its ground.
 const ON_PLATE = "translate(2 1.6)";
