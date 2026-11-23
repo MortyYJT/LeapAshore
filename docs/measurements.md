@@ -663,3 +663,28 @@ Smallest CIEDE2000 distance between any two of the eight lines (colour-vision de
 | Dark | 20.5 (10.6) | 7.0 (2.7) | 5.6 (0.6) |
 
 Below about 10 two lines can look alike to a reader with that deficiency; the code or name printed with every line is what tells them apart.
+
+### Advisor memory tiers (PR #126)
+
+- Date: 2026-11-24, local, `python -m evals.memory_tiers` (no model call; builds the tool-choice set's eval account on the local database and removes it again). Design in `api/app/agent/memory.py` and `note/decisions.md` 2026-11-24.
+- Threads: built from repository material, 40 turns each. `qa`: the 31 checked answers of `faithfulness_set_v2.json` (DeepSeek's real output) to their questions, with a `search_programs` turn every fifth turn. `manage`: reading applications, searching, a confirmed status change, a status change nobody answered, a profile update and a question, in turn. `verbose`: `qa` with every answer three times as long. Tool replies are the real tools' output for the eval account (cl100k): `get_my_applications` 1,938, `search_programs` ("帝国理工 Computing") 563, `get_my_profile` 115. The short replies after a tool call are written by the script.
+- Counted per model step: the conversation the step carries (the system prompt, 709, and the tool schemas, 2,066, from the PR #106 estimate come on top and are unchanged). "Whole" is what was sent before this change; "tiered" is the middle and recent tiers plus the far tier's text before any summary exists (its largest form: sentence-by-sentence lines and the ledger); "with summary" lets a stand-in summariser answer at the prompt's 400-character cap whenever `memory.refresh` asks. Tokens are tiktoken `cl100k_base`, not the chat model's tokenizer.
+
+| Thread | Turn | Whole | Tiered | With summary | Tiers (far / middle / recent turns) |
+| --- | --- | --- | --- | --- | --- |
+| qa | 10 | 2,446 | 2,446 | 2,446 | 0 / 0 / 10 |
+| qa | 20 | 4,864 | 3,459 | 3,459 | 0 / 7 / 13 |
+| qa | 40 | 9,793 | 5,318 | 5,318 | 15 / 13 / 12 |
+| manage | 10 | 11,914 | 5,386 | 5,386 | 0 / 6 / 4 |
+| manage | 20 | 23,333 | 5,734 | 5,734 | 0 / 15 / 5 |
+| manage | 40 | 47,235 | 7,775 | 6,868 | 20 / 16 / 4 |
+| verbose | 10 | 3,912 | 3,205 | 3,205 | 0 / 2 / 8 |
+| verbose | 20 | 7,684 | 4,133 | 4,133 | 0 / 11 / 9 |
+| verbose | 40 | 15,603 | 5,793 | 4,762 | 19 / 13 / 8 |
+
+- Largest step over the 40 turns, tiered: qa 5,579, manage 7,775, verbose 5,793 (whole: 9,793, 47,235, 15,603). Summed over the 40 first steps, with summary: qa 135,680 (whole 201,720), manage 194,236 (956,776), verbose 149,402 (311,774).
+- Summary calls in 40 turns: qa none, manage one (turn 40), verbose one (turn 36). The far tier's sentence-by-sentence form passes the 1,200-token trigger only after 15–20 turns have left the middle tier; until then it is shown whole (its display budget, 1,600, is above the trigger).
+- Intent router history (cl100k), largest over the 40 turns, before → after: qa 515 → 391, manage 315 → 374, verbose 1,344 → 391. Before: the last six messages whole; after: middle and recent tiers, replies cut to two sentences, the applicant's messages to 300 characters, newest lines within 400 estimated tokens.
+- The runtime estimate (`memory.estimate_tokens`: 1.2 per CJK character or full-width mark, 3.0 other characters per token, 4 per message) against cl100k over the 111 distinct texts of the threads: 14,865 vs 13,458 in total (+10%); per text 0.667–1.479, median 1.048. The low end is short Chinese questions full of rare place-name characters (CMU 那个: 6 tokens, estimated 4). On the whole tiered view it reads 4–18% high. The runtime has no tokenizer of its own (tiktoken would download its table on first use), so the budgets are in these estimated tokens.
+- Budgets chosen (estimated tokens): recent 3,000 on top of the current and the previous turn (kept whole whatever their size), middle 1,500, summary trigger 1,200, summary input at most 4,000 per call and output cap 600, far fallback 1,600, intent history 400. The ledger keeps every change written and every proposal nobody answered, and the newest 10 that came to nothing. With them a step's conversation stayed under about 8,000 cl100k tokens in all three threads; before, it grew by about 1,200 tokens per turn in `manage`, where every read of the applications stays in the thread.
+- Not measured: real conversations (production threads were not read; the local ones are walkthrough stubs of 1–12 messages), the chat model's own tokenizer, a real summary's length and quality, and the latency of a summary call (it runs beside the router's call; the turn waits at most 30 s, and a call still running then finishes in the background and is charged).

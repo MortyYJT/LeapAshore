@@ -15,12 +15,14 @@ Every edge that chooses the next node also ends the turn when the applicant has 
 (`app.agent.halt`): the node that was running finishes, and no other starts.
 """
 
+import asyncio
+
 from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 
-from app.agent import answer, evidence, halt, intent, passages
+from app.agent import answer, evidence, halt, intent, memory, passages
 from app.agent.checkpoint import checkpointer
 from app.agent.llm import get_chat_model
 from app.agent.state import AdvisorState
@@ -59,17 +61,31 @@ def _last_user_text(state: AdvisorState) -> str:
     return ""
 
 
-def _history_text(state: AdvisorState, turns: int = 6) -> str:
-    lines = []
-    for m in state.get("messages", [])[:-1][-turns:]:
-        if isinstance(m, (HumanMessage, AIMessage)) and isinstance(m.content, str) and m.content:
-            lines.append(f"{'用户' if isinstance(m, HumanMessage) else '顾问'}：{m.content}")
-    return "\n".join(lines)
+def _history_text(state: AdvisorState) -> str:
+    """The conversation as the intent router reads it: the middle and recent memory tiers, short
+    (`memory.intent_history`)."""
+    return memory.intent_history(state.get("messages", []), state.get("memory_turns", 0))
+
+
+def _summary_model():
+    return get_chat_model(temperature=0, max_tokens=memory.SUMMARY_MAX_TOKENS)
 
 
 async def classify_intent(state: AdvisorState) -> dict:
     question = _last_user_text(state)
-    result = await intent.classify(question, _history_text(state))
+    # The far tier's summary is extended (when due) beside the router's call, not after it, so a turn
+    # waits for at most the slower of the two. It never raises (`memory.refresh`).
+    remembering = asyncio.ensure_future(memory.refresh(
+        state.get("messages", []), state.get("memory_summary", ""), state.get("memory_turns", 0), _summary_model,
+        failed_at=state.get("memory_failed_at", 0),
+    ))
+    try:
+        result = await intent.classify(question, _history_text(state))
+    except BaseException:
+        # Stops the waiting only: a summary call already sent finishes and is charged (`memory.refresh`).
+        remembering.cancel()
+        raise
+    remembered = await remembering
     with SessionLocal() as session:
         # A question about tuition, references or an interview that names a school is answered from the
         # official pages, whose words can be checked; the catalogue's columns do not hold these
@@ -77,6 +93,7 @@ async def classify_intent(state: AdvisorState) -> dict:
         topics = passages.route(session, question, result["intent"])
     route = "passages" if topics else intent.INTENT_TO_ROUTE.get(result["intent"], "agent")
     return {
+        **remembered.update,
         "intent": result["intent"],
         "intent_confidence": result["confidence"],
         # Each turn starts clean: last turn's evidence must not leak into this one.
@@ -85,7 +102,8 @@ async def classify_intent(state: AdvisorState) -> dict:
         "passages": [],
         "page_topics": [t.key for t in topics],
         "steps": 0,
-        "trace": {"intent": result["intent"], "confidence": result["confidence"], "route": route},
+        "trace": {"intent": result["intent"], "confidence": result["confidence"], "route": route,
+                  "memory_summary": remembered.outcome},
     }
 
 
@@ -229,11 +247,13 @@ def one_change_per_step(reply: AIMessage) -> AIMessage:
 
 
 async def main_agent(state: AdvisorState) -> dict:
-    system = SYSTEM_PROMPT
+    # The model sees the conversation in three tiers (`app.agent.memory`); the stored thread is untouched.
+    seen = memory.view(state["messages"], state.get("memory_summary", ""), state.get("memory_turns", 0))
+    system = SYSTEM_PROMPT + seen.far
     if state.get("evidence"):
         system += EVIDENCE_HINT + state["evidence"]
     model = get_chat_model(streaming=True).bind_tools(TOOLS)
-    history = with_unanswered_calls_closed(state["messages"])
+    history = with_unanswered_calls_closed(seen.history)
     reply = one_change_per_step(await model.ainvoke([SystemMessage(content=system), *history]))
     return {"messages": [reply], "steps": state.get("steps", 0) + 1}
 

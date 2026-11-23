@@ -26,3 +26,8 @@ class AdvisorState(TypedDict, total=False):
     passages: list  # official page chunks retrieved for a page-topic question (snapshot-rag)
     steps: int  # model calls in this turn's ReAct loop
     trace: Annotated[dict, merge_dict]
+    # The far memory tier (`app.agent.memory`): the model's summary of the conversation's first
+    # `memory_turns` turns. Absent in a thread that never grew that long.
+    memory_summary: str
+    memory_turns: int
+    memory_failed_at: int  # the turn count when a summary last failed; 0 after one succeeds
