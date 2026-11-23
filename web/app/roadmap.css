@@ -1,8 +1,9 @@
 /*
   The roadmap: the preparation as one line along a linear time axis. A phase is a stretch of the line
   over its suggested window, a task is a station on it, filled once it is ticked. The line is ink: it
-  is the applicant's own, not a program's. A stretch whose window has passed with a station left is
-  drawn in the urgent colour. Each application is a line of its own colour from today's bar to a
+  is the applicant's own, not a program's. A stretch whose planned window has passed with a station left
+  is not painted as overdue: the page lays it out again from today (lib/roadmap-schedule.ts), and a thin
+  lead runs from the stretch before to where it starts now. Each application is a line of its own colour from today's bar to a
   terminus on its deadline, as on the overview.
 
   A wide frame draws it left to right; every position is a share of the axis (`--p`, `--p0`, `--p1`),
@@ -49,8 +50,7 @@
   position: relative; display: block; width: 100%; height: var(--row); margin: 0; padding: 0;
   border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer;
 }
-.rm-step.is-overdue { --jc: var(--urgent); }
-.rm-step:first-child { --cin: 0px; }
+.rm-step:first-child, .rm-step.has-lead { --cin: 0px; }
 .rm-step:last-child { --cout: 0px; }
 .rm-step .rm-ln { position: absolute; top: calc(var(--mid) - 3px); left: var(--from); width: var(--w); height: 6px; background: var(--jc); }
 .rm-step:first-child .rm-ln { border-radius: 3px 0 0 3px; }
@@ -58,10 +58,15 @@
 .rm-step:only-child .rm-ln { border-radius: 3px; }
 /* The drop into a stretch from the one before, turning at 45 degrees. */
 .rm-join {
-  position: absolute; top: calc(var(--mid) - var(--row) - 4px); left: calc(var(--x0) + var(--span) * var(--p0) - 10px);
+  position: absolute; top: calc(var(--mid) - var(--row) - 4px); left: calc(var(--x0) + var(--span) * var(--q0, var(--p0)) - 10px);
   width: 20px; height: calc(var(--row) + 8px); overflow: visible; pointer-events: none;
 }
 .rm-join path { fill: none; stroke: var(--jc); stroke-width: 6; stroke-linejoin: round; }
+/* The lead: from the drop, where the stretch was planned to start, thin and faint to today. */
+.rm-step .rm-lead {
+  position: absolute; top: calc(var(--mid) - 1px); left: calc(var(--x0) + var(--span) * var(--q0) + var(--cut));
+  width: calc(var(--span) * (var(--p0) - var(--q0)) - var(--cut)); height: 2px; border-radius: 1px; background: var(--line-2);
+}
 /*
   A station takes an even share of its stretch. Where a short window holds many tasks the stations
   shrink to fit, down to 6px, and the ring keeps its proportion.
@@ -76,7 +81,6 @@
   top: calc(var(--mid) - var(--row) + var(--cut) + (var(--row) - 2 * var(--cut)) * var(--g));
   left: calc(var(--x0) + var(--span) * var(--p0)); width: 11px;
 }
-/* A finished station is ink whatever its stretch: on a late stretch, red is what is still open. */
 .rm-step .rm-stn.on { background: var(--ink); }
 .rm-step .rm-stn::after { content: ""; position: absolute; inset: 22%; border-radius: 50%; background: var(--bg); transition: opacity var(--t-base); }
 .rm-step .rm-stn.on::after { opacity: 0; }
@@ -103,11 +107,14 @@
 .rm-lbl b { font-weight: 600; }
 .rm-lbl .num { font-weight: 700; font-size: var(--fs-12); color: var(--ink-2); }
 .rm-lbl .when { font-size: var(--fs-12); color: var(--ink-3); }
-.rm-step.is-overdue .rm-lbl .when { color: var(--urgent); }
+/* Too little time left: a quiet tag in the attention colour, never a red stretch. */
+.rm-flag { padding: 0 5px; border-radius: var(--r-tag); background: var(--mark); color: var(--mark-ink); font-size: var(--fs-12); font-weight: 600; line-height: 18px; white-space: nowrap; }
 /* Late in the axis the room is on the left, before the stretch's start. */
 .rm-step.name-before .rm-lbl { left: auto; right: calc(100% - var(--x0) - var(--span) * var(--p0) + 12px); }
 /* A stretch across most of the axis has room on neither side: its name goes above its start. */
 .rm-step.name-above .rm-lbl { top: calc(var(--mid) - 32px); left: calc(var(--x0) + var(--span) * var(--p0) + 10px); }
+/* Further down, above is where the stretch before writes its name: below the start instead. */
+.rm-step.name-below .rm-lbl { top: calc(var(--mid) + 8px); left: calc(var(--x0) + var(--span) * var(--p0) + 10px); }
 .rm-step:hover .rm-lbl { background: var(--panel); }
 .rm-step[aria-pressed="true"] .rm-lbl { background: var(--sunken); }
 .rm-step:focus-visible { outline: 0; }
@@ -163,12 +170,10 @@
 .rm-tall { position: relative; }
 .rm-tall svg { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .rm-tall .j { fill: none; stroke: var(--ink); stroke-width: 6; }
-.rm-tall .j.is-overdue, .rm-tall .jt.is-overdue { stroke: var(--urgent); }
+.rm-tall .jl { fill: none; stroke: var(--line-2); stroke-width: 2; }
 .rm-tall .jt { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
 .rm-tall .js { fill: var(--bg); stroke: var(--ink); stroke-width: 2.5; transition: fill var(--t-base); }
 .rm-tall .js.on { fill: var(--ink); }
-.rm-tall .js.is-overdue { stroke: var(--urgent); }
-.rm-tall .js.is-overdue.on { fill: var(--ink); stroke: var(--ink); }
 .rm-tall .je { fill: var(--bg); stroke: var(--ink); stroke-width: 3.5; }
 .rm-tall .now { fill: var(--ink); }
 .rm-tall .ln { fill: none; stroke: var(--lc); stroke-width: 5; stroke-linecap: round; transition: opacity var(--t-base); }
@@ -191,14 +196,14 @@
 .rm-tstep b { display: block; font-size: var(--fs-13); font-weight: 600; line-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .rm-tstep .meta { display: block; font-size: var(--fs-12); line-height: 17px; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rm-tstep .meta .num { font-weight: 700; color: var(--ink-2); }
-.rm-tstep.is-overdue .meta .when { color: var(--urgent); }
+.rm-tstep .meta .rm-flag { line-height: 17px; }
 .rm-tstep:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .rm-tall .rm-tend { position: absolute; z-index: 2; translate: 0 -50%; font-size: var(--fs-12); color: var(--ink-2); white-space: nowrap; }
 
 /* ---------- legend, notes ---------- */
 .rm-keys .k-j { fill: var(--bg); stroke: var(--ink); stroke-width: 2.5; }
 .rm-keys .k-j.on { fill: var(--ink); }
-.rm-keys .k-late { stroke: var(--urgent); stroke-width: 5; stroke-linecap: round; }
+.rm-keys .k-lead { stroke: var(--line-2); stroke-width: 2; stroke-linecap: round; }
 .rm-keys .k-now { fill: var(--ink); }
 .rm-apart { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; margin: 12px 0 0; font-size: var(--fs-13); color: var(--ink-3); }
 .rm-apart .bullet { border: 1px dashed var(--lc); background: none; color: var(--ink); }
@@ -214,9 +219,8 @@
 .rm-stretch-head .block-count { font-size: var(--fs-14); }
 .rm-stretch-head .nav { display: inline-flex; gap: 2px; margin-left: auto; }
 .rm-stretch-note { margin: 2px 0 12px; max-width: 46em; font-size: var(--fs-13); color: var(--ink-3); text-wrap: pretty; }
-.rm-stretch-note .late { color: var(--urgent); }
+.rm-stretch-note .rm-flag { margin-right: 6px; }
 .rm-list { --jc: var(--ink); position: relative; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
-.rm-list.is-overdue { --jc: var(--urgent); }
 .rm-list > li { position: relative; display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; column-gap: 14px; align-items: start; padding: 13px 0; border-bottom: 1px solid var(--line); }
 .rm-list > li.is-plain { display: block; padding: 14px 0; color: var(--ink-3); }
 /* The line runs on through the list: each row's station sits on it. */
@@ -292,6 +296,12 @@
   .rm-tick::after { display: none; }
 }
 
+/* Too little time left, under the sentence below the title: the tag, then the numbers. */
+.rm-tight { display: flex; align-items: baseline; gap: 8px; margin: 8px 0 0; max-width: 46em; color: var(--ink-2); text-wrap: pretty; }
+.rm-tight .rm-flag { flex: none; }
+
 /* The intake and the way to change it sit beside the title, and under it where there is no room. */
 .roadmap .page-head { flex-wrap: wrap; row-gap: 12px; }
+/* The sentences under the title wrap before the intake is pushed under them. */
+.roadmap .page-head > div:first-child { flex: 1 1 24em; min-width: 0; }
 .rm-intake { flex: none; }

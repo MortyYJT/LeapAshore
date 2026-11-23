@@ -3,7 +3,7 @@ import { test } from "node:test";
 
 import type { ApplicationRecord } from "./application-records.ts";
 import { overviewOf } from "./overview.ts";
-import { TALL_CLEAR, TALL_LABEL_PITCH, headline, laneWhen, layoutTall, roadmapMap, stretchLabel } from "./roadmap-map.ts";
+import { TALL_CLEAR, TALL_LABEL_PITCH, TALL_MIN_STRETCH, headline, laneWhen, layoutTall, roadmapMap, stretchLabel, stretchWhen, tightWords, windowWords } from "./roadmap-map.ts";
 import { timelineOf } from "./roadmap-timeline.ts";
 import type { Roadmap, RoadmapPhase } from "./types.ts";
 
@@ -30,11 +30,11 @@ function record(id: string, fields: Partial<ApplicationRecord> = {}): Applicatio
   };
 }
 
-/** The seven served phases for a July 2027 intake, with the first one ticked. */
+/** The seven served phases for a July 2027 intake, on time: the first two ticked, the third begun. */
 const SEVEN = roadmap([
   phase("selection", "2026-08-19", [true, true, true, true, true]),
-  phase("academic", "2026-10-18", [true, true, true, true, false]),
-  phase("language", "2026-11-17", [false, false, false, false]),
+  phase("academic", "2026-10-18", [true, true, true, true, true]),
+  phase("language", "2026-11-17", [true, false, false, false]),
   phase("specialized", "2026-12-17", [false, false, false, false]),
   phase("submission", "2027-02-15", [false, false, false, false, false]),
   phase("decision", "2027-05-16", [false, false, false, false, false, false]),
@@ -69,17 +69,21 @@ test("a phase's tasks are stations spaced evenly inside its stretch, in the phas
   assert.deepEqual(stretch.stations.map((station) => station.id), ["language-0", "language-1", "language-2", "language-3"]);
   const width = stretch.end - stretch.start;
   stretch.stations.forEach((station, index) => near(station.position, stretch.start + (width * (index + 0.5)) / 4));
-  assert.deepEqual(mapOf(SEVEN).stretches[1].stations.map((station) => station.done), [true, true, true, true, false]);
+  assert.deepEqual(mapOf(SEVEN).stretches[2].stations.map((station) => station.done), [true, false, false, false]);
 });
 
-test("a stretch is complete when every task is ticked and overdue when its window passed with one left", () => {
-  assert.deepEqual(mapOf(SEVEN).stretches.map((stretch) => stretch.state), ["complete", "overdue", "open", "open", "open", "open", "open"]);
+test("a stretch is complete when every task is ticked, and open otherwise", () => {
+  assert.deepEqual(mapOf(SEVEN).stretches.map((stretch) => stretch.state), ["complete", "complete", "open", "open", "open", "open", "open"]);
+  assert.ok(mapOf(SEVEN).stretches.every((stretch) => stretch.lead === null));
 });
 
-test("a stretch's name trails its end while there is room, leads its start after that, and goes above when neither side has room", () => {
+test("a stretch's name trails its end while there is room, leads its start after that, and goes above (the first) or below (any other) when neither side has room", () => {
   assert.deepEqual(mapOf(SEVEN).stretches.map((stretch) => stretch.label), ["after", "after", "after", "after", "before", "before", "before"]);
   const long = mapOf(roadmap([phase("a", "2026-08-19", [false]), phase("b", "2026-09-19", [false])]));
-  assert.deepEqual(long.stretches.map((stretch) => stretch.label), ["after", "above"]);
+  assert.deepEqual(long.stretches.map((stretch) => stretch.label), ["after", "below"]);
+  // Only the first goes above: there it has the row to itself.
+  const first = mapOf(roadmap([phase("a", "2026-08-19", [false]), phase("b", "2027-06-19", [false])]));
+  assert.deepEqual(first.stretches.map((stretch) => stretch.label), ["above", "before"]);
 });
 
 test("a short window crowded with tasks puts its first two stations on the drop into it", () => {
@@ -182,8 +186,8 @@ test("without an intake there is no axis: no today, no ticks, no lanes, and ever
   assert.deepEqual(map.stretches.map((stretch) => stretch.state), ["complete", "open", "open"]);
 });
 
-test("the headline names the late stretch first, then the current one with its suggested end", () => {
-  assert.equal(headline(timelineOf(SEVEN, NOW)), "「academic」已过建议时间，还有 1 项没做。");
+test("the headline names the current stretch with its suggested end", () => {
+  assert.equal(headline(timelineOf(SEVEN, NOW)), "现在在「language」，还有 3 项没做，建议 12 月 17 日前做完。");
   const onTime = roadmap([phase("a", "2026-08-19", [true]), phase("b", "2026-11-17", [true, false, false]), phase("c", "2026-12-17", [false])]);
   assert.equal(headline(timelineOf(onTime, NOW)), "现在在「b」，还有 2 项没做，建议 12 月 17 日前做完。");
   const undated = roadmap([phase("a", null, [true]), phase("b", null, [false, false])], null);
@@ -192,8 +196,77 @@ test("the headline names the late stretch first, then the current one with its s
 });
 
 test("a stretch reads in words for a reader who cannot see the map", () => {
-  const [, late] = mapOf(SEVEN).stretches;
-  assert.equal(stretchLabel(late), "academic，建议 10 月 18 日开始，4/5 项做完，已过建议时间，当前这一段");
+  const [, , current] = mapOf(SEVEN).stretches;
+  assert.equal(stretchLabel(current), "language，建议 11 月 17 日开始，1/4 项做完，当前这一段");
+  assert.equal(stretchWhen(current.phase, TODAY), "建议 11/17 起");
+  assert.equal(windowWords(current.phase), "建议 11 月 17 日到 12 月 17 日。");
+});
+
+// ---------------------------------------------------------------------------------------------------
+// Phases laid out again from today (lib/roadmap-schedule.ts)
+// ---------------------------------------------------------------------------------------------------
+
+/** The owner's state: nothing ticked in the first two phases, whose windows have passed. */
+const LATE = roadmap(SEVEN.phases.map((p, index) => (index < 3 ? { ...p, tasks: p.tasks.map((t) => ({ ...t, done: false })) } : p)));
+
+test("late phases are drawn from today like any open stretch: nothing is overdue, and the axis starts today", () => {
+  const timeline = timelineOf(LATE, NOW);
+  const map = roadmapMap(timeline, [], TODAY);
+  assert.ok(map.stretches.every((stretch) => stretch.state === "open"));
+  assert.equal(map.today, 0);
+  assert.equal(map.stretches[0].start, 0);
+  for (let i = 1; i < map.stretches.length; i++) near(map.stretches[i].start, map.stretches[i - 1].end);
+  assert.ok(map.stretches.every((stretch) => stretch.lead === null));
+  assert.equal(map.stretches.at(-1)!.end, 1);
+  assert.equal(headline(timeline), `现在在「selection」，还有 5 项没做。按今天重新排，建议 ${timeline.phases[0].end!.slice(5, 7).replace(/^0/, "")} 月 ${Number(timeline.phases[0].end!.slice(8))} 日前做完。`);
+  assert.equal(stretchWhen(timeline.phases[0], TODAY), "重排后 今天起");
+  assert.match(windowWords(timeline.phases[0])!, /^系统按今天重新排的建议：11 月 21 日到 .+（原来建议 8 月 19 日到 10 月 18 日）。$/);
+  assert.match(stretchLabel(map.stretches[0]), /，系统按今天重新排过，当前这一段$/);
+  assert.deepEqual(timeline.tight, []);
+});
+
+test("a late phase after a finished one is reached by a thin lead from the finished one's end to today", () => {
+  const plan = roadmap(LATE.phases.map((p, index) => (index === 0 ? SEVEN.phases[0] : p)));
+  const map = mapOf(plan);
+  const [selection, academic] = map.stretches;
+  assert.equal(selection.start, 0);
+  near(academic.lead!, selection.end);
+  near(academic.start, map.today!);
+  assert.ok(map.stretches.slice(2).every((stretch) => stretch.lead === null));
+  assert.equal(academic.onDrop, 0);
+  // A finished phase moved along by re-laid ones does not offer its new place as a suggestion.
+  const early = timelineOf(roadmap(LATE.phases.map((p, index) => (index === 2 ? { ...p, tasks: p.tasks.map((t) => ({ ...t, done: true })) } : p))), NOW);
+  assert.equal(stretchWhen(early.phases[2], TODAY), null);
+  assert.equal(windowWords(early.phases[2]), "原来建议 11 月 17 日到 12 月 17 日。");
+  const tall = layoutTall(map);
+  near(tall.stretches[1].lead!, tall.stretches[0].y1);
+  near(tall.stretches[1].y0, tall.todayY!);
+});
+
+test("with too little time before the earliest deadline the late stretches carry 「时间很紧」 and the words give the numbers", () => {
+  const rows = overviewOf([record("e", { school: "爱丁堡大学", deadline: "2027-01-15" })], TODAY).rows;
+  const timeline = timelineOf(LATE, NOW, { date: "2027-01-15", school: "爱丁堡大学", checked: false });
+  const map = roadmapMap(timeline, rows, TODAY);
+  assert.deepEqual(map.stretches.map((stretch) => stretch.phase.tight), [true, true, true, true, true, false, false]);
+  assert.equal(timeline.tight.length, 1);
+  assert.equal(
+    tightWords(timeline.tight[0], timeline, TODAY),
+    `离最早的截止日期 1 月 15 日（爱丁堡大学，日期待核对）只剩 55 天，申请前还有 ${timeline.tight[0].open} 项没做，原计划给这些步骤留了 ${timeline.tight[0].planned} 天。`,
+  );
+  assert.match(stretchLabel(map.stretches[0]), /时间很紧/);
+});
+
+test("「时间很紧」 for the phases after applying is measured to the intake", () => {
+  const done = roadmap(SEVEN.phases.map((p, index) => (index < 5 ? { ...p, tasks: p.tasks.map((t) => ({ ...t, done: true })) } : p)));
+  const timeline = timelineOf(done, new Date("2027-06-20T00:00:00Z"));
+  assert.equal(tightWords(timeline.tight[0], timeline, "2027-06-20"), "离入学只有 25 天，「decision」等还有 8 项没做，原计划给这些步骤留了 60 天。");
+});
+
+test("once the intake has passed the headline asks for a new one, and nothing is painted late", () => {
+  const timeline = timelineOf(roadmap(LATE.phases, "2026-07-15"), NOW);
+  assert.equal(timeline.expired, true);
+  assert.match(headline(timeline), /入学时间已经过了/);
+  assert.ok(mapOf(roadmap(LATE.phases, "2026-07-15")).stretches.every((stretch) => stretch.state === "open"));
 });
 
 // ---------------------------------------------------------------------------------------------------
@@ -311,4 +384,18 @@ test("without an intake the tall map is the stretches in order, one slot per sta
   assert.ok(tall.journeyX < 20);
   near(tall.stretches[1].y1 - tall.stretches[1].y0, 4 * tall.scale);
   near(tall.stretches[0].stations[1].y - tall.stretches[0].stations[0].y, tall.scale);
+});
+
+test("top to bottom, a stretch squeezed into a few days is opened up for its name, and dates keep their order", () => {
+  const rows = overviewOf([record("m", { deadline: "2026-12-20" }), record("e", { deadline: "2027-01-15" })], TODAY).rows;
+  const timeline = timelineOf(LATE, NOW, { date: "2026-12-20", school: "m", checked: false });
+  const tall = layoutTall(roadmapMap(timeline, rows, TODAY));
+  for (const { y0, y1, stations } of tall.stretches) {
+    assert.ok(y1 - y0 >= TALL_MIN_STRETCH - 1e-9);
+    assert.ok(stations.every(({ y }) => y > y0 && y < y1));
+  }
+  for (let i = 1; i < tall.stretches.length; i++) near(tall.stretches[i].y0, tall.stretches[i - 1].y1);
+  // The first deadline ends where applying ends; the later one further down, both under today.
+  near(tall.lanes[0].y1, tall.stretches[4].y1);
+  assert.ok(tall.todayY! < tall.lanes[0].y1 && tall.lanes[0].y1 < tall.lanes[1].y1 && tall.lanes[1].y1 < tall.endY);
 });

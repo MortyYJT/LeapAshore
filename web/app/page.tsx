@@ -437,7 +437,9 @@ function NextActions({ actions, onSaved }: { actions: NextAction[]; onSaved: (re
 function Tasks() {
   const profile = useProfile();
   const roadmap = useRoadmap(profile.data);
-  const timeline = roadmap.roadmap ? timelineOf(roadmap.roadmap, new Date()) : null;
+  // Only the current phase and the counts are read here, which no window changes; the day is still the
+  // roadmap page's (the Beijing date), so the two can never disagree.
+  const timeline = roadmap.roadmap ? timelineOf(roadmap.roadmap, new Date(`${beijingToday()}T00:00:00Z`)) : null;
   const tasks = timeline?.current?.phase.tasks ?? [];
   const totals = timeline?.phases.reduce(
     (sum, phase) => ({ done: sum.done + phase.done, total: sum.total + phase.total }),

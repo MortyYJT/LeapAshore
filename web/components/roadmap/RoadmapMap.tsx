@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 import { dateLabel } from "@/lib/overview";
-import { laneWhen, layoutTall, stretchLabel, type MapLane, type MapStretch, type RoadmapMap as MapModel } from "@/lib/roadmap-map";
+import { laneWhen, layoutTall, stretchLabel, stretchWhen, type MapLane, type MapStretch, type RoadmapMap as MapModel } from "@/lib/roadmap-map";
 
 interface Props {
   map: MapModel;
@@ -20,10 +20,14 @@ function vars(values: Record<string, number>): CSSProperties {
   return Object.fromEntries(Object.entries(values).map(([name, value]) => [`--${name}`, value])) as CSSProperties;
 }
 
-/** What is written beside a stretch's name: how far along it is, and when it is suggested to start. */
-function when(stretch: MapStretch, today: string): string | null {
-  if (stretch.state === "overdue") return "已过建议时间";
-  return stretch.phase.start ? `建议 ${dateLabel(stretch.phase.start, today)} 起` : null;
+/**
+ * What is written beside a stretch's name after its count: 「时间很紧」 for a stretch with too little
+ * time left, else when it is suggested to start (lib/roadmap-map.ts, stretchWhen).
+ */
+function When({ stretch, today }: { stretch: MapStretch; today: string }) {
+  if (stretch.phase.tight) return <span className="rm-flag">时间很紧</span>;
+  const note = stretchWhen(stretch.phase, today);
+  return note ? <span className="when num">{note}</span> : null;
 }
 
 function count(stretch: MapStretch): string | null {
@@ -88,19 +92,25 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
         )}
         <div className={`rm-steps${intake ? " has-end" : ""}${map.stretches[0]?.label === "above" ? " starts-above" : ""}`}>
           {map.stretches.map((stretch, index) => {
-            const note = when(stretch, today);
             return (
               <button
                 type="button"
-                className={`rm-step is-${stretch.state} name-${stretch.label}`}
-                style={vars({ p0: stretch.start, p1: stretch.end, n: Math.max(1, stretch.stations.length - stretch.onDrop) })}
+                className={`rm-step is-${stretch.state} name-${stretch.label}${stretch.lead !== null ? " has-lead" : ""}`}
+                style={vars({
+                  p0: stretch.start,
+                  p1: stretch.end,
+                  n: Math.max(1, stretch.stations.length - stretch.onDrop),
+                  ...(stretch.lead !== null ? { q0: stretch.lead } : {}),
+                })}
                 aria-pressed={stretch.phase.id === selected}
                 aria-label={stretchLabel(stretch)}
                 onClick={() => onSelect(stretch.phase.id)}
                 key={stretch.phase.id}
               >
                 <span className="rm-ln" />
-                {/* The drop from the stretch before, turning at 45 degrees; it is this stretch's start. */}
+                {/* From the end of the stretch before to today, where this one was planned: a thin lead. */}
+                {stretch.lead !== null && <span className="rm-lead" />}
+                {/* The drop from the stretch before, turning at 45 degrees; it is this stretch's start, or its lead's. */}
                 {index > 0 && (
                   <svg className="rm-join" viewBox="-10 -4 20 48" aria-hidden="true" focusable="false">
                     <path d="M-7 0H-6L0 6V34L6 40H7" />
@@ -127,7 +137,7 @@ function Wide({ map, today, intake, selected, onSelect, picked = null }: Props) 
                 <span className="rm-lbl">
                   <b>{stretch.phase.title}</b>
                   {count(stretch) && <span className="num">{count(stretch)}</span>}
-                  {note && <span className="when num">{note}</span>}
+                  <When stretch={stretch} today={today} />
                 </span>
               </button>
             );
@@ -180,7 +190,7 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
     <div className="rm-tall" role="group" aria-label="准备路线">
       <div style={{ position: "relative", height: tall.height }}>
         {tall.stretches.map(({ stretch, y0, y1 }) => {
-          const note = when(stretch, today);
+          const note = stretch.phase.tight ? null : stretchWhen(stretch.phase, today);
           return (
             <button
               type="button"
@@ -194,8 +204,8 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
               <b>{stretch.phase.title}</b>
               <span className="meta">
                 {count(stretch) && <span className="num">{count(stretch)}</span>}
-                {count(stretch) && note && " · "}
-                {note && <span className="when num">{note}</span>}
+                {count(stretch) && (note || stretch.phase.tight) && " · "}
+                {stretch.phase.tight ? <span className="rm-flag">时间很紧</span> : note && <span className="when num">{note}</span>}
               </span>
             </button>
           );
@@ -214,14 +224,14 @@ function Tall({ map, today, intake, selected, onSelect, picked = null }: Props) 
               </g>
             );
           })}
-          {tall.stretches.map(({ stretch, y0, y1, stations }, index) => {
-            const late = stretch.state === "overdue" ? " is-overdue" : "";
+          {tall.stretches.map(({ stretch, y0, y1, lead, stations }, index) => {
             return (
               <g key={stretch.phase.id}>
-                <path className={`j${late}`} d={`M${x} ${y0}V${y1}`} />
-                {index > 0 && <path className={`jt${late}`} d={`M${x - 7} ${y0}H${x + 7}`} />}
+                {lead !== null && <path className="jl" d={`M${x} ${lead}V${y0}`} />}
+                <path className="j" d={`M${x} ${y0}V${y1}`} />
+                {index > 0 && <path className="jt" d={`M${x - 7} ${lead ?? y0}H${x + 7}`} />}
                 {stations.map(({ station, y }) => (
-                  <circle className={`js${late}${station.done ? " on" : ""}`} cx={x} cy={y} r={4.5} key={station.id} />
+                  <circle className={`js${station.done ? " on" : ""}`} cx={x} cy={y} r={4.5} key={station.id} />
                 ))}
               </g>
             );

@@ -17,10 +17,11 @@ import { useMaterials } from "@/lib/hooks/useMaterials";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { toMaterial } from "@/lib/materials-source";
-import { dateLabel, overviewOf, sentenceDate, type Overview, type OverviewRow } from "@/lib/overview";
+import { dateLabel, overviewOf, type Overview, type OverviewRow } from "@/lib/overview";
 import { buildRoadmap, DEFAULT_DEFINITION, intakeAnchor } from "@/lib/roadmap";
 import { stepFiles } from "@/lib/roadmap-files";
-import { headline, roadmapMap, type RoadmapMap as MapModel } from "@/lib/roadmap-map";
+import { headline, roadmapMap, tightWords, windowWords, type RoadmapMap as MapModel } from "@/lib/roadmap-map";
+import { scheduleBound } from "@/lib/roadmap-schedule";
 import { taskStatusLabel } from "@/lib/roadmap-sync";
 import { timelineOf, type Timeline, type TimelinePhase } from "@/lib/roadmap-timeline";
 import { verifiedMark } from "@/lib/taxonomy";
@@ -48,8 +49,8 @@ export default function RoadmapPage() {
   );
 }
 
-/** The title, the sentence under it, what sits to its right, and the blocks. */
-function Frame({ finding, demo = false, aside, children }: { finding: ReactNode; demo?: boolean; aside?: ReactNode; children: ReactNode }) {
+/** The title, the sentence under it and any note under that, what sits to its right, and the blocks. */
+function Frame({ finding, note, demo = false, aside, children }: { finding: ReactNode; note?: ReactNode; demo?: boolean; aside?: ReactNode; children: ReactNode }) {
   return (
     <>
       <header className={`page-head${demo ? " has-note" : ""}`}>
@@ -63,6 +64,7 @@ function Frame({ finding, demo = false, aside, children }: { finding: ReactNode;
             <h1>申请路线图</h1>
           )}
           <p className="finding">{finding}</p>
+          {note}
         </div>
         {aside}
       </header>
@@ -104,8 +106,10 @@ function Roadmap() {
   // One "today" for the whole page: the Beijing calendar date the deadlines are judged against (D4).
   const today = beijingToday();
 
-  const timeline = useMemo(() => (roadmap.roadmap ? timelineOf(roadmap.roadmap, dayOf(today)) : null), [roadmap.roadmap, today]);
   const overview = useMemo(() => overviewOf(records.data ?? [], today), [records.data, today]);
+  // The phases before applying are fitted to the earliest open deadline once they are laid out again.
+  const bound = useMemo(() => scheduleBound(overview.rows), [overview]);
+  const timeline = useMemo(() => (roadmap.roadmap ? timelineOf(roadmap.roadmap, dayOf(today), bound) : null), [roadmap.roadmap, today, bound]);
   const map = useMemo(() => (timeline ? roadmapMap(timeline, overview.rows, today) : null), [timeline, overview, today]);
   const [stretch, choose] = useStretch(timeline);
   const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
@@ -113,6 +117,7 @@ function Roadmap() {
   return (
     <Frame
       finding={timeline ? headline(timeline) : profile.error && !profile.data ? "没能读取你的申请背景。" : <Bar width="16em" />}
+      note={timeline && <TightNote timeline={timeline} today={today} />}
       aside={
         anchor && (
           <div className="toolbar rm-intake">
@@ -170,6 +175,24 @@ function Roadmap() {
   );
 }
 
+/**
+ * 「时间很紧」 under the sentence below the title, once for each group of phases with too little time
+ * left (lib/roadmap-schedule.ts): a calm line with the numbers, the same tag the stretches carry.
+ */
+function TightNote({ timeline, today }: { timeline: Timeline; today: string }) {
+  if (!timeline.tight.length) return null;
+  return (
+    <>
+      {timeline.tight.map((tight) => (
+        <p className="rm-tight" key={tight.group}>
+          <span className="rm-flag">时间很紧</span>
+          <span>{tightWords(tight, timeline, today)}</span>
+        </p>
+      ))}
+    </>
+  );
+}
+
 /** The map with its heading, its legend and the sentence that says what the dates on it are. */
 function MapBlock({
   map,
@@ -188,7 +211,8 @@ function MapBlock({
   picked: string | null;
   demo?: boolean;
 }) {
-  const late = map.stretches.some((stretch) => stretch.state === "overdue");
+  const lead = map.stretches.some((stretch) => stretch.lead !== null);
+  const moved = map.stretches.some((stretch) => stretch.phase.moved);
   return (
     <section className="block block-map" aria-labelledby="h-route">
       <div className="block-head">
@@ -213,18 +237,24 @@ function MapBlock({
             </svg>
             没做
           </li>
-          {late && (
+          {lead && (
             <li>
               <svg className="k-line" viewBox="0 0 22 14" aria-hidden="true">
-                <path className="k-late" d="M3 7H19" />
+                <path className="k-lead" d="M3 7H19" />
               </svg>
-              已过建议时间
+              原来的建议时间
             </li>
           )}
         </ul>
       </div>
       <RoadmapMap map={map} today={today} intake={intake} selected={selected} onSelect={onSelect} picked={picked} />
-      {map.dated && <p className="map-note">每一段的时间是按入学时间倒推的系统建议，不是官方日期。站只表示先后，没有各自的日期。</p>}
+      {map.dated && (
+        <p className="map-note">
+          每一段的时间是按入学时间倒推的系统建议，不是官方日期。
+          {moved && "过了原来的建议时间还没做完的段，系统从今天起重新排了。"}
+          站只表示先后，没有各自的日期。
+        </p>
+      )}
     </section>
   );
 }
@@ -272,7 +302,7 @@ function Stations({
     }
   }
 
-  const suggested = phase.start && phase.end ? `建议 ${sentenceDate(phase.start, 0)}到 ${sentenceDate(phase.end, 0)}。` : null;
+  const suggested = windowWords(phase);
   return (
     <section className="block" aria-labelledby="h-stretch">
       <div className="block-head rm-stretch-head">
@@ -290,10 +320,10 @@ function Stations({
       </div>
       <p className="rm-stretch-note">
         {phase.detail} {suggested}
-        {phase.overdue && <span className="late">已过建议时间。</span>}
+        {phase.tight && <span className="rm-flag">时间很紧</span>}
         清单是系统建议的步骤，标了「依据」的才对应官方要求。
       </p>
-      <ul className={`rm-list${phase.overdue ? " is-overdue" : ""}`} key={phase.id}>
+      <ul className="rm-list" key={phase.id}>
         {phase.phase.tasks.length === 0 && <li className="is-plain">这一段对你的背景没有要做的步骤。</li>}
         {phase.phase.tasks.map((task) => {
           const id = `t-${task.materialId}`;
@@ -513,13 +543,14 @@ function Sample() {
   const timeline = useMemo(() => {
     const profile = { ...EMPTY_PROFILE, intake: `${year} S2`, targetField: "计算机与数据" as const };
     const now = dayOf(today);
-    // Ticked in the sample: every step of a phase whose window has ended, and the first of the next.
+    // Ticked in the sample: every step of a phase whose planned window has ended, and the first of the
+    // next. So the sample is always on time: nothing in it is laid out again from today.
     const plan = timelineOf(buildRoadmap(profile, [], now, DEFAULT_DEFINITION), now);
     const done = plan.phases.flatMap((phase, index) => {
       const ids = phase.phase.tasks.map((task) => task.materialId);
-      if (phase.end && phase.end <= today) return ids;
+      if (phase.planned && phase.planned.end <= today) return ids;
       const previous = plan.phases[index - 1];
-      return !previous || (previous.end && previous.end <= today) ? ids.slice(0, 1) : [];
+      return !previous || (previous.planned && previous.planned.end <= today) ? ids.slice(0, 1) : [];
     });
     return timelineOf(buildRoadmap(profile, done, now, DEFAULT_DEFINITION), now);
   }, [today, year]);

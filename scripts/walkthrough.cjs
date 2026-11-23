@@ -710,6 +710,10 @@ async function returnVisitPass(browser, errors, email) {
     check("未登录：路线图是标了演示的示例，并请你登录", (await page.locator(".roadmap h1 + .pill-sample", { hasText: "演示" }).count()) === 1
       && (await page.locator(".roadmap .demo-note").getByRole("button", { name: "登录", exact: true }).count()) === 1
       && (await page.locator(".rm-wide .rm-step").count()) > 0 && (await page.locator(".rm-list .rm-tick").count()) > 0);
+    // The sample ticks every phase whose planned window has ended, so it is on time whatever the date:
+    // nothing in it is laid out again, nothing is tight, nothing is painted late.
+    check("未登录：示例路线图按计划走，没有重排、没有「时间很紧」、没有红色的段", (await page.locator(".rm-wide .rm-lbl .when", { hasText: "重排后" }).count()) === 0
+      && (await page.locator(".rm-flag, .is-overdue").count()) === 0 && (await page.locator(".rm-wide .rm-stn.on").count()) > 0);
     check("未登录：示例的步骤只有勾选，没有上传", (await page.locator(".rm-list input[type=file]").count()) === 0);
     // A tick in the sample saves nothing: it asks the visitor to sign in.
     await page.locator(".rm-list .rm-tick").first().click();
@@ -1280,6 +1284,19 @@ async function returnVisitPass(browser, errors, email) {
     check("路线图：写明各段时间是系统建议，不是官方日期", (await page.locator(".map-note", { hasText: "系统建议，不是官方日期" }).count()) === 1);
     check("路线图：画成一条线，没有旧的时间轴、进度条和卡片", (await page.locator(".rm-wide .rm-join").count()) > 0
       && (await page.locator("svg.timeline-svg, .task-progress, main.roadmap .panel").count()) === 0);
+    // A phase whose suggested window has passed with steps left is laid out again from today
+    // (web/lib/roadmap-schedule.ts): no stretch is painted overdue, and every re-laid one starts on or
+    // after today's line. This account's intake is July 2027, so in late 2026 the first phases are re-laid.
+    const relaid = await page.evaluate(() => {
+      const now = document.querySelector(".rm-wide .rm-under .now")?.getBoundingClientRect().left ?? null;
+      // Re-laid stretches are named so for a screen reader, whether their label shows a date or 「时间很紧」.
+      const steps = [...document.querySelectorAll(".rm-wide .rm-step")].filter((step) => step.getAttribute("aria-label")?.includes("系统按今天重新排过"));
+      return { now, count: steps.length, lefts: steps.map((step) => step.querySelector(".rm-ln").getBoundingClientRect().left) };
+    });
+    check("路线图：过了建议时间的段从今天起重新排，没有画成红色的「已过建议时间」", (await page.locator(".is-overdue, .rm-keys .k-late").count()) === 0
+      && (await page.locator("main.roadmap", { hasText: "已过建议时间" }).count()) === 0
+      && relaid.lefts.every((left) => relaid.now !== null && left >= relaid.now - 2)
+      && (relaid.count === 0 || (await page.locator(".map-note", { hasText: "系统从今天起重新排了" }).count()) === 1), relaid);
     // An application without a date is a dotted run and is listed as 待确认; no date is drawn for it.
     const undatedRecords = await page.evaluate(async () => (await (await fetch("/api/application-records")).json())
       .filter((r) => ["considering", "applying"].includes(r.status) && !r.deadline).length);
@@ -1397,8 +1414,11 @@ async function returnVisitPass(browser, errors, email) {
       && (await page.locator(`.rm-wide .rm-lanes.has-sel .rm-lane.is-sel[data-record="catalog:${openId}"]`).count()) === 1);
     if (railPaint) await railBullet.click();
     await layout(page, "路线图：截止日期");
-    // A date entered on the portfolio row wins over the collected ones, and stays as entered.
-    const entered = { date: "2027-01-02", url: "https://example.edu/walkthrough-entered-deadline" };
+    // A date entered on the portfolio row wins over the collected ones, and stays as entered. Twenty
+    // days from today, so it is ahead whenever the walkthrough runs and leaves the re-laid phases too
+    // little time: the roadmap then says 「时间很紧」.
+    const inDays = (n) => new Date(Date.parse(`${todayIso}T00:00:00Z`) + n * 86400000).toISOString().slice(0, 10);
+    const entered = { date: inDays(20), url: "https://example.edu/walkthrough-entered-deadline" };
     check("截止日期：组合行写入自己的日期", (await putRows([...originalRows,
       { programId: openId, tier: "稳", officialDeadline: entered.date, deadlineSourceUrl: entered.url },
       { programId: closedId, tier: "保" }])) === 200);
@@ -1408,6 +1428,17 @@ async function returnVisitPass(browser, errors, email) {
     check("截止日期：组合里记录的日期优先于采集的", (await openRow.locator(`time[datetime="${entered.date}"]`).count()) === 1
       && (await openRow.locator(`a[href="${entered.url}"]`, { hasText: "来源" }).count()) === 1
       && (await openRow.getByText("自己填的").count()) === 1);
+    if (entered.date < anchor) {
+      // The earliest open deadline is at most twenty days away: the header and the stretches before
+      // applying carry the calm 「时间很紧」 tag, with the numbers in words, and nothing turns red.
+      // The phases after applying can be tight too (a second line), depending on the day the walkthrough runs.
+      const tightLine = page.locator(".page-head .rm-tight", { hasText: "截止日期" });
+      check("路线图：离截止只剩不到 20 天，标题下写「时间很紧」和天数，相关的段带同样的标记，没有红色", (await tightLine.count()) === 1
+        && (await tightLine.locator(".rm-flag", { hasText: "时间很紧" }).count()) === 1
+        && /只剩 \d+ 天|就是今天/.test(await tightLine.innerText())
+        && (await page.locator(".rm-wide .rm-step .rm-flag", { hasText: "时间很紧" }).count()) > 0
+        && (await page.locator(".is-overdue").count()) === 0, await tightLine.allInnerTexts());
+    }
     const storedEntered = await page.evaluate(async (id) => (await (await fetch("/api/applications")).json()).find((r) => r.programId === id), openId);
     check("截止日期：采集的截止日期仍在项目上，组合行的日期没被改", storedEntered.officialDeadline === entered.date
       && JSON.stringify(storedEntered.program.deadlines) === JSON.stringify(openProgram.deadlines), storedEntered);
