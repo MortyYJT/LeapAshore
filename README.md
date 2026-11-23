@@ -43,7 +43,7 @@ Sign in with a code sent to your email, then add an application or save a progra
 
 ### See the workspace
 
-Taken on 2026-11-21 from the live site while signed out. A signed-out visitor sees a labelled demo: the programs, deadlines and material requirements come from the school library as served; the statuses and ticks are examples.
+Taken on 2026-11-23 from the live site while signed out, after the palette change (#122). A signed-out visitor sees a labelled demo: the programs, deadlines and material requirements come from the school library as served; the statuses and ticks are examples.
 
 | Advisor dock | Application roadmap |
 | --- | --- |
