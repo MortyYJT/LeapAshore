@@ -64,10 +64,10 @@
 }
 
 /* Between the click and the route, only the title is drawn at once. The page's shape under it waits
-   60 ms and then fades in: a route that is already in memory replaces the placeholder within a frame
-   or two, and bars or panels that flashed for that long would read as a flicker. A route's own loading
-   state draws the same shape with no wait, so the hand-over from the shell is not visible. */
-.route-skeleton .sk-late,
+   with the bars (app/motion.css, "loading and fill-in") and fades in with them: a route that is
+   already in memory replaces the placeholder before then, and panels that flashed for a frame or two
+   would read as a flicker. */
 .route-skeleton main > :not(h1, .page-head, .title-row, .lede, .crumb, .sr-only) {
-  animation: skeleton-appear var(--motion-instant) var(--motion-crossfade) 60ms both;
+  transition: opacity var(--motion-normal) var(--motion-out);
 }
+.workspace-content[data-motion]:not([data-loading="shown"]) .route-skeleton main > :not(h1, .page-head, .title-row, .lede, .crumb, .sr-only) { opacity: 0; }

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { NAV_HREFS, clickDestination, isNavCurrent, pushDestination, routeShape, type LinkClick } from "./navigation.ts";
+import { NAV_HREFS, clickDestination, clickQuery, isNavCurrent, pushDestination, pushQuery, routeShape, type LinkClick } from "./navigation.ts";
 
 const HERE = { origin: "https://app.example", pathname: "/" };
 const click = (href: string, over: Partial<LinkClick> = {}): LinkClick => ({
@@ -109,4 +109,21 @@ test("a programmatic push follows the same rule", () => {
   assert.equal(pushDestination("/", HERE), null);
   assert.equal(pushDestination("https://other.example/", HERE), null);
   assert.equal(pushDestination("/api/health", HERE), null);
+});
+
+const ON_SCHOOLS = { origin: HERE.origin, pathname: "/schools", search: "?q=ucl" };
+
+test("a click that only changes the query of the page on screen is a refresh of that page", () => {
+  assert.equal(clickQuery(click("/schools?q=ucl&page=2"), ON_SCHOOLS), "?q=ucl&page=2");
+  assert.equal(clickQuery(click("/schools"), ON_SCHOOLS), "");
+  assert.equal(pushQuery("/schools?q=melbourne", ON_SCHOOLS), "?q=melbourne");
+  assert.equal(pushQuery("/schools?q=ucl", { ...ON_SCHOOLS, search: "q=ucl" }), null);
+});
+
+test("a query refresh is not reported for another page, the same query, or a click the router did not take", () => {
+  assert.equal(clickQuery(click("/schools?q=ucl"), ON_SCHOOLS), null);
+  assert.equal(clickQuery(click("/roadmap?x=1"), ON_SCHOOLS), null);
+  assert.equal(clickQuery(click("/schools?page=2", { metaKey: true }), ON_SCHOOLS), null);
+  assert.equal(clickQuery(click("/schools?page=2", { defaultPrevented: false }), ON_SCHOOLS), null);
+  assert.equal(pushQuery("https://elsewhere.example/schools?page=2", ON_SCHOOLS), null);
 });

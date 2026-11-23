@@ -6,6 +6,9 @@
   --motion-emphasis: 300ms;
   --motion-ease: cubic-bezier(.2, .8, .2, 1);
   --motion-crossfade: cubic-bezier(.4, 0, .2, 1);
+  /* Arrivals: fast at first, then settling. Page switches and fill-ins use it from script
+     (components/shell/Motion.tsx, lib/motion.ts ENTER_MS). */
+  --motion-out: cubic-bezier(.16, 1, .3, 1);
   --motion-distance: 4px;
   --motion-scale: .985;
 }
@@ -32,14 +35,6 @@ tbody tr, .rows > .row, .task-row span, .link, .btn-text {
 .input, .select {
   transition: border-color var(--motion-fast) var(--motion-ease),
     outline-color var(--motion-fast) var(--motion-ease);
-}
-
-.skeleton-line {
-  animation: skeleton-breathe 1.4s ease-in-out var(--motion-normal) 3;
-}
-
-@keyframes skeleton-breathe {
-  50% { opacity: .76; }
 }
 
 @keyframes content-in {
@@ -209,9 +204,42 @@ dialog:not([open])::backdrop { pointer-events: none; }
 
 .uc-sidebar [data-positioned] [aria-selected="true"] { background: transparent; }
 
-/* Short loads retain the panel's space without flashing placeholder bars. */
-.skeleton {
-  animation: skeleton-appear var(--motion-fast) var(--motion-ease) var(--motion-fast) both;
+/* ---------- loading and fill-in (components/shell/Motion.tsx, lib/motion.ts) ----------
+   One clock for every placeholder in the content area. For its first 100 ms a load shows no bars
+   (data that arrives by then replaces the placeholder unseen); then the bars fade in together, and a
+   placeholder that hands over to another (the shell's to the route's, one block's to the next) keeps
+   them on screen. Bars are flat and still. Under Reduced Motion the wait stays and the fades go. */
+.sk, .sk-late, .skeleton {
+  transition: opacity var(--motion-normal) var(--motion-out);
+}
+/* Hidden until the content area says the bars are due, rather than hidden while it says "wait": a
+   placeholder's first style can be computed before the script marks the load (a layout read in the
+   same commit forces it), and bars born visible would flash and fade out. `data-motion` is set once
+   the script runs, so the bars in the server's HTML show before that (and without script). */
+.workspace-content[data-motion]:not([data-loading="shown"]) :is(.sk, .sk-late, .skeleton) { opacity: 0; }
+
+/* Content that replaces bars the visitor saw fades in where they were; content that arrives before any
+   bar was painted is drawn at once. Both decided and run from script (components/shell/Motion.tsx). */
+
+/* Old rows stay while a new query loads (app/schools/SchoolFilters.tsx); after a beat they step back,
+   so a fast answer does not dim them at all. */
+.school-results { transition: opacity var(--motion-fast) var(--motion-out); }
+.school-results[aria-busy="true"] {
+  opacity: .5;
+  transition: opacity var(--motion-normal) var(--motion-out) var(--motion-fast);
 }
 
-@keyframes skeleton-appear { from { opacity: 0; } }
+/* ---------- the rail's current entry (components/shell/Motion.tsx, useRailIndicator) ----------
+   From 901px the highlight is one shape that slides to the entry clicked, starting in the click's own
+   frame (the slide itself is run from script).
+   Until it is placed (before the script runs) the entry draws its own highlight. */
+.nav-indicator { display: none; }
+@media (min-width: 901px) {
+  .rail-nav { position: relative; }
+  .rail-nav[data-indicator] .nav-indicator {
+    position: absolute; top: 0; left: 0; display: block; width: 100%; height: var(--indicator-h, 34px);
+    border-radius: var(--r-control); background: var(--rail-raised); pointer-events: none;
+    translate: 0 var(--indicator-y, 0);
+  }
+  .rail-nav[data-indicator] a[aria-current="page"] { background: transparent; }
+}

@@ -270,7 +270,7 @@ nav.crumb a { text-decoration: none; }
 .strip .label { font-size: var(--fs-12); color: var(--ink-3); }
 .strip .value { margin-top: 4px; font-size: var(--fs-16); line-height: 1.5; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .strip .value .unit { font-size: var(--fs-13); font-weight: 400; color: var(--ink-3); }
-/* Loading: bars where the content will be, breathing slowly; still under reduced motion. */
+/* Loading: flat bars where the content will be (their timing: app/motion.css, "loading and fill-in"). */
 .skeleton { display: grid; gap: 10px; padding: 4px 0; }
 .skeleton-line { display: block; height: 12px; border-radius: var(--r-tag); background: var(--sunken); }
 .skeleton-line:nth-child(1) { width: 42%; }

@@ -567,3 +567,29 @@ Every page read its data again each time it was opened and kept nothing when it 
 - First visits are unchanged in time. Their placeholder is closer in two places: the roadmap's now leaves room for the applications the shell already knows (with three, the steps under the map moved 12 px when the map arrived; 130 px before), and a signed-out visitor's placeholder for 总览 and 申请路线图 carries the demo's mark and note (the first block moved 10 to 25 px when the demo arrived; 64 to 168 px before).
 - `make verify` (local, 2026-11-23): build compiled; backend 1351 passed, 1 skipped; web 493 passed (459 before; 34 new in `lib/resource-cache.test.ts`, `lib/hooks/resource.test.ts`, `lib/roadmap-sync.test.ts` and `lib/portfolio-draft.test.ts`); walkthrough 365/365 (355 before; 10 new checks open six pages, hold every API request and route payload back, and require real content within 250 ms of the click on return, then follow a tick whose save is held from the roadmap to the overview). The last walkthrough run was separate from the `make verify` run, after restarting the dev server for the known "negative time stamp" flake and fixing one task-3 check that assumed a visited school page could not be in the router's memory.
 - Not measured: production signed in, a real phone, browsers other than Chromium.
+
+### Motion on page switch, loading and fill-in (PR #120)
+
+The page switch, the placeholder and the hand-over to content now move as one system: the content area eases in from 40 % opacity over 180 ms on a page switch; placeholder bars stay invisible for the first 100 ms of a load and then fade in; content that replaces bars the visitor saw fades in over 180 ms, and content that arrives before that, or comes from memory, is drawn at once. The rail's highlight slides to the entry clicked. Reduced Motion keeps the 100 ms wait and drops every animation.
+
+- Method: local production builds of `a8c63f4` (before) and of this branch (after), side by side; local API and database; Chromium through Playwright; Chrome's network emulation adding 400 ms or 2000 ms to every request; a signed-in account with three applications, or signed out (the demo); 1440×900 and 390×844, light and dark, and Reduced Motion. Per click (or per full page load): every `layout-shift` entry, including those in the 500 ms after an input that CLS itself excuses; `longtask` entries; the gaps between animation frames in the first 3 s; the stretches in which placeholder bars were painted (opacity over 0.3); which animations ran in the frame the placeholder left. One run per cell. Frames and the script are kept with the session's scratch files, not in the repository.
+- A slow first visit with its bars on screen, then a click to 学校库 kept in the router's memory (2000 ms): no bars and no fade on the way (the page being left no longer counts as loading).
+- Click to rail answer and title (the measure of "Instant navigation feedback" above, 400 ms, two runs each): before 6 to 30 ms, after 7 to 32 ms. The title is on screen in that frame, at 40 % opacity, and fully opaque 180 ms later.
+- Long tasks and dropped frames: none, before or after, on any rail click, tick, filter, Cmd-K search or dock toggle; the longest gap between frames was 9 to 22 ms in every run.
+- Layout shift while a slow page fills in after a rail click: 0 before and after, on every route, first and return visits.
+
+| Full page load, 400 ms | Before: shift | Before: bars on screen (ms) | After: shift | After: bars on screen (ms) |
+| --- | --- | --- | --- | --- |
+| 申请路线图, signed in | 0.1445 | 15–854, then 1019–1251 | 0 | 11–853 |
+| 申请路线图, signed out, 390 px | 0.1077 | 13–434 | 0 | 13–843 |
+| 材料, signed in | 0 | 10–849, then 1003–1245 | 0 | 10–1255 |
+| 选校组合, signed in | 0 | 10–433, then 588–838 | 0 | 12–844 |
+| 我的, signed in | 0.1016 | 12–432, then 586–843 | 0.0446 | 13–855 |
+| 总览, signed in | 0.0001 | 22–856 | 0.0001 | 21–858 |
+
+- Before, a page whose first placeholder handed over to an inner loading block showed nothing for about 150 ms in between (the inner block waited 140 ms and faded for 140 ms); now a placeholder that hands over keeps its bars. The roadmap's shift came from drawing the map before the applications were read (it then grew by a line per application); the signed-out phone's from drawing the demo before its programs arrived. 我的 still moves when the file list is longer than its placeholder. On a full load the bars in the server's HTML show from the first paint, as before; the 100 ms wait applies from the moment the page's script runs.
+- Under Reduced Motion, before: routes that commit in the next frame (我的申请, 材料, 总览) painted the placeholder for one frame (11 to 14 ms). After: no bars on those clicks; on slow routes the bars appear at 111 to 115 ms with no fade, and no animation or transition runs.
+- School crests on a return to 学校库: before, still loading 2.5 s (400 ms) and 9.0 s (2000 ms) after the click, because `/logos/*` was served with `max-age=0` and every crest was asked for again; after, done 23 to 33 ms after the click. First visits are unchanged.
+- The dock still animates the workspace's margin (a layout per frame for 220 ms). At 4× CPU throttling on 学校库, the heaviest page, the longest gap between frames was 10 to 13 ms and there were no long tasks, so it was kept.
+- `make verify` (local, 2026-11-23, after the review fixes): build compiled; backend 1351 passed, 1 skipped; web 528 passed (517 before; 11 new in `lib/motion.test.ts` and `lib/navigation.test.ts`); walkthrough 378/378 (368 before; 10 new checks: no layout shift and a fade on slow first visits with every API read 400 ms late, no fade on six cached returns, and under Reduced Motion the placeholder still shown and no animation running on a switch, a slow route or its hand-over).
+- Not measured: a real phone, browsers other than Chromium, production signed in.

@@ -12,6 +12,7 @@ import { overviewOf, type OverviewRow } from "@/lib/overview";
 import { useApplicationRecords } from "./ApplicationRecords";
 import { Icon, type IconName } from "./Icon";
 import { Mark } from "./Mark";
+import { useContentMotion, useRailIndicator } from "./Motion";
 import { useNavigation } from "./Navigation";
 import { RouteSkeleton } from "./RouteSkeleton";
 import { UserCenter } from "./UserCenter";
@@ -54,6 +55,11 @@ export function Shell({ children }: { children: ReactNode }) {
   const pendingShape = pathname !== committed ? routeShape(pathname) : null;
   const dock = useAdvisorDock();
   const hasDock = committed !== "/advisor";
+  // Leaving the advisor's page, the width already makes room for the dock in the click's frame, so the
+  // placeholder of the next page is laid out at its final width and nothing narrows when that page
+  // arrives (the dock itself waits for the commit, above). Going to it, the room stays until the dock
+  // has gone, so the dock never covers the page.
+  const dockLayout = hasDock || pathname !== "/advisor";
   const [collapsed, setCollapsed] = useState(false);
   const [sidebarInteracted, setSidebarInteracted] = useState(false);
   const [tight, setTight] = useState(false);
@@ -61,8 +67,12 @@ export function Shell({ children }: { children: ReactNode }) {
   const [railForced, setRailForced] = useState(false);
   const [query, setQuery] = useState("");
   const search = useRef<HTMLDialogElement>(null);
-  const crowded = hasDock && dock.open && tight;
+  const content = useRef<HTMLDivElement>(null);
+  const nav = useRef<HTMLElement>(null);
+  const crowded = dockLayout && dock.open && tight;
   const folded = crowded ? !railForced : collapsed;
+  useContentMotion(content, pathname);
+  useRailIndicator(nav, `${pathname} ${hasDock} ${folded}`);
 
   useEffect(() => {
     const media = window.matchMedia(THREE_PANES);
@@ -114,7 +124,7 @@ export function Shell({ children }: { children: ReactNode }) {
 
   return (
     <div
-      className={`shell${folded ? " sidebar-collapsed" : ""}${hasDock ? " has-dock" : ""}`}
+      className={`shell${folded ? " sidebar-collapsed" : ""}${dockLayout ? " has-dock" : ""}`}
       data-sidebar-interacted={sidebarInteracted || undefined}
       onClick={onLinkClick}
     >
@@ -156,7 +166,8 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="rail-scroll">
-          <nav className="rail-nav" aria-label="主导航">
+          <nav className="rail-nav" aria-label="主导航" ref={nav}>
+            <span className="nav-indicator" aria-hidden="true" />
             {links.map(({ label, short, href, icon, railOnly }) => {
               const current = isNavCurrent(href, pathname);
               // From 901px the advisor's entry opens the dock; on a phone it is the tab that leads to its page.
@@ -209,7 +220,7 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
         </div>
       </aside>
-      <div className="workspace-content" id="main" tabIndex={-1} aria-busy={pendingShape ? true : undefined}>
+      <div className="workspace-content" id="main" tabIndex={-1} ref={content} aria-busy={pendingShape ? true : undefined}>
         {/* While a navigation is pending the destination's placeholder is drawn over the route being
             left, which stays mounted, invisible and in place. The window is not scrolled and the
             document keeps its height, so the browser stores the right scroll position for the entry

@@ -25,7 +25,14 @@ const nextConfig: NextConfig = {
   // The service worker must never be served from a cache: a release has to replace it on the next
   // visit (public/sw.js). `Service-Worker-Allowed` is not needed, since it sits at the root.
   async headers() {
-    return [{ source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] }];
+    return [
+      { source: "/sw.js", headers: [{ key: "Cache-Control", value: "no-cache, no-store, must-revalidate" }] },
+      // School logos are named by a hash of their bytes (scripts/fill-logos.py), so a name never points
+      // at other bytes. Kept for a year, a list seen before draws its logos from the browser's cache;
+      // with Next's default (max-age=0) every return to 学校库 asked the server again for each one, and
+      // on a slow link they appeared seconds after the rows.
+      { source: "/logos/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+    ];
   },
   // Next gzips what it proxies and holds a streamed body back until it has a full block, so the
   // advisor's events reached the browser all at once in development. Compression is the proxy's job

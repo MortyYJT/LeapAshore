@@ -13,7 +13,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { clickDestination, pushDestination } from "@/lib/navigation";
+import { clickDestination, clickQuery, pushDestination, pushQuery, type LinkClick } from "@/lib/navigation";
 
 /**
  * The pathname the shell shows, which can run ahead of the router's.
@@ -33,6 +33,11 @@ interface NavigationState {
   committed: string;
   /** How far the page being left was scrolled when the pending navigation began. */
   scrollY: number;
+  /**
+   * A new query for the page on screen is on its way (the school list's filter, pager, or a search
+   * from Cmd-K while on 学校库). The page keeps what it shows until the answer arrives, and says so.
+   */
+  refreshing: boolean;
   /** For the shell's root: a click on any in-app link switches the shown pathname at once. */
   onLinkClick: (event: MouseEvent<HTMLElement>) => void;
   /** `router.push` with the same instant switch, for navigations that are not links. */
@@ -57,7 +62,7 @@ export function stayOnPage(event: MouseEvent<HTMLElement>) {
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const committed = usePathname() ?? "/";
   const router = useRouter();
-  const [shown, setShown] = useOptimistic<{ pathname: string; scrollY: number }>({ pathname: committed, scrollY: 0 });
+  const [shown, setShown] = useOptimistic<{ pathname: string; scrollY: number; query: string | null }>({ pathname: committed, scrollY: 0, query: null });
   const pathname = shown.pathname;
   // Clicks are judged against what is on screen: during a pending navigation a click on the route
   // being left is a real change (back to it, at once), and a click on the pending one is not.
@@ -67,35 +72,42 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const onLinkClick = useCallback((event: MouseEvent<HTMLElement>) => {
     const anchor = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[href]") : null;
     if (!anchor) return;
-    const destination = clickDestination(
-      {
-        href: anchor.href,
-        target: anchor.getAttribute("target"),
-        download: anchor.hasAttribute("download"),
-        local: answeredHere.has(event.nativeEvent),
-        button: event.button,
-        metaKey: event.metaKey,
-        ctrlKey: event.ctrlKey,
-        shiftKey: event.shiftKey,
-        altKey: event.altKey,
-        // This handler sits above every link, so it runs after the link's own: Next's `Link` has
-        // already prevented the default if it took the click.
-        defaultPrevented: event.defaultPrevented,
-      },
-      { origin: window.location.origin, pathname: shownRef.current },
-    );
+    const click: LinkClick = {
+      href: anchor.href,
+      target: anchor.getAttribute("target"),
+      download: anchor.hasAttribute("download"),
+      local: answeredHere.has(event.nativeEvent),
+      button: event.button,
+      metaKey: event.metaKey,
+      ctrlKey: event.ctrlKey,
+      shiftKey: event.shiftKey,
+      altKey: event.altKey,
+      // This handler sits above every link, so it runs after the link's own: Next's `Link` has
+      // already prevented the default if it took the click.
+      defaultPrevented: event.defaultPrevented,
+    };
+    const destination = clickDestination(click, { origin: window.location.origin, pathname: shownRef.current });
     if (destination) {
       const scrollY = window.scrollY;
-      startTransition(() => setShown({ pathname: destination, scrollY }));
+      startTransition(() => setShown({ pathname: destination, scrollY, query: null }));
+      return;
+    }
+    const query = clickQuery(click, { origin: window.location.origin, pathname: shownRef.current, search: window.location.search });
+    if (query !== null) {
+      const scrollY = window.scrollY;
+      startTransition(() => setShown({ pathname: shownRef.current, scrollY, query }));
     }
   }, [setShown]);
 
   const push = useCallback(
     (href: string, options?: { scroll?: boolean }) => {
-      const destination = pushDestination(href, { origin: window.location.origin, pathname: shownRef.current });
+      const here = { origin: window.location.origin, pathname: shownRef.current };
+      const destination = pushDestination(href, here);
+      const query = destination ? null : pushQuery(href, { ...here, search: window.location.search });
       const scrollY = window.scrollY;
       startTransition(() => {
-        if (destination) setShown({ pathname: destination, scrollY });
+        if (destination) setShown({ pathname: destination, scrollY, query: null });
+        else if (query !== null) setShown({ pathname: shownRef.current, scrollY, query });
         router.push(href, options);
       });
     },
@@ -103,8 +115,8 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo(
-    () => ({ pathname, committed, scrollY: shown.scrollY, onLinkClick, push }),
-    [pathname, committed, shown.scrollY, onLinkClick, push],
+    () => ({ pathname, committed, scrollY: shown.scrollY, refreshing: shown.query !== null, onLinkClick, push }),
+    [pathname, committed, shown.scrollY, shown.query, onLinkClick, push],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

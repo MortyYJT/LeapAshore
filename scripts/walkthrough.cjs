@@ -378,6 +378,48 @@ async function navigationPass(browser, errors) {
  * Last, a tick made on the roadmap while the API is still held (its save is in flight) must show on
  * the overview at once, and must be what the server holds after everything is released and reloaded.
  */
+/**
+ * Reduced Motion: a page switch, a slow route's placeholder and its hand-over to content run no
+ * animation and no transition, and the placeholder is still drawn.
+ */
+async function reducedMotionPass(browser, errors) {
+  const context = await browser.newContext({ viewport: DESKTOP, reducedMotion: "reduce" });
+  const page = await context.newPage();
+  watch(page, "reduced-motion", errors);
+  let holding = false;
+  const held = [];
+  await page.route("**/*", (route) => (holding && /[?&]_rsc=/.test(route.request().url()) ? held.push(route) : route.continue()));
+  await page.goto(`${BASE}/advisor`);
+  await settle(page);
+  // Every animation that runs in a stretch of frames: CSS transitions and animations, and script ones.
+  const animated = (frames) =>
+    page.evaluate(async (frames) => {
+      const seen = new Set();
+      for (let i = 0; i < frames; i++) {
+        // The dev server's own badge lives in a shadow root; it is not the app.
+        for (const a of document.getAnimations()) if (a.playState === "running" && !(a.effect?.target?.getRootNode() instanceof ShadowRoot)) seen.add(a.id || a.animationName || a.transitionProperty || "animation");
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+      }
+      return [...seen];
+    }, frames);
+  holding = true;
+  await page.locator('nav[aria-label="主导航"] a[href="/schools"]').click({ noWaitAfter: true });
+  const during = await animated(20);
+  const bar = await page.evaluate(() => {
+    const sk = document.querySelector("[data-route-skeleton] .sk");
+    return sk ? getComputedStyle(sk).opacity : null;
+  });
+  check("减少动态：慢的页面仍画占位，占位条可见", bar === "1", { bar });
+  holding = false;
+  for (const route of held.splice(0)) await route.continue().catch(() => {});
+  await page.waitForURL((url) => url.pathname === "/schools", { timeout: 30000 });
+  const after = await animated(20);
+  await page.locator('nav[aria-label="主导航"] a[href="/applications"]').click({ noWaitAfter: true });
+  const next = await animated(20);
+  check("减少动态：切页、占位和换成内容时没有任何动画或过渡在跑", during.length === 0 && after.length === 0 && next.length === 0, { during, after, next });
+  await context.close();
+}
+
 async function returnVisitPass(browser, errors, email) {
   const context = await browser.newContext({ viewport: DESKTOP });
   const page = await context.newPage();
@@ -430,12 +472,33 @@ async function returnVisitPass(browser, errors, email) {
       a.remove();
     }, href);
   const bars = '.workspace-route .sk, .workspace-route .skeleton, [data-route-skeleton]';
+  // First visits on a slow link: every read answers 400 ms late, so each page shows its placeholder
+  // and then fills in. Nothing may move while it does (the placeholder has the content's shape), and
+  // content that replaces painted bars fades in.
+  await page.evaluate(() => {
+    window.__shifts = [];
+    window.__fills = 0;
+    new PerformanceObserver((list) => list.getEntries().forEach((entry) => window.__shifts.push({ value: entry.value, at: location.pathname, nodes: entry.sources.map((s) => s.node?.className || s.node?.nodeName).join(" ") }))).observe({ type: "layout-shift" });
+    const count = () => {
+      window.__fills += document.getAnimations().filter((a) => a.id === "fill-in" && !a.__counted && (a.__counted = true)).length;
+      requestAnimationFrame(count);
+    };
+    requestAnimationFrame(count);
+  });
+  await page.route("**/api/**", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    await route.continue().catch(() => {});
+  });
   for (const [href, selector] of Object.entries(CONTENT)) {
     await go(href);
     await page.waitForURL((url) => url.pathname === href, { timeout: 30000 });
     await page.locator(selector).first().waitFor({ timeout: 30000 });
     await page.waitForFunction((bars) => document.querySelectorAll(bars).length === 0, bars, { timeout: 30000 });
   }
+  await page.unroute("**/api/**");
+  const fill = await page.evaluate(() => ({ shift: window.__shifts.reduce((sum, entry) => sum + entry.value, 0), shifts: window.__shifts.filter((entry) => entry.value > 0.001), fills: window.__fills }));
+  check("动效：慢网第一次打开各页，占位换成内容时版面不动（累计位移 < 0.01）", fill.shift < 0.01, fill);
+  check("动效：慢网第一次打开，画过占位条的内容淡入", fill.fills > 0, fill);
   await go("/");
   await page.locator(".workspace-route .task-rows").waitFor({ timeout: 30000 });
   await settle(page);
@@ -461,18 +524,27 @@ async function returnVisitPass(browser, errors, email) {
         a.click();
         a.remove();
         let sawBars = false;
+        let faded = false;
         const ready = () => location.pathname === href && document.querySelector(selector) !== null && document.querySelectorAll(bars).length === 0;
+        const watchFades = () => (faded ||= document.getAnimations().some((a) => a.id === "fill-in"));
         while (!ready() && performance.now() - started < bound * 4) {
           // The shell's placeholder for the frame or two before a route in memory commits does not
           // count; the page's own bars would mean it is waiting for a read.
           if (document.querySelector(".workspace-route .sk")) sawBars = true;
+          watchFades();
           await new Promise((resolve) => requestAnimationFrame(resolve));
         }
-        return { ready: ready(), ms: Math.round(performance.now() - started), sawBars };
+        // Content from memory is drawn at once: no fill-in fade in the frames after it either.
+        for (let i = 0; i < 12; i++) {
+          watchFades();
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+        }
+        return { ready: ready(), ms: Math.round(performance.now() - started), sawBars, faded };
       },
       { href, selector, bars, bound: NAV_BOUND },
     );
     check(`回访 ${href}：接口被扣住时，${NAV_BOUND}ms 内就是真实内容，没有占位`, seen.ready && seen.ms <= NAV_BOUND && !seen.sawBars, seen);
+    check(`回访 ${href}：内容来自内存，没有淡入`, !seen.faded, seen);
   }
 
   // A tick whose save cannot land yet, then straight to the overview. Only the API stays held from
@@ -1797,6 +1869,9 @@ async function returnVisitPass(browser, errors, email) {
 
     // ---------- return visits ----------
     await returnVisitPass(browser, errors, emails[3]);
+
+    // ---------- reduced motion ----------
+    await reducedMotionPass(browser, errors);
   } catch (error) {
     check("走查顺利跑完", false, String(error && error.stack ? error.stack : error).split("\n").filter((line) => !line.includes("node_modules")).slice(0, 6).join(" | "));
   } finally {

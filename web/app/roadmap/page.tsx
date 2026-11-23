@@ -7,7 +7,7 @@ import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { editHref } from "@/components/home/DeadlineTable";
 import { RoadmapMap } from "@/components/roadmap/RoadmapMap";
 import { useApplicationRecords } from "@/components/shell/ApplicationRecords";
-import { Bar, RoadmapBody } from "@/components/shell/RouteSkeleton";
+import { Bar, DemoNotePlaceholder, RoadmapBody } from "@/components/shell/RouteSkeleton";
 import { ConflictNotice, Loading, Notice } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
 import { EMPTY_PROFILE } from "@/lib/assess";
@@ -37,11 +37,9 @@ export default function RoadmapPage() {
       <RequireAccount
         what="路线图"
         fallback={<Sample />}
-        pending={
-          <Frame finding={<Bar width="16em" />}>
-            <RoadmapBody />
-          </Frame>
-        }
+        // Before the account is known the page may still turn out to be the demo, whose note under the
+        // title would push a placeholder down: only the title is drawn, and the blocks arrive below it.
+        pending={<Frame finding={<Bar width="16em" />}>{null}</Frame>}
       >
         <Roadmap />
       </RequireAccount>
@@ -107,9 +105,17 @@ function Roadmap() {
   const today = beijingToday();
 
   const overview = useMemo(() => overviewOf(records.data ?? [], today), [records.data, today]);
+  // The map draws a line per application and the schedule is fitted to their deadlines, so it waits
+  // for the applications too: drawn without them it would grow and push the page down when they land.
+  // A failed read counts as known (the map is drawn without them, as before), so a retry does not take
+  // the map down again.
+  const recordsKnown = records.data !== null || records.error !== null || !records.loading;
   // The phases before applying are fitted to the earliest open deadline once they are laid out again.
   const bound = useMemo(() => scheduleBound(overview.rows), [overview]);
-  const timeline = useMemo(() => (roadmap.roadmap ? timelineOf(roadmap.roadmap, dayOf(today), bound) : null), [roadmap.roadmap, today, bound]);
+  const timeline = useMemo(
+    () => (roadmap.roadmap && recordsKnown ? timelineOf(roadmap.roadmap, dayOf(today), bound) : null),
+    [roadmap.roadmap, recordsKnown, today, bound],
+  );
   const map = useMemo(() => (timeline ? roadmapMap(timeline, overview.rows, today) : null), [timeline, overview, today]);
   const [stretch, choose] = useStretch(timeline);
   const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
@@ -132,7 +138,7 @@ function Roadmap() {
       {profile.error && !profile.data && <Notice error>没有读到你的背景（{profile.error}）。</Notice>}
       {roadmap.notice && <Notice>{roadmap.notice}</Notice>}
       {roadmap.syncError && <Notice error>{roadmap.syncError}</Notice>}
-      {!map && !profile.error && <RoadmapBody lines={overview.rows.length} />}
+      {!map && !profile.error && <RoadmapBody lines={recordsKnown ? overview.rows.length : null} />}
       {map && timeline && (
         <>
           {!map.dated && (
@@ -537,7 +543,7 @@ function Dates({
  */
 function Sample() {
   const { requireLogin } = useAuth();
-  const { demo, selected } = useApplicationRecords();
+  const { demo, demoPending, selected } = useApplicationRecords();
   const today = beijingToday();
   const year = Number(today.slice(0, 4)) + 1;
   const timeline = useMemo(() => {
@@ -558,9 +564,22 @@ function Sample() {
   const map = useMemo(() => roadmapMap(timeline, overview.rows, today), [timeline, overview, today]);
   const [stretch, choose] = useStretch(timeline);
   const signIn = () => void requireLogin();
+  const finding = <>一位示例申请人的路线图：{year} 年 7 月入学，计算机方向。</>;
+
+  // The demo's programs add a clause to the note and a line per program to the map. Drawn before they
+  // arrive, both would grow under the visitor's eyes and push the page down; the placeholder holds
+  // their final shape instead.
+  if (demoPending) {
+    return (
+      <Frame demo finding={finding}>
+        <DemoNotePlaceholder text="这是演示：阶段的时间和勾选是示例，项目和截止日期来自学校库。登录后，这里按你的入学时间和申请排出你自己的。" />
+        <RoadmapBody lines={null} />
+      </Frame>
+    );
+  }
 
   return (
-    <Frame demo finding={<>一位示例申请人的路线图：{year} 年 7 月入学，计算机方向。</>}>
+    <Frame demo finding={finding}>
       <div className="demo-note" role="note">
         <p id="demo-note">
           这是演示：阶段的时间和勾选是示例{demo ? "，项目和截止日期来自学校库" : ""}。登录后，这里按你的入学时间和申请排出你自己的。

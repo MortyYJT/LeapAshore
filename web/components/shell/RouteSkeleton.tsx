@@ -91,10 +91,11 @@ export function OverviewBody() {
 
 /**
  * 申请路线图: the map's frame, then the stretch's steps. `lines` is how many applications the map
- * will draw under the preparation line, when the shell already knows: each takes a row of the map,
- * so the steps below start where they will.
+ * will draw under the preparation line: each takes a row of the map, so the steps below start where
+ * they will. Null when that is not known yet: then only the map's frame is drawn, with nothing under
+ * it to push down when the map turns out taller.
  */
-export function RoadmapBody({ lines = 0 }: { lines?: number }) {
+export function RoadmapBody({ lines }: { lines: number | null }) {
   return (
     <>
       <Status what="路线图" />
@@ -107,18 +108,20 @@ export function RoadmapBody({ lines = 0 }: { lines?: number }) {
             <span key={step} className="sk sk-step" style={{ "--sk-step": step } as CSSProperties} />
           ))}
         </div>
-        <p className="map-note">
-          <Bar width="28em" className="sk-late" />
-        </p>
+        {lines !== null && (
+          <p className="map-note">
+            <Bar width="28em" className="sk-late" />
+          </p>
+        )}
       </section>
-      <section className="block" aria-hidden="true">
+      {lines !== null && <section className="block" aria-hidden="true">
         <div className="block-head">
           <h2>
             <Bar width="7em" className="sk-late" />
           </h2>
         </div>
         <Rows count={5} pitch={70} widths={["38%"]} lead={<Box width={22} height={22} round />} />
-      </section>
+      </section>}
     </>
   );
 }
@@ -414,6 +417,16 @@ function ProgramBody() {
   );
 }
 
+/** The signed-out demo's note under the title, in its own words, with the place of its button. */
+export function DemoNotePlaceholder({ text }: { text: string }) {
+  return (
+    <div className="demo-note sk-late" aria-hidden="true">
+      <p>{text}</p>
+      <Box width={52} height={32} />
+    </div>
+  );
+}
+
 /* ---------- whole pages, for the shell ---------- */
 
 function TitleRow({ title, lede, aside }: { title: ReactNode; lede?: ReactNode; aside?: ReactNode }) {
@@ -448,12 +461,7 @@ function PageHead({ title, demo }: { title: string; demo?: string | null }) {
           <Finding />
         </div>
       </header>
-      {demo && (
-        <div className="demo-note sk-late" aria-hidden="true">
-          <p>{demo}</p>
-          <Box width={52} height={32} />
-        </div>
-      )}
+      {demo && <DemoNotePlaceholder text={demo} />}
     </>
   );
 }
@@ -464,8 +472,8 @@ interface Known {
   demo: boolean;
   /** The same for 材料, whose demo needs programs whose materials have been collected. */
   demoMaterials: boolean;
-  /** How many applications the roadmap will draw. */
-  lines: number;
+  /** How many applications the roadmap will draw; null while they have not been read. */
+  lines: number | null;
 }
 
 const PAGES: Record<RouteShape, (known: Known) => ReactNode> = {
@@ -614,7 +622,7 @@ export function RouteSkeleton({ shape, offset }: { shape: RouteShape; offset: nu
   const today = beijingToday();
   const source = records.data ?? records.demo;
   // The applications the map draws as lines: the overview's rows (lib/overview.ts), which the rail lists too.
-  const lines = useMemo(() => (source ? overviewOf(source, today).rows.length : 0), [source, today]);
+  const lines = useMemo(() => (source ? overviewOf(source, today).rows.length : null), [source, today]);
   const known: Known = { demo: !records.data && records.demo !== null, demoMaterials: !records.data && records.demoMaterials !== null, lines };
   return (
     <div className="route-skeleton" data-route-skeleton={shape} style={{ translate: `0 ${offset}px` }}>

@@ -1,15 +1,20 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useTransition, type FormEvent, type ReactNode } from "react";
+import { type FormEvent, type ReactNode } from "react";
 
+import { useNavigation } from "@/components/shell/Navigation";
+
+/**
+ * The filter bar and the list under it. A new query (this form, the pager, or a search from Cmd-K
+ * while the list is on screen) keeps the rows on screen until the new ones arrive; meanwhile the
+ * button says 筛选中… and the rows step back (app/motion.css), so it is clear they are about to change.
+ */
 export function SchoolFilters({ controls, count, children }: {
   controls: ReactNode;
   count: number;
   children: ReactNode;
 }) {
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
+  const { push, refreshing } = useNavigation();
 
   function filter(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -17,8 +22,7 @@ export function SchoolFilters({ controls, count, children }: {
     for (const [key, value] of new FormData(event.currentTarget)) {
       if (typeof value === "string" && value.trim()) query.set(key, value.trim());
     }
-    const href = query.size ? `/schools?${query}` : "/schools";
-    startTransition(() => router.push(href, { scroll: false }));
+    push(query.size ? `/schools?${query}` : "/schools", { scroll: false });
   }
 
   return (
@@ -26,14 +30,14 @@ export function SchoolFilters({ controls, count, children }: {
       <form className="panel-head" action="/schools" onSubmit={filter} style={{ padding: "12px 24px" }}>
         <div className="toolbar" style={{ flex: 1 }}>
           {controls}
-          <button className="btn btn-secondary school-filter-submit" type="submit" aria-busy={pending}>
+          <button className="btn btn-secondary school-filter-submit" type="submit" aria-busy={refreshing}>
             <span>筛选</span>
-            {pending && <span className="school-filter-pending" role="status">筛选中…</span>}
+            {refreshing && <span className="school-filter-pending" role="status">筛选中…</span>}
           </button>
         </div>
         <span className="muted num" aria-live="polite">{count} 所</span>
       </form>
-      <div aria-busy={pending}>{children}</div>
+      <div className="school-results" aria-busy={refreshing}>{children}</div>
     </section>
   );
 }

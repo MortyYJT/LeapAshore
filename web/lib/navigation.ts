@@ -94,29 +94,54 @@ export interface LinkClick {
  * content and is the page's own business), or a click nobody turned into a client-side navigation.
  */
 export function clickDestination(click: LinkClick, here: { origin: string; pathname: string }): string | null {
-  if (click.button !== 0 || click.metaKey || click.ctrlKey || click.shiftKey || click.altKey) return null;
-  if (!click.defaultPrevented || click.local || click.download) return null;
-  if (click.target && click.target !== "_self") return null;
-  let url: URL;
-  try {
-    url = new URL(click.href, here.origin);
-  } catch {
-    return null;
-  }
-  if (url.origin !== here.origin) return null;
-  return destinationOf(url.pathname, here.pathname);
+  const url = clickedUrl(click, here.origin);
+  return url ? destinationOf(url.pathname, here.pathname) : null;
 }
 
 /** The same decision for a programmatic `router.push(href)`. */
 export function pushDestination(href: string, here: { origin: string; pathname: string }): string | null {
+  const url = sameOrigin(href, here.origin);
+  return url ? destinationOf(url.pathname, here.pathname) : null;
+}
+
+/**
+ * The query a click is about to load on the page already on screen (the school list's pager, a search
+ * from Cmd-K while on 学校库), or null. The page stays and keeps its rows until the new ones arrive;
+ * the shell uses this to say that what is on screen is being refreshed. `here.search` is the query
+ * on screen, with or without its "?".
+ */
+export function clickQuery(click: LinkClick, here: { origin: string; pathname: string; search: string }): string | null {
+  const url = clickedUrl(click, here.origin);
+  return url ? queryOf(url, here) : null;
+}
+
+/** The same decision for a programmatic `router.push(href)`. */
+export function pushQuery(href: string, here: { origin: string; pathname: string; search: string }): string | null {
+  const url = sameOrigin(href, here.origin);
+  return url ? queryOf(url, here) : null;
+}
+
+function clickedUrl(click: LinkClick, origin: string): URL | null {
+  if (click.button !== 0 || click.metaKey || click.ctrlKey || click.shiftKey || click.altKey) return null;
+  if (!click.defaultPrevented || click.local || click.download) return null;
+  if (click.target && click.target !== "_self") return null;
+  return sameOrigin(click.href, origin);
+}
+
+function sameOrigin(href: string, origin: string): URL | null {
   let url: URL;
   try {
-    url = new URL(href, here.origin);
+    url = new URL(href, origin);
   } catch {
     return null;
   }
-  if (url.origin !== here.origin) return null;
-  return destinationOf(url.pathname, here.pathname);
+  return url.origin === origin ? url : null;
+}
+
+function queryOf(url: URL, here: { pathname: string; search: string }): string | null {
+  if (url.pathname !== here.pathname || routeShape(url.pathname) === null) return null;
+  const search = here.search && !here.search.startsWith("?") ? `?${here.search}` : here.search;
+  return url.search === search ? null : url.search;
 }
 
 function destinationOf(pathname: string, current: string): string | null {
