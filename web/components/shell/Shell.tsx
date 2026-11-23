@@ -41,8 +41,9 @@ const THREE_PANES = "(min-width: 901px) and (max-width: 1439px)";
 
 /**
  * The frame every route sits in. From 901px it is a rail on the left: navigation, the applicant's
- * applications with the days each has left, the sync state, the account and the theme. At 900px and
- * below the same elements become a top bar and a bottom tab bar (app/shell.css); nothing is rendered twice.
+ * applications with the days each has left, the sync state and the account. The theme is chosen
+ * under 设置 → 外观 (UserCenter), not in the frame. At 900px and below the same elements become a
+ * top bar and a bottom tab bar (app/shell.css); nothing is rendered twice.
  *
  * From 901px the advisor is a dock on the right of every route but its own. Between 901px and 1439px
  * the three panes do not fit, so an open dock folds the rail; the rail's own button still opens it.
@@ -217,7 +218,6 @@ export function Shell({ children }: { children: ReactNode }) {
           <SyncStatus />
           <div className="rail-me">
             <UserCenter />
-            <ThemeToggle />
           </div>
         </div>
       </aside>
@@ -395,24 +395,6 @@ function SyncStatus() {
     <button type="button" className="rail-sync" title={`${label}，点击重新同步`} aria-label={`${label}，点击重新同步`} onClick={records.reload}>
       <Icon name={records.syncedAt ? "synced" : "unsynced"} />
       <span className="num">{label}</span>
-    </button>
-  );
-}
-
-/** A quick switch between light and dark. The full setting, with "follow the system", is under 设置 → 外观. */
-function ThemeToggle() {
-  return (
-    <button
-      type="button"
-      className="rail-button theme-toggle"
-      aria-label="切换深色或浅色"
-      title="切换深色或浅色"
-      onClick={() => {
-        const next = document.documentElement.dataset.appearance === "dark" ? "light" : "dark";
-        window.dispatchEvent(new CustomEvent("leapashore-theme", { detail: next }));
-      }}
-    >
-      <Icon name="theme" />
     </button>
   );
 }

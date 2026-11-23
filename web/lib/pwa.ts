@@ -4,6 +4,21 @@
 /** The mode the settings last applied. Not per account: the scripts that run before first paint read it. */
 export const APPEARANCE_KEY = "leapashore:appearance";
 
+/** The three choices under 设置 → 外观, in the order they are shown. The first is the default. */
+export const APPEARANCE_MODES = ["system", "light", "dark"] as const;
+export type AppearanceMode = (typeof APPEARANCE_MODES)[number];
+export type Appearance = "light" | "dark";
+
+/** A stored mode, or "system" for anything else: a new visitor, a cleared store, a value from an older build. */
+export function appearanceMode(stored: unknown): AppearanceMode {
+  return APPEARANCE_MODES.includes(stored as AppearanceMode) ? (stored as AppearanceMode) : "system";
+}
+
+/** The theme a mode shows while the system asks for dark (`systemDark`) or light. */
+export function resolveAppearance(mode: AppearanceMode, systemDark: boolean): Appearance {
+  return mode === "system" ? (systemDark ? "dark" : "light") : mode;
+}
+
 /** The rail's colour in each theme (`--rail` in app/globals.css): the browser's bars and the status bar take it. */
 export const THEME_COLOR = { light: "#f6f6f6", dark: "#141414" } as const;
 
@@ -11,10 +26,17 @@ export const THEME_COLOR = { light: "#f6f6f6", dark: "#141414" } as const;
 export const THEME_COLOR_META = "applied-theme-color";
 
 /**
+ * The script ThemeScript puts in the server's HTML, run before first paint: the same decision as
+ * `appearanceMode` and `resolveAppearance`, written out because it runs before any module loads.
+ * Only "dark" and "light" are explicit; anything else follows the system.
+ */
+export const THEME_SCRIPT = `(function(){try{var m=localStorage.getItem(${JSON.stringify(APPEARANCE_KEY)});var d=m==="dark"||(m!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.appearance=d?"dark":"light";var c=document.createElement("meta");c.id=${JSON.stringify(THEME_COLOR_META)};c.name="theme-color";c.content=d?${JSON.stringify(THEME_COLOR.dark)}:${JSON.stringify(THEME_COLOR.light)};document.head.append(c)}catch(e){}})()`;
+
+/**
  * Colour the browser's bars for the theme now showing. ThemeScript creates the meta before first
  * paint; this updates it when the mode changes (and creates it if that script did not run).
  */
-export function applyThemeColor(appearance: "light" | "dark") {
+export function applyThemeColor(appearance: Appearance) {
   let meta = document.getElementById(THEME_COLOR_META);
   if (!meta) {
     meta = document.createElement("meta");

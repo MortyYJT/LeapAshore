@@ -3,7 +3,14 @@
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type ChangeEvent } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { APPEARANCE_KEY, applyThemeColor } from "@/lib/pwa";
+import {
+  APPEARANCE_KEY,
+  APPEARANCE_MODES,
+  appearanceMode,
+  applyThemeColor,
+  resolveAppearance,
+  type AppearanceMode,
+} from "@/lib/pwa";
 
 import { Icon } from "./Icon";
 import { useInstall } from "./Install";
@@ -11,6 +18,8 @@ import { ModelKeySettingsPanel } from "./ModelKeySettings";
 import { ReminderSettingsPanel } from "./ReminderSettings";
 
 const COLORS = [{ id: "graphite", name: "默认" }] as const;
+const MODE_LABELS: Record<AppearanceMode, string> = { system: "跟随系统", light: "浅色", dark: "深色" };
+const MODES = APPEARANCE_MODES.map((id) => ({ id, label: MODE_LABELS[id] }));
 const TABS = [
   { id: "profile", label: "个人资料" },
   { id: "appearance", label: "外观" },
@@ -23,7 +32,7 @@ export const SETTINGS_EVENT = "leapashore-settings";
 type Preferences = {
   name: string;
   avatar: string;
-  mode: string;
+  mode: AppearanceMode;
   color: string;
 };
 const DEFAULTS: Preferences = {
@@ -85,9 +94,7 @@ export function UserCenter() {
           raw.avatar.startsWith("data:image/webp;base64,")
             ? raw.avatar
             : "",
-        mode: ["system", "light", "dark"].includes(raw?.mode)
-          ? raw.mode
-          : "system",
+        mode: appearanceMode(raw?.mode),
         color: COLORS.some((c) => c.id === raw?.color) ? raw.color : "graphite",
       });
     } catch {
@@ -106,14 +113,8 @@ export function UserCenter() {
     }
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const apply = () => {
-      const appearance =
-        prefs.mode === "system"
-          ? media.matches
-            ? "dark"
-            : "light"
-          : prefs.mode === "dark"
-            ? "dark"
-            : "light";
+      // Following the system, an OS switch between light and dark lands here without a reload.
+      const appearance = resolveAppearance(prefs.mode, media.matches);
       document.documentElement.dataset.appearance = appearance;
       document.documentElement.dataset.accent = prefs.color;
       // The browser's own bars (and an installed window's title bar) follow the switch too.
@@ -123,13 +124,6 @@ export function UserCenter() {
     media.addEventListener("change", apply);
     return () => media.removeEventListener("change", apply);
   }, [prefs, loadedKey, key]);
-
-  useEffect(() => {
-    const update = (event: Event) =>
-      setPrefs((p) => ({ ...p, mode: (event as CustomEvent<string>).detail }));
-    window.addEventListener("leapashore-theme", update);
-    return () => window.removeEventListener("leapashore-theme", update);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -449,14 +443,10 @@ export function UserCenter() {
               <div className="uc-row">
                 <div>
                   <h3>显示模式</h3>
-                  <p className="uc-hint">应用到整个网站。</p>
+                  <p className="uc-hint">跟随系统时，电脑或手机换深浅色，这里一起换。</p>
                 </div>
                 <div className="uc-modes" role="group" aria-label="显示模式">
-                  {[
-                    { id: "system", label: "跟随系统" },
-                    { id: "light", label: "浅色" },
-                    { id: "dark", label: "深色" },
-                  ].map((mode) => (
+                  {MODES.map((mode) => (
                     <button
                       key={mode.id}
                       type="button"

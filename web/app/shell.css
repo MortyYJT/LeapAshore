@@ -97,7 +97,7 @@
 button.rail-sync { cursor: pointer; }
 button.rail-sync:hover { background: var(--hover); color: var(--ink); }
 .rail-sync.is-failed { color: var(--urgent); }
-.rail-me { display: flex; align-items: center; gap: 4px; }
+.rail-me { display: flex; align-items: center; }
 .rail-me .user-center { flex: 1; min-width: 0; }
 .rail .uc-trigger { width: 100%; min-height: 36px; padding: 4px 8px; color: var(--ink); text-align: left; }
 .rail .uc-trigger:hover { background: var(--hover); }
@@ -124,10 +124,10 @@ button.rail-sync:hover { background: var(--hover); color: var(--ink); }
   .sidebar-collapsed .rail-legend-title.is-demo { display: flex; justify-content: center; padding: 0 0 8px; }
   .sidebar-collapsed .rail-legend-title.is-demo > span:first-child { display: none; }
   .sidebar-collapsed .rail-legend button { display: flex; justify-content: center; padding: 0; }
-  .sidebar-collapsed .rail-me { flex-direction: column; }
-  .sidebar-collapsed .rail-me .user-center { flex: none; width: 100%; }
+  /* The foot keeps the folded rail's width: the hidden labels must not widen its column, or the sync
+     button and the avatar spill past the rail's edge. Both keep their padding, which centres the icon. */
+  .sidebar-collapsed .rail-foot { grid-template-columns: minmax(0, 1fr); }
   .sidebar-collapsed .rail .uc-trigger { overflow: hidden; }
-  .sidebar-collapsed .theme-toggle { width: 40px; }
 }
 
 /* ---------- phone and small tablet: top bar and bottom tabs ---------- */
@@ -149,11 +149,11 @@ button.rail-sync:hover { background: var(--hover); color: var(--ink); }
   .rail-button, .rail .uc-trigger { width: 44px; height: 44px; }
   .rail-scroll, .rail-foot { display: contents; }
   .rail-legend, .rail-sync { display: none; }
-  .rail-me { gap: 0; }
   .rail-me .user-center { flex: none; }
   .rail .uc-trigger { justify-content: center; min-height: 0; padding: 0; }
   .rail .uc-trigger .uc-name { display: none; }
-  .rail .uc-menu { top: calc(100% + 6px); right: -40px; bottom: auto; left: auto; }
+  /* The avatar is the bar's last control: the menu's right edge sits 8px in from the screen's. */
+  .rail .uc-menu { top: calc(100% + 6px); right: 4px; bottom: auto; left: auto; }
 
   .rail-nav {
     position: fixed; inset: auto 0 0 0; z-index: 30; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;

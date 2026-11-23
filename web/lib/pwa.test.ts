@@ -3,7 +3,18 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import manifest from "../app/manifest.ts";
-import { APPEARANCE_KEY, installMode, isIos, THEME_COLOR, type InstallFacts } from "./pwa.ts";
+import {
+  APPEARANCE_KEY,
+  APPEARANCE_MODES,
+  appearanceMode,
+  installMode,
+  isIos,
+  resolveAppearance,
+  THEME_COLOR,
+  THEME_COLOR_META,
+  THEME_SCRIPT,
+  type InstallFacts,
+} from "./pwa.ts";
 
 const IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 18_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Mobile/15E148 Safari/604.1";
 const IPAD_DESKTOP_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1 Safari/605.1.15";
@@ -116,6 +127,9 @@ test("the worker answers a page navigation that cannot reach the server with its
   // The page follows the theme the settings last applied, like the app's own first paint.
   assert.ok(html.includes(JSON.stringify(APPEARANCE_KEY)));
   assert.ok(html.includes(`d?"${THEME_COLOR.dark}":"${THEME_COLOR.light}"`));
+  // The same decision as the pre-paint script, word for word: which stored values are explicit.
+  const decision = THEME_SCRIPT.match(/var d=[^;]+;/)?.[0];
+  assert.ok(decision && html.includes(decision), decision);
   // It loads nothing: no stylesheet, script file, image or font it could fail to fetch.
   assert.doesNotMatch(html, /<link|src=|url\(/);
 });
@@ -173,4 +187,51 @@ test("the worker stores nothing and takes over as soon as it is installed", () =
   w.listeners.get("activate")!({ waitUntil: () => (waited += 1) });
   assert.deepEqual(w.calls, ["skipWaiting", "claim"]);
   assert.equal(waited, 2);
+});
+
+test("the modes are system, light and dark in that order, and a new visitor follows the system", () => {
+  assert.deepEqual([...APPEARANCE_MODES], ["system", "light", "dark"]);
+  for (const nothing of [null, undefined, "", "auto", "Dark", 1]) assert.equal(appearanceMode(nothing), "system");
+  for (const mode of APPEARANCE_MODES) assert.equal(appearanceMode(mode), mode);
+});
+
+test("following the system shows what the system asks for; an explicit choice ignores it", () => {
+  assert.equal(resolveAppearance("system", true), "dark");
+  assert.equal(resolveAppearance("system", false), "light");
+  for (const systemDark of [true, false]) {
+    assert.equal(resolveAppearance("light", systemDark), "light");
+    assert.equal(resolveAppearance("dark", systemDark), "dark");
+  }
+});
+
+/** Runs the pre-paint script against a stored value and a system scheme; returns what it set. */
+function prePaint(stored: string | null, systemDark: boolean) {
+  const root = { dataset: {} as Record<string, string> };
+  const appended: Record<string, string>[] = [];
+  const env = {
+    localStorage: { getItem: (key: string) => (key === APPEARANCE_KEY ? stored : null) },
+    matchMedia: (query: string) => ({ matches: query === "(prefers-color-scheme: dark)" && systemDark }),
+    document: {
+      documentElement: root,
+      createElement: () => ({}) as Record<string, string>,
+      head: { append: (node: Record<string, string>) => appended.push(node) },
+    },
+  };
+  new Function("localStorage", "matchMedia", "document", THEME_SCRIPT)(env.localStorage, env.matchMedia, env.document);
+  return { appearance: root.dataset.appearance, meta: appended };
+}
+
+test("before first paint the page takes the stored choice, or the system's scheme, and colours the bars to match", () => {
+  // Stored values from every build so far: the three modes, nothing yet, and an unknown leftover.
+  for (const stored of ["system", "light", "dark", null, "graphite"]) {
+    for (const systemDark of [true, false]) {
+      const expected = resolveAppearance(appearanceMode(stored), systemDark);
+      const { appearance, meta } = prePaint(stored, systemDark);
+      assert.equal(appearance, expected, `stored ${stored}, system ${systemDark ? "dark" : "light"}`);
+      assert.equal(meta.length, 1);
+      assert.equal(meta[0].id, THEME_COLOR_META);
+      assert.equal(meta[0].name, "theme-color");
+      assert.equal(meta[0].content, THEME_COLOR[expected]);
+    }
+  }
 });

@@ -14,7 +14,8 @@
 // lib/pwa.test.ts runs this file against a stand-in for `self`.
 
 // Tokens as in app/globals.css; the theme is the one the settings last applied (lib/pwa.ts,
-// APPEARANCE_KEY), read the same way as components/shell/ThemeScript.tsx.
+// APPEARANCE_KEY), decided the same way as the pre-paint script (lib/pwa.ts, THEME_SCRIPT); a test
+// in lib/pwa.test.ts holds the two decisions together.
 const OFFLINE_PAGE = `<!doctype html>
 <html lang="zh-CN">
 <head>

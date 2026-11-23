@@ -1,11 +1,11 @@
 "use client";
 
-import { APPEARANCE_KEY, THEME_COLOR, THEME_COLOR_META } from "@/lib/pwa";
+import { THEME_SCRIPT } from "@/lib/pwa";
 
 // Reads the mode the settings last applied, then the system, and sets `data-appearance` on <html>.
 // It also writes the page's theme-color (lib/pwa.ts, applyThemeColor), so the browser's bars match
-// a theme chosen in the settings and not only the system's.
-const SOURCE = `(function(){try{var m=localStorage.getItem(${JSON.stringify(APPEARANCE_KEY)});var d=m==="dark"||(m!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.dataset.appearance=d?"dark":"light";var c=document.createElement("meta");c.id=${JSON.stringify(THEME_COLOR_META)};c.name="theme-color";c.content=d?${JSON.stringify(THEME_COLOR.dark)}:${JSON.stringify(THEME_COLOR.light)};document.head.append(c)}catch(e){}})()`;
+// a theme chosen in the settings and not only the system's. The source lives in lib/pwa.ts, where
+// the tests run it.
 
 /**
  * Sets the theme before the first paint, so a dark reader never sees a white page first. Once the app
@@ -21,7 +21,7 @@ export function ThemeScript() {
     <script
       suppressHydrationWarning
       type={typeof window === "undefined" ? undefined : "application/json"}
-      dangerouslySetInnerHTML={{ __html: SOURCE }}
+      dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }}
     />
   );
 }

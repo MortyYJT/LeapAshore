@@ -757,6 +757,14 @@ async function returnVisitPass(browser, errors, email) {
     check("布局：没有顶栏", await page.locator(".workspace-header").count() === 0);
     await page.getByRole("button", { name: "折叠侧边栏" }).click();
     check("侧栏：折叠为图标栏", await page.locator(".sidebar-collapsed").count() === 1 && await page.getByRole("link", {name:"学校库",exact:true}).isVisible());
+    // The folded rail's foot (sync state, avatar) stays inside the rail; the theme is not chosen here.
+    // Measured once the rail has finished folding (its width animates), on the two controls the foot shows.
+    await page.waitForFunction(() => document.querySelector(".rail").getBoundingClientRect().width <= 72, null, { timeout: 5000 }).catch(() => {});
+    const foldedFoot = await page.evaluate(() => {
+      const rail = document.querySelector(".rail").getBoundingClientRect();
+      return { rail: Math.round(rail.right), controls: [...document.querySelectorAll(".rail-foot .rail-sync, .rail-foot .uc-trigger")].map((element) => Math.round(element.getBoundingClientRect().right)) };
+    });
+    check("侧栏（折叠）：底部的同步和头像都在侧栏宽度内", foldedFoot.rail <= 72 && foldedFoot.controls.length === 2 && foldedFoot.controls.every((right) => right <= foldedFoot.rail), foldedFoot);
     await page.reload();
     await page.getByRole("button", { name: "展开侧边栏" }).waitFor();
     check("侧栏：刷新保留折叠", true);
@@ -775,6 +783,26 @@ async function returnVisitPass(browser, errors, email) {
     await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
     check("头像菜单：包含登录和设置，外观收进设置", await page.locator("#user-menu").getByRole("button", {name:"登录",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button", {name:"设置",exact:true}).isVisible() && await page.locator("#user-menu").getByRole("button",{name:"深色",exact:true}).count() === 0);
     await page.keyboard.press("Escape");
+    check("外观：侧栏里没有深浅色开关", await page.locator(".rail").getByRole("button", { name: /深色|浅色|主题/ }).count() === 0);
+    // Signed out, 设置 → 外观 is there too: it follows the system by default and keeps up with it live.
+    const themeColor = () => page.locator('meta[name="theme-color"]').evaluateAll((metas) => metas.map((meta) => meta.content).join(","));
+    const appearance = () => page.locator("html").getAttribute("data-appearance");
+    await page.getByRole("button", {name:"我的，打开用户菜单"}).click();
+    await page.locator("#user-menu").getByRole("button", { name: "设置", exact: true }).click();
+    await page.getByRole("tab", { name: "外观", exact: true }).click();
+    const modes = page.getByRole("group", { name: "显示模式" });
+    check("外观（未登录）：三个选项，默认跟随系统", (await modes.getByRole("button").allInnerTexts()).join("/") === "跟随系统/浅色/深色"
+      && await modes.getByRole("button", { name: "跟随系统" }).getAttribute("aria-pressed") === "true");
+    await page.emulateMedia({ colorScheme: "dark" });
+    await page.waitForFunction(() => document.documentElement.dataset.appearance === "dark", null, { timeout: 5000 }).catch(() => {});
+    check("外观：跟随系统时系统换成深色，页面不刷新就跟着换，浏览器栏色也换", await appearance() === "dark" && await themeColor() === "#141414", { appearance: await appearance(), themeColor: await themeColor() });
+    await modes.getByRole("button", { name: "浅色" }).click();
+    check("外观：选了浅色，系统是深色也保持浅色", await appearance() === "light" && await themeColor() === "#f6f6f6" && await page.evaluate(() => localStorage.getItem("leapashore:appearance")) === "light");
+    await modes.getByRole("button", { name: "跟随系统" }).click();
+    await page.emulateMedia({ colorScheme: "light" });
+    await page.waitForFunction(() => document.documentElement.dataset.appearance === "light", null, { timeout: 5000 }).catch(() => {});
+    check("外观：回到跟随系统后又随系统变化", await appearance() === "light" && await themeColor() === "#f6f6f6" && await page.evaluate(() => localStorage.getItem("leapashore:appearance")) === "system");
+    await page.getByRole("button", { name: "关闭设置" }).click();
     await screenshot(page, "home");
 
     await page.goto(`${BASE}/roadmap`);
@@ -1896,6 +1924,8 @@ async function returnVisitPass(browser, errors, email) {
     await intro.keyboard.press("Escape");
     await intro.locator("#user-menu").waitFor({ state: "hidden" });
     check("390：Esc 关闭头像菜单", !await intro.locator("#user-menu").isVisible());
+    const topBar = await intro.locator(".rail :is(.rail-top, .rail-foot) button:visible").evaluateAll((buttons) => buttons.map((button) => button.getAttribute("aria-label")));
+    check("390：顶栏没有深浅色开关，头像是最后一个按钮", topBar.at(-1) === "我的，打开用户菜单" && !topBar.some((label) => /深色|浅色|主题/.test(label ?? "")), topBar);
     await screenshot(intro, "home-390");
     await sidebarLogin(intro);
     await intro.locator("dialog.dialog:not(.workspace-search-dialog)").waitFor();

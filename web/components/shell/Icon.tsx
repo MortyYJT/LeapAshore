@@ -41,12 +41,6 @@ const ICONS = {
     </>
   ),
   sidebar: <path d="M2.5 3h11v10h-11zM6.2 3v10" />,
-  theme: (
-    <>
-      <circle cx="8" cy="8" r="5.5" />
-      <path d="M8 2.5a5.5 5.5 0 0 1 0 11z" fill="currentColor" stroke="none" />
-    </>
-  ),
   synced: (
     <>
       <circle cx="8" cy="8" r="5.5" />
